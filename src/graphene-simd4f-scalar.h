@@ -1,0 +1,216 @@
+#ifndef __GRAPHENE_SIMD4F_SCALAR_H__
+#define __GRAPHENE_SIMD4F_SCALAR_H__
+
+#include <math.h>
+#include <string.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef struct {
+  float x;
+  float y;
+  float z;
+  float w;
+} graphene_simd4f_t;
+
+#define GRAPHENE_SIMD4F_GET(f) \
+static inline float \
+graphene_simd4f_get_##f (const graphene_simd4f_t s) \
+{ \
+  return s.##f; \
+}
+
+GRAPHENE_SIMD4F_GET (x)
+GRAPHENE_SIMD4F_GET (y)
+GRAPHENE_SIMD4F_GET (z)
+GRAPHENE_SIMD4F_GET (w)
+
+#undef GRAPHENE_SIMD4F_GET
+
+static inline graphene_simd4f_t
+graphene_simd4f_init (float x,
+                      float y,
+                      float z,
+                      float w)
+{
+  graphene_simd4f_t s = { x, y, z, w };
+  return s;
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_init_zero (void)
+{
+  graphene_simd4f_t s = graphene_simd4f_init (0.f, 0.f, 0.f, 0.f);
+  return s;
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_init_4f (const float *v)
+{
+  graphene_simd4f_t s = graphene_simd4f_init (v[0], v[1], v[2], v[3]);
+  return s;
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_init_3f (const float *v)
+{
+  graphene_simd4f_t s = graphene_simd4f_init (v[0], v[1], v[2], 0.f);
+  return s;
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_init_2f (const float *v)
+{
+  graphene_simd4f_t s = graphene_simd4f_init (v[0], v[1], 0.f, 0.f);
+  return s;
+}
+
+static inline void
+graphene_simd4f_dup_4f (const graphene_simd4f_t  s,
+                        float                   *v)
+{
+  memcpy (v, &s, sizeof (float) * 4);
+}
+
+static inline void
+graphene_simd4f_dup_3f (const graphene_simd4f_t  s,
+                        float                   *v)
+{
+  memcpy (v, &s, sizeof (float) * 3);
+}
+
+static inline void
+graphene_simd4f_dup_2f (const graphene_simd4f_t  s,
+                        float                   *v)
+{
+  memcpy (v, &s, sizeof (float) * 2);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_splat (float v)
+{
+  graphene_simd4f_t s = { v, v, v, v };
+  return s;
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_splat_x (graphene_simd4f_t v)
+{
+  graphene_simd4f_t s = { v.x, v.x, v.x, v.x };
+  return s;
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_splat_y (graphene_simd4f_t v)
+{
+  graphene_simd4f_t s = { v.y, v.y, v.y, v.y };
+  return s;
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_splat_z (graphene_simd4f_t v)
+{
+  graphene_simd4f_t s = { v.z, v.z, v.z, v.z };
+  return s;
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_splat_w (graphene_simd4f_t v)
+{
+  graphene_simd4f_t s = { v.w, v.w, v.w, v.w };
+  return s;
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_reciprocal (graphene_simd4f_t v)
+{
+  graphene_simd4f_t s = {
+    1.0f / v.x,
+    1.0f / v.y,
+    1.0f / v.z,
+    1.0f / v.w
+  };
+  return s;
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_sqrt (graphene_simd4f_t v)
+{
+  graphene_simd4f_t s = {
+    sqrt (v.x),
+    sqrt (v.y),
+    sqrt (v.z),
+    sqrt (v.w)
+  };
+  return s;
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_rsqrt (graphene_simd4f_t v)
+{
+  graphene_simd4f_t s = {
+    1.0f / sqrt (v.x),
+    1.0f / sqrt (v.y),
+    1.0f / sqrt (v.z),
+    1.0f / sqrt (v.w)
+  };
+  return s;
+}
+
+#define GRAPHENE_SIMD4F_OP(name,op) \
+static inline graphene_simd4f_t \
+graphene_simd4f_##name (graphene_simd4f_t a, graphene_simd4f_t b) \
+{ \
+  graphene_simd4f_t s = { \
+    a.x op b.x, \
+    a.y op b.y, \
+    a.z op b.z, \
+    a.w op b.w  \
+  }; \
+  return s; \
+}
+
+GRAPHENE_SIMD4F_OP (add, +)
+GRAPHENE_SIMD4F_OP (sub, -)
+GRAPHENE_SIMD4F_OP (mul, *)
+GRAPHENE_SIMD4F_OP (div, /)
+
+#undef GRAPHENE_SIMD4F_OP
+
+static inline graphene_simd4f_t
+graphene_simd4f_cross3 (graphene_simd4f_t a,
+                        graphene_simd4f_t b)
+{
+  return graphene_simd4f_init (a.y * b.z - a.z * b.y,
+                               a.z * b.x - a.x * b.z,
+                               a.x * b.y - a.y * b.x,
+                               0.f);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_min (graphene_simd4f_t a,
+                     graphene_simd4f_t b)
+{
+  return graphene_simd4f_init (a.x < b.x ? a.x : b.x,
+                               a.y < b.y ? a.y : b.y,
+                               a.z < b.z ? a.z : b.z,
+                               a.w < b.w ? a.w : b.w);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_max (graphene_simd4f_t a,
+                     graphene_simd4f_t b)
+{
+  return graphene_simd4f_init (a.x > b.x ? a.x : b.x,
+                               a.y > b.y ? a.y : b.y,
+                               a.z > b.z ? a.z : b.z,
+                               a.w > b.w ? a.w : b.w);
+}
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

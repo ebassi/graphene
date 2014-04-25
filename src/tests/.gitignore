@@ -1,0 +1,6 @@
+/.deps
+/.libs
+/*.o
+/*.log
+/*.trs
+/vec2
