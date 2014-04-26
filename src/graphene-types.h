@@ -18,6 +18,9 @@ typedef struct _graphene_vec2_t         graphene_vec2_t;
 typedef struct _graphene_vec3_t         graphene_vec3_t;
 typedef struct _graphene_vec4_t         graphene_vec4_t;
 
+typedef struct _graphene_point_t        graphene_point_t;
+typedef struct _graphene_size_t         graphene_size_t;
+
 G_END_DECLS
 
 #endif /* __GRAPHENE_TYPES_H__ */

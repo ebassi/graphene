@@ -11,13 +11,16 @@ SUBDIRS = . tests
 
 # source
 source_h = \
-	graphene-types.h \
 	graphene-macros.h \
+	graphene-point.h \
 	graphene-vec2.h \
 	graphene-vec3.h \
 	graphene-vec4.h \
+	graphene-types.h \
 	$(NULL)
 source_c = \
+	graphene-point.c \
+	graphene-size.c \
 	graphene-vectors.c \
 	$(NULL)
 

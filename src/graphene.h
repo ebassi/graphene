@@ -10,6 +10,8 @@
 #include "graphene-vec3.h"
 #include "graphene-vec4.h"
 
+#include "graphene-point.h"
+
 #undef GRAPHENE_H_INSIDE
 
 #endif /* __GRAPHENE_H__ */
