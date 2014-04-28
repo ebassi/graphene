@@ -32,6 +32,20 @@
 
 G_BEGIN_DECLS
 
+/**
+ * graphene_vec2_t:
+ *
+ * A structure capable of holding a vector with two dimensions, x and y.
+ *
+ * The contents of the #graphene_vec2_t structure are private and should
+ * never be accessed directly.
+ */
+struct _graphene_vec2_t
+{
+  /*< private >*/
+  GRAPHENE_PRIVATE_FIELD (graphene_simd4f_t, value);
+};
+
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_vec2_t *       graphene_vec2_alloc             (void);
 GRAPHENE_AVAILABLE_IN_1_0

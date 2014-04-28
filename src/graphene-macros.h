@@ -34,4 +34,10 @@
 
 #define GRAPHENE_FLOAT_EPSILON  (1e-15)
 
+#ifdef GRAPHENE_COMPILATION
+# define GRAPHENE_PRIVATE_FIELD(type,name)      type name
+#else
+# define GRAPHENE_PRIVATE_FIELD(type,name)      type __graphene_private_##name
+#endif
+
 #endif /* __GRAPHENE_MACROS_H__ */
