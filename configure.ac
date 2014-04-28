@@ -416,7 +416,7 @@ typedef __m128 graphene_simd4f_t;
 #elif defined(GRAPHENE_USE_GCC)
 typedef float graphene_simd4f_t __attribute__((vector_size(16)));
 #elif defined(GRAPHENE_USE_SCALAR)
-typedef struct { float x, y, z, w } graphene_simd4f_t;
+typedef struct { float x, y, z, w; } graphene_simd4f_t;
 #else
 # error Platform not supported.
 #endif
