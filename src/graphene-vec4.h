@@ -32,6 +32,19 @@
 
 G_BEGIN_DECLS
 
+/**
+ * graphene_vec4_t:
+ *
+ * A structure capable of holding a vector with four dimensions, x, y, z, and w.
+ *
+ * The contents of the #graphene_vec4_t structure are private and should
+ * never be accessed directly.
+ */
+struct _graphene_vec4_t
+{
+  GRAPHENE_PRIVATE_FIELD (graphene_simd4f_t, value);
+};
+
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_vec4_t *       graphene_vec4_alloc             (void);
 GRAPHENE_AVAILABLE_IN_1_0
