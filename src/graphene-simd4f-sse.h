@@ -31,8 +31,6 @@
 extern "C" {
 #endif
 
-typedef __m128 graphene_simd4f_t;
-
 typedef union {
   graphene_simd4f_t s;
   float f[4];

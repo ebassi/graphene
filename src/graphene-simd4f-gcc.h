@@ -31,8 +31,6 @@
 extern "C" {
 #endif
 
-typedef float graphene_simd4f_t __attribute__((vector_size(16)));
-
 typedef union {
   graphene_simd4f_t s;
   float f[4];
@@ -177,7 +175,7 @@ graphene_simd4f_rsqrt (graphene_simd4f_t v)
 
 #define GRAPHENE_SIMD4F_OP(name,op) \
 static inline graphene_simd4f_t \
-graphene_simd4f_##op (graphene_simd4f_t a, graphene_simd4f_t b) \
+graphene_simd4f_##name (graphene_simd4f_t a, graphene_simd4f_t b) \
 { \
   graphene_simd4f_t res = a op b; \
   return res; \

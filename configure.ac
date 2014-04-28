@@ -98,7 +98,37 @@ AS_CASE([$host],
 )
 AC_MSG_RESULT([$platform_win32])
 
-# Check for SSE2 instructions
+GRAPHENE_CONFIG_DEFS=""
+
+dnl === Fast paths ============================================================
+
+# Check for GCC vectors
+have_gcc_vector=no
+AC_MSG_CHECKING([whether to use GCC vector])
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
+#if !defined(__GNUC__)
+# error "Need GCC for vectors"
+#endif
+typedef float simd4f __attribute__((vector_size(16)));
+int main () {
+  simd4f s = { 0.f, 0.f, 0.f, 0.f };
+  return 0;
+}]])], [have_gcc_vector=yes])
+
+AC_ARG_ENABLE([gcc-vector],
+              [AC_HELP_STRING([--disable-gcc-vector], [disable GCC vector fast paths])],
+              [enable_gcc_vector=$enableval],
+              [enable_gcc_vector=auto])
+
+AS_IF([test "x$enable_gcc_vector" = xno], [have_gcc_vector=disabled])
+
+AC_MSG_RESULT($have_sse2_intrinsics)
+AS_IF([test "x$enable_sse2" = xyes && test "x$have_sse2_intrinsics" = xno],
+      [
+        AC_MSG_ERROR([SSE2 intrinsics not detected])
+      ])
+
+# Check for SSE2 intrinsics
 AS_IF([test "x$SSE2_CFLAGS" = "x"],
       [
         AS_IF([test "x$SUNCC" = "xyes"],
@@ -138,7 +168,6 @@ AC_ARG_ENABLE([sse2],
               [enable_sse2=auto])
 
 AS_IF([test "x$enable_sse2" = xno], [have_sse2_intrinsics=disabled])
-AS_IF([test "x$have_sse2_intrinsics" = xyes], [AC_DEFINE([GRAPHENE_HAS_SSE], [1], [use SSE2 compiler intrinsics])])
 
 AC_MSG_RESULT($have_sse2_intrinsics)
 AS_IF([test "x$enable_sse2" = xyes && test "x$have_sse2_intrinsics" = xno],
@@ -198,7 +227,6 @@ AC_ARG_ENABLE([arm-neon],
               [enable_arm_neon=auto])
 
 AS_IF([test "x$enable_arm_neon" = xno], [have_arm_neon=disabled])
-AS_IF([test "x$have_arm_neon" = xyes], [AC_DEFINE([GRAPHENE_HAS_ARM_NEON], [1], [use ARM NEON assembly optimizations])])
 
 AC_MSG_RESULT($have_arm_neon)
 AS_IF([test "x$enable_arm_neon" = xyes && test "x$have_arm_neon" = xno],
@@ -339,6 +367,78 @@ AC_SUBST(GRAPHENE_CFLAGS)
 AC_SUBST(GRAPHENE_LIBS)
 AC_SUBST(GRAPHENE_LT_LDFLAGS)
 
+AC_CONFIG_COMMANDS([src/graphene-config.h],
+[
+  outfile=src/graphene-config.h-tmp
+  cat > $outfile <<\_______EOF
+/* graphene-config.h
+ *
+ * This is a generated file. Please modify 'configure.ac'.
+ */
+
+#ifndef __GRAPHENE_CONFIG_H__
+#define __GRAPHENE_CONFIG_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+_______EOF
+
+        if test "x$graphene_has_sse2" = xyes; then
+          echo '#define GRAPHENE_HAS_SSE 1' >> $outfile
+        fi
+        if test "x$graphene_has_arm_neon" = xyes; then
+          echo '#define GRAPHENE_HAS_ARM_NEON 1' >> $outfile
+        fi
+        if test "x$graphene_has_gcc_vector" = xyes; then
+          echo '#define GRAPHENE_HAS_GCC 1' >> $outfile
+        fi
+
+        cat >> $outfile <<_______EOF
+#define GRAPHENE_HAS_SCALAR 1
+
+#if defined(GRAPHENE_HAS_SSE)
+# define GRAPHENE_USE_SSE
+#elif defined(GRAPHENE_HAS_ARM_NEON)
+# define GRAPHENE_USE_SCALAR
+#elif defined(GRAPHENE_HAS_GCC)
+# define GRAPHENE_USE_GCC
+#else
+# define GRAPHENE_USE_SCALAR
+#endif
+
+#if defined(GRAPHENE_USE_SSE)
+#include <xmmintrin.h>
+typedef __m128 graphene_simd4f_t;
+#elif defined(GRAPHENE_USE_ARM_NEON)
+#elif defined(GRAPHENE_USE_GCC)
+typedef float graphene_simd4f_t __attribute__((vector_size(16)));
+#elif defined(GRAPHENE_USE_SCALAR)
+typedef struct { float x, y, z, w } graphene_simd4f_t;
+#else
+# error Platform not supported.
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* __GRAPHENE_CONFIG_H__ */
+_______EOF
+        if cmp -s $outfile src/graphene-config.h ; then
+          AC_MSG_NOTICE([src/graphene-config.h is unchanged])
+          rm -f $outfile
+        else
+          mv $outfile src/graphene-config.h
+        fi
+], [
+graphene_has_sse2="$have_sse2_intrinsics"
+graphene_has_arm_neon="$have_arm_neon"
+graphene_has_gcc_vector="$have_gcc_vector"
+])
+
 AC_CONFIG_FILES([
         Makefile
 
@@ -346,6 +446,8 @@ AC_CONFIG_FILES([
         src/tests/Makefile
 
         src/graphene.pc
+
+        src/graphene-version.h
 ])
 
 AC_OUTPUT
@@ -364,4 +466,5 @@ Graphene - $VERSION (${GRAPHENE_RELEASE_STATUS})
   • Available optimizations:
     • SSE2: ${have_sse2_intrinsics}
     • ARM NEON: ${have_arm_neon}
+    • GCC vectors: ${have_gcc_vector}
 ])

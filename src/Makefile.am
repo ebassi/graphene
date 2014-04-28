@@ -17,6 +17,7 @@ source_h = \
 	graphene-vec3.h \
 	graphene-vec4.h \
 	graphene-types.h \
+	graphene-version-macros.h \
 	$(NULL)
 source_c = \
 	graphene-point.c \
@@ -35,6 +36,18 @@ source_h_priv = \
 	$(NULL)
 source_c_priv =
 
+# config header
+DISTCLEANFILES += graphene-config-stamp graphene-config.h
+BUILT_SOURCES += graphene-config-stamp
+graphene-config-stamp: ../config.status
+	$(AM_V_GEN) cd $(top_builddir) && \
+	  $(SHELL) ./config.status src/graphene-config.h
+	@touch graphene-config-stamp
+
+# version header
+DISTCLEANFILES += graphene-version.h
+EXTRA_DIST += graphene-version.h.in
+
 # main library
 libgraphene_1_0_la_CPPFLAGS = \
 	-DGRAPHENE_COMPILATION=1 \
@@ -51,7 +64,11 @@ lib_LTLIBRARIES += libgraphene-1.0.la
 
 # headers
 grapheneincludedir = $(includedir)/graphene-1.0
-grapheneinclude_DATA = $(source_h) graphene.h
+grapheneinclude_HEADERS = $(source_h) graphene.h
+nodist_grapheneinclude_HEADERS = \
+	$(top_builddir)/src/graphene-config.h \
+	$(top_builddir)/src/graphene-version.h \
+	$(NULL)
 
 # pkg-config files
 graphene-1.0.pc: graphene.pc

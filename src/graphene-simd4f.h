@@ -25,16 +25,7 @@
 #define __GRAPHENE_SIMD4F_H__
 
 #include "graphene-macros.h"
-
-#if defined(GRAPHENE_HAS_SSE)
-# define GRAPHENE_USE_SSE
-#elif defined(GRAPHENE_HAS_ARM_NEON)
-# define GRAPHENE_USE_ARM_NEON
-#elif defined(__GNUC__) && !defined(__arm__)
-# define GRAPHENE_USE_GCC
-#else
-# define GRAPHENE_USE_SCALAR
-#endif
+#include "graphene-config.h"
 
 #if defined(GRAPHENE_USE_SSE)
 # include "graphene-simd4f-sse.h"

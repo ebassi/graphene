@@ -32,13 +32,6 @@
 extern "C" {
 #endif
 
-typedef struct {
-  float x;
-  float y;
-  float z;
-  float w;
-} graphene_simd4f_t;
-
 #define GRAPHENE_SIMD4F_GET(f) \
 static inline float \
 graphene_simd4f_get_##f (const graphene_simd4f_t s) \

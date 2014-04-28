@@ -29,6 +29,9 @@ Makefile.in
 /src/config.h
 /src/config.h.in
 /src/config.h.in~
+/src/graphene-config-stamp
+/src/graphene-config.h
+/src/graphene-version.h
 /src/graphene.pc
 /src/graphene-1.0.pc
 /src/stamp-h1

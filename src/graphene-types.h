@@ -29,7 +29,9 @@
 #endif
 
 #include <glib.h>
+#include "graphene-config.h"
 #include "graphene-macros.h"
+#include "graphene-version-macros.h"
 
 G_BEGIN_DECLS
 

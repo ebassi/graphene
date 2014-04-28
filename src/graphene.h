@@ -28,6 +28,9 @@
 
 #include "graphene-types.h"
 #include "graphene-macros.h"
+#include "graphene-config.h"
+#include "graphene-version.h"
+#include "graphene-version-macros.h"
 
 #include "graphene-vec2.h"
 #include "graphene-vec3.h"
