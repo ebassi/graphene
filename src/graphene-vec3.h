@@ -21,8 +21,8 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_VECTORS_H__
-#define __GRAPHENE_VECTORS_H__
+#ifndef __GRAPHENE_VEC3_H__
+#define __GRAPHENE_VEC3_H__
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -31,6 +31,20 @@
 #include "graphene-types.h"
 
 G_BEGIN_DECLS
+
+/**
+ * graphene_vec3_t:
+ *
+ * A structure capable of holding a vector with three dimensions: x, y, and z.
+ *
+ * The contents of the #graphene_vec3_t structure are private and should
+ * never be accessed directly.
+ */
+struct _graphene_vec3_t
+{
+  /*< private >*/
+  GRAPHENE_PRIVATE_FIELD (graphene_simd4f_t, value);
+};
 
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_vec3_t *       graphene_vec3_alloc             (void);
@@ -107,4 +121,4 @@ const graphene_vec3_t * graphene_vec3_z_axis            (void);
 
 G_END_DECLS
 
-#endif /* __GRAPHENE_VECTORS_H__ */
+#endif /* __GRAPHENE_VEC3_H__ */

@@ -838,7 +838,7 @@ graphene_vec4_get_xy (const graphene_vec4_t *v,
 
 void
 graphene_vec4_get_xyz (const graphene_vec4_t *v,
-                       graphene_vec4_t       *res)
+                       graphene_vec3_t       *res)
 {
   g_return_if_fail (v != NULL);
   g_return_if_fail (res != NULL);

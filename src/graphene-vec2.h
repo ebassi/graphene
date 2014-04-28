@@ -21,8 +21,8 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_VECTORS_H__
-#define __GRAPHENE_VECTORS_H__
+#ifndef __GRAPHENE_VEC2_H__
+#define __GRAPHENE_VEC2_H__
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."

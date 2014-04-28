@@ -21,8 +21,8 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_VECTORS_H__
-#define __GRAPHENE_VECTORS_H__
+#ifndef __GRAPHENE_VEC4_H__
+#define __GRAPHENE_VEC4_H__
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -31,6 +31,20 @@
 #include "graphene-types.h"
 
 G_BEGIN_DECLS
+
+/**
+ * graphene_vec4_t:
+ *
+ * A structure capable of holding a vector with four dimensions: x, y, z, and w.
+ *
+ * The contents of the #graphene_vec4_t structure are private and should
+ * never be accessed directly.
+ */
+struct _graphene_vec4_t
+{
+  /*< private >*/
+  GRAPHENE_PRIVATE_FIELD (graphene_simd4f_t, value);
+};
 
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_vec4_t *       graphene_vec4_alloc             (void);
