@@ -32,20 +32,6 @@
 
 G_BEGIN_DECLS
 
-/**
- * graphene_vec3_t:
- *
- * A structure capable of holding a vector with three dimensions, x, y, and z.
- *
- * The contents of the #graphene_vec3_t structure are private and should
- * never be accessed directly.
- */
-struct _graphene_vec3_t
-{
-  /*< private >*/
-  GRAPHENE_PRIVATE_FIELD (graphene_simd4f_t, value);
-};
-
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_vec3_t *       graphene_vec3_alloc             (void);
 GRAPHENE_AVAILABLE_IN_1_0

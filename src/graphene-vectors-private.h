@@ -32,4 +32,15 @@
 
 #include "graphene-simd4f.h"
 
+struct _graphene_vec3_t
+{
+  graphene_simd4f_t value;
+};
+
+struct _graphene_vec4_t
+{
+  graphene_simd4f_t value;
+};
+
+
 #endif /* __GRAPHENE_VECTORS_PRIVATE_H__ */
