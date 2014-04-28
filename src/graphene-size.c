@@ -31,6 +31,8 @@
 
 #include "config.h"
 
+#include <math.h>
+
 #include "graphene-point.h"
 
 graphene_size_t *
@@ -71,6 +73,20 @@ graphene_size_init_from_size (graphene_size_t       *s,
   return s;
 }
 
+gboolean
+graphene_size_equal (const graphene_size_t *a,
+                     const graphene_size_t *b)
+{
+  if (a == b)
+    return TRUE;
+
+  if (a == NULL || b == NULL)
+    return FALSE;
+
+  return fabsf (a->width - b->width) < GRAPHENE_FLOAT_EPSILON &&
+         fabsf (a->height - b->height) < GRAPHENE_FLOAT_EPSILON;
+}
+
 void
 graphene_size_scale (const graphene_size_t *s,
                      float                  factor,
@@ -96,4 +112,17 @@ graphene_size_interpolate (const graphene_size_t *a,
 
   res->width = a->width + (b->width - a->width) * factor;
   res->height = a->height + (b->height - a->height) * factor;
+}
+
+static const graphene_size_t _graphene_size_zero = GRAPHENE_SIZE_INIT_ZERO;
+
+const graphene_size_t *
+graphene_size_zero (void)
+{
+#ifdef GRAPHENE_ENABLE_DEBUG
+  g_assert (_graphene_size_zero.width == 0.f);
+  g_assert (_graphene_size_zero.height == 0.f);
+#endif
+
+  return &_graphene_size_zero;
 }

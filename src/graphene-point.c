@@ -74,6 +74,19 @@ graphene_point_init_from_point (graphene_point_t       *p,
   return p;
 }
 
+gboolean
+graphene_point_equal (const graphene_point_t *a,
+                      const graphene_point_t *b)
+{
+  if (a == b)
+    return TRUE;
+
+  if (a == NULL || b == NULL)
+    return FALSE;
+
+  return graphene_point_near (a, b, GRAPHENE_FLOAT_EPSILON);
+}
+
 float
 graphene_point_distance (const graphene_point_t *a,
                          const graphene_point_t *b,
@@ -133,16 +146,16 @@ graphene_point_interpolate (const graphene_point_t *a,
   res->y = a->y + (b->y - a->y) * factor;
 }
 
-static const graphene_point_t graphene_point_zero_val = { 0.f, 0.f };
+static const graphene_point_t _graphene_point_zero = GRAPHENE_POINT_INIT_ZERO;
 
 const graphene_point_t *
 graphene_point_zero (void)
 {
 #ifdef GRAPHENE_ENABLE_DEBUG
   /* overzealous checks */
-  g_assert (graphene_point_zero_val.x == 0.f);
-  g_assert (graphene_point_zero_val.y == 0.f);
+  g_assert (_graphene_point_zero.x == 0.f);
+  g_assert (_graphene_point_zero.y == 0.f);
 #endif
 
-  return &graphene_point_zero_val;
+  return &_graphene_point_zero;
 }

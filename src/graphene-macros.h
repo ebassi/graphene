@@ -28,16 +28,10 @@
 #error "Only graphene.h can be included directly."
 #endif
 
-#if defined(GRAPHENE_HAS_SSE)
-# define GRAPHENE_USE_SSE
-#elif defined(__GNUC__) && !defined(__arm__)
-# define GRAPHENE_USE_GCC
-#else
-# define GRAPHENE_USE_SCALAR
-#endif
-
 #ifndef _GRAPHENE_PUBLIC
 #define _GRAPHENE_PUBLIC        extern
 #endif
+
+#define GRAPHENE_FLOAT_EPSILON  (1e-15)
 
 #endif /* __GRAPHENE_MACROS_H__ */
