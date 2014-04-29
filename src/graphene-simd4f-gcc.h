@@ -227,6 +227,64 @@ graphene_simd4f_max (graphene_simd4f_t a,
                                ua.f[3] > ub.f[3] ? ua.f[3] : ub.f[3]);
 }
 
+static inline graphene_simd4f_t
+graphene_simd4f_shuffle_wxyz (graphene_simd4f_t v)
+{
+  graphene_simd4f_union_t u = { v };
+  return graphene_simd4f_init (u.f[3], u.f[0], u.f[1], u.f[2]);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_shuffle_zwxy (graphene_simd4f_t v)
+{
+  graphene_simd4f_union_t u = { v };
+  return graphene_simd4f_init (u.f[2], u.f[3], u.f[0], u.f[1]);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_shuffle_yzwx (graphene_simd4f_t v)
+{
+  graphene_simd4f_union_t u = { v };
+  return graphene_simd4f_init (u.f[1], u.f[2], u.f[3], u.f[0]);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_zero_w (graphene_simd4f_t v)
+{
+  graphene_simd4f_union_t u = { v };
+  return graphene_simd4f_init (u.f[0], u.f[1], u.f[2], 0.f);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_zero_zw (graphene_simd4f_t v)
+{
+  graphene_simd4f_union_t u = { v };
+  return graphene_simd4f_init (u.f[0], u.f[1], 0.f, 0.f);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_merge_high (graphene_simd4f_t a,
+                            graphene_simd4f_t b)
+{
+  graphene_simd4f_union_t u_a = { a };
+  graphene_simd4f_union_t u_b = { b };
+  return graphene_simd4f_init (u_a.f[2], u_a.f[3], u_b.f[2], u_b.f[3]);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_flip_sign_0101 (graphene_simd4f_t v)
+{
+  graphene_simd4f_union_t u = { v };
+  return graphene_simd4f_init (u.f[0], -u.f[1], u.f[2], -u.f[3]);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_flip_sign_1010 (graphene_simd4f_t v)
+{
+  graphene_simd4f_union_t u = { v };
+  return graphene_simd4f_init (-u.f[0], u.f[1], -u.f[2], u.f[3]);
+}
+
 #ifdef __cplusplus
 }
 #endif

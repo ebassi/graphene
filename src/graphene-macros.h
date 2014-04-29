@@ -40,4 +40,12 @@
 # define GRAPHENE_PRIVATE_FIELD(type,name)      type __graphene_private_##name
 #endif
 
+#if defined(__GNUC__)
+# define GRAPHENE_ALIGN16  __attribute__((aligned(16)))
+#elif defined(_MSC_VER)
+# define GRAPHENE_ALIGN16  __declspec(align(16))
+#else
+# define GRAPHENE_ALIGN16
+#endif
+
 #endif /* __GRAPHENE_MACROS_H__ */

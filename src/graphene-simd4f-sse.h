@@ -212,6 +212,68 @@ graphene_simd4f_max (graphene_simd4f_t a,
   return _mm_max_ps (a, b);
 }
 
+#define GRAPHENE_SIMD4F_SHUFFLE(elem,idx) \
+static inline graphene_simd4f_t \
+graphene_simd4f_shuffle_##elem (graphene_simd4f_t v) \
+{ \
+  return _mm_shuffle_ps (v, v, _MM_SHUFFLE idx); \
+}
+
+GRAPHENE_SIMD4F_SHUFFLE (wxyz, (2, 1, 0, 3))
+GRAPHENE_SIMD4F_SHUFFLE (zwxy, (1, 0, 3, 2))
+GRAPHENE_SIMD4F_SHUFFLE (yzwx, (0, 3, 2, 1))
+
+#undef GRAPHENE_SIMD4F_SHUFFLE
+
+static inline graphene_simd4f_t
+graphene_simd4f_zero_w (graphene_simd4f_t v)
+{
+  graphene_simd4f_t s = _mm_unpackhi_ps (v, _mm_setzero_ps ());
+  return _mm_movelh_ps (v, s);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_zero_zw (graphene_simd4f_t v)
+{
+  return _mm_movelh_ps (v, _mm_setzero_ps ());
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_merge_high (graphene_simd4f_t a,
+                            graphene_simd4f_t b)
+{
+  return _mm_movehl_ps (b, a);
+}
+
+typedef GRAPHENE_ALIGN16 union {
+  unsigned int ui[4];
+  float f[4];
+} graphene_simd4f_uif_t;
+
+static inline graphene_simd4f_t
+graphene_simd4f_flip_sign_0101 (graphene_simd4f_t v)
+{
+  const graphene_simd4f_uif_t pnpn = { {
+    0x00000000,
+    0x80000000,
+    0x00000000,
+    0x80000000
+  } };
+  return _mm_xor_ps (v, _mm_load_ps (pnpn.f));
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_flip_sign_1010 (graphene_simd4f_t v)
+{
+  const graphene_simd4f_uif_t npnp = { {
+    0x80000000,
+    0x00000000,
+    0x80000000,
+    0x00000000,
+  } };
+  return _mm_xor_ps (v, _mm_load_ps (npnp.f));
+}
+
 #ifdef __cplusplus
 }
 #endif

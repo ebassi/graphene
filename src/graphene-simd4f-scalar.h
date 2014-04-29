@@ -226,6 +226,50 @@ graphene_simd4f_max (graphene_simd4f_t a,
                                a.w > b.w ? a.w : b.w);
 }
 
+#define GRAPHENE_SIMD4F_SHUFFLE(a,b,c,d) \
+static inline graphene_simd4f_t \
+graphene_simd4f_shuffle_##a##b##c##d (graphene_simd4f_t s) \
+{ \
+  return graphene_simd4f_init (s.a, s.b, s.c, s.d) \
+}
+
+GRAPHENE_SIMD4F_SHUFFLE (w, x, y, z)
+GRAPHENE_SIMD4F_SHUFFLE (z, w, x, y)
+GRAPHENE_SIMD4F_SHUFFLE (y, z, w, x)
+
+#undef GRAPHENE_SIMD4F_SHUFFLE
+
+static inline graphene_simd4f_t
+graphene_simd4f_zero_w (graphene_simd4f_t s)
+{
+  return graphene_simd4f_init (s.x, s.y, s.z, 0.0f); 
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_zero_zw (graphene_simd4f_t s)
+{
+  return graphene_simd4f_init (s.x, s.y, 0.0f, 0.0f);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_merge_high (graphene_simd4f_t a,
+                            graphene_simd4f_t b)
+{
+  return graphene_simd4f_init (a.z, a.w, b.z, b.w);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_flip_sign_0101 (graphene_simd4f_t s)
+{
+  return graphene_simd4f_init (s.x, -s.y, s.z, -s.w);
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_flip_sign_1010 (graphene_simd4f_t s)
+{
+  return graphene_simd4f_init (-s.x, s.y, -s.z, s.w);
+}
+
 #ifdef __cplusplus
 }
 #endif
