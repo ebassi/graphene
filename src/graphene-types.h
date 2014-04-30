@@ -45,6 +45,7 @@ typedef struct _graphene_vec4_t         graphene_vec4_t;
 
 typedef struct _graphene_point_t        graphene_point_t;
 typedef struct _graphene_size_t         graphene_size_t;
+typedef struct _graphene_rect_t         graphene_rect_t;
 
 typedef struct _graphene_matrix_t       graphene_matrix_t;
 

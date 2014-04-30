@@ -37,6 +37,7 @@
 #include "graphene-vec4.h"
 
 #include "graphene-point.h"
+#include "graphene-rect.h"
 
 #include "graphene-matrix.h"
 
