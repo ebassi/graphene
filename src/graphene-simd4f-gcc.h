@@ -285,6 +285,30 @@ graphene_simd4f_flip_sign_1010 (graphene_simd4f_t v)
   return graphene_simd4f_init (-u.f[0], u.f[1], -u.f[2], u.f[3]);
 }
 
+static inline gboolean
+graphene_simd4f_cmp_eq (graphene_simd4f_t a)
+{
+  graphene_simd4f_union_t u_a = { a };
+  graphene_simd4f_union_t u_b = { b };
+
+  return u_a.f[0] == u_b.f[0] &&
+         u_a.f[1] == u_b.f[1] &&
+         u_a.f[2] == u_b.f[2] &&
+         u_a.f[3] == u_b.f[3];
+}
+
+static inline gboolean
+graphene_simd4f_cmp_neq (graphene_simd4f_t a)
+{
+  graphene_simd4f_union_t u_a = { a };
+  graphene_simd4f_union_t u_b = { b };
+
+  return u_a.f[0] != u_b.f[0] &&
+         u_a.f[1] != u_b.f[1] &&
+         u_a.f[2] != u_b.f[2] &&
+         u_a.f[3] != u_b.f[3];
+}
+
 #ifdef __cplusplus
 }
 #endif

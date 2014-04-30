@@ -274,6 +274,22 @@ graphene_simd4f_flip_sign_1010 (graphene_simd4f_t v)
   return _mm_xor_ps (v, _mm_load_ps (npnp.f));
 }
 
+static inline gboolean
+graphene_simd4f_cmp_eq (graphene_simd4f_t a,
+                        graphene_simd4f_t b)
+{
+  __m128i res = (__m128i) _mm_cmpeq_ps (a, b);
+  return _mm_movemask_epi8 (res) == 0xffff;
+}
+
+static inline gboolean
+graphene_simd4f_cmp_neq (graphene_simd4f_t a,
+                         graphene_simd4f_t b)
+{
+  __m128i res = (__m128i) _mm_cmpneq_ps (a, b);
+  return _mm_movemask_epi8 (res) == 0xffff;
+}
+
 #ifdef __cplusplus
 }
 #endif

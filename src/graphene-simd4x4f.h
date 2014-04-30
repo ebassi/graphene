@@ -32,6 +32,22 @@
 extern "C" {
 #endif
 
+/* graphene_simd4x4f_t uses four graphene_simd4f_t vectors.
+ *
+ * the matrix is treated as row-major, i.e. the x, y, z, and w vectors
+ * are rows, and elements of each vector are a column:
+ *
+ *   graphene_simd4x4f_t = {
+ *     x.x, x.y, x.z, x.w,
+ *     y.x, y.y, y.z, y.w,
+ *     z.x, z.y, z.z, z.w,
+ *     w.x, w.y, w.z, w.w
+ *   }
+ *
+ * the memory layout of a graphene_simd4x4f_t matrix in memory will be
+ * identical to GL and Direc3D matrices.
+ */
+
 static inline graphene_simd4x4f_t
 graphene_simd4x4f_init (graphene_simd4f_t x,
                         graphene_simd4f_t y,
@@ -64,7 +80,7 @@ static inline void
 graphene_simd4x4f_to_float (const graphene_simd4x4f_t *m,
                             float                     *v)
 {
-  graphene_simd4f_dup_4f (m->x, v);
+  graphene_simd4f_dup_4f (m->x, v +  0);
   graphene_simd4f_dup_4f (m->y, v +  4);
   graphene_simd4f_dup_4f (m->z, v +  8);
   graphene_simd4f_dup_4f (m->w, v + 12);

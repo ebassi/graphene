@@ -210,6 +210,40 @@ graphene_simd4x4f_init_look_at (graphene_simd4x4f_t *m,
 }
 
 static inline void
+graphene_simd4x4f_perspective (graphene_simd4x4f_t *m,
+                               float                depth)
+{
+  const graphene_simd4f_t m_x = m->x;
+  const graphene_simd4f_t m_y = m->y;
+  const graphene_simd4f_t m_z = m->z;
+  const graphene_simd4f_t m_w = m->w;
+
+  const float p0 = graphene_simd4f_get_z (m_x) + -1.0f / depth * graphene_simd4f_get_w (m_x);
+  const float p1 = graphene_simd4f_get_z (m_y) + -1.0f / depth * graphene_simd4f_get_w (m_y);
+  const float p2 = graphene_simd4f_get_z (m_z) + -1.0f / depth * graphene_simd4f_get_w (m_z);
+  const float p3 = graphene_simd4f_get_z (m_w) + -1.0f / depth * graphene_simd4f_get_w (m_w);
+
+  const graphene_simd4f_t p_x = graphene_simd4f_init (graphene_simd4f_get_x (m_x),
+                                                      graphene_simd4f_get_y (m_x),
+                                                      graphene_simd4f_get_z (m_x),
+                                                      graphene_simd4f_get_w (m_w) + p0);
+  const graphene_simd4f_t p_y = graphene_simd4f_init (graphene_simd4f_get_x (m_y),
+                                                      graphene_simd4f_get_y (m_y),
+                                                      graphene_simd4f_get_z (m_y),
+                                                      graphene_simd4f_get_w (m_y) + p1);
+  const graphene_simd4f_t p_z = graphene_simd4f_init (graphene_simd4f_get_x (m_z),
+                                                      graphene_simd4f_get_y (m_z),
+                                                      graphene_simd4f_get_z (m_z),
+                                                      graphene_simd4f_get_w (m_z) + p2);
+  const graphene_simd4f_t p_w = graphene_simd4f_init (graphene_simd4f_get_x (m_w),
+                                                      graphene_simd4f_get_y (m_w),
+                                                      graphene_simd4f_get_z (m_w),
+                                                      graphene_simd4f_get_w (m_w) + p3);
+
+  *m = graphene_simd4x4f_init (p_x, p_y, p_z, p_w);
+}
+
+static inline void
 graphene_simd4x4f_translation (graphene_simd4x4f_t *m,
                                float                x,
                                float                y,
@@ -219,6 +253,19 @@ graphene_simd4x4f_translation (graphene_simd4x4f_t *m,
                                graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f),
                                graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f),
                                graphene_simd4f_init (   x,    y,    z, 1.0f));
+}
+
+static inline void
+graphene_simd4x4f_scale (graphene_simd4x4f_t *m,
+                         float                x,
+                         float                y,
+                         float                z)
+{
+  *m = graphene_simd4x4f_init (graphene_simd4f_init (   x, 0.0f, 0.0f, 0.0f),
+                               graphene_simd4f_init (0.0f,    y, 0.0f, 0.0f),
+                               graphene_simd4f_init (0.0f, 0.0f,    z, 0.0f),
+                               graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f));
+
 }
 
 static inline void
@@ -259,8 +306,8 @@ graphene_simd4x4f_rotation (graphene_simd4x4f_t *m,
 
 #define GRAPHENE_SIMD4X4F_OP(op) \
 static inline void \
-graphene_simd4x4f_##op (graphene_simd4x4f_t *a, \
-                        graphene_simd4x4f_t *b, \
+graphene_simd4x4f_##op (const graphene_simd4x4f_t *a, \
+                        const graphene_simd4x4f_t *b, \
                         graphene_simd4x4f_t *res) \
 { \
   res->x = graphene_simd4f_##op (a->x, b->x); \
@@ -355,6 +402,26 @@ graphene_simd4x4f_inverse (const graphene_simd4x4f_t *m,
   graphene_simd4x4f_t mt = graphene_simd4x4f_init (o0, o1, o2, o3);
 
   graphene_simd4x4f_transpose (&mt, res);
+}
+
+static inline gboolean
+graphene_simd4x4f_is_identity (const graphene_simd4x4f_t *m)
+{
+  const graphene_simd4f_t r0 = graphene_simd4f_init (1.0f, 0.0f, 0.0f, 0.0f);
+  const graphene_simd4f_t r1 = graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f);
+  const graphene_simd4f_t r2 = graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f);
+  const graphene_simd4f_t r3 = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f);
+
+  return graphene_simd4f_cmp_eq (m->x, r0) &&
+         graphene_simd4f_cmp_eq (m->y, r1) &&
+         graphene_simd4f_cmp_eq (m->z, r2) &&
+         graphene_simd4f_cmp_eq (m->w, r3);
+}
+
+static inline gboolean
+graphene_simd4x4f_is_2d (const graphene_simd4x4f_t *m)
+{
+  return FALSE;
 }
 
 #ifdef __cplusplus

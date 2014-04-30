@@ -3,6 +3,7 @@
 /*.o
 /*.log
 /*.trs
+/matrix
 /point
 /size
 /vec2
