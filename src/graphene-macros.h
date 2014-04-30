@@ -34,6 +34,9 @@
 
 #define GRAPHENE_FLOAT_EPSILON  (1e-15)
 
+#define GRAPHENE_PI             3.1415926535897932384626434f
+#define GRAPHENE_PI_2           1.5707963267948966192313217f
+
 #ifdef GRAPHENE_COMPILATION
 # define GRAPHENE_PRIVATE_FIELD(type,name)      type name
 #else

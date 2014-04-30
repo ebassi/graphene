@@ -421,6 +421,19 @@ typedef struct { float x, y, z, w; } graphene_simd4f_t;
 # error Platform not supported.
 #endif
 
+/* x, y, z, and w are columns, and each element of each vector is a row, i.e.:
+ *
+ *   graphene_simd4x4f_t = {
+ *     x.x, x.y, x.z, x.w,
+ *     y.x, y.y, y.z, y.w,
+ *     z.x, z.y, z.z, z.w,
+ *     w.x, w.y, w.z, w.w
+ *   }
+ */
+typedef struct {
+  graphene_simd4f_t x, y, z, w;
+} graphene_simd4x4f_t;
+
 #ifdef __cplusplus
 }
 #endif

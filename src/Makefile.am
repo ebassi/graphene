@@ -33,6 +33,7 @@ source_h_priv = \
 	graphene-simd4f-scalar.h \
 	graphene-simd4f-sse.h \
 	graphene-simd4x4f.h \
+	graphene-simd4x4f-common.h \
 	graphene-simd4x4f-gcc.h \
 	graphene-simd4x4f-neon.h \
 	graphene-simd4x4f-scalar.h \
