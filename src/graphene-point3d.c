@@ -118,7 +118,6 @@ graphene_point3d_dot (const graphene_point3d_t *a,
   graphene_simd4f_t av, bv, resv;
 
   g_return_val_if_fail (a != NULL && b != NULL, 0.f);
-  g_return_val_if_fail (res != NULL, 0.f);
 
   av = graphene_simd4f_init (a->x, a->y, a->z, 0.f);
   bv = graphene_simd4f_init (b->x, b->y, b->z, 0.f);
