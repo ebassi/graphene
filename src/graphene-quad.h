@@ -1,4 +1,4 @@
-/* graphene
+/* graphene-quad.h: Quad
  *
  * Copyright © 2014  Emmanuele Bassi
  *
@@ -21,29 +21,40 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_H__
-#define __GRAPHENE_H__
-
-#define GRAPHENE_H_INSIDE
+#ifndef __GRAPHENE_QUAD_H__
+#define __GRAPHENE_QUAD_H__
 
 #include "graphene-types.h"
-#include "graphene-macros.h"
-#include "graphene-config.h"
-#include "graphene-version.h"
-#include "graphene-version-macros.h"
-
-#include "graphene-vec2.h"
-#include "graphene-vec3.h"
-#include "graphene-vec4.h"
-
 #include "graphene-point.h"
-#include "graphene-rect.h"
 
-#include "graphene-point3d.h"
-#include "graphene-quad.h"
+G_BEGIN_DECLS
 
-#include "graphene-matrix.h"
+struct _graphene_quad_t
+{
+  /*< private >*/
+  GRAPHENE_PRIVATE_FIELD (graphene_point_t, points[4]);
+};
 
-#undef GRAPHENE_H_INSIDE
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_quad_t *	graphene_quad_alloc	(void);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_quad_free      (graphene_quad_t        *q);
 
-#endif /* __GRAPHENE_H__ */
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_quad_t *	graphene_quad_init	(graphene_quad_t        *q,
+						 const graphene_point_t *p1,
+						 const graphene_point_t *p2,
+						 const graphene_point_t *p3,
+						 const graphene_point_t *p4);
+
+GRAPHENE_AVAILABLE_IN_1_0
+gboolean                graphene_quad_contains  (const graphene_quad_t  *q,
+                                                 const graphene_point_t *p);
+
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_quad_bounds    (const graphene_quad_t  *q,
+                                                 graphene_rect_t        *r);
+
+G_END_DECLS
+
+#endif /* __GRAPHENE_QUAD_H__ */

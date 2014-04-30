@@ -15,6 +15,7 @@ source_h = \
 	graphene-matrix.h \
 	graphene-point.h \
 	graphene-point3d.h \
+	graphene-quad.h \
 	graphene-rect.h \
 	graphene-vec2.h \
 	graphene-vec3.h \
@@ -26,12 +27,14 @@ source_c = \
 	graphene-matrix.c \
 	graphene-point.c \
 	graphene-point3d.c \
+	graphene-quad.c \
 	graphene-rect.c \
 	graphene-size.c \
 	graphene-vectors.c \
 	$(NULL)
 
 source_h_priv = \
+	graphene-line-segment.h \
 	graphene-simd4f.h \
 	graphene-simd4f-common.h \
 	graphene-simd4f-gcc.h \

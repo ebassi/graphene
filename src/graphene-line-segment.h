@@ -1,4 +1,4 @@
-/* graphene
+/* graphene-line-segment.h: Segments
  *
  * Copyright © 2014  Emmanuele Bassi
  *
@@ -21,29 +21,39 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_H__
-#define __GRAPHENE_H__
-
-#define GRAPHENE_H_INSIDE
-
-#include "graphene-types.h"
-#include "graphene-macros.h"
-#include "graphene-config.h"
-#include "graphene-version.h"
-#include "graphene-version-macros.h"
-
-#include "graphene-vec2.h"
-#include "graphene-vec3.h"
-#include "graphene-vec4.h"
+#ifndef __GRAPHENE_LINE_SEGMENT_H__
+#define __GRAPHENE_LINE_SEGMENT_H__
 
 #include "graphene-point.h"
-#include "graphene-rect.h"
 
-#include "graphene-point3d.h"
-#include "graphene-quad.h"
+typedef struct {
+  graphene_point_t start;
+  graphene_point_t end;
+} graphene_line_segment_t;
 
-#include "graphene-matrix.h"
+static inline graphene_line_segment_t
+graphene_line_segment_init (const graphene_point_t *start,
+                            const graphene_point_t *end)
+{
+  graphene_line_segment_t l = { *start, *end };
+  return l;
+}
 
-#undef GRAPHENE_H_INSIDE
+static inline gboolean
+graphene_line_segment_points_on_same_side (graphene_line_segment_t  s,
+                                           const graphene_point_t  *a,
+                                           const graphene_point_t  *b)
+{
+  const float delta_x = (s.end.x - s.start.x);
+  const float delta_y = (s.end.y - s.start.y);
 
-#endif /* __GRAPHENE_H__ */
+  const float one = delta_x * (a->y - s.start.y) - delta_y * (a->x - s.start.x);
+  const float two = delta_x * (b->y - s.start.y) - delta_y * (b->x - s.start.x);
+
+  if ((one >= 0.f && two >= 0.f) || (one <= 0.f && two <= 0.f))
+    return TRUE;
+
+  return FALSE;
+}
+
+#endif /* __GRAPHENE_LINE_SEGMENT_H__ */
