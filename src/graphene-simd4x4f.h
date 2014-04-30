@@ -61,8 +61,8 @@ graphene_simd4x4f_init_from_float (graphene_simd4x4f_t *m,
 }
 
 static inline void
-graphene_simd4x4f_to_float (graphene_simd4x4f_t *m,
-                            float               *v)
+graphene_simd4x4f_to_float (const graphene_simd4x4f_t *m,
+                            float                     *v)
 {
   graphene_simd4f_dup_4f (m->x, v);
   graphene_simd4f_dup_4f (m->y, v +  4);
