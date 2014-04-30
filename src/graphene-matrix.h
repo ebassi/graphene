@@ -1,4 +1,4 @@
-/* graphene-types.h: Shared types
+/* graphene-matrix.h: 4x4 matrix
  *
  * Copyright © 2014  Emmanuele Bassi
  *
@@ -21,33 +21,42 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_TYPES_H__
-#define __GRAPHENE_TYPES_H__
+#ifndef __GRAPHENE_MATRIX_H__
+#define __GRAPHENE_MATRIX_H__
 
-#if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
-#error "Only graphene.h can be included directly."
-#endif
-
-#include <glib.h>
-#include "graphene-config.h"
-#include "graphene-macros.h"
-#include "graphene-version-macros.h"
+#include "graphene-types.h"
 
 G_BEGIN_DECLS
 
-#define GRAPHENE_VEC2_LEN       2
-#define GRAPHENE_VEC3_LEN       3
-#define GRAPHENE_VEC4_LEN       4
+/**
+ * graphene_matrix_t:
+ *
+ * A structure capable of holding a 4x4 matrix.
+ *
+ * The contents of the #graphene_matrix_t structure are private and
+ * should never be accessed directly.
+ */
+struct _graphene_matrix_t
+{
+  /*< private >*/
+  GRAPHENE_PRIVATE_FIELD (graphene_simd4x4f_t, value);
+};
 
-typedef struct _graphene_vec2_t         graphene_vec2_t;
-typedef struct _graphene_vec3_t         graphene_vec3_t;
-typedef struct _graphene_vec4_t         graphene_vec4_t;
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_matrix_t *     graphene_matrix_alloc           (void);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_matrix_free            (graphene_matrix_t *m);
 
-typedef struct _graphene_point_t        graphene_point_t;
-typedef struct _graphene_size_t         graphene_size_t;
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_matrix_t *     graphene_matrix_init_identity   (graphene_matrix_t *m);
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_matrix_t *     graphene_matrix_init_from_float (graphene_matrix_t *m,
+                                                         const float       *v);
 
-typedef struct _graphene_matrix_t       graphene_matrix_t;
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_matrix_to_float        (graphene_matrix_t *m,
+                                                         float             *v);
 
 G_END_DECLS
 
-#endif /* __GRAPHENE_TYPES_H__ */
+#endif /* __GRAPHENE_MATRIX_H__ */

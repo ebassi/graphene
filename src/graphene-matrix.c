@@ -1,4 +1,4 @@
-/* graphene-types.h: Shared types
+/* graphene-matrix.h: 4x4 matrix
  *
  * Copyright © 2014  Emmanuele Bassi
  *
@@ -21,33 +21,52 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_TYPES_H__
-#define __GRAPHENE_TYPES_H__
+#include "config.h"
 
-#if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
-#error "Only graphene.h can be included directly."
-#endif
+#include "graphene-matrix.h"
+#include "graphene-simd4x4f.h"
 
-#include <glib.h>
-#include "graphene-config.h"
-#include "graphene-macros.h"
-#include "graphene-version-macros.h"
+graphene_matrix_t *
+graphene_matrix_alloc (void)
+{
+  return g_slice_new (graphene_matrix_t);
+}
 
-G_BEGIN_DECLS
+void
+graphene_matrix_free (graphene_matrix_t *m)
+{
+  if (G_LIKELY (m != NULL))
+    g_slice_free (graphene_matrix_t, m);
+}
 
-#define GRAPHENE_VEC2_LEN       2
-#define GRAPHENE_VEC3_LEN       3
-#define GRAPHENE_VEC4_LEN       4
+graphene_matrix_t *
+graphene_matrix_init_identity (graphene_matrix_t *m)
+{
+  g_return_val_if_fail (m != NULL, NULL);
 
-typedef struct _graphene_vec2_t         graphene_vec2_t;
-typedef struct _graphene_vec3_t         graphene_vec3_t;
-typedef struct _graphene_vec4_t         graphene_vec4_t;
+  graphene_simd4x4f_init_identity (&m->value);
 
-typedef struct _graphene_point_t        graphene_point_t;
-typedef struct _graphene_size_t         graphene_size_t;
+  return m;
+}
 
-typedef struct _graphene_matrix_t       graphene_matrix_t;
+graphene_matrix_t *
+graphene_matrix_init_from_float (graphene_matrix_t *m,
+                                 const float       *v)
+{
+  g_return_val_if_fail (m != NULL, NULL);
+  g_return_val_if_fail (v != NULL, m);
 
-G_END_DECLS
+  graphene_simd4x4f_init_from_float (&m->value, v);
 
-#endif /* __GRAPHENE_TYPES_H__ */
+  return m;
+}
+
+void
+graphene_matrix_to_float (graphene_matrix_t *m,
+                          float             *v)
+{
+  g_return_if_fail (m != NULL);
+  g_return_if_fail (v != NULL);
+
+  graphene_simd4x4f_to_float (&m->value, v);
+}

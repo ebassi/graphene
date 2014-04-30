@@ -12,6 +12,7 @@ SUBDIRS = . tests
 # source
 source_h = \
 	graphene-macros.h \
+	graphene-matrix.h \
 	graphene-point.h \
 	graphene-vec2.h \
 	graphene-vec3.h \
@@ -20,6 +21,7 @@ source_h = \
 	graphene-version-macros.h \
 	$(NULL)
 source_c = \
+	graphene-matrix.c \
 	graphene-point.c \
 	graphene-size.c \
 	graphene-vectors.c \

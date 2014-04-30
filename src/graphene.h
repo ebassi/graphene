@@ -38,6 +38,8 @@
 
 #include "graphene-point.h"
 
+#include "graphene-matrix.h"
+
 #undef GRAPHENE_H_INSIDE
 
 #endif /* __GRAPHENE_H__ */
