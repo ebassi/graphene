@@ -14,6 +14,7 @@ source_h = \
 	graphene-macros.h \
 	graphene-matrix.h \
 	graphene-point.h \
+	graphene-point3d.h \
 	graphene-rect.h \
 	graphene-vec2.h \
 	graphene-vec3.h \
@@ -24,6 +25,7 @@ source_h = \
 source_c = \
 	graphene-matrix.c \
 	graphene-point.c \
+	graphene-point3d.c \
 	graphene-rect.c \
 	graphene-size.c \
 	graphene-vectors.c \
