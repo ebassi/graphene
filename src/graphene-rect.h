@@ -62,8 +62,52 @@ gboolean                graphene_rect_equal             (const graphene_rect_t *
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_rect_t *       graphene_rect_normalize         (graphene_rect_t       *r);
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_rect_get_center        (graphene_rect_t       *r,
+void                    graphene_rect_get_center        (const graphene_rect_t *r,
                                                          graphene_point_t      *p);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_rect_get_top_left      (const graphene_rect_t *r,
+                                                         graphene_point_t      *p);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_rect_get_bottom_right  (const graphene_rect_t *r,
+                                                         graphene_point_t      *p);
+GRAPHENE_AVAILABLE_IN_1_0
+float                   graphene_rect_get_x             (const graphene_rect_t *r);
+GRAPHENE_AVAILABLE_IN_1_0
+float                   graphene_rect_get_y             (const graphene_rect_t *r);
+GRAPHENE_AVAILABLE_IN_1_0
+float                   graphene_rect_get_width         (const graphene_rect_t *r);
+GRAPHENE_AVAILABLE_IN_1_0
+float                   graphene_rect_get_height        (const graphene_rect_t *r);
+
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_rect_union             (const graphene_rect_t *a,
+                                                         const graphene_rect_t *b,
+                                                         graphene_rect_t       *res);
+GRAPHENE_AVAILABLE_IN_1_0
+gboolean                graphene_rect_intersection      (const graphene_rect_t *a,
+                                                         const graphene_rect_t *b,
+                                                         graphene_rect_t       *res);
+GRAPHENE_AVAILABLE_IN_1_0
+gboolean                graphene_rect_contains_point    (const graphene_rect_t  *r,
+                                                         const graphene_point_t *p);
+GRAPHENE_AVAILABLE_IN_1_0
+gboolean                graphene_rect_contains_rect     (const graphene_rect_t  *a,
+                                                         const graphene_rect_t  *b);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_rect_offset            (graphene_rect_t        *r,
+                                                         float                   d_x,
+                                                         float                   d_y);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_rect_inset             (graphene_rect_t        *r,
+                                                         float                   d_x,
+                                                         float                   d_y);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_rect_round_to_pixel    (graphene_rect_t        *r);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_rect_interpolate       (const graphene_rect_t  *a,
+                                                         const graphene_rect_t  *b,
+                                                         double                  factor,
+                                                         graphene_rect_t        *res);
 
 G_END_DECLS
 
