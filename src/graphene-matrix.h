@@ -127,8 +127,8 @@ void                    graphene_matrix_transform_vec3          (const graphene_
                                                                  graphene_vec3_t          *res);
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_transform_point         (const graphene_matrix_t  *m,
-                                                                 const graphene_vec3_t    *p,
-                                                                 graphene_vec3_t          *res);
+                                                                 const graphene_point_t   *p,
+                                                                 graphene_point_t         *res);
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_transform_rect          (const graphene_matrix_t  *m,
                                                                  const graphene_rect_t    *r,

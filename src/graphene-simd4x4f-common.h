@@ -333,7 +333,7 @@ graphene_simd4x4f_inverse (const graphene_simd4x4f_t *m,
   const graphene_simd4f_t r2 = m->z;
   const graphene_simd4f_t r3 = m->w;
 
-  /* shuffle the columns */
+  /* cofactors */
   const graphene_simd4f_t r0_wxyz = graphene_simd4f_shuffle_wxyz (r0);
   const graphene_simd4f_t r0_zwxy = graphene_simd4f_shuffle_zwxy (r0);
   const graphene_simd4f_t r0_yzwx = graphene_simd4f_shuffle_yzwx (r0);
@@ -389,6 +389,7 @@ graphene_simd4x4f_inverse (const graphene_simd4x4f_t *m,
                           graphene_simd4f_madd (r3_zwxy, br2,
                                                 graphene_simd4f_mul (r3_wxyz, br1)));
 
+  /* determinant and its inverse */
   const graphene_simd4f_t d0 = graphene_simd4f_mul (r1_sum, r0);
   const graphene_simd4f_t d1 = graphene_simd4f_add (d0, graphene_simd4f_merge_high (d0, d0));
   const graphene_simd4f_t det = graphene_simd4f_sub (d1, graphene_simd4f_splat_y (d1));
@@ -401,7 +402,60 @@ graphene_simd4x4f_inverse (const graphene_simd4x4f_t *m,
 
   graphene_simd4x4f_t mt = graphene_simd4x4f_init (o0, o1, o2, o3);
 
+  /* transpose the resulting matrix */
   graphene_simd4x4f_transpose (&mt, res);
+}
+
+static inline void
+graphene_simd4x4f_determinant (const graphene_simd4x4f_t *m,
+                               graphene_simd4f_t         *det_r,
+                               graphene_simd4f_t         *invdet_r)
+{
+  /* split rows */
+  const graphene_simd4f_t r0 = m->x;
+  const graphene_simd4f_t r1 = m->y;
+  const graphene_simd4f_t r2 = m->z;
+  const graphene_simd4f_t r3 = m->w;
+
+  /* cofactors */
+  const graphene_simd4f_t r1_wxyz = graphene_simd4f_shuffle_wxyz (r1);
+  const graphene_simd4f_t r1_zwxy = graphene_simd4f_shuffle_zwxy (r1);
+  const graphene_simd4f_t r1_yzwx = graphene_simd4f_shuffle_yzwx (r1);
+
+  const graphene_simd4f_t r2_wxyz = graphene_simd4f_shuffle_wxyz (r2);
+
+  const graphene_simd4f_t r3_zwxy = graphene_simd4f_shuffle_zwxy (r3);
+  const graphene_simd4f_t r3_yzwx = graphene_simd4f_shuffle_yzwx (r3);
+
+  const graphene_simd4f_t r2_wxyz_x_r3 = graphene_simd4f_mul (r2_wxyz, r3);
+  const graphene_simd4f_t r2_wxyz_x_r3_yzwx = graphene_simd4f_mul (r2_wxyz, r3_yzwx);
+  const graphene_simd4f_t r2_wxyz_x_r3_zwxy = graphene_simd4f_mul (r2_wxyz, r3_zwxy);
+
+  const graphene_simd4f_t ar1 = graphene_simd4f_sub (graphene_simd4f_shuffle_wxyz (r2_wxyz_x_r3_zwxy),
+                                                     graphene_simd4f_shuffle_zwxy (r2_wxyz_x_r3));
+  const graphene_simd4f_t ar2 = graphene_simd4f_sub (graphene_simd4f_shuffle_zwxy (r2_wxyz_x_r3_yzwx),
+                                                     r2_wxyz_x_r3_yzwx);
+  const graphene_simd4f_t ar3 = graphene_simd4f_sub (r2_wxyz_x_r3_zwxy,
+                                                     graphene_simd4f_shuffle_wxyz (r2_wxyz_x_r3));
+
+  const graphene_simd4f_t r1_sum =
+    graphene_simd4f_madd (r1_wxyz, ar1,
+                          graphene_simd4f_madd (r1_zwxy, ar2,
+                                                graphene_simd4f_mul (r1_yzwx, ar3)));
+
+  /* determinant and its inverse */
+  const graphene_simd4f_t d0 = graphene_simd4f_mul (r1_sum, r0);
+  const graphene_simd4f_t d1 = graphene_simd4f_add (d0, graphene_simd4f_merge_high (d0, d0));
+
+  const graphene_simd4f_t det = graphene_simd4f_sub (d1, graphene_simd4f_splat_y (d1));
+
+  const graphene_simd4f_t invdet = graphene_simd4f_splat_x (graphene_simd4f_div (graphene_simd4f_splat (1.0f), det));
+
+  if (det_r != NULL)
+    *det_r = det;
+
+  if (invdet_r != NULL)
+    *invdet_r = invdet;
 }
 
 static inline gboolean

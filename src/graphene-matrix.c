@@ -25,8 +25,11 @@
 
 #include "graphene-matrix.h"
 
+#include "graphene-point.h"
 #include "graphene-point3d.h"
+#include "graphene-rect.h"
 #include "graphene-simd4x4f.h"
+#include "graphene-quad.h"
 #include "graphene-vectors-private.h"
 
 static inline float
@@ -307,9 +310,13 @@ graphene_matrix_multiply (const graphene_matrix_t *a,
 float
 graphene_matrix_determinant (const graphene_matrix_t *m)
 {
+  graphene_simd4f_t det;
+
   g_return_val_if_fail (m != NULL, 0.f);
 
-  return 0.f;
+  graphene_simd4x4f_determinant (&m->value, &det, NULL);
+
+  return graphene_simd4f_get_x (det);
 }
 
 void
@@ -336,9 +343,19 @@ graphene_matrix_transform_vec4 (const graphene_matrix_t *m,
 
 void
 graphene_matrix_transform_point (const graphene_matrix_t *m,
-                                 const graphene_vec3_t   *p,
-                                 graphene_vec3_t         *res)
+                                 const graphene_point_t  *p,
+                                 graphene_point_t        *res)
 {
+  graphene_simd4f_t vec3;
+
+  g_return_if_fail (m != NULL && p != NULL);
+  g_return_if_fail (res != NULL);
+
+  vec3 = graphene_simd4f_init (p->x, p->y, 0.0f, 0.0f);
+  graphene_simd4x4f_vec3_mul (&m->value, &vec3, &vec3);
+
+  res->x = graphene_simd4f_get_x (vec3);
+  res->y = graphene_simd4f_get_y (vec3);
 }
 
 void
@@ -346,6 +363,23 @@ graphene_matrix_transform_rect (const graphene_matrix_t *m,
                                 const graphene_rect_t   *r,
                                 graphene_quad_t         *res)
 {
+  graphene_point_t points[4];
+  graphene_point_t ret[4];
+
+  g_return_if_fail (m != NULL && r != NULL);
+  g_return_if_fail (res != NULL);
+
+  graphene_rect_get_top_left (r, &points[0]);
+  graphene_point_init (&points[1], graphene_rect_get_x (r) + graphene_rect_get_width (r), graphene_rect_get_y (r));
+  graphene_point_init (&points[2], graphene_rect_get_x (r), graphene_rect_get_y (r) + graphene_rect_get_height (r));
+  graphene_rect_get_bottom_right (r, &points[3]);
+
+  graphene_matrix_transform_point (m, &points[0], &ret[0]);
+  graphene_matrix_transform_point (m, &points[1], &ret[1]);
+  graphene_matrix_transform_point (m, &points[2], &ret[2]);
+  graphene_matrix_transform_point (m, &points[3], &ret[3]);
+
+  graphene_quad_init (res, &ret[0], &ret[1], &ret[2], &ret[3]);
 }
 
 void
@@ -353,6 +387,68 @@ graphene_matrix_transform_bounds (const graphene_matrix_t *m,
                                   const graphene_rect_t   *r,
                                   graphene_rect_t         *res)
 {
+  graphene_point_t points[4];
+  graphene_point_t ret[4];
+  float min_x, min_y;
+  float max_x, max_y;
+  int i;
+
+  g_return_if_fail (m != NULL && r != NULL);
+  g_return_if_fail (res != NULL);
+
+  graphene_rect_get_top_left (r, &points[0]);
+  graphene_point_init (&points[1], graphene_rect_get_x (r) + graphene_rect_get_width (r), graphene_rect_get_y (r));
+  graphene_point_init (&points[2], graphene_rect_get_x (r), graphene_rect_get_y (r) + graphene_rect_get_height (r));
+  graphene_rect_get_bottom_right (r, &points[3]);
+
+  graphene_matrix_transform_point (m, &points[0], &ret[0]);
+  graphene_matrix_transform_point (m, &points[1], &ret[1]);
+  graphene_matrix_transform_point (m, &points[2], &ret[2]);
+  graphene_matrix_transform_point (m, &points[3], &ret[3]);
+
+  min_x = max_x = ret[0].x;
+  min_y = max_y = ret[0].y;
+
+  for (i = 1; i < 4; i += 1)
+    {
+      min_x = MIN (ret[i].x, min_x);
+      min_y = MIN (ret[i].y, min_y);
+
+      max_x = MAX (ret[i].x, max_x);
+      max_y = MAX (ret[i].y, max_y);
+    }
+
+  graphene_rect_init (res, min_x, min_y, max_x - min_x, max_y - min_y);
+}
+
+void
+graphene_matrix_project_point (const graphene_matrix_t *m,
+                               const graphene_point_t  *p,
+                               graphene_point_t        *res)
+{
+  graphene_vec3_t pa, qa;
+  graphene_vec3_t pback, qback, uback;
+  float p_z, u_z, t;
+
+  g_return_if_fail (m != NULL);
+  g_return_if_fail (p != NULL);
+  g_return_if_fail (res != NULL);
+
+  graphene_vec3_init (&pa, p->x, p->y, 0.0f);
+  graphene_vec3_init (&qa, p->x, p->y, 1.0f);
+
+  graphene_matrix_transform_vec3 (m, &pa, &pback);
+  graphene_matrix_transform_vec3 (m, &qa, &qback);
+
+  graphene_vec3_subtract (&qback, &pback, &uback);
+
+  p_z = graphene_vec3_get_z (&pback);
+  u_z = graphene_vec3_get_z (&uback);
+  t = -p_z / u_z;
+
+  graphene_point_init (res,
+                       graphene_vec3_get_x (&pback) + t * graphene_vec3_get_x (&uback),
+                       graphene_vec3_get_y (&pback) + t * graphene_vec3_get_y (&uback));
 }
 
 gboolean
@@ -361,7 +457,29 @@ graphene_matrix_untransform_point (const graphene_matrix_t *m,
                                    const graphene_rect_t   *bounds,
                                    graphene_point_t        *res)
 {
-  return FALSE;
+  graphene_matrix_t inverse;
+  graphene_rect_t bounds_t;
+
+  g_return_val_if_fail (m != NULL, FALSE);
+  g_return_val_if_fail (p != NULL, FALSE);
+  g_return_val_if_fail (bounds != NULL, FALSE);
+  g_return_val_if_fail (res != NULL, FALSE);
+
+  if (graphene_matrix_is_2d (m))
+    {
+      graphene_matrix_inverse (m, &inverse);
+      graphene_matrix_transform_point (&inverse, p, res);
+      return TRUE;
+    }
+
+  graphene_matrix_transform_bounds (m, bounds, &bounds_t);
+  if (!graphene_rect_contains_point (&bounds_t, p))
+    return FALSE;
+
+  graphene_matrix_inverse (m, &inverse);
+  graphene_matrix_project_point (&inverse, p, res);
+
+  return TRUE;
 }
 
 gboolean
@@ -466,6 +584,19 @@ void
 graphene_matrix_normalize (const graphene_matrix_t *m,
                            graphene_matrix_t       *res)
 {
+  graphene_simd4f_t n;
+  float ww;
+
+  g_return_if_fail (m != NULL);
+  g_return_if_fail (res != NULL);
+
+  ww = graphene_matrix_get_value (m, 3, 3);
+  n = graphene_simd4f_splat (ww);
+
+  res->value.x = graphene_simd4f_div (m->value.x, n);
+  res->value.y = graphene_simd4f_div (m->value.y, n);
+  res->value.z = graphene_simd4f_div (m->value.z, n);
+  res->value.w = graphene_simd4f_div (m->value.w, n);
 }
 
 float
