@@ -24,6 +24,25 @@
 #ifndef __GRAPHENE_SIMD4X4F_NEON_H__
 #define __GRAPHENE_SIMD4X4F_NEON_H__
 
-#error "ARM NEON optimizations are not implemented."
+#warn "ARM NEON optimizations are not tested."
+
+static inline void
+graphene_simd4x4f_transpose_in_place (graphene_simd4x4f_t *s)
+{
+  const graphene_simd4f_union_t sx = { s->x };
+  const graphene_simd4f_union_t sy = { s->y };
+  const graphene_simd4f_union_t sz = { s->z };
+  const graphene_simd4f_union_t sw = { s->w };
+
+  const graphene_simd4f_t dx = graphene_simd4f_init (sx.f[0], sy.f[0], sz.f[0], sw.f[0]);
+  const graphene_simd4f_t dy = graphene_simd4f_init (sx.f[1], sy.f[1], sz.f[1], sw.f[1]);
+  const graphene_simd4f_t dz = graphene_simd4f_init (sx.f[2], sy.f[2], sz.f[2], sw.f[2]);
+  const graphene_simd4f_t dw = graphene_simd4f_init (sx.f[3], sy.f[3], sz.f[3], sw.f[3]);
+
+  s->x = dx;
+  s->y = dy;
+  s->z = dz;
+  s->w = dw;
+}
 
 #endif /* __GRAPHENE_SIMD4X4F_NEON_H__ */
