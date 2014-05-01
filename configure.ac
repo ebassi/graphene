@@ -98,7 +98,8 @@ AS_CASE([$host],
 )
 AC_MSG_RESULT([$platform_win32])
 
-GRAPHENE_CONFIG_DEFS=""
+AM_CONDITIONAL(OS_LINUX, [test "$platform_linux" = "yes"])
+AM_CONDITIONAL(OS_WIN32, [test "$platform_win32" = "yes"])
 
 dnl === Fast paths ============================================================
 
@@ -175,6 +176,8 @@ AS_IF([test "x$enable_sse2" = xyes && test "x$have_sse2_intrinsics" = xno],
         AC_MSG_ERROR([SSE2 intrinsics not detected])
       ])
 
+AM_CONDITIONAL(BUILD_WITH_SSE2, [test "x$have_sse2_intrinsics" = xyes])
+
 AS_CASE([$host_os],
 
         [solaris*],
@@ -202,10 +205,12 @@ AS_CASE([$host_os],
 )
 
 # Check for ARM NEON instructions
+AS_IF([test "x$NEON_CFLAGS" = "x"], [NEON_CFLAGS="-mfpu=neon"])
+
 have_arm_neon=no
 AC_MSG_CHECKING([whether to use ARM NEON assembler])
 saved_CFLAGS="$CFLAGS"
-CFLAGS="-x assembler-with-cpp $CFLAGS"
+CFLAGS="-x assembler-with-cpp $NEON_CFLAGS $CFLAGS"
 AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 .text
 .fpu neon
@@ -234,8 +239,7 @@ AS_IF([test "x$enable_arm_neon" = xyes && test "x$have_arm_neon" = xno],
         AC_MSG_ERROR([ARM NEON intrinsics not detected])
       ])
 
-AM_CONDITIONAL(OS_LINUX, [test "$platform_linux" = "yes"])
-AM_CONDITIONAL(OS_WIN32, [test "$platform_win32" = "yes"])
+AM_CONDITIONAL(BUILD_WITH_ARM_NEON, [test "x$have_arm_neon" = xyes])
 
 # Check for -Bsymbolic-functions to avoid intra-library PLT jumps
 AC_ARG_ENABLE([Bsymbolic],
@@ -360,12 +364,15 @@ GOBJECT_INTROSPECTION_CHECK([1.38.0])
 
 dnl === Output ================================================================
 
-GRAPHENE_CFLAGS="$GRAPHENE_DEPS_CFLAGS $SSE2_CFLAGS $GRAPHENE_VISIBILITY_CFLAGS"
+GRAPHENE_CFLAGS="$GRAPHENE_DEPS_CFLAGS $GRAPHENE_VISIBILITY_CFLAGS"
 GRAPHENE_LIBS="$GRAPHENE_DEPS_LIBS $LIBM"
 GRAPHENE_LT_LDFLAGS="$GRAPHENE_LT_LDFLAGS $GRAPHENE_LINK_FLAGS $SSE2_LDFLAGS $MMX_LDFLAGS"
 AC_SUBST(GRAPHENE_CFLAGS)
 AC_SUBST(GRAPHENE_LIBS)
 AC_SUBST(GRAPHENE_LT_LDFLAGS)
+AC_SUBST(SSE2_CFLAGS)
+AC_SUBST(SSE2_LDFLAGS)
+AC_SUBST(NEON_CFLAGS)
 
 AC_CONFIG_COMMANDS([src/graphene-config.h],
 [
@@ -413,6 +420,8 @@ _______EOF
 #include <xmmintrin.h>
 typedef __m128 graphene_simd4f_t;
 #elif defined(GRAPHENE_USE_ARM_NEON)
+#include <arm_neon.h>
+typedef float32x4_t graphene_simd4f_t;
 #elif defined(GRAPHENE_USE_GCC)
 typedef float graphene_simd4f_t __attribute__((vector_size(16)));
 #elif defined(GRAPHENE_USE_SCALAR)

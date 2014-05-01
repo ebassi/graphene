@@ -63,6 +63,18 @@ graphene-config-stamp: ../config.status
 DISTCLEANFILES += graphene-version.h
 EXTRA_DIST += graphene-version.h.in
 
+shared_cflags = $(GRAPHENE_CFLAGS) $(MAINTAINER_CFLAGS)
+shared_libadd = $(GRAPHENE_LIBS)
+
+if BUILD_WITH_SSE2
+shared_cflags += $(SSE2_CFLAGS)
+shared_libadd += $(SSE2_LDFLAGS)
+endif
+
+if BUILD_WITH_ARM_NEON
+shared_cflags += $(NEON_CFLAGS)
+endif
+
 # main library
 libgraphene_1_0_la_CPPFLAGS = \
 	-DGRAPHENE_COMPILATION=1 \
@@ -70,8 +82,8 @@ libgraphene_1_0_la_CPPFLAGS = \
 	-I$(top_srcdir)/src \
 	-I$(top_builddir)/src \
 	$(GRAPHENE_DEBUG_CFLAGS)
-libgraphene_1_0_la_CFLAGS = $(GRAPHENE_CFLAGS) $(MAINTAINER_CFLAGS)
-libgraphene_1_0_la_LIBADD = $(GRAPHENE_LIBS)
+libgraphene_1_0_la_CFLAGS = $(shared_cflags)
+libgraphene_1_0_la_LIBADD = $(shared_libs)
 libgraphene_1_0_la_LDFLAGS = $(GRAPHENE_LDFLAGS) -export-dynamic
 libgraphene_1_0_la_SOURCES = $(source_h) $(source_h_priv) $(source_c) $(source_c_priv) $(BUILT_SOURCES)
 
