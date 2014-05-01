@@ -531,18 +531,42 @@ void
 graphene_matrix_skew_xy (graphene_matrix_t *m,
                          float              factor)
 {
+  graphene_simd4f_t m_x, m_y;
+
+  g_return_if_fail (m != NULL);
+
+  m_x = m->value.x;
+  m_y = m->value.y;
+
+  m->value.y = graphene_simd4f_add (m_y, graphene_simd4f_mul (m_x, graphene_simd4f_splat (factor)));
 }
 
 void
 graphene_matrix_skew_xz (graphene_matrix_t *m,
                          float              factor)
 {
+  graphene_simd4f_t m_x, m_z;
+
+  g_return_if_fail (m != NULL);
+
+  m_x = m->value.x;
+  m_z = m->value.z;
+
+  m->value.z = graphene_simd4f_add (m_z, graphene_simd4f_mul (m_x, graphene_simd4f_splat (factor)));
 }
 
 void
 graphene_matrix_skew_yz (graphene_matrix_t *m,
                          float              factor)
 {
+  graphene_simd4f_t m_y, m_z;
+
+  g_return_if_fail (m != NULL);
+
+  m_y = m->value.y;
+  m_z = m->value.z;
+
+  m->value.z = graphene_simd4f_add (m_z, graphene_simd4f_mul (m_y, graphene_simd4f_splat (factor)));
 }
 
 void
