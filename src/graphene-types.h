@@ -49,6 +49,7 @@ typedef struct _graphene_rect_t         graphene_rect_t;
 
 typedef struct _graphene_point3d_t      graphene_point3d_t;
 typedef struct _graphene_quad_t         graphene_quad_t;
+typedef struct _graphene_quaternion_t   graphene_quaternion_t;
 
 typedef struct _graphene_matrix_t       graphene_matrix_t;
 

@@ -16,6 +16,7 @@ source_h = \
 	graphene-point.h \
 	graphene-point3d.h \
 	graphene-quad.h \
+	graphene-quaternion.h \
 	graphene-rect.h \
 	graphene-vec2.h \
 	graphene-vec3.h \
@@ -28,6 +29,7 @@ source_c = \
 	graphene-point.c \
 	graphene-point3d.c \
 	graphene-quad.c \
+	graphene-quaternion.c \
 	graphene-rect.c \
 	graphene-size.c \
 	graphene-vectors.c \
