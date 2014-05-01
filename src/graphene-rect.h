@@ -68,7 +68,13 @@ GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_rect_get_top_left      (const graphene_rect_t *r,
                                                          graphene_point_t      *p);
 GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_rect_get_top_right     (const graphene_rect_t *r,
+                                                         graphene_point_t      *p);
+GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_rect_get_bottom_right  (const graphene_rect_t *r,
+                                                         graphene_point_t      *p);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_rect_get_bottom_left   (const graphene_rect_t *r,
                                                          graphene_point_t      *p);
 GRAPHENE_AVAILABLE_IN_1_0
 float                   graphene_rect_get_x             (const graphene_rect_t *r);

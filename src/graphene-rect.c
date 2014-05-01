@@ -149,6 +149,36 @@ graphene_rect_get_top_left (const graphene_rect_t  *r,
 }
 
 void
+graphene_rect_get_top_right (const graphene_rect_t *r,
+                             graphene_point_t      *p)
+{
+  graphene_rect_t rr;
+
+  g_return_if_fail (r != NULL);
+  g_return_if_fail (p != NULL);
+
+  rr = *r;
+  graphene_rect_normalize_internal (&rr);
+
+  graphene_point_init (p, rr.origin.x + rr.size.width, rr.origin.y);
+}
+
+void
+graphene_rect_get_bottom_left (const graphene_rect_t *r,
+                               graphene_point_t      *p)
+{
+  graphene_rect_t rr;
+
+  g_return_if_fail (r != NULL);
+  g_return_if_fail (p != NULL);
+
+  rr = *r;
+  graphene_rect_normalize_internal (&rr);
+
+  graphene_point_init (p, rr.origin.x, rr.origin.y + rr.size.height);
+}
+
+void
 graphene_rect_get_bottom_right (const graphene_rect_t  *r,
                                 graphene_point_t       *p)
 {
