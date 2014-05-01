@@ -139,12 +139,20 @@ void                    graphene_matrix_transform_bounds        (const graphene_
                                                                  graphene_rect_t          *res);
 
 GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_matrix_project_point           (const graphene_matrix_t  *m,
+                                                                 const graphene_point_t   *p,
+                                                                 graphene_point_t         *res);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_matrix_project_rect_bounds     (const graphene_matrix_t  *m,
+                                                                 const graphene_rect_t    *r,
+                                                                 graphene_rect_t          *res);
+GRAPHENE_AVAILABLE_IN_1_0
 gboolean                graphene_matrix_untransform_point       (const graphene_matrix_t  *m,
                                                                  const graphene_point_t   *p,
                                                                  const graphene_rect_t    *bounds,
                                                                  graphene_point_t         *res);
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_matrix_untransform_bounds      (const graphene_matrix_t  *m,
+void                    graphene_matrix_untransform_bounds      (const graphene_matrix_t  *m,
                                                                  const graphene_rect_t    *r,
                                                                  const graphene_rect_t    *bounds,
                                                                  graphene_rect_t          *res);

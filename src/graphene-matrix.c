@@ -451,6 +451,42 @@ graphene_matrix_project_point (const graphene_matrix_t *m,
                        graphene_vec3_get_y (&pback) + t * graphene_vec3_get_y (&uback));
 }
 
+void
+graphene_matrix_project_rect_bounds (const graphene_matrix_t *m,
+                                     const graphene_rect_t   *r,
+                                     graphene_rect_t         *res)
+{
+  graphene_point_t points[4];
+  graphene_point_t ret[4];
+  float min_x, min_y;
+  float max_x, max_y;
+  int i;
+
+  graphene_rect_get_top_left (r, &points[0]);
+  graphene_rect_get_top_right (r, &points[1]);
+  graphene_rect_get_bottom_left (r, &points[2]);
+  graphene_rect_get_bottom_right (r, &points[3]);
+
+  graphene_matrix_project_point (m, &points[0], &ret[0]);
+  graphene_matrix_project_point (m, &points[1], &ret[1]);
+  graphene_matrix_project_point (m, &points[2], &ret[2]);
+  graphene_matrix_project_point (m, &points[3], &ret[3]);
+
+  min_x = max_x = ret[0].x;
+  min_y = max_y = ret[0].y;
+
+  for (i = 1; i < 4; i++)
+    {
+      min_x = MIN (ret[i].x, min_x);
+      min_y = MIN (ret[i].y, min_y);
+
+      max_x = MAX (ret[i].x, max_x);
+      max_y = MAX (ret[i].y, max_y);
+    }
+
+  graphene_rect_init (res, min_x, min_y, max_x - min_x, max_y - min_y);
+}
+
 gboolean
 graphene_matrix_untransform_point (const graphene_matrix_t *m,
                                    const graphene_point_t  *p,
@@ -482,13 +518,36 @@ graphene_matrix_untransform_point (const graphene_matrix_t *m,
   return TRUE;
 }
 
-gboolean
+void
 graphene_matrix_untransform_bounds (const graphene_matrix_t *m,
                                     const graphene_rect_t   *r,
                                     const graphene_rect_t   *bounds,
                                     graphene_rect_t         *res)
 {
-  return FALSE;
+  graphene_matrix_t inverse;
+  graphene_rect_t bounds_t;
+  graphene_rect_t rect;
+
+  g_return_if_fail (m != NULL && r != NULL);
+  g_return_if_fail (bounds != NULL);
+  g_return_if_fail (res != NULL);
+
+  if (graphene_matrix_is_2d (m))
+    {
+      graphene_matrix_inverse (m, &inverse);
+      graphene_matrix_transform_bounds (&inverse, r, res);
+      return;
+    }
+
+  graphene_matrix_transform_bounds (m, bounds, &bounds_t);
+  if (!graphene_rect_intersection (r, &bounds_t, &rect))
+    {
+      graphene_rect_init (res, 0.f, 0.f, 0.f, 0.f);
+      return;
+    }
+
+  graphene_matrix_inverse (m, &inverse);
+  graphene_matrix_project_rect_bounds (&inverse, &rect, res);
 }
 
 void
