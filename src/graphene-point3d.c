@@ -154,3 +154,17 @@ graphene_point3d_normalize (const graphene_point3d_t *p,
   res->y = graphene_simd4f_get_x (v);
   res->z = graphene_simd4f_get_x (v);
 }
+
+void
+graphene_point3d_interpolate (const graphene_point3d_t *a,
+                              const graphene_point3d_t *b,
+                              double                    factor,
+                              graphene_point3d_t       *res)
+{
+  g_return_if_fail (a != NULL && b != NULL);
+  g_return_if_fail (res != NULL);
+
+  res->x = a->x + (b->x - a->x) * factor;
+  res->y = a->y + (b->y - a->y) * factor;
+  res->z = a->z + (b->z - a->z) * factor;
+}

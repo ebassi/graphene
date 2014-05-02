@@ -76,6 +76,12 @@ GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_point3d_normalize      (const graphene_point3d_t *p,
                                                          graphene_point3d_t       *res);
 
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_point3d_interpolate    (const graphene_point3d_t *a,
+                                                         const graphene_point3d_t *b,
+                                                         double                    factor,
+                                                         graphene_point3d_t       *res);
+
 G_END_DECLS
 
 #endif /* __GRAPHENE_POINT3D_H__ */
