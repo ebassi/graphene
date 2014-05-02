@@ -206,6 +206,12 @@ float                   graphene_matrix_get_y_scale             (const graphene_
 GRAPHENE_AVAILABLE_IN_1_0
 float                   graphene_matrix_get_z_scale             (const graphene_matrix_t  *m);
 
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_matrix_interpolate             (const graphene_matrix_t  *a,
+                                                                 const graphene_matrix_t  *b,
+                                                                 double                    factor,
+                                                                 graphene_matrix_t        *res);
+
 G_END_DECLS
 
 #endif /* __GRAPHENE_MATRIX_H__ */
