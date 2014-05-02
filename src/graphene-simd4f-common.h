@@ -53,36 +53,74 @@ graphene_simd4f_dot2 (graphene_simd4f_t a,
 }
 
 static inline graphene_simd4f_t
-graphene_simd4f_length4 (graphene_simd4f_t v) {
+graphene_simd4f_length4 (graphene_simd4f_t v)
+{
   return graphene_simd4f_sqrt (graphene_simd4f_dot4 (v, v));
 }
 
 static inline graphene_simd4f_t
-graphene_simd4f_length3 (graphene_simd4f_t v) {
+graphene_simd4f_length3 (graphene_simd4f_t v)
+{
   return graphene_simd4f_sqrt (graphene_simd4f_dot3 (v, v));
 }
 
 static inline graphene_simd4f_t
-graphene_simd4f_length2 (graphene_simd4f_t v) {
+graphene_simd4f_length2 (graphene_simd4f_t v)
+{
   return graphene_simd4f_sqrt (graphene_simd4f_dot2 (v, v));
 }
 
 static inline graphene_simd4f_t
-graphene_simd4f_normalize4 (graphene_simd4f_t v) {
+graphene_simd4f_normalize4 (graphene_simd4f_t v)
+{
   graphene_simd4f_t invlen = graphene_simd4f_rsqrt (graphene_simd4f_dot4 (v, v));
   return graphene_simd4f_mul (v, invlen);
 }
 
 static inline graphene_simd4f_t
-graphene_simd4f_normalize3 (graphene_simd4f_t v) {
+graphene_simd4f_normalize3 (graphene_simd4f_t v)
+{
   graphene_simd4f_t invlen = graphene_simd4f_rsqrt (graphene_simd4f_dot3 (v, v));
   return graphene_simd4f_mul (v, invlen);
 }
 
 static inline graphene_simd4f_t
-graphene_simd4f_normalize2 (graphene_simd4f_t v) {
+graphene_simd4f_normalize2 (graphene_simd4f_t v)
+{
   graphene_simd4f_t invlen = graphene_simd4f_rsqrt (graphene_simd4f_dot2 (v, v));
   return graphene_simd4f_mul (v, invlen);
+}
+
+static inline gboolean
+graphene_simd4f_is_zero4 (graphene_simd4f_t v)
+{
+  graphene_simd4f_t zero = graphene_simd4f_init_zero ();
+  return graphene_simd4f_cmp_eq (v, zero);
+}
+
+static inline gboolean
+graphene_simd4f_is_zero3 (graphene_simd4f_t v)
+{
+  return graphene_simd4f_get_x (v) == 0.f &&
+         graphene_simd4f_get_y (v) == 0.f &&
+         graphene_simd4f_get_z (v) == 0.f;
+}
+
+static inline gboolean
+graphene_simd4f_is_zero2 (graphene_simd4f_t v)
+{
+  return graphene_simd4f_get_x (v) == 0.f &&
+         graphene_simd4f_get_y (v) == 0.f;
+}
+
+static inline graphene_simd4f_t
+graphene_simd4f_interpolate (graphene_simd4f_t a,
+                             graphene_simd4f_t b,
+                             double            f)
+{
+  return graphene_simd4f_add (a,
+                              graphene_simd4f_mul (graphene_simd4f_sub (b, a),
+                                                   graphene_simd4f_splat (f)));
 }
 
 #ifdef __cplusplus
