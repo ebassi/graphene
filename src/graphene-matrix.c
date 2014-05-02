@@ -552,15 +552,12 @@ graphene_matrix_untransform_bounds (const graphene_matrix_t *m,
 }
 
 void
-graphene_matrix_translate (graphene_matrix_t     *m,
-                           const graphene_vec3_t *pos)
+graphene_matrix_translate (graphene_matrix_t        *m,
+                           const graphene_point3d_t *pos)
 {
   graphene_simd4x4f_t trans_m;
 
-  graphene_simd4x4f_translation (&trans_m,
-                                 graphene_vec3_get_x (pos),
-                                 graphene_vec3_get_y (pos),
-                                 graphene_vec3_get_z (pos));
+  graphene_simd4x4f_translation (&trans_m, pos->x, pos->y, pos->z);
   graphene_simd4x4f_mul (&m->value, &trans_m, &m->value);
 }
 

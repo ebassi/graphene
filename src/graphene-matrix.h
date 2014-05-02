@@ -165,7 +165,7 @@ void                    graphene_matrix_untransform_bounds      (const graphene_
 
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_translate               (graphene_matrix_t        *m,
-                                                                 const graphene_vec3_t    *pos);
+                                                                 const graphene_point3d_t *pos);
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_rotate                  (graphene_matrix_t        *m,
                                                                  float                     angle,
