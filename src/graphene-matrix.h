@@ -110,6 +110,12 @@ GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_to_float                (const graphene_matrix_t  *m,
                                                                  float                    *v);
 
+
+GRAPHENE_AVAILABLE_IN_1_0
+float                   graphene_matrix_get_value               (const graphene_matrix_t  *m,
+                                                                 unsigned int              row,
+                                                                 unsigned int              col);
+
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_multiply                (const graphene_matrix_t  *a,
                                                                  const graphene_matrix_t  *b,

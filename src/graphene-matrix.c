@@ -30,56 +30,8 @@
 #include "graphene-rect.h"
 #include "graphene-simd4x4f.h"
 #include "graphene-quad.h"
+#include "graphene-quaternion.h"
 #include "graphene-vectors-private.h"
-
-static inline float
-graphene_matrix_get_value (const graphene_matrix_t *m,
-                           unsigned int             row,
-                           unsigned int             col)
-{
-  graphene_simd4f_t r;
-  float c;
-
-  switch (row)
-    {
-    case 0:
-      r = m->value.x;
-      break;
-
-    case 1:
-      r = m->value.y;
-      break;
-
-    case 2:
-      r = m->value.z;
-      break;
-
-    case 3:
-      r = m->value.w;
-      break;
-    }
-
-  switch (col)
-    {
-    case 0:
-      c = graphene_simd4f_get_x (r);
-      break;
-
-    case 1:
-      c = graphene_simd4f_get_y (r);
-      break;
-
-    case 2:
-      c = graphene_simd4f_get_z (r);
-      break;
-
-    case 3:
-      c = graphene_simd4f_get_w (r);
-      break;
-    }
-
-  return c;
-}
 
 graphene_matrix_t *
 graphene_matrix_alloc (void)
@@ -294,6 +246,55 @@ gboolean
 graphene_matrix_is_singular (const graphene_matrix_t *m)
 {
   return graphene_matrix_determinant (m) == 0.0f;
+}
+
+float
+graphene_matrix_get_value (const graphene_matrix_t *m,
+                           unsigned int             row,
+                           unsigned int             col)
+{
+  graphene_simd4f_t r;
+  float c;
+
+  switch (row)
+    {
+    case 0:
+      r = m->value.x;
+      break;
+
+    case 1:
+      r = m->value.y;
+      break;
+
+    case 2:
+      r = m->value.z;
+      break;
+
+    case 3:
+      r = m->value.w;
+      break;
+    }
+
+  switch (col)
+    {
+    case 0:
+      c = graphene_simd4f_get_x (r);
+      break;
+
+    case 1:
+      c = graphene_simd4f_get_y (r);
+      break;
+
+    case 2:
+      c = graphene_simd4f_get_z (r);
+      break;
+
+    case 3:
+      c = graphene_simd4f_get_w (r);
+      break;
+    }
+
+  return c;
 }
 
 void
