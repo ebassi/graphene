@@ -31,6 +31,11 @@
 extern "C" {
 #endif
 
+/* part of the implementation of the SSE operations is based on the
+ * equivalent C++ implementation by Mikko Lehtonen, which is licensed
+ * under the terms of the two-clause BSD license.
+ */
+
 typedef union {
   graphene_simd4f_t s;
   float f[4];
