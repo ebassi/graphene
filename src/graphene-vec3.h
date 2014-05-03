@@ -107,6 +107,19 @@ float                   graphene_vec3_get_z             (const graphene_vec3_t *
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_vec3_get_xy            (const graphene_vec3_t *v,
                                                          graphene_vec2_t       *res);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_vec3_get_xy0           (const graphene_vec3_t *v,
+                                                         graphene_vec3_t       *res);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_vec3_get_xyz0          (const graphene_vec3_t *v,
+                                                         graphene_vec4_t       *res);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_vec3_get_xyz1          (const graphene_vec3_t *v,
+                                                         graphene_vec4_t       *res);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_vec3_get_xyzw          (const graphene_vec3_t *v,
+                                                         float                  w,
+                                                         graphene_vec4_t       *res);
 
 GRAPHENE_AVAILABLE_IN_1_0
 const graphene_vec3_t * graphene_vec3_zero              (void);

@@ -526,7 +526,50 @@ graphene_vec3_get_xy (const graphene_vec3_t *v,
   g_return_if_fail (v != NULL);
   g_return_if_fail (res != NULL);
 
-  res->value = v->value;
+  res->value = graphene_simd4f_zero_zw (v->value);
+}
+
+void
+graphene_vec3_get_xy0 (const graphene_vec3_t *v,
+                       graphene_vec3_t       *res)
+{
+  g_return_if_fail (v != NULL);
+  g_return_if_fail (res != NULL);
+
+  res->value = graphene_simd4f_mul (v->value, graphene_simd4f_init (1.f, 1.f, 0.f, 0.f));
+}
+
+void
+graphene_vec3_get_xyz0 (const graphene_vec3_t *v,
+                        graphene_vec4_t       *res)
+{
+  g_return_if_fail (v != NULL);
+  g_return_if_fail (res != NULL);
+
+  res->value = graphene_simd4f_zero_w (v->value);
+}
+
+void
+graphene_vec3_get_xyz1 (const graphene_vec3_t *v,
+                        graphene_vec4_t       *res)
+{
+  g_return_if_fail (v != NULL);
+  g_return_if_fail (res != NULL);
+
+  res->value = graphene_simd4f_add (graphene_simd4f_zero_w (v->value),
+                                    graphene_simd4f_init (0.f, 0.f, 0.f, 1.f));
+}
+
+void
+graphene_vec3_get_xyzw (const graphene_vec3_t *v,
+                        float                  w,
+                        graphene_vec4_t       *res)
+{
+  g_return_if_fail (v != NULL);
+  g_return_if_fail (res != NULL);
+
+  res->value = graphene_simd4f_add (graphene_simd4f_zero_w (v->value),
+                                    graphene_simd4f_init (0.f, 0.f, 0.f, w));
 }
 
 enum {
@@ -670,6 +713,30 @@ graphene_vec4_init (graphene_vec4_t *v,
 graphene_vec4_t *
 graphene_vec4_init_from_vec4 (graphene_vec4_t       *v,
                               const graphene_vec4_t *src)
+{
+  g_return_val_if_fail (v != NULL, NULL);
+  g_return_val_if_fail (src != NULL, v);
+
+  v->value = src->value;
+
+  return v;
+}
+
+graphene_vec4_t *
+graphene_vec4_init_from_vec3 (graphene_vec4_t       *v,
+                              const graphene_vec3_t *src)
+{
+  g_return_val_if_fail (v != NULL, NULL);
+  g_return_val_if_fail (src != NULL, v);
+
+  v->value = src->value;
+
+  return v;
+}
+
+graphene_vec4_t *
+graphene_vec4_init_from_vec2 (graphene_vec4_t       *v,
+                              const graphene_vec2_t *src)
 {
   g_return_val_if_fail (v != NULL, NULL);
   g_return_val_if_fail (src != NULL, v);
@@ -833,7 +900,7 @@ graphene_vec4_get_xy (const graphene_vec4_t *v,
   g_return_if_fail (v != NULL);
   g_return_if_fail (res != NULL);
 
-  res->value = v->value;
+  res->value = graphene_simd4f_zero_zw (v->value);
 }
 
 void
@@ -843,7 +910,7 @@ graphene_vec4_get_xyz (const graphene_vec4_t *v,
   g_return_if_fail (v != NULL);
   g_return_if_fail (res != NULL);
 
-  res->value = v->value;
+  res->value = graphene_simd4f_zero_w (v->value);
 }
 
 enum {
