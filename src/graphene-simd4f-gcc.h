@@ -286,7 +286,8 @@ graphene_simd4f_flip_sign_1010 (graphene_simd4f_t v)
 }
 
 static inline gboolean
-graphene_simd4f_cmp_eq (graphene_simd4f_t a)
+graphene_simd4f_cmp_eq (graphene_simd4f_t a,
+                        graphene_simd4f_t b)
 {
   graphene_simd4f_union_t u_a = { a };
   graphene_simd4f_union_t u_b = { b };
@@ -298,7 +299,8 @@ graphene_simd4f_cmp_eq (graphene_simd4f_t a)
 }
 
 static inline gboolean
-graphene_simd4f_cmp_neq (graphene_simd4f_t a)
+graphene_simd4f_cmp_neq (graphene_simd4f_t a,
+                         graphene_simd4f_t b)
 {
   graphene_simd4f_union_t u_a = { a };
   graphene_simd4f_union_t u_b = { b };
