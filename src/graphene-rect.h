@@ -36,6 +36,26 @@ G_BEGIN_DECLS
 #define GRAPHENE_RECT_INIT(x,y,w,h) \
   { { x, y }, { w, h } }
 
+/**
+ * graphene_rect_t:
+ * @origin:
+ * @size:
+ *
+ * The location and size of a rectangle region.
+ *
+ * The width and height of a #graphene_rect_t can be negative; for instance,
+ * a #graphene_rect_t with an origin of [ 0, 0 ] and a size of [ 10, 10 ] is
+ * equivalent to a #graphene_rect_t with an origin of [ 10, 10 ] and a size
+ * of [ -10, -10 ].
+ *
+ * Application code can normalize rectangles using graphene_rect_normalize();
+ * this function will ensure that the width and height of a rectangle are
+ * positive values. All functions taking a #graphene_rect_t as an argument
+ * will internally operate on a normalized copy; all functions returning a
+ * #graphene_rect_t will always return a normalized rectangle.
+ *
+ * Since: 1.0
+ */
 struct _graphene_rect_t
 {
   graphene_point_t origin;
