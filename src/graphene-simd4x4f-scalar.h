@@ -33,25 +33,25 @@ graphene_simd4x4f_transpose_in_place (graphene_simd4x4f_t *s)
 {
   graphene_simd4x4f_t m = *s;
 
-  s->x.x = d.x.x;
-  s->x.y = d.y.x;
-  s->x.z = d.z.x;
-  s->x.w = d.w.x;
+  s->x.x = m.x.x;
+  s->x.y = m.y.x;
+  s->x.z = m.z.x;
+  s->x.w = m.w.x;
 
-  s->y.x = d.x.y;
-  s->y.y = d.y.y;
-  s->y.z = d.z.y;
-  s->y.w = d.w.y;
+  s->y.x = m.x.y;
+  s->y.y = m.y.y;
+  s->y.z = m.z.y;
+  s->y.w = m.w.y;
 
-  s->z.x = d.x.z;
-  s->z.y = d.y.z;
-  s->z.z = d.z.z;
-  s->z.w = d.w.z;
+  s->z.x = m.x.z;
+  s->z.y = m.y.z;
+  s->z.z = m.z.z;
+  s->z.w = m.w.z;
 
-  s->w.x = d.x.w;
-  s->w.y = d.y.w;
-  s->w.z = d.z.w;
-  s->w.w = d.w.w;
+  s->w.x = m.x.w;
+  s->w.y = m.y.w;
+  s->w.z = m.z.w;
+  s->w.w = m.w.w;
 }
 
 #ifdef __cplusplus

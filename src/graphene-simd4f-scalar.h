@@ -36,7 +36,7 @@ extern "C" {
 static inline float \
 graphene_simd4f_get_##f (const graphene_simd4f_t s) \
 { \
-  return s.##f; \
+  return s.f; \
 }
 
 GRAPHENE_SIMD4F_GET (x)
@@ -230,7 +230,7 @@ graphene_simd4f_max (graphene_simd4f_t a,
 static inline graphene_simd4f_t \
 graphene_simd4f_shuffle_##a##b##c##d (graphene_simd4f_t s) \
 { \
-  return graphene_simd4f_init (s.a, s.b, s.c, s.d) \
+  return graphene_simd4f_init (s.a, s.b, s.c, s.d); \
 }
 
 GRAPHENE_SIMD4F_SHUFFLE (w, x, y, z)
