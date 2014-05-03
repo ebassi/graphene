@@ -409,7 +409,7 @@ _______EOF
 #if defined(GRAPHENE_HAS_SSE)
 # define GRAPHENE_USE_SSE
 #elif defined(GRAPHENE_HAS_ARM_NEON)
-# define GRAPHENE_USE_SCALAR
+# define GRAPHENE_USE_ARM_NEON
 #elif defined(GRAPHENE_HAS_GCC)
 # define GRAPHENE_USE_GCC
 #else

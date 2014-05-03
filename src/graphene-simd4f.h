@@ -30,8 +30,7 @@
 #if defined(GRAPHENE_USE_SSE)
 # include "graphene-simd4f-sse.h"
 #elif defined(GRAPHENE_USE_ARM_NEON)
-# warn "ARM NEON optimizations are not available yet, falling back to scalar."
-# include "graphene-simd4f-scalar.h" /* include graphene-simd4f-neon.h */
+# include "graphene-simd4f-neon.h" /* include graphene-simd4f-neon.h */
 #elif defined(GRAPHENE_USE_GCC)
 # include "graphene-simd4f-gcc.h"
 #elif defined(GRAPHENE_USE_SCALAR)
