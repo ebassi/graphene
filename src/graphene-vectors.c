@@ -753,7 +753,7 @@ graphene_vec4_init_from_float (graphene_vec4_t *v,
   g_return_val_if_fail (v != NULL, NULL);
   g_return_val_if_fail (src != NULL, v);
 
-  v->value = graphene_simd4f_init_3f (src);
+  v->value = graphene_simd4f_init_4f (src);
 
   return v;
 }
