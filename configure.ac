@@ -123,10 +123,10 @@ AC_ARG_ENABLE([gcc-vector],
 
 AS_IF([test "x$enable_gcc_vector" = xno], [have_gcc_vector=disabled])
 
-AC_MSG_RESULT($have_sse2_intrinsics)
-AS_IF([test "x$enable_sse2" = xyes && test "x$have_sse2_intrinsics" = xno],
+AC_MSG_RESULT($have_gcc_vector)
+AS_IF([test "x$enable_gcc_vector" = xyes && test "x$have_gcc_vector" = xno],
       [
-        AC_MSG_ERROR([SSE2 intrinsics not detected])
+        AC_MSG_ERROR([GNUC vector intrinsics not detected])
       ])
 
 # Check for SSE2 intrinsics
@@ -475,7 +475,7 @@ Graphene - $VERSION (${GRAPHENE_RELEASE_STATUS})
   • Compiler flags: ${GRAPHENE_CFLAGS} ${MAINTAINER_CFLAGS}
 
   • Available optimizations:
-    • SSE2: ${have_sse2_intrinsics}
-    • ARM NEON: ${have_arm_neon}
     • GCC vectors: ${have_gcc_vector}
+    • SSE2 intrinsics: ${have_sse2_intrinsics}
+    • ARM NEON intrinsics: ${have_arm_neon}
 ])
