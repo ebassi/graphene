@@ -77,6 +77,8 @@ graphene_rect_init (graphene_rect_t *r,
   r->size.width = width;
   r->size.height = height;
 
+  graphene_rect_normalize_internal (r);
+
   return r;
 }
 
