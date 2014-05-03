@@ -115,8 +115,11 @@ AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 # error "Need GCC for vectors intrinsics"
 #endif
 typedef float simd4f __attribute__((vector_size(16)));
+typedef int simd4i __attribute__((vector_size(16)));
 int main () {
-  simd4f s = { 0.f, 0.f, 0.f, 0.f };
+  simd4f s = { 1.f, 2.f, 3.f, 4.f };
+  simd4i m = { 0,   1,   1,   3   };
+  simd4f r = __builtin_shuffle (s, m);
   return 0;
 }]])], [have_gcc_vector=yes])
 
