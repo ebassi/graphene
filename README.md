@@ -1,26 +1,44 @@
-# Graphene - A small layer of types for graphic libraries
+# Graphene - A thin layer of types for graphic libraries
 
-When creating graphic libraries you most likely end up dealing with points and
-rectangles. If you're particularly unlucky, you may end up dealing with affine
-matrices and 2D transformations. If you're writing a graphic library with 3D
-transformations, though, you are going to hit the jackpot: 4x4 matrices,
-projections, transformations, vectors, and quaternions.
+When creating graphic libraries you most likely end up dealing with points
+and rectangles. If you're particularly unlucky, you may end up dealing
+with affine matrices and 2D transformations. If you're writing a graphic
+library with 3D transformations, though, you are going to hit the jackpot:
+4x4 matrices, projections, transformations, vectors, and quaternions.
 
-Most of this stuff exists, in various forms, in many libraries; it also comes
-with the rest of the libraries, which may or may not be what you want.
+Most of this stuff exists, in various forms, in other libraries; it also
+comes along with the rest of those libraries, which may or may not be what
+you want.  It also is available in various languages, as long as those
+languages are C++; again, it may or may not be something you want.
 
-For this reason, I wrote the smallest possible layer needed to write a canvas
-library: Graphene.
+For this reason, I decided to write the thinnes, smallest possible layer
+needed to write a canvas library: Graphene.
 
-This library provides types and relative API; it does not deal with windowing
-system surfaces, drawing, or event handling. You're supposed to do that
-yourself.
+This library provides types and their relative API; it does not deal with
+windowing system surfaces, drawing, or event handling. You're supposed to
+do that yourself, which is the whole point of writing the library in the
+first place.
 
 ### Dependencies
 
-Graphene is a C library. For this reason alone, it depends on GLib, as GLib
-gives us a fairly decent, portable, and maintained layer instead of
-re-implementing a ton of code.
+Graphene is a C library. For this reason alone, it depends on GLib, as
+GLib gives us a fairly decent, portable, and maintained layer to depend
+on, instead of requiring me to re-implement a ton of code.
+
+Graphene does not use the GObject type system, as of yet, but it may grow
+an optional dependency on it through a separate shared object.
+
+Graphene contains optimizations for speeding up vector operations; those
+optimizations are optional, and used only if both Graphene was compiled
+with support for them *and* if the system you're running on has them.
+Currently, Graphene supports the following platform-specific fast paths:
+
+ * Streaming SIMD Extensions (SSE) 2
+ * ARM NEON
+ * GCC vector extensions
+
+In the remote case in which none of these optimizations are available,
+Graphene will fall back to a naive scalar implementation.
 
 ### Installation
 
@@ -36,6 +54,29 @@ If you have clone from Git, run:
     $ ./autogen.sh
     $ make
     # make install
+
+It is possible, when building Graphene, to disable specific optimizations by
+passing options to the `configure` script; see the output of `configure
+--help` for more information
+
+## Documentation
+
+### Available types
+
+Graphene provides common types needed to handle 3D transformations:
+
+ * 2D points
+ * 3D points
+ * rectangles
+ * quads
+ * quaternions
+ * vectors (2, 3, or 4-sized)
+ * matrices
+
+All types can be placed on the stack, but provide allocation/free functions
+for working on the heap as well. The contents of all structure types, except
+for points and rectangles, should be considered private, and should never be
+accessed directly.
 
 ### License
 
