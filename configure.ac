@@ -107,8 +107,12 @@ dnl === Fast paths ============================================================
 have_gcc_vector=no
 AC_MSG_CHECKING([whether to use GCC vector])
 AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
-#if !defined(__GNUC__)
-# error "Need GCC for vectors"
+#if defined(__GNUC__)
+# if defined(__arm__)
+#   error "GCC vector intrinsics are disabled on ARM
+# endif
+#else
+# error "Need GCC for vectors intrinsics"
 #endif
 typedef float simd4f __attribute__((vector_size(16)));
 int main () {
