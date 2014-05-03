@@ -207,68 +207,126 @@ static inline graphene_simd4f_t
 graphene_simd4f_cross3 (graphene_simd4f_t a,
                         graphene_simd4f_t b)
 {
+  const graphene_simd4f_t a_yzx = graphene_simd4f_init (graphene_simd4f_get_y (a),
+                                                        graphene_simd4f_get_z (a),
+                                                        graphene_simd4f_get_x (a),
+                                                        graphene_simd4f_get_w (a));
+  const graphene_simd4f_t a_zxy = graphene_simd4f_init (graphene_simd4f_get_z (a),
+                                                        graphene_simd4f_get_x (a),
+                                                        graphene_simd4f_get_y (a),
+                                                        graphene_simd4f_get_w (a));
+
+  const graphene_simd4f_t b_yzx = graphene_simd4f_init (graphene_simd4f_get_y (b),
+                                                        graphene_simd4f_get_z (b),
+                                                        graphene_simd4f_get_x (b),
+                                                        graphene_simd4f_get_w (b));
+  const graphene_simd4f_t b_zxy = graphene_simd4f_init (graphene_simd4f_get_z (b),
+                                                        graphene_simd4f_get_x (b),
+                                                        graphene_simd4f_get_y (b),
+                                                        graphene_simd4f_get_w (b));
+
+  return vmlsq_f32 (vmulq_f32 (a_yzx, b_zxy), a_zxy, b_yzx);
 }
 
 static inline graphene_simd4f_t
 graphene_simd4f_min (graphene_simd4f_t a,
                      graphene_simd4f_t b)
 {
+  return vminq_f32 (a, b);
 }
 
 static inline graphene_simd4f_t
 graphene_simd4f_max (graphene_simd4f_t a,
                      graphene_simd4f_t b)
 {
+  return vmaxq_f32 (a, b);
 }
 
-#define GRAPHENE_SIMD4F_SHUFFLE(elem,idx) \
+#define GRAPHENE_SIMD4F_SHUFFLE(elem,i0,i1,i2,i3) \
 static inline graphene_simd4f_t \
 graphene_simd4f_shuffle_##elem (graphene_simd4f_t v) \
 { \
+  graphene_simd4f_union_t u = { v }; \
+  return graphene_simd4f_init (u.f[i0], u.f[i1], u.f[i2], u.f[i3]); \
 }
 
-GRAPHENE_SIMD4F_SHUFFLE (wxyz, (2, 1, 0, 3))
-GRAPHENE_SIMD4F_SHUFFLE (zwxy, (1, 0, 3, 2))
-GRAPHENE_SIMD4F_SHUFFLE (yzwx, (0, 3, 2, 1))
+GRAPHENE_SIMD4F_SHUFFLE (wxyz, 3, 0, 1, 2)
+GRAPHENE_SIMD4F_SHUFFLE (zwxy, 2, 3, 0, 1)
+GRAPHENE_SIMD4F_SHUFFLE (yzwx, 1, 2, 3, 0)
 
 #undef GRAPHENE_SIMD4F_SHUFFLE
 
 static inline graphene_simd4f_t
 graphene_simd4f_zero_w (graphene_simd4f_t v)
 {
+  graphene_simd4f_union_t u = { v };
+  return graphene_simd4f_init (u.f[0], u.f[1], u.f[2], 0.f);
 }
 
 static inline graphene_simd4f_t
 graphene_simd4f_zero_zw (graphene_simd4f_t v)
 {
+  graphene_simd4f_union_t u = { v };
+  return graphene_simd4f_init (u.f[0], u.f[1], 0.f, 0.f);
 }
 
 static inline graphene_simd4f_t
 graphene_simd4f_merge_high (graphene_simd4f_t a,
                             graphene_simd4f_t b)
 {
+  graphene_simd4f_union_t u_a = { a };
+  graphene_simd4f_union_t u_b = { b };
+  return graphene_simd4f_init (u_a.f[2], u_a.f[3], u_b.f[2], u_b.f[3]); 
 }
 
 static inline graphene_simd4f_t
 graphene_simd4f_flip_sign_0101 (graphene_simd4f_t v)
 {
+  const unsigned int upnpn[4] = {
+    0x00000000,
+    0x80000000,
+    0x00000000,
+    0x80000000
+  };
+  const uint32x4_t pnpn = vld1q_u32 (upnpn);
+  return vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 (s), pnpn)); 
 }
 
 static inline graphene_simd4f_t
 graphene_simd4f_flip_sign_1010 (graphene_simd4f_t v)
 {
+  const unsigned int unpnp[4] = {
+    0x80000000,
+    0x00000000,
+    0x80000000,
+    0x00000000
+  };
+  const uint32x4_t npnp = vld1q_u32 (unpnp);
+  return vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 (s), npnp));
 }
 
 static inline gboolean
 graphene_simd4f_cmp_eq (graphene_simd4f_t a,
                         graphene_simd4f_t b)
 {
+  const graphene_simd4f_union_t u_a = { a };
+  const graphene_simd4f_union_t u_b = { b };
+  return u_a.f[0] == u_b.f[0] &&
+         u_a.f[1] == u_b.f[1] &&
+         u_a.f[2] == u_b.f[2] &&
+         u_a.f[3] == u_b.f[3];
 }
 
 static inline gboolean
 graphene_simd4f_cmp_neq (graphene_simd4f_t a,
                          graphene_simd4f_t b)
 {
+  const graphene_simd4f_union_t u_a = { a };
+  const graphene_simd4f_union_t u_b = { b };
+  return u_a.f[0] != u_b.f[0] &&
+         u_a.f[1] != u_b.f[1] &&
+         u_a.f[2] != u_b.f[2] &&
+         u_a.f[3] != u_b.f[3];
 }
 
 

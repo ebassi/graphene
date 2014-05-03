@@ -24,7 +24,7 @@
 #ifndef __GRAPHENE_SIMD4X4F_NEON_H__
 #define __GRAPHENE_SIMD4X4F_NEON_H__
 
-#warn "ARM NEON optimizations are not tested."
+#warn "ARM NEON support is experimental and requires testing."
 
 static inline void
 graphene_simd4x4f_transpose_in_place (graphene_simd4x4f_t *s)
