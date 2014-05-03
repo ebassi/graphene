@@ -31,10 +31,17 @@
 extern "C" {
 #endif
 
+typedef int graphene_simd4i_t __attribute__((vector_size (16)));
+
 typedef union {
   graphene_simd4f_t s;
   float f[4];
 } graphene_simd4f_union_t;
+
+typedef union {
+  graphene_simd4i_t s;
+  int i[4];
+} graphene_simd4i_union_t;
 
 #define GRAPHENE_SIMD4F_GET(field,i) \
 static inline float \
@@ -230,45 +237,44 @@ graphene_simd4f_max (graphene_simd4f_t a,
 static inline graphene_simd4f_t
 graphene_simd4f_shuffle_wxyz (graphene_simd4f_t v)
 {
-  graphene_simd4f_union_t u = { v };
-  return graphene_simd4f_init (u.f[3], u.f[0], u.f[1], u.f[2]);
+  graphene_simd4i_t mask = { 3, 0, 1, 2 };
+  return __builtin_shuffle (v, mask);
 }
 
 static inline graphene_simd4f_t
 graphene_simd4f_shuffle_zwxy (graphene_simd4f_t v)
 {
-  graphene_simd4f_union_t u = { v };
-  return graphene_simd4f_init (u.f[2], u.f[3], u.f[0], u.f[1]);
+  graphene_simd4i_t mask = { 2, 3, 0, 1 };
+  return __builtin_shuffle (v, mask);
 }
 
 static inline graphene_simd4f_t
 graphene_simd4f_shuffle_yzwx (graphene_simd4f_t v)
 {
-  graphene_simd4f_union_t u = { v };
-  return graphene_simd4f_init (u.f[1], u.f[2], u.f[3], u.f[0]);
+  graphene_simd4i_t mask = { 1, 2, 3, 0 };
+  return __builtin_shuffle (v, mask);
 }
 
 static inline graphene_simd4f_t
 graphene_simd4f_zero_w (graphene_simd4f_t v)
 {
-  graphene_simd4f_union_t u = { v };
-  return graphene_simd4f_init (u.f[0], u.f[1], u.f[2], 0.f);
+  graphene_simd4i_t mask = { 0, 1, 2, 4 };
+  return __builtin_shuffle (v, graphene_simd4f_init_zero (), mask);
 }
 
 static inline graphene_simd4f_t
 graphene_simd4f_zero_zw (graphene_simd4f_t v)
 {
-  graphene_simd4f_union_t u = { v };
-  return graphene_simd4f_init (u.f[0], u.f[1], 0.f, 0.f);
+  graphene_simd4i_t mask = { 0, 1, 4, 4 };
+  return __builtin_shuffle (v, graphene_simd4f_init_zero (), mask);
 }
 
 static inline graphene_simd4f_t
 graphene_simd4f_merge_high (graphene_simd4f_t a,
                             graphene_simd4f_t b)
 {
-  graphene_simd4f_union_t u_a = { a };
-  graphene_simd4f_union_t u_b = { b };
-  return graphene_simd4f_init (u_a.f[2], u_a.f[3], u_b.f[2], u_b.f[3]);
+  graphene_simd4i_t mask = { 2, 3, 6, 7 };
+  return __builtin_shuffle (a, b, mask);
 }
 
 static inline graphene_simd4f_t
@@ -289,26 +295,20 @@ static inline gboolean
 graphene_simd4f_cmp_eq (graphene_simd4f_t a,
                         graphene_simd4f_t b)
 {
-  graphene_simd4f_union_t u_a = { a };
-  graphene_simd4f_union_t u_b = { b };
+  graphene_simd4i_t res = a == b;
+  graphene_simd4i_union_t u_res = { res };
 
-  return u_a.f[0] == u_b.f[0] &&
-         u_a.f[1] == u_b.f[1] &&
-         u_a.f[2] == u_b.f[2] &&
-         u_a.f[3] == u_b.f[3];
+  return u_res.i[0] != 0 && u_res.i[1] != 0 && u_res.i[2] != 0 && u_res.i[3] != 0;
 }
 
 static inline gboolean
 graphene_simd4f_cmp_neq (graphene_simd4f_t a,
                          graphene_simd4f_t b)
 {
-  graphene_simd4f_union_t u_a = { a };
-  graphene_simd4f_union_t u_b = { b };
+  graphene_simd4i_t res = a == b;
+  graphene_simd4i_union_t u_res = { res };
 
-  return u_a.f[0] != u_b.f[0] &&
-         u_a.f[1] != u_b.f[1] &&
-         u_a.f[2] != u_b.f[2] &&
-         u_a.f[3] != u_b.f[3];
+  return u_res.i[0] == 0 && u_res.i[1] == 0 && u_res.i[2] == 0 && u_res.i[3] == 0;
 }
 
 #ifdef __cplusplus
