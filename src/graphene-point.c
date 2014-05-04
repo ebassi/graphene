@@ -24,9 +24,13 @@
 /**
  * SECTION:graphene-point
  * @Title: Point
- * @Short_Description: Describe a point in 2D
+ * @Short_Description: A point with 2 coordinates
  *
- * ...
+ * #graphene_point_t is a data structure capable of describing a point with
+ * two coordinates:
+ *
+ *  * @graphene_point_t.x
+ *  * @graphene_point_t.y
  */
 
 #include "config.h"
@@ -36,12 +40,30 @@
 #include "graphene-point.h"
 #include "graphene-simd4f.h"
 
+/**
+ * graphene_point_alloc: (constructor)
+ *
+ * Allocates a new #graphene_point_t structure.
+ *
+ * Returns: (transfer full): the newly allocated #graphene_point_t.
+ *   Use graphene_point_free() to free the resources allocated by
+ *   this function.
+ *
+ * Since: 1.0
+ */
 graphene_point_t *
 graphene_point_alloc (void)
 {
   return g_slice_new (graphene_point_t);
 }
 
+/**
+ * graphene_point_free:
+ *
+ * Frees the resources allocated by graphene_point_alloc().
+ *
+ * Since: 1.0
+ */
 void
 graphene_point_free (graphene_point_t *p)
 {

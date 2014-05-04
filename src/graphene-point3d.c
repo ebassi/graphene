@@ -21,6 +21,19 @@
  * THE SOFTWARE.
  */
 
+/**
+ * SECTION:graphene-point3d
+ * @Title: Point3D
+ * @Short_Description: A point with 3 coordinates
+ *
+ * #graphene_point3d_t is a data structure capable of describing a point with
+ * three coordinates:
+ *
+ *  * @graphene_point3d_t.x
+ *  * @graphene_point3d_t.y
+ *  * @graphene_point3d_t.z
+ */
+
 #include "config.h"
 
 #include <math.h>
@@ -29,12 +42,30 @@
 #include "graphene-vec3.h"
 #include "graphene-simd4f.h"
 
+/**
+ * graphene_point3d_alloc: (constructor)
+ *
+ * Allocates a #graphene_point3d_t structure.
+ *
+ * Returns: (transfer full): the newly allocated structure.
+ *   Use graphene_point3d_free() to free the resources
+ *   allocated by this function.
+ *
+ * Since: 1.0
+ */
 graphene_point3d_t *
 graphene_point3d_alloc (void)
 {
   return g_slice_new (graphene_point3d_t);
 }
 
+/**
+ * graphene_point3d_free:
+ *
+ * Frees the resources allocated via graphene_point3d_alloc().
+ *
+ * Since: 1.0
+ */
 void
 graphene_point3d_free (graphene_point3d_t *p)
 {
@@ -42,6 +73,19 @@ graphene_point3d_free (graphene_point3d_t *p)
     g_slice_free (graphene_point3d_t, p);
 }
 
+/**
+ * graphene_point3d_init:
+ * @p: the #graphene_point3d_t to initialize
+ * @x: the X coordinate of the point
+ * @y: the Y coordinate of the point
+ * @z: the Z coordinate of the point
+ *
+ * Initializes a #graphene_point3d_t with the given coordinates.
+ *
+ * Returns: (transfer none): the initialized #graphene_point3d_t
+ *
+ * Since: 1.0
+ */
 graphene_point3d_t *
 graphene_point3d_init (graphene_point3d_t *p,
                        float               x,
@@ -57,6 +101,17 @@ graphene_point3d_init (graphene_point3d_t *p,
   return p;
 }
 
+/**
+ * graphene_point3d_init_from_vec3:
+ * @p: a #graphene_point3d_t
+ * @v: a #graphene_vec3_t
+ *
+ * Initializes a #graphene_point3d_t using a #graphene_vec3_t.
+ *
+ * Returns: (transfer none): the initialized #graphene_point3d_t
+ *
+ * Since: 1.0
+ */
 graphene_point3d_t *
 graphene_point3d_init_from_vec3 (graphene_point3d_t    *p,
                                  const graphene_vec3_t *v)
