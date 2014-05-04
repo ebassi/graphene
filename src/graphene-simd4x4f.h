@@ -89,8 +89,7 @@ graphene_simd4x4f_to_float (const graphene_simd4x4f_t *m,
 #if defined(GRAPHENE_USE_SSE)
 # include "graphene-simd4x4f-sse.h"
 #elif defined(GRAPHENE_USE_ARM_NEON)
-# warn "ARM NEON is not supported."
-# include "graphene-simd4x4f-scalar.h" /* graphene-simd4x4f-neon.h */
+# include "graphene-simd4x4f-neon.h"
 #elif defined(GRAPHENE_USE_GCC)
 # include "graphene-simd4x4f-gcc.h"
 #elif defined(GRAPHENE_USE_SCALAR)
