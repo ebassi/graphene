@@ -163,16 +163,38 @@ graphene_point3d_normalize (const graphene_point3d_t *p,
   res->z = graphene_simd4f_get_x (v);
 }
 
+/**
+ * graphene_point3d_interpolate:
+ * @a: a #graphene_point3d_t
+ * @b: a #graphene_point3d_t
+ * @factor: the interpolation factor
+ * @res: (out caller-allocates): the return location for the
+ *   interpolated #graphene_point3d_t
+ *
+ * Linearly interpolates each component of @a and @b using the
+ * provided @factor, and places the result in @res.
+ *
+ * Since: 1.0
+ */
 void
 graphene_point3d_interpolate (const graphene_point3d_t *a,
                               const graphene_point3d_t *b,
                               double                    factor,
                               graphene_point3d_t       *res)
 {
+  graphene_simd4f_t a_v, b_v, r_v;
+
   g_return_if_fail (a != NULL && b != NULL);
   g_return_if_fail (res != NULL);
 
-  res->x = a->x + (b->x - a->x) * factor;
-  res->y = a->y + (b->y - a->y) * factor;
-  res->z = a->z + (b->z - a->z) * factor;
+  /* linear interpolation: r = a + (b - a) * f */
+  a_v = graphene_simd4f_init (a->x, a->y, a->z, 0.f);
+  b_v = graphene_simd4f_init (b->x, b->y, b->z, 0.f);
+  r_v = graphene_simd4f_add (a_v,
+                             graphene_simd4f_mul (graphene_simd4f_sub (b_v, a_v),
+                                                  graphene_simd4f_splat (factor)));
+
+  res->x = graphene_simd4f_get_x (r_v);
+  res->y = graphene_simd4f_get_y (r_v);
+  res->z = graphene_simd4f_get_z (r_v);
 }
