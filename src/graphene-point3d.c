@@ -86,10 +86,18 @@ graphene_point3d_scale (const graphene_point3d_t *p,
                         float                     factor,
                         graphene_point3d_t       *res)
 {
+  graphene_simd4f_t v;
+
   g_return_if_fail (p != NULL);
   g_return_if_fail (res != NULL);
 
-  graphene_point3d_init (res, p->x * factor, p->y * factor, p->z * factor);
+  v = graphene_simd4f_init (p->x, p->y, p->z, 0.f);
+  v = graphene_simd4f_mul (v, graphene_simd4f_splat (factor));
+
+  graphene_point3d_init (res,
+                         graphene_simd4f_get_x (v),
+                         graphene_simd4f_get_y (v),
+                         graphene_simd4f_get_z (v));
 }
 
 void
