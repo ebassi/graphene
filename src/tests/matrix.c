@@ -10,6 +10,11 @@ matrix_identity (void)
   graphene_matrix_init_identity (&m);
   g_assert_true (graphene_matrix_is_identity (&m));
 
+  g_assert_cmpfloat (graphene_matrix_get_value (&m, 0, 0), ==, 1.f);
+  g_assert_cmpfloat (graphene_matrix_get_value (&m, 1, 1), ==, 1.f);
+  g_assert_cmpfloat (graphene_matrix_get_value (&m, 2, 2), ==, 1.f);
+  g_assert_cmpfloat (graphene_matrix_get_value (&m, 3, 3), ==, 1.f);
+
   graphene_matrix_to_float (&m, v);
   g_assert_cmpfloat (v[0],  ==, 1.0f);
   g_assert_cmpfloat (v[5],  ==, 1.0f);
