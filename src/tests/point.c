@@ -54,6 +54,23 @@ point_init (void)
 }
 
 static void
+point_equal (void)
+{
+  graphene_point_t p, q;
+
+  graphene_point_init (&p, 0.f, 0.f);
+  graphene_point_init (&q, 0.f, 0.f);
+
+  g_assert_true (graphene_point_equal (&p, &p));
+  g_assert_false (graphene_point_equal (&p, NULL));
+  g_assert_false (graphene_point_equal (NULL, &q));
+  g_assert_true (graphene_point_equal (&p, &q));
+
+  graphene_point_init (&q, 1.f, 1.f);
+  g_assert_false (graphene_point_equal (&p, &q));
+}
+
+static void
 point_distance (void)
 {
   graphene_point_t p, q;
@@ -66,6 +83,9 @@ point_distance (void)
   graphene_point_init (&q, 1.f, 1.f);
   g_assert_cmpfloat (q.x, ==, 1.0f);
   g_assert_cmpfloat (q.y, ==, 1.0f);
+
+  g_assert_cmpfloat (graphene_point_distance (&p, &p, NULL, NULL), ==, 0.f);
+  g_assert_cmpfloat (graphene_point_distance (&q, &q, NULL, NULL), ==, 0.f);
 
   x_d = y_d = 0.f;
   g_assert_cmpfloat (graphene_point_distance (&p, &q, &x_d, &y_d), ==, sqrtf (2.f));
@@ -84,6 +104,7 @@ point_near (void)
   g_assert_true (graphene_point_near (&p, &q, 0.2f));
   g_assert_false (graphene_point_near (&p, &q, 0.001f));
   g_assert_false (graphene_point_near (&p, &q, 0.f));
+  g_assert_true (graphene_point_near (&p, &p, 0.f));
 }
 
 static void
@@ -115,6 +136,7 @@ main (int argc, char *argv[])
 
   g_test_add_func ("/point/alloc", point_alloc);
   g_test_add_func ("/point/init", point_init);
+  g_test_add_func ("/point/equal", point_equal);
   g_test_add_func ("/point/distance", point_distance);
   g_test_add_func ("/point/near", point_near);
   g_test_add_func ("/point/zero", point_zero);
