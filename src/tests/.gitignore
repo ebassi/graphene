@@ -3,6 +3,8 @@
 /*.o
 /*.log
 /*.trs
+/*.gcda
+/*.gcno
 /matrix
 /point
 /size

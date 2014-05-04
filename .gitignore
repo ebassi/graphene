@@ -19,6 +19,8 @@ Makefile.in
 /config.log
 /config.status
 /configure
+/graphene-lcov.info
+/graphene-lcov/
 /libtool
 /src/.deps
 /src/.libs
@@ -27,6 +29,8 @@ Makefile.in
 /src/*.o
 /src/*.gir
 /src/*.typelib
+/src/*.gcda
+/src/*.gcno
 /src/config.h
 /src/config.h.in
 /src/config.h.in~
