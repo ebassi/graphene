@@ -112,6 +112,10 @@ void                    graphene_matrix_to_float                (const graphene_
 
 
 GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_matrix_get_row                 (const graphene_matrix_t  *m,
+                                                                 unsigned int              index_,
+                                                                 graphene_vec4_t          *res);
+GRAPHENE_AVAILABLE_IN_1_0
 float                   graphene_matrix_get_value               (const graphene_matrix_t  *m,
                                                                  unsigned int              row,
                                                                  unsigned int              col);

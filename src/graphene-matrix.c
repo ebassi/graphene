@@ -253,6 +253,38 @@ graphene_matrix_is_singular (const graphene_matrix_t *m)
   return graphene_matrix_determinant (m) == 0.0f;
 }
 
+void
+graphene_matrix_get_row (const graphene_matrix_t *m,
+                         unsigned int             index_,
+                         graphene_vec4_t         *res)
+{
+  g_return_if_fail (m != NULL);
+  g_return_if_fail (index_ >= 0 && index_ < 4);
+  g_return_if_fail (res != NULL);
+
+  switch (index_)
+    {
+    case 0:
+      res->value = m->value.x;
+      break;
+
+    case 1:
+      res->value = m->value.y;
+      break;
+
+    case 2:
+      res->value = m->value.z;
+      break;
+
+    case 3:
+      res->value = m->value.w;
+      break;
+
+    default:
+      g_assert_not_reached ();
+    }
+}
+
 float
 graphene_matrix_get_value (const graphene_matrix_t *m,
                            unsigned int             row,
