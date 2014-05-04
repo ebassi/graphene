@@ -237,9 +237,14 @@ graphene_matrix_is_2d (const graphene_matrix_t *m)
 gboolean
 graphene_matrix_is_backface_visible (const graphene_matrix_t *m)
 {
+  graphene_matrix_t tmp;
+
   g_return_val_if_fail (m != NULL, FALSE);
 
-  return FALSE;
+  graphene_matrix_inverse (m, &tmp);
+
+  /* inverse.zz < 0 */
+  return graphene_matrix_get_value (&tmp, 2, 2) < 0.f;
 }
 
 gboolean
