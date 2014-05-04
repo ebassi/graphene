@@ -21,6 +21,21 @@ point_zero (void)
 }
 
 static void
+point_alloc (void)
+{
+  graphene_point_t *a, b;
+
+  a = graphene_point_alloc ();
+  g_assert_nonnull (a);
+
+  graphene_point_init (a, 10.f, 10.f);
+  graphene_point_init_from_point (&b, a);
+  g_assert_true (graphene_point_equal (&b, a));
+
+  graphene_point_free (a);
+}
+
+static void
 point_init (void)
 {
   graphene_point_t p, q;
@@ -71,15 +86,39 @@ point_near (void)
   g_assert_false (graphene_point_near (&p, &q, 0.f));
 }
 
+static void
+point_interpolate (void)
+{
+  graphene_point_t p, half, q, res;
+
+  graphene_point_init (&p, 0.f, 0.f);
+  graphene_point_init (&q, 1.f, 1.f);
+  graphene_point_init (&half, .5f, .5f);
+
+  graphene_point_interpolate (&p, &q, 0.0, &res);
+  g_assert_cmpfloat (res.x, ==, p.x);
+  g_assert_cmpfloat (res.y, ==, p.y);
+
+  graphene_point_interpolate (&p, &q, 0.5, &res);
+  g_assert_cmpfloat (res.x, ==, half.x);
+  g_assert_cmpfloat (res.y, ==, half.y);
+
+  graphene_point_interpolate (&p, &q, 1.0, &res);
+  g_assert_cmpfloat (res.x, ==, q.x);
+  g_assert_cmpfloat (res.y, ==, q.y);
+}
+
 int
 main (int argc, char *argv[])
 {
   g_test_init (&argc, &argv, NULL);
 
+  g_test_add_func ("/point/alloc", point_alloc);
   g_test_add_func ("/point/init", point_init);
   g_test_add_func ("/point/distance", point_distance);
   g_test_add_func ("/point/near", point_near);
   g_test_add_func ("/point/zero", point_zero);
+  g_test_add_func ("/point/interpolate", point_interpolate);
 
   return g_test_run ();
 }
