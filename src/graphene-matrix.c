@@ -261,6 +261,10 @@ graphene_matrix_get_value (const graphene_matrix_t *m,
   graphene_simd4f_t r;
   float c;
 
+  g_return_val_if_fail (m != NULL, 0.f);
+  g_return_val_if_fail (row >= 0 && row < 4, 0.f);
+  g_return_val_if_fail (col >= 0 && row < 4, 0.f);
+
   switch (row)
     {
     case 0:
