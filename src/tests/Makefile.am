@@ -16,4 +16,5 @@ test_programs = \
 	quad \
 	vec2 \
 	vec3 \
+	vec4 \
 	matrix
