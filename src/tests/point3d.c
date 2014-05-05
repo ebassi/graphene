@@ -64,6 +64,12 @@ point_init (void)
   g_assert_cmpfloat (graphene_vec3_get_x (&vec3), ==, r.x);
   g_assert_cmpfloat (graphene_vec3_get_y (&vec3), ==, r.y);
   g_assert_cmpfloat (graphene_vec3_get_z (&vec3), ==, r.z);
+
+  graphene_point3d_init (&r, 4.f, 5.f, 6.f);
+  graphene_point3d_to_vec3 (&r, &vec3);
+  g_assert_cmpfloat (graphene_vec3_get_x (&vec3), ==, 4.f);
+  g_assert_cmpfloat (graphene_vec3_get_y (&vec3), ==, 5.f);
+  g_assert_cmpfloat (graphene_vec3_get_z (&vec3), ==, 6.f);
 }
 
 static void
@@ -122,17 +128,98 @@ point_interpolate (void)
   g_assert_cmpfloat (res.z, ==, q.z);
 }
 
+static void
+point_scale (void)
+{
+  graphene_point3d_t p;
+
+  graphene_point3d_init (&p, 1.f, 2.f, 3.f);
+  graphene_point3d_scale (&p, 2.f, &p);
+  g_assert_cmpfloat (p.x, ==, 2.f);
+  g_assert_cmpfloat (p.y, ==, 4.f);
+  g_assert_cmpfloat (p.z, ==, 6.f);
+
+  graphene_point3d_init (&p, 1.f, 2.f, 4.f);
+  graphene_point3d_scale (&p, .5f, &p);
+  g_assert_cmpfloat (p.x, ==, .5f);
+  g_assert_cmpfloat (p.y, ==, 1.f);
+  g_assert_cmpfloat (p.z, ==, 2.f);
+}
+
+static void
+point_cross (void)
+{
+  graphene_point3d_t a, b, res;
+  graphene_vec3_t v_a, v_b, v_res;
+
+  graphene_point3d_init (&a, 1.f, 2.f, 3.f);
+  graphene_point3d_init (&b, 4.f, 5.f, 6.f);
+
+  graphene_point3d_to_vec3 (&a, &v_a);
+  graphene_point3d_to_vec3 (&b, &v_b);
+
+  graphene_point3d_cross (&a, &b, &res);
+  graphene_vec3_cross (&v_a, &v_b, &v_res);
+
+  g_assert_cmpfloat (res.x, ==, graphene_vec3_get_x (&v_res));
+  g_assert_cmpfloat (res.y, ==, graphene_vec3_get_y (&v_res));
+  g_assert_cmpfloat (res.z, ==, graphene_vec3_get_z (&v_res));
+}
+
+static void
+point_dot (void)
+{
+  graphene_point3d_t a, b;
+  graphene_vec3_t v_a, v_b;
+
+  graphene_point3d_init (&a, 1.f, 2.f, 3.f);
+  graphene_point3d_init (&b, 4.f, 5.f, 6.f);
+
+  graphene_point3d_to_vec3 (&a, &v_a);
+  graphene_point3d_to_vec3 (&b, &v_b);
+
+  g_assert_cmpfloat (graphene_point3d_dot (&a, &b), ==, graphene_vec3_dot (&v_a, &v_b));
+}
+
+static void
+point_length (void)
+{
+  graphene_point3d_t p;
+  float res;
+
+  graphene_point3d_init (&p, 1.f, 3.f, 5.f);
+  res = sqrtf (1.f + (3.f * 3.f) + (5.f * 5.f));
+
+  g_assert_cmpfloat (graphene_point3d_length (&p), ==, res);
+}
+
+static void
+point_normalize (void)
+{
+  graphene_point3d_t p, q;
+
+  graphene_point3d_init (&p, 4.f, 8.f, 2.f);
+  graphene_point3d_normalize (&p, &q);
+
+  g_assert_false (graphene_point3d_equal (&p, &q));
+}
+
 int
 main (int argc, char *argv[])
 {
   g_test_init (&argc, &argv, NULL);
 
-  g_test_add_func ("/point/alloc", point_alloc);
-  g_test_add_func ("/point/init", point_init);
-  g_test_add_func ("/point/equal", point_equal);
-  g_test_add_func ("/point/near", point_near);
-  g_test_add_func ("/point/zero", point_zero);
-  g_test_add_func ("/point/interpolate", point_interpolate);
+  g_test_add_func ("/point3d/alloc", point_alloc);
+  g_test_add_func ("/point3d/init", point_init);
+  g_test_add_func ("/point3d/equal", point_equal);
+  g_test_add_func ("/point3d/near", point_near);
+  g_test_add_func ("/point3d/zero", point_zero);
+  g_test_add_func ("/point3d/interpolate", point_interpolate);
+  g_test_add_func ("/point3d/scale", point_scale);
+  g_test_add_func ("/point3d/cross", point_cross);
+  g_test_add_func ("/point3d/dot", point_dot);
+  g_test_add_func ("/point3d/length", point_length);
+  g_test_add_func ("/point3d/normalize", point_normalize);
 
   return g_test_run ();
 }
