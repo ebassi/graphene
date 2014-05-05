@@ -10,6 +10,7 @@ LDADD = $(top_builddir)/src/libgraphene-1.0.la $(GRAPHENE_LIBS)
 
 test_programs = \
 	point \
+	point3d \
 	size \
 	vec2 \
 	matrix
