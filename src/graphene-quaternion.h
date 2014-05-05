@@ -42,29 +42,65 @@ struct _graphene_quaternion_t
 };
 
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_quaternion_t * graphene_quaternion_alloc       (void);
+graphene_quaternion_t * graphene_quaternion_alloc                       (void);
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_quaternion_free        (graphene_quaternion_t               *q);
+void                    graphene_quaternion_free                        (graphene_quaternion_t       *q);
 
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_quaternion_t * graphene_quaternion_init        (graphene_quaternion_t               *q,
-                                                         float                                x,
-                                                         float                                y,
-                                                         float                                z,
-                                                         float                                w);
+graphene_quaternion_t * graphene_quaternion_init                        (graphene_quaternion_t       *q,
+                                                                         float                        x,
+                                                                         float                        y,
+                                                                         float                        z,
+                                                                         float                        w);
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_quaternion_t * graphene_quaternion_init_from_matrix    (graphene_quaternion_t       *q,
-                                                                 const graphene_matrix_t     *m);
+graphene_quaternion_t * graphene_quaternion_init_identity               (graphene_quaternion_t       *q);
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_quaternion_t * graphene_quaternion_init_from_quaternion        (graphene_quaternion_t       *q,
+                                                                         const graphene_quaternion_t *src);
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_quaternion_t * graphene_quaternion_init_from_vec4              (graphene_quaternion_t       *q,
+                                                                         const graphene_vec4_t       *src);
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_quaternion_t * graphene_quaternion_init_from_matrix            (graphene_quaternion_t       *q,
+                                                                         const graphene_matrix_t     *m);
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_quaternion_t * graphene_quaternion_init_from_angles            (graphene_quaternion_t       *q,
+                                                                         float                        deg_x,
+                                                                         float                        deg_y,
+                                                                         float                        deg_z);
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_quaternion_t * graphene_quaternion_init_from_angle_vec3        (graphene_quaternion_t       *q,
+                                                                         float                        angle,
+                                                                         const graphene_vec3_t       *axis);
 
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_quaternion_to_matrix           (const graphene_quaternion_t *q,
-                                                                 graphene_matrix_t           *m);
+void                    graphene_quaternion_to_matrix                   (const graphene_quaternion_t *q,
+                                                                         graphene_matrix_t           *m);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_quaternion_to_vec4                     (const graphene_quaternion_t *q,
+                                                                         graphene_vec4_t             *res);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_quaternion_to_angle_vec3               (const graphene_quaternion_t *q,
+                                                                         float                       *angle,
+                                                                         graphene_vec3_t             *axis);
 
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_quaternion_slerp               (const graphene_quaternion_t *a,
-                                                                 const graphene_quaternion_t *b,
-                                                                 float                        factor,
-                                                                 graphene_quaternion_t       *res);
+gboolean                graphene_quaternion_equal                       (const graphene_quaternion_t *a,
+                                                                         const graphene_quaternion_t *b);
+GRAPHENE_AVAILABLE_IN_1_0
+float                   graphene_quaternion_dot                         (const graphene_quaternion_t *a,
+                                                                         const graphene_quaternion_t *b);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_quaternion_invert                      (const graphene_quaternion_t *q,
+                                                                         graphene_quaternion_t       *res);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_quaternion_normalize                   (const graphene_quaternion_t *q,
+                                                                         graphene_quaternion_t       *res);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_quaternion_slerp                       (const graphene_quaternion_t *a,
+                                                                         const graphene_quaternion_t *b,
+                                                                         float                        factor,
+                                                                         graphene_quaternion_t       *res);
 
 G_END_DECLS
 
