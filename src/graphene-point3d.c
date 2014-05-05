@@ -101,6 +101,29 @@ graphene_point3d_init (graphene_point3d_t *p,
   return p;
 }
 
+static graphene_point3d_t *
+graphene_point3d_init_from_simd4f (graphene_point3d_t *p,
+                                   graphene_simd4f_t   v)
+{
+  p->x = graphene_simd4f_get_x (v);
+  p->y = graphene_simd4f_get_y (v);
+  p->z = graphene_simd4f_get_z (v);
+
+  return p;
+}
+
+graphene_point3d_t *
+graphene_point3d_init_from_point (graphene_point3d_t       *p,
+                                  const graphene_point3d_t *src)
+{
+  g_return_val_if_fail (p != NULL, NULL);
+  g_return_val_if_fail (src != NULL, p);
+
+  *p = *src;
+
+  return p;
+}
+
 /**
  * graphene_point3d_init_from_vec3:
  * @p: a #graphene_point3d_t
@@ -119,11 +142,7 @@ graphene_point3d_init_from_vec3 (graphene_point3d_t    *p,
   g_return_val_if_fail (p != NULL, NULL);
   g_return_val_if_fail (v != NULL, p);
 
-  p->x = graphene_simd4f_get_x (v->value);
-  p->y = graphene_simd4f_get_y (v->value);
-  p->z = graphene_simd4f_get_z (v->value);
-
-  return p;
+  return graphene_point3d_init_from_simd4f (p, v->value);
 }
 
 void
@@ -134,6 +153,40 @@ graphene_point3d_to_vec3 (const graphene_point3d_t *p,
   g_return_if_fail (v != NULL);
 
   v->value = graphene_simd4f_init (p->x, p->y, p->z, 0.f);
+}
+
+gboolean
+graphene_point3d_equal (const graphene_point3d_t *a,
+                        const graphene_point3d_t *b)
+{
+  if (a == b)
+    return TRUE;
+
+  if (a == NULL || b == NULL)
+    return FALSE;
+
+  return graphene_point3d_near (a, b, GRAPHENE_FLOAT_EPSILON);
+}
+
+gboolean
+graphene_point3d_near (const graphene_point3d_t *a,
+                       const graphene_point3d_t *b,
+                       float                     epsilon)
+{
+  graphene_simd4f_t v_a, v_b, v_res;
+
+  g_return_val_if_fail (a != NULL && b != NULL, FALSE);
+
+  if (a == b)
+    return TRUE;
+
+  v_a = graphene_simd4f_init (a->x, a->y, a->z, 0.f);
+  v_b = graphene_simd4f_init (b->x, b->y, b->z, 0.f);
+  v_res = graphene_simd4f_sub (v_a, v_b);
+
+  return fabsf (graphene_simd4f_get_x (v_res)) < epsilon &&
+         fabsf (graphene_simd4f_get_y (v_res)) < epsilon &&
+         fabsf (graphene_simd4f_get_z (v_res)) < epsilon;
 }
 
 void
@@ -149,10 +202,7 @@ graphene_point3d_scale (const graphene_point3d_t *p,
   v = graphene_simd4f_init (p->x, p->y, p->z, 0.f);
   v = graphene_simd4f_mul (v, graphene_simd4f_splat (factor));
 
-  graphene_point3d_init (res,
-                         graphene_simd4f_get_x (v),
-                         graphene_simd4f_get_y (v),
-                         graphene_simd4f_get_z (v));
+  graphene_point3d_init_from_simd4f (res, v);
 }
 
 void
@@ -169,9 +219,7 @@ graphene_point3d_cross (const graphene_point3d_t *a,
   bv = graphene_simd4f_init (b->x, b->y, b->z, 0.f);
   resv = graphene_simd4f_cross3 (av, bv);
 
-  res->x = graphene_simd4f_get_x (resv);
-  res->y = graphene_simd4f_get_y (resv);
-  res->z = graphene_simd4f_get_z (resv);
+  graphene_point3d_init_from_simd4f (res, resv);
 }
 
 float
@@ -213,9 +261,7 @@ graphene_point3d_normalize (const graphene_point3d_t *p,
   v = graphene_simd4f_init (p->x, p->y, p->z, 0.f);
   v = graphene_simd4f_normalize3 (v);
 
-  res->x = graphene_simd4f_get_x (v);
-  res->y = graphene_simd4f_get_x (v);
-  res->z = graphene_simd4f_get_x (v);
+  graphene_point3d_init_from_simd4f (res, v);
 }
 
 /**
@@ -249,7 +295,19 @@ graphene_point3d_interpolate (const graphene_point3d_t *a,
                              graphene_simd4f_mul (graphene_simd4f_sub (b_v, a_v),
                                                   graphene_simd4f_splat (factor)));
 
-  res->x = graphene_simd4f_get_x (r_v);
-  res->y = graphene_simd4f_get_y (r_v);
-  res->z = graphene_simd4f_get_z (r_v);
+  graphene_point3d_init_from_simd4f (res, r_v);
+}
+
+static const graphene_point3d_t _graphene_point3d_zero = GRAPHENE_POINT3D_INIT_ZERO;
+
+const graphene_point3d_t *
+graphene_point3d_zero (void)
+{
+#ifdef GRAPHENE_ENABLE_DEBUG
+  g_assert (_graphene_point3d_zero.x == 0.f);
+  g_assert (_graphene_point3d_zero.y == 0.f);
+  g_assert (_graphene_point3d_zero.z == 0.f);
+#endif
+
+  return &_graphene_point3d_zero;
 }

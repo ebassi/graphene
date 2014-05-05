@@ -32,8 +32,8 @@
 
 G_BEGIN_DECLS
 
-#define GRAPHENE_POINT3D_INIT(x,y)      { x, y, z }
-#define GRAPHENE_POINT3D_INIT_ZERO      GRAPHENE_POINT_INIT (0.f, 0.f, 0.f)
+#define GRAPHENE_POINT3D_INIT(x,y,z)    { x, y, z }
+#define GRAPHENE_POINT3D_INIT_ZERO      GRAPHENE_POINT3D_INIT (0.f, 0.f, 0.f)
 
 struct _graphene_point3d_t
 {
@@ -43,44 +43,58 @@ struct _graphene_point3d_t
 };
 
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_point3d_t *    graphene_point3d_alloc          (void);
+graphene_point3d_t *            graphene_point3d_alloc          (void);
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_point3d_free           (graphene_point3d_t       *p);
+void                            graphene_point3d_free           (graphene_point3d_t       *p);
 
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_point3d_t *    graphene_point3d_init           (graphene_point3d_t       *p,
-                                                         float                     x,
-                                                         float                     y,
-                                                         float                     z);
+graphene_point3d_t *            graphene_point3d_init                   (graphene_point3d_t       *p,
+                                                                         float                     x,
+                                                                         float                     y,
+                                                                         float                     z);
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_point3d_t *    graphene_point3d_init_from_vec3 (graphene_point3d_t       *p,
-                                                         const graphene_vec3_t    *v);
+graphene_point3d_t *            graphene_point3d_init_from_point        (graphene_point3d_t       *p,
+                                                                         const graphene_point3d_t *src);
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_point3d_to_vec3        (const graphene_point3d_t *p,
-                                                         graphene_vec3_t          *v);
+graphene_point3d_t *            graphene_point3d_init_from_vec3         (graphene_point3d_t       *p,
+                                                                         const graphene_vec3_t    *v);
+GRAPHENE_AVAILABLE_IN_1_0
+void                            graphene_point3d_to_vec3                (const graphene_point3d_t *p,
+                                                                         graphene_vec3_t          *v);
 
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_point3d_scale          (const graphene_point3d_t *p,
-                                                         float                     factor,
-                                                         graphene_point3d_t       *res);
+gboolean                        graphene_point3d_equal                  (const graphene_point3d_t *a,
+                                                                         const graphene_point3d_t *b);
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_point3d_cross          (const graphene_point3d_t *a,
-                                                         const graphene_point3d_t *b,
-                                                         graphene_point3d_t       *res);
-GRAPHENE_AVAILABLE_IN_1_0
-float                   graphene_point3d_dot            (const graphene_point3d_t *a,
-                                                         const graphene_point3d_t *b);
-GRAPHENE_AVAILABLE_IN_1_0
-float                   graphene_point3d_length         (const graphene_point3d_t *p);
-GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_point3d_normalize      (const graphene_point3d_t *p,
-                                                         graphene_point3d_t       *res);
+gboolean                        graphene_point3d_near                   (const graphene_point3d_t *a,
+                                                                         const graphene_point3d_t *b,
+                                                                         float                     epsilon);
 
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_point3d_interpolate    (const graphene_point3d_t *a,
-                                                         const graphene_point3d_t *b,
-                                                         double                    factor,
-                                                         graphene_point3d_t       *res);
+void                            graphene_point3d_scale                  (const graphene_point3d_t *p,
+                                                                         float                     factor,
+                                                                         graphene_point3d_t       *res);
+GRAPHENE_AVAILABLE_IN_1_0
+void                            graphene_point3d_cross                  (const graphene_point3d_t *a,
+                                                                         const graphene_point3d_t *b,
+                                                                         graphene_point3d_t       *res);
+GRAPHENE_AVAILABLE_IN_1_0
+float                           graphene_point3d_dot                    (const graphene_point3d_t *a,
+                                                                         const graphene_point3d_t *b);
+GRAPHENE_AVAILABLE_IN_1_0
+float                           graphene_point3d_length                 (const graphene_point3d_t *p);
+GRAPHENE_AVAILABLE_IN_1_0
+void                            graphene_point3d_normalize              (const graphene_point3d_t *p,
+                                                                         graphene_point3d_t       *res);
+
+GRAPHENE_AVAILABLE_IN_1_0
+void                            graphene_point3d_interpolate            (const graphene_point3d_t *a,
+                                                                         const graphene_point3d_t *b,
+                                                                         double                    factor,
+                                                                         graphene_point3d_t       *res);
+
+GRAPHENE_AVAILABLE_IN_1_0
+const graphene_point3d_t *      graphene_point3d_zero                   (void);
 
 G_END_DECLS
 
