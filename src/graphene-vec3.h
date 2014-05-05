@@ -81,6 +81,10 @@ void                    graphene_vec3_divide            (const graphene_vec3_t *
                                                          const graphene_vec3_t *b,
                                                          graphene_vec3_t       *res);
 GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_vec3_cross             (const graphene_vec3_t *a,
+                                                         const graphene_vec3_t *b,
+                                                         graphene_vec3_t       *res);
+GRAPHENE_AVAILABLE_IN_1_0
 float                   graphene_vec3_dot               (const graphene_vec3_t *a,
                                                          const graphene_vec3_t *b);
 GRAPHENE_AVAILABLE_IN_1_0

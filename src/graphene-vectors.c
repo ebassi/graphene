@@ -470,6 +470,17 @@ graphene_vec3_divide (const graphene_vec3_t *a,
   res->value = graphene_simd4f_div (a->value, b->value);
 }
 
+void
+graphene_vec3_cross (const graphene_vec3_t *a,
+                     const graphene_vec3_t *b,
+                     graphene_vec3_t       *res)
+{
+  g_return_if_fail (a != NULL && b != NULL);
+  g_return_if_fail (res != NULL);
+
+  res->value = graphene_simd4f_cross3 (a->value, b->value);
+}
+
 float
 graphene_vec3_dot (const graphene_vec3_t *a,
                    const graphene_vec3_t *b)
