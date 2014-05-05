@@ -83,7 +83,7 @@ graphene_rect_init (graphene_rect_t *r,
 }
 
 graphene_rect_t *
-graphene_rect_init_with_rect (graphene_rect_t       *r,
+graphene_rect_init_from_rect (graphene_rect_t       *r,
                               const graphene_rect_t *src)
 {
   g_return_val_if_fail (r != NULL, NULL);
