@@ -111,6 +111,7 @@ void                            graphene_size_interpolate       (const graphene_
                                                                  double                  factor,
                                                                  graphene_size_t        *res);
 
+GRAPHENE_AVAILABLE_IN_1_0
 const graphene_size_t *         graphene_size_zero              (void);
 
 G_END_DECLS
