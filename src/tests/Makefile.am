@@ -12,6 +12,7 @@ test_programs = \
 	point \
 	point3d \
 	size \
+	rect \
 	quad \
 	vec2 \
 	matrix
