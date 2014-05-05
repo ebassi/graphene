@@ -46,16 +46,18 @@ vectors_vec3_const (void)
 static void
 vectors_vec3_init (void)
 {
-  graphene_vec3_t vec3;
+  graphene_vec3_t *vec3 = graphene_vec3_alloc ();
 
-  graphene_vec3_init (&vec3, 0.5f, 0.5f, 0.5f);
-  g_assert_cmpfloat (graphene_vec3_get_x (&vec3), ==, 0.5f);
-  g_assert_cmpfloat (graphene_vec3_get_y (&vec3), ==, 0.5f);
-  g_assert_cmpfloat (graphene_vec3_get_z (&vec3), ==, 0.5f);
+  graphene_vec3_init (vec3, 0.5f, 0.5f, 0.5f);
+  g_assert_cmpfloat (graphene_vec3_get_x (vec3), ==, 0.5f);
+  g_assert_cmpfloat (graphene_vec3_get_y (vec3), ==, 0.5f);
+  g_assert_cmpfloat (graphene_vec3_get_z (vec3), ==, 0.5f);
 
-  graphene_vec3_init (&vec3, 1.0f, 1.0f, 1.0f);
-  g_assert_cmpfloat (graphene_vec3_get_x (&vec3), ==, graphene_vec3_get_y (&vec3));
-  g_assert_cmpfloat (graphene_vec3_get_x (&vec3), ==, graphene_vec3_get_z (&vec3));
+  graphene_vec3_init (vec3, 1.0f, 1.0f, 1.0f);
+  g_assert_cmpfloat (graphene_vec3_get_x (vec3), ==, graphene_vec3_get_y (vec3));
+  g_assert_cmpfloat (graphene_vec3_get_x (vec3), ==, graphene_vec3_get_z (vec3));
+
+  graphene_vec3_free (vec3);
 }
 
 int

@@ -59,18 +59,20 @@ vectors_vec4_const (void)
 static void
 vectors_vec4_init (void)
 {
-  graphene_vec4_t vec4;
+  graphene_vec4_t *vec4 = graphene_vec4_alloc ();
 
-  graphene_vec4_init (&vec4, 0.5f, 0.5f, 0.5f, 0.5f);
-  g_assert_cmpfloat (graphene_vec4_get_x (&vec4), ==, 0.5f);
-  g_assert_cmpfloat (graphene_vec4_get_y (&vec4), ==, 0.5f);
-  g_assert_cmpfloat (graphene_vec4_get_z (&vec4), ==, 0.5f);
-  g_assert_cmpfloat (graphene_vec4_get_w (&vec4), ==, 0.5f);
+  graphene_vec4_init (vec4, 0.5f, 0.5f, 0.5f, 0.5f);
+  g_assert_cmpfloat (graphene_vec4_get_x (vec4), ==, 0.5f);
+  g_assert_cmpfloat (graphene_vec4_get_y (vec4), ==, 0.5f);
+  g_assert_cmpfloat (graphene_vec4_get_z (vec4), ==, 0.5f);
+  g_assert_cmpfloat (graphene_vec4_get_w (vec4), ==, 0.5f);
 
-  graphene_vec4_init (&vec4, 1.0f, 1.0f, 1.0f, 1.0f);
-  g_assert_cmpfloat (graphene_vec4_get_x (&vec4), ==, graphene_vec4_get_y (&vec4));
-  g_assert_cmpfloat (graphene_vec4_get_x (&vec4), ==, graphene_vec4_get_z (&vec4));
-  g_assert_cmpfloat (graphene_vec4_get_x (&vec4), ==, graphene_vec4_get_w (&vec4));
+  graphene_vec4_init (vec4, 1.0f, 1.0f, 1.0f, 1.0f);
+  g_assert_cmpfloat (graphene_vec4_get_x (vec4), ==, graphene_vec4_get_y (vec4));
+  g_assert_cmpfloat (graphene_vec4_get_x (vec4), ==, graphene_vec4_get_z (vec4));
+  g_assert_cmpfloat (graphene_vec4_get_x (vec4), ==, graphene_vec4_get_w (vec4));
+
+  graphene_vec4_free (vec4);
 }
 
 int

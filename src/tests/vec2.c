@@ -35,14 +35,16 @@ vectors_vec2_const (void)
 static void
 vectors_vec2_init (void)
 {
-  graphene_vec2_t vec2;
+  graphene_vec2_t *vec2 = graphene_vec2_alloc ();
 
-  graphene_vec2_init (&vec2, 0.5f, 0.5f);
-  g_assert_cmpfloat (graphene_vec2_get_x (&vec2), ==, 0.5f);
-  g_assert_cmpfloat (graphene_vec2_get_y (&vec2), ==, 0.5f);
+  graphene_vec2_init (vec2, 0.5f, 0.5f);
+  g_assert_cmpfloat (graphene_vec2_get_x (vec2), ==, 0.5f);
+  g_assert_cmpfloat (graphene_vec2_get_y (vec2), ==, 0.5f);
 
-  graphene_vec2_init (&vec2, 1.0f, 1.0f);
-  g_assert_cmpfloat (graphene_vec2_get_x (&vec2), ==, graphene_vec2_get_y (&vec2));
+  graphene_vec2_init (vec2, 1.0f, 1.0f);
+  g_assert_cmpfloat (graphene_vec2_get_x (vec2), ==, graphene_vec2_get_y (vec2));
+
+  graphene_vec2_free (vec2);
 }
 
 int
