@@ -72,6 +72,18 @@ passing options to the `configure` script:
 
 See the output of `configure --help` for more information.
 
+### Contributing
+
+If you found a bug (which I'm sure there will be plenty), or if you want
+to add your own pet feature, then follow these steps:
+
+ 1. Fork the `graphene` repository on Github
+ 2. Fix bugs or add new features
+ 3. Open a pull request
+ 4. Wait for me to give feedback on the pull request
+
+That's pretty much it.
+
 ## Documentation
 
 ### Available types
