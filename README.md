@@ -77,10 +77,12 @@ See the output of `configure --help` for more information.
 If you found a bug (which I'm sure there will be plenty), or if you want
 to add your own pet feature, then follow these steps:
 
- 1. Fork the `graphene` repository on Github
- 2. Fix bugs or add new features
- 3. Open a pull request
- 4. Wait for me to give feedback on the pull request
+ 1. Fork the [ebassi/graphene](https://github.com/ebassi/graphene) repo
+ 2. Fix bugs or add new features and push them to your clone
+ 3. Open [a new issue](https://github.com/ebassi/graphene/issues/new)
+ 4. Open [a pull request](https://github.com/ebassi/graphene/pulls)
+ 5. Wait for me to give feedback on the pull request
+ 6. Celebrate when your code gets merged
 
 That's pretty much it.
 
