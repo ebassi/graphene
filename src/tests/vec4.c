@@ -211,10 +211,10 @@ vectors_vec4_normalize (void)
 
   graphene_vec4_normalize (&a, &b);
 
-  g_assert_cmpfloat (graphene_vec4_get_x (&b) - graphene_vec4_get_x (&a) / len, <, GRAPHENE_FLOAT_EPSILON);
-  g_assert_cmpfloat (graphene_vec4_get_y (&b) - graphene_vec4_get_y (&a) / len, <, GRAPHENE_FLOAT_EPSILON);
-  g_assert_cmpfloat (graphene_vec4_get_z (&b) - graphene_vec4_get_z (&a) / len, <, GRAPHENE_FLOAT_EPSILON);
-  g_assert_cmpfloat (graphene_vec4_get_w (&b) - graphene_vec4_get_w (&a) / len, <, GRAPHENE_FLOAT_EPSILON);
+  g_assert_cmpfloat (graphene_vec4_get_x (&b) - graphene_vec4_get_x (&a) / len, <, 0.0005);
+  g_assert_cmpfloat (graphene_vec4_get_y (&b) - graphene_vec4_get_y (&a) / len, <, 0.0005);
+  g_assert_cmpfloat (graphene_vec4_get_z (&b) - graphene_vec4_get_z (&a) / len, <, 0.0005);
+  g_assert_cmpfloat (graphene_vec4_get_w (&b) - graphene_vec4_get_w (&a) / len, <, 0.0005);
 }
 
 static void
