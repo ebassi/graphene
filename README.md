@@ -49,15 +49,20 @@ the headers of the dependencies; after you've installed them, run:
     $ make
     # make install
 
-If you have clone from Git, run:
+If you have a clone from Git, run:
 
     $ ./autogen.sh
     $ make
     # make install
 
 It is possible, when building Graphene, to disable specific optimizations by
-passing options to the `configure` script; see the output of `configure
---help` for more information
+passing options to the `configure` script:
+
+ * `--disable-sse2` - will disable the SSE2 fast paths
+ * `--disable-arm-neon` - will disable the ARM NEON fast paths
+ * `--disable-gcc-vector` - will disable the GCC vector intrinsics
+
+See the output of `configure --help` for more information.
 
 ## Documentation
 
