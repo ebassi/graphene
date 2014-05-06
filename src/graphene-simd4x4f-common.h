@@ -475,7 +475,20 @@ graphene_simd4x4f_is_identity (const graphene_simd4x4f_t *m)
 static inline gboolean
 graphene_simd4x4f_is_2d (const graphene_simd4x4f_t *m)
 {
-  return FALSE;
+  graphene_simd4x4f_t t;
+
+  if (graphene_simd4f_cmp_neq (m->z, graphene_simd4f_init (0.f, 0.f, 1.f, 0.f)))
+    return FALSE;
+
+  graphene_simd4x4f_transpose (m, &t);
+
+  if (graphene_simd4f_cmp_neq (t.z, graphene_simd4f_init (0.f, 0.f, 1.f, 0.f)))
+    return FALSE;
+
+  if (graphene_simd4f_cmp_neq (t.w, graphene_simd4f_init (0.f, 0.f, 0.f, 1.f)))
+    return FALSE;
+
+  return TRUE;
 }
 
 #ifdef __cplusplus
