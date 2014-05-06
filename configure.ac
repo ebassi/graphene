@@ -489,8 +489,10 @@ _______EOF
 # define GRAPHENE_USE_ARM_NEON
 #elif defined(GRAPHENE_HAS_GCC)
 # define GRAPHENE_USE_GCC
-#else
+#elif defined(GRAPHENE_HAS_SCALAR)
 # define GRAPHENE_USE_SCALAR
+#else
+# error "Unsupported platform."
 #endif
 
 #if defined(GRAPHENE_USE_SSE)
@@ -504,7 +506,7 @@ typedef float graphene_simd4f_t __attribute__((vector_size(16)));
 #elif defined(GRAPHENE_USE_SCALAR)
 typedef struct { float x, y, z, w; } graphene_simd4f_t;
 #else
-# error Platform not supported.
+# error "Unsupported platform."
 #endif
 
 typedef struct { graphene_simd4f_t x, y, z, w; } graphene_simd4x4f_t;
