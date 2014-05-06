@@ -1,4 +1,5 @@
-# Graphene - A thin layer of types for graphic libraries
+# Graphene
+###  A thin layer of types for graphic libraries
 
 When creating graphic libraries you most likely end up dealing with points
 and rectangles. If you're particularly unlucky, you may end up dealing
@@ -6,18 +7,21 @@ with affine matrices and 2D transformations. If you're writing a graphic
 library with 3D transformations, though, you are going to hit the jackpot:
 4x4 matrices, projections, transformations, vectors, and quaternions.
 
-Most of this stuff exists, in various forms, in other libraries; it also
-comes along with the rest of those libraries, which may or may not be what
-you want.  It also is available in various languages, as long as those
-languages are C++; again, it may or may not be something you want.
+Most of this stuff exists, in various forms, in other libraries, but it
+has the major drawback of coming along with the rest of those libraries,
+which may or may not be what you want. Those libraries are also available
+in various languages, as long as those languages are C++; again, it may or
+may not be something you want.
 
-For this reason, I decided to write the thinnes, smallest possible layer
-needed to write a canvas library: Graphene.
+For this reason, I decided to write the thinnest, smallest possible layer
+needed to write a canvas library; given its relative size, and the
+propensity for graphics libraries to have a pun in their name, I decided
+to call it Graphene.
 
 This library provides types and their relative API; it does not deal with
-windowing system surfaces, drawing, or event handling. You're supposed to
-do that yourself, which is the whole point of writing the library in the
-first place.
+windowing system surfaces, drawing, scene graphs, or input. You're
+supposed to do that yourself, in your own canvas implementation, which is
+the whole point of writing the library in the first place.
 
 ### Dependencies
 
@@ -26,7 +30,9 @@ GLib gives us a fairly decent, portable, and maintained layer to depend
 on, instead of requiring me to re-implement a ton of code.
 
 Graphene does not use the GObject type system, as of yet, but it may grow
-an optional dependency on it through a separate shared object.
+an optional dependency on it through a separate shared object, especially
+if in the future I'm going to generate introspection data for the benefit
+of GObject-based language bindings.
 
 Graphene contains optimizations for speeding up vector operations; those
 optimizations are optional, and used only if both Graphene was compiled
