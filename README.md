@@ -49,16 +49,18 @@ Graphene will fall back to a naive scalar implementation.
 ### Installation
 
 In order to build and install Graphene you will need development tools and
-the headers of the dependencies; after you've installed them, run:
+the headers of the dependencies.
 
-    $ ./configure
-    $ make
-    # make install
+First of all, clone the Git repository:
 
-If you have a clone from Git, run:
+    $ git clone git://github.com/ebassi/graphene
+    $ cd graphene
+
+Then run:
 
     $ ./autogen.sh
     $ make
+    $ make check
     # make install
 
 It is possible, when building Graphene, to disable specific optimizations by
