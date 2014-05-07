@@ -136,6 +136,8 @@ AS_IF([test "x$enable_gcc_vector" = xyes && test "x$have_gcc_vector" = xno],
         AC_MSG_ERROR([GNUC vector intrinsics not detected])
       ])
 
+AM_CONDITIONAL(BUILD_WITH_GCC, [test "x$have_gcc_vector" = xyes])
+
 # Check for SSE2 intrinsics
 AS_IF([test "x$SSE2_CFLAGS" = "x"],
       [
