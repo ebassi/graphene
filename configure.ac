@@ -469,7 +469,7 @@ AC_CONFIG_COMMANDS([src/graphene-config.h],
 extern "C" {
 #endif
 
-#ifndef GRAPHENE_FORCE_USE
+#ifndef GRAPHENE_BENCHMARK
 _______EOF
 
         if test "x$graphene_has_sse2" = xyes; then
@@ -484,7 +484,7 @@ _______EOF
 
         cat >> $outfile <<_______EOF
 # define GRAPHENE_HAS_SCALAR 1
-#endif
+#endif /* GRAPHENE_BENCHMARK */
 
 #if defined(GRAPHENE_HAS_SSE)
 # define GRAPHENE_USE_SSE
