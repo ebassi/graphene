@@ -112,9 +112,6 @@ graphene_bench_init (int    *argc_p,
   g_option_context_set_ignore_unknown_options (context, TRUE);
   g_option_context_parse (context, argc_p, argv_p, NULL);
 
-  if (bench_format == NULL)
-    bench_format = "csv";
-
   if (g_strcmp0 (bench_format, "csv") == 0)
     bench_output = BENCH_FORMAT_CSV;
 
