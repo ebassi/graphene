@@ -162,8 +162,8 @@ graphene_bench_warm_up (const char *path,
 #define TARGET_ROUND_TIME 0.004
 
 static gint64
-graphene_bench_round_time (const char *path,
-                           GrapheneBenchFunc func)
+graphene_bench_estimate_round_time (const char *path,
+                                    GrapheneBenchFunc func)
 {
   GTimer *timer = g_timer_new ();
   double min_elapsed = 0;
@@ -328,7 +328,7 @@ graphene_bench_run (void)
           graphene_bench_warm_up (path, func);
 
           bench_state = BENCH_ROUND_TIME;
-          num_rounds = graphene_bench_round_time (path, func);
+          num_rounds = graphene_bench_estimate_round_time (path, func);
 
           bench_state = BENCH_RUNNING;
           res = graphene_bench_run_test (num_rounds, path, func);
