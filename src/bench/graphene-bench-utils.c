@@ -63,18 +63,19 @@ static GrapheneBenchTeardownFunc bench_fixture_teardown;
 static gpointer bench_fixture;
 static GHashTable *bench_units;
 static double bench_factor;
+static int bench_unit_rounds = 1;
 static int bench_output;
 
 static gboolean bench_verbose = FALSE;
 static int bench_warm_up_runs = 50;
-static int bench_round_runs = 5;
-static int bench_duration = 10;
+static int bench_estimate_runs = 5;
+static int bench_duration = 5;
 static char *bench_format = NULL;
 
 static GOptionEntry bench_options[] = {
   { "verbose", 'v', 0, G_OPTION_ARG_NONE, &bench_verbose, "Print extra information", NULL },
   { "warm-up-runs", 0, 0, G_OPTION_ARG_INT, &bench_warm_up_runs, "Number of warm up cycles", "ITERATIONS" },
-  { "estimate-runs", 0, 0, G_OPTION_ARG_INT, &bench_round_runs, "Number of estimation cycles", "ITERATIONS" },
+  { "estimate-runs", 0, 0, G_OPTION_ARG_INT, &bench_estimate_runs, "Number of estimation cycles", "ITERATIONS" },
   { "duration", 'd', 0, G_OPTION_ARG_INT, &bench_duration, "Benchmark duration", "SECONDS" },
   { "output-format", 'f', 0, G_OPTION_ARG_STRING, &bench_format, "Format of the output", "FORMAT" },
 
@@ -171,7 +172,7 @@ graphene_bench_round_time (const char *path,
   double min_elapsed = 0;
   int i;
 
-  for (i = 0; i < bench_round_runs; i += 1)
+  for (i = 0; i < bench_estimate_runs; i += 1)
     {
       double elapsed;
 
@@ -179,7 +180,10 @@ graphene_bench_round_time (const char *path,
       func (bench_fixture);
       g_timer_stop (timer);
 
-      elapsed = g_timer_elapsed (timer, NULL);
+      elapsed = g_timer_elapsed (timer, NULL)
+              * 1000000.0
+              / bench_unit_rounds;
+
       if (i == 0)
         min_elapsed = elapsed;
       else
@@ -188,14 +192,15 @@ graphene_bench_round_time (const char *path,
 
   g_timer_destroy (timer);
 
-  bench_factor = TARGET_ROUND_TIME / min_elapsed;
+  bench_factor = (TARGET_ROUND_TIME * 1000000.0 / bench_unit_rounds)
+               / min_elapsed;
 
   if (bench_verbose)
-    g_printerr ("# estimated '[%s]:%s' (runs:%d): %.4f secs (correction: %.2f)\n",
+    g_printerr ("# estimated '[%s]:%s' (runs:%d): %.6f usecs/round (correction: %.2f)\n",
                 bench_fast_path,
                 path,
-                bench_round_runs,
-                min_elapsed,
+                bench_estimate_runs,
+                min_elapsed / bench_unit_rounds,
                 bench_factor);
 
   return (bench_duration / TARGET_ROUND_TIME) + 1;
@@ -219,7 +224,9 @@ graphene_bench_run_test (gint64 num_rounds,
       func (bench_fixture);
       g_timer_stop (timer);
 
-      elapsed = g_timer_elapsed (timer, NULL);
+      elapsed = g_timer_elapsed (timer, NULL)
+              * 1000000.0
+              / bench_unit_rounds;
 
       if (i == 0)
         min_elapsed = elapsed;
@@ -232,11 +239,11 @@ graphene_bench_run_test (gint64 num_rounds,
   g_timer_destroy (timer);
 
   if (bench_verbose)
-    g_printerr ("# '[%s]:%s': %.4f secs after %" G_GINT64_FORMAT " rounds\n",
+    g_printerr ("# '[%s]:%s': %.6f usecs/round after %" G_GINT64_FORMAT " rounds\n",
                 bench_fast_path,
                 path,
                 min_elapsed,
-                num_rounds);
+                num_rounds * (gint64) bench_unit_rounds);
 
   return res;
 }
@@ -355,4 +362,18 @@ graphene_bench_get_factor (void)
     return 1.0;
 
   return bench_factor;
+}
+
+void
+graphene_bench_set_rounds_per_unit (int n_checks)
+{
+  bench_unit_rounds = n_checks;
+}
+
+int
+graphene_bench_get_rounds_per_unit (void)
+{
+  int res = graphene_bench_get_factor () * (double) bench_unit_rounds;
+
+  return MAX (res, 1);
 }

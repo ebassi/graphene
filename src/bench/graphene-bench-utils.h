@@ -46,6 +46,9 @@ int     graphene_bench_run                      (void);
 
 double  graphene_bench_get_factor               (void);
 
+void    graphene_bench_set_rounds_per_unit      (int n_rounds);
+int     graphene_bench_get_rounds_per_unit      (void);
+
 G_END_DECLS
 
 #endif /* __GRAPHENE_BENCH_UTILS_H__ */
