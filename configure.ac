@@ -436,6 +436,14 @@ AS_IF([test "x$use_gcov" = "xyes"],
 
 AM_CONDITIONAL(ENABLE_GCOV, test "x$use_gcov" = "xyes")
 
+dnl === Benchmarks ============================================================
+
+AC_ARG_ENABLE([benchmarks],
+              [AS_HELP_STRING([--enable-benchmarks], [Enable benchmarks])],
+              [build_benchmarks=$enableval],
+              [build_benchmarks=no])
+
+AM_CONDITIONAL(BUILD_BENCHMARKS, [test "x$build_benchmarks" = xyes])
 
 dnl === Introspection =========================================================
 
@@ -537,6 +545,7 @@ AC_CONFIG_FILES([
 
         src/Makefile
         src/tests/Makefile
+        src/bench/Makefile
 
         src/graphene.pc
 
@@ -556,6 +565,7 @@ Graphene - $VERSION (${GRAPHENE_RELEASE_STATUS})
   • Debug level: ${enable_debug}
   • Compiler flags: ${GRAPHENE_CFLAGS} ${MAINTAINER_CFLAGS}
   • Code coverage: ${use_gcov}
+  • Benchmarks: ${build_benchmarks}
 
   • Available optimizations:
     • GCC vectors: ${have_gcc_vector}

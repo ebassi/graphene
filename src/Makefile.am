@@ -5,9 +5,15 @@ CLEANFILES =
 EXTRA_DIST =
 DISTCLEANFILES =
 lib_LTLIBRARIES =
+DIST_SUBDIRS = . tests bench
 
-# always build this directory before building the tests
+# always build this directory before building the tests suite
 SUBDIRS = . tests
+
+if BUILD_BENCHMARKS
+# conditionally recurse only if we build the benchmarks suite
+SUBDIRS += bench
+endif
 
 # source
 source_h = \

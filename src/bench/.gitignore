@@ -1,0 +1,5 @@
+/.deps/
+/*.csv
+/scalar-*
+/gcc-*
+/sse-*
