@@ -28,7 +28,7 @@ static void
 vec2_dot (gpointer data_)
 {
   Vec2Bench *data = data_;
-  int n_checks = graphene_bench_get_factor () * 10000;
+  int n_checks = graphene_bench_get_rounds_per_unit ();
   int i;
 
   for (i = 0; i < n_checks; i++)
@@ -61,6 +61,7 @@ main (int argc, char *argv[])
 
   graphene_bench_set_fixture_setup (vec2_setup);
   graphene_bench_set_fixture_teardown (vec2_teardown);
+  graphene_bench_set_rounds_per_unit (10000);
 
   graphene_bench_add_func ("/vec2/dot", vec2_dot);
 

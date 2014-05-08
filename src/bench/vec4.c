@@ -30,7 +30,7 @@ static void
 vec4_dot (gpointer data_)
 {
   Vec4Bench *data = data_;
-  int n_checks = graphene_bench_get_factor () * 10000;
+  int n_checks = graphene_bench_get_rounds_per_unit ();
   int i;
 
   for (i = 0; i < n_checks; i++)
@@ -49,7 +49,7 @@ static void
 vec4_normalize (gpointer data_)
 {
   Vec4Bench *data = data_;
-  int n_checks = graphene_bench_get_factor () * 10000;
+  int n_checks = graphene_bench_get_rounds_per_unit ();
   int i;
 
   for (i = 0; i < n_checks; i++)
@@ -80,6 +80,7 @@ main (int argc, char *argv[])
 
   graphene_bench_set_fixture_setup (vec4_setup);
   graphene_bench_set_fixture_teardown (vec4_teardown);
+  graphene_bench_set_rounds_per_unit (10000);
 
   graphene_bench_add_func ("/vec4/dot", vec4_dot);
   graphene_bench_add_func ("/vec4/normalize", vec4_normalize);
