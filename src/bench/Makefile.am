@@ -27,7 +27,7 @@ common_gcc_cppflags = $(common_cppflags) -DGRAPHENE_HAS_GCC=1 -DGRAPHENE_BENCH=\
 common_sse_cppflags = $(common_cppflags) -DGRAPHENE_HAS_SSE=1 -DGRAPHENE_BENCH=\"sse\"
 
 # list all tests
-base_tests = vec2
+base_tests = vec2 vec4
 
 if BUILD_WITH_GCC
 gcc_tests = $(addprefix gcc-,$(base_tests))
@@ -58,14 +58,26 @@ scalar_vec2_CPPFLAGS = $(common_scalar_cppflags)
 scalar_vec2_SOURCES = vec2.c
 noinst_PROGRAMS += scalar-vec2
 
+scalar_vec4_CPPFLAGS = $(common_scalar_cppflags)
+scalar_vec4_SOURCES = vec4.c
+noinst_PROGRAMS += scalar-vec4
+
 if BUILD_WITH_GCC
 gcc_vec2_CPPFLAGS = $(common_gcc_cppflags)
 gcc_vec2_SOURCES = vec2.c
 noinst_PROGRAMS += gcc-vec2
+
+gcc_vec4_CPPFLAGS = $(common_gcc_cppflags)
+gcc_vec4_SOURCES = vec4.c
+noinst_PROGRAMS += gcc-vec4
 endif
 
 if BUILD_WITH_SSE2
 sse_vec2_CPPFLAGS = $(common_sse_cppflags)
 sse_vec2_SOURCES = vec2.c
 noinst_PROGRAMS += sse-vec2
+
+sse_vec4_CPPFLAGS = $(common_sse_cppflags)
+sse_vec4_SOURCES = vec4.c
+noinst_PROGRAMS += sse-vec4
 endif
