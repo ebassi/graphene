@@ -152,10 +152,10 @@ graphene_bench_warm_up (const char *path,
   int i;
 
   if (bench_verbose)
-    g_print ("# warm up bench '[%s]:%s' (runs:%d)\n",
-             bench_fast_path,
-             path,
-             bench_warm_up_runs);
+    g_printerr ("# warm up bench '[%s]:%s' (runs:%d)\n",
+                bench_fast_path,
+                path,
+                bench_warm_up_runs);
 
   for (i = 0; i < bench_warm_up_runs; i += 1)
     func (bench_fixture);
@@ -191,12 +191,12 @@ graphene_bench_round_time (const char *path,
   bench_factor = TARGET_ROUND_TIME / min_elapsed;
 
   if (bench_verbose)
-    g_print ("# estimated '[%s]:%s' (runs:%d): %.4f secs (correction: %.2f)\n",
-             bench_fast_path,
-             path,
-             bench_round_runs,
-             min_elapsed,
-             bench_factor);
+    g_printerr ("# estimated '[%s]:%s' (runs:%d): %.4f secs (correction: %.2f)\n",
+                bench_fast_path,
+                path,
+                bench_round_runs,
+                min_elapsed,
+                bench_factor);
 
   return (bench_duration / TARGET_ROUND_TIME) + 1;
 }
@@ -232,11 +232,11 @@ graphene_bench_run_test (gint64 num_rounds,
   g_timer_destroy (timer);
 
   if (bench_verbose)
-    g_print ("# '[%s]:%s': %.4f secs after %" G_GINT64_FORMAT " rounds\n",
-             bench_fast_path,
-             path,
-             min_elapsed,
-             num_rounds);
+    g_printerr ("# '[%s]:%s': %.4f secs after %" G_GINT64_FORMAT " rounds\n",
+                bench_fast_path,
+                path,
+                min_elapsed,
+                num_rounds);
 
   return res;
 }
