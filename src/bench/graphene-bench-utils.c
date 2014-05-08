@@ -77,7 +77,7 @@ static GOptionEntry bench_options[] = {
   { "warm-up-runs", 0, 0, G_OPTION_ARG_INT, &bench_warm_up_runs, "Number of warm up cycles", "ITERATIONS" },
   { "estimate-runs", 0, 0, G_OPTION_ARG_INT, &bench_estimate_runs, "Number of estimation cycles", "ITERATIONS" },
   { "duration", 'd', 0, G_OPTION_ARG_INT, &bench_duration, "Benchmark duration", "SECONDS" },
-  { "output-format", 'f', 0, G_OPTION_ARG_STRING, &bench_format, "Format of the output", "FORMAT" },
+  { "output-format", 'f', 0, G_OPTION_ARG_STRING, &bench_format, "Format of the output (csv,json)", "FORMAT" },
 
   { NULL, }
 };
