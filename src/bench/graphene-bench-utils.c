@@ -276,6 +276,17 @@ graphene_bench_print_results (const char *path,
 
   switch (bench_output)
     {
+    case BENCH_FORMAT_NONE:
+      g_print ("### unit '%s' (using %s implementation) ###\n"
+               "- Aveage time per iteration: %.6f usecs\n"
+               "- Number of iterations per round: %d\n"
+               "- Number of rounds in %d seconds: %d\n",
+               path, bench_fast_path,
+               avg,
+               bench_unit_rounds,
+               bench_duration, results->len);
+      break;
+
     case BENCH_FORMAT_CSV:
       /* path, impl, min, max, avg */
       g_print ("%s,%s,%.6f,%.6f,%.6f\n",
