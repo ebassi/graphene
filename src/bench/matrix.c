@@ -60,7 +60,7 @@ main (int argc, char *argv[])
 
   graphene_bench_set_fixture_setup (matrix_setup);
   graphene_bench_set_fixture_teardown (matrix_teardown);
-  graphene_bench_set_rounds_per_unit (1000);
+  graphene_bench_set_rounds_per_unit (10000);
 
   graphene_bench_add_func ("/matrix/interpolate", matrix_interpolate);
 
