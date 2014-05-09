@@ -159,6 +159,12 @@ graphene_bench_warm_up (const char *path,
     func (bench_fixture);
 }
 
+/* the time we want each round to take, in seconds.
+ *
+ * this value should be large enough compared to the timer resolution,
+ * and still small enough that any fluctuation will miss the running
+ * window
+ */
 #define TARGET_ROUND_TIME 0.004
 
 static gint64
@@ -278,12 +284,12 @@ graphene_bench_print_results (const char *path,
     {
     case BENCH_FORMAT_NONE:
       g_print ("### unit '%s' (using %s implementation) ###\n"
-               "- Aveage time per iteration: %.6f usecs\n"
                "- Number of iterations per round: %d\n"
+               "- Aveage time per iteration: %.6f usecs\n"
                "- Number of rounds in %d seconds: %d\n",
                path, bench_fast_path,
+               (int) ((bench_unit_rounds * bench_factor) / avg),
                avg,
-               bench_unit_rounds,
                bench_duration, results->len);
       break;
 
