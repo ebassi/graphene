@@ -973,7 +973,6 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
   float shear_b[3] = { 0.f, 0.f, 0.f };
 
   graphene_point3d_t scale_r = { 1.f, 1.f, 1.f }, translate_r;
-  graphene_simd4f_t perspective_r;
   graphene_quaternion_t rotate_r;
   graphene_matrix_t tmp;
   float shear;
@@ -995,10 +994,9 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
       matrix_decompose_3d (b, &scale_b, shear_b, &rotate_b, &translate_b, &perspective_b);
     }
 
-  perspective_r = graphene_simd4f_interpolate (perspective_a.value,
-                                               perspective_b.value,
-                                               factor);
-  res->value.w = perspective_r;
+  res->value.w = graphene_simd4f_interpolate (perspective_a.value,
+                                              perspective_b.value,
+                                              factor);
 
   graphene_point3d_interpolate (&translate_a, &translate_b, factor, &translate_r);
   graphene_matrix_translate (res, &translate_r);
