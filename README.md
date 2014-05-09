@@ -105,6 +105,14 @@ for working on the heap as well. The contents of all structure types, except
 for points and rectangles, should be considered private, and should never be
 accessed directly.
 
+### Known issues
+
+ * Segfault in the scalar code path for matrix interpolation with clang
+   It seems that compiling with clang and `-O2` causes a segmentation fault
+   in the `graphene_matrix_t` interpolation code in an assignment between
+   two SIMD4f types, when using the scalar implementation. Tracked in
+   [issue 1](https://github.com/ebassi/graphene/issues/1).
+
 ### License
 
 Graphene is released under the terms of the MIT/X11 license.
