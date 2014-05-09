@@ -41,6 +41,12 @@ scalar_tests = $(addprefix scalar-,$(base_tests))
 
 all_tests = $(scalar_tests) $(gcc_tests) $(sse_tests)
 
+benchmark: $(all_tests)
+	@for i in $(all_tests); do \
+	  echo "Running $$i ..." ; \
+	  ./$$i -d 1; \
+	done
+
 benchmark-csv: $(all_tests)
 	@echo "path,implementation,min,max,avg" > benchmark-result.csv ; \
 	for i in $(all_tests); do \
@@ -49,7 +55,7 @@ benchmark-csv: $(all_tests)
 	done ; \
 	cat benchmark-result.csv
 
-.PHONY: benchmark-csv
+.PHONY: benchmark benchmark-csv
 
 AM_CFLAGS += $(common_cflags)
 LDADD += $(common_ldadd)
