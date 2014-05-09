@@ -107,7 +107,7 @@ accessed directly.
 
 ### Known issues
 
- * Segfault in the scalar code path for matrix interpolation with clang
+ * Segfault in the scalar code path for matrix interpolation with clang.
    It seems that compiling with clang and `-O2` causes a segmentation fault
    in the `graphene_matrix_t` interpolation code in an assignment between
    two SIMD4f types, when using the scalar implementation. Tracked in
