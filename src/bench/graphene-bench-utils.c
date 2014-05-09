@@ -269,7 +269,7 @@ graphene_bench_print_results (const char *path,
   int i;
 
   /* skip the first and last results */
-  for (i = 1; i < results->len - 2; i += 1)
+  for (i = 1; i < results->len - 1; i += 1)
     avg += g_array_index (results, double, i);
 
   avg /= (double) (results->len - 2);
