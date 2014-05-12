@@ -70,6 +70,7 @@ GRAPHENE_LT_LDFLAGS="-version-info $GRAPHENE_LT_VERSION"
 dnl === Dependencies ==========================================================
 
 PKG_CHECK_MODULES(GRAPHENE_DEPS, [glib-2.0 >= glib_req_version])
+GRAPHENE_REQS="glib-2.0"
 
 GLIB_PREFIX="`$PKG_CONFIG --variable=prefix glib-2.0`"
 AC_SUBST(GLIB_PREFIX)
@@ -363,6 +364,27 @@ AS_IF([test "x$enable_maintainer_flags" = "xyes" && test "x$GCC" = "xyes"],
 MAINTAINER_CFLAGS="${MAINTAINER_CFLAGS#*  }"
 AC_SUBST([MAINTAINER_CFLAGS])
 
+dnl === GObject types ancillary libary ========================================
+
+AC_ARG_ENABLE([gobject-types],
+              [AS_HELP_STRING([--disable-gobject-types],
+                              [Disable building GObject types])],
+              [enable_gobject=$enableval],
+              [enable_gobject=yes])
+
+AS_IF([test "x$enable_gobject" = xyes],
+      [
+        PKG_CHECK_MODULES(GRAPHENE_GOBJECT, [gobject-2.0],
+                          [build_gobject=yes],
+                          [build_gobject=no])
+        GRAPHENE_REQS="$GRAPHENE_REQS gobject-2.0"
+      ],
+      [
+        build_gobject=no
+      ])
+
+AM_CONDITIONAL(BUILD_GOBJECT, [test "x$build_gobject" = xyes])
+
 dnl === Test suite ============================================================
 
 GLIB_TESTS
@@ -451,12 +473,13 @@ GOBJECT_INTROSPECTION_CHECK([1.38.0])
 
 dnl === Output ================================================================
 
-GRAPHENE_CFLAGS="$GRAPHENE_DEPS_CFLAGS $GRAPHENE_VISIBILITY_CFLAGS $GRAPHENE_GCOV_CFLAGS"
-GRAPHENE_LIBS="$GRAPHENE_DEPS_LIBS $LIBM $GRAPHENE_GCOV_LDADD"
+GRAPHENE_CFLAGS="$GRAPHENE_DEPS_CFLAGS $GRAPHENE_VISIBILITY_CFLAGS $GRAPHENE_GCOV_CFLAGS $GRAPHENE_GOBJECT_CFLAGS"
+GRAPHENE_LIBS="$GRAPHENE_DEPS_LIBS $LIBM $GRAPHENE_GCOV_LDADD $GRAPHENE_GOBJECT_LIBS"
 GRAPHENE_LT_LDFLAGS="$GRAPHENE_LT_LDFLAGS $GRAPHENE_LINK_FLAGS $SSE2_LDFLAGS $MMX_LDFLAGS"
 AC_SUBST(GRAPHENE_CFLAGS)
 AC_SUBST(GRAPHENE_LIBS)
 AC_SUBST(GRAPHENE_LT_LDFLAGS)
+AC_SUBST(GRAPHENE_REQS)
 AC_SUBST(SSE2_CFLAGS)
 AC_SUBST(SSE2_LDFLAGS)
 AC_SUBST(NEON_CFLAGS)
@@ -566,6 +589,7 @@ Graphene - $VERSION (${GRAPHENE_RELEASE_STATUS})
   • Compiler flags: ${GRAPHENE_CFLAGS} ${MAINTAINER_CFLAGS}
   • Code coverage: ${use_gcov}
   • Benchmarks: ${build_benchmarks}
+  • GObject types: ${build_gobject}
 
   • Available optimizations:
     • GCC vectors: ${have_gcc_vector}

@@ -39,4 +39,5 @@ Makefile.in
 /src/graphene-version.h
 /src/graphene.pc
 /src/graphene-1.0.pc
+/src/graphene-gobject-1.0.pc
 /src/stamp-h1

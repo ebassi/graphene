@@ -59,6 +59,11 @@ source_h_priv = \
 	$(NULL)
 source_c_priv =
 
+if BUILD_GOBJECT
+source_h += graphene-gobject.h
+source_c += graphene-gobject.c
+endif
+
 # config header
 DISTCLEANFILES += graphene-config-stamp graphene-config.h
 BUILT_SOURCES += graphene-config-stamp
@@ -110,6 +115,15 @@ graphene-1.0.pc: graphene.pc
 	$(AM_V_GEN)cp -f $< $@
 
 pkgconfigdir = $(libdir)/pkgconfig
+
 pkgconfig_DATA = graphene-1.0.pc
 CLEANFILES += graphene-1.0.pc
 EXTRA_DIST += graphene.pc.in
+
+if BUILD_GOBJECT
+graphene-gobject-1.0.pc: graphene.pc
+	$(AM_V_GEN)cp -f $< $@
+
+pkgconfig_DATA += graphene-gobject-1.0.pc
+CLEANFILES += graphene-gobject-1.0.pc
+endif

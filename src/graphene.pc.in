@@ -8,4 +8,4 @@ Description: Math classes for graphic libraries
 Version: @VERSION@
 Libs: -L${libdir} -lgraphene-1.0
 Cflags: -I${includedir}/graphene-1.0
-Requires: glib-2.0
+Requires: @GRAPHENE_REQS@
