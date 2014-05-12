@@ -467,10 +467,6 @@ AC_ARG_ENABLE([benchmarks],
 
 AM_CONDITIONAL(BUILD_BENCHMARKS, [test "x$build_benchmarks" = xyes])
 
-dnl === Introspection =========================================================
-
-GOBJECT_INTROSPECTION_CHECK([1.38.0])
-
 dnl === Output ================================================================
 
 GRAPHENE_CFLAGS="$GRAPHENE_DEPS_CFLAGS $GRAPHENE_VISIBILITY_CFLAGS $GRAPHENE_GCOV_CFLAGS $GRAPHENE_GOBJECT_CFLAGS"
