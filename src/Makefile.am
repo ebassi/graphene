@@ -96,7 +96,7 @@ libgraphene_1_0_la_CPPFLAGS = \
 	-I$(top_builddir)/src \
 	$(GRAPHENE_DEBUG_CFLAGS)
 libgraphene_1_0_la_CFLAGS = $(shared_cflags)
-libgraphene_1_0_la_LIBADD = $(shared_libs)
+libgraphene_1_0_la_LIBADD = $(shared_libadd)
 libgraphene_1_0_la_LDFLAGS = $(GRAPHENE_LDFLAGS) -export-dynamic
 libgraphene_1_0_la_SOURCES = $(source_h) $(source_h_priv) $(source_c) $(source_c_priv) $(BUILT_SOURCES)
 
