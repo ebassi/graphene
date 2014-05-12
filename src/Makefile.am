@@ -120,4 +120,36 @@ graphene-gobject-1.0.pc: graphene.pc
 
 pkgconfig_DATA += graphene-gobject-1.0.pc
 CLEANFILES += graphene-gobject-1.0.pc
-endif
+
+-include $(INTROSPECTION_MAKEFILE)
+
+if HAVE_INTROSPECTION
+
+INTROSPECTION_GIRS = Graphene-1.0.gir
+
+Graphene-1.0.gir: libgraphene-1.0.la Makefile
+
+Graphene_1_0_gir_VERSION = 1.0
+Graphene_1_0_gir_LIBS = libgraphene-1.0.la
+Graphene_1_0_gir_SCANNERFLAGS = \
+	    --identifier-filter-cmd="sed -e 's|\(.*\)_t\b|\1|' -e 's|^graphene_|Graphene_|' -e 's|_\([a-z]\)|\u\1|g' -e 's|Point3d|Point3D|'" \
+	    --accept-unprefixed \
+	    --symbol-prefix=graphene \
+            --c-include="graphene-object.h" \
+	    --warn-all \
+	    --pkg-export graphene-gobject-1.0
+
+Graphene_1_0_gir_PACKAGES = gobject-2.0
+Graphene_1_0_gir_INCLUDES = GObject-2.0
+Graphene_1_0_gir_CFLAGS = -DGRAPHENE_COMPILATION -I$(top_srcdir)/src -I$(top_builddir)/src
+Graphene_1_0_gir_FILES = $(source_h) $(source_c)
+
+girdir = $(datadir)/gir-1.0
+gir_DATA = $(INTROSPECTION_GIRS)
+
+typelibdir = $(libdir)/girepository-1.0
+typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+
+endif # HAVE_INTROSPECTION
+
+endif # BUILD_GOBJECT

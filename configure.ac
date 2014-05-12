@@ -21,6 +21,7 @@ m4_define([lt_revision], [graphene_interface_age])
 m4_define([lt_age], [m4_eval(graphene_binary_age - graphene_interface_age)])
 
 m4_define([glib_req_version], [2.40.0])
+m4_define([gi_req_version], [1.41.0])
 
 AC_PREREQ([2.63])
 
@@ -400,6 +401,14 @@ AS_IF([test "x$enable_gobject" = xyes],
 
 AM_CONDITIONAL(BUILD_GOBJECT, [test "x$build_gobject" = xyes])
 
+dnl === GObject introspection =================================================
+
+AS_IF([test "x$build_gobject" = xyes],
+      [
+        GOBJECT_INTROSPECTION_CHECK([gi_req_version])
+      ],
+      [ enable_introspection=disabled ])
+
 dnl === Test suite ============================================================
 
 GLIB_TESTS
@@ -611,6 +620,7 @@ Graphene - $VERSION (${GRAPHENE_RELEASE_STATUS})
   • Code coverage: ${use_gcov}
   • Benchmarks: ${build_benchmarks}
   • GObject types: ${build_gobject}
+  • GObject introspection: ${enable_introspection}
 
   • Available optimizations:
     • GCC vectors: ${have_gcc_vector}
