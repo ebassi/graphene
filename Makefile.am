@@ -3,7 +3,8 @@ ACLOCAL_AMFLAGS = -I build/autotools
 EXTRA_DIST = \
 	build/autotools/glibtests.m4 \
 	build/autotools/glib-tap.mk \
-	build/autotools/tap-driver.sh
+	build/autotools/tap-driver.sh \
+	build/autotools/tap-test
 
 SUBDIRS = src
 
