@@ -98,6 +98,17 @@ graphene_vec2_init (graphene_vec2_t *v,
   return v;
 }
 
+/**
+ * graphene_vec2_init_from_vec2:
+ * @v:
+ * @src:
+ *
+ * ...
+ *
+ * Returns: (transfer none):
+ *
+ * Since: 1.0
+ */
 graphene_vec2_t *
 graphene_vec2_init_from_vec2 (graphene_vec2_t       *v,
                               const graphene_vec2_t *src)
@@ -110,6 +121,17 @@ graphene_vec2_init_from_vec2 (graphene_vec2_t       *v,
   return v;
 }
 
+/**
+ * graphene_vec2_init_from_float:
+ * @v:
+ * @src: (array fixed-size=2):
+ *
+ * ...
+ *
+ * Returns: (transfer none):
+ *
+ * Since: 1.0
+ */
 graphene_vec2_t *
 graphene_vec2_init_from_float (graphene_vec2_t *v,
                                const float     *src)
@@ -148,6 +170,16 @@ graphene_vec2_to_float (const graphene_vec2_t *v,
   graphene_simd4f_dup_2f (v->value, dest);
 }
 
+/**
+ * graphene_vec2_add:
+ * @a:
+ * @b:
+ * @res: (out caller-allocates):
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec2_add (const graphene_vec2_t *a,
                    const graphene_vec2_t *b,
@@ -159,6 +191,16 @@ graphene_vec2_add (const graphene_vec2_t *a,
   res->value = graphene_simd4f_add (a->value, b->value);
 }
 
+/**
+ * graphene_vec2_subtract:
+ * @a:
+ * @b:
+ * @res: (out caller-allocates):
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec2_subtract (const graphene_vec2_t *a,
                         const graphene_vec2_t *b,
@@ -170,6 +212,16 @@ graphene_vec2_subtract (const graphene_vec2_t *a,
   res->value = graphene_simd4f_sub (a->value, b->value);
 }
 
+/**
+ * graphene_vec2_multiply:
+ * @a:
+ * @b:
+ * @res: (out caller-allocates):
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec2_multiply (const graphene_vec2_t *a,
                         const graphene_vec2_t *b,
@@ -181,6 +233,16 @@ graphene_vec2_multiply (const graphene_vec2_t *a,
   res->value = graphene_simd4f_mul (a->value, b->value);
 }
 
+/**
+ * graphene_vec2_divide:
+ * @a:
+ * @b:
+ * @res: (out caller-allocates):
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec2_divide (const graphene_vec2_t *a,
                       const graphene_vec2_t *b,
@@ -209,6 +271,15 @@ graphene_vec2_length (const graphene_vec2_t *v)
   return graphene_simd4f_get_x (graphene_simd4f_length2 (v->value));
 }
 
+/**
+ * graphene_vec2_normalize:
+ * @v:
+ * @res: (out caller-allocates):
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec2_normalize (const graphene_vec2_t *v,
                          graphene_vec2_t       *res)
@@ -219,6 +290,16 @@ graphene_vec2_normalize (const graphene_vec2_t *v,
   res->value = graphene_simd4f_normalize2 (v->value);
 }
 
+/**
+ * graphene_vec2_min:
+ * @a:
+ * @b:
+ * @res: (out caller-allocates):
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec2_min (const graphene_vec2_t *a,
                    const graphene_vec2_t *b,
@@ -230,6 +311,16 @@ graphene_vec2_min (const graphene_vec2_t *a,
   res->value = graphene_simd4f_min (a->value, b->value);
 }
 
+/**
+ * graphene_vec2_max:
+ * @a:
+ * @b:
+ * @res: (out caller-allocates):
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec2_max (const graphene_vec2_t *a,
                    const graphene_vec2_t *b,
@@ -267,6 +358,15 @@ init_static_vec2 (void)
   static_vec2_init = TRUE;
 }
 
+/**
+ * graphene_vec2_zero:
+ *
+ * ...
+ *
+ * Returns: (transfer none): ...
+ *
+ * Since: 1.0
+ */
 const graphene_vec2_t *
 graphene_vec2_zero (void)
 {
@@ -275,6 +375,15 @@ graphene_vec2_zero (void)
   return &(static_vec2[VEC2_ZERO]);
 }
 
+/**
+ * graphene_vec2_one:
+ *
+ * ...
+ *
+ * Returns: (transfer none): ...
+ *
+ * Since: 1.0
+ */
 const graphene_vec2_t *
 graphene_vec2_one (void)
 {
@@ -283,6 +392,15 @@ graphene_vec2_one (void)
   return &(static_vec2[VEC2_ONE]);
 }
 
+/**
+ * graphene_vec2_x_axis:
+ *
+ * ...
+ *
+ * Returns: (transfer none): ...
+ *
+ * Since: 1.0
+ */
 const graphene_vec2_t *
 graphene_vec2_x_axis (void)
 {
@@ -291,6 +409,15 @@ graphene_vec2_x_axis (void)
   return &(static_vec2[VEC2_X_AXIS]);
 }
 
+/**
+ * graphene_vec2_y_axis:
+ *
+ * ...
+ *
+ * Returns: (transfer none): ...
+ *
+ * Since: 1.0
+ */
 const graphene_vec2_t *
 graphene_vec2_y_axis (void)
 {
@@ -368,6 +495,17 @@ graphene_vec3_init (graphene_vec3_t *v,
   return v;
 }
 
+/**
+ * graphene_vec3_init_from_vec3:
+ * @v: ...
+ * @src: ...
+ *
+ * ...
+ *
+ * Returns: (transfer none): ...
+ *
+ * Since: 1.0
+ */
 graphene_vec3_t *
 graphene_vec3_init_from_vec3 (graphene_vec3_t       *v,
                               const graphene_vec3_t *src)
@@ -380,6 +518,17 @@ graphene_vec3_init_from_vec3 (graphene_vec3_t       *v,
   return v;
 }
 
+/**
+ * graphene_vec3_init_from_float:
+ * @v: ...
+ * @src: (array fixed-size=3): ...
+ *
+ * ...
+ *
+ * Returns: (transfer none): ...
+ *
+ * Since: 1.0
+ */
 graphene_vec3_t *
 graphene_vec3_init_from_float (graphene_vec3_t *v,
                                const float     *src)
@@ -416,6 +565,15 @@ graphene_vec3_get_z (const graphene_vec3_t *v)
   return graphene_simd4f_get_z (v->value);
 }
 
+/**
+ * graphene_vec3_to_float:
+ * @v: ...
+ * @dest: (out caller-allocates) (array fixed-size=3): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_to_float (const graphene_vec3_t *v,
                         float                 *dest)
@@ -426,6 +584,16 @@ graphene_vec3_to_float (const graphene_vec3_t *v,
   graphene_simd4f_dup_3f (v->value, dest);
 }
 
+/**
+ * graphene_vec3_add:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_add (const graphene_vec3_t *a,
                    const graphene_vec3_t *b,
@@ -437,6 +605,16 @@ graphene_vec3_add (const graphene_vec3_t *a,
   res->value = graphene_simd4f_add (a->value, b->value);
 }
 
+/**
+ * graphene_vec3_subtract:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_subtract (const graphene_vec3_t *a,
                         const graphene_vec3_t *b,
@@ -448,6 +626,16 @@ graphene_vec3_subtract (const graphene_vec3_t *a,
   res->value = graphene_simd4f_sub (a->value, b->value);
 }
 
+/**
+ * graphene_vec3_multiply:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_multiply (const graphene_vec3_t *a,
                         const graphene_vec3_t *b,
@@ -459,6 +647,16 @@ graphene_vec3_multiply (const graphene_vec3_t *a,
   res->value = graphene_simd4f_mul (a->value, b->value);
 }
 
+/**
+ * graphene_vec3_divide:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_divide (const graphene_vec3_t *a,
                       const graphene_vec3_t *b,
@@ -470,6 +668,16 @@ graphene_vec3_divide (const graphene_vec3_t *a,
   res->value = graphene_simd4f_div (a->value, b->value);
 }
 
+/**
+ * graphene_vec3_cross:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_cross (const graphene_vec3_t *a,
                      const graphene_vec3_t *b,
@@ -481,6 +689,15 @@ graphene_vec3_cross (const graphene_vec3_t *a,
   res->value = graphene_simd4f_cross3 (a->value, b->value);
 }
 
+/**
+ * graphene_vec3_dot:
+ * @a: ...
+ * @b: ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec3_dot (const graphene_vec3_t *a,
                    const graphene_vec3_t *b)
@@ -498,6 +715,15 @@ graphene_vec3_length (const graphene_vec3_t *v)
   return graphene_simd4f_get_x (graphene_simd4f_length3 (v->value));
 }
 
+/**
+ * graphene_vec3_normalize:
+ * @v: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_normalize (const graphene_vec3_t *v,
                          graphene_vec3_t       *res)
@@ -508,6 +734,16 @@ graphene_vec3_normalize (const graphene_vec3_t *v,
   res->value = graphene_simd4f_normalize3 (v->value);
 }
 
+/**
+ * graphene_vec3_min:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_min (const graphene_vec3_t *a,
                    const graphene_vec3_t *b,
@@ -519,6 +755,16 @@ graphene_vec3_min (const graphene_vec3_t *a,
   res->value = graphene_simd4f_min (a->value, b->value);
 }
 
+/**
+ * graphene_vec3_max:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_max (const graphene_vec3_t *a,
                    const graphene_vec3_t *b,
@@ -530,6 +776,15 @@ graphene_vec3_max (const graphene_vec3_t *a,
   res->value = graphene_simd4f_max (a->value, b->value);
 }
 
+/**
+ * graphene_vec3_get_xy:
+ * @v: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_get_xy (const graphene_vec3_t *v,
                       graphene_vec2_t       *res)
@@ -540,6 +795,15 @@ graphene_vec3_get_xy (const graphene_vec3_t *v,
   res->value = graphene_simd4f_zero_zw (v->value);
 }
 
+/**
+ * graphene_vec3_get_xy0:
+ * @v: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_get_xy0 (const graphene_vec3_t *v,
                        graphene_vec3_t       *res)
@@ -550,6 +814,15 @@ graphene_vec3_get_xy0 (const graphene_vec3_t *v,
   res->value = graphene_simd4f_mul (v->value, graphene_simd4f_init (1.f, 1.f, 0.f, 0.f));
 }
 
+/**
+ * graphene_vec3_get_xyz0:
+ * @v: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_get_xyz0 (const graphene_vec3_t *v,
                         graphene_vec4_t       *res)
@@ -560,6 +833,15 @@ graphene_vec3_get_xyz0 (const graphene_vec3_t *v,
   res->value = graphene_simd4f_zero_w (v->value);
 }
 
+/**
+ * graphene_vec3_get_xyz1:
+ * @v: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_get_xyz1 (const graphene_vec3_t *v,
                         graphene_vec4_t       *res)
@@ -571,6 +853,15 @@ graphene_vec3_get_xyz1 (const graphene_vec3_t *v,
                                     graphene_simd4f_init (0.f, 0.f, 0.f, 1.f));
 }
 
+/**
+ * graphene_vec3_get_xyzw:
+ * @v: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec3_get_xyzw (const graphene_vec3_t *v,
                         float                  w,
@@ -757,6 +1048,17 @@ graphene_vec4_init_from_vec2 (graphene_vec4_t       *v,
   return v;
 }
 
+/**
+ * graphene_vec4_init_from_float:
+ * @v: ...
+ * @src: (array fixed-size=4): ...
+ *
+ * ...
+ *
+ * Returns: (transfer none): ...
+ *
+ * Since: 1.0
+ */
 graphene_vec4_t *
 graphene_vec4_init_from_float (graphene_vec4_t *v,
                                const float     *src)
@@ -801,6 +1103,15 @@ graphene_vec4_get_w (const graphene_vec4_t *v)
   return graphene_simd4f_get_w (v->value);
 }
 
+/**
+ * graphene_vec4_to_float:
+ * @v: ...
+ * @dest: (out caller-allocates) (array fixed-size=4): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec4_to_float (const graphene_vec4_t *v,
                         float                 *dest)
@@ -811,6 +1122,16 @@ graphene_vec4_to_float (const graphene_vec4_t *v,
   graphene_simd4f_dup_4f (v->value, dest);
 }
 
+/**
+ * graphene_vec4_add:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec4_add (const graphene_vec4_t *a,
                    const graphene_vec4_t *b,
@@ -822,6 +1143,16 @@ graphene_vec4_add (const graphene_vec4_t *a,
   res->value = graphene_simd4f_add (a->value, b->value);
 }
 
+/**
+ * graphene_vec4_subtract:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec4_subtract (const graphene_vec4_t *a,
                         const graphene_vec4_t *b,
@@ -833,6 +1164,16 @@ graphene_vec4_subtract (const graphene_vec4_t *a,
   res->value = graphene_simd4f_sub (a->value, b->value);
 }
 
+/**
+ * graphene_vec4_multiply:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec4_multiply (const graphene_vec4_t *a,
                         const graphene_vec4_t *b,
@@ -844,6 +1185,16 @@ graphene_vec4_multiply (const graphene_vec4_t *a,
   res->value = graphene_simd4f_mul (a->value, b->value);
 }
 
+/**
+ * graphene_vec4_divide:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec4_divide (const graphene_vec4_t *a,
                       const graphene_vec4_t *b,
@@ -872,6 +1223,15 @@ graphene_vec4_length (const graphene_vec4_t *v)
   return graphene_simd4f_get_x (graphene_simd4f_length4 (v->value));
 }
 
+/**
+ * graphene_vec4_normalize:
+ * @v: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec4_normalize (const graphene_vec4_t *v,
                          graphene_vec4_t       *res)
@@ -882,6 +1242,16 @@ graphene_vec4_normalize (const graphene_vec4_t *v,
   res->value = graphene_simd4f_normalize4 (v->value);
 }
 
+/**
+ * graphene_vec4_min:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec4_min (const graphene_vec4_t *a,
                    const graphene_vec4_t *b,
@@ -893,6 +1263,16 @@ graphene_vec4_min (const graphene_vec4_t *a,
   res->value = graphene_simd4f_min (a->value, b->value);
 }
 
+/**
+ * graphene_vec4_max:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec4_max (const graphene_vec4_t *a,
                    const graphene_vec4_t *b,
@@ -904,6 +1284,15 @@ graphene_vec4_max (const graphene_vec4_t *a,
   res->value = graphene_simd4f_max (a->value, b->value);
 }
 
+/**
+ * graphene_vec4_get_xy:
+ * @v: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec4_get_xy (const graphene_vec4_t *v,
                       graphene_vec2_t       *res)
@@ -914,6 +1303,15 @@ graphene_vec4_get_xy (const graphene_vec4_t *v,
   res->value = graphene_simd4f_zero_zw (v->value);
 }
 
+/**
+ * graphene_vec4_get_xyz:
+ * @v: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec4_get_xyz (const graphene_vec4_t *v,
                        graphene_vec3_t       *res)

@@ -33,6 +33,15 @@
 #include "graphene-quaternion.h"
 #include "graphene-vectors-private.h"
 
+/**
+ * graphene_matrix_alloc: (constructor)
+ *
+ * Allocates a new #graphene_matrix_t.
+ *
+ * Returns: (transfer full): the newly allocated matrix
+ *
+ * Since: 1.0
+ */
 graphene_matrix_t *
 graphene_matrix_alloc (void)
 {
@@ -46,6 +55,15 @@ graphene_matrix_free (graphene_matrix_t *m)
     g_slice_free (graphene_matrix_t, m);
 }
 
+/**
+ * graphene_matrix_to_float:
+ * @m: ...
+ * @v: (array fixed-size=16) (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_to_float (const graphene_matrix_t *m,
                           float                   *v)
@@ -66,6 +84,17 @@ graphene_matrix_init_identity (graphene_matrix_t *m)
   return m;
 }
 
+/**
+ * graphene_matrix_init_from_float:
+ * @m: ...
+ * @v: (array fixed-size=16): ...
+ *
+ * ...
+ *
+ * Returns: (transfer none): ...
+ *
+ * Since: 1.0
+ */
 graphene_matrix_t *
 graphene_matrix_init_from_float (graphene_matrix_t *m,
                                  const float       *v)
@@ -253,6 +282,16 @@ graphene_matrix_is_singular (const graphene_matrix_t *m)
   return graphene_matrix_determinant (m) == 0.0f;
 }
 
+/**
+ * graphene_matrix_get_row:
+ * @m: ...
+ * @index_: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_get_row (const graphene_matrix_t *m,
                          unsigned int             index_,
@@ -336,11 +375,24 @@ graphene_matrix_get_value (const graphene_matrix_t *m,
     case 3:
       c = graphene_simd4f_get_w (r);
       break;
+
+    default:
+      g_assert_not_reached ();
     }
 
   return c;
 }
 
+/**
+ * graphene_matrix_multiply:
+ * @a: ...
+ * @b: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_multiply (const graphene_matrix_t *a,
                           const graphene_matrix_t *b,
@@ -364,6 +416,16 @@ graphene_matrix_determinant (const graphene_matrix_t *m)
   return graphene_simd4f_get_x (det);
 }
 
+/**
+ * graphene_matrix_transform_vec3:
+ * @m: ...
+ * @v: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_transform_vec3 (const graphene_matrix_t *m,
                                 const graphene_vec3_t   *v,
@@ -375,6 +437,16 @@ graphene_matrix_transform_vec3 (const graphene_matrix_t *m,
   graphene_simd4x4f_vec3_mul (&m->value, &v->value, &res->value);
 }
 
+/**
+ * graphene_matrix_transform_vec4:
+ * @m: ...
+ * @v: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_transform_vec4 (const graphene_matrix_t *m,
                                 const graphene_vec4_t   *v,
@@ -386,6 +458,16 @@ graphene_matrix_transform_vec4 (const graphene_matrix_t *m,
   graphene_simd4x4f_vec4_mul (&m->value, &v->value, &res->value);
 }
 
+/**
+ * graphene_matrix_transform_point:
+ * @m: ...
+ * @p: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_transform_point (const graphene_matrix_t *m,
                                  const graphene_point_t  *p,
@@ -403,6 +485,16 @@ graphene_matrix_transform_point (const graphene_matrix_t *m,
   res->y = graphene_simd4f_get_y (vec3);
 }
 
+/**
+ * graphene_matrix_transform_rect:
+ * @m: ...
+ * @r: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_transform_rect (const graphene_matrix_t *m,
                                 const graphene_rect_t   *r,
@@ -427,6 +519,16 @@ graphene_matrix_transform_rect (const graphene_matrix_t *m,
   graphene_quad_init (res, &ret[0], &ret[1], &ret[2], &ret[3]);
 }
 
+/**
+ * graphene_matrix_transform_bounds:
+ * @m: ...
+ * @r: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_transform_bounds (const graphene_matrix_t *m,
                                   const graphene_rect_t   *r,
@@ -466,6 +568,16 @@ graphene_matrix_transform_bounds (const graphene_matrix_t *m,
   graphene_rect_init (res, min_x, min_y, max_x - min_x, max_y - min_y);
 }
 
+/**
+ * graphene_matrix_project_point:
+ * @m: ...
+ * @p: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_project_point (const graphene_matrix_t *m,
                                const graphene_point_t  *p,
@@ -959,6 +1071,17 @@ matrix_decompose_3d (const graphene_matrix_t *m,
   return TRUE;
 }
 
+/**
+ * graphene_matrix_interpolate:
+ * @a: ...
+ * @b: ...
+ * @factor: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_interpolate (const graphene_matrix_t *a,
                              const graphene_matrix_t *b,

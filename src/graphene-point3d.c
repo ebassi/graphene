@@ -249,6 +249,15 @@ graphene_point3d_length (const graphene_point3d_t *p)
   return graphene_simd4f_get_x (graphene_simd4f_length3 (res));
 }
 
+/**
+ * graphene_point3d_normalize:
+ * @p: ...
+ * @res: (out caller-allocates): ...
+ *
+ * ...
+ *
+ * Since: 1.0
+ */
 void
 graphene_point3d_normalize (const graphene_point3d_t *p,
                             graphene_point3d_t       *res)
