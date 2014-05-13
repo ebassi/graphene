@@ -132,7 +132,7 @@ Graphene-1.0.gir: libgraphene-1.0.la Makefile
 Graphene_1_0_gir_VERSION = 1.0
 Graphene_1_0_gir_LIBS = libgraphene-1.0.la
 Graphene_1_0_gir_SCANNERFLAGS = \
-	    --identifier-filter-cmd="sed -e 's|\(.*\)_t\b|\1|' -e 's|^graphene_|Graphene_|' -e 's|_\([a-z]\)|\u\1|g' -e 's|Point3d|Point3D|'" \
+	    --identifier-filter-cmd="sed -e 's|\(.*\)_t\b|\1|' -e 's|^\([a-z]\)|\u\1|' -e 's|_\([a-z]\)|\u\1|g' -e 's|\([0-9]\)\([a-z]\)|\1\u\2|g'" \
 	    --accept-unprefixed \
 	    --symbol-prefix=graphene \
             --c-include="graphene-object.h" \
