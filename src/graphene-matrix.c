@@ -291,7 +291,7 @@ graphene_matrix_get_value (const graphene_matrix_t *m,
                            unsigned int             col)
 {
   graphene_simd4f_t r;
-  float c;
+  float c = 0.f;
 
   g_return_val_if_fail (m != NULL, 0.f);
   g_return_val_if_fail (row >= 0 && row < 4, 0.f);
@@ -314,6 +314,9 @@ graphene_matrix_get_value (const graphene_matrix_t *m,
     case 3:
       r = m->value.w;
       break;
+
+    default:
+      g_assert_not_reached ();
     }
 
   switch (col)
