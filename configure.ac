@@ -352,14 +352,21 @@ AS_IF([test "x$enable_maintainer_flags" = "xyes" && test "x$GCC" = "xyes"],
         AS_COMPILER_FLAGS([MAINTAINER_CFLAGS],
                           ["-Wall
                             -Wshadow
-                            -Wcast-align
-                            -Wno-uninitialized
-                            -Wformat -Wformat-security
                             -Wno-strict-aliasing
-                            -Winit-self
-                            -Wempty-body
-                            -Wdeclaration-after-statement
-                            -Wno-strict-aliasing"])
+                            -Wno-uninitialized
+                            -Wcast-align
+                            -Wstrict-prototypes
+                            -Werror=logical-op
+                            -Werror=pointer-arith
+                            -Werror=missing-declarations
+                            -Werror=redundant-decls
+                            -Werror=implicit-function-declaration
+                            -Werror=format-security
+                            -Werror=format=2
+                            -Werror=missing-include-dirs
+                            -Werror=init-self
+                            -Werror=empty-body
+                            -Werror=declaration-after-statement"])
       ])
 MAINTAINER_CFLAGS="${MAINTAINER_CFLAGS#*  }"
 AC_SUBST([MAINTAINER_CFLAGS])
