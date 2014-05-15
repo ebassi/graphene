@@ -383,11 +383,11 @@ AS_IF([test "x$enable_gobject" = xyes],
       [
         PKG_CHECK_MODULES(GRAPHENE_GOBJECT, [gobject-2.0],
                           [build_gobject=yes],
-                          [build_gobject=no])
-        GRAPHENE_REQS="$GRAPHENE_REQS gobject-2.0"
+                          [build_gobject=disabled])
+        AS_IF([test "x$build_gobject" = xyes], [GRAPHENE_REQS="$GRAPHENE_REQS gobject-2.0"])
       ],
       [
-        build_gobject=no
+        build_gobject=disabled
       ])
 
 AM_CONDITIONAL(BUILD_GOBJECT, [test "x$build_gobject" = xyes])
