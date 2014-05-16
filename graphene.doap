@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:gnome="http://api.gnome.org/doap-extensions#"
+         xmlns="http://usefulinc.com/ns/doap#">
+  <name>Graphene</name>
+  <shortname>graphene</shortname>
+  <shortdesc>A thin layer of types for graphic libraries</shortdesc>
+  <description>Graphene provides a small set of mathematical types needed
+  to implement graphic libraries that deal with 2D and 3D transformations
+  and projections.</description>
+
+  <homepage rdf:resource="https://github.com/ebassi/graphene"/>
+  <bug-database rdf:resource="https://github.com/ebassi/graphene/issues"/>
+  <license rdf:resource="http://usefulinc.com/doap/licenses/mit"/>
+
+  <category rdf:resource="http://api.gnome.org/doap-extensions#development"/>
+
+  <programming-language>C</programming-language>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Emmanuele Bassi</foaf:name>
+      <foaf:mbox rdf:resource="mailto:ebassi@gnome.org"/>
+      <gnome:userid>ebassi</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
+  <author>
+    <foaf:Person>
+      <foaf:name>Emmanuele Bassi</foaf:name>
+      <foaf:mbox rdf:resource="mailto:ebassi@gnome.org"/>
+      <gnome:userid>ebassi</gnome:userid>
+    </foaf:Person>
+  </author>
+
+</Project>
