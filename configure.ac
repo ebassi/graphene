@@ -26,9 +26,9 @@ AC_PREREQ([2.63])
 
 AC_INIT([graphene],
         [graphene_version],
-        [],
-        [graphene-glib],
-        [])
+        [https://github.com/ebassi/graphene/issues],
+        [graphene],
+        [https://github.com/ebassi/graphene])
 
 AC_CONFIG_HEADER([src/config.h])
 AC_CONFIG_SRCDIR([src/graphene.h])
