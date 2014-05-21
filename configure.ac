@@ -455,7 +455,7 @@ AS_IF([test "x$use_gcov" = "xyes"],
         dnl Remove all optimization flags from CFLAGS
         changequote({,})
         CFLAGS=`echo "$CFLAGS" | $SED -e 's/-O[0-9]*//g'`
-        JSON_CFLAGS=`echo "$GRAPHENE_CFLAGS" | $SED -e 's/-O[0-9]*//g'`
+        GRAPHENE_CFLAGS=`echo "$GRAPHENE_CFLAGS" | $SED -e 's/-O[0-9]*//g'`
         changequote([,])
 
         dnl Define the special gcc flags
