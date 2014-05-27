@@ -191,7 +191,7 @@ graphene_matrix_init_scale (graphene_matrix_t *m,
   m->value =
     graphene_simd4x4f_init (graphene_simd4f_init (   x, 0.0f, 0.0f, 0.0f),
                             graphene_simd4f_init (0.0f,    y, 0.0f, 0.0f),
-                            graphene_simd4f_init (0.0f, 0.0f,    x, 0.0f),
+                            graphene_simd4f_init (0.0f, 0.0f,    z, 0.0f),
                             graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f));
 
   return m;
