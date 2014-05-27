@@ -508,8 +508,8 @@ graphene_matrix_transform_rect (const graphene_matrix_t *m,
 
   graphene_rect_get_top_left (r, &points[0]);
   graphene_rect_get_top_right (r, &points[1]);
-  graphene_rect_get_bottom_left (r, &points[2]);
-  graphene_rect_get_bottom_right (r, &points[3]);
+  graphene_rect_get_bottom_right (r, &points[2]);
+  graphene_rect_get_bottom_left (r, &points[3]);
 
   graphene_matrix_transform_point (m, &points[0], &ret[0]);
   graphene_matrix_transform_point (m, &points[1], &ret[1]);
