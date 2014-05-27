@@ -45,14 +45,13 @@
 graphene_matrix_t *
 graphene_matrix_alloc (void)
 {
-  return g_slice_new (graphene_matrix_t);
+  return calloc (1, sizeof (graphene_matrix_t));
 }
 
 void
 graphene_matrix_free (graphene_matrix_t *m)
 {
-  if (G_LIKELY (m != NULL))
-    g_slice_free (graphene_matrix_t, m);
+  free (m);
 }
 
 /**

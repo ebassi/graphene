@@ -38,14 +38,13 @@
 graphene_size_t *
 graphene_size_alloc (void)
 {
-  return g_slice_new (graphene_size_t);
+  return calloc (1, sizeof (graphene_size_t));
 }
 
 void
 graphene_size_free (graphene_size_t *s)
 {
-  if (G_LIKELY (s != NULL))
-    g_slice_free (graphene_size_t, s);
+  free (s);
 }
 
 graphene_size_t *

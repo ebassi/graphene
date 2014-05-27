@@ -54,7 +54,7 @@
 graphene_point_t *
 graphene_point_alloc (void)
 {
-  return g_slice_new (graphene_point_t);
+  return calloc (1, sizeof (graphene_point_t));
 }
 
 /**
@@ -67,8 +67,7 @@ graphene_point_alloc (void)
 void
 graphene_point_free (graphene_point_t *p)
 {
-  if (G_LIKELY (p != NULL))
-    g_slice_free (graphene_point_t, p);
+  free (p);
 }
 
 graphene_point_t *

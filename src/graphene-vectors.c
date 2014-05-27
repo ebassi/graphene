@@ -53,7 +53,7 @@
 graphene_vec2_t *
 graphene_vec2_alloc (void)
 {
-  return g_slice_new (graphene_vec2_t);
+  return calloc (1, sizeof (graphene_vec2_t));
 }
 
 /**
@@ -67,8 +67,7 @@ graphene_vec2_alloc (void)
 void
 graphene_vec2_free (graphene_vec2_t *v)
 {
-  if (G_LIKELY (v != NULL))
-    g_slice_free (graphene_vec2_t, v);
+  free (v);
 }
 
 /**
@@ -448,7 +447,7 @@ graphene_vec2_y_axis (void)
 graphene_vec3_t *
 graphene_vec3_alloc (void)
 {
-  return g_slice_new (graphene_vec3_t);
+  return calloc (1, sizeof (graphene_vec3_t));
 }
 
 /**
@@ -462,8 +461,7 @@ graphene_vec3_alloc (void)
 void
 graphene_vec3_free (graphene_vec3_t *v)
 {
-  if (G_LIKELY (v != NULL))
-    g_slice_free (graphene_vec3_t, v);
+  free (v);
 }
 
 /**
@@ -963,7 +961,7 @@ graphene_vec3_z_axis (void)
 graphene_vec4_t *
 graphene_vec4_alloc (void)
 {
-  return g_slice_new (graphene_vec4_t);
+  return calloc (1, sizeof (graphene_vec4_t));
 }
 
 /**
@@ -977,8 +975,7 @@ graphene_vec4_alloc (void)
 void
 graphene_vec4_free (graphene_vec4_t *v)
 {
-  if (G_LIKELY (v != NULL))
-    g_slice_free (graphene_vec4_t, v);
+  free (v);
 }
 
 /**

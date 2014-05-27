@@ -53,14 +53,13 @@ graphene_rect_normalize_internal (graphene_rect_t *r)
 graphene_rect_t *
 graphene_rect_alloc (void)
 {
-  return g_slice_new (graphene_rect_t);
+  return calloc (1, sizeof (graphene_rect_t));
 }
 
 void
 graphene_rect_free (graphene_rect_t *r)
 {
-  if (G_LIKELY (r != NULL))
-    g_slice_free (graphene_rect_t, r);
+  free (r);
 }
 
 graphene_rect_t *

@@ -30,14 +30,13 @@
 graphene_quad_t *
 graphene_quad_alloc (void)
 {
-  return g_slice_new (graphene_quad_t);
+  return calloc (1, sizeof (graphene_quad_t));
 }
 
 void
 graphene_quad_free (graphene_quad_t *q)
 {
-  if (G_LIKELY (q != NULL))
-    g_slice_free (graphene_quad_t, q);
+  free (q);
 }
 
 graphene_quad_t *

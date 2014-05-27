@@ -35,14 +35,13 @@
 graphene_quaternion_t *
 graphene_quaternion_alloc (void)
 {
-  return g_slice_new (graphene_quaternion_t);
+  return calloc (1, sizeof (graphene_quaternion_t));
 }
 
 void
 graphene_quaternion_free (graphene_quaternion_t *q)
 {
-  if (G_LIKELY (q != NULL))
-    g_slice_free (graphene_quaternion_t, q);
+  free (q);
 }
 
 graphene_quaternion_t *
