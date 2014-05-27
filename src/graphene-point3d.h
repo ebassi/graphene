@@ -43,9 +43,9 @@ struct _graphene_point3d_t
 };
 
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_point3d_t *            graphene_point3d_alloc          (void);
+graphene_point3d_t *            graphene_point3d_alloc                  (void);
 GRAPHENE_AVAILABLE_IN_1_0
-void                            graphene_point3d_free           (graphene_point3d_t       *p);
+void                            graphene_point3d_free                   (graphene_point3d_t       *p);
 
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_point3d_t *            graphene_point3d_init                   (graphene_point3d_t       *p,
