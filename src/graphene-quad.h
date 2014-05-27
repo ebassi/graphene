@@ -36,24 +36,27 @@ struct _graphene_quad_t
 };
 
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_quad_t *	graphene_quad_alloc	(void);
+graphene_quad_t *       graphene_quad_alloc             (void);
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_quad_free      (graphene_quad_t        *q);
+void                    graphene_quad_free              (graphene_quad_t        *q);
 
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_quad_t *	graphene_quad_init	(graphene_quad_t        *q,
-						 const graphene_point_t *p1,
-						 const graphene_point_t *p2,
-						 const graphene_point_t *p3,
-						 const graphene_point_t *p4);
+graphene_quad_t *       graphene_quad_init              (graphene_quad_t        *q,
+                                                         const graphene_point_t *p1,
+                                                         const graphene_point_t *p2,
+                                                         const graphene_point_t *p3,
+                                                         const graphene_point_t *p4);
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_quad_t *       graphene_quad_init_from_rect    (graphene_quad_t        *q,
+                                                         const graphene_rect_t  *r);
 
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_quad_contains  (const graphene_quad_t  *q,
-                                                 const graphene_point_t *p);
+gboolean                graphene_quad_contains          (const graphene_quad_t  *q,
+                                                         const graphene_point_t *p);
 
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_quad_bounds    (const graphene_quad_t  *q,
-                                                 graphene_rect_t        *r);
+void                    graphene_quad_bounds            (const graphene_quad_t  *q,
+                                                         graphene_rect_t        *r);
 
 G_END_DECLS
 

@@ -58,6 +58,21 @@ graphene_quad_init (graphene_quad_t        *q,
   return q;
 }
 
+graphene_quad_t *
+graphene_quad_init_from_rect (graphene_quad_t       *q,
+                              const graphene_rect_t *r)
+{
+  g_return_val_if_fail (q != NULL, NULL);
+  g_return_val_if_fail (r != NULL, q);
+
+  graphene_rect_get_top_left (r, &(q->points[0]));
+  graphene_rect_get_top_right (r, &(q->points[1]));
+  graphene_rect_get_bottom_right (r, &(q->points[2]));
+  graphene_rect_get_bottom_left (r, &(q->points[3]));
+
+  return q;
+}
+
 gboolean
 graphene_quad_contains (const graphene_quad_t  *q,
                         const graphene_point_t *p)
