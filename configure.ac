@@ -102,6 +102,8 @@ AC_MSG_RESULT([$platform_win32])
 AM_CONDITIONAL(OS_LINUX, [test "$platform_linux" = "yes"])
 AM_CONDITIONAL(OS_WIN32, [test "$platform_win32" = "yes"])
 
+AS_COMPILER_FLAGS([BASE_CFLAGS], ["-O3 -ffast-math -fstrict-aliasing"])
+
 dnl === Fast paths ============================================================
 
 # Check for GCC vectors
@@ -148,7 +150,7 @@ AS_IF([test "x$SSE2_CFLAGS" = "x"],
                 AS_IF([test "$AMD64_ABI" = "no"], [SSE2_CFLAGS="-xarch=sse2"])
               ],
               [
-                SSE2_CFLAGS="-msse2 -Winline"
+                SSE2_CFLAGS="-msse -msse2 -mfpmath=sse -Winline"
               ])
       ])
 
@@ -352,7 +354,7 @@ AS_IF([test "x$enable_maintainer_flags" = "xyes" && test "x$GCC" = "xyes"],
         AS_COMPILER_FLAGS([MAINTAINER_CFLAGS],
                           ["-Wall
                             -Wshadow
-                            -Wno-strict-aliasing
+                            -Wstrict-aliasing=2
                             -Wno-uninitialized
                             -Wcast-align
                             -Wstrict-prototypes
@@ -361,7 +363,6 @@ AS_IF([test "x$enable_maintainer_flags" = "xyes" && test "x$GCC" = "xyes"],
                             -Werror=missing-declarations
                             -Werror=redundant-decls
                             -Werror=implicit-function-declaration
-                            -Werror=format-security
                             -Werror=format=2
                             -Werror=missing-include-dirs
                             -Werror=init-self
@@ -476,7 +477,7 @@ AM_CONDITIONAL(BUILD_BENCHMARKS, [test "x$build_benchmarks" = xyes])
 
 dnl === Output ================================================================
 
-GRAPHENE_CFLAGS="$GRAPHENE_DEPS_CFLAGS $GRAPHENE_VISIBILITY_CFLAGS $GRAPHENE_GCOV_CFLAGS $GRAPHENE_GOBJECT_CFLAGS"
+GRAPHENE_CFLAGS="$BASE_CFLAGS $GRAPHENE_DEPS_CFLAGS $GRAPHENE_VISIBILITY_CFLAGS $GRAPHENE_GCOV_CFLAGS $GRAPHENE_GOBJECT_CFLAGS"
 GRAPHENE_LIBS="$GRAPHENE_DEPS_LIBS $LIBM $GRAPHENE_GCOV_LDADD $GRAPHENE_GOBJECT_LIBS"
 GRAPHENE_LT_LDFLAGS="$GRAPHENE_LT_LDFLAGS $GRAPHENE_LINK_FLAGS $SSE2_LDFLAGS $MMX_LDFLAGS"
 AC_SUBST(GRAPHENE_CFLAGS)
