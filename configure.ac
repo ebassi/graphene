@@ -504,31 +504,33 @@ AC_CONFIG_COMMANDS([src/graphene-config.h],
 extern "C" {
 #endif
 
-#ifndef GRAPHENE_BENCHMARK
 _______EOF
 
         if test "x$graphene_has_sse2" = xyes; then
-          echo '# define GRAPHENE_HAS_SSE 1' >> $outfile
+          echo '#define GRAPHENE_HAS_SSE 1' >> $outfile
         fi
         if test "x$graphene_has_arm_neon" = xyes; then
-          echo '# define GRAPHENE_HAS_ARM_NEON 1' >> $outfile
+          echo '#define GRAPHENE_HAS_ARM_NEON 1' >> $outfile
         fi
         if test "x$graphene_has_gcc_vector" = xyes; then
-          echo '# define GRAPHENE_HAS_GCC 1' >> $outfile
+          echo '#define GRAPHENE_HAS_GCC 1' >> $outfile
         fi
 
         cat >> $outfile <<_______EOF
-# define GRAPHENE_HAS_SCALAR 1
-#endif /* GRAPHENE_BENCHMARK */
+#define GRAPHENE_HAS_SCALAR 1
 
 #if defined(GRAPHENE_HAS_SSE)
 # define GRAPHENE_USE_SSE
+# define GRAPHENE_SIMD_S "sse"
 #elif defined(GRAPHENE_HAS_ARM_NEON)
 # define GRAPHENE_USE_ARM_NEON
+# define GRAPHENE_SIMD_S "neon"
 #elif defined(GRAPHENE_HAS_GCC)
 # define GRAPHENE_USE_GCC
+# define GRAPHENE_SIMD_S "gcc"
 #elif defined(GRAPHENE_HAS_SCALAR)
 # define GRAPHENE_USE_SCALAR
+# define GRAPHENE_SIMD_S "scalar"
 #else
 # error "Unsupported platform."
 #endif
