@@ -26,7 +26,7 @@ compare_matrices (const graphene_matrix_t * m1,
     for (y = 0; y < 4; y++)
     {
       g_assert_cmpfloat_delta (graphene_matrix_get_value (m1, x, y),
-                               graphene_matrix_get_value (m2, x, y), 0.1);
+                               graphene_matrix_get_value (m2, x, y), 0.00001);
     }
   }
 }
@@ -66,8 +66,8 @@ matrix_rotation (void)
   graphene_matrix_init_identity (&m);
   g_assert_true (graphene_matrix_is_identity (&m));
 
-  graphene_matrix_rotate (&m, deg_to_rad(180.0f), graphene_vec3_x_axis());
-  graphene_matrix_init_rotate (&m2, deg_to_rad(180.0f), graphene_vec3_x_axis());
+  graphene_matrix_rotate (&m, deg_to_rad (180.0f), graphene_vec3_x_axis ());
+  graphene_matrix_init_rotate (&m2, deg_to_rad (180.0f), graphene_vec3_x_axis ());
 
   if (g_test_verbose ())
     graphene_matrix_print (&m);
