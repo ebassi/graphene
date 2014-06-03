@@ -216,6 +216,9 @@ void                    graphene_matrix_interpolate             (const graphene_
                                                                  double                    factor,
                                                                  graphene_matrix_t        *res);
 
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_matrix_print                   (const graphene_matrix_t  *m);
+
 G_END_DECLS
 
 #endif /* __GRAPHENE_MATRIX_H__ */
