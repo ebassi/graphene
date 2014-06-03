@@ -400,7 +400,7 @@ graphene_matrix_multiply (const graphene_matrix_t *a,
   g_return_if_fail (a != NULL && b != NULL);
   g_return_if_fail (res != NULL);
 
-  graphene_simd4x4f_mul (&a->value, &b->value, &res->value);
+  graphene_simd4x4f_matrix_mul (&a->value, &b->value, &res->value);
 }
 
 float
@@ -713,7 +713,7 @@ graphene_matrix_translate (graphene_matrix_t        *m,
   graphene_simd4x4f_t trans_m;
 
   graphene_simd4x4f_translation (&trans_m, pos->x, pos->y, pos->z);
-  graphene_simd4x4f_mul (&m->value, &trans_m, &m->value);
+  graphene_simd4x4f_matrix_mul (&m->value, &trans_m, &m->value);
 }
 
 void
@@ -724,7 +724,7 @@ graphene_matrix_rotate (graphene_matrix_t     *m,
   graphene_simd4x4f_t rot_m;
 
   graphene_simd4x4f_rotation (&rot_m, angle, axis->value);
-  graphene_simd4x4f_mul (&m->value, &rot_m, &m->value);
+  graphene_simd4x4f_matrix_mul (&m->value, &rot_m, &m->value);
 }
 
 void
@@ -736,7 +736,7 @@ graphene_matrix_scale (graphene_matrix_t *m,
   graphene_simd4x4f_t scale_m;
 
   graphene_simd4x4f_scale (&scale_m, factor_x, factor_y, factor_z);
-  graphene_simd4x4f_mul (&m->value, &scale_m, &m->value);
+  graphene_simd4x4f_matrix_mul (&m->value, &scale_m, &m->value);
 }
 
 void
