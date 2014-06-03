@@ -16,14 +16,20 @@ print_matrix (graphene_matrix_t * m)
 }
 
 static void
+g_assert_cmpfloat_delta(float n1, float n2, float delta)
+{
+  g_assert(abs(n1 - n2) < delta);
+}
+
+static void
 compare_matrices (graphene_matrix_t * m1, graphene_matrix_t * m2)
 {
   int x, y;
   for (x = 0; x < 4; x++)
     for (y = 0; y < 4; y++)
-      g_assert_cmpfloat (
-        graphene_matrix_get_value (m1, x, y), ==,
-        graphene_matrix_get_value (m2, x, y));
+      g_assert_cmpfloat_delta (
+        graphene_matrix_get_value (m1, x, y),
+        graphene_matrix_get_value (m2, x, y), 0.000001);
 }
 
 static void
