@@ -111,6 +111,35 @@ matrix_scale (void)
   compare_matrices (&m, &m2);
 }
 
+static void
+matrix_neutral_element (void)
+{
+  graphene_matrix_t identity;
+  graphene_matrix_t scale;
+  graphene_matrix_t translation;
+  graphene_matrix_t rotation;
+
+  graphene_point3d_t null_vector = GRAPHENE_POINT3D_INIT (0,0,0);
+
+  graphene_matrix_init_identity (&identity);
+  g_assert_true (graphene_matrix_is_identity (&identity));
+
+  graphene_matrix_scale (&identity, 1.0f, 1.0f, 1.0f);
+  g_assert_true (graphene_matrix_is_identity (&identity));
+  graphene_matrix_init_scale (&scale, 1.0f, 1.0f, 1.0f);
+  g_assert_true (graphene_matrix_is_identity (&scale));
+
+  graphene_matrix_rotate (&identity, 0.0f, graphene_vec3_z_axis ());
+  g_assert_true (graphene_matrix_is_identity (&identity));
+  graphene_matrix_init_rotate (&rotation, 0.0f, graphene_vec3_z_axis ());
+  g_assert_true (graphene_matrix_is_identity (&rotation));
+
+  graphene_matrix_translate (&identity, &null_vector);
+  g_assert_true (graphene_matrix_is_identity (&identity));
+  graphene_matrix_init_translate (&translation, &null_vector);
+  g_assert_true (graphene_matrix_is_identity (&translation));
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -120,6 +149,7 @@ main (int argc, char *argv[])
   g_test_add_func ("/matrix/scale", matrix_scale);
   g_test_add_func ("/matrix/rotation", matrix_rotation);
   g_test_add_func ("/matrix/translation", matrix_translation);
+  g_test_add_func ("/matrix/neutral_element", matrix_neutral_element);
 
   return g_test_run ();
 }
