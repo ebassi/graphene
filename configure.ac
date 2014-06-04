@@ -471,7 +471,7 @@ dnl === Benchmarks ============================================================
 AC_ARG_ENABLE([benchmarks],
               [AS_HELP_STRING([--enable-benchmarks], [Enable benchmarks])],
               [build_benchmarks=$enableval],
-              [build_benchmarks=no])
+              [build_benchmarks=yes])
 
 AM_CONDITIONAL(BUILD_BENCHMARKS, [test "x$build_benchmarks" = xyes])
 

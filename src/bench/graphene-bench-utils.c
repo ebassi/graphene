@@ -37,8 +37,8 @@ enum {
 
   /* run */
   BENCH_WARM_UP,
-  BENCH_ROUND_TIME,
   BENCH_RUNNING,
+  BENCH_OUTPUT,
 
   /* fixture teardown */
   BENCH_TEARDOWN,
@@ -57,26 +57,23 @@ enum
 static int bench_state;
 static int bench_exit_status;
 static const char *bench_argv0;
-static const char *bench_fast_path = "<unset>";
+static const char *bench_fast_path = GRAPHENE_SIMD_S;
 static GrapheneBenchSetupFunc bench_fixture_setup;
 static GrapheneBenchTeardownFunc bench_fixture_teardown;
 static gpointer bench_fixture;
 static GHashTable *bench_units;
-static double bench_factor;
-static int bench_unit_rounds = 1;
+static int bench_unit_rounds = 10000;
 static int bench_output;
 
 static gboolean bench_verbose = FALSE;
 static int bench_warm_up_runs = 50;
-static int bench_estimate_runs = 5;
-static int bench_duration = 5;
+static int bench_runs = 100;
 static char *bench_format = NULL;
 
 static GOptionEntry bench_options[] = {
   { "verbose", 'v', 0, G_OPTION_ARG_NONE, &bench_verbose, "Print extra information", NULL },
   { "warm-up-runs", 0, 0, G_OPTION_ARG_INT, &bench_warm_up_runs, "Number of warm up cycles", "ITERATIONS" },
-  { "estimate-runs", 0, 0, G_OPTION_ARG_INT, &bench_estimate_runs, "Number of estimation cycles", "ITERATIONS" },
-  { "duration", 'd', 0, G_OPTION_ARG_INT, &bench_duration, "Benchmark duration", "SECONDS" },
+  { "bench-runs", 0, 0, G_OPTION_ARG_INT, &bench_runs, "Number of bench cycles", "ITERATIONS" },
   { "output-format", 'f', 0, G_OPTION_ARG_STRING, &bench_format, "Format of the output (csv,json)", "FORMAT" },
 
   { NULL, }
@@ -88,23 +85,11 @@ graphene_bench_init (int    *argc_p,
                      ...)
 {
   GOptionContext *context;
-  const char *opt;
-  va_list args;
   char **argv = argv_p != NULL ? *argv_p : NULL;
   int argc = argc_p != NULL ? *argc_p : 0;
 
   if (argc != 0)
     bench_argv0 = argv[0];
-
-  va_start (args, argv_p);
-  opt = va_arg (args, const char *);
-  while (opt != NULL && *opt != '\0')
-    {
-      if (g_strcmp0 (opt, GRAPHENE_BENCH_OPT_IMPLEMENTATION) == 0)
-        bench_fast_path = va_arg (args, const char *);
-
-      opt = va_arg (args, const char *);
-    }
 
   context = g_option_context_new ("Graphene benchmark options");
   g_option_context_add_main_entries (context, bench_options, NULL);
@@ -144,8 +129,10 @@ graphene_bench_add_func (const char        *path,
 }
 
 static void
-graphene_bench_warm_up (const char *path,
-                        GrapheneBenchFunc func)
+graphene_bench_warm_up (const char *impl,
+                        const char *path,
+                        GrapheneBenchFunc func,
+                        int num_rounds)
 {
   int i;
 
@@ -155,161 +142,103 @@ graphene_bench_warm_up (const char *path,
                 path,
                 bench_warm_up_runs);
 
-  for (i = 0; i < bench_warm_up_runs; i += 1)
+  for (i = 0; i < num_rounds; i += 1)
     func (bench_fixture);
 }
 
-/* the time we want each round to take, in seconds.
- *
- * this value should be large enough compared to the timer resolution,
- * and still small enough that any fluctuation will miss the running
- * window
- */
-#define TARGET_ROUND_TIME 0.004
-
-static gint64
-graphene_bench_estimate_round_time (const char *path,
-                                    GrapheneBenchFunc func)
-{
-  GTimer *timer = g_timer_new ();
-  double min_elapsed = 0;
-  int i;
-
-  for (i = 0; i < bench_estimate_runs; i += 1)
-    {
-      double elapsed;
-
-      g_timer_start (timer);
-      func (bench_fixture);
-      g_timer_stop (timer);
-
-      elapsed = g_timer_elapsed (timer, NULL)
-              * 1000000.0
-              / bench_unit_rounds;
-
-      if (i == 0)
-        min_elapsed = elapsed;
-      else
-        min_elapsed = MIN (min_elapsed, elapsed);
-    }
-
-  g_timer_destroy (timer);
-
-  bench_factor = (TARGET_ROUND_TIME * 1000000.0 / bench_unit_rounds)
-               / min_elapsed;
-
-  if (bench_verbose)
-    g_printerr ("# estimated '[%s]:%s' (runs:%d): %.6f usecs/round (correction: %.2f)\n",
-                bench_fast_path,
-                path,
-                bench_estimate_runs,
-                min_elapsed / bench_unit_rounds,
-                bench_factor);
-
-  return (bench_duration / TARGET_ROUND_TIME) + 1;
-}
-
-static GArray *
-graphene_bench_run_test (gint64 num_rounds,
+static double
+graphene_bench_run_test (const char *impl,
                          const char *path,
-                         GrapheneBenchFunc func)
+                         GrapheneBenchFunc func,
+                         gint64 num_rounds)
 {
-  GArray *res = g_array_sized_new (FALSE, FALSE, sizeof (double), num_rounds);
   GTimer *timer = g_timer_new ();
-  double min_elapsed;
+  double elapsed;
   int i;
+
+  g_timer_start (timer);
 
   for (i = 0; i < num_rounds; i += 1)
-    {
-      double elapsed;
+    func (bench_fixture);
 
-      g_timer_start (timer);
-      func (bench_fixture);
-      g_timer_stop (timer);
-
-      elapsed = g_timer_elapsed (timer, NULL)
-              * 1000000.0
-              / bench_unit_rounds;
-
-      if (i == 0)
-        min_elapsed = elapsed;
-      else
-        min_elapsed = MIN (min_elapsed, elapsed);
-
-      g_array_insert_val (res, i, min_elapsed);
-    }
-
+  elapsed = g_timer_elapsed (timer, NULL) * 1000000000.0;
   g_timer_destroy (timer);
 
   if (bench_verbose)
     g_printerr ("# '[%s]:%s': %.6f usecs/round after %" G_GINT64_FORMAT " rounds\n",
-                bench_fast_path,
+                impl,
                 path,
-                min_elapsed,
-                num_rounds * (gint64) bench_unit_rounds);
+                elapsed,
+                num_rounds);
 
-  return res;
+  return elapsed;
 }
 
-static int
-result_sort (gconstpointer p1,
-             gconstpointer p2)
+static double
+format_time (double d,
+             char **unit)
 {
-  const double *d1 = p1;
-  const double *d2 = p2;
+  if (d > 1000000000)
+    {
+      *unit = "s";
+      return d / 1000000000;
+    }
 
-  if (*d1 < *d2)
-    return -1;
+  if (d > 1000000)
+    {
+      *unit = "us";
+      return d / 1000000;
+    }
 
-  if (*d1 > *d2)
-    return 1;
+  if (d > 1000)
+    {
+      *unit = "ms";
+      return d / 1000;
+    }
 
-  return 0;
+  *unit = "ns";
+
+  return d;
 }
 
 static void
-graphene_bench_print_results (const char *path,
-                              GArray     *results)
+graphene_bench_print_results (const char *impl,
+                              const char *path,
+                              double      elapsed,
+                              int         num_rounds)
 {
-  double avg;
-  int i;
-
-  /* skip the first and last results */
-  for (i = 1; i < results->len - 1; i += 1)
-    avg += g_array_index (results, double, i);
-
-  avg /= (double) (results->len - 2);
+  char *d_unit, *iter_unit, *item_unit;
+  double d = format_time (elapsed, &d_unit);
+  double iter = format_time (elapsed / num_rounds, &iter_unit);
+  double item = format_time (elapsed / num_rounds / bench_unit_rounds, &item_unit);
 
   switch (bench_output)
     {
     case BENCH_FORMAT_NONE:
       g_print ("### unit '%s' (using %s implementation) ###\n"
-               "- Number of iterations per round: %d\n"
-               "- Aveage time per iteration: %.6f usecs\n"
-               "- Number of rounds in %d seconds: %d\n",
-               path, bench_fast_path,
-               (int) ((bench_unit_rounds * bench_factor) / avg),
-               avg,
-               bench_duration, results->len);
+               "Duration: %.3f %s\n"
+               "Per iteration: %.6f %s\n"
+               "Per item: %.6f %s\n",
+               path, impl,
+               d, d_unit,
+               iter, iter_unit,
+               item, item_unit);
       break;
 
     case BENCH_FORMAT_CSV:
-      /* path, impl, min, max, avg */
       g_print ("%s,%s,%.6f,%.6f,%.6f\n",
-               path,
-               bench_fast_path,
-               g_array_index (results, double, 0),
-               g_array_index (results, double, results->len - 1),
-               avg);
+               path, impl,
+               elapsed,
+               elapsed / num_rounds,
+               elapsed / num_rounds / bench_unit_rounds);
       break;
 
     case BENCH_FORMAT_JSON:
-      g_print ("{ \"%s\": { \"implementation\": \"%s\", \"times\": [ %.6f, %.6f, %.6f ] } }\n",
-               path,
-               bench_fast_path,
-               g_array_index (results, double, 0),
-               g_array_index (results, double, results->len - 1),
-               avg);
+      g_print ("{\"%s\":{\"impl\":\"%s\",\"total\":%.6f,\"iteration\":%.6f,\"round\":%.6f}}\n",
+               path, impl,
+               elapsed,
+               elapsed / num_rounds,
+               elapsed / num_rounds / bench_unit_rounds);
       break;
 
     default:
@@ -317,8 +246,8 @@ graphene_bench_print_results (const char *path,
     }
 }
 
-int
-graphene_bench_run (void)
+static int
+graphene_bench_round_run (const char *impl)
 {
   bench_state = BENCH_START;
 
@@ -338,22 +267,16 @@ graphene_bench_run (void)
         {
           const char *path = key;
           GrapheneBenchFunc func = value;
-          gint64 num_rounds;
-          GArray *res;
+          double elapsed;
 
           bench_state = BENCH_WARM_UP;
-          graphene_bench_warm_up (path, func);
-
-          bench_state = BENCH_ROUND_TIME;
-          num_rounds = graphene_bench_estimate_round_time (path, func);
+          graphene_bench_warm_up (impl, path, func, bench_warm_up_runs);
 
           bench_state = BENCH_RUNNING;
-          res = graphene_bench_run_test (num_rounds, path, func);
+          elapsed = graphene_bench_run_test (impl, path, func, bench_runs);
 
-          /* sort the results */
-          g_array_sort (res, result_sort);
-          graphene_bench_print_results (path, res);
-          g_array_unref (res);
+          bench_state = BENCH_OUTPUT;
+          graphene_bench_print_results (impl, path, elapsed, bench_runs);
         }
     }
 
@@ -369,13 +292,10 @@ graphene_bench_run (void)
   return bench_exit_status;
 }
 
-double
-graphene_bench_get_factor (void)
+int
+graphene_bench_run (void)
 {
-  if (bench_state == BENCH_WARM_UP || bench_state == BENCH_ROUND_TIME)
-    return 1.0;
-
-  return bench_factor;
+  return graphene_bench_round_run (bench_fast_path);
 }
 
 void
@@ -387,7 +307,5 @@ graphene_bench_set_rounds_per_unit (int n_checks)
 int
 graphene_bench_get_rounds_per_unit (void)
 {
-  int res = graphene_bench_get_factor () * (double) bench_unit_rounds;
-
-  return MAX (res, 1);
+  return MAX (bench_unit_rounds, 1);
 }

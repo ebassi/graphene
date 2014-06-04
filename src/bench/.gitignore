@@ -1,9 +1,8 @@
 /.deps/
 /.libs/
-/*.o
-/*.lo
-/*.la
 /*.csv
-/scalar-*
-/gcc-*
-/sse-*
+/*.o
+/*.la
+/*.lo
+/*.log
+/matrix

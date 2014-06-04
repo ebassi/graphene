@@ -29,8 +29,6 @@
 
 G_BEGIN_DECLS
 
-#define GRAPHENE_BENCH_OPT_IMPLEMENTATION       "graphene-bench-impl"
-
 typedef gpointer (* GrapheneBenchSetupFunc) (void);
 typedef void (* GrapheneBenchFunc) (gpointer fixture);
 typedef void (* GrapheneBenchTeardownFunc) (gpointer fixture);
