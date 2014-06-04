@@ -504,20 +504,22 @@ AC_CONFIG_COMMANDS([src/graphene-config.h],
 extern "C" {
 #endif
 
+#ifndef GRAPHENE_BENCHMARK
 _______EOF
 
         if test "x$graphene_has_sse2" = xyes; then
-          echo '#define GRAPHENE_HAS_SSE 1' >> $outfile
+          echo '# define GRAPHENE_HAS_SSE 1' >> $outfile
         fi
         if test "x$graphene_has_arm_neon" = xyes; then
-          echo '#define GRAPHENE_HAS_ARM_NEON 1' >> $outfile
+          echo '# define GRAPHENE_HAS_ARM_NEON 1' >> $outfile
         fi
         if test "x$graphene_has_gcc_vector" = xyes; then
-          echo '#define GRAPHENE_HAS_GCC 1' >> $outfile
+          echo '# define GRAPHENE_HAS_GCC 1' >> $outfile
         fi
 
         cat >> $outfile <<_______EOF
-#define GRAPHENE_HAS_SCALAR 1
+# define GRAPHENE_HAS_SCALAR 1
+#endif /* GRAPHENE_BENCHMARK */
 
 #if defined(GRAPHENE_HAS_SSE)
 # define GRAPHENE_USE_SSE
