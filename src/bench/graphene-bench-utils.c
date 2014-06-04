@@ -57,7 +57,7 @@ enum
 static int bench_state;
 static int bench_exit_status;
 static const char *bench_argv0;
-static const char *bench_fast_path = GRAPHENE_SIMD_S;
+static const char *bench_fast_path;
 static GrapheneBenchSetupFunc bench_fixture_setup;
 static GrapheneBenchTeardownFunc bench_fixture_teardown;
 static gpointer bench_fixture;
@@ -87,9 +87,24 @@ graphene_bench_init (int    *argc_p,
   GOptionContext *context;
   char **argv = argv_p != NULL ? *argv_p : NULL;
   int argc = argc_p != NULL ? *argc_p : 0;
+  const char *opt = NULL;
+  va_list opts;
 
   if (argc != 0)
     bench_argv0 = argv[0];
+
+  va_start (opts, argv_p);
+
+  opt = va_arg (opts, const char *);
+  while (opt != NULL)
+    {
+      if (g_strcmp0 (opt, "implementation") == 0)
+        bench_fast_path = va_arg (opts, const char *);
+
+      opt = va_arg (opts, const char *);
+    }
+
+  va_end (opts);
 
   context = g_option_context_new ("Graphene benchmark options");
   g_option_context_add_main_entries (context, bench_options, NULL);

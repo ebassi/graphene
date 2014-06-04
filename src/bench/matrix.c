@@ -78,7 +78,9 @@ matrix_teardown (gpointer data_)
 int
 main (int argc, char *argv[])
 {
-  graphene_bench_init (&argc, &argv, NULL);
+  graphene_bench_init (&argc, &argv,
+                       "implementation", IMPL,
+                       NULL);
 
   graphene_bench_set_fixture_setup (matrix_setup);
   graphene_bench_set_fixture_teardown (matrix_teardown);
