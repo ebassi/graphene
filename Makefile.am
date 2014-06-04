@@ -6,9 +6,9 @@ EXTRA_DIST = \
 	build/autotools/tap-driver.sh \
 	build/autotools/tap-test
 
-SUBDIRS = src
+SUBDIRS = src doc
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-maintainer-flags
+DISTCHECK_CONFIGURE_FLAGS = --enable-maintainer-flags --enable-gtk-doc
 
 if ENABLE_GCOV
 # use recursive makes in order to ignore errors during check/perf

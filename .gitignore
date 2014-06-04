@@ -3,6 +3,7 @@ Makefile.in
 *.swp
 /aclocal.m4
 /autom4te.cache/
+/build/autotools/gtk-doc.m4
 /build/autotools/libtool.m4
 /build/autotools/ltoptions.m4
 /build/autotools/ltsugar.m4
@@ -21,6 +22,7 @@ Makefile.in
 /configure
 /graphene-lcov.info
 /graphene-lcov/
+/gtk-doc.make
 /libtool
 /src/.deps
 /src/.libs

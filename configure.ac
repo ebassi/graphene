@@ -475,6 +475,10 @@ AC_ARG_ENABLE([benchmarks],
 
 AM_CONDITIONAL(BUILD_BENCHMARKS, [test "x$build_benchmarks" = xyes])
 
+dnl === API Reference =========================================================
+
+GTK_DOC_CHECK([1.20], [--flavour no-tmpl])
+
 dnl === Output ================================================================
 
 GRAPHENE_CFLAGS="$BASE_CFLAGS $GRAPHENE_DEPS_CFLAGS $GRAPHENE_VISIBILITY_CFLAGS $GRAPHENE_GCOV_CFLAGS $GRAPHENE_GOBJECT_CFLAGS"
@@ -581,6 +585,8 @@ AC_CONFIG_FILES([
         src/graphene.pc
 
         src/graphene-version.h
+
+        doc/Makefile
 ])
 
 AC_OUTPUT

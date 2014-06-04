@@ -22,6 +22,12 @@ if test -z $AUTORECONF; then
         exit 1
 fi
 
+GTKDOCIZE=`which gtkdocize`
+if test -z $GTKDOCIZE; then
+        echo "*** No GTK-Doc found, please install it ***"
+        exit 1
+fi
+
 # NOCONFIGURE is used by gnome-common
 if test -z "$NOCONFIGURE"; then
         if test -z "$*"; then
@@ -32,6 +38,7 @@ fi
 
 rm -rf autom4te.cache
 
+gtkdocize || exit $?
 autoreconf --force --install --verbose || exit $?
 
 cd "$olddir"
