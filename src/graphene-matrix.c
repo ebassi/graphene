@@ -143,9 +143,13 @@ graphene_matrix_init_perspective (graphene_matrix_t *m,
                                   float              z_near,
                                   float              z_far)
 {
+  float fovy_rad;
+
   g_return_val_if_fail (m != NULL, NULL);
 
-  graphene_simd4x4f_init_perspective (&m->value, fovy, aspect, z_near, z_far);
+  fovy_rad = fovy * GRAPHENE_PI / 180.f;
+
+  graphene_simd4x4f_init_perspective (&m->value, fovy_rad, aspect, z_near, z_far);
 
   return m;
 }
@@ -238,10 +242,14 @@ graphene_matrix_init_rotate (graphene_matrix_t     *m,
                              float                  angle,
                              const graphene_vec3_t *axis)
 {
+  float rad;
+
   g_return_val_if_fail (m != NULL, NULL);
   g_return_val_if_fail (axis != NULL, m);
 
-  graphene_simd4x4f_rotation (&m->value, angle, axis->value);
+  rad = angle * GRAPHENE_PI / 180.f;
+
+  graphene_simd4x4f_rotation (&m->value, rad, axis->value);
 
   return m;
 }
@@ -722,8 +730,11 @@ graphene_matrix_rotate (graphene_matrix_t     *m,
                         const graphene_vec3_t *axis)
 {
   graphene_simd4x4f_t rot_m;
+  float rad;
 
-  graphene_simd4x4f_rotation (&rot_m, angle, axis->value);
+  rad = angle * GRAPHENE_PI / 180.f;
+
+  graphene_simd4x4f_rotation (&rot_m, rad, axis->value);
   graphene_simd4x4f_matrix_mul (&m->value, &rot_m, &m->value);
 }
 
