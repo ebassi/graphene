@@ -1,4 +1,4 @@
-/* graphene
+/* graphene-simd4x4f.c
  *
  * Copyright © 2014  Emmanuele Bassi
  *
@@ -21,33 +21,47 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_H__
-#define __GRAPHENE_H__
+#include "config.h"
 
-#define GRAPHENE_H_INSIDE
+#include <string.h>
+#include <math.h>
 
-#include "graphene-types.h"
-#include "graphene-macros.h"
-#include "graphene-config.h"
-#include "graphene-version.h"
-#include "graphene-version-macros.h"
-
-#include "graphene-simd4f.h"
 #include "graphene-simd4x4f.h"
 
-#include "graphene-vec2.h"
-#include "graphene-vec3.h"
-#include "graphene-vec4.h"
+#if defined(GRAPHENE_USE_SSE) || defined(GRAPHENE_USE_GCC) || defined(GRAPHENE_USE_ARM_NEON)
 
-#include "graphene-point.h"
-#include "graphene-rect.h"
+void
+(graphene_simd4x4f_transpose_in_place) (graphene_simd4x4f_t *s)
+{
+  return graphene_simd4x4f_transpose_in_place (s);
+}
 
-#include "graphene-point3d.h"
-#include "graphene-quad.h"
-#include "graphene-quaternion.h"
+#else
 
-#include "graphene-matrix.h"
+void
+(graphene_simd4x4f_transpose_in_place) (graphene_simd4x4f_t *s)
+{
+  graphene_simd4x4f_t m = *s;
 
-#undef GRAPHENE_H_INSIDE
+  s->x.x = m.x.x;
+  s->x.y = m.y.x;
+  s->x.z = m.z.x;
+  s->x.w = m.w.x;
 
-#endif /* __GRAPHENE_H__ */
+  s->y.x = m.x.y;
+  s->y.y = m.y.y;
+  s->y.z = m.z.y;
+  s->y.w = m.w.y;
+
+  s->z.x = m.x.z;
+  s->z.y = m.y.z;
+  s->z.z = m.z.z;
+  s->z.w = m.w.z;
+
+  s->w.x = m.x.w;
+  s->w.y = m.y.w;
+  s->w.z = m.z.w;
+  s->w.w = m.w.w;
+}
+
+#endif

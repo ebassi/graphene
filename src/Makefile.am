@@ -24,6 +24,8 @@ source_h = \
 	graphene-quad.h \
 	graphene-quaternion.h \
 	graphene-rect.h \
+	graphene-simd4f.h \
+	graphene-simd4x4f.h \
 	graphene-vec2.h \
 	graphene-vec3.h \
 	graphene-vec4.h \
@@ -37,24 +39,14 @@ source_c = \
 	graphene-quad.c \
 	graphene-quaternion.c \
 	graphene-rect.c \
+	graphene-simd4f.c \
+	graphene-simd4x4f.c \
 	graphene-size.c \
 	graphene-vectors.c \
 	$(NULL)
 
 source_h_priv = \
 	graphene-line-segment.h \
-	graphene-simd4f.h \
-	graphene-simd4f-common.h \
-	graphene-simd4f-gcc.h \
-	graphene-simd4f-neon.h \
-	graphene-simd4f-scalar.h \
-	graphene-simd4f-sse.h \
-	graphene-simd4x4f.h \
-	graphene-simd4x4f-common.h \
-	graphene-simd4x4f-gcc.h \
-	graphene-simd4x4f-neon.h \
-	graphene-simd4x4f-scalar.h \
-	graphene-simd4x4f-sse.h \
 	graphene-vectors-private.h \
 	$(NULL)
 source_c_priv =
