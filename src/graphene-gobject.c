@@ -21,6 +21,43 @@
  * THE SOFTWARE.
  */
 
+/**
+ * SECTION:graphene-gobject
+ * @Title: GObject integration
+ * @short_description: Types for GObject properties and signals
+ *
+ * Graphene optionally provides information for using its own types with
+ * GObject properties and signals.
+ *
+ * ## Using Graphene with GObject
+ *
+ * In order to discover at compile time if Graphene exposes type information
+ * for the GType type system, you need to check if the `graphene-gobject-1.0`
+ * pkg-config file exists. In build systems using autotools, you can use
+ * the `PKG_CHECK_EXISTS` m4 macro, for instance:
+ *
+ * |[
+ *   PKG_CHECK_EXISTS([graphene-gobject-1.0],
+ *                    [action-if-found],
+ *                    [action-if-not-found]
+ * ]|
+ *
+ * All the types provided by Graphene are boxed types, which means you
+ * will have to use the #GBoxed API when dealing with #GValue, #GParamSpec,
+ * and signal marshallers.
+ *
+ * Graphene type names for use in GObject are the camel case version of
+ * the C name, minus the `_t` suffix; for instance:
+ *
+ *  * #graphene_point_t becomes `GraphenePoint`
+ *  * #graphene_point3d_t becomes `GraphenePoint3D`
+ *  * #graphene_rect_t becomes `GrapheneRect`
+ *  * #graphene_matrix_t becomes `GrapheneMatrix`
+ *
+ * There is no direct access for the low level #graphene_simd4f_t and
+ * #graphene_simd4x4f_t SIMD types.
+ */
+
 #include "config.h"
 
 #include "graphene-gobject.h"
