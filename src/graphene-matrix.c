@@ -1160,13 +1160,13 @@ void
 graphene_matrix_print (const graphene_matrix_t *m)
 {
   int i;
-  g_print("\n");
+
   for (i = 0; i < 4; i++)
-  {
-    g_print ("%.3f %.3f %.3f %.3f\n",
-      graphene_matrix_get_value (m, i, 0),
-      graphene_matrix_get_value (m, i, 1),
-      graphene_matrix_get_value (m, i, 2),
-      graphene_matrix_get_value (m, i, 3));
-  }
+    {
+      g_print ("%.5f %.5f %.5f %.5f\n",
+               graphene_matrix_get_value (m, i, 0),
+               graphene_matrix_get_value (m, i, 1),
+               graphene_matrix_get_value (m, i, 2),
+               graphene_matrix_get_value (m, i, 3));
+    }
 }
