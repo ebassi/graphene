@@ -8,27 +8,30 @@ deg_to_rad (float degree)
   return degree * GRAPHENE_PI / 180.0f;
 }
 
-static void
-g_assert_cmpfloat_delta (float n1,
-                         float n2,
-                         float delta)
-{
-  g_assert (fabsf (n1 - n2) < delta);
-}
+#define g_assert_fuzzy_float_eq(n1,n2,d) \
+  do { long double __n1 = (n1), __n2 = (n2), __d = (d); \
+     if (fabsl (__n1 - __n2) < __d) ; else \
+       g_assertion_message_cmpnum (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, \
+                                   #n1 " == " #n2 " +/- " #d, \
+                                   __n1, "==", __n2, 'f'); \
+   } while (0)
+
 
 static void
 compare_matrices (const graphene_matrix_t * m1,
                   const graphene_matrix_t * m2)
 {
   int x, y;
+
   for (x = 0; x < 4; x++)
-  {
-    for (y = 0; y < 4; y++)
     {
-      g_assert_cmpfloat_delta (graphene_matrix_get_value (m1, x, y),
-                               graphene_matrix_get_value (m2, x, y), 0.00001);
+      for (y = 0; y < 4; y++)
+        {
+          g_assert_fuzzy_float_eq (graphene_matrix_get_value (m1, x, y),
+                                   graphene_matrix_get_value (m2, x, y),
+                                   0.00001f);
+        }
     }
-  }
 }
 
 static void
