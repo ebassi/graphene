@@ -21,6 +21,23 @@
  * THE SOFTWARE.
  */
 
+/**
+ * SECTION:graphene-simd4f
+ * @Title: SIMD vector
+ * @short_description: Low level floating point 4-sized vector
+ *
+ * The #graphene_simd4f_t type wraps a platform specific implementation of
+ * a vector of four floating point values.
+ *
+ * Graphene can be compiled to use different implementations of the SIMD
+ * types, and will generally prefer the faster hardware-backed implementation
+ * if one is available.
+ *
+ * The #graphene_simd4f_t should be treated as an opaque, integral type;
+ * you cannot access its components directly, and you can only operate on
+ * all components at the same time.
+ */
+
 #include "config.h"
 
 #include <string.h>
@@ -28,8 +45,30 @@
 
 #include "graphene-simd4f.h"
 
+/**
+ * graphene_simd4f_t:
+ *
+ * A vector type containing four floating point values.
+ *
+ * Since: 1.0
+ */
+
+/* fast paths are all defined in the graphene-simd4f.h header */
 #if defined(GRAPHENE_USE_SSE) || defined(GRAPHENE_USE_GCC) || defined(GRAPHENE_USE_ARM_NEON)
 
+/**
+ * graphene_simd4f_init:
+ * @x: the first component of the vector
+ * @y: the second component of the vector
+ * @z: the third component of the vector
+ * @w: the fourth component of the vector
+ *
+ * Initializes a #graphene_simd4f_t with the given values.
+ *
+ * Returns: the initialized #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_init) (float x,
                         float y,
@@ -39,30 +78,86 @@ graphene_simd4f_t
   return graphene_simd4f_init (x, y, z, w);
 }
 
+/**
+ * graphene_simd4f_init_zero:
+ *
+ * Initializes a #graphene_simd4f_t with 0 in all components.
+ *
+ * Returns: the initialized #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_init_zero) (void)
 {
   return graphene_simd4f_init_zero ();
 }
 
+/**
+ * graphene_simd4f_init_4f:
+ * @v: (array fixed-size=4): an array of at least 4 floating
+ *   point values
+ *
+ * Initializes a #graphene_simd4f_t using an array of 4 floating
+ * point values.
+ *
+ * Returns: the initialized #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_init_4f) (const float *v)
 {
   return graphene_simd4f_init_4f (v);
 }
 
+/**
+ * graphene_simd4f_init_3f:
+ * @v: (array fixed-size=3): an array of at least 3 floating
+ *   point values
+ *
+ * Initializes a #graphene_simd4f_t using an array of 3 floating
+ * point values.
+ *
+ * Returns: the initialized #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_init_3f) (const float *v)
 {
   return graphene_simd4f_init_3f (v);
 }
 
+/**
+ * graphene_simd4f_init_2f:
+ * @v: (array fixed-size=2): an array of at least 2 floating
+ * point values
+ *
+ * Initializes a #graphene_simd4f_t using an array of 2 floating
+ * point values.
+ *
+ * Returns: the initialized #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_init_2f) (const float *v)
 {
   return graphene_simd4f_init_2f (v);
 }
 
+/**
+ * graphene_simd4f_dup_4f:
+ * @s: a #graphene_simd4f_t
+ * @v: (out) (array fixed-size=4): return location for an
+ *   array of at least 4 floating point values
+ *
+ * Copies the contents of a #graphene_simd4f_t into an
+ * array of floating points.
+ *
+ * Since: 1.0
+ */
 void
 (graphene_simd4f_dup_4f) (const graphene_simd4f_t  s,
                           float                   *v)
@@ -70,6 +165,17 @@ void
   graphene_simd4f_dup_4f (s, v);
 }
 
+/**
+ * graphene_simd4f_dup_3f:
+ * @s: a #graphene_simd4f_t
+ * @v: (out) (array fixed-size=3): return location for an
+ *   array of at least 3 floating point values
+ *
+ * Copies the contents of a #graphene_simd4f_t into an
+ * array of floating points.
+ *
+ * Since: 1.0
+ */
 void
 (graphene_simd4f_dup_3f) (const graphene_simd4f_t  s,
                           float                   *v)
@@ -77,85 +183,265 @@ void
   graphene_simd4f_dup_3f (s, v);
 }
 
+/**
+ * graphene_simd4f_dup_2f:
+ * @s: a #graphene_simd4f_t
+ * @v: (out) (array fixed-size=2): return location for an
+ *   array of at least 2 floating point values
+ *
+ * Copies the contents of a #graphene_simd4f_t into an
+ * array of floating points.
+ *
+ * Since: 1.0
+ */
 void
 (graphene_simd4f_dup_2f) (const graphene_simd4f_t  s,
-                        float                   *v)
+                          float                   *v)
 {
   graphene_simd4f_dup_2f (s, v);
 }
 
+/**
+ * graphene_simd4f_get_x:
+ * @s: a #graphene_simd4f_t
+ *
+ * Retrieves the first component of @s.
+ *
+ * Returns: the first component of a #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 float
 (graphene_simd4f_get_x) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_get_x (s);
 }
 
+/**
+ * graphene_simd4f_get_y:
+ * @s: a #graphene_simd4f_t
+ *
+ * Retrieves the second component of @s.
+ *
+ * Returns: the second component of a #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 float
 (graphene_simd4f_get_y) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_get_y (s);
 }
 
+/**
+ * graphene_simd4f_get_z:
+ * @s: a #graphene_simd4f_t
+ *
+ * Retrieves the third component of @s.
+ *
+ * Returns: the third component of a #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 float
 (graphene_simd4f_get_z) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_get_z (s);
 }
 
+/**
+ * graphene_simd4f_get_w:
+ * @s: a #graphene_simd4f_t
+ *
+ * Retrieves the fourth component of @s.
+ *
+ * Returns: the fourth component of a #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 float
 (graphene_simd4f_get_w) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_get_w (s);
 }
 
+/**
+ * graphene_simd4f_splat:
+ * @v: a floating point value
+ *
+ * Sets all the components of a new #graphene_simd4f_t to the
+ * same value @v.
+ *
+ * Returns: the initialized #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_splat) (float v)
 {
   return graphene_simd4f_splat (v);
 }
 
+/**
+ * graphene_simd4f_splat_x:
+ * @s: a #graphene_simd4f_t
+ *
+ * Sets all the components of a new #graphene_simd4f_t to the
+ * same value of the first component of the passed vector.
+ *
+ * Returns: the initialized #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
-(graphene_simd4f_splat_x) (graphene_simd4f_t v)
+(graphene_simd4f_splat_x) (const graphene_simd4f_t s)
 {
-  return graphene_simd4f_splat_x (v);
+  return graphene_simd4f_splat_x (s);
 }
 
+/**
+ * graphene_simd4f_splat_y:
+ * @s: a #graphene_simd4f_t
+ *
+ * Sets all the components of a new #graphene_simd4f_t to the
+ * same value of the second component of the passed vector.
+ *
+ * Returns: the initialized #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
-(graphene_simd4f_splat_y) (graphene_simd4f_t v)
+(graphene_simd4f_splat_y) (const graphene_simd4f_t s)
 {
-  return graphene_simd4f_splat_y (v);
+  return graphene_simd4f_splat_y (s);
 }
 
+/**
+ * graphene_simd4f_splat_z:
+ * @s: a #graphene_simd4f_t
+ *
+ * Sets all the components of a #graphene_simd4f_t to the
+ * same value of the third component of the passed vector.
+ *
+ * Returns: the initialized #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
-(graphene_simd4f_splat_z) (graphene_simd4f_t v)
+(graphene_simd4f_splat_z) (const graphene_simd4f_t s)
 {
-  return graphene_simd4f_splat_z (v);
+  return graphene_simd4f_splat_z (s);
 }
 
+/**
+ * graphene_simd4f_splat_w:
+ * @s: a #graphene_simd4f_t
+ *
+ * Sets all the components of a #graphene_simd4f_t to the
+ * same value of the fourth component of the passed vector.
+ *
+ * Returns: the initialized #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
-(graphene_simd4f_splat_w) (graphene_simd4f_t v)
+(graphene_simd4f_splat_w) (const graphene_simd4f_t s)
 {
-  return graphene_simd4f_splat_w (v);
+  return graphene_simd4f_splat_w (s);
 }
 
+/**
+ * graphene_simd4f_reciprocal:
+ * @s: a #graphene_simd4f_t
+ *
+ * Computes the reciprocal of every component of @s.
+ *
+ * Returns: a vector containing the reciprocal of the
+ *   passed vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
-(graphene_simd4f_reciprocal) (graphene_simd4f_t v)
+(graphene_simd4f_reciprocal) (const graphene_simd4f_t s)
 {
-  return graphene_simd4f_reciprocal (v);
+  return graphene_simd4f_reciprocal (s);
 }
 
+/**
+ * graphene_simd4f_sqrt:
+ * @s: a #graphene_simd4f_t
+ *
+ * Computes the square root of every component of @s.
+ *
+ * |[<!-- language="C" -->
+ *   {
+ *     .x = sqrt (s.x),
+ *     .y = sqrt (s.y),
+ *     .z = sqrt (s.z),
+ *     .w = sqrt (s.w)
+ *   }
+ * ]|
+ *
+ * Returns: a vector containing the square root of the
+ *   passed vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
-(graphene_simd4f_sqrt) (graphene_simd4f_t v)
+(graphene_simd4f_sqrt) (const graphene_simd4f_t s)
 {
-  return graphene_simd4f_sqrt (v);
+  return graphene_simd4f_sqrt (s);
 }
 
+/**
+ * graphene_simd4f_rsqrt:
+ * @s: a #graphene_simd4f_t
+ *
+ * Computes the reciprocal square root of every component
+ * of @s.
+ *
+ * |[<!-- language="C" -->
+ *   {
+ *     .x = 1.0 / sqrt (s.x),
+ *     .y = 1.0 / sqrt (s.y),
+ *     .z = 1.0 / sqrt (s.z),
+ *     .w = 1.0 / sqrt (s.w)
+ *   }
+ * ]|
+ *
+ * Returns: a vector containing the reciprocal square root
+ *   of the passed vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
-(graphene_simd4f_rsqrt) (graphene_simd4f_t v)
+(graphene_simd4f_rsqrt) (const graphene_simd4f_t s)
 {
-  return graphene_simd4f_rsqrt (v);
+  return graphene_simd4f_rsqrt (s);
 }
 
+/**
+ * graphene_simd4f_add:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t vector where each
+ * component is the sum of the respective components
+ * in @a and @b.
+ *
+ * |[<!-- lanugage="C" -->
+ *   {
+ *     .x = a.x + b.x,
+ *     .y = a.y + b.y,
+ *     .z = a.z + b.z,
+ *     .w = a.w + b.w
+ *   }
+ * ]|
+ *
+ * Returns: the sum vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_add) (const graphene_simd4f_t a,
                        const graphene_simd4f_t b)
@@ -163,6 +449,28 @@ graphene_simd4f_t
   return graphene_simd4f_add (a, b);
 }
 
+/**
+ * graphene_simd4f_sub:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t vector where each
+ * component is the subtraction of the respective components
+ * in @a and @b.
+ *
+ * |[<!-- lanugage="C" -->
+ *   {
+ *     .x = a.x - b.x,
+ *     .y = a.y - b.y,
+ *     .z = a.z - b.z,
+ *     .w = a.w - b.w
+ *   }
+ * ]|
+ *
+ * Returns: the subtraction vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_sub) (const graphene_simd4f_t a,
                        const graphene_simd4f_t b)
@@ -170,6 +478,28 @@ graphene_simd4f_t
   return graphene_simd4f_sub (a, b);
 }
 
+/**
+ * graphene_simd4f_mul:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t vector where each
+ * component is the multiplication of the respective components
+ * in @a and @b.
+ *
+ * |[<!-- lanugage="C" -->
+ *   {
+ *     .x = a.x * b.x,
+ *     .y = a.y * b.y,
+ *     .z = a.z * b.z,
+ *     .w = a.w * b.w
+ *   }
+ * ]|
+ *
+ * Returns: the multiplication vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_mul) (const graphene_simd4f_t a,
                        const graphene_simd4f_t b)
@@ -177,6 +507,28 @@ graphene_simd4f_t
   return graphene_simd4f_mul (a, b);
 }
 
+/**
+ * graphene_simd4f_div:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t vector where each
+ * component is the division of the respective components
+ * in @a and @b.
+ *
+ * |[<!-- lanugage="C" -->
+ *   {
+ *     .x = a.x / b.x,
+ *     .y = a.y / b.y,
+ *     .z = a.z / b.z,
+ *     .w = a.w / b.w
+ *   }
+ * ]|
+ *
+ * Returns: the division vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_div) (const graphene_simd4f_t a,
                        const graphene_simd4f_t b)
@@ -184,6 +536,20 @@ graphene_simd4f_t
   return graphene_simd4f_div (a, b);
 }
 
+/**
+ * graphene_simd4f_cross3:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t vector where each
+ * component contains the 3-way cross product of the
+ * given @a and @b vectors. You can access the result
+ * as a floating point value through graphene_simd4f_get_x().
+ *
+ * Returns: the cross3 vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_cross3) (const graphene_simd4f_t a,
                           const graphene_simd4f_t b)
@@ -191,6 +557,18 @@ graphene_simd4f_t
   return graphene_simd4f_cross3 (a, b);
 }
 
+/**
+ * graphene_simd4f_min:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t that contains the
+ * minimum value of each component of @a and @b.
+ *
+ * Returns: the new minimum vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_min) (const graphene_simd4f_t a,
                        const graphene_simd4f_t b)
@@ -198,6 +576,18 @@ graphene_simd4f_t
   return graphene_simd4f_min (a, b);
 }
 
+/**
+ * graphene_simd4f_max:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t that contains the
+ * maximum value of each component of @a and @b.
+ *
+ * Returns: the new maximum vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_max) (const graphene_simd4f_t a,
                        const graphene_simd4f_t b)
@@ -267,7 +657,8 @@ gboolean
 {
   return graphene_simd4f_cmp_neq (a, b);
 }
-#else
+
+#else /* GRAPHENE_USE_SCALAR */
 
 graphene_simd4f_t
 (graphene_simd4f_init) (float x,

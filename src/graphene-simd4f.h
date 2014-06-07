@@ -118,25 +118,25 @@ graphene_simd4f_t       graphene_simd4f_max             (const graphene_simd4f_t
                                                          const graphene_simd4f_t b);
 
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_simd4f_t       graphene_simd4f_shuffle_wxyz    (const graphene_simd4f_t v);
+graphene_simd4f_t       graphene_simd4f_shuffle_wxyz    (const graphene_simd4f_t s);
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_simd4f_t       graphene_simd4f_shuffle_zwxy    (const graphene_simd4f_t v);
+graphene_simd4f_t       graphene_simd4f_shuffle_zwxy    (const graphene_simd4f_t s);
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_simd4f_t       graphene_simd4f_shuffle_yzwx    (const graphene_simd4f_t v);
+graphene_simd4f_t       graphene_simd4f_shuffle_yzwx    (const graphene_simd4f_t s);
 
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_simd4f_t       graphene_simd4f_zero_w          (const graphene_simd4f_t v);
+graphene_simd4f_t       graphene_simd4f_zero_w          (const graphene_simd4f_t s);
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_simd4f_t       graphene_simd4f_zero_zw         (const graphene_simd4f_t v);
+graphene_simd4f_t       graphene_simd4f_zero_zw         (const graphene_simd4f_t s);
 
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_merge_high      (const graphene_simd4f_t a,
                                                          const graphene_simd4f_t b);
 
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_simd4f_t       graphene_simd4f_flip_sign_0101  (const graphene_simd4f_t v);
+graphene_simd4f_t       graphene_simd4f_flip_sign_0101  (const graphene_simd4f_t s);
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_simd4f_t       graphene_simd4f_flip_sign_1010  (const graphene_simd4f_t v);
+graphene_simd4f_t       graphene_simd4f_flip_sign_1010  (const graphene_simd4f_t s);
 
 GRAPHENE_AVAILABLE_IN_1_0
 gboolean                graphene_simd4f_cmp_eq          (const graphene_simd4f_t a,
