@@ -97,6 +97,7 @@ Graphene provides common types needed to handle 3D transformations:
  * rectangles
  * quads
  * quaternions
+ * low level SIMD types for vectors and matrices
  * vectors (2, 3, or 4-sized)
  * matrices
 
