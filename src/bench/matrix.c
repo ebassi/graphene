@@ -1,7 +1,17 @@
-#define _XOPEN_SOURCE 600 /* posix_memalign() */
+#include "config.h"
+
+#if defined(HAVE_POSIX_MEMALIGN) && !defined(_XOPEN_SOURCE)
+#define _XOPEN_SOURCE 600
+#endif
+
+#if defined(HAVE_MEMALIGN)
+#include <malloc.h>
+#endif
+
 #include <stdlib.h>
 #include <errno.h>
 #include <glib.h>
+
 #include "graphene-simd4x4f.h"
 #include "graphene-bench-utils.h"
 
@@ -19,22 +29,30 @@ typedef struct
 } MatrixBench;
 
 static gpointer
-alloc_align (gsize n, gsize type_size)
+alloc_align (gsize n,
+             gsize size,
+             gsize alignment)
 {
+  gsize real_size = size * n;
   gpointer res;
 
-  if (posix_memalign (&res, 16, n * type_size) != 0)
-    {
-      int saved_errno = errno;
+#if defined(HAVE_POSIX_MEMALIGN)
+  if (posix_memalign (&res, alignment, real_size) != 0)
+    g_assert_not_reached ();
+#elif defined(HAVE_ALIGNED_ALLOC)
+  g_assert (real_size % alignment == 0);
+  res = aligned_alloc (alignment, real_size);
+#elif defined(HAVE_MEMALIGN)
+  res = memalign (alignment, real_size);
+#endif
 
-      g_error ("posix_memalign: %s\n", g_strerror (saved_errno));
-    }
+  g_assert (res != NULL);
 
   return res;
 }
 
-#define alloc_n_matrix(n)       alloc_align((n), sizeof (graphene_simd4x4f_t))
-#define alloc_n_vec(n)          alloc_align((n), sizeof (graphene_simd4f_t))
+#define alloc_n_matrix(n)       alloc_align((n), sizeof (graphene_simd4x4f_t), 16)
+#define alloc_n_vec(n)          alloc_align((n), sizeof (graphene_simd4f_t), 16)
 
 static gpointer
 matrix_setup (void)
