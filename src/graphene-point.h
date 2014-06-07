@@ -32,9 +32,40 @@
 
 G_BEGIN_DECLS
 
+/**
+ * GRAPHENE_POINT_INIT:
+ * @x: the X coordinate
+ * @y: the Y coordinate
+ *
+ * Initializes a #graphene_point_t with the given coordinates
+ * when declaring it, e.g:
+ *
+ * |[<!-- language="C" -->
+ *   graphene_point_t p = GRAPHENE_POINT_INIT (10.f, 10.f);
+ * ]|
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_POINT_INIT(x,y)        { x, y }
+
+/**
+ * GRAPHENE_POINT_INIT_ZERO:
+ *
+ * Initializes a #graphene_point_t to (0, 0) when declaring it.
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_POINT_INIT_ZERO        GRAPHENE_POINT_INIT (0.f, 0.f)
 
+/**
+ * graphene_point_t:
+ * @x: the X coordinate of the point
+ * @y: the Y coordinate of the point
+ *
+ * A point with two coordinates.
+ *
+ * Since: 1.0
+ */
 struct _graphene_point_t
 {
   float x;
@@ -77,9 +108,40 @@ void                            graphene_point_interpolate      (const graphene_
 GRAPHENE_AVAILABLE_IN_1_0
 const graphene_point_t *        graphene_point_zero             (void);
 
+/**
+ * GRAPHENE_SIZE_INIT:
+ * @w: the width
+ * @h: the height
+ *
+ * Initializes a #graphene_size_t with the given sizes when
+ * declaring it, e.g.:
+ *
+ * |[<!-- language="C" -->
+ *   graphene_size_t size = GRAPHENE_SIZE_INIT (100.f, 100.f);
+ * ]|
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_SIZE_INIT(w,h)         { w, h }
+
+/**
+ * GRAPHENE_SIZE_INIT_ZERO:
+ *
+ * Initializes a #graphene_size_t to (0, 0) when declaring it.
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_SIZE_INIT_ZERO         GRAPHENE_SIZE_INIT (0.f, 0.f)
 
+/**
+ * graphene_size_t:
+ * @width: the width
+ * @height: the height
+ *
+ * A size.
+ *
+ * Since: 1.0
+ */
 struct _graphene_size_t
 {
   float width;

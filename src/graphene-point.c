@@ -24,7 +24,7 @@
 /**
  * SECTION:graphene-point
  * @Title: Point
- * @Short_Description: A point with 2 coordinates
+ * @short_description: A point with 2 coordinates
  *
  * #graphene_point_t is a data structure capable of describing a point with
  * two coordinates:
@@ -44,6 +44,25 @@
  * graphene_point_alloc: (constructor)
  *
  * Allocates a new #graphene_point_t structure.
+ *
+ * The coordinates of the returned point are (0, 0).
+ *
+ * It's possible to chain this function with graphene_point_init()
+ * or graphene_point_init_from_point(), e.g.:
+ *
+ * |[<!-- language="C" -->
+ *   graphene_point_t *
+ *   point_new (float x, float y)
+ *   {
+ *     return graphene_point_init (graphene_point_alloc (), x, y);
+ *   }
+ *
+ *   graphene_point_t *
+ *   point_copy (const graphene_point_t *p)
+ *   {
+ *     return graphene_point_init_from_point (graphene_point_alloc (), p);
+ *   }
+ * ]|
  *
  * Returns: (transfer full): the newly allocated #graphene_point_t.
  *   Use graphene_point_free() to free the resources allocated by
@@ -70,6 +89,20 @@ graphene_point_free (graphene_point_t *p)
   free (p);
 }
 
+/**
+ * graphene_point_init:
+ * @p: a #graphene_point_t
+ * @x: the X coordinate
+ * @y: the Y coordinate
+ *
+ * Initializes @p to the given @x and @y coordinates.
+ *
+ * It's safe to call this function multiple times.
+ *
+ * Returns: (transfer none): the initialized point
+ *
+ * Since: 1.0
+ */
 graphene_point_t *
 graphene_point_init (graphene_point_t *p,
                      float             x,
@@ -83,6 +116,17 @@ graphene_point_init (graphene_point_t *p,
   return p;
 }
 
+/**
+ * graphene_point_init_from_point:
+ * @p: a #graphene_point_t
+ * @src: the #graphene_point_t to use
+ *
+ * Initializes @p with the same coordinates of @src.
+ *
+ * Returns: (transfer none): the initialized point
+ *
+ * Since: 1.0
+ */
 graphene_point_t *
 graphene_point_init_from_point (graphene_point_t       *p,
                                 const graphene_point_t *src)
@@ -95,6 +139,22 @@ graphene_point_init_from_point (graphene_point_t       *p,
   return p;
 }
 
+/**
+ * graphene_point_equal:
+ * @a: a #graphene_point_t
+ * @b: a #graphene_point_t
+ *
+ * Checks if the two points @a and @b point to the same
+ * coordinates.
+ *
+ * This function accounts for floating point fluctuations; if
+ * you want to control the fuzziness of the match, you can use
+ * graphene_point_near() instead.
+ *
+ * Returns: %TRUE if the points have the same coordinates
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_point_equal (const graphene_point_t *a,
                       const graphene_point_t *b)
@@ -108,6 +168,19 @@ graphene_point_equal (const graphene_point_t *a,
   return graphene_point_near (a, b, GRAPHENE_FLOAT_EPSILON);
 }
 
+/**
+ * graphene_point_distance:
+ * @a: a #graphene_point_t
+ * @b: a #graphene_point_t
+ * @d_x: (out) (optional): distance component on the X axis
+ * @d_y: (out) (optional): distance component on the Y axis
+ *
+ * Computes the distance between @a and @b.
+ *
+ * Returns: the distance between the two points
+ *
+ * Since: 1.0
+ */
 float
 graphene_point_distance (const graphene_point_t *a,
                          const graphene_point_t *b,
@@ -134,6 +207,19 @@ graphene_point_distance (const graphene_point_t *a,
   return graphene_simd4f_get_x (graphene_simd4f_length2 (res));
 }
 
+/**
+ * graphene_point_near:
+ * @a: a #graphene_point_t
+ * @b: a #graphene_point_t
+ * @epsilon: threshold between the two points
+ *
+ * Checks whether the two points @a and @b are within
+ * the threshold of @epsilon.
+ *
+ * Returns: %TRUE if the distance is within @epsilon
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_point_near (const graphene_point_t *a,
                      const graphene_point_t *b,
@@ -154,6 +240,19 @@ graphene_point_near (const graphene_point_t *a,
          fabsf (graphene_simd4f_get_y (res)) < epsilon;
 }
 
+/**
+ * graphene_point_interpolate:
+ * @a: a #graphene_point_t
+ * @b: a #graphene_point_t
+ * @factor: the linear interpolation factor
+ * @res: (out caller-allocates): return location for the interpolated
+ *   point
+ *
+ * Linearly interpolates the coordinates of @a and @b using the
+ * given @factor.
+ *
+ * Since: 1.0
+ */
 void
 graphene_point_interpolate (const graphene_point_t *a,
                             const graphene_point_t *b,
@@ -169,6 +268,15 @@ graphene_point_interpolate (const graphene_point_t *a,
 
 static const graphene_point_t _graphene_point_zero = GRAPHENE_POINT_INIT_ZERO;
 
+/**
+ * graphene_point_zero:
+ *
+ * Returns a point fixed at (0, 0).
+ *
+ * Returns: (transfer none): a fixed point
+ *
+ * Since: 1.0
+ */
 const graphene_point_t *
 graphene_point_zero (void)
 {
