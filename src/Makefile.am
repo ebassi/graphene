@@ -33,6 +33,7 @@ source_h = \
 	graphene-version-macros.h \
 	$(NULL)
 source_c = \
+	graphene-alloc.c \
 	graphene-matrix.c \
 	graphene-point.c \
 	graphene-point3d.c \
@@ -46,6 +47,7 @@ source_c = \
 	$(NULL)
 
 source_h_priv = \
+	graphene-alloc-private.h \
 	graphene-line-segment.h \
 	graphene-vectors-private.h \
 	$(NULL)

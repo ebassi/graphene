@@ -38,6 +38,11 @@ AC_CONFIG_MACRO_DIR([build/autotools])
 AM_INIT_AUTOMAKE([1.11 no-define foreign -Wno-portability dist-xz no-dist-gzip tar-ustar])
 
 AM_SILENT_RULES([yes])
+
+AC_PROG_CC
+AC_PROG_CPP
+AC_USE_SYSTEM_EXTENSIONS
+
 AM_PATH_GLIB_2_0
 AM_PROG_CC_C_O
 
@@ -103,6 +108,8 @@ AM_CONDITIONAL(OS_LINUX, [test "$platform_linux" = "yes"])
 AM_CONDITIONAL(OS_WIN32, [test "$platform_win32" = "yes"])
 
 AS_COMPILER_FLAGS([BASE_CFLAGS], ["-O3 -ffast-math -fstrict-aliasing"])
+
+AC_CHECK_FUNCS([aligned_alloc posix_memalign memalign])
 
 dnl === Fast paths ============================================================
 

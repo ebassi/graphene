@@ -25,6 +25,7 @@
 
 #include "graphene-matrix.h"
 
+#include "graphene-alloc-private.h"
 #include "graphene-point.h"
 #include "graphene-point3d.h"
 #include "graphene-rect.h"
@@ -45,13 +46,13 @@
 graphene_matrix_t *
 graphene_matrix_alloc (void)
 {
-  return calloc (1, sizeof (graphene_matrix_t));
+  return graphene_alloc (sizeof (graphene_matrix_t), 1, 16);
 }
 
 void
 graphene_matrix_free (graphene_matrix_t *m)
 {
-  free (m);
+  graphene_free (m);
 }
 
 /**

@@ -24,6 +24,7 @@
 #include "config.h"
 
 #include "graphene-vectors-private.h"
+#include "graphene-alloc-private.h"
 
 /**
  * SECTION:graphene-vectors
@@ -53,7 +54,7 @@
 graphene_vec2_t *
 graphene_vec2_alloc (void)
 {
-  return calloc (1, sizeof (graphene_vec2_t));
+  return graphene_alloc (sizeof (graphene_vec2_t), 1, 16);
 }
 
 /**
@@ -67,7 +68,7 @@ graphene_vec2_alloc (void)
 void
 graphene_vec2_free (graphene_vec2_t *v)
 {
-  free (v);
+  graphene_free (v);
 }
 
 /**
@@ -447,7 +448,7 @@ graphene_vec2_y_axis (void)
 graphene_vec3_t *
 graphene_vec3_alloc (void)
 {
-  return calloc (1, sizeof (graphene_vec3_t));
+  return graphene_alloc (sizeof (graphene_vec3_t), 1, 16);
 }
 
 /**
@@ -461,7 +462,7 @@ graphene_vec3_alloc (void)
 void
 graphene_vec3_free (graphene_vec3_t *v)
 {
-  free (v);
+  graphene_free (v);
 }
 
 /**
@@ -961,7 +962,7 @@ graphene_vec3_z_axis (void)
 graphene_vec4_t *
 graphene_vec4_alloc (void)
 {
-  return calloc (1, sizeof (graphene_vec4_t));
+  return graphene_alloc (sizeof (graphene_vec4_t), 1, 16);
 }
 
 /**
@@ -975,7 +976,7 @@ graphene_vec4_alloc (void)
 void
 graphene_vec4_free (graphene_vec4_t *v)
 {
-  free (v);
+  graphene_free (v);
 }
 
 /**
