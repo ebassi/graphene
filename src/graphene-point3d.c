@@ -61,6 +61,7 @@ graphene_point3d_alloc (void)
 
 /**
  * graphene_point3d_free:
+ * @p: a #graphene_point3d_t
  *
  * Frees the resources allocated via graphene_point3d_alloc().
  *

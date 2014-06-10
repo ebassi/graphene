@@ -29,6 +29,16 @@
 
 G_BEGIN_DECLS
 
+/**
+ * graphene_quad_t:
+ *
+ * A 4 vertex quadrilateral, as represented by four #graphene_point_t.
+ *
+ * The contents of a #graphene_quad_t are private and should never be
+ * accessed directly.
+ *
+ * Since: 1.0
+ */
 struct _graphene_quad_t
 {
   /*< private >*/
@@ -57,6 +67,10 @@ gboolean                graphene_quad_contains          (const graphene_quad_t  
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_quad_bounds            (const graphene_quad_t  *q,
                                                          graphene_rect_t        *r);
+
+GRAPHENE_AVAILABLE_IN_1_0
+const graphene_point_t *graphene_quad_get_point         (const graphene_quad_t  *q,
+                                                         unsigned int            index_);
 
 G_END_DECLS
 

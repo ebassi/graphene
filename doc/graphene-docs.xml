@@ -18,9 +18,7 @@
     <xi:include href="xml/graphene-size.xml"/>
     <xi:include href="xml/graphene-rect.xml"/>
     <xi:include href="xml/graphene-quad.xml"/>
-    <xi:include href="xml/graphene-vec2.xml"/>
-    <xi:include href="xml/graphene-vec3.xml"/>
-    <xi:include href="xml/graphene-vec4.xml"/>
+    <xi:include href="xml/graphene-vectors.xml"/>
     <xi:include href="xml/graphene-quaternion.xml"/>
     <xi:include href="xml/graphene-matrix.xml"/>
     <xi:include href="xml/graphene-simd4f.xml"/>

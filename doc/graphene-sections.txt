@@ -136,6 +136,7 @@ graphene_quad_init
 graphene_quad_init_from_rect
 graphene_quad_contains
 graphene_quad_bounds
+graphene_quad_get_point
 </SECTION>
 
 <SECTION>
@@ -244,6 +245,9 @@ graphene_simd4f_is_zero4
 graphene_simd4f_is_zero3
 graphene_simd4f_is_zero2
 graphene_simd4f_interpolate
+<SUBSECTION Private>
+graphene_simd4f_union_t
+graphene_simd4i_union_t
 </SECTION>
 
 <SECTION>
@@ -280,7 +284,7 @@ graphene_simd4x4f_is_2d
 </SECTION>
 
 <SECTION>
-<FILE>graphene-vec2</FILE>
+<FILE>graphene-vectors</FILE>
 GRAPHENE_VEC2_LEN
 graphene_vec2_t
 graphene_vec2_alloc
@@ -304,10 +308,7 @@ graphene_vec2_zero
 graphene_vec2_one
 graphene_vec2_x_axis
 graphene_vec2_y_axis
-</SECTION>
-
-<SECTION>
-<FILE>graphene-vec3</FILE>
+<SUBSECTION>
 GRAPHENE_VEC3_LEN
 graphene_vec3_t
 graphene_vec3_alloc
@@ -339,10 +340,7 @@ graphene_vec3_one
 graphene_vec3_x_axis
 graphene_vec3_y_axis
 graphene_vec3_z_axis
-</SECTION>
-
-<SECTION>
-<FILE>graphene-vec4</FILE>
+<SUBSECTION>
 GRAPHENE_VEC4_LEN
 graphene_vec4_t
 graphene_vec4_alloc
@@ -381,4 +379,14 @@ graphene_vec4_w_axis
 GRAPHENE_MAJOR_VERSION
 GRAPHENE_MINOR_VERSION
 GRAPHENE_MICRO_VERSION
+<SUBSECTION Standard>
+GRAPHENE_HAS_GCC
+GRAPHENE_HAS_SCALAR
+GRAPHENE_HAS_SSE
+GRAPHENE_HAS_ARM_NEON
+GRAPHENE_USE_GCC
+GRAPHENE_USE_SCALAR
+GRAPHENE_USE_SSE
+GRAPHENE_USE_ARM_NEON
+GRAPHENE_SIMD_S
 </SECTION>

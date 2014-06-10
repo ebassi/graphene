@@ -31,7 +31,13 @@
  * @Title: Vectors
  * @Short_Description: Vectors in 2, 3, and 4 dimensions
  *
- * ...
+ * Graphene has three vector types, distinguished by their length:
+ *
+ *  1. #graphene_vec2_t, which holds 2 components x and y
+ *  2. #graphene_vec3_t, which holds 3 components x, y, and z
+ *  3. #graphene_vec4_t, which holds 4 components x, y, z, and w
+ *
+ * Each vector type should be treated as an opaque data type.
  */
 
 /* vec2 {{{ */
@@ -81,8 +87,7 @@ graphene_vec2_free (graphene_vec2_t *v)
  *
  * This function can be called multiple times.
  *
- * Returns: (transfer none): a pointer to the initialized
- *   vector
+ * Returns: (transfer none): the initialized vector
  *
  * Since: 1.0
  */
@@ -100,12 +105,12 @@ graphene_vec2_init (graphene_vec2_t *v,
 
 /**
  * graphene_vec2_init_from_vec2:
- * @v:
- * @src:
+ * @v: a #graphene_vec2_t
+ * @src: a #graphene_vec2_t
  *
- * ...
+ * Copies the contents of @src into @v.
  *
- * Returns: (transfer none):
+ * Returns: (transfer none): the initialized vector
  *
  * Since: 1.0
  */
@@ -123,12 +128,13 @@ graphene_vec2_init_from_vec2 (graphene_vec2_t       *v,
 
 /**
  * graphene_vec2_init_from_float:
- * @v:
- * @src: (array fixed-size=2):
+ * @v: a #graphene_vec2_t
+ * @src: (array fixed-size=2): an array of floating point values
+ *   with at least two elements
  *
- * ...
+ * Initializes @v with the contents of the given array.
  *
- * Returns: (transfer none):
+ * Returns: (transfer none): the initialized vector
  *
  * Since: 1.0
  */
@@ -144,6 +150,16 @@ graphene_vec2_init_from_float (graphene_vec2_t *v,
   return v;
 }
 
+/**
+ * graphene_vec2_get_x:
+ * @v: a #graphene_vec2_t
+ *
+ * Retrieves the X component of the #graphene_vec2_t.
+ *
+ * Returns: the value of the X component
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec2_get_x (const graphene_vec2_t *v)
 {
@@ -152,6 +168,16 @@ graphene_vec2_get_x (const graphene_vec2_t *v)
   return graphene_simd4f_get_x (v->value);
 }
 
+/**
+ * graphene_vec2_get_y:
+ * @v: a #graphene_vec2_t
+ *
+ * Retrieves the Y component of the #graphene_vec2_t.
+ *
+ * Returns: the value of the Y component
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec2_get_y (const graphene_vec2_t *v)
 {
@@ -160,6 +186,16 @@ graphene_vec2_get_y (const graphene_vec2_t *v)
   return graphene_simd4f_get_y (v->value);
 }
 
+/**
+ * graphene_vec2_to_float:
+ * @v: a #graphene_vec2_t
+ * @dest: (out caller-allocates) (array fixed-size=2): return location
+ *   for an array of floating point values with at least 2 elements
+ *
+ * Stores the components of @v into an array.
+ *
+ * Since: 1.0
+ */
 void
 graphene_vec2_to_float (const graphene_vec2_t *v,
                         float                 *dest)
@@ -172,11 +208,13 @@ graphene_vec2_to_float (const graphene_vec2_t *v,
 
 /**
  * graphene_vec2_add:
- * @a:
- * @b:
- * @res: (out caller-allocates):
+ * @a: a #graphene_vec2_t
+ * @b: a #graphene_vec2_t
+ * @res: (out caller-allocates): return allocation for the
+ *   sum vector
  *
- * ...
+ * Adds each component of the two given vectors and stores
+ * the results in the components of @res.
  *
  * Since: 1.0
  */
@@ -254,6 +292,17 @@ graphene_vec2_divide (const graphene_vec2_t *a,
   res->value = graphene_simd4f_div (a->value, b->value);
 }
 
+/**
+ * graphene_vec2_do:
+ * @a: a #graphene_vec2_t
+ * @b: a #graphene_vec2_t
+ *
+ * Computes the dot product of the two given vectors.
+ *
+ * Returns: the dot product of the vectors
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec2_dot (const graphene_vec2_t *a,
                    const graphene_vec2_t *b)
@@ -263,6 +312,16 @@ graphene_vec2_dot (const graphene_vec2_t *a,
   return graphene_simd4f_get_x (graphene_simd4f_dot2 (a->value, b->value));
 }
 
+/**
+ * graphene_vec2_length:
+ * @v: a #graphene_vec2_t
+ *
+ * Computes the length of the given vector.
+ *
+ * Returns: the length of the vector
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec2_length (const graphene_vec2_t *v)
 {
@@ -273,10 +332,11 @@ graphene_vec2_length (const graphene_vec2_t *v)
 
 /**
  * graphene_vec2_normalize:
- * @v:
- * @res: (out caller-allocates):
+ * @v: a #graphene_vec2_t
+ * @res: (out caller-allocates): return location for the
+ *   normalized vector
  *
- * ...
+ * Computes the normalized vector for the given vector @v.
  *
  * Since: 1.0
  */
@@ -292,11 +352,12 @@ graphene_vec2_normalize (const graphene_vec2_t *v,
 
 /**
  * graphene_vec2_min:
- * @a:
- * @b:
- * @res: (out caller-allocates):
+ * @a: a #graphene_vec2_t
+ * @b: a #graphene_vec2_t
+ * @res: (out caller-allocates): the resulting vector
  *
- * ...
+ * Compares the two given vectors and places the minimum
+ * values of each component into @res.
  *
  * Since: 1.0
  */
@@ -313,11 +374,12 @@ graphene_vec2_min (const graphene_vec2_t *a,
 
 /**
  * graphene_vec2_max:
- * @a:
- * @b:
- * @res: (out caller-allocates):
+ * @a: a #graphene_vec2_t
+ * @b: a #graphene_vec2_t
+ * @res: (out caller-allocates): the resulting vector
  *
- * ...
+ * Compares the two given vectors and places the maximum
+ * values of each component into @res.
  *
  * Since: 1.0
  */
@@ -361,9 +423,9 @@ init_static_vec2 (void)
 /**
  * graphene_vec2_zero:
  *
- * ...
+ * Retrieves a constant vector with (0, 0) components.
  *
- * Returns: (transfer none): ...
+ * Returns: (transfer none): the zero vector
  *
  * Since: 1.0
  */
@@ -378,9 +440,9 @@ graphene_vec2_zero (void)
 /**
  * graphene_vec2_one:
  *
- * ...
+ * Retrieves a constant vector with (1, 1) components.
  *
- * Returns: (transfer none): ...
+ * Returns: (transfer none): the one vector
  *
  * Since: 1.0
  */
@@ -395,9 +457,9 @@ graphene_vec2_one (void)
 /**
  * graphene_vec2_x_axis:
  *
- * ...
+ * Retrieves a constant vector with (1, 0) components.
  *
- * Returns: (transfer none): ...
+ * Returns: (transfer none): the X axis vector
  *
  * Since: 1.0
  */
@@ -412,9 +474,9 @@ graphene_vec2_x_axis (void)
 /**
  * graphene_vec2_y_axis:
  *
- * ...
+ * Retrieves a constant vector with (0, 1) components.
  *
- * Returns: (transfer none): ...
+ * Returns: (transfer none): the Y axis vector
  *
  * Since: 1.0
  */

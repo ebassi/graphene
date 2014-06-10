@@ -38,8 +38,8 @@ G_BEGIN_DECLS
 
 /**
  * graphene_rect_t:
- * @origin:
- * @size:
+ * @origin: the coordinates of the origin of the rectangle
+ * @size: the size of the rectangle
  *
  * The location and size of a rectangle region.
  *

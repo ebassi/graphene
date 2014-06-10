@@ -24,9 +24,10 @@
 /**
  * SECTION:graphene-size
  * @Title: Size
- * @Short_Description: Size representation
+ * @short_description: Size representation
  *
- * ...
+ * #graphene_size_t represents a size composed of a @graphene_size_t.width
+ * by a @graphene_size_t.height.
  */
 
 #include "config.h"

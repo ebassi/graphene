@@ -50,18 +50,53 @@ graphene_rect_normalize_internal (graphene_rect_t *r)
     }
 }
 
+/**
+ * graphene_rect_alloc:
+ *
+ * Allocates a new #graphene_rect_t.
+ *
+ * The contents of the returned rectangle are undefined.
+ *
+ * Returns: (transfer full): the newly allocated rectangle
+ *
+ * Since: 1.0
+ */
 graphene_rect_t *
 graphene_rect_alloc (void)
 {
   return calloc (1, sizeof (graphene_rect_t));
 }
 
+/**
+ * graphene_rect_free:
+ * @r: a #graphene_rect_t
+ *
+ * Frees the resources allocated by graphene_rect_alloc().
+ *
+ * Since: 1.0
+ */
 void
 graphene_rect_free (graphene_rect_t *r)
 {
   free (r);
 }
 
+/**
+ * graphene_rect_init:
+ * @r: a #graphene_rect_t
+ * @x: the X coordinate of the @graphene_rect_t.origin
+ * @y: the Y coordinate of the @graphene_rect_t.origin
+ * @width: the width of the @graphene_rect_t.size
+ * @height: the height of the @graphene_rect_t.size
+ *
+ * Initializes the given #graphene_rect_t with the given values.
+ *
+ * This function will implicitly normalize the #graphene_rect_t.
+ *
+ * Returns: (transfer none): the initialized rectangle
+ *
+ * Since: 1.0
+ */
 graphene_rect_t *
 graphene_rect_init (graphene_rect_t *r,
                     float            x,
@@ -81,6 +116,19 @@ graphene_rect_init (graphene_rect_t *r,
   return r;
 }
 
+/**
+ * graphene_rect_init_from_rect:
+ * @r: a #graphene_rect_t
+ * @src: a #graphene_rect_t
+ *
+ * Initializes @r using the given @src rectangle.
+ *
+ * This function will implicitly normalize the #graphene_rect_t.
+ *
+ * Returns: (transfer none): the initialized rectangle
+ *
+ * Since: 1.0
+ */
 graphene_rect_t *
 graphene_rect_init_from_rect (graphene_rect_t       *r,
                               const graphene_rect_t *src)
@@ -89,6 +137,8 @@ graphene_rect_init_from_rect (graphene_rect_t       *r,
   g_return_val_if_fail (src != NULL, r);
 
   *r = *src;
+
+  graphene_rect_normalize_internal (r);
 
   return r;
 }
@@ -218,9 +268,54 @@ graphene_rect_get_##field (const graphene_rect_t *r) \
   return rr.part.field; \
 }
 
+/**
+ * graphene_rect_get_x:
+ * @r: a #graphene_rect_t
+ *
+ * Retrieves the X coordinate of the origin of the given
+ * rectangle.
+ *
+ * Returns: the normalized X coordinate of the origin
+ *
+ * Since: 1.0
+ */
 GRAPHENE_RECT_GET (origin, x)
+
+/**
+ * graphene_rect_get_y:
+ * @r: a #graphene_rect_t
+ *
+ * Retrieves the normalized Y coordinate of the origin of the given
+ * rectangle.
+ *
+ * Returns: the Y coordinate of the origin
+ *
+ * Since: 1.0
+ */
 GRAPHENE_RECT_GET (origin, y)
+
+/**
+ * graphene_rect_get_width:
+ * @r: a #graphene_rect_t
+ *
+ * Retrieves the normalized width of the given rectangle.
+ *
+ * Returns: the width
+ *
+ * Since: 1.0
+ */
 GRAPHENE_RECT_GET (size, width)
+
+/**
+ * graphene_rect_get_height:
+ * @r: a #graphene_rect_t
+ *
+ * Retrieves the normalized height of the given rectangle.
+ *
+ * Returns: the height
+ *
+ * Since: 1.0
+ */
 GRAPHENE_RECT_GET (size, height)
 
 #undef GRAPHENE_RECT_GET
@@ -248,6 +343,22 @@ graphene_rect_union (const graphene_rect_t *a,
   res->size.height = MAX (ra.size.height, rb.size.height);
 }
 
+/**
+ * graphene_rect_intersection:
+ * @a: a #graphene_rect_t
+ * @b: a #graphene_rect_t
+ * @res: (out caller-allocates) (optional): return location for
+ *   a #graphene_rect_t
+ *
+ * Computes the intersection of the two given rectangles.
+ *
+ * If the two rectangles do not intersect, @res will contain
+ * a degenerate rectangle with origin in (0, 0) and a size of 0.
+ *
+ * Returns: %TRUE if the two rectangles intersect
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_rect_intersection (const graphene_rect_t *a,
                             const graphene_rect_t *b,

@@ -21,6 +21,17 @@
  * THE SOFTWARE.
  */
 
+/**
+ * SECTION:graphene-quaternion
+ * @title: Quaternion
+ * @short_description: Quaternion operations
+ *
+ * Quaternions are a mathematical entity that can be used to represent
+ * rotation transformations in 3D space; unlike the usual Euler representation
+ * with roll, pitch, and yaw, quaternions do not suffer from the so-called
+ * ["Gimbal Lock"](http://en.wikipedia.org/wiki/Gimbal_lock) problem.
+ */
+
 #include "config.h"
 
 #include <math.h>
@@ -28,16 +39,36 @@
 #include "graphene-quaternion.h"
 
 #include "graphene-simd4f.h"
+#include "graphene-simd4x4f.h"
 #include "graphene-vec3.h"
 #include "graphene-vec4.h"
 #include "graphene-matrix.h"
 
+/**
+ * graphene_quaternion_alloc: (constructor)
+ *
+ * Allocates a new #graphene_quaternion_t.
+ *
+ * The contents of the returned value are undefined.
+ *
+ * Returns: (transfer full): the newly allocated #graphene_quaternion_t
+ *
+ * Since: 1.0
+ */
 graphene_quaternion_t *
 graphene_quaternion_alloc (void)
 {
   return calloc (1, sizeof (graphene_quaternion_t));
 }
 
+/**
+ * graphene_quaternion_free:
+ * @q: a #graphene_quaternion_t
+ *
+ * Releases the resources allocated by graphene_quaternion_alloc().
+ *
+ * Since: 1.0
+ */
 void
 graphene_quaternion_free (graphene_quaternion_t *q)
 {

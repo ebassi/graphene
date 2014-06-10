@@ -30,22 +30,44 @@
 
 G_BEGIN_DECLS
 
-/* graphene_simd4x4f_t uses four graphene_simd4f_t vectors.
+/**
+ * graphene_simd4x4f_t:
  *
- * the matrix is treated as row-major, i.e. the x, y, z, and w vectors
+ * A SIMD-based matrix type that uses four #graphene_simd4f_t vectors.
+ *
+ * The matrix is treated as row-major, i.e. the x, y, z, and w vectors
  * are rows, and elements of each vector are a column:
  *
+ * |[<!-- language="C" -->
  *   graphene_simd4x4f_t = {
  *     x.x, x.y, x.z, x.w,
  *     y.x, y.y, y.z, y.w,
  *     z.x, z.y, z.z, z.w,
  *     w.x, w.y, w.z, w.w
  *   }
+ * ]|
  *
- * the memory layout of a graphene_simd4x4f_t matrix in memory will be
- * identical to GL and Direc3D matrices.
+ * The layout of a #graphene_simd4x4f_t matrix in memory will be
+ * identical to GL and Direc3D matrices, so it's cheap to convert
+ * between #graphene_simd4x4f_t and float arrays.
+ *
+ * Since: 1.0
  */
 
+/**
+ * graphene_simd4x4f_init:
+ * @x: a #graphene_simd4f_t for the first row
+ * @y: a #graphene_simd4f_t for the second row
+ * @z: a #graphene_simd4f_t for the third row
+ * @w: a #graphene_simd4f_t for the fourth row
+ *
+ * Creates a new #graphene_simd4x4f_t using the given row vectors
+ * to initialize it.
+ *
+ * Returns: the newly created #graphene_simd4x4f_t
+ *
+ * Since: 1.0
+ */
 static inline graphene_simd4x4f_t
 graphene_simd4x4f_init (graphene_simd4f_t x,
                         graphene_simd4f_t y,
@@ -57,7 +79,8 @@ graphene_simd4x4f_init (graphene_simd4f_t x,
 }
 
 static inline void
-graphene_simd4x4f_init_identity (graphene_simd4x4f_t *m) {
+graphene_simd4x4f_init_identity (graphene_simd4x4f_t *m)
+{
   *m = graphene_simd4x4f_init (graphene_simd4f_init (1.0f, 0.0f, 0.0f, 0.0f),
                                graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f),
                                graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f),
@@ -74,6 +97,16 @@ graphene_simd4x4f_init_from_float (graphene_simd4x4f_t *m,
   m->w = graphene_simd4f_init_4f (f + 12);
 }
 
+/**
+ * graphene_simd4x4f_to_float:
+ * @m: a #graphene_sidm4x4f_t
+ * @v: (out caller-allocates) (array fized-size=16): a floating
+ *   point values vector capable of holding at least 16 values
+ *
+ * Copies the content of @m in a float array.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_to_float (const graphene_simd4x4f_t *m,
                             float                     *v)
@@ -84,33 +117,34 @@ graphene_simd4x4f_to_float (const graphene_simd4x4f_t *m,
   graphene_simd4f_dup_4f (m->w, v + 12);
 }
 
-void    graphene_simd4x4f_transpose_in_place    (graphene_simd4x4f_t *m);
+GRAPHENE_AVAILABLE_IN_1_0
+void    graphene_simd4x4f_transpose_in_place    (graphene_simd4x4f_t *s);
 
 #if defined(GRAPHENE_USE_SSE)
 
-#define graphene_simd4x4f_transpose_in_place(m) \
+#define graphene_simd4x4f_transpose_in_place(s) \
   (G_GNUC_EXTENSION ({ \
-    _MM_TRANSPOSE4_PS ((m)->x, (m)->y, (m)->z, (m)->w); \
+    _MM_TRANSPOSE4_PS ((s)->x, (s)->y, (s)->z, (s)->w); \
   }))
 
 #elif defined(GRAPHENE_USE_ARM_NEON) || defined(GRAPHENE_USE_GCC)
 
-#define graphene_simd4x4f_transpose_in_place(m) \
+#define graphene_simd4x4f_transpose_in_place(s) \
   (G_GNUC_EXTENSION ({ \
-    const graphene_simd4f_union_t sx = { (m)->x }; \
-    const graphene_simd4f_union_t sy = { (m)->y }; \
-    const graphene_simd4f_union_t sz = { (m)->z }; \
-    const graphene_simd4f_union_t sw = { (m)->w }; \
-    (m)->x = graphene_simd4f_init (sx.f[0], sy.f[0], sz.f[0], sw.f[0]); \
-    (m)->y = graphene_simd4f_init (sx.f[1], sy.f[1], sz.f[1], sw.f[1]); \
-    (m)->z = graphene_simd4f_init (sx.f[2], sy.f[2], sz.f[2], sw.f[2]); \
-    (m)->w = graphene_simd4f_init (sx.f[3], sy.f[3], sz.f[3], sw.f[3]); \
+    const graphene_simd4f_union_t sx = { (s)->x }; \
+    const graphene_simd4f_union_t sy = { (s)->y }; \
+    const graphene_simd4f_union_t sz = { (s)->z }; \
+    const graphene_simd4f_union_t sw = { (s)->w }; \
+    (s)->x = graphene_simd4f_init (sx.f[0], sy.f[0], sz.f[0], sw.f[0]); \
+    (s)->y = graphene_simd4f_init (sx.f[1], sy.f[1], sz.f[1], sw.f[1]); \
+    (s)->z = graphene_simd4f_init (sx.f[2], sy.f[2], sz.f[2], sw.f[2]); \
+    (s)->w = graphene_simd4f_init (sx.f[3], sy.f[3], sz.f[3], sw.f[3]); \
   }))
 
 #elif defined(GRAPHENE_USE_SCALAR)
 
-#define graphene_simd4x4f_transpose_in_place(m) \
-  (graphene_simd4x4f_transpose_in_place ((graphene_simd4x4f_t *) (m)))
+#define graphene_simd4x4f_transpose_in_place(s) \
+  (graphene_simd4x4f_transpose_in_place ((graphene_simd4x4f_t *) (s)))
 
 #else
 # error "No implementation for graphene_simd4x4f_t defined."
@@ -392,24 +426,93 @@ graphene_simd4x4f_rotation (graphene_simd4x4f_t *m,
   *m = graphene_simd4x4f_init (i, j, k, graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f));
 }
 
-#define GRAPHENE_SIMD4X4F_OP(op) \
-static inline void \
-graphene_simd4x4f_##op (const graphene_simd4x4f_t *a, \
-                        const graphene_simd4x4f_t *b, \
-                        graphene_simd4x4f_t *res) \
-{ \
-  res->x = graphene_simd4f_##op (a->x, b->x); \
-  res->y = graphene_simd4f_##op (a->y, b->y); \
-  res->z = graphene_simd4f_##op (a->z, b->z); \
-  res->w = graphene_simd4f_##op (a->w, b->w); \
+/**
+ * graphene_simd4x4f_add:
+ * @a: a #graphene_simd4x4f_t
+ * @b: a #graphene_simd4x4f_t
+ * @res: (out caller-allocates): return location for a #graphene_simd4x4f_t
+ *
+ * Adds each row vector of @a and @b and places the results in @res.
+ *
+ * Since: 1.0
+ */
+static inline void
+graphene_simd4x4f_add (const graphene_simd4x4f_t *a,
+                       const graphene_simd4x4f_t *b,
+                       graphene_simd4x4f_t *res)
+{
+  res->x = graphene_simd4f_add (a->x, b->x);
+  res->y = graphene_simd4f_add (a->y, b->y);
+  res->z = graphene_simd4f_add (a->z, b->z);
+  res->w = graphene_simd4f_add (a->w, b->w);
 }
 
-GRAPHENE_SIMD4X4F_OP (add)
-GRAPHENE_SIMD4X4F_OP (sub)
-GRAPHENE_SIMD4X4F_OP (mul)
-GRAPHENE_SIMD4X4F_OP (div)
+/**
+ * graphene_simd4x4f_sub:
+ * @a: a #graphene_simd4x4f_t
+ * @b: a #graphene_simd4x4f_t
+ * @res: (out caller-allocates): return location for a #graphene_simd4x4f_t
+ *
+ * Subtracts each row vector of @a and @b and places the results in @res.
+ *
+ * Since: 1.0
+ */
+static inline void
+graphene_simd4x4f_sub (const graphene_simd4x4f_t *a,
+                       const graphene_simd4x4f_t *b,
+                       graphene_simd4x4f_t *res)
+{
+  res->x = graphene_simd4f_sub (a->x, b->x);
+  res->y = graphene_simd4f_sub (a->y, b->y);
+  res->z = graphene_simd4f_sub (a->z, b->z);
+  res->w = graphene_simd4f_sub (a->w, b->w);
+}
 
-#undef GRAPHENE_SIMD4X4F_OP
+/**
+ * graphene_simd4x4_mul:
+ * @a: a #graphene_simd4x4f_t
+ * @b: a #graphene_simd4x4f_t
+ * @res: (out caller-allocates): return location for a #graphene_simd4x4f_t
+ *
+ * Multiplies each row vector of @a and @b and places the results in @res.
+ *
+ * You most likely want graphene_simd4x4f_matrix_mul() instead.
+ *
+ * Since: 1.0
+ */
+static inline void
+graphene_simd4x4f_mul (const graphene_simd4x4f_t *a,
+                       const graphene_simd4x4f_t *b,
+                       graphene_simd4x4f_t *res)
+{
+  res->x = graphene_simd4f_mul (a->x, b->x);
+  res->y = graphene_simd4f_mul (a->y, b->y);
+  res->z = graphene_simd4f_mul (a->z, b->z);
+  res->w = graphene_simd4f_mul (a->w, b->w);
+}
+
+/**
+ * graphene_simd4x4_div:
+ * @a: a #graphene_simd4x4f_t
+ * @b: a #graphene_simd4x4f_t
+ * @res: (out caller-allocates): return location for a #graphene_simd4x4f_t
+ *
+ * Divides each row vector of @a and @b and places the results in @res.
+ *
+ * You most likely want graphene_simd4x4f_matrix_mul() instead.
+ *
+ * Since: 1.0
+ */
+static inline void
+graphene_simd4x4f_div (const graphene_simd4x4f_t *a,
+                       const graphene_simd4x4f_t *b,
+                       graphene_simd4x4f_t *res)
+{
+  res->x = graphene_simd4f_div (a->x, b->x);
+  res->y = graphene_simd4f_div (a->y, b->y);
+  res->z = graphene_simd4f_div (a->z, b->z);
+  res->w = graphene_simd4f_div (a->w, b->w);
+}
 
 static inline void
 graphene_simd4x4f_inverse (const graphene_simd4x4f_t *m,

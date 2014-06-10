@@ -33,6 +33,17 @@
 
 G_BEGIN_DECLS
 
+/**
+ * graphene_quaternion_t:
+ * @x: the first component of the quaternion
+ * @y: the second component of the quaternion
+ * @z: the third component of the quaternion
+ * @w: the fourth component of the quaternion
+ *
+ * A quaternion.
+ *
+ * Since: 1.0
+ */
 struct _graphene_quaternion_t
 {
   float x;

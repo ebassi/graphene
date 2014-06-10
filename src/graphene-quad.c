@@ -21,24 +21,65 @@
  * THE SOFTWARE.
  */
 
+/**
+ * SECTION:graphene-quad
+ * @title: Quad
+ * @short_description: Four-vertex quadrilateral
+ *
+ * A #graphene_quad_t represents a coplanar, four vertex quadrilateral shape.
+ */
+
 #include "config.h"
 
 #include "graphene-quad.h"
 #include "graphene-rect.h"
 #include "graphene-line-segment.h"
 
+/**
+ * graphene_quad_alloc: (constructor)
+ *
+ * Allocates a new #graphene_quad_t instance.
+ *
+ * The contents of the returned instance are undefined.
+ *
+ * Returns: (transfer full): the newly created #graphene_quad_t instance
+ *
+ * Since: 1.0
+ */
 graphene_quad_t *
 graphene_quad_alloc (void)
 {
   return calloc (1, sizeof (graphene_quad_t));
 }
 
+/**
+ * graphene_quad_free:
+ * @q: a #graphene_quad_t
+ *
+ * Frees the resources allocated by graphene_quad_alloc()
+ *
+ * Since: 1.0
+ */
 void
 graphene_quad_free (graphene_quad_t *q)
 {
   free (q);
 }
 
+/**
+ * graphene_quad_init:
+ * @q: the #graphene_quad_t to initialize
+ * @p1: the first point of the quadrilateral
+ * @p2: the second point of the quadrilateral
+ * @p3: the third point of the quadrilateral
+ * @p4: the fourth point of the quadrilateral
+ *
+ * Initializes a #graphene_quad_t with the given points.
+ *
+ * Returns: (transfer none): the initialized #graphene_quad_t
+ *
+ * Since: 1.0
+ */
 graphene_quad_t *
 graphene_quad_init (graphene_quad_t        *q,
                     const graphene_point_t *p1,
@@ -57,6 +98,18 @@ graphene_quad_init (graphene_quad_t        *q,
   return q;
 }
 
+/**
+ * graphene_quad_init_from_rect:
+ * @q: the #graphene_quad_t to initialize
+ * @r: a #graphene_rect_t
+ *
+ * Initializes a #graphene_quad_t using the four corners of the
+ * given #graphene_rect_t.
+ *
+ * Returns: (transfer none): the initialized #graphene_quad_t
+ *
+ * Since: 1.0
+ */
 graphene_quad_t *
 graphene_quad_init_from_rect (graphene_quad_t       *q,
                               const graphene_rect_t *r)
@@ -72,6 +125,17 @@ graphene_quad_init_from_rect (graphene_quad_t       *q,
   return q;
 }
 
+/**
+ * graphene_quad_contains:
+ * @q: a #graphene_quad_t
+ * @p: a #graphene_point_t
+ *
+ * Checks if the given #graphene_quad_t contains the given #graphene_point_t.
+ *
+ * Returns: %TRUE if the point is inside the #graphene_quad_t
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_quad_contains (const graphene_quad_t  *q,
                         const graphene_point_t *p)
@@ -92,6 +156,15 @@ graphene_quad_contains (const graphene_quad_t  *q,
          graphene_line_segment_points_on_same_side (l4, p, &(q->points[1]));
 }
 
+/**
+ * graphene_quad_bounds:
+ * @q: a #graphene_quad_t
+ * @r: (out caller-allocates): return location for a #graphene_rect_t
+ *
+ * Computes the bounding rectangle of @q and places it into @r.
+ *
+ * Since: 1.0
+ */
 void
 graphene_quad_bounds (const graphene_quad_t *q,
                       graphene_rect_t       *r)
@@ -116,4 +189,25 @@ graphene_quad_bounds (const graphene_quad_t *q,
     }
 
   graphene_rect_init (r, min_x, min_y, max_x - min_x, max_y - min_y);
+}
+
+/**
+ * graphene_quad_get_point:
+ * @q: a #graphene_quad_t
+ * @index_: the index of the point to retrieve
+ *
+ * Retrieves the point of a #graphene_quad_t at the given index.
+ *
+ * Returns: (transfer none): a #graphene_point_t
+ *
+ * Since: 1.0
+ */
+const graphene_point_t *
+graphene_quad_get_point (const graphene_quad_t *q,
+                         unsigned int           index_)
+{
+  g_return_val_if_fail (q != NULL, NULL);
+  g_return_val_if_fail (index_ >= 0 && index_ < 4, NULL);
+
+  return &q->points[index_];
 }

@@ -21,6 +21,20 @@
  * THE SOFTWARE.
  */
 
+/**
+ * SECTION:graphene-simd4x4f
+ * @Title: SIMD matrix
+ * @short_description: Low level floating point 4 by 4 matrix
+ *
+ * The #graphene_simd4x4f_t type wraps a platform specific implementation of
+ * a four by four matrix of floating point values, using four #graphene_simd4f_t
+ * row vectors.
+ *
+ * Like #graphene_simd4f_t, the #graphene_simd4x4f_t type should be treated
+ * as an opaque type; you cannot access its components directly, and you can
+ * only operate on all components at the same time.
+ */
+
 #include "config.h"
 
 #include <string.h>
@@ -30,6 +44,14 @@
 
 #if defined(GRAPHENE_USE_SSE) || defined(GRAPHENE_USE_GCC) || defined(GRAPHENE_USE_ARM_NEON)
 
+/**
+ * graphene_simd4x4f_transpose_in_place:
+ * @s: a #graphene_simd4x4f_t
+ *
+ * Transposes @s in place.
+ *
+ * Since: 1.0
+ */
 void
 (graphene_simd4x4f_transpose_in_place) (graphene_simd4x4f_t *s)
 {

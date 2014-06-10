@@ -32,9 +32,37 @@
 
 G_BEGIN_DECLS
 
+/**
+ * GRAPHENE_POINT3D_INIT:
+ * @x: the X coordinate
+ * @y: the Y coordinate
+ * @z: the Z coordinate
+ *
+ * Initializes a #graphene_point3d_t to the given coordinates when declaring it.
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_POINT3D_INIT(x,y,z)    { x, y, z }
+
+/**
+ * GRAPHENE_POINT3D_INIT_ZERO:
+ *
+ * Initializes a #graphene_point3d_t to (0, 0, 0) when declaring it.
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_POINT3D_INIT_ZERO      GRAPHENE_POINT3D_INIT (0.f, 0.f, 0.f)
 
+/**
+ * graphene_point3d_t:
+ * @x: the X coordinate
+ * @y: the Y coordinate
+ * @z: the Z coordinate
+ *
+ * A point with three components: X, Y, and Z.
+ *
+ * Since: 1.0
+ */
 struct _graphene_point3d_t
 {
   float x;
