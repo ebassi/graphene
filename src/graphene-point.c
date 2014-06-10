@@ -78,6 +78,7 @@ graphene_point_alloc (void)
 
 /**
  * graphene_point_free:
+ * @p: a #graphene_point_t
  *
  * Frees the resources allocated by graphene_point_alloc().
  *
