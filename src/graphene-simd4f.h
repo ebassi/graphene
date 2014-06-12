@@ -848,7 +848,7 @@ typedef union {
     graphene_simd4f_init (u_a.f[2], u_a.f[3], u_b.f[2], u_b.f[3]); \
   }))
 
-# define graphene_simd4f_flip_sign_0101(v) \
+# define graphene_simd4f_flip_sign_0101(s) \
   (G_GNUC_EXTENSION ({ \
     const unsigned int upnpn[4] = { \
       0x00000000, \
@@ -857,10 +857,10 @@ typedef union {
       0x80000000 \
     }; \
     const uint32x4_t pnpn = vld1q_u32 (upnpn); \
-    (graphene_simd4f_t) vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 (s), pnpn)); \
+    (graphene_simd4f_t) vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 ((s)), pnpn)); \
   }))
 
-# define graphene_simd4f_flip_sign_1010(v) \
+# define graphene_simd4f_flip_sign_1010(s) \
   (G_GNUC_EXTENSION ({ \
     const unsigned int unpnp[4] = { \
       0x80000000, \
@@ -869,7 +869,7 @@ typedef union {
       0x00000000 \
     }; \
     const uint32x4_t npnp = vld1q_u32 (unpnp); \
-    (graphene_simd4f_t) vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 (s), npnp)); \
+    (graphene_simd4f_t) vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 ((s)), npnp)); \
   }))
 
 # define graphene_simd4f_cmp_eq(a,b) \
