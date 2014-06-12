@@ -70,6 +70,14 @@ matrix_rotation (void)
     graphene_matrix_print (&m);
 
   compare_matrices (&m, &m2);
+
+  graphene_matrix_rotate (&m, 15.0f, graphene_vec3_x_axis ());
+  graphene_matrix_init_rotate (&m2, 60.0f, graphene_vec3_x_axis ());
+
+  if (g_test_verbose ())
+    graphene_matrix_print (&m);
+
+  compare_matrices (&m, &m2);
 }
 
 static void
