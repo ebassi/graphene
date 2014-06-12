@@ -658,6 +658,22 @@ gboolean
   return graphene_simd4f_cmp_neq (a, b);
 }
 
+/**
+ * graphene_simd4f_neg:
+ * @s: a #graphene_simd4f_t
+ *
+ * Negates the values of @s.
+ *
+ * Returns: the negated vector
+ *
+ * Since: 1.0
+ */
+graphene_simd4f_t
+(graphene_simd4f_neg) (const graphene_simd4f_t s)
+{
+  return graphene_simd4f_neg (s);
+}
+
 #else /* GRAPHENE_USE_SCALAR */
 
 graphene_simd4f_t
@@ -959,6 +975,12 @@ gboolean
          a.y != b.y &&
          a.z != b.z &&
          a.w != b.w;
+}
+
+graphene_simd4f_t
+(graphene_simd4f_neg) (const graphene_simd4f_t s)
+{
+  return graphene_simd4f_init (-s.x, -s.y, -s.z, -s.w);
 }
 
 #endif /* GRAPHENE_USE_SCALAR */

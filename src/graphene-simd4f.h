@@ -144,6 +144,8 @@ gboolean                graphene_simd4f_cmp_eq          (const graphene_simd4f_t
 GRAPHENE_AVAILABLE_IN_1_0
 gboolean                graphene_simd4f_cmp_neq         (const graphene_simd4f_t a,
                                                          const graphene_simd4f_t b);
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_simd4f_t       graphene_simd4f_neg             (const graphene_simd4f_t s);
 
 #if defined(GRAPHENE_USE_SSE)
 
@@ -377,6 +379,17 @@ typedef GRAPHENE_ALIGN16 union {
   (G_GNUC_EXTENSION ({ \
     __m128i __res = (__m128i) _mm_cmpneq_ps ((a), (b)); \
    (gboolean) _mm_movemask_epi8 (__res) == 0xffff; \
+  }))
+
+#  define graphene_simd4f_neg(s) \
+  (G_GNUC_EXTENSION ({ \
+    const graphene_simd4f_uif_t __mask = { { \
+      0x80000000, \
+      0x80000000, \
+      0x80000000, \
+      0x80000000, \
+    } }; \
+    (graphene_simd4f_t) _mm_xor_ps ((s), _mm_load_ps (__mask.f)); \
   }))
 
 # else
@@ -626,6 +639,12 @@ typedef union {
     graphene_simd4i_t __res = (a) == (b); \
     graphene_simd4i_union_t __u_res = { __res }; \
     __u_res.i[0] == 0 && __u_res.i[1] == 0 && __u_res.i[2] == 0 && __u_res.i[3] == 0; \
+  }))
+
+# define graphene_simd4f_neg(s) \
+  (G_GNUC_EXTENSION ({ \
+    graphene_simd4f_union_t __u = { (s) }; \
+    graphene_simd4f_init (-__u.f[0], -__u.f[1], -__u.f[2], -__u.f[3]); \
   }))
 
 #elif defined(GRAPHENE_USE_ARM_NEON)
@@ -892,6 +911,18 @@ typedef union {
                u_a.f[3] != u_b.f[3]; \
   }))
 
+# define graphene_simd4f_neg(s) \
+  (G_GNUC_EXTENSION ({ \
+    const unsigned int __umask[4] = { \
+      0x80000000, \
+      0x80000000, \
+      0x80000000, \
+      0x80000000 \
+    }; \
+    const uint32x4_t __mask = vld1q_u32 (__umask); \
+    (graphene_simd4f_t) vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 ((s)), __mask)); \
+  }))
+
 #elif defined(GRAPHENE_USE_SCALAR)
 
 /* Fallback implementation using scalar types */
@@ -966,6 +997,8 @@ typedef union {
   (graphene_simd4f_cmp_eq ((a), (b)))
 #define graphene_simd4f_cmp_neq(a,b) \
   (graphene_simd4f_cmp_neq ((a), (b)))
+#define graphene_simd4f_neg(s) \
+  (graphene_simd4f_neg ((s)))
 
 #else
 # error "Unsupported simd4f implementation."

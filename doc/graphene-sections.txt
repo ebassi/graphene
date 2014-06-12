@@ -230,6 +230,7 @@ graphene_simd4f_flip_sign_0101
 graphene_simd4f_flip_sign_1010
 graphene_simd4f_cmp_eq
 graphene_simd4f_cmp_neq
+graphene_simd4f_neg
 graphene_simd4f_madd
 graphene_simd4f_sum
 graphene_simd4f_dot4
