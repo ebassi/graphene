@@ -175,6 +175,15 @@ void                    graphene_matrix_rotate                  (graphene_matrix
                                                                  float                     angle,
                                                                  const graphene_vec3_t    *axis);
 GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_matrix_rotate_x                (graphene_matrix_t        *m,
+                                                                 float                     angle);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_matrix_rotate_y                (graphene_matrix_t        *m,
+                                                                 float                     angle);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_matrix_rotate_z                (graphene_matrix_t        *m,
+                                                                 float                     angle);
+GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_scale                   (graphene_matrix_t        *m,
                                                                  float                     factor_x,
                                                                  float                     factor_y,

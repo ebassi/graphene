@@ -238,6 +238,19 @@ graphene_matrix_init_skew (graphene_matrix_t *m,
   return m;
 }
 
+/**
+ * graphene_matrix_init_rotate:
+ * @m: a #graphene_matrix_t
+ * @angle: the rotation angle, in degrees
+ * @axis: the axis vector as a #graphene_vec3_t
+ *
+ * Initializes @m to represent a rotation of @angle degrees on
+ * the axis represented by the @axis vector.
+ *
+ * Returns: (transfer none): the initialized matrix
+ *
+ * Since: 1.0
+ */
 graphene_matrix_t *
 graphene_matrix_init_rotate (graphene_matrix_t     *m,
                              float                  angle,
@@ -725,18 +738,86 @@ graphene_matrix_translate (graphene_matrix_t        *m,
   graphene_simd4x4f_matrix_mul (&trans_m, &m->value, &m->value);
 }
 
+static inline void
+graphene_matrix_rotate_internal (graphene_simd4x4f_t *m,
+                                 float                angle,
+                                 graphene_simd4f_t    axis)
+{
+  float rad = angle * GRAPHENE_PI / 180.f;
+  graphene_simd4x4f_t rot_m;
+
+  graphene_simd4x4f_rotation (&rot_m, rad, axis);
+  graphene_simd4x4f_matrix_mul (&rot_m, m, m);
+}
+
+/**
+ * graphene_matrix_rotate:
+ * @m: a #graphene_matrix_t
+ * @angle: the rotation angle, in degrees
+ * @axis: the rotation axis, as a #graphene_vec3_t
+ *
+ * Adds a rotation transformation to @m, using the given @angle
+ * and @axis vector.
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_rotate (graphene_matrix_t     *m,
                         float                  angle,
                         const graphene_vec3_t *axis)
 {
-  graphene_simd4x4f_t rot_m;
-  float rad;
+  graphene_matrix_rotate_internal (&m->value, angle, axis->value);
+}
 
-  rad = angle * GRAPHENE_PI / 180.f;
+/**
+ * graphene_matrix_rotate_x:
+ * @m: a #graphene_matrix_t
+ * @angle: the rotation angle, in degrees
+ *
+ * Adds a rotation transformation around the X axis to @m, using
+ * the given @angle.
+ *
+ * Since: 1.0
+ */
+void
+graphene_matrix_rotate_x (graphene_matrix_t *m,
+                          float              angle)
+{
+  graphene_matrix_rotate_internal (&m->value, angle, graphene_simd4f_init (1.f, 0.f, 0.f, 0.f));
+}
 
-  graphene_simd4x4f_rotation (&rot_m, rad, axis->value);
-  graphene_simd4x4f_matrix_mul (&rot_m, &m->value, &m->value);
+/**
+ * graphene_matrix_rotate_y:
+ * @m: a #graphene_matrix_t
+ * @angle: the rotation angle, in degrees
+ *
+ * Adds a rotation transformation around the Y axis to @m, using
+ * the given @angle.
+ *
+ * Since: 1.0
+ */
+void
+graphene_matrix_rotate_y (graphene_matrix_t *m,
+                          float              angle)
+{
+  graphene_matrix_rotate_internal (&m->value, angle, graphene_simd4f_init (0.f, 1.f, 0.f, 0.f));
+}
+
+/**
+ * graphene_matrix_rotate_z:
+ * @m: a #graphene_matrix_t
+ * @angle: the rotation angle, in degrees
+ *
+ * Adds a rotation transformation around the Z axis to @m, using
+ * the given @angle.
+ *
+ * Since: 1.0
+ */
+void
+graphene_matrix_rotate_z (graphene_matrix_t *m,
+                          float              angle)
+{
+  graphene_matrix_rotate_internal (&m->value, angle, graphene_simd4f_init (0.f, 0.f, 1.f, 0.f));
 }
 
 void

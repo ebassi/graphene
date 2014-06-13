@@ -59,6 +59,9 @@ graphene_matrix_untransform_point
 graphene_matrix_untransform_bounds
 graphene_matrix_translate
 graphene_matrix_rotate
+graphene_matrix_rotate_x
+graphene_matrix_rotate_y
+graphene_matrix_rotate_z
 graphene_matrix_scale
 graphene_matrix_skew_xy
 graphene_matrix_skew_xz
