@@ -120,15 +120,15 @@ GRAPHENE_AVAILABLE_IN_1_0
 gboolean                graphene_rect_contains_rect     (const graphene_rect_t  *a,
                                                          const graphene_rect_t  *b);
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_rect_offset            (graphene_rect_t        *r,
+graphene_rect_t *       graphene_rect_offset            (graphene_rect_t        *r,
                                                          float                   d_x,
                                                          float                   d_y);
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_rect_inset             (graphene_rect_t        *r,
+graphene_rect_t *       graphene_rect_inset             (graphene_rect_t        *r,
                                                          float                   d_x,
                                                          float                   d_y);
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_rect_round_to_pixel    (graphene_rect_t        *r);
+graphene_rect_t *       graphene_rect_round_to_pixel    (graphene_rect_t        *r);
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_rect_interpolate       (const graphene_rect_t  *a,
                                                          const graphene_rect_t  *b,

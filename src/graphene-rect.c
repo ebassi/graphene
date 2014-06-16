@@ -552,9 +552,11 @@ graphene_rect_contains_rect (const graphene_rect_t *a,
  *
  * The size of the rectangle is unchanged.
  *
+ * Returns: (transfer none): the offset rectangle
+ *
  * Since: 1.0
  */
-void
+graphene_rect_t *
 graphene_rect_offset (graphene_rect_t *r,
                       float            d_x,
                       float            d_y)
@@ -565,6 +567,8 @@ graphene_rect_offset (graphene_rect_t *r,
 
   r->origin.x += d_x;
   r->origin.y += d_y;
+
+  return r;
 }
 
 /**
@@ -588,9 +592,11 @@ graphene_rect_offset (graphene_rect_t *r,
  * If the size of the resulting inset rectangle has a negative width or
  * height then the size will be set to zero.
  *
+ * Returns: (transfer none): the inset rectangle
+ *
  * Since: 1.0
  */
-void
+graphene_rect_t *
 graphene_rect_inset (graphene_rect_t *r,
                      float            d_x,
                      float            d_y)
@@ -617,6 +623,8 @@ graphene_rect_inset (graphene_rect_t *r,
 
   if (r->size.height < 0.f)
     r->size.height = 0.f;
+
+  return r;
 }
 
 /**
@@ -627,9 +635,11 @@ graphene_rect_inset (graphene_rect_t *r,
  * their nearest integer values; the rounding is guaranteed
  * to be large enough to contain the original rectangle.
  *
+ * Returns: (transfer none): the pixel-aligned rectangle.
+ *
  * Since: 1.0
  */
-void
+graphene_rect_t *
 graphene_rect_round_to_pixel (graphene_rect_t *r)
 {
   g_return_if_fail (r != NULL);
@@ -641,6 +651,8 @@ graphene_rect_round_to_pixel (graphene_rect_t *r)
 
   r->size.width = ceilf (r->size.width);
   r->size.height = ceilf (r->size.height);
+
+  return r;
 }
 
 /**
