@@ -30,6 +30,17 @@
 
 #include "graphene-version.h"
 
+/**
+ * GRAPHENE_ENCODE_VERSION:
+ * @major: a major version
+ * @minor: a minor version
+ * @micro: a micro version
+ *
+ * Encodes the given components into a value that can be used for
+ * version checks.
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_ENCODE_VERSION(major,minor,micro) \
   ((major) << 24 | (minor) << 16 | (micro) << 8)
 
@@ -43,6 +54,21 @@
 # define GRAPHENE_UNAVAILABLE(maj,min)  G_UNAVAILABLE(maj,min) _GRAPHENE_PUBLIC
 #endif
 
+/**
+ * GRAPHENE_VERSION:
+ *
+ * The current version of the library, as encoded through
+ * the %GRAPHENE_ENCODE_VERSION macro. Can be used for version
+ * checking, for instance:
+ *
+ * |[<!-- language="C" -->
+ *   #if GRAPHENE_VERSION >= GRAPHENE_ENCODE_VERSION (1, 2, 3)
+ *     // code that uses API introduced after version 1.2.3
+ *   #endif
+ * ]|
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_VERSION                \
   GRAPHENE_ENCODE_VERSION (GRAPHENE_MAJOR_VERSION, \
                            GRAPHENE_MINOR_VERSION, \

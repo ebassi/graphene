@@ -21,6 +21,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * SECTION:graphene-version
+ * @title: Versioning information
+ * @short_description: Detemining the version of Graphene in use
+ *
+ * Graphene provides symbols to know the version of the library at compile
+ * time.
+ */
+
 #ifndef __GRAPHENE_VERSION_H__
 #define __GRAPHENE_VERSION_H__
 
@@ -28,8 +37,34 @@
 #error "Only graphene.h can be included directly."
 #endif
 
+/**
+ * GRAPHENE_MAJOR_VERSION:
+ *
+ * Evaluates to the major version number of the library version,
+ * e.g. 1 in 1.2.3.
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_MAJOR_VERSION          (@GRAPHENE_MAJOR_VERSION@)
+
+/**
+ * GRAPHENE_MINOR_VERSION:
+ *
+ * Evaluates to the minor version number of the library version,
+ * e.g. 2 in 1.2.3.
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_MINOR_VERSION          (@GRAPHENE_MINOR_VERSION@)
+
+/**
+ * GRAPHENE_MICRO_VERSION:
+ *
+ * Evaluates to the micro version number of the library version,
+ * e.g. 3 in 1.2.3.
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_MICRO_VERSION          (@GRAPHENE_MICRO_VERSION@)
 
 #endif /* __GRAPHENE_VERSION_H__ */
