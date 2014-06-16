@@ -21,6 +21,19 @@
  * THE SOFTWARE.
  */
 
+/**
+ * SECTION:graphene-rect
+ * @title: Rectangle
+ * @short_description: Rectangular shape type
+ *
+ * #graphene_rect_t is a type representing a rectangle through an origin
+ * #graphene_point_t point and a #graphene_size_t size.
+ *
+ * Operations on a #graphene_rect_t will normalize the rectangle, to
+ * ensure that the origin is always the top-left corner of the rectangle
+ * and that the size is always positive.
+ */
+
 #include "config.h"
 
 #include <math.h>
@@ -91,7 +104,8 @@ graphene_rect_free (graphene_rect_t *r)
  *
  * Initializes the given #graphene_rect_t with the given values.
  *
- * This function will implicitly normalize the #graphene_rect_t.
+ * This function will implicitly normalize the #graphene_rect_t
+ * before returning.
  *
  * Returns: (transfer none): the initialized rectangle
  *
@@ -123,7 +137,8 @@ graphene_rect_init (graphene_rect_t *r,
  *
  * Initializes @r using the given @src rectangle.
  *
- * This function will implicitly normalize the #graphene_rect_t.
+ * This function will implicitly normalize the #graphene_rect_t
+ * before returning.
  *
  * Returns: (transfer none): the initialized rectangle
  *
@@ -143,6 +158,17 @@ graphene_rect_init_from_rect (graphene_rect_t       *r,
   return r;
 }
 
+/**
+ * graphene_rect_equal:
+ * @a: a #graphene_rect_t
+ * @b: a #graphene_rect_t
+ *
+ * Checks whether the two given rectangle are equal.
+ *
+ * Returns: %TRUE if the rectangles are equal
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_rect_equal (const graphene_rect_t *a,
                      const graphene_rect_t *b)
@@ -165,6 +191,20 @@ graphene_rect_equal (const graphene_rect_t *a,
          graphene_size_equal (&r_a.size, &r_b.size);
 }
 
+/**
+ * graphene_rect_normalize:
+ * @r: a #graphene_rect_t
+ *
+ * Normalizes the passed rectangle.
+ *
+ * This function ensures that the size of the rectangle is made of
+ * positive values, and that the origin is the top-left corner of
+ * the rectangle.
+ *
+ * Returns: (transfer none): the normalized rectangle
+ *
+ * Since: 1.0
+ */
 graphene_rect_t *
 graphene_rect_normalize (graphene_rect_t *r)
 {
@@ -175,6 +215,15 @@ graphene_rect_normalize (graphene_rect_t *r)
   return r;
 }
 
+/**
+ * graphene_rect_get_center:
+ * @r: a #graphene_rect_t
+ * @p: (out caller-allocates): return location for a #graphene_point_t
+ *
+ * Retrieves the coordinates of the center of the given rectangle.
+ *
+ * Since: 1.0
+ */
 void
 graphene_rect_get_center (const graphene_rect_t  *r,
                           graphene_point_t       *p)
@@ -192,6 +241,15 @@ graphene_rect_get_center (const graphene_rect_t  *r,
                        rr.origin.y + (rr.size.height / 2.f));
 }
 
+/**
+ * graphene_rect_get_top_left:
+ * @r: a #graphene_rect_t
+ * @p: (out caller-allocates): return location for a #graphene_point_t
+ *
+ * Retrieves the coordinates of the top-left corner of the given rectangle.
+ *
+ * Since: 1.0
+ */
 void
 graphene_rect_get_top_left (const graphene_rect_t  *r,
                             graphene_point_t       *p)
@@ -207,6 +265,15 @@ graphene_rect_get_top_left (const graphene_rect_t  *r,
   graphene_point_init_from_point (p, &rr.origin);
 }
 
+/**
+ * graphene_rect_get_top_right:
+ * @r: a #graphene_rect_t
+ * @p: (out caller-allocates): return location for a #graphene_point_t
+ *
+ * Retrieves the coordinates of the top-right corner of the given rectangle.
+ *
+ * Since: 1.0
+ */
 void
 graphene_rect_get_top_right (const graphene_rect_t *r,
                              graphene_point_t      *p)
@@ -222,6 +289,15 @@ graphene_rect_get_top_right (const graphene_rect_t *r,
   graphene_point_init (p, rr.origin.x + rr.size.width, rr.origin.y);
 }
 
+/**
+ * graphene_rect_get_bottom_left:
+ * @r: a #graphene_rect_t
+ * @p: (out caller-allocates): return location for a #graphene_point_t
+ *
+ * Retrieves the coordinates of the bottom-left corner of the given rectangle.
+ *
+ * Since: 1.0
+ */
 void
 graphene_rect_get_bottom_left (const graphene_rect_t *r,
                                graphene_point_t      *p)
@@ -237,6 +313,15 @@ graphene_rect_get_bottom_left (const graphene_rect_t *r,
   graphene_point_init (p, rr.origin.x, rr.origin.y + rr.size.height);
 }
 
+/**
+ * graphene_rect_get_bottom_right:
+ * @r: a #graphene_rect_t
+ * @p: (out caller-allocates): return location for a #graphene_point_t
+ *
+ * Retrieves the coordinates of the bottom-right corner of the given rectangle.
+ *
+ * Since: 1.0
+ */
 void
 graphene_rect_get_bottom_right (const graphene_rect_t  *r,
                                 graphene_point_t       *p)
@@ -320,6 +405,16 @@ GRAPHENE_RECT_GET (size, height)
 
 #undef GRAPHENE_RECT_GET
 
+/**
+ * graphene_rect_unione:
+ * @a: a #graphene_rect_t
+ * @b: a #graphene_rect_t
+ * @p: (out caller-allocates): return location for a #graphene_rect_t
+ *
+ * Computes the union of the two given rectangles.
+ *
+ * Since: 1.0
+ */
 void
 graphene_rect_union (const graphene_rect_t *a,
                      const graphene_rect_t *b,
@@ -394,6 +489,17 @@ graphene_rect_intersection (const graphene_rect_t *a,
   return TRUE;
 }
 
+/**
+ * graphene_rect_contains_point:
+ * @r: a #graphene_rect_t
+ * @p: a #graphene_point_t
+ *
+ * Checks whether a #graphene_rect_t contains the given coordinates.
+ *
+ * Returns: %TRUE if the rectangle contains the point
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_rect_contains_point (const graphene_rect_t  *r,
                               const graphene_point_t *p)
@@ -411,6 +517,18 @@ graphene_rect_contains_point (const graphene_rect_t  *r,
          p->y <= (rr.origin.y + rr.size.height);
 }
 
+/**
+ * graphene_rect_contains_rect:
+ * @a: a #graphene_rect_t
+ * @b: a #graphene_rect_t
+ *
+ * Checks whether a #graphene_rect_t fully contains the given
+ * rectangle.
+ *
+ * Returns: %TRUE if the rectangle @a fully contains @b
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_rect_contains_rect (const graphene_rect_t *a,
                              const graphene_rect_t *b)
@@ -424,6 +542,18 @@ graphene_rect_contains_rect (const graphene_rect_t *a,
   return graphene_rect_equal (a, &res);
 }
 
+/**
+ * graphene_rect_offset:
+ * @r: a #graphene_rect_t
+ * @d_x: the horizontal offset
+ * @d_y: the vertical offset
+ *
+ * Offsets the origin by @d_x and @d_y.
+ *
+ * The size of the rectangle is unchanged.
+ *
+ * Since: 1.0
+ */
 void
 graphene_rect_offset (graphene_rect_t *r,
                       float            d_x,
@@ -437,6 +567,29 @@ graphene_rect_offset (graphene_rect_t *r,
   r->origin.y += d_y;
 }
 
+/**
+ * graphene_rect_inset:
+ * @r: a #graphene_rect_t
+ * @d_x: the horizontal inset
+ * @d_y: the vertical inset
+ *
+ * Changes the given rectangle to be smaller, or larger depending on the
+ * given inset parameters.
+ *
+ * To create an inset rectangle, use positive @d_x or @d_y values; to
+ * create a larger, encompassing rectangle, use negative @d_x or @d_y
+ * values.
+ *
+ * The origin of the rectangle is offset by @d_x and @d_y, while the size
+ * is adjusted by (2 * @d_x, 2 * @d_y). If @d_x and @d_y are positive
+ * values, the size of the rectangle is decreased; if @d_x and @d_y are
+ * negative values, the size of the rectangle is increased.
+ *
+ * If the size of the resulting inset rectangle has a negative width or
+ * height then the size will be set to zero.
+ *
+ * Since: 1.0
+ */
 void
 graphene_rect_inset (graphene_rect_t *r,
                      float            d_x,
@@ -466,6 +619,16 @@ graphene_rect_inset (graphene_rect_t *r,
     r->size.height = 0.f;
 }
 
+/**
+ * graphene_rect_round_to_pixel:
+ * @r: a #graphene_rect_t
+ *
+ * Rounds the origin and the size of the given rectangle to
+ * their nearest integer values; the rounding is guaranteed
+ * to be large enough to contain the original rectangle.
+ *
+ * Since: 1.0
+ */
 void
 graphene_rect_round_to_pixel (graphene_rect_t *r)
 {
@@ -480,6 +643,19 @@ graphene_rect_round_to_pixel (graphene_rect_t *r)
   r->size.height = ceilf (r->size.height);
 }
 
+/**
+ * graphene_rect_interpolate:
+ * @a: a #graphene_rect_t
+ * @b: a #graphene_rect_t
+ * @factor: the linear interpolation factor
+ * @res: (out caller-allocates): return location for the
+ *   interpolated rectangle
+ *
+ * Linearly interpolates the origin and size of the two given
+ * rectangles.
+ *
+ * Since: 1.0
+ */
 void
 graphene_rect_interpolate (const graphene_rect_t *a,
                            const graphene_rect_t *b,
