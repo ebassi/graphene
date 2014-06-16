@@ -306,6 +306,16 @@ graphene_matrix_is_backface_visible (const graphene_matrix_t *m)
   return graphene_matrix_get_value (&tmp, 2, 2) < 0.f;
 }
 
+/**
+ * graphene_matrix_is_singular:
+ * @m: a #graphene_matrix_t
+ *
+ * Checks whether a matrix is singular.
+ *
+ * Returns: %TRUE if the matrix is singular
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_matrix_is_singular (const graphene_matrix_t *m)
 {
@@ -314,11 +324,12 @@ graphene_matrix_is_singular (const graphene_matrix_t *m)
 
 /**
  * graphene_matrix_get_row:
- * @m: ...
- * @index_: ...
- * @res: (out caller-allocates): ...
+ * @m: a #graphene_matrix_t
+ * @index_: the index of the row vector, between 0 and 3
+ * @res: (out caller-allocates): return location for the #graphene_vec4_t
+ *   that is used to store the row vector
  *
- * ...
+ * Retrieves the given row vector at @index_ inside a matrix.
  *
  * Since: 1.0
  */
@@ -354,6 +365,18 @@ graphene_matrix_get_row (const graphene_matrix_t *m,
     }
 }
 
+/**
+ * graphene_matrix_get_value:
+ * @m: a #grapheme_matrix_t
+ * @row: the row index
+ * @col: the column index
+ *
+ * Retrieves the value at the given @row and @col index.
+ *
+ * Returns: the value at the given indices
+ *
+ * Since: 1.0
+ */
 float
 graphene_matrix_get_value (const graphene_matrix_t *m,
                            unsigned int             row,
@@ -415,11 +438,12 @@ graphene_matrix_get_value (const graphene_matrix_t *m,
 
 /**
  * graphene_matrix_multiply:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_matrix_t
+ * @b: a #graphene_matrix_t
+ * @res: (out caller-allocates): return location for the matrix
+ *   result
  *
- * ...
+ * Multiplies two #graphene_matrix_t.
  *
  * Since: 1.0
  */
@@ -434,6 +458,16 @@ graphene_matrix_multiply (const graphene_matrix_t *a,
   graphene_simd4x4f_matrix_mul (&a->value, &b->value, &res->value);
 }
 
+/**
+ * graphene_matrix_determinant:
+ * @m: a #graphene_matrix_t
+ *
+ * Computes the determinant of the given matrix.
+ *
+ * Returns: the value of the determinant
+ *
+ * Since: 1.0
+ */
 float
 graphene_matrix_determinant (const graphene_matrix_t *m)
 {
@@ -448,11 +482,11 @@ graphene_matrix_determinant (const graphene_matrix_t *m)
 
 /**
  * graphene_matrix_transform_vec3:
- * @m: ...
- * @v: ...
- * @res: (out caller-allocates): ...
+ * @m: a #graphene_matrix_t
+ * @v: a #graphene_vec3_t
+ * @res: (out caller-allocates): return location for a #graphene_vec3_t
  *
- * ...
+ * Transforms the given #graphene_vec3_t using the matrix @m.
  *
  * Since: 1.0
  */
@@ -469,11 +503,11 @@ graphene_matrix_transform_vec3 (const graphene_matrix_t *m,
 
 /**
  * graphene_matrix_transform_vec4:
- * @m: ...
- * @v: ...
- * @res: (out caller-allocates): ...
+ * @m: a #graphene_matrix_t
+ * @v: a #graphene_vec4_t
+ * @res: (out caller-allocates): return location for a #graphene_vec4_t
  *
- * ...
+ * Transforms the given #graphene_vec4_t using the matrix @m.
  *
  * Since: 1.0
  */
@@ -490,11 +524,12 @@ graphene_matrix_transform_vec4 (const graphene_matrix_t *m,
 
 /**
  * graphene_matrix_transform_point:
- * @m: ...
- * @p: ...
- * @res: (out caller-allocates): ...
+ * @m: a #graphene_matrix_t
+ * @p: a #graphene_point_t
+ * @res: (out caller-allocates): return location for the
+ *   transformed #graphene_point_t
  *
- * ...
+ * Transforms the given #graphene_point_t using the matrix @m.
  *
  * Since: 1.0
  */
@@ -517,11 +552,13 @@ graphene_matrix_transform_point (const graphene_matrix_t *m,
 
 /**
  * graphene_matrix_transform_rect:
- * @m: ...
- * @r: ...
- * @res: (out caller-allocates): ...
+ * @m: a #graphene_matrix_t
+ * @r: a #graphene_rect_t
+ * @res: (out caller-allocates): return location for the
+ *   transformed quad
  *
- * ...
+ * Transforms a #graphene_rect_t using the given matrix @m. The
+ * result is a coplanar quad.
  *
  * Since: 1.0
  */
@@ -551,11 +588,13 @@ graphene_matrix_transform_rect (const graphene_matrix_t *m,
 
 /**
  * graphene_matrix_transform_bounds:
- * @m: ...
- * @r: ...
- * @res: (out caller-allocates): ...
+ * @m: a #graphene_matrix_t
+ * @r: a #graphene_rect_t
+ * @res: (out caller-allocates): return location for the bounds
+ *   of the transformed rectangle
  *
- * ...
+ * Transforms a #graphene_rect_t using the given matrix @m. The
+ * result is the bounding box containing the coplanar quad.
  *
  * Since: 1.0
  */
@@ -600,11 +639,12 @@ graphene_matrix_transform_bounds (const graphene_matrix_t *m,
 
 /**
  * graphene_matrix_project_point:
- * @m: ...
- * @p: ...
- * @res: (out caller-allocates): ...
+ * @m: a #graphene_matrix_t
+ * @p: a #graphene_point_t
+ * @res: (out caller-allocates): return location for the projected
+ *   point
  *
- * ...
+ * Projects a #graphene_point_t using the matrix @m.
  *
  * Since: 1.0
  */
@@ -737,6 +777,16 @@ graphene_matrix_untransform_bounds (const graphene_matrix_t *m,
   graphene_matrix_project_rect_bounds (&inverse, &rect, res);
 }
 
+/**
+ * graphene_matrix_translate:
+ * @m: a #graphene_matrix_t
+ * @pos: a #graphene_point3d_t
+ *
+ * Adds a translation transformation to @m using the coordinates
+ * of the given #graphene_point3d_t.
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_translate (graphene_matrix_t        *m,
                            const graphene_point3d_t *pos)
@@ -829,6 +879,18 @@ graphene_matrix_rotate_z (graphene_matrix_t *m,
   graphene_matrix_rotate_internal (&m->value, angle, graphene_simd4f_init (0.f, 0.f, 1.f, 0.f));
 }
 
+/**
+ * graphene_matrix_scale:
+ * @m: a #graphene_matrix_t
+ * @factor_x: scaling factor on the X axis
+ * @factor_y: scaling factor on the Y axis
+ * @factor_z: scaling factor on the Z axis
+ *
+ * Adds a scaling transformation to @m, using the three
+ * given factors.
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_scale (graphene_matrix_t *m,
                        float              factor_x,
