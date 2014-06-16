@@ -21,6 +21,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * SECTION:graphene-matrix
+ * @title: Matrix
+ * @short_description: 4x4 matrices
+ *
+ * #graphene_matrix_t is a type that provides a 4x4 square matrix, useful for
+ * representing 3D transformations.
+ */
+
 #include "config.h"
 
 #include "graphene-matrix.h"
