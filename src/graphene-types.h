@@ -35,8 +35,31 @@
 
 G_BEGIN_DECLS
 
+/**
+ * GRAPHENE_VEC2_LEN:
+ *
+ * Evaluates to the number of components of a #graphene_vec2_t.
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_VEC2_LEN       2
+
+/**
+ * GRAPHENE_VEC3_LEN:
+ *
+ * Evaluates to the number of components of a #graphene_vec3_t.
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_VEC3_LEN       3
+
+/**
+ * GRAPHENE_VEC4_LEN:
+ *
+ * Evaluates to the number of components of a #graphene_vec4_t.
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_VEC4_LEN       4
 
 typedef struct _graphene_vec2_t         graphene_vec2_t;
