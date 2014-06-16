@@ -1,0 +1,7 @@
+<STRUCT>
+<NAME>graphene_simd4f_t</NAME>
+</STRUCT>
+
+<STRUCT>
+<NAME>graphene_simd4x4f_t</NAME>
+</STRUCT>

@@ -51,6 +51,9 @@ G_BEGIN_DECLS
  * identical to GL and Direc3D matrices, so it's cheap to convert
  * between #graphene_simd4x4f_t and float arrays.
  *
+ * The contents of the #graphene_simd4x4f_t type are private and
+ * cannot be accessed directly; use the provided API instead.
+ *
  * Since: 1.0
  */
 

@@ -50,6 +50,9 @@
  *
  * A vector type containing four floating point values.
  *
+ * The contents of the #graphene_simd4f_t type are private and
+ * cannot be directly accessed; use the provided API instead.
+ *
  * Since: 1.0
  */
 
