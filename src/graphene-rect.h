@@ -33,6 +33,17 @@
 
 G_BEGIN_DECLS
 
+/**
+ * GRAPHENE_RECT_INIT:
+ * @x: the X coordinate of the origin
+ * @y: the Y coordinate of the origin
+ * @w: the width
+ * @h: the height
+ *
+ * Initializes a #graphene_rect_t when declaring it.
+ *
+ * Since: 1.0
+ */
 #define GRAPHENE_RECT_INIT(x,y,w,h) \
   { { x, y }, { w, h } }
 
