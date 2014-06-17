@@ -1321,7 +1321,7 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
     graphene_matrix_skew_xy (res, shear);
 
   graphene_point3d_interpolate (&scale_a, &scale_b, factor, &scale_r);
-  if (scale_r.x != 1.f && scale_r.y != 1.f && scale_r.z != 0.f)
+  if (scale_r.x != 1.f && scale_r.y != 1.f && scale_r.z != 1.f)
     graphene_matrix_scale (res, scale_r.x, scale_r.y, scale_r.z);
 }
 
