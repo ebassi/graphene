@@ -406,10 +406,10 @@ GRAPHENE_RECT_GET (size, height)
 #undef GRAPHENE_RECT_GET
 
 /**
- * graphene_rect_unione:
+ * graphene_rect_union:
  * @a: a #graphene_rect_t
  * @b: a #graphene_rect_t
- * @p: (out caller-allocates): return location for a #graphene_rect_t
+ * @res: (out caller-allocates): return location for a #graphene_rect_t
  *
  * Computes the union of the two given rectangles.
  *
