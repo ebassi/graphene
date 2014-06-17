@@ -75,6 +75,20 @@ graphene_quaternion_free (graphene_quaternion_t *q)
   free (q);
 }
 
+/**
+ * graphene_quaternion_init:
+ * @q: a #graphene_quaternion_t
+ * @x: the first component of the quaternion
+ * @y: the second component of the quaternion
+ * @z: the third component of the quaternion
+ * @w: the fourth component of the quaternion
+ *
+ * Initializes a #graphene_quaternion_t using the given four values.
+ *
+ * Returns: (transfer none): the initialized quaternion
+ *
+ * Since: 1.0
+ */
 graphene_quaternion_t *
 graphene_quaternion_init (graphene_quaternion_t *q,
                           float                  x,
@@ -92,6 +106,17 @@ graphene_quaternion_init (graphene_quaternion_t *q,
   return q;
 }
 
+/**
+ * graphene_quaternion_init_identity:
+ * @q: a #graphene_quaternion_t
+ *
+ * Initializes a #graphene_quaternion_t using the identity
+ * transformation.
+ *
+ * Returns: (transfer none): the initialized quaternion
+ *
+ * Since: 1.0
+ */
 graphene_quaternion_t *
 graphene_quaternion_init_identity (graphene_quaternion_t *q)
 {
@@ -103,6 +128,17 @@ graphene_quaternion_init_identity (graphene_quaternion_t *q)
   return q;
 }
 
+/**
+ * graphene_quaternion_init_from_quaternion:
+ * @q: a #graphene_quaternion_t
+ * @src: a #graphene_quaternion_t
+ *
+ * Initializes a #graphene_quaternion_t with the values from @src.
+ *
+ * Returns: (transfer none): the initialized quaternion
+ *
+ * Since: 1.0
+ */
 graphene_quaternion_t *
 graphene_quaternion_init_from_quaternion (graphene_quaternion_t       *q,
                                           const graphene_quaternion_t *src)
@@ -127,6 +163,17 @@ graphene_quaternion_init_from_simd4f (graphene_quaternion_t *q,
   return q;
 }
 
+/**
+ * graphene_quaternion_init_from_vec4:
+ * @q: a #graphene_quaternion_t
+ * @src: a #graphene_vec4_t
+ *
+ * Initializes a #graphene_quaternion_t with the values from @src.
+ *
+ * Returns: (transfer none): the initialized quaternion
+ *
+ * Since: 1.0
+ */
 graphene_quaternion_t *
 graphene_quaternion_init_from_vec4 (graphene_quaternion_t *q,
                                     const graphene_vec4_t *src)
@@ -137,6 +184,17 @@ graphene_quaternion_init_from_vec4 (graphene_quaternion_t *q,
   return graphene_quaternion_init_from_simd4f (q, src->value);
 }
 
+/**
+ * graphene_quaternion_to_vec4:
+ * @q: a #graphene_quaternion_t
+ * @res: (out caller-allocates): return location for a
+ *   #graphene_vec4_t
+ *
+ * Copies the components of a #graphene_quaternion_t into a
+ * #graphene_vec4_t.
+ *
+ * Since: 1.0
+ */
 void
 graphene_quaternion_to_vec4 (const graphene_quaternion_t *q,
                              graphene_vec4_t             *res)
@@ -147,6 +205,18 @@ graphene_quaternion_to_vec4 (const graphene_quaternion_t *q,
   res->value = graphene_simd4f_init (q->x, q->y, q->z, q->w);
 }
 
+/**
+ * graphene_quaternion_init_from_matrix:
+ * @q: a #graphene_quaternion_t
+ * @m: a #graphene_matrix_t
+ *
+ * Initializes a #graphene_quaternion_t using the rotation components
+ * of a transformation matrix.
+ *
+ * Returns: (transfer none): the initialized quaternion
+ *
+ * Since: 1.0
+ */
 graphene_quaternion_t *
 graphene_quaternion_init_from_matrix (graphene_quaternion_t   *q,
                                       const graphene_matrix_t *m)
@@ -177,6 +247,16 @@ graphene_quaternion_init_from_matrix (graphene_quaternion_t   *q,
   return q;
 }
 
+/**
+ * graphene_quaternion_to_matrix:
+ * @q: a #graphene_quaternion_t
+ * @m: (out caller-allocates): a #graphene_matrix_t
+ *
+ * Converts a quaternion into a transformation matrix expressing
+ * the rotation defined by the #graphene_quaternion_t.
+ *
+ * Since: 1.0
+ */
 void
 graphene_quaternion_to_matrix (const graphene_quaternion_t *q,
                                graphene_matrix_t           *m)
@@ -203,6 +283,20 @@ graphene_quaternion_to_matrix (const graphene_quaternion_t *q,
   m->value = graphene_simd4x4f_init (m_x, m_y, m_z, m_w);
 }
 
+/**
+ * graphene_quaternion_slerp:
+ * @a: a #graphene_quaternion_t
+ * @b: a #graphene_quaternion_t
+ * @factor: the linear interpolation factor
+ * @res: (out caller-allocates): return location for the interpolated
+ *   quaternion
+ *
+ * Interpolates between the two given quaternions using a spherical
+ * linear interpolation, or [SLERP](http://en.wikipedia.org/wiki/Slerp),
+ * using the given interpolation @factor.
+ *
+ * Since: 1.0
+ */
 void
 graphene_quaternion_slerp (const graphene_quaternion_t *a,
                            const graphene_quaternion_t *b,
@@ -240,6 +334,21 @@ graphene_quaternion_slerp (const graphene_quaternion_t *a,
   graphene_quaternion_init_from_simd4f (res, sum);
 }
 
+/**
+ * graphene_quaternion_init_from_angles:
+ * @q: a #graphene_quaternion_t
+ * @deg_x: rotation angle on the X axis (yaw), in degrees
+ * @deg_y: rotation angle on the Y axis (pitch), in degrees
+ * @deg_z: rotation angle on the Z axis (roll), in degrees
+ *
+ * Initializes a #graphene_quaternion_t using the values of
+ * the [Euler angles](http://en.wikipedia.org/wiki/Euler_angles)
+ * on each axis.
+ *
+ * Returns: (transfer none): the initialized quaternion
+ *
+ * Since: 1.0
+ */
 graphene_quaternion_t *
 graphene_quaternion_init_from_angles (graphene_quaternion_t *q,
                                       float                  deg_x,
@@ -267,19 +376,34 @@ graphene_quaternion_init_from_angles (graphene_quaternion_t *q,
   return q;
 }
 
+/**
+ * graphene_quaternion_init_from_angle_vec3:
+ * @q: a #graphene_quaternion_t
+ * @angle: the rotation on a given axis, in degrees
+ * @axis: the axis of rotation, expressed as a vector
+ *
+ * Initializes a #graphene_quaternion_t using an @angle on a
+ * specific @axis.
+ *
+ * Returns: (transfer none): the initialized quaternion
+ *
+ * Since: 1.0
+ */
 graphene_quaternion_t *
 graphene_quaternion_init_from_angle_vec3 (graphene_quaternion_t *q,
                                           float                  angle,
                                           const graphene_vec3_t *axis)
 {
-  float sin_a, cos_a;
+  float rad, sin_a, cos_a;
   graphene_simd4f_t axis_n;
 
   g_return_val_if_fail (q != NULL, NULL);
   g_return_val_if_fail (axis != NULL, q);
 
-  sin_a = sinf (angle / 2.f);
-  cos_a = cosf (angle / 2.f);
+  rad = angle * (GRAPHENE_PI / 180.f);
+
+  sin_a = sinf (rad / 2.f);
+  cos_a = cosf (rad / 2.f);
   axis_n = graphene_simd4f_mul (graphene_simd4f_normalize3 (axis->value),
                                 graphene_simd4f_splat (sin_a));
 
@@ -291,6 +415,16 @@ graphene_quaternion_init_from_angle_vec3 (graphene_quaternion_t *q,
   return q;
 }
 
+/**
+ * graphene_quaternion_to_angle_vec3:
+ * @q: a #graphene_quaternion_t
+ * @angle: (out): return location for the angle, in degrees
+ * @axis: (out caller-allocates): return location for the rotation axis
+ *
+ * Converts a quaternion into an @angle, @axis pair.
+ *
+ * Since: 1.0
+ */
 void
 graphene_quaternion_to_angle_vec3 (const graphene_quaternion_t *q,
                                    float                       *angle,
@@ -307,7 +441,7 @@ graphene_quaternion_to_angle_vec3 (const graphene_quaternion_t *q,
 
   cos_a = q_n.w;
 
-  *angle = acosf (cos_a) * 2.f;
+  *angle = (acosf (cos_a) * 2.f) * (180.f / GRAPHENE_PI);
 
   sin_a = sqrtf (1.f - cos_a * cos_a);
   if (fabsf (sin_a) < 0.00005)
@@ -316,6 +450,17 @@ graphene_quaternion_to_angle_vec3 (const graphene_quaternion_t *q,
   graphene_vec3_init (axis, q_n.x / sin_a, q_n.y / sin_a, q_n.z / sin_a);
 }
 
+/**
+ * graphene_quaternion_equal:
+ * @a: a #graphene_quaternion_t
+ * @b: a #graphene_quaternion_t
+ *
+ * Checks whether the given quaternions are equal.
+ *
+ * Returns: %TRUE if the quaternions are equal
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_quaternion_equal (const graphene_quaternion_t *a,
                            const graphene_quaternion_t *b)
@@ -334,6 +479,17 @@ graphene_quaternion_equal (const graphene_quaternion_t *a,
   return graphene_simd4f_cmp_eq (v_a, v_b);
 }
 
+/**
+ * graphene_quaternion_dot:
+ * @a: a #graphene_quaternion_t
+ * @b: a #graphene_quaternion_t
+ *
+ * Computes the dot product of two #graphene_quaternion_t.
+ *
+ * Returns: the value of the dot products
+ *
+ * Since: 1.0
+ */
 float
 graphene_quaternion_dot (const graphene_quaternion_t *a,
                          const graphene_quaternion_t *b)
@@ -348,6 +504,16 @@ graphene_quaternion_dot (const graphene_quaternion_t *a,
   return graphene_simd4f_get_x (graphene_simd4f_dot4 (v_a, v_b));
 }
 
+/**
+ * graphene_quaternion_invert:
+ * @q: a #graphene_quaternion_t
+ * @res: (out caller-allocates): return location for the inverted
+ *   quaternion
+ *
+ * Inverts a #graphene_quaternion_t.
+ *
+ * Since: 1.0
+ */
 void
 graphene_quaternion_invert (const graphene_quaternion_t *q,
                             graphene_quaternion_t       *res)
@@ -360,6 +526,16 @@ graphene_quaternion_invert (const graphene_quaternion_t *q,
   res->z = -q->z;
 }
 
+/**
+ * graphene_quaternion_normalize:
+ * @q: a #graphene_quaternion_t
+ * @res: (out caller-allocates): return location for the normalized
+ *   quaternion
+ *
+ * Normalizes a #graphene_quaternion_t.
+ *
+ * Since: 1.0
+ */
 void
 graphene_quaternion_normalize (const graphene_quaternion_t *q,
                                graphene_quaternion_t       *res)
