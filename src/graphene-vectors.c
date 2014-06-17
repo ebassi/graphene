@@ -604,6 +604,16 @@ graphene_vec3_init_from_float (graphene_vec3_t *v,
   return v;
 }
 
+/**
+ * graphene_vec3_get_x:
+ * @v: a #graphene_vec3_t
+ *
+ * Retrieves the first component of the given vector @v.
+ *
+ * Returns: the value of the first component of the vector
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec3_get_x (const graphene_vec3_t *v)
 {
@@ -612,6 +622,16 @@ graphene_vec3_get_x (const graphene_vec3_t *v)
   return graphene_simd4f_get_x (v->value);
 }
 
+/**
+ * graphene_vec3_get_y:
+ * @v: a #graphene_vec3_t
+ *
+ * Retrieves the second component of the given vector @v.
+ *
+ * Returns: the value of the second component of the vector
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec3_get_y (const graphene_vec3_t *v)
 {
@@ -620,6 +640,16 @@ graphene_vec3_get_y (const graphene_vec3_t *v)
   return graphene_simd4f_get_y (v->value);
 }
 
+/**
+ * graphene_vec3_get_z:
+ * @v: a #graphene_vec3_t
+ *
+ * Retrieves the third component of the given vector @v.
+ *
+ * Returns: the value of the third component of the vector
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec3_get_z (const graphene_vec3_t *v)
 {
@@ -770,6 +800,16 @@ graphene_vec3_dot (const graphene_vec3_t *a,
   return graphene_simd4f_get_x (graphene_simd4f_dot3 (a->value, b->value));
 }
 
+/**
+ * graphene_vec3_length:
+ * @v: a #graphene_vec3_t
+ *
+ * Retrieves the length of the given vector @v.
+ *
+ * Returns: the value of the length of the vector
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec3_length (const graphene_vec3_t *v)
 {
@@ -969,6 +1009,16 @@ init_static_vec3 (void)
   static_vec3_init = TRUE;
 }
 
+/**
+ * graphene_vec3_zero:
+ *
+ * Provides a constant pointer to a vector with three components,
+ * all sets to 0.
+ *
+ * Returns: (transfer none): a constant vector
+ *
+ * Since: 1.0
+ */
 const graphene_vec3_t *
 graphene_vec3_zero (void)
 {
@@ -977,6 +1027,16 @@ graphene_vec3_zero (void)
   return &(static_vec3[VEC3_ZERO]);
 }
 
+/**
+ * graphene_vec3_one:
+ *
+ * Provides a constant pointer to a vector with three components,
+ * all sets to 1.
+ *
+ * Returns: (transfer none): a constant vector
+ *
+ * Since: 1.0
+ */
 const graphene_vec3_t *
 graphene_vec3_one (void)
 {
@@ -985,6 +1045,16 @@ graphene_vec3_one (void)
   return &(static_vec3[VEC3_ONE]);
 }
 
+/**
+ * graphene_vec3_x_axis:
+ *
+ * Provides a constant pointer to a vector with three components
+ * with values set to (1, 0, 0).
+ *
+ * Returns: (transfer none): a constant vector
+ *
+ * Since: 1.0
+ */
 const graphene_vec3_t *
 graphene_vec3_x_axis (void)
 {
@@ -993,6 +1063,16 @@ graphene_vec3_x_axis (void)
   return &(static_vec3[VEC3_X_AXIS]);
 }
 
+/**
+ * graphene_vec3_y_axis:
+ *
+ * Provides a constant pointer to a vector with three components
+ * with values set to (0, 1, 0).
+ *
+ * Returns: (transfer none): a constant vector
+ *
+ * Since: 1.0
+ */
 const graphene_vec3_t *
 graphene_vec3_y_axis (void)
 {
@@ -1001,6 +1081,16 @@ graphene_vec3_y_axis (void)
   return &(static_vec3[VEC3_Y_AXIS]);
 }
 
+/**
+ * graphene_vec3_z_axis:
+ *
+ * Provides a constant pointer to a vector with three components
+ * with values set to (0, 0, 1).
+ *
+ * Returns: (transfer none): a constant vector
+ *
+ * Since: 1.0
+ */
 const graphene_vec3_t *
 graphene_vec3_z_axis (void)
 {
