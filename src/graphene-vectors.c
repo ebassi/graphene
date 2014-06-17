@@ -295,7 +295,7 @@ graphene_vec2_divide (const graphene_vec2_t *a,
 }
 
 /**
- * graphene_vec2_do:
+ * graphene_vec2_dot:
  * @a: a #graphene_vec2_t
  * @b: a #graphene_vec2_t
  *
