@@ -689,6 +689,10 @@ graphene_matrix_project_rect_bounds (const graphene_matrix_t *m,
   float max_x, max_y;
   int i;
 
+  g_return_if_fail (m != NULL);
+  g_return_if_fail (r != NULL);
+  g_return_if_fail (res != NULL);
+
   graphene_rect_get_top_left (r, &points[0]);
   graphene_rect_get_top_right (r, &points[1]);
   graphene_rect_get_bottom_left (r, &points[2]);
@@ -793,6 +797,9 @@ graphene_matrix_translate (graphene_matrix_t        *m,
 {
   graphene_simd4x4f_t trans_m;
 
+  g_return_if_fail (m != NULL);
+  g_return_if_fail (pos != NULL);
+
   graphene_simd4x4f_translation (&trans_m, pos->x, pos->y, pos->z);
   graphene_simd4x4f_matrix_mul (&trans_m, &m->value, &m->value);
 }
@@ -825,6 +832,8 @@ graphene_matrix_rotate (graphene_matrix_t     *m,
                         float                  angle,
                         const graphene_vec3_t *axis)
 {
+  g_return_if_fail (m != NULL);
+
   graphene_matrix_rotate_internal (&m->value, angle, axis->value);
 }
 
@@ -842,6 +851,8 @@ void
 graphene_matrix_rotate_x (graphene_matrix_t *m,
                           float              angle)
 {
+  g_return_if_fail (m != NULL);
+
   graphene_matrix_rotate_internal (&m->value, angle, graphene_simd4f_init (1.f, 0.f, 0.f, 0.f));
 }
 
@@ -859,6 +870,8 @@ void
 graphene_matrix_rotate_y (graphene_matrix_t *m,
                           float              angle)
 {
+  g_return_if_fail (m != NULL);
+
   graphene_matrix_rotate_internal (&m->value, angle, graphene_simd4f_init (0.f, 1.f, 0.f, 0.f));
 }
 
@@ -1017,7 +1030,7 @@ graphene_matrix_normalize (const graphene_matrix_t *m,
 float
 graphene_matrix_get_x_scale (const graphene_matrix_t *m)
 {
-  g_return_val_if_fail (m != NULL, 0.f);
+  g_return_val_if_fail (m != NULL, 1.f);
 
   return graphene_simd4f_get_x (m->value.x);
 }
@@ -1025,7 +1038,7 @@ graphene_matrix_get_x_scale (const graphene_matrix_t *m)
 float
 graphene_matrix_get_y_scale (const graphene_matrix_t *m)
 {
-  g_return_val_if_fail (m != NULL, 0.f);
+  g_return_val_if_fail (m != NULL, 1.f);
 
   return graphene_simd4f_get_y (m->value.y);
 }
@@ -1033,7 +1046,7 @@ graphene_matrix_get_y_scale (const graphene_matrix_t *m)
 float
 graphene_matrix_get_z_scale (const graphene_matrix_t *m)
 {
-  g_return_val_if_fail (m != NULL, 0.f);
+  g_return_val_if_fail (m != NULL, 1.f);
 
   return graphene_simd4f_get_z (m->value.z);
 }
@@ -1324,6 +1337,8 @@ void
 graphene_matrix_print (const graphene_matrix_t *m)
 {
   int i;
+
+  g_return_if_fail (m != NULL);
 
   for (i = 0; i < 4; i++)
     {
