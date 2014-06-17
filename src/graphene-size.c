@@ -36,18 +36,49 @@
 
 #include "graphene-point.h"
 
+/**
+ * graphene_size_alloc: (constructor)
+ *
+ * Allocates a new #graphene_size_t.
+ *
+ * The contents of the returned value are undefined.
+ *
+ * Returns: (transfer full): the newly allocated #graphene_size_t
+ *
+ * Since: 1.0
+ */
 graphene_size_t *
 graphene_size_alloc (void)
 {
   return calloc (1, sizeof (graphene_size_t));
 }
 
+/**
+ * graphene_size_free:
+ * @s: a #graphene_size_t
+ *
+ * Frees the resources allocated by graphene_size_alloc().
+ *
+ * Since: 1.0
+ */
 void
 graphene_size_free (graphene_size_t *s)
 {
   free (s);
 }
 
+/**
+ * graphene_size_init:
+ * @s: a #graphene_size_t
+ * @width: the width
+ * @height: the height
+ *
+ * Initializes a #graphene_size_t using the given @width and @height.
+ 
+ * Returns: (transfer none): the initialized #graphene_size_t
+ *
+ * Since: 1.0
+ */
 graphene_size_t *
 graphene_size_init (graphene_size_t *s,
                     float            width,
@@ -61,6 +92,18 @@ graphene_size_init (graphene_size_t *s,
   return s;
 }
 
+/**
+ * graphene_size_init_from_size:
+ * @s: a #graphene_size_t
+ * @src: a #graphene_size_t
+ *
+ * Initializes a #graphene_size_t using the width and height of
+ * the given @src.
+ 
+ * Returns: (transfer none): the initialized #graphene_size_t
+ *
+ * Since: 1.0
+ */
 graphene_size_t *
 graphene_size_init_from_size (graphene_size_t       *s,
                               const graphene_size_t *src)
@@ -73,6 +116,17 @@ graphene_size_init_from_size (graphene_size_t       *s,
   return s;
 }
 
+/**
+ * graphene_size_equal:
+ * @a: a #graphene_size_t
+ * @b: a #graphene_size_t
+ *
+ * Checks whether the two give #graphene_size_t are equal.
+ *
+ * Returns: %TRUE if the sizes are equal
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_size_equal (const graphene_size_t *a,
                      const graphene_size_t *b)
@@ -87,6 +141,16 @@ graphene_size_equal (const graphene_size_t *a,
          fabsf (a->height - b->height) < GRAPHENE_FLOAT_EPSILON;
 }
 
+/**
+ * graphene_size_scale:
+ * @s: a #graphene_size_t
+ * @factor: the scaling factor
+ * @res: (out caller-allocates): return location for the scaled size
+ *
+ * Scales the components of a #graphene_size_t using the given @factor.
+ *
+ * Since: 1.0
+ */
 void
 graphene_size_scale (const graphene_size_t *s,
                      float                  factor,
@@ -101,6 +165,18 @@ graphene_size_scale (const graphene_size_t *s,
   res->height *= factor;
 }
 
+/**
+ * graphene_size_interpolate:
+ * @a: a #graphene_size_t
+ * @b: a #graphene_size_t
+ * @factor: the linear interpolation factor
+ * @res: (out caller-allocates): return location for the interpolated size
+ *
+ * Linearly interpolates the two given #graphene_size_t using the given
+ * interpolation @factor.
+ *
+ * Since: 1.0
+ */
 void
 graphene_size_interpolate (const graphene_size_t *a,
                            const graphene_size_t *b,
@@ -116,6 +192,16 @@ graphene_size_interpolate (const graphene_size_t *a,
 
 static const graphene_size_t _graphene_size_zero = GRAPHENE_SIZE_INIT_ZERO;
 
+/**
+ * graphene_size_zero:
+ *
+ * A constant pointer to a zero #graphene_size_t, useful for
+ * equality checks and interpolations.
+ *
+ * Returns: (transfer none): a constant size
+ *
+ * Since: 1.0
+ */
 const graphene_size_t *
 graphene_size_zero (void)
 {
