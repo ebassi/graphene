@@ -228,6 +228,7 @@ graphene_simd4f_shuffle_zwxy
 graphene_simd4f_shuffle_yzwx
 graphene_simd4f_zero_w
 graphene_simd4f_zero_zw
+graphene_simd4f_merge_w
 graphene_simd4f_merge_high
 graphene_simd4f_flip_sign_0101
 graphene_simd4f_flip_sign_1010

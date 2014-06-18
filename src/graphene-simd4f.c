@@ -629,6 +629,13 @@ graphene_simd4f_t
 }
 
 graphene_simd4f_t
+(graphene_simd4f_merge_w) (const graphene_simd4f_t s,
+                           float                   v)
+{
+  return graphene_simd4f_merge_w (s, v);
+}
+
+graphene_simd4f_t
 (graphene_simd4f_merge_high) (const graphene_simd4f_t a,
                               const graphene_simd4f_t b)
 {
@@ -939,6 +946,13 @@ graphene_simd4f_t
 (graphene_simd4f_zero_zw) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_init (s.x, s.y, 0.0f, 0.0f);
+}
+
+graphene_simd4f_t
+(graphene_simd4f_merge_w) (const graphene_simd4f_t s,
+                           float                   v)
+{
+  return graphene_simd4f_init (s.x, s.y, s.z, v);
 }
 
 graphene_simd4f_t

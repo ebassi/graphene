@@ -125,6 +125,9 @@ GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_shuffle_yzwx    (const graphene_simd4f_t s);
 
 GRAPHENE_AVAILABLE_IN_1_0
+graphene_simd4f_t       graphene_simd4f_merge_w         (const graphene_simd4f_t s,
+                                                         float                   v);
+GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_zero_w          (const graphene_simd4f_t s);
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_zero_zw         (const graphene_simd4f_t s);
@@ -335,6 +338,12 @@ typedef union {
 #  define graphene_simd4f_zero_zw(v) \
   (G_GNUC_EXTENSION ({ \
     (graphene_simd4f_t) _mm_movelh_ps ((v), _mm_setzero_ps ()); \
+  }))
+
+#  define graphene_simd4f_merge_w(s,v) \
+  (G_GNUC_EXTENSION ({ \
+    graphene_simd4f_t __s = _mm_unpackhi_ps ((s), _mm_set1_ps ((v))); \
+    (graphene_simd4f_t) _mm_movelh_ps ((s), __s); \
   }))
 
 #  define graphene_simd4f_merge_high(a,b) \
@@ -609,6 +618,12 @@ typedef union {
     (graphene_simd4f_t) __builtin_shuffle ((v), graphene_simd4f_init_zero (), __mask); \
   }))
 
+# define graphene_simd4f_merge_w(s,v) \
+  (G_GNUC_EXTENSION ({ \
+    graphene_simd4i_t __mask = { 0, 1, 2, 4 }; \
+    (graphene_simd4f_t) __builtin_shuffle ((s), graphene_simd4f_splat ((v)), __mask); \
+  }))
+
 # define graphene_simd4f_merge_high(a,b) \
   (G_GNUC_EXTENSION ({ \
     graphene_simd4i_t __mask = { 2, 3, 6, 7 }; \
@@ -860,6 +875,12 @@ typedef union {
     graphene_simd4f_init (u.f[0], u.f[1], 0.f, 0.f); \
   }))
 
+# define graphene_simd4f_merge_w(s,v) \
+  (G_GNUC_EXTENSION ({ \
+    graphene_simd4f_union_t u = { (s) }; \
+    graphene_simd4f_init (u.f[0], u.f[1], u.f[2], (v)); \
+  }))
+
 # define graphene_simd4f_merge_high(a,b) \
   (G_GNUC_EXTENSION ({ \
     graphene_simd4f_union_t u_a = { (a) }; \
@@ -991,6 +1012,12 @@ typedef union {
   (graphene_simd4f_flip_sign_0101 ((s)))
 #define graphene_simd4f_flip_sign_1010(s) \
   (graphene_simd4f_flip_sign_1010 ((s)))
+#define graphene_simd4f_zero_w(v) \
+  (graphene_simd4f_zero_w ((v)))
+#define graphene_simd4f_zero_zw(v) \
+  (graphene_simd4f_zero_zw ((v)))
+#define graphene_simd4f_merge_w(s,v) \
+  (graphene_simd4f_merge_w ((s), (v)))
 #define graphene_simd4f_merge_high(a,b) \
   (graphene_simd4f_merge_high ((a), (b)))
 #define graphene_simd4f_cmp_eq(a,b) \
