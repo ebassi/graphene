@@ -1008,6 +1008,15 @@ graphene_matrix_perspective (const graphene_matrix_t *m,
   graphene_simd4x4f_perspective (&res->value, depth);
 }
 
+/**
+ * graphene_matrix_normalize:
+ * @m: a #graphene_matrix_t
+ * @res: (out caller-allocates): return location for the normalized matrix
+ *
+ * Normalizes the given #graphene_matrix_t.
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_normalize (const graphene_matrix_t *m,
                            graphene_matrix_t       *res)
@@ -1027,6 +1036,16 @@ graphene_matrix_normalize (const graphene_matrix_t *m,
   res->value.w = graphene_simd4f_div (m->value.w, n);
 }
 
+/**
+ * graphene_matrix_get_x_scale:
+ * @m: a #graphene_matrix_t
+ *
+ * Retrieves the scaling factor on the X axis in @m.
+ *
+ * Returns: the value of the scaling factor
+ *
+ * Since: 1.0
+ */
 float
 graphene_matrix_get_x_scale (const graphene_matrix_t *m)
 {
@@ -1035,6 +1054,16 @@ graphene_matrix_get_x_scale (const graphene_matrix_t *m)
   return graphene_simd4f_get_x (m->value.x);
 }
 
+/**
+ * graphene_matrix_get_y_scale:
+ * @m: a #graphene_matrix_t
+ *
+ * Retrieves the scaling factor on the Y axis in @m.
+ *
+ * Returns: the value of the scaling factor
+ *
+ * Since: 1.0
+ */
 float
 graphene_matrix_get_y_scale (const graphene_matrix_t *m)
 {
@@ -1043,6 +1072,16 @@ graphene_matrix_get_y_scale (const graphene_matrix_t *m)
   return graphene_simd4f_get_y (m->value.y);
 }
 
+/**
+ * graphene_matrix_get_z_scale:
+ * @m: a #graphene_matrix_t
+ *
+ * Retrieves the scaling factor on the Z axis in @m.
+ *
+ * Returns: the value of the scaling factor
+ *
+ * Since: 1.0
+ */
 float
 graphene_matrix_get_z_scale (const graphene_matrix_t *m)
 {
@@ -1249,12 +1288,14 @@ matrix_decompose_3d (const graphene_matrix_t *m,
 
 /**
  * graphene_matrix_interpolate:
- * @a: ...
- * @b: ...
- * @factor: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_matrix_t
+ * @b: a #graphene_matrix_t
+ * @factor: the linear interpolation factor
+ * @res: (out caller-allocates): return location for the
+ *   interpolated matrix
  *
- * ...
+ * Linearly interpolates the two given #graphene_matrix_t by
+ * interpolating the decomposed transformations separately.
  *
  * Since: 1.0
  */
