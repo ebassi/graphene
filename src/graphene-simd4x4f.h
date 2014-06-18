@@ -338,32 +338,42 @@ static inline void
 graphene_simd4x4f_perspective (graphene_simd4x4f_t *m,
                                float                depth)
 {
-  const graphene_simd4f_t m_x = m->x;
-  const graphene_simd4f_t m_y = m->y;
-  const graphene_simd4f_t m_z = m->z;
-  const graphene_simd4f_t m_w = m->w;
+#if 1
+  const float m_xw = graphene_simd4f_get_w (m->x);
+  const float m_yw = graphene_simd4f_get_w (m->y);
+  const float m_zw = graphene_simd4f_get_w (m->z);
+  const float m_ww = graphene_simd4f_get_w (m->w);
 
-  const float p0 = graphene_simd4f_get_z (m_x) + -1.0f / depth * graphene_simd4f_get_w (m_x);
-  const float p1 = graphene_simd4f_get_z (m_y) + -1.0f / depth * graphene_simd4f_get_w (m_y);
-  const float p2 = graphene_simd4f_get_z (m_z) + -1.0f / depth * graphene_simd4f_get_w (m_z);
-  const float p3 = graphene_simd4f_get_z (m_w) + -1.0f / depth * graphene_simd4f_get_w (m_w);
+  const float p0 = graphene_simd4f_get_z (m->x) + -1.0f / depth * m_xw;
+  const float p1 = graphene_simd4f_get_z (m->y) + -1.0f / depth * m_yw;
+  const float p2 = graphene_simd4f_get_z (m->z) + -1.0f / depth * m_zw;
+  const float p3 = graphene_simd4f_get_z (m->w) + -1.0f / depth * m_ww;
 
-  const graphene_simd4f_t p_x = graphene_simd4f_init (graphene_simd4f_get_x (m_x),
-                                                      graphene_simd4f_get_y (m_x),
-                                                      graphene_simd4f_get_z (m_x),
-                                                      graphene_simd4f_get_w (m_w) + p0);
-  const graphene_simd4f_t p_y = graphene_simd4f_init (graphene_simd4f_get_x (m_y),
-                                                      graphene_simd4f_get_y (m_y),
-                                                      graphene_simd4f_get_z (m_y),
-                                                      graphene_simd4f_get_w (m_y) + p1);
-  const graphene_simd4f_t p_z = graphene_simd4f_init (graphene_simd4f_get_x (m_z),
-                                                      graphene_simd4f_get_y (m_z),
-                                                      graphene_simd4f_get_z (m_z),
-                                                      graphene_simd4f_get_w (m_z) + p2);
-  const graphene_simd4f_t p_w = graphene_simd4f_init (graphene_simd4f_get_x (m_w),
-                                                      graphene_simd4f_get_y (m_w),
-                                                      graphene_simd4f_get_z (m_w),
-                                                      graphene_simd4f_get_w (m_w) + p3);
+  const graphene_simd4f_t p_x = graphene_simd4f_merge_w (m->x, m_xw + p0);
+  const graphene_simd4f_t p_y = graphene_simd4f_merge_w (m->y, m_yw + p1);
+  const graphene_simd4f_t p_z = graphene_simd4f_merge_w (m->z, m_zw + p2);
+  const graphene_simd4f_t p_w = graphene_simd4f_merge_w (m->w, m_ww + p3);
+#else
+  /* this is equivalent to the operations above, but trying to inline
+   * them into SIMD registers as much as possible by transposing the
+   * original matrix and operating on the resulting column vectors. it
+   * should warrant a micro benchmark, because while the above code is
+   * dominated by single channel reads, the code below has a transpose
+   * operation.
+   */
+  graphene_simd4x4f_t t;
+  const graphene_simd4f_t f, p;
+  const graphene_simd4f_t p_x, p_y, p_z, p_w;
+
+  graphene_simd4x4f_transpose (m, &t);
+
+  f = graphene_simd4f_neg (graphene_simd4f_reciprocal (graphene_simd4f_splat (depth)));
+  p = graphene_simd4f_sum (t.w, graphene_simd4f_sum (t.z, graphene_simd4f_mul (f, t.w)));
+  p_x = graphene_simd4f_merge_w (m->x, graphene_simd4f_get_x (p));
+  p_y = graphene_simd4f_merge_w (m->y, graphene_simd4f_get_y (p));
+  p_z = graphene_simd4f_merge_w (m->z, graphene_simd4f_get_z (p));
+  p_w = graphene_simd4f_merge_w (m->w, graphene_simd4f_get_w (p));
+#endif
 
   *m = graphene_simd4x4f_init (p_x, p_y, p_z, p_w);
 }
