@@ -1168,6 +1168,18 @@ graphene_vec4_init (graphene_vec4_t *v,
   return v;
 }
 
+/**
+ * graphene_vec4_init_from_vec4:
+ * @v: a #graphene_vec4_t
+ * @src: a #graphene_vec4_t
+ *
+ * Initializes a #graphene_vec4_t using the components of
+ * another #graphene_vec4_t.
+ *
+ * Returns: (transfer none): the initialized vector
+ *
+ * Since: 1.0
+ */
 graphene_vec4_t *
 graphene_vec4_init_from_vec4 (graphene_vec4_t       *v,
                               const graphene_vec4_t *src)
@@ -1257,6 +1269,16 @@ graphene_vec4_init_from_float (graphene_vec4_t *v,
   return v;
 }
 
+/**
+ * graphene_vec4_get_x:
+ * @v: a #graphene_vec4_t
+ *
+ * Retrieves the value of the first component of the given #graphene_vec4_t.
+ *
+ * Returns: the value of the first component
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec4_get_x (const graphene_vec4_t *v)
 {
@@ -1265,6 +1287,16 @@ graphene_vec4_get_x (const graphene_vec4_t *v)
   return graphene_simd4f_get_x (v->value);
 }
 
+/**
+ * graphene_vec4_get_y:
+ * @v: a #graphene_vec4_t
+ *
+ * Retrieves the value of the second component of the given #graphene_vec4_t.
+ *
+ * Returns: the value of the second component
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec4_get_y (const graphene_vec4_t *v)
 {
@@ -1273,6 +1305,16 @@ graphene_vec4_get_y (const graphene_vec4_t *v)
   return graphene_simd4f_get_y (v->value);
 }
 
+/**
+ * graphene_vec4_get_z:
+ * @v: a #graphene_vec4_t
+ *
+ * Retrieves the value of the third component of the given #graphene_vec4_t.
+ *
+ * Returns: the value of the third component
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec4_get_z (const graphene_vec4_t *v)
 {
@@ -1281,6 +1323,16 @@ graphene_vec4_get_z (const graphene_vec4_t *v)
   return graphene_simd4f_get_z (v->value);
 }
 
+/**
+ * graphene_vec4_get_w:
+ * @v: a #graphene_vec4_t
+ *
+ * Retrieves the value of the fourth component of the given #graphene_vec4_t.
+ *
+ * Returns: the value of the fourth component
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec4_get_w (const graphene_vec4_t *v)
 {
@@ -1291,10 +1343,12 @@ graphene_vec4_get_w (const graphene_vec4_t *v)
 
 /**
  * graphene_vec4_to_float:
- * @v: ...
- * @dest: (out caller-allocates) (array fixed-size=4): ...
+ * @v: a #graphene_vec4_t
+ * @dest: (out caller-allocates) (array fixed-size=4): return location for
+ *   an array of floating point values
  *
- * ...
+ * Stores the components of the given #graphene_vec4_t into an array
+ * of floating point values.
  *
  * Since: 1.0
  */
@@ -1392,6 +1446,17 @@ graphene_vec4_divide (const graphene_vec4_t *a,
   res->value = graphene_simd4f_div (a->value, b->value);
 }
 
+/**
+ * graphene_vec4_dot:
+ * @a: a #graphene_vec4_t
+ * @b: a #graphene_vec4_t
+ *
+ * Computes the dot product of the two given vectors.
+ *
+ * Returns: the value of the dot product
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec4_dot (const graphene_vec4_t *a,
                    const graphene_vec4_t *b)
@@ -1401,6 +1466,16 @@ graphene_vec4_dot (const graphene_vec4_t *a,
   return graphene_simd4f_get_x (graphene_simd4f_dot4 (a->value, b->value));
 }
 
+/**
+ * graphene_vec4_length:
+ * @v: a #graphene_vec4_t
+ *
+ * Computes the length of the given #graphene_vec4_t.
+ *
+ * Returns: the length of the vector
+ *
+ * Since: 1.0
+ */
 float
 graphene_vec4_length (const graphene_vec4_t *v)
 {
@@ -1411,10 +1486,11 @@ graphene_vec4_length (const graphene_vec4_t *v)
 
 /**
  * graphene_vec4_normalize:
- * @v: ...
- * @res: (out caller-allocates): ...
+ * @v: a #graphene_vec4_t
+ * @res: (out caller-allocates): return location for the normalized
+ *   vector
  *
- * ...
+ * Normalizes the given #graphene_vec4_t.
  *
  * Since: 1.0
  */
@@ -1538,6 +1614,16 @@ init_static_vec4 (void)
   static_vec4_init = TRUE;
 }
 
+/**
+ * graphene_vec4_zero:
+ *
+ * Retrieves a pointer to a #graphene_vec4_t with all its
+ * components set to 0.
+ *
+ * Returns: (transfer none): a constant vector
+ *
+ * Since: 1.0
+ */
 const graphene_vec4_t *
 graphene_vec4_zero (void)
 {
@@ -1546,6 +1632,16 @@ graphene_vec4_zero (void)
   return &(static_vec4[VEC4_ZERO]);
 }
 
+/**
+ * graphene_vec4_one:
+ *
+ * Retrieves a pointer to a #graphene_vec4_t with all its
+ * components set to 1.
+ *
+ * Returns: (transfer none): a constant vector
+ *
+ * Since: 1.0
+ */
 const graphene_vec4_t *
 graphene_vec4_one (void)
 {
@@ -1554,6 +1650,16 @@ graphene_vec4_one (void)
   return &(static_vec4[VEC4_ONE]);
 }
 
+/**
+ * graphene_vec4_x_axis:
+ *
+ * Retrieves a pointer to a #graphene_vec4_t with its
+ * components set to (1, 0, 0, 0).
+ *
+ * Returns: (transfer none): a constant vector
+ *
+ * Since: 1.0
+ */
 const graphene_vec4_t *
 graphene_vec4_x_axis (void)
 {
@@ -1562,6 +1668,16 @@ graphene_vec4_x_axis (void)
   return &(static_vec4[VEC4_X_AXIS]);
 }
 
+/**
+ * graphene_vec4_y_axis:
+ *
+ * Retrieves a pointer to a #graphene_vec4_t with its
+ * components set to (0, 1, 0, 0).
+ *
+ * Returns: (transfer none): a constant vector
+ *
+ * Since: 1.0
+ */
 const graphene_vec4_t *
 graphene_vec4_y_axis (void)
 {
@@ -1570,6 +1686,16 @@ graphene_vec4_y_axis (void)
   return &(static_vec4[VEC4_Y_AXIS]);
 }
 
+/**
+ * graphene_vec4_z_axis:
+ *
+ * Retrieves a pointer to a #graphene_vec4_t with its
+ * components set to (0, 0, 1, 0).
+ *
+ * Returns: (transfer none): a constant vector
+ *
+ * Since: 1.0
+ */
 const graphene_vec4_t *
 graphene_vec4_z_axis (void)
 {
@@ -1578,6 +1704,16 @@ graphene_vec4_z_axis (void)
   return &(static_vec4[VEC4_Z_AXIS]);
 }
 
+/**
+ * graphene_vec4_w_axis:
+ *
+ * Retrieves a pointer to a #graphene_vec4_t with its
+ * components set to (0, 0, 0, 1).
+ *
+ * Returns: (transfer none): a constant vector
+ *
+ * Since: 1.0
+ */
 const graphene_vec4_t *
 graphene_vec4_w_axis (void)
 {
