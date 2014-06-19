@@ -125,9 +125,6 @@ GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_shuffle_yzwx    (const graphene_simd4f_t s);
 
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_simd4f_t       graphene_simd4f_merge_w         (const graphene_simd4f_t s,
-                                                         float                   v);
-GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_zero_w          (const graphene_simd4f_t s);
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_zero_zw         (const graphene_simd4f_t s);
@@ -135,6 +132,12 @@ graphene_simd4f_t       graphene_simd4f_zero_zw         (const graphene_simd4f_t
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_merge_high      (const graphene_simd4f_t a,
                                                          const graphene_simd4f_t b);
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_simd4f_t       graphene_simd4f_merge_low       (const graphene_simd4f_t a,
+                                                         const graphene_simd4f_t b);
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_simd4f_t       graphene_simd4f_merge_w         (const graphene_simd4f_t s,
+                                                         float                   v);
 
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_flip_sign_0101  (const graphene_simd4f_t s);
@@ -349,6 +352,11 @@ typedef union {
 #  define graphene_simd4f_merge_high(a,b) \
   (G_GNUC_EXTENSION ({ \
     (graphene_simd4f_t) _mm_movehl_ps ((b), (a)); \
+  }))
+
+#  define graphene_simd4f_merge_low(a,b) \
+  (G_GNUC_EXTENSION ({ \
+    (graphene_simd4f_t) _mm_movelh_ps ((a), (b)); \
   }))
 
 typedef GRAPHENE_ALIGN16 union {
@@ -630,6 +638,12 @@ typedef union {
     (graphene_simd4f_t) __builtin_shuffle ((a), (b), __mask); \
   }))
 
+# define graphene_simd4f_merge_low(a,b) \
+  (G_GNUC_EXTENSION ({ \
+    graphene_simd4i_t __mask = { 0, 1, 4, 5 }; \
+    (graphene_simd4f_t) __builtin_shuffle ((a), (b), __mask); \
+  }))
+
 # define graphene_simd4f_flip_sign_0101(v) \
   (G_GNUC_EXTENSION ({ \
     graphene_simd4f_union_t __u = { (v) }; \
@@ -888,6 +902,13 @@ typedef union {
     graphene_simd4f_init (u_a.f[2], u_a.f[3], u_b.f[2], u_b.f[3]); \
   }))
 
+# define graphene_simd4f_merge_low(a,b) \
+  (G_GNUC_EXTENSION ({ \
+    graphene_simd4f_union_t u_a = { (a) }; \
+    graphene_simd4f_union_t u_b = { (b) }; \
+    graphene_simd4f_init (u_a.f[0], u_a.f[1], u_b.f[0], u_b.f[1]); \
+  }))
+
 # define graphene_simd4f_flip_sign_0101(s) \
   (G_GNUC_EXTENSION ({ \
     const unsigned int upnpn[4] = { \
@@ -1020,6 +1041,8 @@ typedef union {
   (graphene_simd4f_merge_w ((s), (v)))
 #define graphene_simd4f_merge_high(a,b) \
   (graphene_simd4f_merge_high ((a), (b)))
+#define graphene_simd4f_merge_low(a,b) \
+  (graphene_simd4f_merge_low ((a), (b)))
 #define graphene_simd4f_cmp_eq(a,b) \
   (graphene_simd4f_cmp_eq ((a), (b)))
 #define graphene_simd4f_cmp_neq(a,b) \

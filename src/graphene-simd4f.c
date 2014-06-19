@@ -643,6 +643,13 @@ graphene_simd4f_t
 }
 
 graphene_simd4f_t
+(graphene_simd4f_merge_low) (const graphene_simd4f_t a,
+                             const graphene_simd4f_t b)
+{
+  return graphene_simd4f_merge_low (a, b);
+}
+
+graphene_simd4f_t
 (graphene_simd4f_flip_sign_0101) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_flip_sign_0101 (s);
@@ -960,6 +967,13 @@ graphene_simd4f_t
                               const graphene_simd4f_t b)
 {
   return graphene_simd4f_init (a.z, a.w, b.z, b.w);
+}
+
+graphene_simd4f_t
+(graphene_simd4f_merge_low) (const graphene_simd4f_t a,
+                             const graphene_simd4f_t b)
+{
+  return graphene_simd4f_init (a.x, a.y, b.x, b.y);
 }
 
 graphene_simd4f_t
