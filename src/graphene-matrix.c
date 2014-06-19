@@ -58,6 +58,14 @@ graphene_matrix_alloc (void)
   return graphene_alloc (sizeof (graphene_matrix_t), 1, 16);
 }
 
+/**
+ * graphene_matrix_free:
+ * @m: a #graphene_matrix_t
+ *
+ * Frees the resources allocated by graphene_matrix_alloc().
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_free (graphene_matrix_t *m)
 {
@@ -83,6 +91,16 @@ graphene_matrix_to_float (const graphene_matrix_t *m,
   graphene_simd4x4f_to_float (&m->value, v);
 }
 
+/**
+ * graphene_matrix_init_identity:
+ * @m: a #graphene_matrix_t
+ *
+ * Initializes a #graphene_matrix_t with the identity matrix.
+ *
+ * Returns: (transfer none): the initialized matrix
+ *
+ * Since: 1.0
+ */
 graphene_matrix_t *
 graphene_matrix_init_identity (graphene_matrix_t *m)
 {
@@ -95,12 +113,14 @@ graphene_matrix_init_identity (graphene_matrix_t *m)
 
 /**
  * graphene_matrix_init_from_float:
- * @m: ...
- * @v: (array fixed-size=16): ...
+ * @m: a #graphene_matrix_t
+ * @v: (array fixed-size=16): an array of at least 16 floating
+ *   point values
  *
- * ...
+ * Initializes a #graphene_matrix_t with the given array of floating
+ * point values.
  *
- * Returns: (transfer none): ...
+ * Returns: (transfer none): the initialized matrix
  *
  * Since: 1.0
  */
@@ -116,6 +136,21 @@ graphene_matrix_init_from_float (graphene_matrix_t *m,
   return m;
 }
 
+/**
+ * graphene_matrix_init_from_vec4:
+ * @m: a #graphene_matrix_t
+ * @v0: the first row vector
+ * @v1: the second row vector
+ * @v2: the third row vector
+ * @v3: the fourth row vector
+ *
+ * Initializes a #graphene_matrix_t with the given four row
+ * vectors.
+ *
+ * Returns: (transfer none): the initialized matrix
+ *
+ * Since: 1.0
+ */
 graphene_matrix_t *
 graphene_matrix_init_from_vec4 (graphene_matrix_t     *m,
                                 const graphene_vec4_t *v0,
@@ -134,6 +169,18 @@ graphene_matrix_init_from_vec4 (graphene_matrix_t     *m,
   return m;
 }
 
+/**
+ * graphene_matrix_init_from_matrix:
+ * @m: a #graphene_matrix_t
+ * @src: a #graphene_matrix_t
+ *
+ * Initializes a #graphene_matrix_t using the values of the
+ * given matrix.
+ *
+ * Returns: (transfer none): the initialized matrix
+ *
+ * Since: 1.0
+ */
 graphene_matrix_t *
 graphene_matrix_init_from_matrix (graphene_matrix_t       *m,
                                   const graphene_matrix_t *src)
@@ -146,6 +193,20 @@ graphene_matrix_init_from_matrix (graphene_matrix_t       *m,
   return m;
 }
 
+/**
+ * graphene_matrix_init_perspective:
+ * @m: a #graphene_matrix_t
+ * @fovy: the field of view angle, in degrees
+ * @aspect: the aspect value
+ * @z_near: the near Z plane
+ * @z_far: the far Z plane
+ *
+ * Initializes a #graphene_matrix_t with a perspective projection.
+ *
+ * Returns: (transfer none): the initialized matrix
+ *
+ * Since: 1.0
+ */
 graphene_matrix_t *
 graphene_matrix_init_perspective (graphene_matrix_t *m,
                                   float              fovy,
@@ -164,6 +225,22 @@ graphene_matrix_init_perspective (graphene_matrix_t *m,
   return m;
 }
 
+/**
+ * graphene_matrix_init_ortho:
+ * @m: a #graphene_matrix_t
+ * @left: the left edge of the clipping plane
+ * @right: the right edge of the clipping plane
+ * @top: the top edge of the clipping plane
+ * @bottom: the bottom edge of the clipping plane
+ * @z_near: the distance of the near clipping plane
+ * @z_far: the distance of the far clipping plane
+ *
+ * Initializes a #graphene_matrix_t with an orthographic projection.
+ *
+ * Returns: (transfer none): the initialized matrix
+ *
+ * Since: 1.0
+ */
 graphene_matrix_t *
 graphene_matrix_init_ortho (graphene_matrix_t *m,
                             float              left,
@@ -180,6 +257,23 @@ graphene_matrix_init_ortho (graphene_matrix_t *m,
   return m;
 }
 
+/**
+ * graphene_matrix_init_look_at:
+ * @m: a #graphene_matrix_t
+ * @eye: the vector describing the position to look from
+ * @center: the vector describing the position to look at
+ * @up: the vector describing the world's upward direction; usually,
+ *   this is the graphene_vec3_y_axis() vector
+ *
+ * Initializes a #graphene_matrix_t that position the "camera"
+ * at the given @eye coordinates towards an object at the @center
+ * coordinates. The top of the camera is aligned to the direction
+ * of the @up vector.
+ *
+ * Returns: (transfer none): the initialized matrix
+ *
+ * Since: 1.0
+ */
 graphene_matrix_t *
 graphene_matrix_init_look_at (graphene_matrix_t     *m,
                               const graphene_vec3_t *eye,
@@ -193,6 +287,19 @@ graphene_matrix_init_look_at (graphene_matrix_t     *m,
   return m;
 }
 
+/**
+ * graphene_matrix_init_scale:
+ * @m: a #graphene_matrix_t
+ * @x: the scale factor on the X axis
+ * @y: the scale factor on the Y axis
+ * @z: the scale factor on the Z axis
+ *
+ * Initializes a #graphene_matrix_t with the given scaling factors.
+ *
+ * Returns: (transfer none): the initialized matrix
+ *
+ * Since: 1.0
+ */
 graphene_matrix_t *
 graphene_matrix_init_scale (graphene_matrix_t *m,
                             float              x,
@@ -210,6 +317,18 @@ graphene_matrix_init_scale (graphene_matrix_t *m,
   return m;
 }
 
+/**
+ * graphene_matrix_init_translate:
+ * @m: a #graphene_matrix_t
+ * @p: the translation coordinates
+ *
+ * Initializes a #graphene_matrix_t with a translation to the
+ * given coordinates.
+ *
+ * Returns: (transfer none): the initialized matrix
+ *
+ * Since: 1.0
+ */
 graphene_matrix_t *
 graphene_matrix_init_translate (graphene_matrix_t        *m,
                                 const graphene_point3d_t *p)
@@ -226,6 +345,19 @@ graphene_matrix_init_translate (graphene_matrix_t        *m,
   return m;
 }
 
+/**
+ * graphene_matrix_init_skew:
+ * @m: a #graphene_matrix_t
+ * @x_skew: skew factor on the X axis
+ * @y_skew: skew factor on the Y axis
+ *
+ * Initializes a #graphene_matrix_t with a skew transformation
+ * with the given factors.
+ *
+ * Returns: (transfer none): the initialized matrix
+ *
+ * Since: 1.0
+ */
 graphene_matrix_t *
 graphene_matrix_init_skew (graphene_matrix_t *m,
                            float              x_skew,
@@ -277,6 +409,16 @@ graphene_matrix_init_rotate (graphene_matrix_t     *m,
   return m;
 }
 
+/**
+ * graphene_matrix_is_identity:
+ * @m: a #graphene_matrix_t
+ *
+ * Checks whether the given #graphene_matrix_t is the identity matrix.
+ *
+ * Returns: %TRUE if the matrix is the identity matrix
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_matrix_is_identity (const graphene_matrix_t *m)
 {
@@ -285,6 +427,18 @@ graphene_matrix_is_identity (const graphene_matrix_t *m)
   return graphene_simd4x4f_is_identity (&m->value);
 }
 
+/**
+ * graphene_matrix_is_2d:
+ * @m: a #graphene_matrix_t
+ *
+ * Checks whether the given #graphene_matrix_t is compatible with an
+ * a 2D affine transformation matrix.
+ *
+ * Returns: %TRUE if the matrix is compatible with an affine
+ *   transformation matrix
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_matrix_is_2d (const graphene_matrix_t *m)
 {
@@ -293,6 +447,16 @@ graphene_matrix_is_2d (const graphene_matrix_t *m)
   return graphene_simd4x4f_is_2d (&m->value);
 }
 
+/**
+ * graphene_matrix_is_backface_visible:
+ * @m: a #graphene_matrix_t
+ *
+ * Checks whether a #graphene_matrix_t has a visible back face.
+ *
+ * Returns: %TRUE if the back face of the matrix is visible
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_matrix_is_backface_visible (const graphene_matrix_t *m)
 {
