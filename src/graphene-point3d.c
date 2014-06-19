@@ -112,6 +112,18 @@ graphene_point3d_init_from_simd4f (graphene_point3d_t *p,
   return p;
 }
 
+/**
+ * graphene_point3d_init_from_point:
+ * @p: a #graphene_point3d_t
+ * @src: a #graphene_point3d_t
+ *
+ * Initializes a #graphene_point3d_t using the coordinates of
+ * another #graphene_point3d_t.
+ *
+ * Returns: (transfer none): the initialized point
+ *
+ * Since: 1.0
+ */
 graphene_point3d_t *
 graphene_point3d_init_from_point (graphene_point3d_t       *p,
                                   const graphene_point3d_t *src)
@@ -129,7 +141,8 @@ graphene_point3d_init_from_point (graphene_point3d_t       *p,
  * @p: a #graphene_point3d_t
  * @v: a #graphene_vec3_t
  *
- * Initializes a #graphene_point3d_t using a #graphene_vec3_t.
+ * Initializes a #graphene_point3d_t using the components
+ * of a #graphene_vec3_t.
  *
  * Returns: (transfer none): the initialized #graphene_point3d_t
  *
@@ -145,6 +158,16 @@ graphene_point3d_init_from_vec3 (graphene_point3d_t    *p,
   return graphene_point3d_init_from_simd4f (p, v->value);
 }
 
+/**
+ * graphene_point3d_to_vec3:
+ * @p: a #graphene_point3d_t
+ * @v: (out caller-allocates): return location for a #graphene_vec3_t
+ *
+ * Stores the coordinates of a #graphene_point3d_t into a
+ * #graphene_vec3_t.
+ *
+ * Since: 1.0
+ */
 void
 graphene_point3d_to_vec3 (const graphene_point3d_t *p,
                           graphene_vec3_t          *v)
@@ -155,6 +178,17 @@ graphene_point3d_to_vec3 (const graphene_point3d_t *p,
   v->value = graphene_simd4f_init (p->x, p->y, p->z, 0.f);
 }
 
+/**
+ * graphene_point3d_equal:
+ * @a: a #graphene_point3d_t
+ * @b: a #graphene_point3d_t
+ *
+ * Checks whether two given points are equal.
+ *
+ * Returns: %TRUE if the points are equal
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_point3d_equal (const graphene_point3d_t *a,
                         const graphene_point3d_t *b)
@@ -168,6 +202,19 @@ graphene_point3d_equal (const graphene_point3d_t *a,
   return graphene_point3d_near (a, b, GRAPHENE_FLOAT_EPSILON);
 }
 
+/**
+ * graphene_point3d_near:
+ * @a: a #graphene_point3d_t
+ * @b: a #graphene_point3d_t
+ * @epsilon: fuzzyness factor
+ *
+ * Checks whether the two points are near each other, within
+ * an @epsilon factor.
+ *
+ * Returns: %TRUE if the points are near each other
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_point3d_near (const graphene_point3d_t *a,
                        const graphene_point3d_t *b,
@@ -189,6 +236,17 @@ graphene_point3d_near (const graphene_point3d_t *a,
          fabsf (graphene_simd4f_get_z (v_res)) < epsilon;
 }
 
+/**
+ * graphene_point3d_scale:
+ * @p: a #graphene_point3d_t
+ * @factor: the scaling factor
+ * @res: (out caller-allocates): return location for the scaled point
+ *
+ * Scales the coordinates of the given #graphene_point3d_t by
+ * the given @factor.
+ *
+ * Since: 1.0
+ */
 void
 graphene_point3d_scale (const graphene_point3d_t *p,
                         float                     factor,
@@ -205,6 +263,17 @@ graphene_point3d_scale (const graphene_point3d_t *p,
   graphene_point3d_init_from_simd4f (res, v);
 }
 
+/**
+ * graphene_point3d_cross:
+ * @a: a #graphene_point3d_t
+ * @b: a #graphene_point3d_t
+ * @res: (out caller-allocates): return location for the cross
+ *   product
+ *
+ * Computes the cross product of the two given #graphene_point3d_t.
+ *
+ * Since: 1.0
+ */
 void
 graphene_point3d_cross (const graphene_point3d_t *a,
                         const graphene_point3d_t *b,
@@ -222,6 +291,17 @@ graphene_point3d_cross (const graphene_point3d_t *a,
   graphene_point3d_init_from_simd4f (res, resv);
 }
 
+/**
+ * graphene_point3d_dot:
+ * @a: a #graphene_point3d_t
+ * @b: a #graphene_point3d_t
+ *
+ * Computes the dot product of the two given #graphene_point3d_t.
+ *
+ * Returns: the value of the dot product
+ *
+ * Since: 1.0
+ */
 float
 graphene_point3d_dot (const graphene_point3d_t *a,
                       const graphene_point3d_t *b)
@@ -237,6 +317,17 @@ graphene_point3d_dot (const graphene_point3d_t *a,
   return graphene_simd4f_get_x (resv);
 }
 
+/**
+ * graphene_point3d_length:
+ * @p: a #graphene_point3d_t
+ *
+ * Computes the length of the vector represented by the
+ * coordinates of the given #graphene_point3d_t.
+ *
+ * Returns: the length of the vector represented by the point
+ *
+ * Since: 1.0
+ */
 float
 graphene_point3d_length (const graphene_point3d_t *p)
 {
@@ -251,10 +342,12 @@ graphene_point3d_length (const graphene_point3d_t *p)
 
 /**
  * graphene_point3d_normalize:
- * @p: ...
- * @res: (out caller-allocates): ...
+ * @p: a #graphene_point3d_t
+ * @res: (out caller-allocates): return location for the normalized
+ *   #graphene_point3d_t
  *
- * ...
+ * Computes the normalization of the vector represented by the
+ * coordinates of the given #graphene_point3d_t.
  *
  * Since: 1.0
  */
@@ -309,6 +402,15 @@ graphene_point3d_interpolate (const graphene_point3d_t *a,
 
 static const graphene_point3d_t _graphene_point3d_zero = GRAPHENE_POINT3D_INIT_ZERO;
 
+/**
+ * graphene_point3d_zero:
+ *
+ * Retrieves a constant point with all three coordinates set to 0.
+ *
+ * Returns: (transfer none): a zero point
+ *
+ * Since: 1.0
+ */
 const graphene_point3d_t *
 graphene_point3d_zero (void)
 {
