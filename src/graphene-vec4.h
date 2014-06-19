@@ -61,10 +61,13 @@ graphene_vec4_t *       graphene_vec4_init_from_vec4    (graphene_vec4_t       *
                                                          const graphene_vec4_t *src);
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_vec4_t *       graphene_vec4_init_from_vec3    (graphene_vec4_t       *v,
-                                                         const graphene_vec3_t *src);
+                                                         const graphene_vec3_t *src,
+                                                         float                  w);
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_vec4_t *       graphene_vec4_init_from_vec2    (graphene_vec4_t       *v,
-                                                         const graphene_vec2_t *src);
+                                                         const graphene_vec2_t *src,
+                                                         float                  z,
+                                                         float                  w);
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_vec4_t *       graphene_vec4_init_from_float   (graphene_vec4_t       *v,
                                                          const float           *src);

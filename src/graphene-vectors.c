@@ -1180,26 +1180,56 @@ graphene_vec4_init_from_vec4 (graphene_vec4_t       *v,
   return v;
 }
 
+/**
+ * graphene_vec4_init_from_vec3:
+ * @v: a #graphene_vec4_t
+ * @src: a #graphene_vec3_t
+ * @w: the value for the fourth component of @v
+ *
+ * Initializes a #graphene_vec4_t using the components of a
+ * #graphene_vec3_t and the value of @w.
+ *
+ * Returns: (transfer none): the initialized vector
+ *
+ * Since: 1.0
+ */
 graphene_vec4_t *
 graphene_vec4_init_from_vec3 (graphene_vec4_t       *v,
-                              const graphene_vec3_t *src)
+                              const graphene_vec3_t *src,
+                              float                  w)
 {
   g_return_val_if_fail (v != NULL, NULL);
   g_return_val_if_fail (src != NULL, v);
 
-  v->value = src->value;
+  v->value = graphene_simd4f_merge_w (src->value, w);
 
   return v;
 }
 
+/**
+ * graphene_vec4_init_from_vec2:
+ * @v: a #graphene_vec4_t
+ * @src: a #graphene_vec2_t
+ * @z: the value for the third component of @v
+ * @w: the value for the fourth component of @v
+ *
+ * Initializes a #graphene_vec4_t using the components of a
+ * #graphene_vec2_t and the values of @z and @w.
+ *
+ * Returns: (transfer none): the initialized vector
+ *
+ * Since: 1.0
+ */
 graphene_vec4_t *
 graphene_vec4_init_from_vec2 (graphene_vec4_t       *v,
-                              const graphene_vec2_t *src)
+                              const graphene_vec2_t *src,
+                              float                  z,
+                              float                  w)
 {
   g_return_val_if_fail (v != NULL, NULL);
   g_return_val_if_fail (src != NULL, v);
 
-  v->value = src->value;
+  v->value = graphene_simd4f_merge_low (src->value, graphene_simd4f_init (z, w, 0, 0));
 
   return v;
 }

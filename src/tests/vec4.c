@@ -81,13 +81,13 @@ vectors_vec4_init (void)
   g_assert_cmpfloat (graphene_vec4_get_z (vec4), ==, 1.f);
   g_assert_cmpfloat (graphene_vec4_get_w (vec4), ==, 1.f);
 
-  graphene_vec4_init_from_vec3 (vec4, graphene_vec3_x_axis ());
+  graphene_vec4_init_from_vec3 (vec4, graphene_vec3_x_axis (), 0.f);
   g_assert_cmpfloat (graphene_vec4_get_x (vec4), ==, 1.f);
   g_assert_cmpfloat (graphene_vec4_get_y (vec4), ==, 0.f);
   g_assert_cmpfloat (graphene_vec4_get_z (vec4), ==, 0.f);
   g_assert_cmpfloat (graphene_vec4_get_w (vec4), ==, 0.f);
 
-  graphene_vec4_init_from_vec2 (vec4, graphene_vec2_y_axis ());
+  graphene_vec4_init_from_vec2 (vec4, graphene_vec2_y_axis (), 0.f, 0.f);
   g_assert_cmpfloat (graphene_vec4_get_x (vec4), ==, 0.f);
   g_assert_cmpfloat (graphene_vec4_get_y (vec4), ==, 1.f);
   g_assert_cmpfloat (graphene_vec4_get_z (vec4), ==, 0.f);
