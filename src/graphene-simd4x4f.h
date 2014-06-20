@@ -81,6 +81,14 @@ graphene_simd4x4f_init (graphene_simd4f_t x,
   return s;
 }
 
+/**
+ * graphene_simd4x4f_init_identity:
+ * @m: a #graphene_simd4x4f_t
+ *
+ * Initializes @m to be the identity matrix.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_init_identity (graphene_simd4x4f_t *m)
 {
@@ -90,6 +98,16 @@ graphene_simd4x4f_init_identity (graphene_simd4x4f_t *m)
                                graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f));
 }
 
+/**
+ * graphene_simd4x4f_init_from_float:
+ * @m: a #graphene_simd4x4f_t
+ * @f: (array fixed-size=16): an array of 16 floating point values
+ *
+ * Initializes a #graphene_simd4x4f_t with the given array
+ * of floating point values.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_init_from_float (graphene_simd4x4f_t *m,
                                    const float         *f)
@@ -153,6 +171,15 @@ void    graphene_simd4x4f_transpose_in_place    (graphene_simd4x4f_t *s);
 # error "No implementation for graphene_simd4x4f_t defined."
 #endif
 
+/**
+ * graphene_simd4x4f_sum:
+ * @a: a #graphene_simd4f_t
+ * @res: (out): return location for the sum vector
+ *
+ * Adds all the row vectors of @a.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_sum (const graphene_simd4x4f_t *a,
                        graphene_simd4f_t         *res)
@@ -163,6 +190,17 @@ graphene_simd4x4f_sum (const graphene_simd4x4f_t *a,
   *res = s;
 }
 
+/**
+ * graphene_simd4x4f_vec4_mul:
+ * @a: a #graphene_simd4x4f_t
+ * @b: a #graphene_simd4f_t
+ * @res: (out): return location for a #graphene_simd4f_t
+ *
+ * Multiplies the given #graphene_simd4x4f_t with the given
+ * #graphene_simd4f_t.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_vec4_mul (const graphene_simd4x4f_t *a,
                             const graphene_simd4f_t   *b,
@@ -181,6 +219,18 @@ graphene_simd4x4f_vec4_mul (const graphene_simd4x4f_t *a,
                                                                         graphene_simd4f_mul (a->w, v_w))));
 }
 
+/**
+ * graphene_simd4x4f_vec3_mul:
+ * @m: a #graphene_simd4x4f_t
+ * @v: a #graphene_simd4f_t
+ * @res: (out): return location for a #graphene_simd4f_t
+ *
+ * Multiplies the given #graphene_simd4x4f_t with the given
+ * #graphene_simd4f_t, using only the first three row vectors
+ * of the matrix, and the first three components of the vector.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_vec3_mul (const graphene_simd4x4f_t *m,
                             const graphene_simd4f_t   *v,
@@ -197,6 +247,20 @@ graphene_simd4x4f_vec3_mul (const graphene_simd4x4f_t *m,
   *res = graphene_simd4f_add (s_x, graphene_simd4f_add (s_y, s_z));
 }
 
+/**
+ * graphene_simd4x4f_point3_mul:
+ * @m: a #graphene_simd4x4f_t
+ * @p: a #graphene_simd4f_t
+ * @res: (out): return location for a #graphene_simd4f_t
+ *
+ * Multiplies the given #graphene_simd4x4f_t with the given
+ * #graphene_simd4f_t.
+ *
+ * Unlike graphene_simd4x4f_vec3_mul(), this function will
+ * also use the fourth row vector of the matrix.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_point3_mul (const graphene_simd4x4f_t *m,
                               const graphene_simd4f_t   *p,
@@ -213,6 +277,15 @@ graphene_simd4x4f_point3_mul (const graphene_simd4x4f_t *m,
   *res = graphene_simd4f_add (s_x, graphene_simd4f_add (s_y, graphene_simd4f_add (s_z, m->w)));
 }
 
+/**
+ * graphene_simd4x4f_transpose:
+ * @s: a #graphene_simd4x4f_t
+ * @res: (out): return location for the transposed matrix
+ *
+ * Transposes the given #graphene_simd4x4f_t.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_transpose (const graphene_simd4x4f_t *s,
                              graphene_simd4x4f_t       *res)
@@ -249,6 +322,16 @@ graphene_simd4x4f_inv_ortho_point3_mul (const graphene_simd4x4f_t *a,
   graphene_simd4x4f_point3_mul (&transpose, &translation, res);
 }
 
+/**
+ * graphene_simd4x4f_matrix_mul:
+ * @a: a #graphene_simd4x4f_t
+ * @b: a #graphene_simd4x4f_t
+ * @res: (out): return location for the result
+ *
+ * Multiplies the two matrices.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_matrix_mul (const graphene_simd4x4f_t *a,
                               const graphene_simd4x4f_t *b,
@@ -378,6 +461,17 @@ graphene_simd4x4f_perspective (graphene_simd4x4f_t *m,
   *m = graphene_simd4x4f_init (p_x, p_y, p_z, p_w);
 }
 
+/**
+ * graphene_simd4x4f_translation:
+ * @m: a #graphene_simd4x4f_t
+ * @x: coordinate of the X translation
+ * @y: coordinate of the Y translation
+ * @z: coordinate of the Z translation
+ *
+ * Initializes @m to contain a translation to the given coordinates.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_translation (graphene_simd4x4f_t *m,
                                float                x,
@@ -390,6 +484,18 @@ graphene_simd4x4f_translation (graphene_simd4x4f_t *m,
                                graphene_simd4f_init (   x,    y,    z, 1.0f));
 }
 
+/**
+ * graphene_simd4x4f_scale:
+ * @m: a #graphene_simd4x4f_t
+ * @x: scaling factor on the X axis
+ * @y: scaling factor on the Y axis
+ * @z: scaling factor on the Z axis
+ *
+ * Initializes @m to contain a scaling transformation with the
+ * given factors.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_scale (graphene_simd4x4f_t *m,
                          float                x,
@@ -403,6 +509,17 @@ graphene_simd4x4f_scale (graphene_simd4x4f_t *m,
 
 }
 
+/**
+ * graphene_simd4x4f_rotation:
+ * @m: a #graphene_simd4x4f_t
+ * @rad: the rotation, in radians
+ * @axis: the vector of the axis of rotation
+ *
+ * Initializes @m to contain a rotation of the given angle
+ * along the given axis.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_rotation (graphene_simd4x4f_t *m,
                             float                rad,
@@ -482,7 +599,7 @@ graphene_simd4x4f_sub (const graphene_simd4x4f_t *a,
 }
 
 /**
- * graphene_simd4x4_mul:
+ * graphene_simd4x4f_mul:
  * @a: a #graphene_simd4x4f_t
  * @b: a #graphene_simd4x4f_t
  * @res: (out caller-allocates): return location for a #graphene_simd4x4f_t
@@ -505,14 +622,12 @@ graphene_simd4x4f_mul (const graphene_simd4x4f_t *a,
 }
 
 /**
- * graphene_simd4x4_div:
+ * graphene_simd4x4f_div:
  * @a: a #graphene_simd4x4f_t
  * @b: a #graphene_simd4x4f_t
  * @res: (out caller-allocates): return location for a #graphene_simd4x4f_t
  *
  * Divides each row vector of @a and @b and places the results in @res.
- *
- * You most likely want graphene_simd4x4f_matrix_mul() instead.
  *
  * Since: 1.0
  */
@@ -527,6 +642,15 @@ graphene_simd4x4f_div (const graphene_simd4x4f_t *a,
   res->w = graphene_simd4f_div (a->w, b->w);
 }
 
+/**
+ * graphene_simd4x4f_inverse:
+ * @m: a #graphene_simd4x4f_t
+ * @res: (out): return location for the inverse matrix
+ *
+ * Inverts the given #graphene_simd4x4f_t.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_inverse (const graphene_simd4x4f_t *m,
                            graphene_simd4x4f_t       *res)
@@ -610,6 +734,17 @@ graphene_simd4x4f_inverse (const graphene_simd4x4f_t *m,
   graphene_simd4x4f_transpose (&mt, res);
 }
 
+/**
+ * graphene_simd4x4f_determinant:
+ * @m: a #graphene_simd4x4f_t
+ * @det_r: (out): return location for the matrix determinant
+ * @invdet_r: (out): return location for the inverse of the matrix
+ *   determinant
+ *
+ * Computes the determinant (and its inverse) of the given matrix
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_determinant (const graphene_simd4x4f_t *m,
                                graphene_simd4f_t         *det_r,
@@ -662,6 +797,16 @@ graphene_simd4x4f_determinant (const graphene_simd4x4f_t *m,
     *invdet_r = invdet;
 }
 
+/**
+ * graphene_simd4x4f_is_identity:
+ * @m: a #graphene_simd4x4f_t
+ *
+ * Checks whether the given matrix is the identity matrix.
+ *
+ * Returns: %TRUE if the matrix is the identity matrix
+ *
+ * Since: 1.0
+ */
 static inline gboolean
 graphene_simd4x4f_is_identity (const graphene_simd4x4f_t *m)
 {
@@ -676,6 +821,18 @@ graphene_simd4x4f_is_identity (const graphene_simd4x4f_t *m)
          graphene_simd4f_cmp_eq (m->w, r3);
 }
 
+/**
+ * graphene_simd4x4f_is_2d:
+ * @m: a #graphene_simd4x4f_t
+ *
+ * Checks whether the given matrix is compatible with an affine
+ * transformation matrix.
+ *
+ * Returns: %TRUE if the matrix is compatible with an affine
+ *   transformation matrix
+ *
+ * Since: 1.0
+ */
 static inline gboolean
 graphene_simd4x4f_is_2d (const graphene_simd4x4f_t *m)
 {
