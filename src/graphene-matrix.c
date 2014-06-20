@@ -842,6 +842,20 @@ graphene_matrix_project_point (const graphene_matrix_t *m,
                        graphene_vec3_get_y (&pback) + t * graphene_vec3_get_y (&uback));
 }
 
+/**
+ * graphene_matrix_project_rect_bounds:
+ * @m: a #graphene_matrix_t
+ * @r: a #graphene_rect_t
+ * @res: (out caller-allocates): return location for the projected
+ *   rectangle
+ *
+ * Projects a #graphene_rect_t using the given matrix.
+ *
+ * The resulting rectangle is the bounding box capable of containing
+ * fully the projected rectangle.
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_project_rect_bounds (const graphene_matrix_t *m,
                                      const graphene_rect_t   *r,
@@ -882,6 +896,21 @@ graphene_matrix_project_rect_bounds (const graphene_matrix_t *m,
   graphene_rect_init (res, min_x, min_y, max_x - min_x, max_y - min_y);
 }
 
+/**
+ * graphene_matrix_untransform_point:
+ * @m: a #graphene_matrix_t
+ * @p: a #graphene_point_t
+ * @bounds: the bounds of the transformation
+ * @res: (out caller-allocates): return location for the
+ *   untransformed point
+ *
+ * Undoes the transformation of a #graphene_point_t using the
+ * given matrix, within the given rectangular @bounds.
+ *
+ * Returns: %TRUE if the point was successfully untransformed
+ *
+ * Since: 1.0
+ */
 gboolean
 graphene_matrix_untransform_point (const graphene_matrix_t *m,
                                    const graphene_point_t  *p,
@@ -913,6 +942,19 @@ graphene_matrix_untransform_point (const graphene_matrix_t *m,
   return TRUE;
 }
 
+/**
+ * graphene_matrix_untransform_bounds:
+ * @m: a #graphene_matrix_t
+ * @r: a #graphene_rect_t
+ * @bounds: the bounds of the transformation
+ * @res: (out caller-allocates): return location for the
+ *   untransformed rectangle
+ *
+ * Undoes the transformation on the points of a #graphene_rect_t
+ * using the given matrix, within the given rectangular @bounds.
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_untransform_bounds (const graphene_matrix_t *m,
                                     const graphene_rect_t   *r,
@@ -1080,6 +1122,15 @@ graphene_matrix_scale (graphene_matrix_t *m,
   graphene_simd4x4f_matrix_mul (&scale_m, &m->value, &m->value);
 }
 
+/**
+ * graphene_matrix_skew_xy:
+ * @m: a #graphene_matrix_t
+ * @factor: skew factor
+ *
+ * Adds a skew of @factor on the X and Y axis to the given matrix.
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_skew_xy (graphene_matrix_t *m,
                          float              factor)
@@ -1094,6 +1145,15 @@ graphene_matrix_skew_xy (graphene_matrix_t *m,
   m->value.y = graphene_simd4f_add (m_y, graphene_simd4f_mul (m_x, graphene_simd4f_splat (factor)));
 }
 
+/**
+ * graphene_matrix_skew_xz:
+ * @m: a #graphene_matrix_t
+ * @factor: skew factor
+ *
+ * Adds a skew of @factor on the X and Z axis to the given matrix.
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_skew_xz (graphene_matrix_t *m,
                          float              factor)
@@ -1108,6 +1168,15 @@ graphene_matrix_skew_xz (graphene_matrix_t *m,
   m->value.z = graphene_simd4f_add (m_z, graphene_simd4f_mul (m_x, graphene_simd4f_splat (factor)));
 }
 
+/**
+ * graphene_matrix_skew_yz:
+ * @m: a #graphene_matrix_t
+ * @factor: skew factor
+ *
+ * Adds a skew of @factor on the Y and Z axis to the given matrix.
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_skew_yz (graphene_matrix_t *m,
                          float              factor)
@@ -1137,6 +1206,16 @@ graphene_matrix_transpose_transform_vec4 (const graphene_matrix_t *m,
   graphene_vec4_init (res, x, y, z, w);
 }
 
+/**
+ * graphene_matrix_transpose:
+ * @m: a #graphene_matrix_t
+ * @res: (out caller-allocates): return location for the
+ *   transposed matrix
+ *
+ * Transposes the given matrix.
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_transpose (const graphene_matrix_t *m,
                            graphene_matrix_t       *res)
@@ -1147,6 +1226,16 @@ graphene_matrix_transpose (const graphene_matrix_t *m,
   graphene_simd4x4f_transpose (&m->value, &res->value);
 }
 
+/**
+ * graphene_matrix_inverse:
+ * @m: a #graphene_matrix_t
+ * @res: (out caller-allocates): return location for the
+ *   inverse matrix
+ *
+ * Inverts the given matrix.
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_inverse (const graphene_matrix_t *m,
                          graphene_matrix_t       *res)
@@ -1157,6 +1246,17 @@ graphene_matrix_inverse (const graphene_matrix_t *m,
   graphene_simd4x4f_inverse (&m->value, &res->value);
 }
 
+/**
+ * graphene_matrix_perspective:
+ * @m: a #graphene_matrix_t
+ * @depth: the depth of the perspective
+ * @res: (out caller-allocates): return location for the
+ *   perspective matrix
+ *
+ * Applies a perspective of @depth to the matrix.
+ *
+ * Since: 1.0
+ */
 void
 graphene_matrix_perspective (const graphene_matrix_t *m,
                              float                    depth,
