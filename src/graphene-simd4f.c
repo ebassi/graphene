@@ -598,36 +598,109 @@ graphene_simd4f_t
   return graphene_simd4f_max (a, b);
 }
 
+/**
+ * graphene_simd4f_shuffle_wxyz:
+ * @s: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t that contains the
+ * re-ordered values of the W, X, Y, and Z components
+ * of @s.
+ *
+ * Returns: the new vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_shuffle_wxyz) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_shuffle_wxyz (s);
 }
 
+/**
+ * graphene_simd4f_shuffle_zwxy:
+ * @s: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t that contains the
+ * re-ordered values of the Z, W, X, and Y components
+ * of @s.
+ *
+ * Returns: the new vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_shuffle_zwxy) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_shuffle_zwxy (s);
 }
 
+/**
+ * graphene_simd4f_shuffle_yzwx:
+ * @s: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t that contains the
+ * re-ordered values of the Y, Z, W, and X components
+ * of @s.
+ *
+ * Returns: the new vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_shuffle_yzwx) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_shuffle_yzwx (s);
 }
 
+/**
+ * graphene_simd4f_zero_w:
+ * @s: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t that contains the
+ * same values of the given @s vector, except for the
+ * W component, which is set to 0.
+ *
+ * Returns: the new vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_zero_w) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_zero_w (s);
 }
 
+/**
+ * graphene_simd4f_zero_zw:
+ * @s: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t that contains the
+ * same values of the given @s vector, except for the
+ * Z and W components, which are set to 0.
+ *
+ * Returns: the new vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_zero_zw) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_zero_zw (s);
 }
 
+/**
+ * graphene_simd4f_merge_w:
+ * @s: a #graphene_simd4f_t
+ * @v: the new value of the W component
+ *
+ * Creates a new #graphene_simd4f_t that contains the
+ * same values of the given @s vector, except for the
+ * W component, which is set to @v.
+ *
+ * Returns: the new vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_merge_w) (const graphene_simd4f_t s,
                            float                   v)
@@ -635,6 +708,19 @@ graphene_simd4f_t
   return graphene_simd4f_merge_w (s, v);
 }
 
+/**
+ * graphene_simd4f_merge_high:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t that contains the
+ * last two components of the vector @a and the last
+ * two components of the vector @b.
+ *
+ * Returns: the new vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_merge_high) (const graphene_simd4f_t a,
                               const graphene_simd4f_t b)
@@ -642,6 +728,19 @@ graphene_simd4f_t
   return graphene_simd4f_merge_high (a, b);
 }
 
+/**
+ * graphene_simd4f_merge_low:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Creates a new #graphene_simd4f_t that contains the
+ * first two components of the vector @a and the first
+ * two components of the vector @b.
+ *
+ * Returns: the new vector
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_merge_low) (const graphene_simd4f_t a,
                              const graphene_simd4f_t b)
@@ -649,18 +748,51 @@ graphene_simd4f_t
   return graphene_simd4f_merge_low (a, b);
 }
 
+/**
+ * graphene_simd4f_flip_sign_0101:
+ * @s: a #graphene_simd4f_t
+ *
+ * Flips the signs of the second and fourth components of
+ * the given vector @s.
+ *
+ * Returns: the new vector, with the changed signs
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_flip_sign_0101) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_flip_sign_0101 (s);
 }
 
+/**
+ * graphene_simd4f_flip_sign_1010:
+ * @s: a #graphene_simd4f_t
+ *
+ * Flips the signs of the first and third components of
+ * the given vector @s.
+ *
+ * Returns: the new vector, with the changed signs
+ *
+ * Since: 1.0
+ */
 graphene_simd4f_t
 (graphene_simd4f_flip_sign_1010) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_flip_sign_1010 (s);
 }
 
+/**
+ * graphene_simd4f_cmp_eq:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Checks if the two given #graphene_simd4f_t are equal.
+ *
+ * Returns: %TRUE if the values of the vectors are equal
+ *
+ * Since: 1.0
+ */
 gboolean
 (graphene_simd4f_cmp_eq) (const graphene_simd4f_t a,
                           const graphene_simd4f_t b)
@@ -668,6 +800,17 @@ gboolean
   return graphene_simd4f_cmp_eq (a, b);
 }
 
+/**
+ * graphene_simd4f_cmp_neq:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Checks if the two given #graphene_simd4f_t are not equal.
+ *
+ * Returns: %TRUE if the values of the vectors are not equal
+ *
+ * Since: 1.0
+ */
 gboolean
 (graphene_simd4f_cmp_neq) (const graphene_simd4f_t a,
                            const graphene_simd4f_t b)

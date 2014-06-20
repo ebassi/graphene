@@ -1056,16 +1056,39 @@ typedef union {
 
 /* Generic operations, inlined */
 
+/**
+ * graphene_simd4f_madd:
+ * @m1: a #graphene_simd4f_t
+ * @m2: a #graphene_simd4f_t
+ * @a: a #graphene_simd4f_t
+ *
+ * Adds @a to the product of @m1 and @m2.
+ *
+ * Returns: the result vector
+ *
+ * Since: 1.0
+ */
 static inline graphene_simd4f_t
-graphene_simd4f_madd (graphene_simd4f_t m1,
-                      graphene_simd4f_t m2,
-                      graphene_simd4f_t a)
+graphene_simd4f_madd (const graphene_simd4f_t m1,
+                      const graphene_simd4f_t m2,
+                      const graphene_simd4f_t a)
 {
   return graphene_simd4f_add (graphene_simd4f_mul (m1, m2), a);
 }
 
+/**
+ * graphene_simd4f_sum:
+ * @v: a #graphene_simd4f_t
+ *
+ * Sums all components of the given vector.
+ *
+ * Returns: a vector with all components set to be the
+ *   sum of the passed #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
 static inline graphene_simd4f_t
-graphene_simd4f_sum (graphene_simd4f_t v)
+graphene_simd4f_sum (const graphene_simd4f_t v)
 {
   const graphene_simd4f_t s0 = graphene_simd4f_splat_x (v);
   const graphene_simd4f_t s1 = graphene_simd4f_add (s0, graphene_simd4f_splat_y (v));
@@ -1074,13 +1097,39 @@ graphene_simd4f_sum (graphene_simd4f_t v)
   return s3;
 }
 
+/**
+ * graphene_simd4f_dot4:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Computes the dot product of all the components of the two
+ * given #graphene_simd4f_t.
+ *
+ * Returns: a vector whose components are all set to be the
+ *   dot product of the components of the two operands
+ *
+ * Since: 1.0
+ */
 static inline graphene_simd4f_t
-graphene_simd4f_dot4 (graphene_simd4f_t a,
-                      graphene_simd4f_t b)
+graphene_simd4f_dot4 (const graphene_simd4f_t a,
+                      const graphene_simd4f_t b)
 {
   return graphene_simd4f_sum (graphene_simd4f_mul (a, b));
 }
 
+/**
+ * graphene_simd4f_dot3:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Computes the dot product of the first three components of the
+ * two given #graphene_simd4f_t.
+ *
+ * Returns: a vector whose components are all set to the the
+ *   dot product of the componets of the two operands
+ *
+ * Since: 1.0
+ */
 static inline graphene_simd4f_t
 graphene_simd4f_dot3 (graphene_simd4f_t a,
                       graphene_simd4f_t b)
@@ -1093,9 +1142,22 @@ graphene_simd4f_dot3 (graphene_simd4f_t a,
   return s2;
 }
 
+/**
+ * graphene_simd4f_dot2:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Computes the dot product of the first two components of the
+ * two given #graphene_simd4f_t.
+ *
+ * Returns: a vector whose components are all set to the the
+ *   dot product of the componets of the two operands
+ *
+ * Since: 1.0
+ */
 static inline graphene_simd4f_t
-graphene_simd4f_dot2 (graphene_simd4f_t a,
-                      graphene_simd4f_t b)
+graphene_simd4f_dot2 (const graphene_simd4f_t a,
+                      const graphene_simd4f_t b)
 {
   const graphene_simd4f_t m = graphene_simd4f_mul (a, b);
   const graphene_simd4f_t s1 = graphene_simd4f_add (graphene_simd4f_splat_x (m),
@@ -1103,75 +1165,187 @@ graphene_simd4f_dot2 (graphene_simd4f_t a,
   return s1;
 }
 
+/**
+ * graphene_simd4f_length4:
+ * @v: a #graphene_simd4f_t
+ *
+ * Computes the length of the given #graphene_simd4f_t vector,
+ * using all four of its components.
+ *
+ * Returns: the length vector
+ *
+ * Since: 1.0
+ */
 static inline graphene_simd4f_t
-graphene_simd4f_length4 (graphene_simd4f_t v)
+graphene_simd4f_length4 (const graphene_simd4f_t v)
 {
   return graphene_simd4f_sqrt (graphene_simd4f_dot4 (v, v));
 }
 
+/**
+ * graphene_simd4f_length3:
+ * @v: a #graphene_simd4f_t
+ *
+ * Computes the length of the given #graphene_simd4f_t vector,
+ * using the first three of its components.
+ *
+ * Returns: the length vector
+ *
+ * Since: 1.0
+ */
 static inline graphene_simd4f_t
-graphene_simd4f_length3 (graphene_simd4f_t v)
+graphene_simd4f_length3 (const graphene_simd4f_t v)
 {
   return graphene_simd4f_sqrt (graphene_simd4f_dot3 (v, v));
 }
 
+/**
+ * graphene_simd4f_length2:
+ * @v: a #graphene_simd4f_t
+ *
+ * Computes the length of the given #graphene_simd4f_t vector,
+ * using the first two of its components.
+ *
+ * Returns: the length vector
+ *
+ * Since: 1.0
+ */
 static inline graphene_simd4f_t
-graphene_simd4f_length2 (graphene_simd4f_t v)
+graphene_simd4f_length2 (const graphene_simd4f_t v)
 {
   return graphene_simd4f_sqrt (graphene_simd4f_dot2 (v, v));
 }
 
+/**
+ * graphene_simd4f_normalize4:
+ * @v: a #graphene_simd4f_t
+ *
+ * Computes the normalization of the given #graphene_simd4f_t vector,
+ * using all of its components.
+ *
+ * Returns: the normalized vector
+ *
+ * Since: 1.0
+ */
 static inline graphene_simd4f_t
-graphene_simd4f_normalize4 (graphene_simd4f_t v)
+graphene_simd4f_normalize4 (const graphene_simd4f_t v)
 {
   graphene_simd4f_t invlen = graphene_simd4f_rsqrt (graphene_simd4f_dot4 (v, v));
   return graphene_simd4f_mul (v, invlen);
 }
 
+/**
+ * graphene_simd4f_normalize3:
+ * @v: a #graphene_simd4f_t
+ *
+ * Computes the normalization of the given #graphene_simd4f_t vector,
+ * using the first three of its components.
+ *
+ * Returns: the normalized vector
+ *
+ * Since: 1.0
+ */
 static inline graphene_simd4f_t
-graphene_simd4f_normalize3 (graphene_simd4f_t v)
+graphene_simd4f_normalize3 (const graphene_simd4f_t v)
 {
   graphene_simd4f_t invlen = graphene_simd4f_rsqrt (graphene_simd4f_dot3 (v, v));
   return graphene_simd4f_mul (v, invlen);
 }
 
+/**
+ * graphene_simd4f_normalize2:
+ * @v: a #graphene_simd4f_t
+ *
+ * Computes the normalization of the given #graphene_simd4f_t vector,
+ * using the first two of its components.
+ *
+ * Returns: the normalized vector
+ *
+ * Since: 1.0
+ */
 static inline graphene_simd4f_t
-graphene_simd4f_normalize2 (graphene_simd4f_t v)
+graphene_simd4f_normalize2 (const graphene_simd4f_t v)
 {
   graphene_simd4f_t invlen = graphene_simd4f_rsqrt (graphene_simd4f_dot2 (v, v));
   return graphene_simd4f_mul (v, invlen);
 }
 
+/**
+ * graphene_simd4f_is_zero4:
+ * @v: a #graphene_simd4f_t
+ *
+ * Checks whether the given #graphene_simd4f_t has all its components
+ * set to 0.
+ *
+ * Returns: %TRUE if all the vector components are zero
+ *
+ * Since: 1.0
+ */
 static inline gboolean
-graphene_simd4f_is_zero4 (graphene_simd4f_t v)
+graphene_simd4f_is_zero4 (const graphene_simd4f_t v)
 {
   graphene_simd4f_t zero = graphene_simd4f_init_zero ();
   return graphene_simd4f_cmp_eq (v, zero);
 }
 
+/**
+ * graphene_simd4f_is_zero3:
+ * @v: a #graphene_simd4f_t
+ *
+ * Checks whether the given #graphene_simd4f_t has the first three of
+ * its components set to 0.
+ *
+ * Returns: %TRUE if the vector's components are zero
+ *
+ * Since: 1.0
+ */
 static inline gboolean
-graphene_simd4f_is_zero3 (graphene_simd4f_t v)
+graphene_simd4f_is_zero3 (const graphene_simd4f_t v)
 {
   return graphene_simd4f_get_x (v) == 0.f &&
          graphene_simd4f_get_y (v) == 0.f &&
          graphene_simd4f_get_z (v) == 0.f;
 }
 
+/**
+ * graphene_simd4f_is_zero2:
+ * @v: a #graphene_simd4f_t
+ *
+ * Checks whether the given #graphene_simd4f_t has the first two of
+ * its components set to 0.
+ *
+ * Returns: %TRUE if the vector's components are zero
+ *
+ * Since: 1.0
+ */
 static inline gboolean
-graphene_simd4f_is_zero2 (graphene_simd4f_t v)
+graphene_simd4f_is_zero2 (const graphene_simd4f_t v)
 {
   return graphene_simd4f_get_x (v) == 0.f &&
          graphene_simd4f_get_y (v) == 0.f;
 }
 
+/**
+ * graphene_simd4f_interpolate:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ * @f: the interpolation factor
+ *
+ * Linearly interpolates all components of the two given
+ * #graphene_simd4f_t vectors using the given factor @f.
+ *
+ * Returns: the intrerpolated vector
+ *
+ * Since: 1.0
+ */
 static inline graphene_simd4f_t
-graphene_simd4f_interpolate (graphene_simd4f_t a,
-                             graphene_simd4f_t b,
-                             double            f)
+graphene_simd4f_interpolate (const graphene_simd4f_t a,
+                             const graphene_simd4f_t b,
+                             float                   f)
 {
-  return graphene_simd4f_add (a,
-                              graphene_simd4f_mul (graphene_simd4f_sub (b, a),
-                                                   graphene_simd4f_splat (f)));
+  return graphene_simd4f_madd (graphene_simd4f_sub (b, a),
+                               graphene_simd4f_splat (f),
+                               a);
 }
 
 G_END_DECLS
