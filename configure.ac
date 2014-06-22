@@ -8,12 +8,11 @@ m4_define([graphene_version], [graphene_major_version.graphene_minor_version.gra
 
 m4_define([graphene_release_status],
           [m4_if(m4_eval(graphene_micro_version % 2), [1], [git],
-                 [m4_if(m4_eval(graphene_minor_version % 2), [1], [snapshot],
-                                                              [release])])])
+                 [m4_if(m4_eval(graphene_minor_version % 2), [1], [snapshot], [release])])])
 
 # bump up by 1 for every micro release with no API changes, otherwise
 # set to 0. after release, bump up by 1
-m4_define([graphene_interface_age], [1])
+m4_define([graphene_interface_age], [0])
 m4_define([graphene_binary_age], [m4_eval(100 * graphene_minor_version + graphene_micro_version)])
 
 m4_define([lt_current], [m4_eval(100 * graphene_minor_version + graphene_micro_version - graphene_interface_age)])
