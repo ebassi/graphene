@@ -560,12 +560,13 @@ graphene_vec3_init (graphene_vec3_t *v,
 
 /**
  * graphene_vec3_init_from_vec3:
- * @v: ...
- * @src: ...
+ * @v: a #graphene_vec3_t
+ * @src: a #graphene_vec3_t
  *
- * ...
+ * Initializes a #graphene_vec3_t with the values of another
+ * #graphene_vec3_t.
  *
- * Returns: (transfer none): ...
+ * Returns: (transfer none): the initialized vector
  *
  * Since: 1.0
  */
@@ -583,12 +584,12 @@ graphene_vec3_init_from_vec3 (graphene_vec3_t       *v,
 
 /**
  * graphene_vec3_init_from_float:
- * @v: ...
- * @src: (array fixed-size=3): ...
+ * @v: a #graphene_vec3_t
+ * @src: (array fixed-size=3): an array of 3 floating point values
  *
- * ...
+ * Initializes a #graphene_vec3_t with the values from an array.
  *
- * Returns: (transfer none): ...
+ * Returns: (transfer none): the initialized vector
  *
  * Since: 1.0
  */
@@ -660,10 +661,11 @@ graphene_vec3_get_z (const graphene_vec3_t *v)
 
 /**
  * graphene_vec3_to_float:
- * @v: ...
- * @dest: (out caller-allocates) (array fixed-size=3): ...
+ * @v: a #graphene_vec3_t
+ * @dest: (out caller-allocates) (array fixed-size=3): return location for
+ *   an array of floating point values
  *
- * ...
+ * Copies the components of a #graphene_vec3_t into the given array.
  *
  * Since: 1.0
  */
@@ -679,11 +681,11 @@ graphene_vec3_to_float (const graphene_vec3_t *v,
 
 /**
  * graphene_vec3_add:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_vec3_t
+ * @b: a #graphene_vec3_t
+ * @res: (out caller-allocates): return location for the resulting vector
  *
- * ...
+ * Adds each component of the two given vectors.
  *
  * Since: 1.0
  */
@@ -700,11 +702,11 @@ graphene_vec3_add (const graphene_vec3_t *a,
 
 /**
  * graphene_vec3_subtract:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_vec3_t
+ * @b: a #graphene_vec3_t
+ * @res: (out caller-allocates): return location for the resulting vector
  *
- * ...
+ * Subtracts each component of the two given vectors.
  *
  * Since: 1.0
  */
@@ -721,11 +723,11 @@ graphene_vec3_subtract (const graphene_vec3_t *a,
 
 /**
  * graphene_vec3_multiply:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_vec3_t
+ * @b: a #graphene_vec3_t
+ * @res: (out caller-allocates): return location for the resulting vector
  *
- * ...
+ * Multiplies each component of the two given vectors.
  *
  * Since: 1.0
  */
@@ -742,11 +744,11 @@ graphene_vec3_multiply (const graphene_vec3_t *a,
 
 /**
  * graphene_vec3_divide:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_vec3_t
+ * @b: a #graphene_vec3_t
+ * @res: (out caller-allocates): return location for the resulting vector
  *
- * ...
+ * Divides each component of the two given vectors.
  *
  * Since: 1.0
  */
@@ -763,11 +765,11 @@ graphene_vec3_divide (const graphene_vec3_t *a,
 
 /**
  * graphene_vec3_cross:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_vec3_t
+ * @b: a #graphene_vec3_t
+ * @res: (out caller-allocates): return location for the resulting vector
  *
- * ...
+ * Computes the cross product of the two given vectors.
  *
  * Since: 1.0
  */
@@ -784,10 +786,12 @@ graphene_vec3_cross (const graphene_vec3_t *a,
 
 /**
  * graphene_vec3_dot:
- * @a: ...
- * @b: ...
+ * @a: a #graphene_vec3_t
+ * @b: a #graphene_vec3_t
  *
- * ...
+ * Computes the dot product of the two given vectors.
+ *
+ * Returns: the value of the dot product
  *
  * Since: 1.0
  */
@@ -820,10 +824,10 @@ graphene_vec3_length (const graphene_vec3_t *v)
 
 /**
  * graphene_vec3_normalize:
- * @v: ...
- * @res: (out caller-allocates): ...
+ * @v: a #graphene_vec3_t
+ * @res: (out caller-allocates): return location for the normalized vector
  *
- * ...
+ * Normalizes the given #graphene_vec3_t.
  *
  * Since: 1.0
  */
@@ -839,11 +843,12 @@ graphene_vec3_normalize (const graphene_vec3_t *v,
 
 /**
  * graphene_vec3_min:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_vec3_t
+ * @b: a #graphene_vec3_t
+ * @res: (out caller-allocates): return location for the result vector
  *
- * ...
+ * Compares each component of the two given vectors and creates a
+ * vector that contains the minimum values.
  *
  * Since: 1.0
  */
@@ -860,11 +865,12 @@ graphene_vec3_min (const graphene_vec3_t *a,
 
 /**
  * graphene_vec3_max:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_vec3_t
+ * @b: a #graphene_vec3_t
+ * @res: (out caller-allocates): return location for the result vector
  *
- * ...
+ * Compares each component of the two given vectors and creates a
+ * vector that contains the maximum values.
  *
  * Since: 1.0
  */
@@ -881,10 +887,11 @@ graphene_vec3_max (const graphene_vec3_t *a,
 
 /**
  * graphene_vec3_get_xy:
- * @v: ...
- * @res: (out caller-allocates): ...
+ * @v: a #graphene_vec3_t
+ * @res: (out caller-allocates): return location for a #graphene_vec2_t
  *
- * ...
+ * Creates a #graphene_vec2_t that contains the first and second
+ * components of the given #graphene_vec3_t.
  *
  * Since: 1.0
  */
@@ -900,10 +907,11 @@ graphene_vec3_get_xy (const graphene_vec3_t *v,
 
 /**
  * graphene_vec3_get_xy0:
- * @v: ...
- * @res: (out caller-allocates): ...
+ * @v: a #graphene_vec3_t
+ * @res: (out caller-allocates): return location for a #graphene_vec3_t
  *
- * ...
+ * Creates a #graphene_vec3_t that contains the first two components of
+ * the given #graphene_vec3_t, and the third component set to 0.
  *
  * Since: 1.0
  */
@@ -914,7 +922,7 @@ graphene_vec3_get_xy0 (const graphene_vec3_t *v,
   g_return_if_fail (v != NULL);
   g_return_if_fail (res != NULL);
 
-  res->value = graphene_simd4f_mul (v->value, graphene_simd4f_init (1.f, 1.f, 0.f, 0.f));
+  res->value = graphene_simd4f_zero_zw (v->value);
 }
 
 /**
@@ -1248,12 +1256,12 @@ graphene_vec4_init_from_vec2 (graphene_vec4_t       *v,
 
 /**
  * graphene_vec4_init_from_float:
- * @v: ...
- * @src: (array fixed-size=4): ...
+ * @v: a #graphene_vec4_t
+ * @src: (array fixed-size=4): an array of four floating point values
  *
- * ...
+ * Initializes a #graphene_vec4_t with the values inside the given array.
  *
- * Returns: (transfer none): ...
+ * Returns: (transfer none): the initialized vector
  *
  * Since: 1.0
  */
@@ -1364,11 +1372,11 @@ graphene_vec4_to_float (const graphene_vec4_t *v,
 
 /**
  * graphene_vec4_add:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_vec4_t
+ * @b: a #graphene_vec4_t
+ * @res: (out caller-allocates): return location for the resulting vector
  *
- * ...
+ * Adds each component of the two given vectors.
  *
  * Since: 1.0
  */
@@ -1385,11 +1393,11 @@ graphene_vec4_add (const graphene_vec4_t *a,
 
 /**
  * graphene_vec4_subtract:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_vec4_t
+ * @b: a #graphene_vec4_t
+ * @res: (out caller-allocates): return location for the resulting vector
  *
- * ...
+ * Subtracts each component of the two given vectors.
  *
  * Since: 1.0
  */
@@ -1406,11 +1414,11 @@ graphene_vec4_subtract (const graphene_vec4_t *a,
 
 /**
  * graphene_vec4_multiply:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_vec4_t
+ * @b: a #graphene_vec4_t
+ * @res: (out caller-allocates): return location for the resulting vector
  *
- * ...
+ * Multiplies each component of the two given vectors.
  *
  * Since: 1.0
  */
@@ -1427,11 +1435,11 @@ graphene_vec4_multiply (const graphene_vec4_t *a,
 
 /**
  * graphene_vec4_divide:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_vec4_t
+ * @b: a #graphene_vec4_t
+ * @res: (out caller-allocates): return location for the resulting vector
  *
- * ...
+ * Divides each component of the two given vectors.
  *
  * Since: 1.0
  */
@@ -1506,11 +1514,12 @@ graphene_vec4_normalize (const graphene_vec4_t *v,
 
 /**
  * graphene_vec4_min:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_vec4_t
+ * @b: a #graphene_vec4_t
+ * @res: (out caller-allocates): return location for the result vector
  *
- * ...
+ * Compares each component of the two given vectors and creates a
+ * vector that contains the minimum values.
  *
  * Since: 1.0
  */
@@ -1527,11 +1536,12 @@ graphene_vec4_min (const graphene_vec4_t *a,
 
 /**
  * graphene_vec4_max:
- * @a: ...
- * @b: ...
- * @res: (out caller-allocates): ...
+ * @a: a #graphene_vec4_t
+ * @b: a #graphene_vec4_t
+ * @res: (out caller-allocates): return location for the result vector
  *
- * ...
+ * Compares each component of the two given vectors and creates a
+ * vector that contains the maximum values.
  *
  * Since: 1.0
  */
@@ -1548,10 +1558,11 @@ graphene_vec4_max (const graphene_vec4_t *a,
 
 /**
  * graphene_vec4_get_xy:
- * @v: ...
- * @res: (out caller-allocates): ...
+ * @v: a #graphene_vec4_t
+ * @res: (out caller-allocates): return location for a #graphene_vec2_t
  *
- * ...
+ * Creates a #graphene_vec2_t that contains the first two components
+ * of the given #graphene_vec4_t.
  *
  * Since: 1.0
  */
@@ -1567,10 +1578,11 @@ graphene_vec4_get_xy (const graphene_vec4_t *v,
 
 /**
  * graphene_vec4_get_xyz:
- * @v: ...
- * @res: (out caller-allocates): ...
+ * @v: a #graphene_vec4_t
+ * @res: (out caller-allocates): return location for a graphene_vec3_t
  *
- * ...
+ * Creates a #graphene_vec3_t that contains the first three components
+ * of the given #graphene_vec4_t.
  *
  * Since: 1.0
  */

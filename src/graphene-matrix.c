@@ -74,10 +74,13 @@ graphene_matrix_free (graphene_matrix_t *m)
 
 /**
  * graphene_matrix_to_float:
- * @m: ...
- * @v: (array fixed-size=16) (out caller-allocates): ...
+ * @m: a #graphene_matrix_t
+ * @v: (array fixed-size=16) (out caller-allocates): return location
+ *   for an array of floating point values. The array must be capable
+ *   of holding at least 16 values.
  *
- * ...
+ * Converts a #graphene_matrix_t to an array of floating point
+ * values.
  *
  * Since: 1.0
  */
@@ -265,7 +268,7 @@ graphene_matrix_init_ortho (graphene_matrix_t *m,
  * @up: the vector describing the world's upward direction; usually,
  *   this is the graphene_vec3_y_axis() vector
  *
- * Initializes a #graphene_matrix_t that position the "camera"
+ * Initializes a #graphene_matrix_t so that it positions the "camera"
  * at the given @eye coordinates towards an object at the @center
  * coordinates. The top of the camera is aligned to the direction
  * of the @up vector.

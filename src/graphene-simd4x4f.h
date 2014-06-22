@@ -121,7 +121,7 @@ graphene_simd4x4f_init_from_float (graphene_simd4x4f_t *m,
 /**
  * graphene_simd4x4f_to_float:
  * @m: a #graphene_sidm4x4f_t
- * @v: (out caller-allocates) (array fized-size=16): a floating
+ * @v: (out caller-allocates) (array fixed-size=16): a floating
  *   point values vector capable of holding at least 16 values
  *
  * Copies the content of @m in a float array.
@@ -294,6 +294,18 @@ graphene_simd4x4f_transpose (const graphene_simd4x4f_t *s,
   graphene_simd4x4f_transpose_in_place (res);
 }
 
+/**
+ * graphene_simd4x4f_inv_ortho_vec3_mul:
+ * @a: a #graphene_simd4x4f_t
+ * @b: a #graphene_simd4f_t
+ * @res: (out): return location for the transformed vector
+ *
+ * Performs the inverse orthographic transformation of the first
+ * three components in the given vector, using the first three
+ * row vectors of the given SIMD matrix.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_inv_ortho_vec3_mul (const graphene_simd4x4f_t *a,
                                       const graphene_simd4f_t   *b,
@@ -308,6 +320,21 @@ graphene_simd4x4f_inv_ortho_vec3_mul (const graphene_simd4x4f_t *a,
   graphene_simd4x4f_vec3_mul (&transpose, &translation, res);
 }
 
+/**
+ * graphene_simd4x4f_inv_ortho_point3_mul:
+ * @a: a #graphene_simd4x4f_t
+ * @b: a #graphene_simd4x4f_t
+ * @res: (out): return location for the result vector
+ *
+ * Performs the inverse orthographic transformation of the first
+ * three components in the given vector, using the given SIMD
+ * matrix.
+ *
+ * Unlike graphene_simd4x4f_inv_ortho_vec3_mul(), this function
+ * will also use the fourth row vector of the SIMD matrix.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_inv_ortho_point3_mul (const graphene_simd4x4f_t *a,
                                         const graphene_simd4f_t   *b,
@@ -343,6 +370,18 @@ graphene_simd4x4f_matrix_mul (const graphene_simd4x4f_t *a,
   graphene_simd4x4f_vec4_mul (a, &b->w, &res->w);
 }
 
+/**
+ * graphene_simd4x4f_init_perspective:
+ * @m: a #graphene_simd4x4f_t
+ * @fovy_rad: the angle of the field of vision, in radians
+ * @aspect: the aspect value
+ * @z_near: the depth of the near clipping plane
+ * @z_far: the depth of the far clipping plane
+ *
+ * Initializes a #graphene_simd4x4f_t with a perspective projection.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_init_perspective (graphene_simd4x4f_t *m,
                                     float                fovy_rad,
@@ -364,6 +403,20 @@ graphene_simd4x4f_init_perspective (graphene_simd4x4f_t *m,
   m->w = graphene_simd4f_init (0.0f, 0.0f,    d,  0.0f);
 }
 
+/**
+ * graphene_simd4x4f_init_ortho:
+ * @m: a #graphene_simd4x4f_t
+ * @left: edge of the left clipping plane
+ * @right: edge of the right clipping plane
+ * @bottom: edge of the bottom clipping plane
+ * @top: edge of the top clipping plane
+ * @z_near: depth of the near clipping plane
+ * @z_far: depth of the far clipping plane
+ *
+ * Initializes the given SIMD matrix with an orthographic projection.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_init_ortho (graphene_simd4x4f_t *m,
                               float                left,
@@ -390,6 +443,20 @@ graphene_simd4x4f_init_ortho (graphene_simd4x4f_t *m,
   m->w = graphene_simd4f_init (   b,    d,    f, 1.0f);
 }
 
+/**
+ * graphene_simd4x4f_init_look_at:
+ * @m: a #graphene_simd4x4f_t
+ * @eye: vector for the camera coordinates
+ * @center: vector the the object coordinates
+ * @up: vector for the upwards direction
+ *
+ * Initializes a SIMD matrix with the projection necessary for
+ * the camera at the @eye coordinates to look at the object at
+ * the @center coordinates. The top of the camera is aligned to
+ * the @up vector.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_init_look_at (graphene_simd4x4f_t *m,
                                 graphene_simd4f_t    eye,
@@ -417,6 +484,15 @@ graphene_simd4x4f_init_look_at (graphene_simd4x4f_t *m,
   m->w = graphene_simd4f_init (x, y, z, 1.0f);
 }
 
+/**
+ * graphene_simd4x4f_perspective:
+ * @m: a #graphene_simd4x4f_t
+ * @depth: depth of the perspective
+ *
+ * Adds a perspective transformation for the given @depth.
+ *
+ * Since: 1.0
+ */
 static inline void
 graphene_simd4x4f_perspective (graphene_simd4x4f_t *m,
                                float                depth)
