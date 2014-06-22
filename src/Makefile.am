@@ -127,6 +127,9 @@ if HAVE_INTROSPECTION
 
 INTROSPECTION_GIRS = Graphene-1.0.gir
 
+introspection_source_h = $(filter-out graphene-simd4f.h graphene-simd4x4f.h,$(source_h))
+introspection_source_c = $(filter-out graphene-simd4f.c graphene-simd4x4f.c,$(source_c))
+
 Graphene-1.0.gir: libgraphene-1.0.la Makefile
 
 Graphene_1_0_gir_VERSION = 1.0
@@ -142,7 +145,7 @@ Graphene_1_0_gir_SCANNERFLAGS = \
 Graphene_1_0_gir_PACKAGES = gobject-2.0
 Graphene_1_0_gir_INCLUDES = GObject-2.0
 Graphene_1_0_gir_CFLAGS = -DGRAPHENE_COMPILATION -I$(top_srcdir)/src -I$(top_builddir)/src
-Graphene_1_0_gir_FILES = $(source_h) $(source_c)
+Graphene_1_0_gir_FILES = $(introspection_source_h) $(introspection_source_c)
 
 girdir = $(datadir)/gir-1.0
 gir_DATA = $(INTROSPECTION_GIRS)
