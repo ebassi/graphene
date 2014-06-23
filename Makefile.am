@@ -49,7 +49,7 @@ endif
 
 if BUILD_BENCHMARKS
 benchmark:
-	$(MAKE) $(AM_MAKEFLAGS) -C $(top_srcdir)/src/bench benchmark
+	$(MAKE) $(AM_MAKEFLAGS) -C $(top_builddir)/src/bench benchmark
 else
 benchmark:
 	@echo You need to configure Graphene with --enable-benchmarks
