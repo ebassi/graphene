@@ -521,6 +521,14 @@ graphene_matrix_is_singular (const graphene_matrix_t *m)
  * Initializes a #graphene_matrix_t from the values of an affine
  * transformation matrix.
  *
+ * The arguments map to the following matrix layout:
+ *
+ * |[
+ *   | @xx @yx |   |  a  b  0 |
+ *   | @xy @yy | = |  c  d  0 |
+ *   | @x0 @y0 |   | tx ty  1 |
+ * ]|
+ *
  * This function can be used to convert between a matrix type from
  * other libraries and a #graphene_matrix_t.
  *
@@ -559,6 +567,14 @@ graphene_matrix_init_from_affine (graphene_matrix_t *m,
  *
  * Converts a #graphene_matrix_t to an affine transformation
  * matrix, if the given matrix is compatible.
+ *
+ * The returned values have the following layout:
+ *
+ * |[
+ *   | @xx @yx |   |  a  b  0 |
+ *   | @xy @yy | = |  c  d  0 |
+ *   | @x0 @y0 |   | tx ty  1 |
+ * ]|
  *
  * This function can be used to convert between a #graphene_matrix_t
  * and a matrix type from other libraries.
