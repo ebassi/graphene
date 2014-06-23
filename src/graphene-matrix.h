@@ -96,6 +96,14 @@ GRAPHENE_AVAILABLE_IN_1_0
 graphene_matrix_t *     graphene_matrix_init_skew               (graphene_matrix_t        *m,
                                                                  float                     x_skew,
                                                                  float                     y_skew);
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_matrix_t *     graphene_matrix_init_from_affine        (graphene_matrix_t        *m,
+                                                                 double                    xx,
+                                                                 double                    yx,
+                                                                 double                    xy,
+                                                                 double                    yy,
+                                                                 double                    x0,
+                                                                 double                    y0);
 
 GRAPHENE_AVAILABLE_IN_1_0
 gboolean                graphene_matrix_is_identity             (const graphene_matrix_t  *m);
@@ -109,6 +117,14 @@ gboolean                graphene_matrix_is_singular             (const graphene_
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_to_float                (const graphene_matrix_t  *m,
                                                                  float                    *v);
+GRAPHENE_AVAILABLE_IN_1_0
+gboolean                graphene_matrix_to_affine               (const graphene_matrix_t  *m,
+                                                                 double                   *xx,
+                                                                 double                   *yx,
+                                                                 double                   *xy,
+                                                                 double                   *yy,
+                                                                 double                   *x0,
+                                                                 double                   *y0);
 
 
 GRAPHENE_AVAILABLE_IN_1_0

@@ -32,6 +32,7 @@ graphene_matrix_init_identity
 graphene_matrix_init_from_float
 graphene_matrix_init_from_vec4
 graphene_matrix_init_from_matrix
+graphene_matrix_init_from_affine
 graphene_matrix_init_perspective
 graphene_matrix_init_ortho
 graphene_matrix_init_look_at
@@ -44,6 +45,7 @@ graphene_matrix_is_2d
 graphene_matrix_is_backface_visible
 graphene_matrix_is_singular
 graphene_matrix_to_float
+graphene_matrix_to_affine
 graphene_matrix_get_row
 graphene_matrix_get_value
 graphene_matrix_multiply

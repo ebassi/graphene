@@ -490,6 +490,96 @@ graphene_matrix_is_singular (const graphene_matrix_t *m)
 }
 
 /**
+ * graphene_matrix_init_from_affine:
+ * @m: a #graphene_matrix_t
+ * @xx: the xx member
+ * @yx: the yx member
+ * @xy: the xy member
+ * @yy: the yy member
+ * @x0: the x0 member
+ * @y0: the y0 member
+ *
+ * Initializes a #graphene_matrix_t from the values of an affine
+ * transformation matrix.
+ *
+ * This function can be used to convert between a matrix type from
+ * other libraries and a #graphene_matrix_t.
+ *
+ * Returns: (transfer none): the initialized matrix
+ *
+ * Since: 1.0
+ */
+graphene_matrix_t *
+graphene_matrix_init_from_affine (graphene_matrix_t *m,
+                                  double             xx,
+                                  double             yx,
+                                  double             xy,
+                                  double             yy,
+                                  double             x0,
+                                  double             y0)
+{
+  g_return_val_if_fail (m != NULL, NULL);
+
+  m->value = graphene_simd4x4f_init (graphene_simd4f_init ( xx,  yx, 0.f, 0.f),
+                                     graphene_simd4f_init ( yx,  yy, 0.f, 0.f),
+                                     graphene_simd4f_init (0.f, 0.f, 1.f, 0.f),
+                                     graphene_simd4f_init ( x0,  y0, 0.f, 1.f));
+
+  return m;
+}
+
+/**
+ * graphene_matrix_to_affine:
+ * @m: a #graphene_matrix_t
+ * @xx: (out): return location for the xx member
+ * @yx: (out): return location for the yx member
+ * @xy: (out): return location for the xy member
+ * @yy: (out): return location for the yy member
+ * @x0: (out): return location for the x0 member
+ * @y0: (out): return location for the y0 member
+ *
+ * Converts a #graphene_matrix_t to an affine transformation
+ * matrix, if the given matrix is compatible.
+ *
+ * This function can be used to convert between a #graphene_matrix_t
+ * and a matrix type from other libraries.
+ *
+ * Returns: %TRUE if the matrix is compatible with an affine
+ *   transformation matrix
+ *
+ * Since: 1.0
+ */
+gboolean
+graphene_matrix_to_affine (const graphene_matrix_t *m,
+                           double                  *xx,
+                           double                  *yx,
+                           double                  *xy,
+                           double                  *yy,
+                           double                  *x0,
+                           double                  *y0)
+{
+  g_return_val_if_fail (m != NULL, FALSE);
+
+  if (!graphene_simd4x4f_is_2d (&m->value))
+    return FALSE;
+
+  if (xx != NULL)
+    *xx = graphene_matrix_get_value (m, 0, 0);
+  if (yx != NULL)
+    *yx = graphene_matrix_get_value (m, 0, 1);
+  if (xy != NULL)
+    *xy = graphene_matrix_get_value (m, 1, 0);
+  if (yy != NULL)
+    *yy = graphene_matrix_get_value (m, 1, 1);
+  if (x0 != NULL)
+    *x0 = graphene_matrix_get_value (m, 3, 0);
+  if (y0 != NULL)
+    *y0 = graphene_matrix_get_value (m, 3, 1);
+
+  return TRUE;
+}
+
+/**
  * graphene_matrix_get_row:
  * @m: a #graphene_matrix_t
  * @index_: the index of the row vector, between 0 and 3
