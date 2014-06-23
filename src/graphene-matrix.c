@@ -28,6 +28,25 @@
  *
  * #graphene_matrix_t is a type that provides a 4x4 square matrix, useful for
  * representing 3D transformations.
+ *
+ * The matrix is treated as row-major, i.e. it has four vectors (x, y, z, and
+ * w) representing rows, and elements of each vector are a column:
+ *
+ * |[
+ *   | x |    | x.x   x.y   x.z   x.w |
+ *   | y | -\ | y.x   y.y   y.z   y.w |
+ *   | z | -/ | z.x   z.y   z.z   z.w |
+ *   | w |    | w.x   w.y   w.z   w.w |
+ * ]|
+ *
+ * The layout of a #graphene_matrix_t matrix in memory will be
+ * identical to GL and Direct3D matrices, so it's cheap to convert between
+ * #graphene_matrix_t and arrays of floating point values to pass to other
+ * API.
+ *
+ * The contents of a #graphene_matrix_t are private, and direct access is not
+ * possible. You can modify and read the contents of a #graphene_matrix_t
+ * only through the provided API.
  */
 
 #include "config.h"
