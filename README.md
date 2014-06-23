@@ -29,10 +29,9 @@ Graphene is a C library. For this reason alone, it depends on GLib, as
 GLib gives us a fairly decent, portable, and maintained layer to depend
 on, instead of requiring me to re-implement a ton of code.
 
-Graphene does not use the GObject type system, as of yet, but it may grow
-an optional dependency on it through a separate shared object, especially
-if in the future I'm going to generate introspection data for the benefit
-of GObject-based language bindings.
+Graphene can, optionally, provide types for integrating with GObject
+properties and signals, as well as introspection information for its
+use with other languages through introspection-based bindings.
 
 Graphene contains optimizations for speeding up vector operations; those
 optimizations are optional, and used only if both Graphene was compiled
@@ -69,6 +68,11 @@ passing options to the `configure` script:
  * `--disable-sse2` - will disable the SSE2 fast paths
  * `--disable-arm-neon` - will disable the ARM NEON fast paths
  * `--disable-gcc-vector` - will disable the GCC vector intrinsics
+
+If you don't plan on generating introspection data, use `--disable-introspection`
+when configuring Graphene; similarly, if you don't plan on using GObject with
+Graphene, use `--disable-gobject`. Disabling GObject types will also
+automatically disable generating introspection data.
 
 See the output of `configure --help` for more information.
 
