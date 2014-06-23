@@ -148,10 +148,12 @@ Graphene_1_0_gir_CFLAGS = -DGRAPHENE_COMPILATION -I$(top_srcdir)/src -I$(top_bui
 Graphene_1_0_gir_FILES = $(introspection_source_h) $(introspection_source_c)
 
 girdir = $(datadir)/gir-1.0
-gir_DATA = $(INTROSPECTION_GIRS)
+nodist_gir_DATA = $(INTROSPECTION_GIRS)
+CLEANFILES += $(nodist_gir_DATA)
 
 typelibdir = $(libdir)/girepository-1.0
-typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+nodist_typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+CLEANFILES += $(nodist_typelib_DATA)
 
 endif # HAVE_INTROSPECTION
 
