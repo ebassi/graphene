@@ -56,8 +56,11 @@ graphene_alloc (gsize size,
   gsize real_size;
   int err;
 
+  if (size == 0 || number == 0)
+    return NULL;
+
 #ifndef G_DISABLE_ASSERT
-  if (size > G_MAXSIZE / number || number > G_MAXSIZE / size)
+  if (size > 0 && number > G_MAXSIZE / size)
     g_error ("Overflow in the allocation of (%" G_GSIZE_FORMAT ", %" G_GSIZE_FORMAT ") bytes\n",
              size,
              number);
