@@ -190,8 +190,8 @@ graphene_bench_run_test (const char *impl,
 }
 
 static double
-format_time (double d,
-             char **unit)
+format_time (double       d,
+             const char **unit)
 {
   if (d > 1000000000)
     {
@@ -222,7 +222,7 @@ graphene_bench_print_results (const char *impl,
                               double      elapsed,
                               int         num_rounds)
 {
-  char *d_unit, *iter_unit, *item_unit;
+  const char *d_unit, *iter_unit, *item_unit;
   double d = format_time (elapsed, &d_unit);
   double iter = format_time (elapsed / num_rounds, &iter_unit);
   double item = format_time (elapsed / num_rounds / bench_unit_rounds, &item_unit);

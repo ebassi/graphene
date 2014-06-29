@@ -58,7 +58,6 @@ static gpointer
 matrix_setup (void)
 {
   MatrixBench *res = g_new0 (MatrixBench, 1);
-  gpointer mem;
   int i;
 
   res->a = alloc_n_matrix (N_ROUNDS);
