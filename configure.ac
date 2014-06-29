@@ -35,23 +35,25 @@ AC_CONFIG_SRCDIR([src/graphene.h])
 AC_CONFIG_AUX_DIR([build])
 AC_CONFIG_MACRO_DIR([build/autotools])
 
+# Honor aclocal flags
+ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
+
 AM_INIT_AUTOMAKE([1.11 no-define foreign -Wno-portability dist-xz no-dist-gzip tar-ustar])
 
 AM_SILENT_RULES([yes])
 
-AC_PROG_CC
-AC_PROG_CPP
 AC_USE_SYSTEM_EXTENSIONS
 
-AM_PATH_GLIB_2_0
-AM_PROG_CC_C_O
+dnl === Base compiler flags ===================================================
+
+BASE_CFLAGS=""
+graphene_DEFAULT_COMPILER_FLAGS
+
+dnl === Libtool ===============================================================
 
 LT_PREREQ([2.2.6])
 LT_INIT([disable-static])
 LT_LIB_M
-
-# Honor aclocal flags
-ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
 dnl === Versioning ============================================================
 
@@ -106,8 +108,6 @@ AC_MSG_RESULT([$platform_win32])
 
 AM_CONDITIONAL(OS_LINUX, [test "$platform_linux" = "yes"])
 AM_CONDITIONAL(OS_WIN32, [test "$platform_win32" = "yes"])
-
-AS_COMPILER_FLAGS([BASE_CFLAGS], ["-O3 -ffast-math -fstrict-aliasing"])
 
 AC_CHECK_FUNCS([aligned_alloc posix_memalign memalign])
 
@@ -346,39 +346,6 @@ AS_CASE([$enable_debug],
 
 AC_SUBST(GRAPHENE_DEBUG_CFLAGS)
 
-dnl === Enable strict compiler flags ==========================================
-
-# use strict compiler flags only on development releases
-m4_define([maintainer_flags_default], [m4_if(m4_eval(graphene_minor_version % 2), [1], [yes], [no])])
-AC_ARG_ENABLE([maintainer-flags],
-              [AS_HELP_STRING([--enable-maintainer-flags=@<:@no/yes@:>@],
-                              [Use strict compiler flags @<:@default=]maintainer_flags_default[@:>@])],
-              [],
-              [enable_maintainer_flags=maintainer_flags_default])
-
-AS_IF([test "x$enable_maintainer_flags" = "xyes" && test "x$GCC" = "xyes"],
-      [
-        AS_COMPILER_FLAGS([MAINTAINER_CFLAGS],
-                          ["-Wall
-                            -Wshadow
-                            -Wstrict-aliasing=2
-                            -Wno-uninitialized
-                            -Wcast-align
-                            -Wstrict-prototypes
-                            -Werror=logical-op
-                            -Werror=pointer-arith
-                            -Werror=missing-declarations
-                            -Werror=redundant-decls
-                            -Werror=implicit-function-declaration
-                            -Werror=format=2
-                            -Werror=missing-include-dirs
-                            -Werror=init-self
-                            -Werror=empty-body
-                            -Werror=declaration-after-statement"])
-      ])
-MAINTAINER_CFLAGS="${MAINTAINER_CFLAGS#*  }"
-AC_SUBST([MAINTAINER_CFLAGS])
-
 dnl === GObject types ancillary libary ========================================
 
 AC_ARG_ENABLE([gobject-types],
@@ -615,7 +582,6 @@ Graphene - $VERSION (${GRAPHENE_RELEASE_STATUS})
   • Prefix: ${prefix}
 
   • Debug level: ${enable_debug}
-  • Compiler flags: ${GRAPHENE_CFLAGS} ${MAINTAINER_CFLAGS}
   • Code coverage: ${use_gcov}
   • Benchmarks: ${build_benchmarks}
   • GObject types: ${build_gobject}
