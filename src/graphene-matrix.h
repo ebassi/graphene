@@ -97,7 +97,7 @@ graphene_matrix_t *     graphene_matrix_init_skew               (graphene_matrix
                                                                  float                     x_skew,
                                                                  float                     y_skew);
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_matrix_t *     graphene_matrix_init_from_affine        (graphene_matrix_t        *m,
+graphene_matrix_t *     graphene_matrix_init_from_2d            (graphene_matrix_t        *m,
                                                                  double                    xx,
                                                                  double                    yx,
                                                                  double                    xy,
@@ -118,7 +118,7 @@ GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_to_float                (const graphene_matrix_t  *m,
                                                                  float                    *v);
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_matrix_to_affine               (const graphene_matrix_t  *m,
+gboolean                graphene_matrix_to_2d                   (const graphene_matrix_t  *m,
                                                                  double                   *xx,
                                                                  double                   *yx,
                                                                  double                   *xy,

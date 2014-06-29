@@ -509,7 +509,7 @@ graphene_matrix_is_singular (const graphene_matrix_t *m)
 }
 
 /**
- * graphene_matrix_init_from_affine:
+ * graphene_matrix_init_from_2d:
  * @m: a #graphene_matrix_t
  * @xx: the xx member
  * @yx: the yx member
@@ -537,13 +537,13 @@ graphene_matrix_is_singular (const graphene_matrix_t *m)
  * Since: 1.0
  */
 graphene_matrix_t *
-graphene_matrix_init_from_affine (graphene_matrix_t *m,
-                                  double             xx,
-                                  double             yx,
-                                  double             xy,
-                                  double             yy,
-                                  double             x0,
-                                  double             y0)
+graphene_matrix_init_from_2d (graphene_matrix_t *m,
+                              double             xx,
+                              double             yx,
+                              double             xy,
+                              double             yy,
+                              double             x0,
+                              double             y0)
 {
   g_return_val_if_fail (m != NULL, NULL);
 
@@ -556,7 +556,7 @@ graphene_matrix_init_from_affine (graphene_matrix_t *m,
 }
 
 /**
- * graphene_matrix_to_affine:
+ * graphene_matrix_to_2d:
  * @m: a #graphene_matrix_t
  * @xx: (out): return location for the xx member
  * @yx: (out): return location for the yx member
@@ -585,13 +585,13 @@ graphene_matrix_init_from_affine (graphene_matrix_t *m,
  * Since: 1.0
  */
 gboolean
-graphene_matrix_to_affine (const graphene_matrix_t *m,
-                           double                  *xx,
-                           double                  *yx,
-                           double                  *xy,
-                           double                  *yy,
-                           double                  *x0,
-                           double                  *y0)
+graphene_matrix_to_2d (const graphene_matrix_t *m,
+                       double                  *xx,
+                       double                  *yx,
+                       double                  *xy,
+                       double                  *yy,
+                       double                  *x0,
+                       double                  *y0)
 {
   g_return_val_if_fail (m != NULL, FALSE);
 
