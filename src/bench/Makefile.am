@@ -29,7 +29,7 @@ LDADD += $(common_ldadd)
 bench_backends = scalar
 
 matrix_scalar_SOURCES = matrix.c
-matrix_scalar_CPPFLAGS = -DGRAPHENE_BENCHMARK=1 -DGRAPHENE_HAS_SCALAR=1 -DIMPL=\"scalar\"
+matrix_scalar_CPPFLAGS = -DGRAPHENE_SIMD_BENCHMARK=1 -DGRAPHENE_HAS_SCALAR=1 -DIMPL=\"scalar\"
 noinst_PROGRAMS += matrix-scalar
 
 benchmark-scalar: matrix-scalar$(EXEEXT)
@@ -39,7 +39,7 @@ if BUILD_WITH_SSE2
 bench_backends += sse
 
 matrix_sse_SOURCES = matrix.c
-matrix_sse_CPPFLAGS = -DGRAPHENE_BENCHMARK=1 -DGRAPHENE_HAS_SSE=1 -DIMPL=\"sse\"
+matrix_sse_CPPFLAGS = -DGRAPHENE_SIMD_BENCHMARK=1 -DGRAPHENE_HAS_SSE=1 -DIMPL=\"sse\"
 noinst_PROGRAMS += matrix-sse
 
 benchmark-sse: matrix-sse$(EXEEXT)
@@ -53,7 +53,7 @@ if BUILD_WITH_GCC
 bench_backends += gcc
 
 matrix_gcc_SOURCES = matrix.c
-matrix_gcc_CPPFLAGS = -DGRAPHENE_BENCHMARK=1 -DGRAPHENE_HAS_GCC=1 -DIMPL=\"gcc\"
+matrix_gcc_CPPFLAGS = -DGRAPHENE_SIMD_BENCHMARK=1 -DGRAPHENE_HAS_GCC=1 -DIMPL=\"gcc\"
 noinst_PROGRAMS += matrix-gcc
 
 benchmark-gcc: matrix-gcc$(EXEEXT)
