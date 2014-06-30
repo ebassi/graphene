@@ -30,11 +30,10 @@
  * by a @graphene_size_t.height.
  */
 
-#include "config.h"
+#include "graphene-private.h"
+#include "graphene-point.h"
 
 #include <math.h>
-
-#include "graphene-point.h"
 
 /**
  * graphene_size_alloc: (constructor)

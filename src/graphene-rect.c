@@ -34,16 +34,15 @@
  * and that the size is always positive.
  */
 
-#include "config.h"
+#include "graphene-private.h"
+#include "graphene-rect.h"
 
 #include <math.h>
-
-#include "graphene-rect.h"
 
 static void
 graphene_rect_normalize_internal (graphene_rect_t *r)
 {
-  if (G_LIKELY (r->size.width >= 0.f && r->size.height >= 0.f))
+  if (likely (r->size.width >= 0.f && r->size.height >= 0.f))
     return;
 
   if (r->size.width < 0.f)

@@ -21,8 +21,7 @@
  * THE SOFTWARE.
  */
 
-#include "config.h"
-
+#include "graphene-private.h"
 #include "graphene-vectors-private.h"
 #include "graphene-alloc-private.h"
 

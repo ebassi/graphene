@@ -49,6 +49,7 @@ source_c = \
 source_h_priv = \
 	graphene-alloc-private.h \
 	graphene-line-segment.h \
+	graphene-private.h \
 	graphene-vectors-private.h \
 	$(NULL)
 source_c_priv =

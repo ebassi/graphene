@@ -49,7 +49,7 @@
  * only through the provided API.
  */
 
-#include "config.h"
+#include "graphene-private.h"
 
 #include "graphene-matrix.h"
 

@@ -21,8 +21,7 @@
  * the software.
  */
 
-#include "config.h"
-
+#include "graphene-private.h"
 #include "graphene-alloc-private.h"
 
 #if defined(HAVE_POSIX_MEMALIGN) && !defined(_XOPEN_SOURCE)

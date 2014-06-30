@@ -29,8 +29,7 @@
  * A #graphene_quad_t represents a coplanar, four vertex quadrilateral shape.
  */
 
-#include "config.h"
-
+#include "graphene-private.h"
 #include "graphene-quad.h"
 #include "graphene-rect.h"
 #include "graphene-line-segment.h"

@@ -33,12 +33,11 @@
  *  * @graphene_point_t.y
  */
 
-#include "config.h"
-
-#include <math.h>
-
+#include "graphene-private.h"
 #include "graphene-point.h"
 #include "graphene-simd4f.h"
+
+#include <math.h>
 
 /**
  * graphene_point_alloc: (constructor)

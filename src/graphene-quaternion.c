@@ -32,17 +32,16 @@
  * ["Gimbal Lock"](http://en.wikipedia.org/wiki/Gimbal_lock) problem.
  */
 
-#include "config.h"
-
-#include <math.h>
+#include "graphene-private.h"
 
 #include "graphene-quaternion.h"
-
 #include "graphene-simd4f.h"
 #include "graphene-simd4x4f.h"
 #include "graphene-vec3.h"
 #include "graphene-vec4.h"
 #include "graphene-matrix.h"
+
+#include <math.h>
 
 /**
  * graphene_quaternion_alloc: (constructor)

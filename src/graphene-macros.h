@@ -32,11 +32,6 @@
 #define _GRAPHENE_PUBLIC        extern
 #endif
 
-#define GRAPHENE_FLOAT_EPSILON  (1e-15)
-
-#define GRAPHENE_PI             3.1415926535897932384626434f
-#define GRAPHENE_PI_2           1.5707963267948966192313217f
-
 #ifdef GRAPHENE_COMPILATION
 # define GRAPHENE_PRIVATE_FIELD(type,name)      type name
 #else
@@ -66,5 +61,32 @@
 #else
 # include <stdbool.h>
 #endif
+
+#if __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 1)
+#define _GRAPHENE_DEPRECATED __attribute__((__deprecated__))
+#elif defined(_MSC_VER) && (_MSC_VER >= 1300)
+#define _GRAPHENE_DEPRECATED __declspec(deprecated)
+#else
+#define _GRAPHENE_DEPRECATED
+#endif
+
+#if __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 5)
+#define _GRAPHENE_DEPRECATED_FOR(f) __attribute__((__deprecated__("Use '" #f "' instead")))
+#elif defined(_MSC_FULL_VER) && (_MSC_FULL_VER > 140050320)
+#define _GRAPHENE_DEPRECATED_FOR(f) __declspec(deprecated("is deprecated. Use '" #f "' instead"))
+#else
+#define _GRAPHENE_DEPRECATED_FOR(f) _GRAPHENE_DEPRECATED
+#endif
+
+#if __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 5)
+#define _GRAPHENE_UNAVAILABLE(maj,min) __attribute__((deprecated("Not available before " #maj "." #min)))
+#elif defined(_MSC_FULL_VER) && (_MSC_FULL_VER > 140050320)
+#define _GRAPHENE_UNAVAILABLE(maj,min) __declspec(deprecated("is not available before " #maj "." #min))
+#else
+#define _GRAPHENE_UNAVAILABLE(maj,min) _GRAPHENE_DEPRECATED
+#endif
+
+#define GRAPHENE_PI             3.1415926535897932384626434f
+#define GRAPHENE_PI_2           1.5707963267948966192313217f
 
 #endif /* __GRAPHENE_MACROS_H__ */

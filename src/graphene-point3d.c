@@ -34,13 +34,12 @@
  *  * @graphene_point3d_t.z
  */
 
-#include "config.h"
+#include "graphene-private.h"
+#include "graphene-point3d.h"
+#include "graphene-simd4f.h"
+#include "graphene-vec3.h"
 
 #include <math.h>
-
-#include "graphene-point3d.h"
-#include "graphene-vec3.h"
-#include "graphene-simd4f.h"
 
 /**
  * graphene_point3d_alloc: (constructor)

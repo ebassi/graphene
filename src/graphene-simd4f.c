@@ -38,12 +38,11 @@
  * all components at the same time.
  */
 
-#include "config.h"
+#include "graphene-private.h"
+#include "graphene-simd4f.h"
 
 #include <string.h>
 #include <math.h>
-
-#include "graphene-simd4f.h"
 
 /**
  * graphene_simd4f_t:

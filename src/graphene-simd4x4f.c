@@ -35,12 +35,11 @@
  * only operate on all components at the same time.
  */
 
-#include "config.h"
+#include "graphene-private.h"
+#include "graphene-simd4x4f.h"
 
 #include <string.h>
 #include <math.h>
-
-#include "graphene-simd4x4f.h"
 
 #if defined(GRAPHENE_USE_SSE) || defined(GRAPHENE_USE_GCC) || defined(GRAPHENE_USE_ARM_NEON)
 
