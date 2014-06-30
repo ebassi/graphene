@@ -26,13 +26,15 @@
 
 #include "graphene-types.h"
 
+#include <stddef.h>
+
 GRAPHENE_BEGIN_DECLS
 
-gpointer        graphene_alloc          (gsize size,
-                                         gsize number,
-                                         gsize alignment);
+void *          graphene_alloc          (size_t size,
+                                         size_t number,
+                                         size_t alignment);
 
-void            graphene_free           (gpointer mem);
+void            graphene_free           (void  *mem);
 
 GRAPHENE_END_DECLS
 

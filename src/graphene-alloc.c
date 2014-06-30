@@ -29,7 +29,9 @@
 # define _XOPEN_SOURCE 600
 #endif
 
+#include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 /*< private >
  * graphene_alloc:
@@ -47,23 +49,28 @@
  *
  * Returns: (transfer full): the allocated memory
  */
-gpointer
-graphene_alloc (gsize size,
-                gsize number,
-                gsize alignment)
+void *
+graphene_alloc (size_t size,
+                size_t number,
+                size_t alignment)
 {
-  gpointer res;
-  gsize real_size;
+  void *res;
+  size_t max_size = (size_t) -1;
+  size_t real_size;
   int err;
 
   if (size == 0 || number == 0)
     return NULL;
 
 #ifndef G_DISABLE_ASSERT
-  if (size > 0 && number > G_MAXSIZE / size)
-    g_error ("Overflow in the allocation of (%" G_GSIZE_FORMAT ", %" G_GSIZE_FORMAT ") bytes\n",
-             size,
-             number);
+  if (size > 0 && number > max_size / size)
+    {
+      fprintf (stderr,
+               "Overflow in the allocation of (%lu x %lu) bytes\n",
+               (unsigned long) size,
+               (unsigned long) number);
+      abort ();
+    }
 #endif
 
   real_size = size * number;
@@ -74,7 +81,7 @@ graphene_alloc (gsize size,
   /* real_size must be a multiple of alignment */
   if (real_size % alignment != 0)
     {
-      gsize offset = real_size % alignment;
+      size_t offset = real_size % alignment;
       real_size += (alignment - offset);
     }
 
@@ -89,8 +96,13 @@ graphene_alloc (gsize size,
   res = malloc (real_size);
 #endif
 
-  if (G_UNLIKELY (err != 0 || res == NULL))
-    g_error ("%s", g_strerror (err));
+#ifndef G_DISABLE_ASSERT
+  if (err != 0 || res == NULL)
+    {
+      fprintf (stderr, "Allocation error: %s\n", strerror (err));
+      abort ();
+    }
+#endif
 
   return res;
 }
@@ -102,7 +114,7 @@ graphene_alloc (gsize size,
  * Frees the memory allocated by graphene_alloc().
  */
 void
-graphene_free (gpointer mem)
+graphene_free (void *mem)
 {
   free (mem);
 }
