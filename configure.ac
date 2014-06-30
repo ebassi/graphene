@@ -76,11 +76,9 @@ GRAPHENE_LT_LDFLAGS="-version-info $GRAPHENE_LT_VERSION"
 
 dnl === Dependencies ==========================================================
 
-PKG_CHECK_MODULES(GRAPHENE_DEPS, [glib-2.0 >= glib_req_version])
-GRAPHENE_REQS="glib-2.0"
+GRAPHENE_REQS=""
 
-GLIB_PREFIX="`$PKG_CONFIG --variable=prefix glib-2.0`"
-AC_SUBST(GLIB_PREFIX)
+PKG_PROG_PKG_CONFIG
 
 dnl === Platform checks =======================================================
 
@@ -373,22 +371,51 @@ AS_IF([test "x$build_gobject" = xyes],
       [
         GOBJECT_INTROSPECTION_CHECK([gi_req_version])
       ],
-      [ enable_introspection=disabled ])
+      [
+        AM_CONDITIONAL(HAVE_INTROSPECTION, [false])
+        enable_introspection=disabled
+      ])
 
 dnl === Test suite ============================================================
 
+AC_ARG_ENABLE([tests],
+              [AS_HELP_STRING([--enable-tests], [Enable test suite])],
+              [enable_tests=$enableval],
+              [enable_tests=yes])
+
 GLIB_TESTS
+
+AS_IF([test "x$enable_tests" = xyes],
+      [
+        PKG_CHECK_MODULES(GLIB, [glib-2.0 >= glib_req_version],
+                          [build_tests=yes],
+                          [build_tests=no])
+      ],
+      [ build_tests=disabled ])
+
+AS_IF([test "x$build_tests" = xno -a "x$enable_tests" = xyes],
+      [AC_MSG_ERROR([Cannot build the requested test suite without GLib])])
+
+AC_SUBST(GLIB_CFLAGS)
+AC_SUBST(GLIB_LIBS)
 
 dnl === Code coverage =========================================================
 
 AC_ARG_ENABLE([code-coverage],
-              [AS_HELP_STRING([--enable-code-coverage], [Enable code coverage])],
+              [AS_HELP_STRING([--enable-code-coverage], [Enable test suite code coverage])],
               [use_gcov=$enableval],
               [use_gcov=no])
 
+dnl Disable code coverage if tests were disabled
+AS_IF([test "x$build_tests" = disabled ], [ use_gcov=disabled ])
+
 AS_IF([test "x$use_gcov" = "xyes"],
       [
-        dnl we need gcc:
+        dnl we need a test suite
+        AS_IF([test "x$build_tests" = xno],
+              [AC_MSG_ERROR([Cannot enable code coverage when the test suite is disabled])])
+
+        dnl we need gcc
         AS_IF([test "$GCC" != "yes"], [AC_MSG_ERROR([GCC is required for --enable-code-coverage])])
 
         dnl Check if ccache is being used
@@ -446,7 +473,7 @@ AS_IF([test "x$use_gcov" = "xyes"],
         GRAPHENE_GCOV_LDADD="-lgcov"
       ])
 
-AM_CONDITIONAL(ENABLE_GCOV, test "x$use_gcov" = "xyes")
+AM_CONDITIONAL(ENABLE_GCOV, [test "x$use_gcov" = xyes])
 
 dnl === Benchmarks ============================================================
 
@@ -459,12 +486,15 @@ AM_CONDITIONAL(BUILD_BENCHMARKS, [test "x$build_benchmarks" = xyes])
 
 dnl === API Reference =========================================================
 
+GLIB_PREFIX="`$PKG_CONFIG --variable=prefix glib-2.0`"
+AC_SUBST(GLIB_PREFIX)
+
 GTK_DOC_CHECK([1.20], [--flavour no-tmpl])
 
 dnl === Output ================================================================
 
-GRAPHENE_CFLAGS="$BASE_CFLAGS $GRAPHENE_DEPS_CFLAGS $GRAPHENE_VISIBILITY_CFLAGS $GRAPHENE_GCOV_CFLAGS $GRAPHENE_GOBJECT_CFLAGS"
-GRAPHENE_LIBS="$GRAPHENE_DEPS_LIBS $LIBM $GRAPHENE_GCOV_LDADD $GRAPHENE_GOBJECT_LIBS"
+GRAPHENE_CFLAGS="$BASE_CFLAGS $GRAPHENE_VISIBILITY_CFLAGS $GRAPHENE_GCOV_CFLAGS $GRAPHENE_GOBJECT_CFLAGS"
+GRAPHENE_LIBS="$LIBM $GRAPHENE_GCOV_LDADD $GRAPHENE_GOBJECT_LIBS"
 GRAPHENE_LT_LDFLAGS="$GRAPHENE_LT_LDFLAGS $GRAPHENE_LINK_FLAGS $SSE2_LDFLAGS $MMX_LDFLAGS"
 AC_SUBST(GRAPHENE_CFLAGS)
 AC_SUBST(GRAPHENE_LIBS)
@@ -588,6 +618,7 @@ Graphene - $VERSION (${GRAPHENE_RELEASE_STATUS})
   • Prefix: ${prefix}
 
   • Debug level: ${enable_debug}
+  • Test suite: ${build_tests}
   • Code coverage: ${use_gcov}
   • Benchmarks: ${build_benchmarks}
   • GObject types: ${build_gobject}

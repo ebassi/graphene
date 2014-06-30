@@ -28,7 +28,6 @@
 #error "Only graphene.h can be included directly."
 #endif
 
-#include <glib.h>
 #include "graphene-config.h"
 #include "graphene-macros.h"
 #include "graphene-version-macros.h"

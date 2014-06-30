@@ -27,9 +27,7 @@ the whole point of writing the library in the first place.
 
 ### Dependencies
 
-Graphene is a C library. For this reason alone, it depends on GLib, as
-GLib gives us a fairly decent, portable, and maintained layer to depend
-on, instead of requiring me to re-implement a ton of code.
+Graphene has little dependencies.
 
 Graphene contains optimizations for speeding up vector operations; those
 optimizations are optional, and used only if both Graphene was compiled

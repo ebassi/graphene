@@ -1,6 +1,6 @@
 include $(top_srcdir)/build/autotools/glib-tap.mk
 
-AM_CFLAGS = -g $(GRAPHENE_CFLAGS) $(MAINTAINER_CFLAGS)
+AM_CFLAGS = -g $(GRAPHENE_CFLAGS) $(GLIB_CFLAGS)
 AM_CPPFLAGS = \
 	$(GRAPHENE_DEBUG_CFLAGS) \
 	-DG_LOG_DOMAIN=\"Graphene\" \
@@ -8,7 +8,7 @@ AM_CPPFLAGS = \
 	-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32 \
 	-I$(top_srcdir)/src \
 	-I$(top_builddir)/src
-LDADD = $(top_builddir)/src/libgraphene-1.0.la $(GRAPHENE_LIBS)
+LDADD = $(top_builddir)/src/libgraphene-1.0.la $(GRAPHENE_LIBS) $(GLIB_LIBS)
 
 dist_uninstalled_test_data = graphene-test-compat.h
 
