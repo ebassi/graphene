@@ -62,6 +62,8 @@
 #include "graphene-quaternion.h"
 #include "graphene-vectors-private.h"
 
+#include <stdio.h>
+
 /**
  * graphene_matrix_alloc: (constructor)
  *
@@ -1655,7 +1657,8 @@ graphene_matrix_print (const graphene_matrix_t *m)
 
   for (i = 0; i < 4; i++)
     {
-      g_print ("%.5f %.5f %.5f %.5f\n",
+      fprintf (stderr,
+               "%.5f %.5f %.5f %.5f\n",
                graphene_matrix_get_value (m, i, 0),
                graphene_matrix_get_value (m, i, 1),
                graphene_matrix_get_value (m, i, 2),
