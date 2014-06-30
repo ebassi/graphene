@@ -125,7 +125,6 @@ AC_LANG_CASE(
 		graphene_TESTSET_CFLAG([[BASE_]PREFIX[FLAGS]], [-Wstrict-prototypes])
 		graphene_TESTSET_CFLAG([[BASE_]PREFIX[FLAGS]], [-Wmissing-prototypes])
 		graphene_TESTSET_CFLAG([[BASE_]PREFIX[FLAGS]], [-Wnested-externs])
-		graphene_TESTSET_CFLAG([[BASE_]PREFIX[FLAGS]], [-Wbad-function-cast])
 		graphene_TESTSET_CFLAG([[BASE_]PREFIX[FLAGS]], [-Wold-style-definition], [-fd])
 		graphene_TESTSET_CFLAG([[BASE_]PREFIX[FLAGS]], [-Wdeclaration-after-statement])
 	]
