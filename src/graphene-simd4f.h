@@ -389,13 +389,13 @@ typedef GRAPHENE_ALIGN16 union {
 #  define graphene_simd4f_cmp_eq(a,b) \
   (G_GNUC_EXTENSION ({ \
     __m128i __res = (__m128i) _mm_cmpeq_ps ((a), (b)); \
-    (gboolean) _mm_movemask_epi8 (__res) == 0xffff; \
+    (gboolean) (_mm_movemask_epi8 (__res) == 0xffff); \
   }))
 
 #  define graphene_simd4f_cmp_neq(a,b) \
   (G_GNUC_EXTENSION ({ \
     __m128i __res = (__m128i) _mm_cmpneq_ps ((a), (b)); \
-   (gboolean) _mm_movemask_epi8 (__res) == 0xffff; \
+   (gboolean) (_mm_movemask_epi8 (__res) == 0xffff); \
   }))
 
 #  define graphene_simd4f_neg(s) \
@@ -660,14 +660,20 @@ typedef union {
   (G_GNUC_EXTENSION ({ \
     graphene_simd4i_t __res = (a) == (b); \
     graphene_simd4i_union_t __u_res = { __res }; \
-    __u_res.i[0] != 0 && __u_res.i[1] != 0 && __u_res.i[2] != 0 && __u_res.i[3] != 0; \
+    (gboolean) (__u_res.i[0] != 0 && \
+                __u_res.i[1] != 0 && \
+                __u_res.i[2] != 0 && \
+                __u_res.i[3] != 0); \
   }))
 
 # define graphene_simd4f_cmp_neq(a,b) \
   (G_GNUC_EXTENSION ({ \
     graphene_simd4i_t __res = (a) == (b); \
     graphene_simd4i_union_t __u_res = { __res }; \
-    __u_res.i[0] == 0 && __u_res.i[1] == 0 && __u_res.i[2] == 0 && __u_res.i[3] == 0; \
+    (gboolean) (__u_res.i[0] == 0 && \
+                __u_res.i[1] == 0 && \
+                __u_res.i[2] == 0 && \
+                __u_res.i[3] == 0); \
   }))
 
 # define graphene_simd4f_neg(s) \
@@ -937,20 +943,20 @@ typedef union {
   (G_GNUC_EXTENSION ({ \
     const graphene_simd4f_union_t u_a = { (a) }; \
     const graphene_simd4f_union_t u_b = { (b) }; \
-    (gboolean) u_a.f[0] == u_b.f[0] && \
-               u_a.f[1] == u_b.f[1] && \
-               u_a.f[2] == u_b.f[2] && \
-               u_a.f[3] == u_b.f[3]; \
+    (gboolean) (u_a.f[0] == u_b.f[0] && \
+                u_a.f[1] == u_b.f[1] && \
+                u_a.f[2] == u_b.f[2] && \
+                u_a.f[3] == u_b.f[3]); \
   }))
 
 # define graphene_simd4f_cmp_neq(a,b) \
   (G_GNUC_EXTENSION ({ \
     const graphene_simd4f_union_t u_a = { (a) }; \
     const graphene_simd4f_union_t u_b = { (b) }; \
-    (gboolean) u_a.f[0] != u_b.f[0] && \
-               u_a.f[1] != u_b.f[1] && \
-               u_a.f[2] != u_b.f[2] && \
-               u_a.f[3] != u_b.f[3]; \
+    (gboolean) (u_a.f[0] != u_b.f[0] && \
+                u_a.f[1] != u_b.f[1] && \
+                u_a.f[2] != u_b.f[2] && \
+                u_a.f[3] != u_b.f[3]); \
   }))
 
 # define graphene_simd4f_neg(s) \
