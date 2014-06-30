@@ -28,8 +28,6 @@
 #error "Only graphene.h can be included directly."
 #endif
 
-#include <glib.h>
-
 /* needed for memcpy() */
 #include <string.h>
 #include <math.h>
@@ -162,42 +160,42 @@ graphene_simd4f_t       graphene_simd4f_neg             (const graphene_simd4f_t
 /* Use GCC statement __extension__ to inline all these functions */
 
 #  define graphene_simd4f_init(x,y,z,w) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) { (x), (y), (z), (w) }; \
   }))
 
 #  define graphene_simd4f_init_zero() \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_setzero_ps(); \
   }))
 
 #  define graphene_simd4f_init_4f(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_loadu_ps (v); \
   }))
 
 #  define graphene_simd4f_init_3f(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) { (v)[0], (v)[1], (v)[2], 0.f }; \
   }))
 
 #  define graphene_simd4f_init_2f(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) { (v)[0], (v)[1], 0.f, 0.f }; \
   }))
 
 #  define graphene_simd4f_dup_4f(s,v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     _mm_storeu_ps ((v), (s)); \
   }))
 
 #  define graphene_simd4f_dup_3f(s,v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     memcpy ((v), &(s), sizeof (float) * 3); \
   }))
 
 #  define graphene_simd4f_dup_2f(s,v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     memcpy ((v), &(s), sizeof (float) * 2); \
   }))
 
@@ -208,88 +206,88 @@ typedef union {
 } graphene_simd4f_union_t;
 
 #  define graphene_simd4f_get_x(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __u = { (s) }; \
     __u.f[0]; \
   }))
 
 #  define graphene_simd4f_get_y(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __u = { (s) }; \
     __u.f[1]; \
   }))
 
 #  define graphene_simd4f_get_z(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __u = { (s) }; \
     __u.f[2]; \
   }))
 
 #  define graphene_simd4f_get_w(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __u = { (s) }; \
     __u.f[3]; \
   }))
 
 #  define graphene_simd4f_splat(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_set1_ps ((v)); \
   }))
 
 #  define graphene_simd4f_splat_x(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (0, 0, 0, 0)); \
   }))
 
 #  define graphene_simd4f_splat_y(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (1, 1, 1, 1)); \
   }))
 
 #  define graphene_simd4f_splat_z(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (2, 2, 2, 2)); \
   }))
 
 #  define graphene_simd4f_splat_w(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (3, 3, 3, 3)); \
   }))
 
 #  define graphene_simd4f_add(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_add_ps ((a), (b)); \
   }))
 
 #  define graphene_simd4f_sub(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_sub_ps ((a), (b)); \
   }))
 
 #  define graphene_simd4f_mul(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_mul_ps ((a), (b)); \
   }))
 
 #  define graphene_simd4f_div(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_div_ps ((a), (b)); \
   }))
 
 #  define graphene_simd4f_sqrt(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_sqrt_ps ((v)); \
   }))
 
 #  define graphene_simd4f_reciprocal(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const graphene_simd4f_t __two = graphene_simd4f_init (2.0f, 2.0f, 2.0f, 2.0f); \
     graphene_simd4f_t __s = _mm_rcp_ps ((v)); \
     graphene_simd4f_mul (__s, graphene_simd4f_sub (__two, graphene_simd4f_mul ((v), __s))); \
   }))
 
 #  define graphene_simd4f_rsqrt(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const graphene_simd4f_t __half = graphene_simd4f_init (0.5f, 0.5f, 0.5f, 0.5f); \
     const graphene_simd4f_t __three = graphene_simd4f_init (3.0f, 3.0f, 3.0f, 3.0f); \
     graphene_simd4f_t __s = _mm_rsqrt_ps ((v)); \
@@ -299,7 +297,7 @@ typedef union {
   }))
 
 #  define graphene_simd4f_cross3(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const graphene_simd4f_t __a_yzx = _mm_shuffle_ps ((a), (a), _MM_SHUFFLE (3, 0, 2, 1)); \
     const graphene_simd4f_t __a_zxy = _mm_shuffle_ps ((a), (a), _MM_SHUFFLE (3, 1, 0, 2)); \
     const graphene_simd4f_t __b_yzx = _mm_shuffle_ps ((b), (b), _MM_SHUFFLE (3, 0, 2, 1)); \
@@ -308,54 +306,54 @@ typedef union {
   }))
 
 #  define graphene_simd4f_min(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_min_ps ((a), (b)); \
   }))
 
 #  define graphene_simd4f_max(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_max_ps ((a), (b)); \
   }))
 
 #  define graphene_simd4f_shuffle_wxyz(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (2, 1, 0, 3)); \
   }))
 
 #  define graphene_simd4f_shuffle_zwxy(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (1, 0, 3, 2)); \
   }))
 
 #  define graphene_simd4f_shuffle_yzwx(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (0, 3, 2, 1)); \
   }))
 
 #  define graphene_simd4f_zero_w(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_t __s = _mm_unpackhi_ps ((v), _mm_setzero_ps ()); \
     (graphene_simd4f_t) _mm_movelh_ps ((v), __s); \
   }))
 
 #  define graphene_simd4f_zero_zw(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_movelh_ps ((v), _mm_setzero_ps ()); \
   }))
 
 #  define graphene_simd4f_merge_w(s,v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_t __s = _mm_unpackhi_ps ((s), _mm_set1_ps ((v))); \
     (graphene_simd4f_t) _mm_movelh_ps ((s), __s); \
   }))
 
 #  define graphene_simd4f_merge_high(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_movehl_ps ((b), (a)); \
   }))
 
 #  define graphene_simd4f_merge_low(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) _mm_movelh_ps ((a), (b)); \
   }))
 
@@ -365,7 +363,7 @@ typedef GRAPHENE_ALIGN16 union {
 } graphene_simd4f_uif_t;
 
 #  define graphene_simd4f_flip_sign_0101(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const graphene_simd4f_uif_t __pnpn = { { \
       0x00000000, \
       0x80000000, \
@@ -376,7 +374,7 @@ typedef GRAPHENE_ALIGN16 union {
   }))
 
 #  define graphene_simd4f_flip_sign_1010(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const graphene_simd4f_uif_t __npnp = { { \
       0x80000000, \
       0x00000000, \
@@ -387,19 +385,19 @@ typedef GRAPHENE_ALIGN16 union {
   }))
 
 #  define graphene_simd4f_cmp_eq(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     __m128i __res = (__m128i) _mm_cmpeq_ps ((a), (b)); \
     (bool) (_mm_movemask_epi8 (__res) == 0xffff); \
   }))
 
 #  define graphene_simd4f_cmp_neq(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     __m128i __res = (__m128i) _mm_cmpneq_ps ((a), (b)); \
    (bool) (_mm_movemask_epi8 (__res) == 0xffff); \
   }))
 
 #  define graphene_simd4f_neg(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const graphene_simd4f_uif_t __mask = { { \
       0x80000000, \
       0x80000000, \
@@ -434,105 +432,105 @@ typedef union {
 } graphene_simd4i_union_t;
 
 # define graphene_simd4f_init(x,y,z,w) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) { (x), (y), (z), (w) }; \
   }))
 
 # define graphene_simd4f_init_zero() \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) { 0.f, 0.f, 0.f, 0.f }; \
   }))
 
 # define graphene_simd4f_init_4f(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) { (v)[0], (v)[1], (v)[2], (v)[3] }; \
   }))
 
 # define graphene_simd4f_init_3f(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) { (v)[0], (v)[1], (v)[2], 0.f }; \
   }))
 
 # define graphene_simd4f_init_2f(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) { (v)[0], (v)[1], 0.f, 0.f }; \
   }))
 
 # define graphene_simd4f_dup_4f(s,v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     memcpy ((v), &(s), sizeof (float) * 4); \
   }))
 
 # define graphene_simd4f_dup_3f(s,v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     memcpy ((v), &(s), sizeof (float) * 3); \
   }))
 
 # define graphene_simd4f_dup_2f(s,v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     memcpy ((v), &(s), sizeof (float) * 2); \
   }))
 
 # define graphene_simd4f_get_x(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __u = { (s) }; \
     (float) __u.f[0]; \
   }))
 
 # define graphene_simd4f_get_y(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __u = { (s) }; \
     (float) __u.f[1]; \
   }))
 
 # define graphene_simd4f_get_z(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __u = { (s) }; \
     (float) __u.f[2]; \
   }))
 
 # define graphene_simd4f_get_w(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __u = { (s) }; \
     (float) __u.f[3]; \
   }))
 
 # define graphene_simd4f_splat(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) { (v), (v), (v), (v) }; \
   }))
 
 # define graphene_simd4f_splat_x(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     float __val = graphene_simd4f_get_x ((v)); \
     (graphene_simd4f_t) { __val, __val, __val, __val }; \
   }))
 
 # define graphene_simd4f_splat_y(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     float __val = graphene_simd4f_get_y ((v)); \
     (graphene_simd4f_t) { __val, __val, __val, __val }; \
   }))
 
 # define graphene_simd4f_splat_z(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     float __val = graphene_simd4f_get_z ((v)); \
     (graphene_simd4f_t) { __val, __val, __val, __val }; \
   }))
 
 # define graphene_simd4f_splat_w(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     float __val = graphene_simd4f_get_w ((v)); \
     (graphene_simd4f_t) { __val, __val, __val, __val }; \
   }))
 
 # define graphene_simd4f_reciprocal(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_splat (1.0f) / (v); \
   }))
 
 # define graphene_simd4f_sqrt(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) { \
       sqrt (graphene_simd4f_get_x (v)), \
       sqrt (graphene_simd4f_get_x (v)), \
@@ -542,32 +540,32 @@ typedef union {
   }))
 
 # define graphene_simd4f_rsqrt(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_splat (1.0f) / graphene_simd4f_sqrt ((v)); \
   }))
 
 # define graphene_simd4f_add(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) (a) + (b); \
   }))
 
 # define graphene_simd4f_sub(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) (a) - (b); \
   }))
 
 # define graphene_simd4f_mul(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) (a) * (b); \
   }))
 
 # define graphene_simd4f_div(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) (a) / (b); \
   }))
 
 # define graphene_simd4f_cross3(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __ua = { (a) }; \
     graphene_simd4f_union_t __ub = { (b) }; \
     graphene_simd4f_init (__ua.f[1] * __ub.f[2] - __ua.f[2] * __ub.f[1], \
@@ -577,7 +575,7 @@ typedef union {
   }))
 
 # define graphene_simd4f_min(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __ua = { (a) }; \
     graphene_simd4f_union_t __ub = { (b) }; \
     graphene_simd4f_init (__ua.f[0] < __ub.f[0] ? __ua.f[0] : __ub.f[0], \
@@ -587,7 +585,7 @@ typedef union {
   }))
 
 # define graphene_simd4f_max (a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __ua = { (a) }; \
     graphene_simd4f_union_t __ub = { (b) }; \
     graphene_simd4f_init (__ua.f[0] > __ub.f[0] ? __ua.f[0] : __ub.f[0], \
@@ -597,67 +595,67 @@ typedef union {
   }))
 
 # define graphene_simd4f_shuffle_wxyz(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4i_t __mask = { 3, 0, 1, 2 }; \
     (graphene_simd4f_t) __builtin_shuffle ((v), __mask); \
   }))
 
 # define graphene_simd4f_shuffle_zwxy(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4i_t __mask = { 2, 3, 0, 1 }; \
     (graphene_simd4f_t) __builtin_shuffle ((v), __mask); \
   }))
 
 # define graphene_simd4f_shuffle_yzwx(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4i_t __mask = { 1, 2, 3, 0 }; \
     (graphene_simd4f_t) __builtin_shuffle ((v), __mask); \
   }))
 
 # define graphene_simd4f_zero_w(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4i_t __mask = { 0, 1, 2, 4 }; \
     (graphene_simd4f_t) __builtin_shuffle ((v), graphene_simd4f_init_zero (), __mask); \
   }))
 
 # define graphene_simd4f_zero_zw(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4i_t __mask = { 0, 1, 4, 4 }; \
     (graphene_simd4f_t) __builtin_shuffle ((v), graphene_simd4f_init_zero (), __mask); \
   }))
 
 # define graphene_simd4f_merge_w(s,v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4i_t __mask = { 0, 1, 2, 4 }; \
     (graphene_simd4f_t) __builtin_shuffle ((s), graphene_simd4f_splat ((v)), __mask); \
   }))
 
 # define graphene_simd4f_merge_high(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4i_t __mask = { 2, 3, 6, 7 }; \
     (graphene_simd4f_t) __builtin_shuffle ((a), (b), __mask); \
   }))
 
 # define graphene_simd4f_merge_low(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4i_t __mask = { 0, 1, 4, 5 }; \
     (graphene_simd4f_t) __builtin_shuffle ((a), (b), __mask); \
   }))
 
 # define graphene_simd4f_flip_sign_0101(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __u = { (v) }; \
     graphene_simd4f_init (__u.f[0], -__u.f[1], __u.f[2], -__u.f[3]); \
   }))
 
 # define graphene_simd4f_flip_sign_1010(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __u = { (v) }; \
     graphene_simd4f_init (-__u.f[0], __u.f[1], -__u.f[2], __u.f[3]); \
   }))
 
 # define graphene_simd4f_cmp_eq(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4i_t __res = (a) == (b); \
     graphene_simd4i_union_t __u_res = { __res }; \
     (bool) (__u_res.i[0] != 0 && \
@@ -667,7 +665,7 @@ typedef union {
   }))
 
 # define graphene_simd4f_cmp_neq(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4i_t __res = (a) == (b); \
     graphene_simd4i_union_t __u_res = { __res }; \
     (bool) (__u_res.i[0] == 0 && \
@@ -677,7 +675,7 @@ typedef union {
   }))
 
 # define graphene_simd4f_neg(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t __u = { (s) }; \
     graphene_simd4f_init (-__u.f[0], -__u.f[1], -__u.f[2], -__u.f[3]); \
   }))
@@ -693,29 +691,29 @@ typedef union {
 } graphene_simd4f_union_t;
 
 # define graphene_simd4f_init(x,y,z,w) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const float32_t d[4] = { (x), (y), (z), (w) }; \
     (graphene_simd4f_t) vld1q_f32 (d); \
   }))
 
 # define graphene_simd4f_init_zero() \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) vdupq_n_f32 (0.f); \
   }))
 
 # define graphene_simd4f_init_4f(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const float32_t *v32 = (const float32_t *) (v); \
     (graphene_simd4f_t) vld1q_f32 (v32); \
   }))
 
 # define graphene_simd4f_init_3f(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_init (v[0], v[1], v[2], 0.f); \
   }))
 
 # define graphene_simd4f_init_2f(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const float32_t *v32 = (const float32_t *) (v); \
     float32x2_t low = vld1_f32 ((v)); \
     const float32_t zero = 0; \
@@ -724,12 +722,12 @@ typedef union {
   }))
 
 # define graphene_simd4f_dup_4f(s,v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     vst1q_f32 ((float32_t *) (v), (s)); \
   }))
 
 # define graphene_simd4f_dup_3f(s,v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t u = { (s) }; \
     (v)[0] = u.f[0]; \
     (v)[1] = u.f[1]; \
@@ -737,86 +735,86 @@ typedef union {
   }))
 
 # define graphene_simd4f_dup_2f(s,v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const float32x2_t low = vget_low_f32 ((s)); \
     vst1_f32 ((float32_t *) (v), low); \
   }))
 
 # define graphene_simd4f_get_x(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (float) vgetq_lane_f32 ((s), 0); \
   }))
 
 # define graphene_simd4f_get_y(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (float) vgetq_lane_f32 ((s), 1); \
   }))
 
 # define graphene_simd4f_get_z(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (float) vgetq_lane_f32 ((s), 2); \
   }))
 
 # define graphene_simd4f_get_w(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (float) vgetq_lane_f32 ((s), 3); \
   }))
 
 # define graphene_simd4f_splat(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) vdupq_n_f32 ((v)); \
   }))
 
 # define graphene_simd4f_splat_x(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_splat (graphene_simd4f_t_get_x ((s))); \
   }))
 
 # define graphene_simd4f_splat_y(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_splat (graphene_simd4f_t_get_y ((s))); \
   }))
 
 # define graphene_simd4f_splat_z(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_splat (graphene_simd4f_t_get_z ((s))); \
   }))
 
 # define graphene_simd4f_splat_w(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_splat (graphene_simd4f_t_get_w ((s))); \
   }))
 
 # define graphene_simd4f_reciprocal(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_t est = vrecpeq_f32 ((s)); \
     est = vmulq_f32 (vrecpsq_f32 (est, (s)), est); \
     (graphene_simd4f_t) vmulq_f32 (vrecpsq_f32 (est, (s)), est); \
   }))
 
 # define graphene_simd4f_add(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) vaddq_f32 ((a), (b)); \
   }))
 
 # define graphene_simd4f_sub(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) vsubq_f32 ((a), (b)); \
   }))
 
 # define graphene_simd4f_mul(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) vmulq_f32 ((a), (b)); \
   }))
 
 # define graphene_simd4f_div(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_t rec = graphene_simd4f_reciprocal ((b)); \
     (graphene_simd4f_t) vmulq_f32 ((a), rec); \
   }))
 
 # define graphene_simd4f_rsqrt(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_t est_1 = vrecpeq_f32 ((s)); \
     graphene_simd4f_t est_2 = vmulq_f32 (est_1, (s)); \
     est_1 = vmulq_f32 (est_1, vrsqrtsq_f32 (est_2, est)); \
@@ -827,7 +825,7 @@ typedef union {
   }))
 
 # define graphene_simd4f_sqrt(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_t rsq = graphene_simd4f_rsqrt ((s)); \
     graphene_simd4f_t rrsq = graphene_simd4f_reciprocal (rsq); \
     graphene_simd4f_t m = vreinterpretq_u32_f32 ((s)); \
@@ -835,7 +833,7 @@ typedef union {
   }))
 
 # define graphene_simd4f_cross3 (a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const graphene_simd4f_t a_yzx = graphene_simd4f_init (graphene_simd4f_get_y ((a)), \
                                                           graphene_simd4f_get_z ((a)), \
                                                           graphene_simd4f_get_x ((a)), \
@@ -856,67 +854,67 @@ typedef union {
   }))
 
 # define graphene_simd4f_min(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) vminq_f32 ((a), (b)); \
   }))
 
 # define graphene_simd4f_max(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     (graphene_simd4f_t) vmaxq_f32 (a, b); \
   }))
 
 # define graphene_simd4f_shuffle_wxyz(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t u = { (v) }; \
     graphene_simd4f_init (u.f[3], u.f[0], u.f[1], u.f[2]); \
   }))
 
 # define graphene_simd4f_shuffle_zwxy(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t u = { (v) }; \
     graphene_simd4f_init (u.f[2], u.f[3], u.f[0], u.f[1]); \
   }))
 
 # define graphene_simd4f_shuffle_yzwx(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t u = { (v) }; \
     graphene_simd4f_init (u.f[1], u.f[2], u.f[3], u.f[0]); \
   }))
 
 # define graphene_simd4f_zero_w(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t u = { (v) }; \
     graphene_simd4f_init (u.f[0], u.f[1], u.f[2], 0.f); \
   }))
 
 # define graphene_simd4f_zero_zw(v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t u = { (v) }; \
     graphene_simd4f_init (u.f[0], u.f[1], 0.f, 0.f); \
   }))
 
 # define graphene_simd4f_merge_w(s,v) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t u = { (s) }; \
     graphene_simd4f_init (u.f[0], u.f[1], u.f[2], (v)); \
   }))
 
 # define graphene_simd4f_merge_high(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t u_a = { (a) }; \
     graphene_simd4f_union_t u_b = { (b) }; \
     graphene_simd4f_init (u_a.f[2], u_a.f[3], u_b.f[2], u_b.f[3]); \
   }))
 
 # define graphene_simd4f_merge_low(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     graphene_simd4f_union_t u_a = { (a) }; \
     graphene_simd4f_union_t u_b = { (b) }; \
     graphene_simd4f_init (u_a.f[0], u_a.f[1], u_b.f[0], u_b.f[1]); \
   }))
 
 # define graphene_simd4f_flip_sign_0101(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const unsigned int upnpn[4] = { \
       0x00000000, \
       0x80000000, \
@@ -928,7 +926,7 @@ typedef union {
   }))
 
 # define graphene_simd4f_flip_sign_1010(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const unsigned int unpnp[4] = { \
       0x80000000, \
       0x00000000, \
@@ -940,7 +938,7 @@ typedef union {
   }))
 
 # define graphene_simd4f_cmp_eq(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const graphene_simd4f_union_t u_a = { (a) }; \
     const graphene_simd4f_union_t u_b = { (b) }; \
     (bool) (u_a.f[0] == u_b.f[0] && \
@@ -950,7 +948,7 @@ typedef union {
   }))
 
 # define graphene_simd4f_cmp_neq(a,b) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const graphene_simd4f_union_t u_a = { (a) }; \
     const graphene_simd4f_union_t u_b = { (b) }; \
     (bool) (u_a.f[0] != u_b.f[0] && \
@@ -960,7 +958,7 @@ typedef union {
   }))
 
 # define graphene_simd4f_neg(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const unsigned int __umask[4] = { \
       0x80000000, \
       0x80000000, \

@@ -144,14 +144,14 @@ void    graphene_simd4x4f_transpose_in_place    (graphene_simd4x4f_t *s);
 #if defined(GRAPHENE_USE_SSE)
 
 #define graphene_simd4x4f_transpose_in_place(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     _MM_TRANSPOSE4_PS ((s)->x, (s)->y, (s)->z, (s)->w); \
   }))
 
 #elif defined(GRAPHENE_USE_ARM_NEON) || defined(GRAPHENE_USE_GCC)
 
 #define graphene_simd4x4f_transpose_in_place(s) \
-  (G_GNUC_EXTENSION ({ \
+  (__extension__ ({ \
     const graphene_simd4f_union_t sx = { (s)->x }; \
     const graphene_simd4f_union_t sy = { (s)->y }; \
     const graphene_simd4f_union_t sz = { (s)->z }; \
