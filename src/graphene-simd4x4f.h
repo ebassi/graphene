@@ -28,7 +28,7 @@
 
 #include <math.h>
 
-G_BEGIN_DECLS
+GRAPHENE_BEGIN_DECLS
 
 /**
  * graphene_simd4x4f_t:
@@ -976,6 +976,6 @@ graphene_simd4x4f_is_2d (const graphene_simd4x4f_t *m)
   return TRUE;
 }
 
-G_END_DECLS
+GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_SIMD4X4F_H__ */

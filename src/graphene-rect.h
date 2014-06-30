@@ -31,7 +31,7 @@
 #include "graphene-types.h"
 #include "graphene-point.h"
 
-G_BEGIN_DECLS
+GRAPHENE_BEGIN_DECLS
 
 /**
  * GRAPHENE_RECT_INIT:
@@ -146,6 +146,6 @@ void                    graphene_rect_interpolate       (const graphene_rect_t  
                                                          double                  factor,
                                                          graphene_rect_t        *res);
 
-G_END_DECLS
+GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_RECT_H__ */

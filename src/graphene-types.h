@@ -33,7 +33,7 @@
 #include "graphene-macros.h"
 #include "graphene-version-macros.h"
 
-G_BEGIN_DECLS
+GRAPHENE_BEGIN_DECLS
 
 /**
  * GRAPHENE_VEC2_LEN:
@@ -76,6 +76,6 @@ typedef struct _graphene_quaternion_t   graphene_quaternion_t;
 
 typedef struct _graphene_matrix_t       graphene_matrix_t;
 
-G_END_DECLS
+GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_TYPES_H__ */

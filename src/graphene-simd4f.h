@@ -38,7 +38,7 @@
 #include "graphene-macros.h"
 #include "graphene-version-macros.h"
 
-G_BEGIN_DECLS
+GRAPHENE_BEGIN_DECLS
 
 /* Platform specific operations */
 
@@ -1371,6 +1371,6 @@ graphene_simd4f_interpolate (const graphene_simd4f_t a,
                                a);
 }
 
-G_END_DECLS
+GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_SIMD4F_H__ */

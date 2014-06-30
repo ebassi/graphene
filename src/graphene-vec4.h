@@ -30,7 +30,7 @@
 
 #include "graphene-types.h"
 
-G_BEGIN_DECLS
+GRAPHENE_BEGIN_DECLS
 
 /**
  * graphene_vec4_t:
@@ -136,6 +136,6 @@ const graphene_vec4_t * graphene_vec4_z_axis            (void);
 GRAPHENE_AVAILABLE_IN_1_0
 const graphene_vec4_t * graphene_vec4_w_axis            (void);
 
-G_END_DECLS
+GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_VECTORS_H__ */

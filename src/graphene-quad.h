@@ -27,7 +27,7 @@
 #include "graphene-types.h"
 #include "graphene-point.h"
 
-G_BEGIN_DECLS
+GRAPHENE_BEGIN_DECLS
 
 /**
  * graphene_quad_t:
@@ -72,6 +72,6 @@ GRAPHENE_AVAILABLE_IN_1_0
 const graphene_point_t *graphene_quad_get_point         (const graphene_quad_t  *q,
                                                          unsigned int            index_);
 
-G_END_DECLS
+GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_QUAD_H__ */

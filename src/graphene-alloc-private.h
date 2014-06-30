@@ -24,9 +24,9 @@
 #ifndef __GRAPHENE_ALLOC_PRIVATE_H__
 #define __GRAPHENE_ALLOC_PRIVATE_H__
 
-#include <glib.h>
+#include "graphene-types.h"
 
-G_BEGIN_DECLS
+GRAPHENE_BEGIN_DECLS
 
 gpointer        graphene_alloc          (gsize size,
                                          gsize number,
@@ -34,6 +34,6 @@ gpointer        graphene_alloc          (gsize size,
 
 void            graphene_free           (gpointer mem);
 
-G_END_DECLS
+GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_ALLOC_PRIVATE_H__ */

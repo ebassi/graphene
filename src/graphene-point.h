@@ -30,7 +30,7 @@
 
 #include "graphene-types.h"
 
-G_BEGIN_DECLS
+GRAPHENE_BEGIN_DECLS
 
 /**
  * GRAPHENE_POINT_INIT:
@@ -176,6 +176,6 @@ void                            graphene_size_interpolate       (const graphene_
 GRAPHENE_AVAILABLE_IN_1_0
 const graphene_size_t *         graphene_size_zero              (void);
 
-G_END_DECLS
+GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_POINT_H__ */

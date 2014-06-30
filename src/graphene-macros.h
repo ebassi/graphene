@@ -51,4 +51,12 @@
 # define GRAPHENE_ALIGN16
 #endif
 
+#ifdef __cplusplus
+# define GRAPHENE_BEGIN_DECLS   extern "C" {
+# define GRAPHENE_END_DECLS     }
+#else
+# define GRAPHENE_BEGIN_DECLS
+# define GRAPHENE_END_DECLS
+#endif
+
 #endif /* __GRAPHENE_MACROS_H__ */
