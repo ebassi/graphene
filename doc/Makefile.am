@@ -14,6 +14,7 @@ IGNORE_HFILES = \
 	$(top_builddir)/src/config.h \
 	$(top_builddir)/src/graphene-config.h \
 	$(top_srcdir)/src/graphene.h \
+	$(top_srcdir)/src/graphene-private.h \
 	$(top_srcdir)/src/graphene-alloc-private.h \
 	$(top_srcdir)/src/graphene-line-segment.h \
 	$(top_srcdir)/src/graphene-macros.h \
