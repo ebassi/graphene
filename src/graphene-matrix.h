@@ -106,19 +106,19 @@ graphene_matrix_t *     graphene_matrix_init_from_2d            (graphene_matrix
                                                                  double                    y_0);
 
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_matrix_is_identity             (const graphene_matrix_t  *m);
+bool                    graphene_matrix_is_identity             (const graphene_matrix_t  *m);
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_matrix_is_2d                   (const graphene_matrix_t  *m);
+bool                    graphene_matrix_is_2d                   (const graphene_matrix_t  *m);
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_matrix_is_backface_visible     (const graphene_matrix_t  *m);
+bool                    graphene_matrix_is_backface_visible     (const graphene_matrix_t  *m);
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_matrix_is_singular             (const graphene_matrix_t  *m);
+bool                    graphene_matrix_is_singular             (const graphene_matrix_t  *m);
 
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_to_float                (const graphene_matrix_t  *m,
                                                                  float                    *v);
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_matrix_to_2d                   (const graphene_matrix_t  *m,
+bool                    graphene_matrix_to_2d                   (const graphene_matrix_t  *m,
                                                                  double                   *xx,
                                                                  double                   *yx,
                                                                  double                   *xy,
@@ -173,7 +173,7 @@ void                    graphene_matrix_project_rect_bounds     (const graphene_
                                                                  const graphene_rect_t    *r,
                                                                  graphene_rect_t          *res);
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_matrix_untransform_point       (const graphene_matrix_t  *m,
+bool                    graphene_matrix_untransform_point       (const graphene_matrix_t  *m,
                                                                  const graphene_point_t   *p,
                                                                  const graphene_rect_t    *bounds,
                                                                  graphene_point_t         *res);

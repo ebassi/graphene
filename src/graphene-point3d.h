@@ -91,10 +91,10 @@ void                            graphene_point3d_to_vec3                (const g
                                                                          graphene_vec3_t          *v);
 
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                        graphene_point3d_equal                  (const graphene_point3d_t *a,
+bool                            graphene_point3d_equal                  (const graphene_point3d_t *a,
                                                                          const graphene_point3d_t *b);
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                        graphene_point3d_near                   (const graphene_point3d_t *a,
+bool                            graphene_point3d_near                   (const graphene_point3d_t *a,
                                                                          const graphene_point3d_t *b,
                                                                          float                     epsilon);
 

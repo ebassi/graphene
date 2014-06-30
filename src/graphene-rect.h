@@ -88,7 +88,7 @@ graphene_rect_t *       graphene_rect_init_from_rect    (graphene_rect_t       *
                                                          const graphene_rect_t *src);
 
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_rect_equal             (const graphene_rect_t *a,
+bool                    graphene_rect_equal             (const graphene_rect_t *a,
                                                          const graphene_rect_t *b);
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_rect_t *       graphene_rect_normalize         (graphene_rect_t       *r);
@@ -121,14 +121,14 @@ void                    graphene_rect_union             (const graphene_rect_t *
                                                          const graphene_rect_t *b,
                                                          graphene_rect_t       *res);
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_rect_intersection      (const graphene_rect_t *a,
+bool                    graphene_rect_intersection      (const graphene_rect_t *a,
                                                          const graphene_rect_t *b,
                                                          graphene_rect_t       *res);
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_rect_contains_point    (const graphene_rect_t  *r,
+bool                    graphene_rect_contains_point    (const graphene_rect_t  *r,
                                                          const graphene_point_t *p);
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_rect_contains_rect     (const graphene_rect_t  *a,
+bool                    graphene_rect_contains_rect     (const graphene_rect_t  *a,
                                                          const graphene_rect_t  *b);
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_rect_t *       graphene_rect_offset            (graphene_rect_t        *r,

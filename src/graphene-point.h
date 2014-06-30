@@ -85,7 +85,7 @@ GRAPHENE_AVAILABLE_IN_1_0
 graphene_point_t *              graphene_point_init_from_point  (graphene_point_t *p,
                                                                  const graphene_point_t *src);
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                        graphene_point_equal            (const graphene_point_t *a,
+bool                            graphene_point_equal            (const graphene_point_t *a,
                                                                  const graphene_point_t *b);
 
 GRAPHENE_AVAILABLE_IN_1_0
@@ -95,7 +95,7 @@ float                           graphene_point_distance         (const graphene_
                                                                  float                  *d_y);
 
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                        graphene_point_near             (const graphene_point_t *a,
+bool                            graphene_point_near             (const graphene_point_t *a,
                                                                  const graphene_point_t *b,
                                                                  float                   epsilon);
 
@@ -160,7 +160,7 @@ GRAPHENE_AVAILABLE_IN_1_0
 graphene_size_t *               graphene_size_init_from_size    (graphene_size_t        *s,
                                                                  const graphene_size_t  *src);
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                        graphene_size_equal             (const graphene_size_t  *a,
+bool                            graphene_size_equal             (const graphene_size_t  *a,
                                                                  const graphene_size_t  *b);
 
 GRAPHENE_AVAILABLE_IN_1_0

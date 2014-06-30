@@ -152,19 +152,19 @@ graphene_point_init_from_point (graphene_point_t       *p,
  * you want to control the fuzziness of the match, you can use
  * graphene_point_near() instead.
  *
- * Returns: %TRUE if the points have the same coordinates
+ * Returns: %true if the points have the same coordinates
  *
  * Since: 1.0
  */
-gboolean
+bool
 graphene_point_equal (const graphene_point_t *a,
                       const graphene_point_t *b)
 {
   if (a == b)
-    return TRUE;
+    return true;
 
   if (a == NULL || b == NULL)
-    return FALSE;
+    return false;
 
   return graphene_point_near (a, b, GRAPHENE_FLOAT_EPSILON);
 }
@@ -217,21 +217,21 @@ graphene_point_distance (const graphene_point_t *a,
  * Checks whether the two points @a and @b are within
  * the threshold of @epsilon.
  *
- * Returns: %TRUE if the distance is within @epsilon
+ * Returns: %true if the distance is within @epsilon
  *
  * Since: 1.0
  */
-gboolean
+bool
 graphene_point_near (const graphene_point_t *a,
                      const graphene_point_t *b,
                      float                   epsilon)
 {
   graphene_simd4f_t s_a, s_b, res;
 
-  g_return_val_if_fail (a != NULL && b != NULL, FALSE);
+  g_return_val_if_fail (a != NULL && b != NULL, false);
 
   if (a == b)
-    return TRUE;
+    return true;
 
   s_a = graphene_simd4f_init (a->x, a->y, 0.f, 0.f);
   s_b = graphene_simd4f_init (b->x, b->y, 0.f, 0.f);

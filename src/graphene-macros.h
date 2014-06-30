@@ -59,4 +59,12 @@
 # define GRAPHENE_END_DECLS
 #endif
 
+#if defined(_MSC_VER) && !defined(__bool_true_false_are_defined)
+# typedef bool int
+# define false 0
+# define true 1
+#else
+# include <stdbool.h>
+#endif
+
 #endif /* __GRAPHENE_MACROS_H__ */

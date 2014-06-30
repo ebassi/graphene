@@ -39,7 +39,7 @@ graphene_line_segment_init (const graphene_point_t *start,
   return l;
 }
 
-static inline gboolean
+static inline bool
 graphene_line_segment_points_on_same_side (graphene_line_segment_t  s,
                                            const graphene_point_t  *a,
                                            const graphene_point_t  *b)
@@ -51,9 +51,9 @@ graphene_line_segment_points_on_same_side (graphene_line_segment_t  s,
   const float two = delta_x * (b->y - s.start.y) - delta_y * (b->x - s.start.x);
 
   if ((one >= 0.f && two >= 0.f) || (one <= 0.f && two <= 0.f))
-    return TRUE;
+    return true;
 
-  return FALSE;
+  return false;
 }
 
 #endif /* __GRAPHENE_LINE_SEGMENT_H__ */

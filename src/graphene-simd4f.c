@@ -789,11 +789,11 @@ graphene_simd4f_t
  *
  * Checks if the two given #graphene_simd4f_t are equal.
  *
- * Returns: %TRUE if the values of the vectors are equal
+ * Returns: %true if the values of the vectors are equal
  *
  * Since: 1.0
  */
-gboolean
+bool
 (graphene_simd4f_cmp_eq) (const graphene_simd4f_t a,
                           const graphene_simd4f_t b)
 {
@@ -807,11 +807,11 @@ gboolean
  *
  * Checks if the two given #graphene_simd4f_t are not equal.
  *
- * Returns: %TRUE if the values of the vectors are not equal
+ * Returns: %true if the values of the vectors are not equal
  *
  * Since: 1.0
  */
-gboolean
+bool
 (graphene_simd4f_cmp_neq) (const graphene_simd4f_t a,
                            const graphene_simd4f_t b)
 {
@@ -1131,7 +1131,7 @@ graphene_simd4f_t
   return graphene_simd4f_init (-s.x, s.y, -s.z, s.w);
 }
 
-gboolean
+bool
 (graphene_simd4f_cmp_eq) (const graphene_simd4f_t a,
                           const graphene_simd4f_t b)
 {
@@ -1141,7 +1141,7 @@ gboolean
          a.w == b.w;
 }
 
-gboolean
+bool
 (graphene_simd4f_cmp_neq) (const graphene_simd4f_t a,
                            const graphene_simd4f_t b)
 {

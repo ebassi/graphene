@@ -437,14 +437,14 @@ graphene_matrix_init_rotate (graphene_matrix_t     *m,
  *
  * Checks whether the given #graphene_matrix_t is the identity matrix.
  *
- * Returns: %TRUE if the matrix is the identity matrix
+ * Returns: %true if the matrix is the identity matrix
  *
  * Since: 1.0
  */
-gboolean
+bool
 graphene_matrix_is_identity (const graphene_matrix_t *m)
 {
-  g_return_val_if_fail (m != NULL, FALSE);
+  g_return_val_if_fail (m != NULL, false);
 
   return graphene_simd4x4f_is_identity (&m->value);
 }
@@ -456,15 +456,15 @@ graphene_matrix_is_identity (const graphene_matrix_t *m)
  * Checks whether the given #graphene_matrix_t is compatible with an
  * a 2D affine transformation matrix.
  *
- * Returns: %TRUE if the matrix is compatible with an affine
+ * Returns: %true if the matrix is compatible with an affine
  *   transformation matrix
  *
  * Since: 1.0
  */
-gboolean
+bool
 graphene_matrix_is_2d (const graphene_matrix_t *m)
 {
-  g_return_val_if_fail (m != NULL, FALSE);
+  g_return_val_if_fail (m != NULL, false);
 
   return graphene_simd4x4f_is_2d (&m->value);
 }
@@ -475,16 +475,16 @@ graphene_matrix_is_2d (const graphene_matrix_t *m)
  *
  * Checks whether a #graphene_matrix_t has a visible back face.
  *
- * Returns: %TRUE if the back face of the matrix is visible
+ * Returns: %true if the back face of the matrix is visible
  *
  * Since: 1.0
  */
-gboolean
+bool
 graphene_matrix_is_backface_visible (const graphene_matrix_t *m)
 {
   graphene_matrix_t tmp;
 
-  g_return_val_if_fail (m != NULL, FALSE);
+  g_return_val_if_fail (m != NULL, false);
 
   graphene_matrix_inverse (m, &tmp);
 
@@ -498,11 +498,11 @@ graphene_matrix_is_backface_visible (const graphene_matrix_t *m)
  *
  * Checks whether a matrix is singular.
  *
- * Returns: %TRUE if the matrix is singular
+ * Returns: %true if the matrix is singular
  *
  * Since: 1.0
  */
-gboolean
+bool
 graphene_matrix_is_singular (const graphene_matrix_t *m)
 {
   return graphene_matrix_determinant (m) == 0.0f;
@@ -579,12 +579,12 @@ graphene_matrix_init_from_2d (graphene_matrix_t *m,
  * This function can be used to convert between a #graphene_matrix_t
  * and a matrix type from other libraries.
  *
- * Returns: %TRUE if the matrix is compatible with an affine
+ * Returns: %true if the matrix is compatible with an affine
  *   transformation matrix
  *
  * Since: 1.0
  */
-gboolean
+bool
 graphene_matrix_to_2d (const graphene_matrix_t *m,
                        double                  *xx,
                        double                  *yx,
@@ -593,10 +593,10 @@ graphene_matrix_to_2d (const graphene_matrix_t *m,
                        double                  *x_0,
                        double                  *y_0)
 {
-  g_return_val_if_fail (m != NULL, FALSE);
+  g_return_val_if_fail (m != NULL, false);
 
   if (!graphene_simd4x4f_is_2d (&m->value))
-    return FALSE;
+    return false;
 
   if (xx != NULL)
     *xx = graphene_matrix_get_value (m, 0, 0);
@@ -611,7 +611,7 @@ graphene_matrix_to_2d (const graphene_matrix_t *m,
   if (y_0 != NULL)
     *y_0 = graphene_matrix_get_value (m, 3, 1);
 
-  return TRUE;
+  return true;
 }
 
 /**
@@ -1038,11 +1038,11 @@ graphene_matrix_project_rect_bounds (const graphene_matrix_t *m,
  * Undoes the transformation of a #graphene_point_t using the
  * given matrix, within the given rectangular @bounds.
  *
- * Returns: %TRUE if the point was successfully untransformed
+ * Returns: %true if the point was successfully untransformed
  *
  * Since: 1.0
  */
-gboolean
+bool
 graphene_matrix_untransform_point (const graphene_matrix_t *m,
                                    const graphene_point_t  *p,
                                    const graphene_rect_t   *bounds,
@@ -1051,26 +1051,26 @@ graphene_matrix_untransform_point (const graphene_matrix_t *m,
   graphene_matrix_t inverse;
   graphene_rect_t bounds_t;
 
-  g_return_val_if_fail (m != NULL, FALSE);
-  g_return_val_if_fail (p != NULL, FALSE);
-  g_return_val_if_fail (bounds != NULL, FALSE);
-  g_return_val_if_fail (res != NULL, FALSE);
+  g_return_val_if_fail (m != NULL, false);
+  g_return_val_if_fail (p != NULL, false);
+  g_return_val_if_fail (bounds != NULL, false);
+  g_return_val_if_fail (res != NULL, false);
 
   if (graphene_matrix_is_2d (m))
     {
       graphene_matrix_inverse (m, &inverse);
       graphene_matrix_transform_point (&inverse, p, res);
-      return TRUE;
+      return true;
     }
 
   graphene_matrix_transform_bounds (m, bounds, &bounds_t);
   if (!graphene_rect_contains_point (&bounds_t, p))
-    return FALSE;
+    return false;
 
   graphene_matrix_inverse (m, &inverse);
   graphene_matrix_project_point (&inverse, p, res);
 
-  return TRUE;
+  return true;
 }
 
 /**
@@ -1511,7 +1511,7 @@ graphene_matrix_get_z_scale (const graphene_matrix_t *m)
 #define XZ_SHEAR        1
 #define YZ_SHEAR        2
 
-static gboolean
+static bool
 matrix_decompose_2d (const graphene_matrix_t *m,
                      graphene_point3d_t      *scale_r,
                      float                    shear_r[3],
@@ -1527,7 +1527,7 @@ matrix_decompose_2d (const graphene_matrix_t *m,
   float rotate;
 
   if (A * D == B * C)
-    return FALSE;
+    return false;
 
   scale_x = sqrtf (A * A + B * B);
   A /= scale_x;
@@ -1564,10 +1564,10 @@ matrix_decompose_2d (const graphene_matrix_t *m,
                          graphene_matrix_get_value (m, 3, 1),
                          0.f);
 
-  return TRUE;
+  return true;
 }
 
-static gboolean
+static bool
 matrix_decompose_3d (const graphene_matrix_t *m,
                      graphene_point3d_t      *scale_r,
                      float                    shear_r[3],
@@ -1581,7 +1581,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
   graphene_simd4f_t dot, cross;
 
   if (graphene_matrix_get_value (m, 3, 3) == 0.f)
-    return FALSE;
+    return false;
 
   local = *m;
 
@@ -1596,7 +1596,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
   perspective.value.w = graphene_simd4f_init (0.f, 0.f, 0.f, 1.f);
 
   if (graphene_matrix_determinant (&perspective) == 0.f)
-    return FALSE;
+    return false;
 
   /* isolate the perspective */
   if (graphene_simd4f_is_zero3 (local.value.w))
@@ -1678,7 +1678,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
   /* get the rotations out */
   graphene_quaternion_init_from_matrix (rotate_r, &local);
 
-  return TRUE;
+  return true;
 }
 
 /**

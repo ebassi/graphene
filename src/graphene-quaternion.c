@@ -457,21 +457,21 @@ graphene_quaternion_to_angle_vec3 (const graphene_quaternion_t *q,
  *
  * Checks whether the given quaternions are equal.
  *
- * Returns: %TRUE if the quaternions are equal
+ * Returns: %true if the quaternions are equal
  *
  * Since: 1.0
  */
-gboolean
+bool
 graphene_quaternion_equal (const graphene_quaternion_t *a,
                            const graphene_quaternion_t *b)
 {
   graphene_simd4f_t v_a, v_b;
 
   if (a == b)
-    return TRUE;
+    return true;
 
   if (a == NULL || b == NULL)
-    return FALSE;
+    return false;
 
   v_a = graphene_simd4f_init (a->x, a->y, a->z, a->w);
   v_b = graphene_simd4f_init (b->x, b->y, b->z, b->w);

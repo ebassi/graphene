@@ -96,7 +96,7 @@ void                    graphene_quaternion_to_angle_vec3               (const g
                                                                          graphene_vec3_t             *axis);
 
 GRAPHENE_AVAILABLE_IN_1_0
-gboolean                graphene_quaternion_equal                       (const graphene_quaternion_t *a,
+bool                    graphene_quaternion_equal                       (const graphene_quaternion_t *a,
                                                                          const graphene_quaternion_t *b);
 GRAPHENE_AVAILABLE_IN_1_0
 float                   graphene_quaternion_dot                         (const graphene_quaternion_t *a,

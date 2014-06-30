@@ -185,19 +185,19 @@ graphene_point3d_to_vec3 (const graphene_point3d_t *p,
  *
  * Checks whether two given points are equal.
  *
- * Returns: %TRUE if the points are equal
+ * Returns: %true if the points are equal
  *
  * Since: 1.0
  */
-gboolean
+bool
 graphene_point3d_equal (const graphene_point3d_t *a,
                         const graphene_point3d_t *b)
 {
   if (a == b)
-    return TRUE;
+    return true;
 
   if (a == NULL || b == NULL)
-    return FALSE;
+    return false;
 
   return graphene_point3d_near (a, b, GRAPHENE_FLOAT_EPSILON);
 }
@@ -211,21 +211,21 @@ graphene_point3d_equal (const graphene_point3d_t *a,
  * Checks whether the two points are near each other, within
  * an @epsilon factor.
  *
- * Returns: %TRUE if the points are near each other
+ * Returns: %true if the points are near each other
  *
  * Since: 1.0
  */
-gboolean
+bool
 graphene_point3d_near (const graphene_point3d_t *a,
                        const graphene_point3d_t *b,
                        float                     epsilon)
 {
   graphene_simd4f_t v_a, v_b, v_res;
 
-  g_return_val_if_fail (a != NULL && b != NULL, FALSE);
+  g_return_val_if_fail (a != NULL && b != NULL, false);
 
   if (a == b)
-    return TRUE;
+    return true;
 
   v_a = graphene_simd4f_init (a->x, a->y, a->z, 0.f);
   v_b = graphene_simd4f_init (b->x, b->y, b->z, 0.f);
