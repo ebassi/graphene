@@ -87,9 +87,6 @@ graphene_quad_init (graphene_quad_t        *q,
                     const graphene_point_t *p3,
                     const graphene_point_t *p4)
 {
-  g_return_val_if_fail (q != NULL, NULL);
-  g_return_val_if_fail (p1 != NULL && p2 != NULL && p3 != NULL && p4 != NULL, q);
-
   q->points[0] = *p1;
   q->points[1] = *p2;
   q->points[2] = *p3;
@@ -114,9 +111,6 @@ graphene_quad_t *
 graphene_quad_init_from_rect (graphene_quad_t       *q,
                               const graphene_rect_t *r)
 {
-  g_return_val_if_fail (q != NULL, NULL);
-  g_return_val_if_fail (r != NULL, q);
-
   graphene_rect_get_top_left (r, &(q->points[0]));
   graphene_rect_get_top_right (r, &(q->points[1]));
   graphene_rect_get_bottom_right (r, &(q->points[2]));
@@ -141,9 +135,6 @@ graphene_quad_contains (const graphene_quad_t  *q,
                         const graphene_point_t *p)
 {
   graphene_line_segment_t l1, l2, l3, l4;
-
-  g_return_val_if_fail (q != NULL, false);
-  g_return_val_if_fail (p != NULL, false);
 
   l1 = graphene_line_segment_init (&q->points[0], &q->points[1]);
   l2 = graphene_line_segment_init (&q->points[1], &q->points[2]);
@@ -172,9 +163,6 @@ graphene_quad_bounds (const graphene_quad_t *q,
   float min_x, max_x;
   float min_y, max_y;
   int i;
-
-  g_return_if_fail (q != NULL);
-  g_return_if_fail (r != NULL);
 
   min_x = max_x = q->points[0].x;
   min_y = max_y = q->points[0].y;
@@ -206,8 +194,5 @@ const graphene_point_t *
 graphene_quad_get_point (const graphene_quad_t *q,
                          unsigned int           index_)
 {
-  g_return_val_if_fail (q != NULL, NULL);
-  g_return_val_if_fail (index_ >= 0 && index_ < 4, NULL);
-
   return &q->points[index_];
 }

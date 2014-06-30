@@ -96,8 +96,6 @@ graphene_vec2_init (graphene_vec2_t *v,
                     float            x,
                     float            y)
 {
-  g_return_val_if_fail (v != NULL, NULL);
-
   v->value = graphene_simd4f_init (x, y, 0.f, 0.f);
 
   return v;
@@ -118,9 +116,6 @@ graphene_vec2_t *
 graphene_vec2_init_from_vec2 (graphene_vec2_t       *v,
                               const graphene_vec2_t *src)
 {
-  g_return_val_if_fail (v != NULL, NULL);
-  g_return_val_if_fail (src != NULL, v);
-
   v->value = src->value;
 
   return v;
@@ -142,9 +137,6 @@ graphene_vec2_t *
 graphene_vec2_init_from_float (graphene_vec2_t *v,
                                const float     *src)
 {
-  g_return_val_if_fail (v != NULL, NULL);
-  g_return_val_if_fail (src != NULL, v);
-
   v->value = graphene_simd4f_init_2f (src);
 
   return v;
@@ -163,8 +155,6 @@ graphene_vec2_init_from_float (graphene_vec2_t *v,
 float
 graphene_vec2_get_x (const graphene_vec2_t *v)
 {
-  g_return_val_if_fail (v != NULL, 0.f);
-
   return graphene_simd4f_get_x (v->value);
 }
 
@@ -181,8 +171,6 @@ graphene_vec2_get_x (const graphene_vec2_t *v)
 float
 graphene_vec2_get_y (const graphene_vec2_t *v)
 {
-  g_return_val_if_fail (v != NULL, 0.f);
-
   return graphene_simd4f_get_y (v->value);
 }
 
@@ -200,9 +188,6 @@ void
 graphene_vec2_to_float (const graphene_vec2_t *v,
                         float                 *dest)
 {
-  g_return_if_fail (v != NULL);
-  g_return_if_fail (dest != NULL);
-
   graphene_simd4f_dup_2f (v->value, dest);
 }
 
@@ -222,9 +207,6 @@ graphene_vec2_add (const graphene_vec2_t *a,
                    const graphene_vec2_t *b,
                    graphene_vec2_t       *res)
 {
-  g_return_if_fail (a != NULL && b != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_add (a->value, b->value);
 }
 
@@ -244,9 +226,6 @@ graphene_vec2_subtract (const graphene_vec2_t *a,
                         const graphene_vec2_t *b,
                         graphene_vec2_t       *res)
 {
-  g_return_if_fail (a != NULL && b!= NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_sub (a->value, b->value);
 }
 
@@ -266,9 +245,6 @@ graphene_vec2_multiply (const graphene_vec2_t *a,
                         const graphene_vec2_t *b,
                         graphene_vec2_t       *res)
 {
-  g_return_if_fail (a != NULL && b!= NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_mul (a->value, b->value);
 }
 
@@ -288,9 +264,6 @@ graphene_vec2_divide (const graphene_vec2_t *a,
                       const graphene_vec2_t *b,
                       graphene_vec2_t       *res)
 {
-  g_return_if_fail (a != NULL && b!= NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_div (a->value, b->value);
 }
 
@@ -309,8 +282,6 @@ float
 graphene_vec2_dot (const graphene_vec2_t *a,
                    const graphene_vec2_t *b)
 {
-  g_return_val_if_fail (a != NULL && b != NULL, 0.f);
-
   return graphene_simd4f_get_x (graphene_simd4f_dot2 (a->value, b->value));
 }
 
@@ -327,8 +298,6 @@ graphene_vec2_dot (const graphene_vec2_t *a,
 float
 graphene_vec2_length (const graphene_vec2_t *v)
 {
-  g_return_val_if_fail (v != NULL, 0.f);
-
   return graphene_simd4f_get_x (graphene_simd4f_length2 (v->value));
 }
 
@@ -346,9 +315,6 @@ void
 graphene_vec2_normalize (const graphene_vec2_t *v,
                          graphene_vec2_t       *res)
 {
-  g_return_if_fail (v != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_normalize2 (v->value);
 }
 
@@ -368,9 +334,6 @@ graphene_vec2_min (const graphene_vec2_t *a,
                    const graphene_vec2_t *b,
                    graphene_vec2_t       *res)
 {
-  g_return_if_fail (a != NULL && b != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_min (a->value, b->value);
 }
 
@@ -390,9 +353,6 @@ graphene_vec2_max (const graphene_vec2_t *a,
                    const graphene_vec2_t *b,
                    graphene_vec2_t       *res)
 {
-  g_return_if_fail (a != NULL && b != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_max (a->value, b->value);
 }
 
@@ -551,8 +511,6 @@ graphene_vec3_init (graphene_vec3_t *v,
                     float            y,
                     float            z)
 {
-  g_return_val_if_fail (v != NULL, NULL);
-
   v->value = graphene_simd4f_init (x, y, z, 0.f);
 
   return v;
@@ -574,9 +532,6 @@ graphene_vec3_t *
 graphene_vec3_init_from_vec3 (graphene_vec3_t       *v,
                               const graphene_vec3_t *src)
 {
-  g_return_val_if_fail (v != NULL, NULL);
-  g_return_val_if_fail (src != NULL, v);
-
   v->value = src->value;
 
   return v;
@@ -597,9 +552,6 @@ graphene_vec3_t *
 graphene_vec3_init_from_float (graphene_vec3_t *v,
                                const float     *src)
 {
-  g_return_val_if_fail (v != NULL, NULL);
-  g_return_val_if_fail (src != NULL, v);
-
   v->value = graphene_simd4f_init_3f (src);
 
   return v;
@@ -618,8 +570,6 @@ graphene_vec3_init_from_float (graphene_vec3_t *v,
 float
 graphene_vec3_get_x (const graphene_vec3_t *v)
 {
-  g_return_val_if_fail (v != NULL, 0.f);
-
   return graphene_simd4f_get_x (v->value);
 }
 
@@ -636,8 +586,6 @@ graphene_vec3_get_x (const graphene_vec3_t *v)
 float
 graphene_vec3_get_y (const graphene_vec3_t *v)
 {
-  g_return_val_if_fail (v != NULL, 0.f);
-
   return graphene_simd4f_get_y (v->value);
 }
 
@@ -654,8 +602,6 @@ graphene_vec3_get_y (const graphene_vec3_t *v)
 float
 graphene_vec3_get_z (const graphene_vec3_t *v)
 {
-  g_return_val_if_fail (v != NULL, 0.f);
-
   return graphene_simd4f_get_z (v->value);
 }
 
@@ -673,9 +619,6 @@ void
 graphene_vec3_to_float (const graphene_vec3_t *v,
                         float                 *dest)
 {
-  g_return_if_fail (v != NULL);
-  g_return_if_fail (dest != NULL);
-
   graphene_simd4f_dup_3f (v->value, dest);
 }
 
@@ -694,9 +637,6 @@ graphene_vec3_add (const graphene_vec3_t *a,
                    const graphene_vec3_t *b,
                    graphene_vec3_t       *res)
 {
-  g_return_if_fail (a != NULL && b != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_add (a->value, b->value);
 }
 
@@ -715,9 +655,6 @@ graphene_vec3_subtract (const graphene_vec3_t *a,
                         const graphene_vec3_t *b,
                         graphene_vec3_t       *res)
 {
-  g_return_if_fail (a != NULL && b!= NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_sub (a->value, b->value);
 }
 
@@ -736,9 +673,6 @@ graphene_vec3_multiply (const graphene_vec3_t *a,
                         const graphene_vec3_t *b,
                         graphene_vec3_t       *res)
 {
-  g_return_if_fail (a != NULL && b!= NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_mul (a->value, b->value);
 }
 
@@ -757,9 +691,6 @@ graphene_vec3_divide (const graphene_vec3_t *a,
                       const graphene_vec3_t *b,
                       graphene_vec3_t       *res)
 {
-  g_return_if_fail (a != NULL && b!= NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_div (a->value, b->value);
 }
 
@@ -778,9 +709,6 @@ graphene_vec3_cross (const graphene_vec3_t *a,
                      const graphene_vec3_t *b,
                      graphene_vec3_t       *res)
 {
-  g_return_if_fail (a != NULL && b != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_cross3 (a->value, b->value);
 }
 
@@ -799,8 +727,6 @@ float
 graphene_vec3_dot (const graphene_vec3_t *a,
                    const graphene_vec3_t *b)
 {
-  g_return_val_if_fail (a != NULL && b != NULL, 0.f);
-
   return graphene_simd4f_get_x (graphene_simd4f_dot3 (a->value, b->value));
 }
 
@@ -817,8 +743,6 @@ graphene_vec3_dot (const graphene_vec3_t *a,
 float
 graphene_vec3_length (const graphene_vec3_t *v)
 {
-  g_return_val_if_fail (v != NULL, 0.f);
-
   return graphene_simd4f_get_x (graphene_simd4f_length3 (v->value));
 }
 
@@ -835,9 +759,6 @@ void
 graphene_vec3_normalize (const graphene_vec3_t *v,
                          graphene_vec3_t       *res)
 {
-  g_return_if_fail (v != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_normalize3 (v->value);
 }
 
@@ -857,9 +778,6 @@ graphene_vec3_min (const graphene_vec3_t *a,
                    const graphene_vec3_t *b,
                    graphene_vec3_t       *res)
 {
-  g_return_if_fail (a != NULL && b != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_min (a->value, b->value);
 }
 
@@ -879,9 +797,6 @@ graphene_vec3_max (const graphene_vec3_t *a,
                    const graphene_vec3_t *b,
                    graphene_vec3_t       *res)
 {
-  g_return_if_fail (a != NULL && b != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_max (a->value, b->value);
 }
 
@@ -899,9 +814,6 @@ void
 graphene_vec3_get_xy (const graphene_vec3_t *v,
                       graphene_vec2_t       *res)
 {
-  g_return_if_fail (v != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_zero_zw (v->value);
 }
 
@@ -919,9 +831,6 @@ void
 graphene_vec3_get_xy0 (const graphene_vec3_t *v,
                        graphene_vec3_t       *res)
 {
-  g_return_if_fail (v != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_zero_zw (v->value);
 }
 
@@ -939,9 +848,6 @@ void
 graphene_vec3_get_xyz0 (const graphene_vec3_t *v,
                         graphene_vec4_t       *res)
 {
-  g_return_if_fail (v != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_zero_w (v->value);
 }
 
@@ -959,9 +865,6 @@ void
 graphene_vec3_get_xyz1 (const graphene_vec3_t *v,
                         graphene_vec4_t       *res)
 {
-  g_return_if_fail (v != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_add (graphene_simd4f_zero_w (v->value),
                                     graphene_simd4f_init (0.f, 0.f, 0.f, 1.f));
 }
@@ -982,9 +885,6 @@ graphene_vec3_get_xyzw (const graphene_vec3_t *v,
                         float                  w,
                         graphene_vec4_t       *res)
 {
-  g_return_if_fail (v != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_add (graphene_simd4f_zero_w (v->value),
                                     graphene_simd4f_init (0.f, 0.f, 0.f, w));
 }
@@ -1169,8 +1069,6 @@ graphene_vec4_init (graphene_vec4_t *v,
                     float            z,
                     float            w)
 {
-  g_return_val_if_fail (v != NULL, NULL);
-
   v->value = graphene_simd4f_init (x, y, z, w);
 
   return v;
@@ -1192,9 +1090,6 @@ graphene_vec4_t *
 graphene_vec4_init_from_vec4 (graphene_vec4_t       *v,
                               const graphene_vec4_t *src)
 {
-  g_return_val_if_fail (v != NULL, NULL);
-  g_return_val_if_fail (src != NULL, v);
-
   v->value = src->value;
 
   return v;
@@ -1218,9 +1113,6 @@ graphene_vec4_init_from_vec3 (graphene_vec4_t       *v,
                               const graphene_vec3_t *src,
                               float                  w)
 {
-  g_return_val_if_fail (v != NULL, NULL);
-  g_return_val_if_fail (src != NULL, v);
-
   v->value = graphene_simd4f_merge_w (src->value, w);
 
   return v;
@@ -1246,9 +1138,6 @@ graphene_vec4_init_from_vec2 (graphene_vec4_t       *v,
                               float                  z,
                               float                  w)
 {
-  g_return_val_if_fail (v != NULL, NULL);
-  g_return_val_if_fail (src != NULL, v);
-
   v->value = graphene_simd4f_merge_low (src->value, graphene_simd4f_init (z, w, 0, 0));
 
   return v;
@@ -1269,9 +1158,6 @@ graphene_vec4_t *
 graphene_vec4_init_from_float (graphene_vec4_t *v,
                                const float     *src)
 {
-  g_return_val_if_fail (v != NULL, NULL);
-  g_return_val_if_fail (src != NULL, v);
-
   v->value = graphene_simd4f_init_4f (src);
 
   return v;
@@ -1290,8 +1176,6 @@ graphene_vec4_init_from_float (graphene_vec4_t *v,
 float
 graphene_vec4_get_x (const graphene_vec4_t *v)
 {
-  g_return_val_if_fail (v != NULL, 0.f);
-
   return graphene_simd4f_get_x (v->value);
 }
 
@@ -1308,8 +1192,6 @@ graphene_vec4_get_x (const graphene_vec4_t *v)
 float
 graphene_vec4_get_y (const graphene_vec4_t *v)
 {
-  g_return_val_if_fail (v != NULL, 0.f);
-
   return graphene_simd4f_get_y (v->value);
 }
 
@@ -1326,8 +1208,6 @@ graphene_vec4_get_y (const graphene_vec4_t *v)
 float
 graphene_vec4_get_z (const graphene_vec4_t *v)
 {
-  g_return_val_if_fail (v != NULL, 0.f);
-
   return graphene_simd4f_get_z (v->value);
 }
 
@@ -1344,8 +1224,6 @@ graphene_vec4_get_z (const graphene_vec4_t *v)
 float
 graphene_vec4_get_w (const graphene_vec4_t *v)
 {
-  g_return_val_if_fail (v != NULL, 0.f);
-
   return graphene_simd4f_get_w (v->value);
 }
 
@@ -1364,9 +1242,6 @@ void
 graphene_vec4_to_float (const graphene_vec4_t *v,
                         float                 *dest)
 {
-  g_return_if_fail (v != NULL);
-  g_return_if_fail (dest != NULL);
-
   graphene_simd4f_dup_4f (v->value, dest);
 }
 
@@ -1385,9 +1260,6 @@ graphene_vec4_add (const graphene_vec4_t *a,
                    const graphene_vec4_t *b,
                    graphene_vec4_t       *res)
 {
-  g_return_if_fail (a != NULL && b != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_add (a->value, b->value);
 }
 
@@ -1406,9 +1278,6 @@ graphene_vec4_subtract (const graphene_vec4_t *a,
                         const graphene_vec4_t *b,
                         graphene_vec4_t       *res)
 {
-  g_return_if_fail (a != NULL && b!= NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_sub (a->value, b->value);
 }
 
@@ -1427,9 +1296,6 @@ graphene_vec4_multiply (const graphene_vec4_t *a,
                         const graphene_vec4_t *b,
                         graphene_vec4_t       *res)
 {
-  g_return_if_fail (a != NULL && b!= NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_mul (a->value, b->value);
 }
 
@@ -1448,9 +1314,6 @@ graphene_vec4_divide (const graphene_vec4_t *a,
                       const graphene_vec4_t *b,
                       graphene_vec4_t       *res)
 {
-  g_return_if_fail (a != NULL && b!= NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_div (a->value, b->value);
 }
 
@@ -1469,8 +1332,6 @@ float
 graphene_vec4_dot (const graphene_vec4_t *a,
                    const graphene_vec4_t *b)
 {
-  g_return_val_if_fail (a != NULL && b != NULL, 0.f);
-
   return graphene_simd4f_get_x (graphene_simd4f_dot4 (a->value, b->value));
 }
 
@@ -1487,8 +1348,6 @@ graphene_vec4_dot (const graphene_vec4_t *a,
 float
 graphene_vec4_length (const graphene_vec4_t *v)
 {
-  g_return_val_if_fail (v != NULL, 0.f);
-
   return graphene_simd4f_get_x (graphene_simd4f_length4 (v->value));
 }
 
@@ -1506,9 +1365,6 @@ void
 graphene_vec4_normalize (const graphene_vec4_t *v,
                          graphene_vec4_t       *res)
 {
-  g_return_if_fail (v != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_normalize4 (v->value);
 }
 
@@ -1528,9 +1384,6 @@ graphene_vec4_min (const graphene_vec4_t *a,
                    const graphene_vec4_t *b,
                    graphene_vec4_t       *res)
 {
-  g_return_if_fail (a != NULL && b != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_min (a->value, b->value);
 }
 
@@ -1550,9 +1403,6 @@ graphene_vec4_max (const graphene_vec4_t *a,
                    const graphene_vec4_t *b,
                    graphene_vec4_t       *res)
 {
-  g_return_if_fail (a != NULL && b != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_max (a->value, b->value);
 }
 
@@ -1570,9 +1420,6 @@ void
 graphene_vec4_get_xy (const graphene_vec4_t *v,
                       graphene_vec2_t       *res)
 {
-  g_return_if_fail (v != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_zero_zw (v->value);
 }
 
@@ -1590,9 +1437,6 @@ void
 graphene_vec4_get_xyz (const graphene_vec4_t *v,
                        graphene_vec3_t       *res)
 {
-  g_return_if_fail (v != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_zero_w (v->value);
 }
 

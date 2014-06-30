@@ -96,8 +96,6 @@ graphene_quaternion_init (graphene_quaternion_t *q,
                           float                  z,
                           float                  w)
 {
-  g_return_val_if_fail (q != NULL, NULL);
-
   q->x = x;
   q->y = y;
   q->z = z;
@@ -120,8 +118,6 @@ graphene_quaternion_init (graphene_quaternion_t *q,
 graphene_quaternion_t *
 graphene_quaternion_init_identity (graphene_quaternion_t *q)
 {
-  g_return_val_if_fail (q != NULL, NULL);
-
   q->w = 1.f;
   q->x = q->y = q->z = 0.f;
 
@@ -143,9 +139,6 @@ graphene_quaternion_t *
 graphene_quaternion_init_from_quaternion (graphene_quaternion_t       *q,
                                           const graphene_quaternion_t *src)
 {
-  g_return_val_if_fail (q != NULL, NULL);
-  g_return_val_if_fail (src != NULL, q);
-
   *q = *src;
 
   return q;
@@ -178,9 +171,6 @@ graphene_quaternion_t *
 graphene_quaternion_init_from_vec4 (graphene_quaternion_t *q,
                                     const graphene_vec4_t *src)
 {
-  g_return_val_if_fail (q != NULL, NULL);
-  g_return_val_if_fail (src != NULL, q);
-
   return graphene_quaternion_init_from_simd4f (q, src->value);
 }
 
@@ -199,9 +189,6 @@ void
 graphene_quaternion_to_vec4 (const graphene_quaternion_t *q,
                              graphene_vec4_t             *res)
 {
-  g_return_if_fail (q != NULL);
-  g_return_if_fail (res != NULL);
-
   res->value = graphene_simd4f_init (q->x, q->y, q->z, q->w);
 }
 
@@ -222,9 +209,6 @@ graphene_quaternion_init_from_matrix (graphene_quaternion_t   *q,
                                       const graphene_matrix_t *m)
 {
   float xx, yy, zz;
-
-  g_return_val_if_fail (q != NULL, NULL);
-  g_return_val_if_fail (m != NULL, q);
 
   xx = graphene_matrix_get_value (m, 0, 0);
   yy = graphene_matrix_get_value (m, 1, 1);
@@ -262,9 +246,6 @@ graphene_quaternion_to_matrix (const graphene_quaternion_t *q,
                                graphene_matrix_t           *m)
 {
   graphene_simd4f_t m_x, m_y, m_z, m_w;
-
-  g_return_if_fail (q != NULL);
-  g_return_if_fail (m != NULL);
 
   m_x = graphene_simd4f_init (1.f - 2.f * (q->y * q->y + q->z * q->z),
                                     2.f * (q->x * q->y + q->w * q->z),
@@ -305,9 +286,6 @@ graphene_quaternion_slerp (const graphene_quaternion_t *a,
 {
   float theta, r_sin_theta, right_v, left_v, dot;
   graphene_simd4f_t v_a, v_b, left, right, sum;
-
-  g_return_if_fail (a != NULL && b != NULL);
-  g_return_if_fail (res != NULL);
 
   v_a = graphene_simd4f_init (a->x, a->y, a->z, a->w);
   v_b = graphene_simd4f_init (b->x, b->y, b->z, b->w);
@@ -358,8 +336,6 @@ graphene_quaternion_init_from_angles (graphene_quaternion_t *q,
   float sin_x, sin_y, sin_z;
   float cos_x, cos_y, cos_z;
 
-  g_return_val_if_fail (q != NULL, NULL);
-
   sin_x = sinf (deg_x * (GRAPHENE_PI / 180.f) * .5f);
   sin_y = sinf (deg_y * (GRAPHENE_PI / 180.f) * .5f);
   sin_z = sinf (deg_z * (GRAPHENE_PI / 180.f) * .5f);
@@ -397,9 +373,6 @@ graphene_quaternion_init_from_angle_vec3 (graphene_quaternion_t *q,
   float rad, sin_a, cos_a;
   graphene_simd4f_t axis_n;
 
-  g_return_val_if_fail (q != NULL, NULL);
-  g_return_val_if_fail (axis != NULL, q);
-
   rad = angle * (GRAPHENE_PI / 180.f);
 
   sin_a = sinf (rad / 2.f);
@@ -432,10 +405,6 @@ graphene_quaternion_to_angle_vec3 (const graphene_quaternion_t *q,
 {
   graphene_quaternion_t q_n;
   float cos_a, sin_a;
-
-  g_return_if_fail (q != NULL);
-  g_return_if_fail (angle != NULL);
-  g_return_if_fail (axis != NULL);
 
   graphene_quaternion_normalize (q, &q_n);
 
@@ -496,8 +465,6 @@ graphene_quaternion_dot (const graphene_quaternion_t *a,
 {
   graphene_simd4f_t v_a, v_b;
 
-  g_return_val_if_fail (a != NULL && b != NULL, 0.f);
-
   v_a = graphene_simd4f_init (a->x, a->y, a->z, a->w);
   v_b = graphene_simd4f_init (b->x, b->y, b->z, b->w);
 
@@ -518,9 +485,6 @@ void
 graphene_quaternion_invert (const graphene_quaternion_t *q,
                             graphene_quaternion_t       *res)
 {
-  g_return_if_fail (q != NULL);
-  g_return_if_fail (res != NULL);
-
   res->x = -q->x;
   res->y = -q->y;
   res->z = -q->z;
@@ -541,9 +505,6 @@ graphene_quaternion_normalize (const graphene_quaternion_t *q,
                                graphene_quaternion_t       *res)
 {
   graphene_simd4f_t v_q;
-
-  g_return_if_fail (q != NULL);
-  g_return_if_fail (res != NULL);
 
   v_q = graphene_simd4f_init (q->x, q->y, q->z, q->w);
   v_q = graphene_simd4f_normalize4 (v_q);
