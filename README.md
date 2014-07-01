@@ -1,6 +1,8 @@
 # Graphene
 ###  A thin layer of types for graphic libraries
 
+![travis build status](https://travis-ci.org/ebassi/graphene.svg)
+
 When creating graphic libraries you most likely end up dealing with points
 and rectangles. If you're particularly unlucky, you may end up dealing
 with affine matrices and 2D transformations. If you're writing a graphic
