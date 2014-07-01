@@ -19,7 +19,7 @@ m4_define([lt_current], [m4_eval(100 * graphene_minor_version + graphene_micro_v
 m4_define([lt_revision], [graphene_interface_age])
 m4_define([lt_age], [m4_eval(graphene_binary_age - graphene_interface_age)])
 
-m4_define([glib_req_version], [2.40.0])
+m4_define([glib_req_version], [2.30.0])
 m4_define([gi_req_version], [1.41.0])
 
 AC_PREREQ([2.63])
