@@ -1,6 +1,8 @@
 #include <glib.h>
 #include <graphene.h>
 
+#include "graphene-test-compat.h"
+
 static void
 quad_bounds (void)
 {

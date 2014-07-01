@@ -2,6 +2,8 @@
 #include <graphene.h>
 #include <math.h>
 
+#include "graphene-test-compat.h"
+
 #define g_assert_fuzzy_float_eq(n1,n2,d) \
   do { long double __n1 = (n1), __n2 = (n2), __d = (d); \
      if (fabsl (__n1 - __n2) < __d) ; else \

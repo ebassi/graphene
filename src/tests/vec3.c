@@ -1,6 +1,8 @@
 #include <math.h>
 #include <graphene.h>
 
+#include "graphene-test-compat.h"
+
 static void
 vectors_vec3_const (void)
 {

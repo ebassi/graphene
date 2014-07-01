@@ -10,6 +10,8 @@ AM_CPPFLAGS = \
 	-I$(top_builddir)/src
 LDADD = $(top_builddir)/src/libgraphene-1.0.la $(GRAPHENE_LIBS)
 
+dist_uninstalled_test_data = graphene-test-compat.h
+
 test_programs = \
 	point \
 	point3d \
