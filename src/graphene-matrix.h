@@ -102,8 +102,8 @@ graphene_matrix_t *     graphene_matrix_init_from_2d            (graphene_matrix
                                                                  double                    yx,
                                                                  double                    xy,
                                                                  double                    yy,
-                                                                 double                    x0,
-                                                                 double                    y0);
+                                                                 double                    x_0,
+                                                                 double                    y_0);
 
 GRAPHENE_AVAILABLE_IN_1_0
 gboolean                graphene_matrix_is_identity             (const graphene_matrix_t  *m);
@@ -123,8 +123,8 @@ gboolean                graphene_matrix_to_2d                   (const graphene_
                                                                  double                   *yx,
                                                                  double                   *xy,
                                                                  double                   *yy,
-                                                                 double                   *x0,
-                                                                 double                   *y0);
+                                                                 double                   *x_0,
+                                                                 double                   *y_0);
 
 
 GRAPHENE_AVAILABLE_IN_1_0
