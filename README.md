@@ -29,10 +29,6 @@ Graphene is a C library. For this reason alone, it depends on GLib, as
 GLib gives us a fairly decent, portable, and maintained layer to depend
 on, instead of requiring me to re-implement a ton of code.
 
-Graphene can, optionally, provide types for integrating with GObject
-properties and signals, as well as introspection information for its
-use with other languages through introspection-based bindings.
-
 Graphene contains optimizations for speeding up vector operations; those
 optimizations are optional, and used only if both Graphene was compiled
 with support for them *and* if the system you're running on has them.
@@ -44,6 +40,10 @@ Currently, Graphene supports the following platform-specific fast paths:
 
 In the remote case in which none of these optimizations are available,
 Graphene will fall back to a naive scalar implementation.
+
+Graphene can, optionally, provide types for integrating with GObject
+properties and signals, as well as introspection information for its
+use with other languages through introspection-based bindings.
 
 ### Installation
 
