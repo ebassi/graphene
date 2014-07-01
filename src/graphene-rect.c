@@ -561,7 +561,7 @@ graphene_rect_offset (graphene_rect_t *r,
                       float            d_x,
                       float            d_y)
 {
-  g_return_if_fail (r != NULL);
+  g_return_val_if_fail (r != NULL, NULL);
 
   graphene_rect_normalize_internal (r);
 
@@ -601,7 +601,7 @@ graphene_rect_inset (graphene_rect_t *r,
                      float            d_x,
                      float            d_y)
 {
-  g_return_if_fail (r != NULL);
+  g_return_val_if_fail (r != NULL, NULL);
 
   graphene_rect_normalize_internal (r);
 
@@ -642,7 +642,7 @@ graphene_rect_inset (graphene_rect_t *r,
 graphene_rect_t *
 graphene_rect_round_to_pixel (graphene_rect_t *r)
 {
-  g_return_if_fail (r != NULL);
+  g_return_val_if_fail (r != NULL, NULL);
 
   graphene_rect_normalize_internal (r);
 
