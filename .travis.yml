@@ -7,4 +7,4 @@ install:
   - sudo apt-get update
   - sudo apt-get install libglib2.0-0 libglib2.0-dev gtk-doc-tools
 script:
-  - ./autogen.sh --disable-introspection --disable-gtk-doc && make && make check
+  - ./autogen.sh --disable-introspection --disable-gtk-doc --disable-benchmarks && make && make check
