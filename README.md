@@ -1,7 +1,7 @@
 # Graphene
 ###  A thin layer of types for graphic libraries
 
-![travis build status](https://travis-ci.org/ebassi/graphene.svg)
+[![Build Status](https://travis-ci.org/ebassi/graphene.svg?branch=master)](https://travis-ci.org/ebassi/graphene)
 
 When creating graphic libraries you most likely end up dealing with points
 and rectangles. If you're particularly unlucky, you may end up dealing
