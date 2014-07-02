@@ -185,7 +185,7 @@ vectors_vec4_ops_dot (void)
 
   dot = graphene_vec4_dot (&a, &b);
   check = 1.f * 2.f + 2.f * 3.f + 3.f * 4.f + 4.f * 5.f;
-  g_assert_cmpfloat (dot, ==, check);
+  graphene_assert_fuzzy_equals (dot, check, 0.0001f);
 }
 
 static void
@@ -198,8 +198,7 @@ vectors_vec4_length (void)
 
   len = graphene_vec4_length (&a);
   check = sqrtf ((1.f * 1.f) + (2.f * 2.f) + (3.f * 3.f) + (4.f * 4.f));
-
-  g_assert_cmpfloat (len, ==, check);
+  graphene_assert_fuzzy_equals (len, check, 0.0001f);
 }
 
 static void
@@ -213,10 +212,10 @@ vectors_vec4_normalize (void)
 
   graphene_vec4_normalize (&a, &b);
 
-  g_assert_cmpfloat (graphene_vec4_get_x (&b) - graphene_vec4_get_x (&a) / len, <, 0.0005);
-  g_assert_cmpfloat (graphene_vec4_get_y (&b) - graphene_vec4_get_y (&a) / len, <, 0.0005);
-  g_assert_cmpfloat (graphene_vec4_get_z (&b) - graphene_vec4_get_z (&a) / len, <, 0.0005);
-  g_assert_cmpfloat (graphene_vec4_get_w (&b) - graphene_vec4_get_w (&a) / len, <, 0.0005);
+  graphene_assert_fuzzy_equals (graphene_vec4_get_x (&b), graphene_vec4_get_x (&a) / len, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_vec4_get_y (&b), graphene_vec4_get_y (&a) / len, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_vec4_get_z (&b), graphene_vec4_get_z (&a) / len, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_vec4_get_w (&b), graphene_vec4_get_w (&a) / len, 0.0001f);
 }
 
 static void

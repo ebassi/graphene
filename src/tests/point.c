@@ -90,7 +90,9 @@ point_distance (void)
   g_assert_cmpfloat (graphene_point_distance (&q, &q, NULL, NULL), ==, 0.f);
 
   x_d = y_d = 0.f;
-  g_assert_cmpfloat (graphene_point_distance (&p, &q, &x_d, &y_d), ==, sqrtf (2.f));
+  graphene_assert_fuzzy_equals (graphene_point_distance (&p, &q, &x_d, &y_d),
+                                sqrtf (2.f),
+                                0.0001f);
   g_assert_cmpfloat (x_d, ==, 1.f);
   g_assert_cmpfloat (y_d, ==, 1.f);
 }

@@ -4,15 +4,6 @@
 
 #include "graphene-test-compat.h"
 
-#define g_assert_fuzzy_float_eq(n1,n2,d) \
-  do { long double __n1 = (n1), __n2 = (n2), __d = (d); \
-     if (fabsl (__n1 - __n2) < __d) ; else \
-       g_assertion_message_cmpnum (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, \
-                                   #n1 " == " #n2 " +/- " #d, \
-                                   __n1, "==", __n2, 'f'); \
-   } while (0)
-
-
 static void
 compare_matrices (const graphene_matrix_t * m1,
                   const graphene_matrix_t * m2)
@@ -23,9 +14,9 @@ compare_matrices (const graphene_matrix_t * m1,
     {
       for (y = 0; y < 4; y++)
         {
-          g_assert_fuzzy_float_eq (graphene_matrix_get_value (m1, x, y),
-                                   graphene_matrix_get_value (m2, x, y),
-                                   0.00001f);
+          graphene_assert_fuzzy_equals (graphene_matrix_get_value (m1, x, y),
+                                        graphene_matrix_get_value (m2, x, y),
+                                        0.0001f);
         }
     }
 }
@@ -119,6 +110,10 @@ matrix_scale (void)
     graphene_matrix_print (&m);
 
   compare_matrices (&m, &m2);
+
+  g_assert_cmpfloat (graphene_matrix_get_x_scale (&m), ==, graphene_matrix_get_x_scale (&m2));
+  g_assert_cmpfloat (graphene_matrix_get_y_scale (&m), ==, graphene_matrix_get_y_scale (&m2));
+  g_assert_cmpfloat (graphene_matrix_get_z_scale (&m), ==, graphene_matrix_get_z_scale (&m2));
 }
 
 static void
