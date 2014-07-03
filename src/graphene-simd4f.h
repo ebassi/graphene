@@ -1104,6 +1104,23 @@ graphene_simd4f_sum (const graphene_simd4f_t v)
 }
 
 /**
+ * graphene_simd4f_sum_scalar:
+ * @v: a #graphene_simd4f_t
+ *
+ * Sums all the components of the given vector.
+ *
+ * Returns: a scalar value with the sum of the components
+ *   of the given #graphene_simd4f_t
+ *
+ * Since: 1.0
+ */
+static inline float
+graphene_simd4f_sum_scalar (const graphene_simd4f_t v)
+{
+  return graphene_simd4f_get_x (graphene_simd4f_sum (v));
+}
+
+/**
  * graphene_simd4f_dot4:
  * @a: a #graphene_simd4f_t
  * @b: a #graphene_simd4f_t
