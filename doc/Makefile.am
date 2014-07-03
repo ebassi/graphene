@@ -20,7 +20,7 @@ IGNORE_HFILES = \
 	$(top_srcdir)/src/graphene-version-macros.h \
 	$(top_srcdir)/src/graphene-vectors-private.h \
 	$(top_srcdir)/src/bench/graphene-bench-utils.h \
-	$(top_srcdir)/src/tests
+	$(top_srcdir)/src/tests/graphene-test-compat.h
 
 EXTRA_HFILES =
 
@@ -33,3 +33,8 @@ AM_CPPFLAGS = -I$(top_srcdir)/src -I$(top_builddir)/src $(GRAPHENE_CFLAGS)
 GTKDOC_LIBS = $(top_builddir)/src/libgraphene-1.0.la $(GRAPHENE_LIBS)
 
 include $(top_srcdir)/gtk-doc.make
+
+publish:
+	scp -r ./html/* master.gnome.org:~ebassi/public_html/docs/graphene
+
+.PHONY: publish
