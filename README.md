@@ -114,6 +114,9 @@ for working on the heap as well. The contents of all structure types, except
 for points and rectangles, should be considered private, and should never be
 accessed directly.
 
+The full API reference for the for Graphene is available online here:
+https://people.gnome.org/~ebassi/docs/graphene/
+
 ### License
 
 Graphene is released under the terms of the MIT/X11 license.
