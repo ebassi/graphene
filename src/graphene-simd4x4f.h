@@ -364,10 +364,94 @@ graphene_simd4x4f_matrix_mul (const graphene_simd4x4f_t *a,
                               const graphene_simd4x4f_t *b,
                               graphene_simd4x4f_t       *res)
 {
-  graphene_simd4x4f_vec4_mul (a, &b->x, &res->x);
-  graphene_simd4x4f_vec4_mul (a, &b->y, &res->y);
-  graphene_simd4x4f_vec4_mul (a, &b->z, &res->z);
-  graphene_simd4x4f_vec4_mul (a, &b->w, &res->w);
+#if 0
+  /* this is the classic naive A*B implementation of the row * column
+   * matrix product. using a SIMD scalar implementation, it's fairly
+   * slow at 329ns per multiplication; the SSE implementation makes it
+   * about 10x faster, at 32ns; the GCC vector implementation is only
+   * 5x faster, at 66ns. the biggest culprits are the transpose operation
+   * and the multiple, one lane reads to compute the scalar sum.
+   */
+  graphene_simd4x4f_t t;
+
+  graphene_simd4x4f_transpose (b, &t);
+
+  res->x =
+    graphene_simd4f_init (graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->x, t.x)),
+                          graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->x, t.y)),
+                          graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->x, t.z)),
+                          graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->x, t.w)));
+
+  res->y =
+    graphene_simd4f_init (graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->y, t.x)),
+                          graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->y, t.y)),
+                          graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->y, t.z)),
+                          graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->y, t.w)));
+
+  res->z =
+    graphene_simd4f_init (graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->z, t.x)),
+                          graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->z, t.y)),
+                          graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->z, t.z)),
+                          graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->z, t.w)));
+
+  res->w =
+    graphene_simd4f_init (graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->w, t.x)),
+                          graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->w, t.y)),
+                          graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->w, t.z)),
+                          graphene_simd4f_sum_scalar (graphene_simd4f_mul (a->w, t.w)));
+#else
+  /* this is an optimized version of the matrix multiplication, using
+   * four dot products for each row vector. this yields drastically
+   * better numbers while retaining the same correct results as above:
+   * the scalar implementation now clocks at 91ns; the GCC vector
+   * implementation is 19ns; and the SSE implementation is 16ns.
+   */
+  const graphene_simd4f_t row1 = b->x;
+  const graphene_simd4f_t row2 = b->y;
+  const graphene_simd4f_t row3 = b->z;
+  const graphene_simd4f_t row4 = b->w;
+
+  const graphene_simd4f_t a1_r1 = graphene_simd4f_splat_x (a->x);
+  const graphene_simd4f_t a1_r2 = graphene_simd4f_splat_y (a->x);
+  const graphene_simd4f_t a1_r3 = graphene_simd4f_splat_z (a->x);
+  const graphene_simd4f_t a1_r4 = graphene_simd4f_splat_w (a->x);
+
+  const graphene_simd4f_t a2_r1 = graphene_simd4f_splat_x (a->y);
+  const graphene_simd4f_t a2_r2 = graphene_simd4f_splat_y (a->y);
+  const graphene_simd4f_t a2_r3 = graphene_simd4f_splat_z (a->y);
+  const graphene_simd4f_t a2_r4 = graphene_simd4f_splat_w (a->y);
+
+  const graphene_simd4f_t a3_r1 = graphene_simd4f_splat_x (a->z);
+  const graphene_simd4f_t a3_r2 = graphene_simd4f_splat_y (a->z);
+  const graphene_simd4f_t a3_r3 = graphene_simd4f_splat_z (a->z);
+  const graphene_simd4f_t a3_r4 = graphene_simd4f_splat_w (a->z);
+
+  const graphene_simd4f_t a4_r1 = graphene_simd4f_splat_x (a->w);
+  const graphene_simd4f_t a4_r2 = graphene_simd4f_splat_y (a->w);
+  const graphene_simd4f_t a4_r3 = graphene_simd4f_splat_z (a->w);
+  const graphene_simd4f_t a4_r4 = graphene_simd4f_splat_w (a->w);
+
+  res->x =
+    graphene_simd4f_add (graphene_simd4f_add (graphene_simd4f_mul (a1_r1, row1),
+                                              graphene_simd4f_mul (a1_r2, row2)),
+                         graphene_simd4f_add (graphene_simd4f_mul (a1_r3, row3),
+                                              graphene_simd4f_mul (a1_r4, row4)));
+  res->y =
+    graphene_simd4f_add (graphene_simd4f_add (graphene_simd4f_mul (a2_r1, row1),
+                                              graphene_simd4f_mul (a2_r2, row2)),
+                         graphene_simd4f_add (graphene_simd4f_mul (a2_r3, row3),
+                                              graphene_simd4f_mul (a2_r4, row4)));
+  res->z =
+    graphene_simd4f_add (graphene_simd4f_add (graphene_simd4f_mul (a3_r1, row1),
+                                              graphene_simd4f_mul (a3_r2, row2)),
+                         graphene_simd4f_add (graphene_simd4f_mul (a3_r3, row3),
+                                              graphene_simd4f_mul (a3_r4, row4)));
+  res->w =
+    graphene_simd4f_add (graphene_simd4f_add (graphene_simd4f_mul (a4_r1, row1),
+                                              graphene_simd4f_mul (a4_r2, row2)),
+                         graphene_simd4f_add (graphene_simd4f_mul (a4_r3, row3),
+                                              graphene_simd4f_mul (a4_r4, row4)));
+#endif
 }
 
 /**
