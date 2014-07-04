@@ -403,51 +403,18 @@ graphene_simd4x4f_matrix_mul (const graphene_simd4x4f_t *a,
    * the scalar implementation now clocks at 91ns; the GCC vector
    * implementation is 19ns; and the SSE implementation is 16ns.
    */
-  const graphene_simd4f_t row1 = b->x;
-  const graphene_simd4f_t row2 = b->y;
-  const graphene_simd4f_t row3 = b->z;
-  const graphene_simd4f_t row4 = b->w;
+  const graphene_simd4f_t row1 = a->x;
+  const graphene_simd4f_t row2 = a->y;
+  const graphene_simd4f_t row3 = a->z;
+  const graphene_simd4f_t row4 = a->w;
 
-  const graphene_simd4f_t a1_r1 = graphene_simd4f_splat_x (a->x);
-  const graphene_simd4f_t a1_r2 = graphene_simd4f_splat_y (a->x);
-  const graphene_simd4f_t a1_r3 = graphene_simd4f_splat_z (a->x);
-  const graphene_simd4f_t a1_r4 = graphene_simd4f_splat_w (a->x);
-
-  const graphene_simd4f_t a2_r1 = graphene_simd4f_splat_x (a->y);
-  const graphene_simd4f_t a2_r2 = graphene_simd4f_splat_y (a->y);
-  const graphene_simd4f_t a2_r3 = graphene_simd4f_splat_z (a->y);
-  const graphene_simd4f_t a2_r4 = graphene_simd4f_splat_w (a->y);
-
-  const graphene_simd4f_t a3_r1 = graphene_simd4f_splat_x (a->z);
-  const graphene_simd4f_t a3_r2 = graphene_simd4f_splat_y (a->z);
-  const graphene_simd4f_t a3_r3 = graphene_simd4f_splat_z (a->z);
-  const graphene_simd4f_t a3_r4 = graphene_simd4f_splat_w (a->z);
-
-  const graphene_simd4f_t a4_r1 = graphene_simd4f_splat_x (a->w);
-  const graphene_simd4f_t a4_r2 = graphene_simd4f_splat_y (a->w);
-  const graphene_simd4f_t a4_r3 = graphene_simd4f_splat_z (a->w);
-  const graphene_simd4f_t a4_r4 = graphene_simd4f_splat_w (a->w);
-
-  res->x =
-    graphene_simd4f_add (graphene_simd4f_add (graphene_simd4f_mul (a1_r1, row1),
-                                              graphene_simd4f_mul (a1_r2, row2)),
-                         graphene_simd4f_add (graphene_simd4f_mul (a1_r3, row3),
-                                              graphene_simd4f_mul (a1_r4, row4)));
-  res->y =
-    graphene_simd4f_add (graphene_simd4f_add (graphene_simd4f_mul (a2_r1, row1),
-                                              graphene_simd4f_mul (a2_r2, row2)),
-                         graphene_simd4f_add (graphene_simd4f_mul (a2_r3, row3),
-                                              graphene_simd4f_mul (a2_r4, row4)));
-  res->z =
-    graphene_simd4f_add (graphene_simd4f_add (graphene_simd4f_mul (a3_r1, row1),
-                                              graphene_simd4f_mul (a3_r2, row2)),
-                         graphene_simd4f_add (graphene_simd4f_mul (a3_r3, row3),
-                                              graphene_simd4f_mul (a3_r4, row4)));
-  res->w =
-    graphene_simd4f_add (graphene_simd4f_add (graphene_simd4f_mul (a4_r1, row1),
-                                              graphene_simd4f_mul (a4_r2, row2)),
-                         graphene_simd4f_add (graphene_simd4f_mul (a4_r3, row3),
-                                              graphene_simd4f_mul (a4_r4, row4)));
+  /* the order is correct if we want to multiply A with B; remember
+   * that matrix multiplication is non-commutative.
+   */
+  graphene_simd4x4f_vec4_mul (b, &row1, &res->x);
+  graphene_simd4x4f_vec4_mul (b, &row2, &res->y);
+  graphene_simd4x4f_vec4_mul (b, &row3, &res->z);
+  graphene_simd4x4f_vec4_mul (b, &row4, &res->w);
 #endif
 }
 
