@@ -197,7 +197,7 @@ graphene_simd4x4f_sum (const graphene_simd4x4f_t *a,
  * @res: (out): return location for a #graphene_simd4f_t
  *
  * Multiplies the given #graphene_simd4x4f_t with the given
- * #graphene_simd4f_t.
+ * #graphene_simd4f_t using a dot product.
  *
  * Since: 1.0
  */
@@ -207,16 +207,15 @@ graphene_simd4x4f_vec4_mul (const graphene_simd4x4f_t *a,
                             graphene_simd4f_t         *res)
 {
   const graphene_simd4f_t v = *b;
-
   const graphene_simd4f_t v_x = graphene_simd4f_splat_x (v);
   const graphene_simd4f_t v_y = graphene_simd4f_splat_y (v);
   const graphene_simd4f_t v_z = graphene_simd4f_splat_z (v);
   const graphene_simd4f_t v_w = graphene_simd4f_splat_w (v);
 
-  *res = graphene_simd4f_add (graphene_simd4f_mul (a->x, v_x),
-                              graphene_simd4f_add (graphene_simd4f_mul (a->y, v_y),
-                                                   graphene_simd4f_add (graphene_simd4f_mul (a->z, v_z),
-                                                                        graphene_simd4f_mul (a->w, v_w))));
+  *res = graphene_simd4f_add (graphene_simd4f_add (graphene_simd4f_mul (a->x, v_x),
+                                                   graphene_simd4f_mul (a->y, v_y)),
+                              graphene_simd4f_add (graphene_simd4f_mul (a->z, v_z),
+                                                   graphene_simd4f_mul (a->w, v_w)));
 }
 
 /**
@@ -240,11 +239,9 @@ graphene_simd4x4f_vec3_mul (const graphene_simd4x4f_t *m,
   const graphene_simd4f_t v_y = graphene_simd4f_splat_y (*v);
   const graphene_simd4f_t v_z = graphene_simd4f_splat_z (*v);
 
-  const graphene_simd4f_t s_x = graphene_simd4f_mul (m->x, v_x);
-  const graphene_simd4f_t s_y = graphene_simd4f_mul (m->y, v_y);
-  const graphene_simd4f_t s_z = graphene_simd4f_mul (m->z, v_z);
-
-  *res = graphene_simd4f_add (s_x, graphene_simd4f_add (s_y, s_z));
+  *res = graphene_simd4f_add (graphene_simd4f_add (graphene_simd4f_mul (m->x, v_x),
+                                                   graphene_simd4f_mul (m->y, v_y)),
+                              graphene_simd4f_mul (m->z, v_z));
 }
 
 /**
@@ -266,15 +263,15 @@ graphene_simd4x4f_point3_mul (const graphene_simd4x4f_t *m,
                               const graphene_simd4f_t   *p,
                               graphene_simd4f_t         *res)
 {
-  const graphene_simd4f_t v_x = graphene_simd4f_splat_x (*p);
-  const graphene_simd4f_t v_y = graphene_simd4f_splat_y (*p);
-  const graphene_simd4f_t v_z = graphene_simd4f_splat_z (*p);
+  const graphene_simd4f_t v = *p;
+  const graphene_simd4f_t v_x = graphene_simd4f_splat_x (v);
+  const graphene_simd4f_t v_y = graphene_simd4f_splat_y (v);
+  const graphene_simd4f_t v_z = graphene_simd4f_splat_z (v);
 
-  const graphene_simd4f_t s_x = graphene_simd4f_mul (m->x, v_x);
-  const graphene_simd4f_t s_y = graphene_simd4f_mul (m->y, v_y);
-  const graphene_simd4f_t s_z = graphene_simd4f_mul (m->z, v_z);
-
-  *res = graphene_simd4f_add (s_x, graphene_simd4f_add (s_y, graphene_simd4f_add (s_z, m->w)));
+  *res = graphene_simd4f_add (graphene_simd4f_add (graphene_simd4f_mul (m->x, v_x),
+                                                   graphene_simd4f_mul (m->y, v_y)),
+                              graphene_simd4f_add (graphene_simd4f_mul (m->z, v_z),
+                                                   m->w));
 }
 
 /**
