@@ -737,6 +737,9 @@ graphene_matrix_get_value (const graphene_matrix_t *m,
  *
  * Multiplies two #graphene_matrix_t.
  *
+ * Remember: matrix multiplication is not commutative, except for the
+ * identity matrix; the product of this multiplication is (A * B).
+ *
  * Since: 1.0
  */
 void
