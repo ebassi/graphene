@@ -1739,7 +1739,7 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
   graphene_quaternion_slerp (&rotate_a, &rotate_b, factor, &rotate_r);
   graphene_quaternion_to_matrix (&rotate_r, &tmp);
   if (!graphene_matrix_is_identity (&tmp))
-    graphene_matrix_multiply (&tmp, res, res);
+    graphene_matrix_multiply (res, &tmp, res);
 
   shear = shear_a[YZ_SHEAR] + (shear_b[YZ_SHEAR] - shear_a[YZ_SHEAR]) * factor;
   if (shear != 0.f)
