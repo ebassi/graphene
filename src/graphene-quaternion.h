@@ -35,21 +35,21 @@ G_BEGIN_DECLS
 
 /**
  * graphene_quaternion_t:
- * @x: the first component of the quaternion
- * @y: the second component of the quaternion
- * @z: the third component of the quaternion
- * @w: the fourth component of the quaternion
  *
  * A quaternion.
+ *
+ * The contents of the #graphene_quaternion_t structure are private
+ * and should never be accessed directly.
  *
  * Since: 1.0
  */
 struct _graphene_quaternion_t
 {
-  float x;
-  float y;
-  float z;
-  float w;
+  /*< private >*/
+  GRAPHENE_PRIVATE_FIELD (float, x);
+  GRAPHENE_PRIVATE_FIELD (float, y);
+  GRAPHENE_PRIVATE_FIELD (float, z);
+  GRAPHENE_PRIVATE_FIELD (float, w);
 };
 
 GRAPHENE_AVAILABLE_IN_1_0
