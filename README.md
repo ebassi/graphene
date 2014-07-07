@@ -71,10 +71,15 @@ passing options to the `configure` script:
 
 If you don't plan on generating introspection data, use `--disable-introspection`
 when configuring Graphene; similarly, if you don't plan on using GObject with
-Graphene, use `--disable-gobject`. Disabling GObject types will also
+Graphene, use `--disable-gobject-types`. Disabling GObject types will also
 automatically disable generating introspection data.
 
-See the output of `configure --help` for more information.
+You can also disable building the test suite and the benchmark suite, using
+the `--disable-tests` and `--disable-benchmarks` configuration switches
+respectively.
+
+See the output of `configure --help` for more information on the available
+configuration switches and environment variables.
 
 ### Contributing
 
