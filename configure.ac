@@ -74,6 +74,9 @@ GRAPHENE_LT_AGE=lt_age
 GRAPHENE_LT_VERSION="$GRAPHENE_LT_CURRENT:$GRAPHENE_LT_REVISION:$GRAPHENE_LT_AGE"
 GRAPHENE_LT_LDFLAGS="-version-info $GRAPHENE_LT_VERSION"
 
+# built in SIMD backends
+GRAPHENE_SIMD="scalar"
+
 dnl === Dependencies ==========================================================
 
 GRAPHENE_REQS=""
@@ -144,6 +147,8 @@ AS_IF([test "x$enable_gcc_vector" = xyes && test "x$have_gcc_vector" = xno],
         AC_MSG_ERROR([GNUC vector intrinsics not detected])
       ])
 
+AS_IF([test "x$have_gcc_vector" = xyes], [GRAPHENE_SIMD="$GRAPHENE_SIMD gcc"])
+
 AM_CONDITIONAL(BUILD_WITH_GCC, [test "x$have_gcc_vector" = xyes])
 
 # Check for SSE2 intrinsics
@@ -192,6 +197,8 @@ AS_IF([test "x$enable_sse2" = xyes && test "x$have_sse2_intrinsics" = xno],
       [
         AC_MSG_ERROR([SSE2 intrinsics not detected])
       ])
+
+AS_IF([test "x$have_sse2_intrinsics" = xyes], [GRAPHENE_SIMD="$GRAPHENE_SIMD sse2"])
 
 AM_CONDITIONAL(BUILD_WITH_SSE2, [test "x$have_sse2_intrinsics" = xyes])
 
@@ -256,6 +263,8 @@ AS_IF([test "x$enable_arm_neon" = xyes && test "x$have_arm_neon" = xno],
         AC_MSG_ERROR([ARM NEON intrinsics not detected])
       ])
 
+AS_IF([test "x$have_arm_neon" = xyes], [GRAPHENE_SIMD="$GRAPHENE_SIMD neon"])
+
 AM_CONDITIONAL(BUILD_WITH_ARM_NEON, [test "x$have_arm_neon" = xyes])
 
 # Check for -Bsymbolic-functions to avoid intra-library PLT jumps
@@ -279,7 +288,6 @@ AC_ARG_ENABLE([Bsymbolic],
               ])
 
 AS_IF([test "x$enable_Bsymbolic" = "xyes"], [GRAPHENE_LINK_FLAGS=-Wl[,]-Bsymbolic-functions])
-
 
 dnl === Visibility ============================================================
 
@@ -500,6 +508,7 @@ AC_SUBST(GRAPHENE_CFLAGS)
 AC_SUBST(GRAPHENE_LIBS)
 AC_SUBST(GRAPHENE_LT_LDFLAGS)
 AC_SUBST(GRAPHENE_REQS)
+AC_SUBST(GRAPHENE_SIMD)
 AC_SUBST(SSE2_CFLAGS)
 AC_SUBST(SSE2_LDFLAGS)
 AC_SUBST(NEON_CFLAGS)
