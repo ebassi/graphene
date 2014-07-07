@@ -2,6 +2,9 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
+sse2_cflags=@SSE2_CFLAGS@
+neon_cflags=@NEON_CFLAGS@
+graphene_simd=@GRAPHENE_SIMD@
 
 Name: Graphene
 Description: Math classes for graphic libraries
