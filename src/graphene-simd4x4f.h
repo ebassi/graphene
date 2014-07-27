@@ -47,10 +47,6 @@ GRAPHENE_BEGIN_DECLS
  *   }
  * ]|
  *
- * The layout of a #graphene_simd4x4f_t matrix in memory will be
- * identical to GL and Direct3D matrices, so it's cheap to convert
- * between #graphene_simd4x4f_t and float arrays.
- *
  * The contents of the #graphene_simd4x4f_t type are private and
  * cannot be accessed directly; use the provided API instead.
  *
