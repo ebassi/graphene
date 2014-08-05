@@ -54,7 +54,7 @@
 void
 (graphene_simd4x4f_transpose_in_place) (graphene_simd4x4f_t *s)
 {
-  return graphene_simd4x4f_transpose_in_place (s);
+  graphene_simd4x4f_transpose_in_place (s);
 }
 
 #else
