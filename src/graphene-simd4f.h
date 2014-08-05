@@ -533,9 +533,9 @@ typedef union {
   (__extension__ ({ \
     (graphene_simd4f_t) { \
       sqrt (graphene_simd4f_get_x (v)), \
-      sqrt (graphene_simd4f_get_x (v)), \
-      sqrt (graphene_simd4f_get_x (v)), \
-      sqrt (graphene_simd4f_get_x (v)), \
+      sqrt (graphene_simd4f_get_y (v)), \
+      sqrt (graphene_simd4f_get_z (v)), \
+      sqrt (graphene_simd4f_get_w (v)), \
     }; \
   }))
 
