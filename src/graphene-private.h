@@ -25,6 +25,7 @@
 #define __GRAPHENE_PRIVATE_H__
 
 #include "config.h"
+#include <stdlib.h>
 
 #define GRAPHENE_FLOAT_EPSILON  (1e-15)
 
