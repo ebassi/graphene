@@ -30,7 +30,7 @@
 #define GRAPHENE_FLOAT_EPSILON  (1e-15)
 
 #ifndef MIN
-# if __GNUC__ > 3
+# if defined(__GNUC__) && __GNUC__ > 3
 #  define MIN(a,b) \
   ({ \
     typeof ((a)) _a = (a); \
@@ -43,7 +43,7 @@
 #endif
 
 #ifndef MAX
-# if __GNUC__ > 3
+# if defined(__GNUC__) && __GNUC__ > 3
 #  define MAX(a,b) \
   ({ \
     typeof ((a)) _a = (a); \
@@ -56,7 +56,7 @@
 #endif
 
 #ifndef CLAMP
-# if __GNUC__ > 3
+# if defined(__GNUC__) && __GNUC__ > 3
 #  define CLAMP(v,min,max) \
   ({ \
     typeof ((v)) _v = (v); \
