@@ -46,6 +46,12 @@ AC_USE_SYSTEM_EXTENSIONS
 
 dnl === Base compiler flags ===================================================
 
+dnl Remove all optimization flags from CFLAGS; we are going to set -O3
+dnl ourselves in GRAPHENE_CFLAGS
+changequote({,})
+CFLAGS=`echo "$CFLAGS" | $SED -e 's/-O[0-9]*//g'`
+changequote([,])
+
 BASE_CFLAGS=""
 graphene_DEFAULT_COMPILER_FLAGS
 
@@ -333,7 +339,7 @@ AS_CASE([$enable_debug],
 
         [yes],
         [
-          test "$cflags_set" = set || CFLAGS="$CFLAGS -g"
+          BASE_CFLAGS="-g $BASE_CFLAGS"
           GRAPHENE_DEBUG_CFLAGS="-DGRAPHENE_ENABLE_DEBUG"
         ],
 
@@ -470,9 +476,8 @@ AS_IF([test "x$use_gcov" = "xyes"],
 
         AC_DEFINE(HAVE_GCOV, 1, [Whether you have gcov])
 
-        dnl Remove all optimization flags from CFLAGS
+        dnl Remove all compiler optimization flags
         changequote({,})
-        CFLAGS=`echo "$CFLAGS" | $SED -e 's/-O[0-9]*//g'`
         GRAPHENE_CFLAGS=`echo "$GRAPHENE_CFLAGS" | $SED -e 's/-O[0-9]*//g'`
         changequote([,])
 
