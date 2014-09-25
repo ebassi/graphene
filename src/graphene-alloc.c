@@ -56,7 +56,7 @@ graphene_alloc (size_t size,
   void *res;
   size_t max_size = (size_t) -1;
   size_t real_size;
-  int err;
+  int err = 0;
 
   if (size == 0 || number == 0)
     return NULL;
@@ -93,6 +93,7 @@ graphene_alloc (size_t size,
   err = errno;
 #else
   res = malloc (real_size);
+  err = errno;
 #endif
 
 #ifndef G_DISABLE_ASSERT
