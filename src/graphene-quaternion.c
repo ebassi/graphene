@@ -258,7 +258,7 @@ graphene_quaternion_to_matrix (const graphene_quaternion_t *q,
                                     2.f * (q->y * q->z - q->w * q->x),
                               1.f - 2.f * (q->x * q->x + q->y * q->y),
                               0.f);
-  m_w = graphene_simd4f_init_zero ();
+  m_w = graphene_simd4f_init (0.f, 0.f, 0.f, 1.f);
 
   m->value = graphene_simd4x4f_init (m_x, m_y, m_z, m_w);
 }
