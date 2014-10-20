@@ -343,10 +343,10 @@ graphene_quaternion_init_from_angles (graphene_quaternion_t *q,
   cos_y = cosf (deg_y * (GRAPHENE_PI / 180.f) * .5f);
   cos_z = cosf (deg_z * (GRAPHENE_PI / 180.f) * .5f);
 
-  q->w = sin_x * sin_y * sin_z + cos_x * cos_y * cos_z;
   q->x = sin_x * cos_y * cos_z + cos_x * sin_y * sin_z;
-  q->y = cos_x * sin_y * cos_z + sin_x * cos_y * sin_z;
-  q->x = cos_x * cos_y * sin_z + sin_x * sin_y * cos_z;
+  q->y = cos_x * sin_y * cos_z - sin_x * cos_y * sin_z;
+  q->z = cos_x * cos_y * sin_z + sin_x * sin_y * cos_z;
+  q->w = cos_x * cos_y * cos_z - sin_x * sin_y * sin_z;
 
   return q;
 }
