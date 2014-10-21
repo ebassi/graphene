@@ -307,6 +307,7 @@ graphene_vec2_subtract
 graphene_vec2_multiply
 graphene_vec2_divide
 graphene_vec2_dot
+graphene_vec2_scale
 graphene_vec2_length
 graphene_vec2_normalize
 graphene_vec2_min
@@ -332,6 +333,7 @@ graphene_vec3_multiply
 graphene_vec3_divide
 graphene_vec3_cross
 graphene_vec3_dot
+graphene_vec3_scale
 graphene_vec3_length
 graphene_vec3_normalize
 graphene_vec3_min
@@ -365,6 +367,7 @@ graphene_vec4_subtract
 graphene_vec4_multiply
 graphene_vec4_divide
 graphene_vec4_dot
+graphene_vec4_scale
 graphene_vec4_length
 graphene_vec4_normalize
 graphene_vec4_min
