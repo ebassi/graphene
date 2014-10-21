@@ -355,6 +355,24 @@ graphene_vec2_max (const graphene_vec2_t *a,
   res->value = graphene_simd4f_max (a->value, b->value);
 }
 
+/**
+ * graphene_vec2_scale:
+ * @v: a #graphene_vec3_t
+ * @factor: the scalar factor
+ * @res: (out caller-allocates): return location for the result vector
+ *
+ * Multiplies all components of the given vector with the given scalar @factor.
+ *
+ * Since: 1.2
+ */
+void
+graphene_vec2_scale (const graphene_vec2_t *v,
+                     float                  factor,
+                     graphene_vec2_t       *res)
+{
+  res->value = graphene_simd4f_mul (v->value, graphene_simd4f_splat (factor));
+}
+
 enum {
   VEC2_ZERO,
   VEC2_ONE,
@@ -797,6 +815,24 @@ graphene_vec3_max (const graphene_vec3_t *a,
                    graphene_vec3_t       *res)
 {
   res->value = graphene_simd4f_max (a->value, b->value);
+}
+
+/**
+ * graphene_vec3_scale:
+ * @v: a #graphene_vec3_t
+ * @factor: the scalar factor
+ * @res: (out caller-allocates): return location for the result vector
+ *
+ * Multiplies all components of the given vector with the given scalar @factor.
+ *
+ * Since: 1.2
+ */
+void
+graphene_vec3_scale (const graphene_vec3_t *v,
+                     float                  factor,
+                     graphene_vec3_t       *res)
+{
+  res->value = graphene_simd4f_mul (v->value, graphene_simd4f_splat (factor));
 }
 
 /**
@@ -1403,6 +1439,24 @@ graphene_vec4_max (const graphene_vec4_t *a,
                    graphene_vec4_t       *res)
 {
   res->value = graphene_simd4f_max (a->value, b->value);
+}
+
+/**
+ * graphene_vec4_scale:
+ * @v: a #graphene_vec4_t
+ * @factor: the scalar factor
+ * @res: (out caller-allocates): return location for the result vector
+ *
+ * Multiplies all components of the given vector with the given scalar @factor.
+ *
+ * Since: 1.2
+ */
+void
+graphene_vec4_scale (const graphene_vec4_t *v,
+                     float                  factor,
+                     graphene_vec4_t       *res)
+{
+  res->value = graphene_simd4f_mul (v->value, graphene_simd4f_splat (factor));
 }
 
 /**
