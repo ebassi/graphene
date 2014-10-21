@@ -155,6 +155,10 @@ GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_transform_point         (const graphene_matrix_t  *m,
                                                                  const graphene_point_t   *p,
                                                                  graphene_point_t         *res);
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_matrix_transform_point3d       (const graphene_matrix_t  *m,
+                                                                 const graphene_point3d_t *p,
+                                                                 graphene_point3d_t       *res);
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_transform_rect          (const graphene_matrix_t  *m,
                                                                  const graphene_rect_t    *r,
