@@ -787,6 +787,34 @@ graphene_matrix_transform_point (const graphene_matrix_t *m,
 }
 
 /**
+ * graphene_matrix_transform_point3d:
+ * @m: a #graphene_matrix_t
+ * @p: a #graphene_point3d_t
+ * @res: (out caller-allocates): return location for the result
+ *
+ * Transforms the given #graphene_point3d_t using the matrix @m.
+ *
+ * Unlike graphene_matrix_transform_vec3(), this function will take into
+ * account the fourth row vector of the #graphene_matrix_t.
+ *
+ * Since: 1.2
+ */
+void
+graphene_matrix_transform_point3d (const graphene_matrix_t  *m,
+                                   const graphene_point3d_t *p,
+                                   graphene_point3d_t       *res)
+{
+  graphene_simd4f_t vec3;
+
+  vec3 = graphene_simd4f_init (p->x, p->y, p->z, 0.f);
+  graphene_simd4x4f_point3_mul (&m->value, &vec3, &vec3);
+
+  res->x = graphene_simd4f_get_x (vec3);
+  res->y = graphene_simd4f_get_y (vec3);
+  res->z = graphene_simd4f_get_z (vec3);
+}
+
+/**
  * graphene_matrix_transform_rect:
  * @m: a #graphene_matrix_t
  * @r: a #graphene_rect_t
