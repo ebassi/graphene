@@ -135,6 +135,18 @@ vectors_vec2_ops_dot (void)
 }
 
 static void
+vectors_vec2_ops_scale (void)
+{
+  graphene_vec2_t a, res;
+
+  graphene_vec2_init (&a, 1.f, 2.f);
+  graphene_vec2_scale (&a, 2.f, &res);
+
+  g_assert_cmpfloat (graphene_vec2_get_x (&res), ==, 2.f);
+  g_assert_cmpfloat (graphene_vec2_get_y (&res), ==, 4.f);
+}
+
+static void
 vectors_vec2_length (void)
 {
   graphene_vec2_t a;
@@ -206,6 +218,7 @@ main (int argc, char *argv[])
   g_test_add_func ("/vectors/vec2/operations/mul", vectors_vec2_ops_mul);
   g_test_add_func ("/vectors/vec2/operations/div", vectors_vec2_ops_div);
   g_test_add_func ("/vectors/vec2/operations/dot", vectors_vec2_ops_dot);
+  g_test_add_func ("/vectors/vec2/operations/scale", vectors_vec2_ops_scale);
   g_test_add_func ("/vectors/vec2/length", vectors_vec2_length);
   g_test_add_func ("/vectors/vec2/normalize", vectors_vec2_normalize);
   g_test_add_func ("/vectors/vec2/compare", vectors_vec2_compare);
