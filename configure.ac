@@ -46,6 +46,8 @@ AC_USE_SYSTEM_EXTENSIONS
 
 dnl === Base compiler flags ===================================================
 
+AC_PROG_SED
+
 dnl Remove all optimization flags from CFLAGS; we are going to set -O3
 dnl ourselves in GRAPHENE_CFLAGS
 changequote({,})
