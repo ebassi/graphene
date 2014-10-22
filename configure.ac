@@ -237,6 +237,18 @@ AS_CASE([$host_os],
 # Check for ARM NEON instructions
 AS_IF([test "x$NEON_CFLAGS" = "x"], [NEON_CFLAGS="-mfpu=neon"])
 
+# the Android toolchain needs some further handholding
+AC_MSG_CHECKING([if we are on Android])
+AS_CASE([$host_os],
+
+        [*android*],
+        [
+          AC_MSG_RESULT([yes])
+          NEON_CFLAGS="$NEON_CFLAGS -mfloat-abi=softfp"
+        ],
+        
+        [AC_MSG_RESULT([no])])
+
 have_arm_neon=no
 AC_MSG_CHECKING([whether to use ARM NEON assembler])
 saved_CFLAGS="$CFLAGS"
