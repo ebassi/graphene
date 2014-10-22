@@ -252,22 +252,30 @@ AS_CASE([$host_os],
         [AC_MSG_RESULT([no])])
 
 have_arm_neon=no
-AC_MSG_CHECKING([whether to use ARM NEON assembler])
+AC_MSG_CHECKING([whether to use ARM NEON intrinsics])
 saved_CFLAGS="$CFLAGS"
-CFLAGS="-x assembler-with-cpp $NEON_CFLAGS $CFLAGS"
+
+saved_CFLAGS="$CFLAGS"
+CFLAGS="$NEON_CFLAGS $CFLAGS"
+
 AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
-.text
-.fpu neon
-.arch armv7a
-.object_arch armv4
-.eabi_attribute 10, 0
-.arm
-.altmacro
 #ifndef __ARM_EABI__
 #error EABI is required (to be sure that calling conventions are compatible)
 #endif
-pld [r0]
-vmovn.u16 d0, q0]])], have_arm_neon=yes)
+#include <arm_neon.h>
+int main () {
+    const float32_t __v[4] = { 1, 2, 3, 4 }; \
+    const unsigned int __umask[4] = { \
+      0x80000000, \
+      0x80000000, \
+      0x80000000, \
+      0x80000000 \
+    }; \
+    const uint32x4_t __mask = vld1q_u32 (__umask); \
+    float32x4_t s = vld1q_f32 (__v); \
+    float32x4_t c = vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 (s), __mask)); \
+    return 0;
+}]])], [have_arm_neon=yes])
 CFLAGS="$saved_CFLAGS"
 
 AC_ARG_ENABLE([arm-neon],
