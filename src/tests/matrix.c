@@ -117,6 +117,64 @@ matrix_scale (void)
 }
 
 static void
+matrix_invert (void)
+{
+  graphene_matrix_t m;
+  graphene_matrix_t identity;
+  graphene_matrix_t inv;
+  graphene_matrix_t res;
+  graphene_point3d_t p;
+
+  graphene_matrix_init_identity (&identity);
+
+  graphene_matrix_init_identity (&m);
+  
+  graphene_matrix_inverse (&m , &inv);
+  graphene_matrix_multiply (&m, &inv, &res);
+  compare_matrices (&identity, &res);
+  
+  graphene_matrix_scale (&m, 1.0f, 2.0f, 3.0f);
+
+  graphene_matrix_inverse (&m , &inv);
+  graphene_matrix_multiply (&m, &inv, &res);
+  compare_matrices (&identity, &res);
+
+  graphene_matrix_rotate (&m, 44, graphene_vec3_x_axis ());
+
+  graphene_matrix_inverse (&m , &inv);
+  graphene_matrix_multiply (&m, &inv, &res);
+  compare_matrices (&identity, &res);
+
+  graphene_matrix_rotate (&m, 12, graphene_vec3_y_axis ());
+
+  graphene_matrix_inverse (&m , &inv);
+  graphene_matrix_multiply (&m, &inv, &res);
+  compare_matrices (&identity, &res);
+
+  graphene_matrix_translate (&m,
+			     graphene_point3d_init (&p, 1,2,3));
+
+  graphene_matrix_inverse (&m , &inv);
+  graphene_matrix_multiply (&m, &inv, &res);
+  compare_matrices (&identity, &res);
+
+  graphene_matrix_rotate (&m, 200, graphene_vec3_z_axis ());
+
+  graphene_matrix_inverse (&m , &inv);
+  graphene_matrix_multiply (&m, &inv, &res);
+  compare_matrices (&identity, &res);
+  
+  /*
+  g_print ("m:\n");
+  graphene_matrix_print (&m);
+  g_print ("inv_m:\n");
+  graphene_matrix_print (&inv);
+  g_print ("m * inv_m:\n");
+  graphene_matrix_print (&res);
+  */
+}
+
+static void
 matrix_neutral_element (void)
 {
   graphene_matrix_t identity;
@@ -242,6 +300,7 @@ main (int argc, char *argv[])
   g_test_add_func ("/matrix/translation", matrix_translation);
   g_test_add_func ("/matrix/neutral_element", matrix_neutral_element);
   g_test_add_func ("/matrix/look_at", matrix_look_at);
+  g_test_add_func ("/matrix/invert", matrix_invert);
 
   return g_test_run ();
 }
