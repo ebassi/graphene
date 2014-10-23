@@ -145,6 +145,92 @@ matrix_neutral_element (void)
   g_assert_true (graphene_matrix_is_identity (&translation));
 }
 
+static void
+matrix_look_at (void)
+{
+  graphene_matrix_t m;
+  graphene_vec3_t neg_z_axis;
+  graphene_vec3_t dir_xz, dir_yz, dir_xyz;
+  graphene_vec3_t eye, center, up, dist, center_plus_up;
+  graphene_point3d_t p;
+  graphene_vec4_t res;
+  graphene_matrix_t identity, identity_translated, rotated;
+
+  graphene_matrix_init_identity (&identity);
+  graphene_vec3_init (&neg_z_axis, 0, 0, -1);
+  graphene_vec3_init (&dir_xz, 1, 0, -1);
+  graphene_vec3_init (&dir_yz, 0, 1, -1);
+  graphene_vec3_init (&dir_xyz, 1, 1, -1);
+
+  graphene_matrix_init_look_at (&m,
+                                graphene_vec3_zero (),
+                                &neg_z_axis,
+                                graphene_vec3_y_axis());
+  compare_matrices (&m, &identity);
+
+  graphene_matrix_init_look_at (&m,
+                                graphene_vec3_z_axis(),
+                                graphene_vec3_zero (),
+                                graphene_vec3_y_axis());
+
+  identity_translated = identity;
+  graphene_matrix_translate (&identity_translated,
+                             graphene_point3d_init (&p, 0, 0, -1));
+  compare_matrices (&m, &identity_translated);
+
+  graphene_matrix_init_look_at (&m,
+                                graphene_vec3_zero (),
+                                &dir_xz,
+                                graphene_vec3_y_axis());
+  graphene_matrix_init_rotate (&rotated, 45, graphene_vec3_y_axis());
+  compare_matrices (&m, &rotated);
+
+  graphene_matrix_init_look_at (&m,
+                                graphene_vec3_zero (),
+                                &dir_yz,
+                                graphene_vec3_y_axis());
+  graphene_matrix_init_rotate (&rotated, -45, graphene_vec3_x_axis());
+  compare_matrices (&m, &rotated);
+
+  graphene_vec3_init (&eye,
+                      g_random_double_range (-10000, 10000),
+                      g_random_double_range (-10000, 10000),
+                      g_random_double_range (-10000, 10000));
+
+  graphene_vec3_init (&center,
+                      g_random_double_range (-10000, 10000),
+                      g_random_double_range (-10000, 10000),
+                      g_random_double_range (-10000, 10000));
+
+  graphene_vec3_init (&up,
+                      g_random_double_range (-1, 1),
+                      g_random_double_range (-1, 1),
+                      g_random_double_range (-1, 1));
+  graphene_vec3_normalize (&up, &up);
+
+  graphene_matrix_init_look_at (&m, &eye, &center, &up);
+  graphene_vec4_init_from_vec3 (&res, &center, 1);
+  graphene_matrix_transform_vec4 (&m, &res, &res);
+
+  graphene_vec3_subtract (&center, &eye, &dist);
+
+  graphene_assert_fuzzy_equals (graphene_vec4_get_x (&res), 0, 0.01f);
+  graphene_assert_fuzzy_equals (graphene_vec4_get_y (&res), 0, 0.01f);
+  graphene_assert_fuzzy_equals (graphene_vec4_get_z (&res), -graphene_vec3_length (&dist), 0.01f);
+  graphene_assert_fuzzy_equals (graphene_vec4_get_w (&res), 1, 0.01f);
+
+  graphene_vec3_add (&center, &up, &center_plus_up);
+  graphene_vec3_subtract (&center_plus_up, &eye, &dist);
+  graphene_vec4_init_from_vec3 (&res, &center_plus_up, 1);
+  graphene_matrix_transform_vec4 (&m, &res, &res);
+
+  graphene_assert_fuzzy_equals (graphene_vec4_get_x (&res), 0, 0.01f);
+  g_assert_cmpfloat (graphene_vec4_get_y (&res), <=, 1.f);
+  g_assert_cmpfloat (graphene_vec4_get_y (&res), >=, 0.f);
+  graphene_assert_fuzzy_equals (graphene_vec4_get_z (&res), -graphene_vec3_length (&dist), 0.01f);
+  graphene_assert_fuzzy_equals (graphene_vec4_get_w (&res), 1, 0.01f);
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -155,6 +241,7 @@ main (int argc, char *argv[])
   g_test_add_func ("/matrix/rotation", matrix_rotation);
   g_test_add_func ("/matrix/translation", matrix_translation);
   g_test_add_func ("/matrix/neutral_element", matrix_neutral_element);
+  g_test_add_func ("/matrix/look_at", matrix_look_at);
 
   return g_test_run ();
 }
