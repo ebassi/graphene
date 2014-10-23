@@ -4,22 +4,15 @@
 
 #include "graphene-test-compat.h"
 
-static void
-compare_matrices (const graphene_matrix_t * m1,
-                  const graphene_matrix_t * m2)
-{
-  int x, y;
-
-  for (x = 0; x < 4; x++)
-    {
-      for (y = 0; y < 4; y++)
-        {
-          graphene_assert_fuzzy_equals (graphene_matrix_get_value (m1, x, y),
-                                        graphene_matrix_get_value (m2, x, y),
-                                        0.0001f);
-        }
-    }
-}
+#define compare_matrices(m1,m2)         G_STMT_START { \
+  int __x, __y; \
+  for (__x = 0; __x < 4; __x++) { \
+    for (__y = 0; __y < 4; __y++) { \
+      graphene_assert_fuzzy_equals (graphene_matrix_get_value ((m1), __x, __y), \
+                                    graphene_matrix_get_value ((m2), __x, __y), \
+                                    0.0001f); \
+    } \
+  }                                     } G_STMT_END
 
 static void
 matrix_identity (void)
