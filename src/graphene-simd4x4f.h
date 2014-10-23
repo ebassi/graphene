@@ -799,7 +799,7 @@ graphene_simd4x4f_inverse (const graphene_simd4x4f_t *m,
   const graphene_simd4f_t r3_yzwx = graphene_simd4f_shuffle_yzwx (r3);
 
   const graphene_simd4f_t r0_wxyz_x_r1 = graphene_simd4f_mul (r0_wxyz, r1);
-  const graphene_simd4f_t r0_wxyz_x_r1_yzwx = graphene_simd4f_mul (r0_wxyz, r1_wxyz);
+  const graphene_simd4f_t r0_wxyz_x_r1_yzwx = graphene_simd4f_mul (r0_wxyz, r1_yzwx);
   const graphene_simd4f_t r0_wxyz_x_r1_zwxy = graphene_simd4f_mul (r0_wxyz, r1_zwxy);
 
   const graphene_simd4f_t r2_wxyz_x_r3 = graphene_simd4f_mul (r2_wxyz, r3);
