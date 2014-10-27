@@ -13,12 +13,13 @@ LDADD = $(top_builddir)/src/libgraphene-1.0.la $(GRAPHENE_LIBS) $(GLIB_LIBS)
 dist_uninstalled_test_data = graphene-test-compat.h
 
 test_programs = \
+	matrix \
 	point \
 	point3d \
-	size \
-	rect \
 	quad \
+	quaternion \
+	rect \
+	size \
 	vec2 \
 	vec3 \
-	vec4 \
-	matrix
+	vec4

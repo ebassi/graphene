@@ -9,6 +9,7 @@
 /point
 /point3d
 /quad
+/quaternion
 /rect
 /size
 /vec2

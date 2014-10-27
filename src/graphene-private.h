@@ -77,4 +77,7 @@
 # define unlikely(x)    (x)
 #endif
 
+#define GRAPHENE_DEG_TO_RAD(x)          ((x) * (GRAPHENE_PI / 180.f))
+#define GRAPHENE_RAD_TO_DEG(x)          ((x) * (180.f / GRAPHENE_PI))
+
 #endif /* __GRAPHENE_PRIVATE_H__ */

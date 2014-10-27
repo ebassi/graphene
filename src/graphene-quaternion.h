@@ -85,11 +85,16 @@ graphene_quaternion_t * graphene_quaternion_init_from_angle_vec3        (graphen
                                                                          const graphene_vec3_t       *axis);
 
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_quaternion_to_matrix                   (const graphene_quaternion_t *q,
-                                                                         graphene_matrix_t           *m);
-GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_quaternion_to_vec4                     (const graphene_quaternion_t *q,
                                                                          graphene_vec4_t             *res);
+GRAPHENE_AVAILABLE_IN_1_0
+void                    graphene_quaternion_to_matrix                   (const graphene_quaternion_t *q,
+                                                                         graphene_matrix_t           *m);
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_quaternion_to_angles                   (const graphene_quaternion_t *q,
+                                                                         float                       *deg_x,
+                                                                         float                       *deg_y,
+                                                                         float                       *deg_z);
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_quaternion_to_angle_vec3               (const graphene_quaternion_t *q,
                                                                          float                       *angle,

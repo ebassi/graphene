@@ -35,11 +35,13 @@
 #include "graphene-private.h"
 
 #include "graphene-quaternion.h"
+
 #include "graphene-simd4f.h"
 #include "graphene-simd4x4f.h"
 #include "graphene-vec3.h"
 #include "graphene-vec4.h"
 #include "graphene-matrix.h"
+#include "graphene-point3d.h"
 
 #include <math.h>
 
@@ -117,8 +119,8 @@ graphene_quaternion_init (graphene_quaternion_t *q,
 graphene_quaternion_t *
 graphene_quaternion_init_identity (graphene_quaternion_t *q)
 {
-  q->w = 1.f;
   q->x = q->y = q->z = 0.f;
+  q->w = 1.f;
 
   return q;
 }
@@ -332,16 +334,21 @@ graphene_quaternion_init_from_angles (graphene_quaternion_t *q,
                                       float                  deg_y,
                                       float                  deg_z)
 {
+  float rad_x, rad_y, rad_z;
   float sin_x, sin_y, sin_z;
   float cos_x, cos_y, cos_z;
 
-  sin_x = sinf (deg_x * (GRAPHENE_PI / 180.f) * .5f);
-  sin_y = sinf (deg_y * (GRAPHENE_PI / 180.f) * .5f);
-  sin_z = sinf (deg_z * (GRAPHENE_PI / 180.f) * .5f);
+  rad_x = GRAPHENE_DEG_TO_RAD (deg_x);
+  rad_y = GRAPHENE_DEG_TO_RAD (deg_y);
+  rad_z = GRAPHENE_DEG_TO_RAD (deg_z);
 
-  cos_x = cosf (deg_x * (GRAPHENE_PI / 180.f) * .5f);
-  cos_y = cosf (deg_y * (GRAPHENE_PI / 180.f) * .5f);
-  cos_z = cosf (deg_z * (GRAPHENE_PI / 180.f) * .5f);
+  sin_x = sinf (rad_x * .5f);
+  sin_y = sinf (rad_y * .5f);
+  sin_z = sinf (rad_z * .5f);
+
+  cos_x = cosf (rad_x * .5f);
+  cos_y = cosf (rad_y * .5f);
+  cos_z = cosf (rad_z * .5f);
 
   q->x = sin_x * cos_y * cos_z + cos_x * sin_y * sin_z;
   q->y = cos_x * sin_y * cos_z - sin_x * cos_y * sin_z;
@@ -349,6 +356,67 @@ graphene_quaternion_init_from_angles (graphene_quaternion_t *q,
   q->w = cos_x * cos_y * cos_z - sin_x * sin_y * sin_z;
 
   return q;
+}
+
+/**
+ * graphene_quaternion_to_angles:
+ * @q: a #graphene_quaternion_t
+ * @deg_x: (out) (optional): return location for the rotation angle on
+ *   the X axis (yaw), in degress
+ * @deg_y: (out) (optional): return location for the rotation angle on
+ *   the Y axis (pitch), in degrees
+ * @deg_z: (out) (optional): return location for the rotation angle on
+ *   the Z axis (roll), in degrees
+ *
+ * Converts a #graphene_quaternion_t to its corresponding rotations
+ * on the [Euler angles](http://en.wikipedia.org/wiki/Euler_angles)
+ * on each axis.
+ *
+ * Since: 1.2
+ */
+void
+graphene_quaternion_to_angles (const graphene_quaternion_t *q,
+                               float                       *deg_x,
+                               float                       *deg_y,
+                               float                       *deg_z)
+{
+  graphene_vec4_t v;
+  graphene_vec4_t sq;
+  float qx, qy, qz, qw, sqx, sqy, sqz, sqw;
+
+  graphene_quaternion_to_vec4 (q, &v);
+  graphene_vec4_multiply (&v, &v, &sq);
+
+  qx = graphene_vec4_get_x (&v);
+  qy = graphene_vec4_get_y (&v);
+  qz = graphene_vec4_get_z (&v);
+  qw = graphene_vec4_get_w (&v);
+
+  sqx = graphene_vec4_get_x (&sq);
+  sqy = graphene_vec4_get_y (&sq);
+  sqz = graphene_vec4_get_z (&sq);
+  sqw = graphene_vec4_get_w (&sq);
+
+  if (deg_x != NULL)
+    {
+      float res = atan2f (2 * (qx * qw - qy * qz), (sqw - sqx - sqy + sqz));
+
+      *deg_x = GRAPHENE_RAD_TO_DEG (res);
+    }
+
+  if (deg_y != NULL)
+    {
+      float res = asinf (CLAMP (2 * ( qx * qz + qy * qw), -1, 1));
+
+      *deg_y = GRAPHENE_RAD_TO_DEG (res);
+    }
+
+  if (deg_z != NULL)
+    {
+      float res = atan2f (2 * (qz * qw - qx * qy), (sqw + sqx - sqy - sqz));
+
+      *deg_z = GRAPHENE_RAD_TO_DEG (res);
+    }
 }
 
 /**
