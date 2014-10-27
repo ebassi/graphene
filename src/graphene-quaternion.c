@@ -471,19 +471,24 @@ graphene_quaternion_to_angle_vec3 (const graphene_quaternion_t *q,
                                    graphene_vec3_t             *axis)
 {
   graphene_quaternion_t q_n;
-  float cos_a, sin_a;
+  float cos_a;
 
   graphene_quaternion_normalize (q, &q_n);
 
   cos_a = q_n.w;
 
-  *angle = (acosf (cos_a) * 2.f) * (180.f / GRAPHENE_PI);
+  if (angle != NULL)
+    *angle = GRAPHENE_RAD_TO_DEG (acosf (cos_a) * 2.f);
 
-  sin_a = sqrtf (1.f - cos_a * cos_a);
-  if (fabsf (sin_a) < 0.00005)
-    sin_a = 1.f;
+  if (axis != NULL)
+    {
+      float sin_a = sqrtf (1.f - cos_a * cos_a);
 
-  graphene_vec3_init (axis, q_n.x / sin_a, q_n.y / sin_a, q_n.z / sin_a);
+      if (fabsf (sin_a) < 0.00005)
+       sin_a = 1.f;
+
+      graphene_vec3_init (axis, q_n.x / sin_a, q_n.y / sin_a, q_n.z / sin_a);
+    }
 }
 
 /**
