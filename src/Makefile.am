@@ -19,6 +19,7 @@ endif
 source_h = \
 	graphene-macros.h \
 	graphene-matrix.h \
+	graphene-plane.h \
 	graphene-point.h \
 	graphene-point3d.h \
 	graphene-quad.h \
@@ -35,6 +36,7 @@ source_h = \
 source_c = \
 	graphene-alloc.c \
 	graphene-matrix.c \
+	graphene-plane.c \
 	graphene-point.c \
 	graphene-point3d.c \
 	graphene-quad.c \
