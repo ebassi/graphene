@@ -105,6 +105,9 @@ void                    graphene_vec4_scale             (const graphene_vec4_t *
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_vec4_negate            (const graphene_vec4_t *v,
                                                          graphene_vec4_t       *res);
+GRAPHENE_AVAILABLE_IN_1_2
+bool                    graphene_vec4_equal             (const graphene_vec4_t *v1,
+                                                         const graphene_vec4_t *v2);
 
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_vec4_min               (const graphene_vec4_t *a,

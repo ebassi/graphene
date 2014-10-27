@@ -389,6 +389,30 @@ graphene_vec2_negate (const graphene_vec2_t *v,
   res->value = graphene_simd4f_neg (v->value);
 }
 
+/**
+ * graphene_vec2_equal:
+ * @v1: a #graphene_vec2_t
+ * @v2: a #graphene_vec2_t
+ *
+ * Checks whether the two given #graphene_vec2_t are equal.
+ *
+ * Returns: %true if the two vectors are equal, and false otherwise
+ *
+ * Since: 1.2
+ */
+bool
+graphene_vec2_equal (const graphene_vec2_t *v1,
+                     const graphene_vec2_t *v2)
+{
+  if (v1 == v2)
+    return true;
+
+  if (v1 == NULL || v2 == NULL)
+    return false;
+
+  return graphene_simd4f_cmp_eq (v1->value, v2->value);
+}
+
 enum {
   VEC2_ZERO,
   VEC2_ONE,
@@ -954,6 +978,30 @@ graphene_vec3_negate (const graphene_vec3_t *v,
                       graphene_vec3_t       *res)
 {
   res->value = graphene_simd4f_neg (v->value);
+}
+
+/**
+ * graphene_vec3_equal:
+ * @v1: a #graphene_vec3_t
+ * @v2: a #graphene_vec3_t
+ *
+ * Checks whether the two given #graphene_vec3_t are equal.
+ *
+ * Returns: %true if the two vectors are equal, and false otherwise
+ *
+ * Since: 1.2
+ */
+bool
+graphene_vec3_equal (const graphene_vec3_t *v1,
+                     const graphene_vec3_t *v2)
+{
+  if (v1 == v2)
+    return true;
+
+  if (v1 == NULL || v2 == NULL)
+    return false;
+
+  return graphene_simd4f_cmp_eq (v1->value, v2->value);
 }
 
 enum {
@@ -1539,6 +1587,30 @@ graphene_vec4_negate (const graphene_vec4_t *v,
                       graphene_vec4_t       *res)
 {
   res->value = graphene_simd4f_neg (v->value);
+}
+
+/**
+ * graphene_vec4_equal:
+ * @v1: a #graphene_vec4_t
+ * @v2: a #graphene_vec4_t
+ *
+ * Checks whether the two given #graphene_vec4_t are equal.
+ *
+ * Returns: %true if the two vectors are equal, and false otherwise
+ *
+ * Since: 1.2
+ */
+bool
+graphene_vec4_equal (const graphene_vec4_t *v1,
+                     const graphene_vec4_t *v2)
+{
+  if (v1 == v2)
+    return true;
+
+  if (v1 == NULL || v2 == NULL)
+    return false;
+
+  return graphene_simd4f_cmp_eq (v1->value, v2->value);
 }
 
 enum {

@@ -313,6 +313,7 @@ graphene_vec2_scale
 graphene_vec2_length
 graphene_vec2_normalize
 graphene_vec2_negate
+graphene_vec2_equal
 graphene_vec2_min
 graphene_vec2_max
 graphene_vec2_get_x
@@ -340,6 +341,7 @@ graphene_vec3_scale
 graphene_vec3_length
 graphene_vec3_normalize
 graphene_vec3_negate
+graphene_vec3_equal
 graphene_vec3_min
 graphene_vec3_max
 graphene_vec3_get_x
@@ -375,6 +377,7 @@ graphene_vec4_scale
 graphene_vec4_length
 graphene_vec4_normalize
 graphene_vec4_negate
+graphene_vec4_equal
 graphene_vec4_min
 graphene_vec4_max
 graphene_vec4_get_x

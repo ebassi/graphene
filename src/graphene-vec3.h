@@ -99,6 +99,9 @@ void                    graphene_vec3_scale             (const graphene_vec3_t *
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_vec3_negate            (const graphene_vec3_t *v,
                                                          graphene_vec3_t       *res);
+GRAPHENE_AVAILABLE_IN_1_2
+bool                    graphene_vec3_equal             (const graphene_vec3_t *v1,
+                                                         const graphene_vec3_t *v2);
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_vec3_min               (const graphene_vec3_t *a,
                                                          const graphene_vec3_t *b,
