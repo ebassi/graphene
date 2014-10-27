@@ -203,6 +203,20 @@ vectors_vec4_ops_scale (void)
 }
 
 static void
+vectors_vec4_ops_negate (void)
+{
+  graphene_vec4_t a, res;
+
+  graphene_vec4_init (&a, 1.f, 2.f, 3.f, 4.f);
+  graphene_vec4_negate (&a, &res);
+
+  g_assert_cmpfloat (graphene_vec4_get_x (&res), ==, -1.f);
+  g_assert_cmpfloat (graphene_vec4_get_y (&res), ==, -2.f);
+  g_assert_cmpfloat (graphene_vec4_get_z (&res), ==, -3.f);
+  g_assert_cmpfloat (graphene_vec4_get_w (&res), ==, -4.f);
+}
+
+static void
 vectors_vec4_length (void)
 {
   graphene_vec4_t a;
@@ -306,6 +320,7 @@ main (int argc, char *argv[])
   g_test_add_func ("/vectors/vec4/operations/div", vectors_vec4_ops_div);
   g_test_add_func ("/vectors/vec4/operations/dot", vectors_vec4_ops_dot);
   g_test_add_func ("/vectors/vec4/operations/scale", vectors_vec4_ops_scale);
+  g_test_add_func ("/vectors/vec4/operations/negate", vectors_vec4_ops_negate);
   g_test_add_func ("/vectors/vec4/length", vectors_vec4_length);
   g_test_add_func ("/vectors/vec4/normalize", vectors_vec4_normalize);
   g_test_add_func ("/vectors/vec4/compare", vectors_vec4_compare);

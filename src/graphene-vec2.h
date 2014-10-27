@@ -91,6 +91,10 @@ GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_vec2_scale             (const graphene_vec2_t *v,
                                                          float                  factor,
                                                          graphene_vec2_t       *res);
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_vec2_negate            (const graphene_vec2_t *v,
+                                                         graphene_vec2_t       *res);
+
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_vec2_min               (const graphene_vec2_t *a,
                                                          const graphene_vec2_t *b,

@@ -188,6 +188,19 @@ vectors_vec3_ops_scale (void)
 }
 
 static void
+vectors_vec3_ops_negate (void)
+{
+  graphene_vec3_t a, res;
+
+  graphene_vec3_init (&a, 1.f, 2.f, 3.f);
+  graphene_vec3_negate (&a, &res);
+
+  g_assert_cmpfloat (graphene_vec3_get_x (&res), ==, -1.f);
+  g_assert_cmpfloat (graphene_vec3_get_y (&res), ==, -2.f);
+  g_assert_cmpfloat (graphene_vec3_get_z (&res), ==, -3.f);
+}
+
+static void
 vectors_vec3_length (void)
 {
   graphene_vec3_t a;
@@ -311,6 +324,7 @@ main (int argc, char *argv[])
   g_test_add_func ("/vectors/vec3/operations/dot", vectors_vec3_ops_dot);
   g_test_add_func ("/vectors/vec3/operations/cross", vectors_vec3_ops_cross);
   g_test_add_func ("/vectors/vec3/operations/scale", vectors_vec3_ops_scale);
+  g_test_add_func ("/vectors/vec3/operations/negate", vectors_vec3_ops_negate);
   g_test_add_func ("/vectors/vec3/length", vectors_vec3_length);
   g_test_add_func ("/vectors/vec3/normalize", vectors_vec3_normalize);
   g_test_add_func ("/vectors/vec3/compare", vectors_vec3_compare);

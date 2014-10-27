@@ -373,6 +373,22 @@ graphene_vec2_scale (const graphene_vec2_t *v,
   res->value = graphene_simd4f_mul (v->value, graphene_simd4f_splat (factor));
 }
 
+/**
+ * graphene_vec2_negate:
+ * @v: a #graphene_vec2_t
+ * @res: (out caller-allocates): return location for the result vector
+ *
+ * Negates the give #graphene_vec2_t.
+ *
+ * Since: 1.2
+ */
+void
+graphene_vec2_negate (const graphene_vec2_t *v,
+                      graphene_vec2_t       *res)
+{
+  res->value = graphene_simd4f_neg (v->value);
+}
+
 enum {
   VEC2_ZERO,
   VEC2_ONE,
@@ -922,6 +938,22 @@ graphene_vec3_get_xyzw (const graphene_vec3_t *v,
 {
   res->value = graphene_simd4f_add (graphene_simd4f_zero_w (v->value),
                                     graphene_simd4f_init (0.f, 0.f, 0.f, w));
+}
+
+/**
+ * graphene_vec3_negate:
+ * @v: a #graphene_vec3_t
+ * @res: (out caller-allocates): return location for the result vector
+ *
+ * Negates the give #graphene_vec3_t.
+ *
+ * Since: 1.2
+ */
+void
+graphene_vec3_negate (const graphene_vec3_t *v,
+                      graphene_vec3_t       *res)
+{
+  res->value = graphene_simd4f_neg (v->value);
 }
 
 enum {
@@ -1491,6 +1523,22 @@ graphene_vec4_get_xyz (const graphene_vec4_t *v,
                        graphene_vec3_t       *res)
 {
   res->value = graphene_simd4f_zero_w (v->value);
+}
+
+/**
+ * graphene_vec4_negate:
+ * @v: a #graphene_vec4_t
+ * @res: (out caller-allocates): return location for the result vector
+ *
+ * Negates the give #graphene_vec4_t.
+ *
+ * Since: 1.2
+ */
+void
+graphene_vec4_negate (const graphene_vec4_t *v,
+                      graphene_vec4_t       *res)
+{
+  res->value = graphene_simd4f_neg (v->value);
 }
 
 enum {
