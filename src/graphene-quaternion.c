@@ -440,7 +440,7 @@ graphene_quaternion_init_from_angle_vec3 (graphene_quaternion_t *q,
   float rad, sin_a, cos_a;
   graphene_simd4f_t axis_n;
 
-  rad = angle * (GRAPHENE_PI / 180.f);
+  rad = GRAPHENE_DEG_TO_RAD (angle);
 
   sin_a = sinf (rad / 2.f);
   cos_a = cosf (rad / 2.f);
