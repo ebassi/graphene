@@ -357,7 +357,7 @@ graphene_vec2_max (const graphene_vec2_t *a,
 
 /**
  * graphene_vec2_scale:
- * @v: a #graphene_vec3_t
+ * @v: a #graphene_vec2_t
  * @factor: the scalar factor
  * @res: (out caller-allocates): return location for the result vector
  *
