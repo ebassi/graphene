@@ -71,16 +71,18 @@ graphene_alloc (size_t size,
   if (size == 0 || number == 0)
     return NULL;
 
-#ifndef G_DISABLE_ASSERT
   if (size > 0 && number > max_size / size)
     {
+#ifndef G_DISABLE_ASSERT
       fprintf (stderr,
                "Overflow in the allocation of (%lu x %lu) bytes\n",
                (unsigned long) size,
                (unsigned long) number);
       abort ();
-    }
+#else
+      return NULL;
 #endif
+    }
 
   real_size = size * number;
 
