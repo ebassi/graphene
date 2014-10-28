@@ -79,6 +79,16 @@ GType graphene_quaternion_get_type (void);
 GRAPHENE_AVAILABLE_IN_1_0
 GType graphene_matrix_get_type (void);
 
+#define GRAPHENE_TYPE_PLANE             (graphene_plane_get_type ())
+
+GRAPHENE_AVAILABLE_IN_1_2
+GType graphene_plane_get_type (void);
+
+#define GRAPHENE_TYPE_FRUSTUM           (graphene_frustum_get_type ())
+
+GRAPHENE_AVAILABLE_IN_1_2
+GType graphene_frustum_get_type (void);
+
 G_END_DECLS
 
 #endif /* __GRAPHENE_GOBJECT_H__ */

@@ -109,3 +109,7 @@ GRAPHENE_DEFINE_BOXED_TYPE (GrapheneQuad, graphene_quad)
 GRAPHENE_DEFINE_BOXED_TYPE (GrapheneQuaternion, graphene_quaternion)
 
 GRAPHENE_DEFINE_BOXED_TYPE (GrapheneMatrix, graphene_matrix)
+
+GRAPHENE_DEFINE_BOXED_TYPE (GraphenePlane, graphene_plane)
+
+GRAPHENE_DEFINE_BOXED_TYPE (GrapheneFrustum, graphene_frustum)
