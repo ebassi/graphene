@@ -46,6 +46,7 @@
 #include "graphene-quad.h"
 #include "graphene-quaternion.h"
 #include "graphene-plane.h"
+#include "graphene-frustum.h"
 
 #include "graphene-matrix.h"
 

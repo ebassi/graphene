@@ -1,4 +1,15 @@
 <SECTION>
+<FILE>graphene-frustum</FILE>
+graphene_frustum_t
+graphene_frustum_alloc
+graphene_frustum_free
+graphene_frustum_init
+graphene_frustum_init_from_frustum
+graphene_frustum_init_from_matrix
+graphene_frustum_contains_point
+</SECTION>
+
+<SECTION>
 <FILE>graphene-gobject</FILE>
 <SUBSECTION Standard>
 GRAPHENE_TYPE_MATRIX
