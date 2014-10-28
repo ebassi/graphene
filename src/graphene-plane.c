@@ -38,8 +38,6 @@
 #include "graphene-vec3.h"
 #include "graphene-vec4.h"
 
-#include <math.h>
-
 /**
  * graphene_plane_alloc:
  *
