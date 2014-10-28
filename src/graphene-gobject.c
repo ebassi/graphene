@@ -113,3 +113,5 @@ GRAPHENE_DEFINE_BOXED_TYPE (GrapheneMatrix, graphene_matrix)
 GRAPHENE_DEFINE_BOXED_TYPE (GraphenePlane, graphene_plane)
 
 GRAPHENE_DEFINE_BOXED_TYPE (GrapheneFrustum, graphene_frustum)
+
+GRAPHENE_DEFINE_BOXED_TYPE (GrapheneSphere, graphene_sphere)

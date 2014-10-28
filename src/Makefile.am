@@ -28,6 +28,7 @@ source_h = \
 	graphene-rect.h \
 	graphene-simd4f.h \
 	graphene-simd4x4f.h \
+	graphene-sphere.h \
 	graphene-vec2.h \
 	graphene-vec3.h \
 	graphene-vec4.h \
@@ -47,6 +48,7 @@ source_c = \
 	graphene-simd4f.c \
 	graphene-simd4x4f.c \
 	graphene-size.c \
+	graphene-sphere.c \
 	graphene-vectors.c \
 	$(NULL)
 

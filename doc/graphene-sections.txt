@@ -21,6 +21,7 @@ GRAPHENE_TYPE_QUAD
 GRAPHENE_TYPE_QUATERNION
 GRAPHENE_TYPE_RECT
 GRAPHENE_TYPE_SIZE
+GRAPHENE_TYPE_SPHERE
 GRAPHENE_TYPE_VEC2
 GRAPHENE_TYPE_VEC3
 GRAPHENE_TYPE_VEC4
@@ -33,6 +34,7 @@ graphene_quad_get_type
 graphene_quaternion_get_type
 graphene_rect_get_type
 graphene_size_get_type
+graphene_sphere_get_type
 graphene_vec2_get_type
 graphene_vec3_get_type
 graphene_vec4_get_type
@@ -325,6 +327,14 @@ graphene_simd4x4f_inverse
 graphene_simd4x4f_determinant
 graphene_simd4x4f_is_identity
 graphene_simd4x4f_is_2d
+</SECTION>
+
+<SECTION>
+<FILE>graphene-sphere</FILE>
+graphene_sphere_t
+graphene_sphere_alloc
+graphene_sphere_free
+graphene_sphere_init
 </SECTION>
 
 <SECTION>

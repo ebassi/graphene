@@ -1,4 +1,4 @@
-/* graphene
+/* graphene-sphere.h: A sphere
  *
  * Copyright © 2014  Emmanuele Bassi
  *
@@ -21,36 +21,42 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_H__
-#define __GRAPHENE_H__
+#ifndef __GRAPHENE_SPHERE_H__
+#define __GRAPHENE_SPHERE_H__
 
-#define GRAPHENE_H_INSIDE
+#if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
+#error "Only graphene.h can be included directly."
+#endif
 
 #include "graphene-types.h"
-#include "graphene-macros.h"
-#include "graphene-config.h"
-#include "graphene-version.h"
-#include "graphene-version-macros.h"
-
-#include "graphene-simd4f.h"
-#include "graphene-simd4x4f.h"
-
-#include "graphene-vec2.h"
 #include "graphene-vec3.h"
-#include "graphene-vec4.h"
 
-#include "graphene-point.h"
-#include "graphene-rect.h"
+GRAPHENE_BEGIN_DECLS
 
-#include "graphene-point3d.h"
-#include "graphene-quad.h"
-#include "graphene-quaternion.h"
-#include "graphene-plane.h"
-#include "graphene-frustum.h"
-#include "graphene-sphere.h"
+/**
+ * graphene_sphere_t:
+ *
+ * A sphere, represented by its center and radius.
+ *
+ * Since: 1.2
+ */
+struct _graphene_sphere_t
+{
+  /*< private >*/
+  GRAPHENE_PRIVATE_FIELD (graphene_vec3_t, center);
+  GRAPHENE_PRIVATE_FIELD (float, radius);
+};
 
-#include "graphene-matrix.h"
+GRAPHENE_AVAILABLE_IN_1_2
+graphene_sphere_t *     graphene_sphere_alloc           (void);
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_sphere_free            (graphene_sphere_t        *s);
 
-#undef GRAPHENE_H_INSIDE
+GRAPHENE_AVAILABLE_IN_1_2
+graphene_sphere_t *     graphene_sphere_init            (graphene_sphere_t        *s,
+                                                         const graphene_point3d_t *center,
+                                                         float                     radius);
 
-#endif /* __GRAPHENE_H__ */
+GRAPHENE_END_DECLS
+
+#endif /* __GRAPHENE_SPHERE_H__ */
