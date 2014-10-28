@@ -1,4 +1,4 @@
-/* graphene-point3d.hc: Point in 3D space
+/* graphene-point3d.c: Point in 3D space
  *
  * Copyright © 2014  Emmanuele Bassi
  *
