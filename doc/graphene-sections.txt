@@ -12,7 +12,9 @@ graphene_frustum_contains_point
 <SECTION>
 <FILE>graphene-gobject</FILE>
 <SUBSECTION Standard>
+GRAPHENE_TYPE_FRUSTUM
 GRAPHENE_TYPE_MATRIX
+GRAPHENE_TYPE_PLANE
 GRAPHENE_TYPE_POINT
 GRAPHENE_TYPE_POINT3D
 GRAPHENE_TYPE_QUAD
@@ -22,7 +24,9 @@ GRAPHENE_TYPE_SIZE
 GRAPHENE_TYPE_VEC2
 GRAPHENE_TYPE_VEC3
 GRAPHENE_TYPE_VEC4
+graphene_frustum_get_type
 graphene_matrix_get_type
+graphene_plane_get_type
 graphene_point3d_get_type
 graphene_point_get_type
 graphene_quad_get_type
