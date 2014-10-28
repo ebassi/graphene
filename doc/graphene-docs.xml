@@ -20,7 +20,8 @@
     <xi:include href="xml/graphene-quad.xml"/>
     <xi:include href="xml/graphene-vectors.xml"/>
     <xi:include href="xml/graphene-quaternion.xml"/>
-    <xi:include href="xml/graphene-plane.xml"/
+    <xi:include href="xml/graphene-plane.xml"/>
+    <xi:include href="xml/graphene-frustum.xml"/>
     <xi:include href="xml/graphene-matrix.xml"/>
     <xi:include href="xml/graphene-simd4f.xml"/>
     <xi:include href="xml/graphene-simd4x4f.xml"/>
