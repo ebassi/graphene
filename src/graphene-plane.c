@@ -39,14 +39,15 @@
 #include "graphene-vec4.h"
 
 /**
- * graphene_plane_alloc:
+ * graphene_plane_alloc: (constructor)
  *
  * Allocates a new #graphene_plane_t structure.
  *
  * The contents of the returned structure are undefined.
  *
- * Returns: the newly allocated #graphene_plane_t. Use graphene_plane_free()
- *   to free the resources allocated by this function
+ * Returns: (transfer full): the newly allocated #graphene_plane_t.
+ *   Use graphene_plane_free() to free the resources allocated by
+ *   this function
  *
  * Since: 1.2
  */
