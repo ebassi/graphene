@@ -143,6 +143,73 @@ graphene_plane_init_from_plane (graphene_plane_t       *p,
 }
 
 /**
+ * graphene_plane_init_from_point:
+ * @p: the #graphene_plane_t to initialize
+ * @normal: a normal vector defining the plane pointing towards the origin
+ * @point: a #graphene_point3d_t
+ *
+ * Initializes the given #graphene_plane_t using the given normal vector
+ * and an arbitrary co-planar point.
+ *
+ * Returns: (transfer none): the initialized plane
+ *
+ * Since: 1.2
+ */
+graphene_plane_t *
+graphene_plane_init_from_point (graphene_plane_t         *p,
+                                const graphene_vec3_t    *normal,
+                                const graphene_point3d_t *point)
+{
+  graphene_vec3_t v_p;
+
+  graphene_vec3_init_from_vec3 (&p->normal, normal);
+
+  graphene_vec3_init (&v_p, point->x, point->y, point->z);
+  p->constant = graphene_vec3_dot (&v_p, &p->normal) * -1;
+
+  return p;
+}
+
+/**
+ * graphene_plane_init_from_points:
+ * @p: the #graphene_plane_t to initialize
+ * @a: a #graphene_point3d_t
+ * @b: a #graphene_point3d_t
+ * @c: a #graphene_point3d_t
+ *
+ * Initializes the given #graphene_plane_t using the 3 provided co-planar
+ * points.
+ *
+ * The winding order is counter-clockwise, and determines which direction
+ * the normal vector will point.
+ *
+ * Returns: (transfer none): the initialized plane
+ *
+ * Since: 1.2
+ */
+graphene_plane_t *
+graphene_plane_init_from_points (graphene_plane_t         *p,
+                                 const graphene_point3d_t *a,
+                                 const graphene_point3d_t *b,
+                                 const graphene_point3d_t *c)
+{
+  graphene_vec3_t v_a, v_b, v_c;
+  graphene_vec3_t v1, v2;
+  graphene_vec3_t normal;
+
+  graphene_vec3_init (&v_a, a->x, a->y, a->z);
+  graphene_vec3_init (&v_b, b->x, b->y, b->z);
+  graphene_vec3_init (&v_c, c->x, c->y, c->z);
+
+  graphene_vec3_subtract (&v_c, &v_b, &v1);
+  graphene_vec3_subtract (&v_a, &v_b, &v2);
+  graphene_vec3_cross (&v1, &v2, &normal);
+  graphene_vec3_normalize (&normal, &normal);
+
+  return graphene_plane_init_from_point (p, &normal, a);
+}
+
+/**
  * graphene_plane_normalize:
  * @p: a #graphene_plane_t
  * @res: (out caller-allocates): return location for the normalized plane

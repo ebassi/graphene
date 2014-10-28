@@ -65,6 +65,15 @@ graphene_plane_t *              graphene_plane_init_from_vec4   (graphene_plane_
 GRAPHENE_AVAILABLE_IN_1_2
 graphene_plane_t *              graphene_plane_init_from_plane  (graphene_plane_t         *p,
                                                                  const graphene_plane_t   *src);
+GRAPHENE_AVAILABLE_IN_1_2
+graphene_plane_t *              graphene_plane_init_from_point  (graphene_plane_t         *p,
+                                                                 const graphene_vec3_t    *normal,
+                                                                 const graphene_point3d_t *point);
+GRAPHENE_AVAILABLE_IN_1_2
+graphene_plane_t *              graphene_plane_init_from_points (graphene_plane_t         *p,
+                                                                 const graphene_point3d_t *a,
+                                                                 const graphene_point3d_t *b,
+                                                                 const graphene_point3d_t *c);
 
 GRAPHENE_AVAILABLE_IN_1_2
 void                            graphene_plane_normalize        (const graphene_plane_t   *p,

@@ -88,6 +88,8 @@ graphene_plane_free
 graphene_plane_init
 graphene_plane_init_from_vec4
 graphene_plane_init_from_plane
+graphene_plane_init_from_point
+graphene_plane_init_from_points
 graphene_plane_normalize
 graphene_plane_negate
 graphene_plane_equal
