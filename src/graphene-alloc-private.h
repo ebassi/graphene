@@ -33,6 +33,9 @@ GRAPHENE_BEGIN_DECLS
 void *          graphene_alloc          (size_t size,
                                          size_t number,
                                          size_t alignment);
+void *          graphene_alloc0         (size_t size,
+                                         size_t number,
+                                         size_t alignment);
 
 void            graphene_free           (void  *mem);
 

@@ -119,6 +119,19 @@ graphene_alloc (size_t size,
   return res;
 }
 
+void *
+graphene_alloc0 (size_t size,
+                 size_t number,
+                 size_t alignment)
+{
+  void *res = graphene_alloc (size, number, alignment);
+
+  if (res != NULL)
+    memset (res, 0, size * number);
+
+  return res;
+}
+
 /*< private >
  * graphene_free:
  * @mem: the memory to deallocate
