@@ -28,6 +28,16 @@
 # define _XOPEN_SOURCE 600
 #endif
 
+#ifdef _MSC_VER
+  /* _aligned_malloc() takes parameters of aligned_malloc() in reverse order */
+# define aligned_alloc(alignment,size) _aligned_malloc (size, alignment)
+
+  /* _aligned_malloc()'ed memory must be freed by _align_free() on MSVC */
+# define aligned_free(x) _aligned_free (x)
+#else
+# define aligned_free(x) free (x)
+#endif
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -76,7 +86,7 @@ graphene_alloc (size_t size,
 
 #if defined(HAVE_POSIX_MEMALIGN)
   err = posix_memalign (&res, alignment, real_size);
-#elif defined(HAVE_ALIGNED_ALLOC)
+#elif defined(HAVE_ALIGNED_ALLOC) || defined (_MSC_VER)
   /* real_size must be a multiple of alignment */
   if (real_size % alignment != 0)
     {
@@ -116,5 +126,5 @@ graphene_alloc (size_t size,
 void
 graphene_free (void *mem)
 {
-  free (mem);
+  aligned_free (mem);
 }
