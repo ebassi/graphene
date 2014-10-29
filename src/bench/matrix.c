@@ -4,8 +4,22 @@
 #define _XOPEN_SOURCE 600
 #endif
 
-#if defined(HAVE_MEMALIGN)
+#if defined(HAVE_MEMALIGN) || defined (_MSC_VER)
+/* MSVC Builds: Required for _aligned_malloc() and _aligned_free() */
 #include <malloc.h>
+#endif
+
+#ifdef _MSC_VER
+/* On Visual Studio, _aligned_malloc() takes in parameters in inverted
+ * order from aligned_alloc(), but things are more or less the same there
+ * otherwise
+ */
+#define aligned_alloc(alignment,size) _aligned_malloc (size, alignment)
+
+/* if we _aligned_malloc()'ed, then we must do _align_free() on MSVC */
+#define free_aligned(x) _aligned_free (x)
+#else
+#define free_aligned(x) g_free (x)
 #endif
 
 #include <stdlib.h>
@@ -39,7 +53,7 @@ alloc_align (gsize n,
 #if defined(HAVE_POSIX_MEMALIGN)
   if (posix_memalign (&res, alignment, real_size) != 0)
     g_assert_not_reached ();
-#elif defined(HAVE_ALIGNED_ALLOC)
+#elif defined(HAVE_ALIGNED_ALLOC) || defined (_MSC_VER)
   g_assert (real_size % alignment == 0);
   res = aligned_alloc (alignment, real_size);
 #elif defined(HAVE_MEMALIGN)
@@ -123,12 +137,12 @@ matrix_teardown (gpointer data_)
 {
   MatrixBench *data = data_;
 
-  g_free (data->a);
-  g_free (data->b);
-  g_free (data->c);
-  g_free (data->pa);
-  g_free (data->qa);
-  g_free (data->ra);
+  free_aligned (data->a);
+  free_aligned (data->b);
+  free_aligned (data->c);
+  free_aligned (data->pa);
+  free_aligned (data->qa);
+  free_aligned (data->ra);
   g_free (data);
 }
 
