@@ -55,8 +55,8 @@
 #endif
 
 #ifndef __GI_SCANNER__
-#if defined(_MSC_VER) && !defined(__bool_true_false_are_defined)
-typedef bool int
+#if defined(_MSC_VER) && !defined(__bool_true_false_are_defined) && (_MSC_VER < 1800)
+typedef int bool;
 # define false 0
 # define true 1
 #else
