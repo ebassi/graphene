@@ -497,10 +497,10 @@ _smd4f_get_xyzw (graphene_simd4f_t s, int mode)
 #define graphene_simd4f_sqrt(v) \
   _mm_sqrt_ps (v)
 
-#define graphene_simd4f_reciprocal(v) _simd4f_reciprocol(v)
+#define graphene_simd4f_reciprocal(v) _simd4f_reciprocal(v)
 
 static inline graphene_simd4f_t
-_simd4f_reciprocol(const graphene_simd4f_t v)
+_simd4f_reciprocal(const graphene_simd4f_t v)
 {
   const graphene_simd4f_t __two = graphene_simd4f_init (2.0f, 2.0f, 2.0f, 2.0f);
   graphene_simd4f_t __s = _mm_rcp_ps (v);
