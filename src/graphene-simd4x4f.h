@@ -28,6 +28,12 @@
 
 #include <math.h>
 
+#if defined (_MSC_VER) && (_MSC_VER >= 1800)
+#define VECTORCALL __vectorcall
+#else
+#define VECTORCALL
+#endif
+
 GRAPHENE_BEGIN_DECLS
 
 /**
@@ -73,7 +79,12 @@ graphene_simd4x4f_init (graphene_simd4f_t x,
                         graphene_simd4f_t z,
                         graphene_simd4f_t w)
 {
-  graphene_simd4x4f_t s = { x, y, z, w };
+  graphene_simd4x4f_t s;
+  s.x = x;
+  s.y = y;
+  s.z = z;
+  s.w = w;
+
   return s;
 }
 
@@ -139,10 +150,15 @@ void    graphene_simd4x4f_transpose_in_place    (graphene_simd4x4f_t *s);
 
 #if defined(GRAPHENE_USE_SSE)
 
+#ifdef __GNUC__
 #define graphene_simd4x4f_transpose_in_place(s) \
   (__extension__ ({ \
     _MM_TRANSPOSE4_PS ((s)->x, (s)->y, (s)->z, (s)->w); \
   }))
+#elif defined (_MSC_VER)
+#define graphene_simd4x4f_transpose_in_place(s) \
+  _MM_TRANSPOSE4_PS ((s)->x, (s)->y, (s)->z, (s)->w)
+#endif
 
 #elif defined(GRAPHENE_USE_ARM_NEON) || defined(GRAPHENE_USE_GCC)
 
