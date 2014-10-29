@@ -19,7 +19,7 @@
 /* if we _aligned_malloc()'ed, then we must do _align_free() on MSVC */
 #define free_aligned(x) _aligned_free (x)
 #else
-#define free_aligned(x) g_free (x)
+#define free_aligned(x) free (x)
 #endif
 
 #include <stdlib.h>
