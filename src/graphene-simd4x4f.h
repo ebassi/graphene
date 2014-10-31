@@ -28,12 +28,6 @@
 
 #include <math.h>
 
-#if defined (_MSC_VER) && (_MSC_VER >= 1800)
-#define VECTORCALL __vectorcall
-#else
-#define VECTORCALL
-#endif
-
 GRAPHENE_BEGIN_DECLS
 
 /**
@@ -73,7 +67,7 @@ GRAPHENE_BEGIN_DECLS
  *
  * Since: 1.0
  */
-static inline graphene_simd4x4f_t
+static inline graphene_simd4x4f_t VECTORCALL
 graphene_simd4x4f_init (graphene_simd4f_t x,
                         graphene_simd4f_t y,
                         graphene_simd4f_t z,
