@@ -46,6 +46,17 @@
 # define GRAPHENE_ALIGN16
 #endif
 
+#if defined(_MSC_VER) && (_MSC_VER >= 1800)
+# ifdef _M_IX86
+/* Use __vectorcall to enable SSE intrinsics on 32-bit builds on MSVC 2013 and later */
+#  define GRAPHENE_VECTORCALL   __vectorcall
+# else
+#  define GRAPHENE_VECTORCALL
+# endif
+#else
+# define GRAPHENE_VECTORCALL
+#endif
+
 #ifdef __cplusplus
 # define GRAPHENE_BEGIN_DECLS   extern "C" {
 # define GRAPHENE_END_DECLS     }
@@ -90,16 +101,5 @@ typedef int bool;
 
 #define GRAPHENE_PI             3.1415926535897932384626434f
 #define GRAPHENE_PI_2           1.5707963267948966192313217f
-
-#if defined (_MSC_VER) && (_MSC_VER >= 1800)
-# ifdef _M_IX86
-/* Use __vectorcall to enable SSE intrinistics on 32-bit builds on MSVC 2013 and later */
-#  define VECTORCALL __vectorcall
-# else
-#  define VECTORCALL
-# endif
-#else
-# define VECTORCALL
-#endif
 
 #endif /* __GRAPHENE_MACROS_H__ */
