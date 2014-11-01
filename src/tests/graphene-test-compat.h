@@ -7,9 +7,9 @@
 # define g_assert_nonnull(expr)         g_assert ((expr) != NULL)
 #endif
 
-#if !defined (_MSC_VER)
+#if defined(__GNUC__)
 /* Use typeof on GCC */
-#define graphene_assert_fuzzy_equals(n1,n2,epsilon) \
+# define graphene_assert_fuzzy_equals(n1,n2,epsilon) \
   G_STMT_START { \
     typeof ((n1)) __n1 = (n1); \
     typeof ((n2)) __n2 = (n2); \
@@ -29,19 +29,19 @@
     } \
   } G_STMT_END
 
-/* !_MSC_VER */
+/* __GNUC__ */
 #else
 /* fallback for Visual Studio, decltype not supported */
-#define graphene_assert_fuzzy_equals(n1,n2,epsilon) \
+# define graphene_assert_fuzzy_equals(n1,n2,epsilon) \
   G_STMT_START { \
-    if (n1 > n2) { \
-      if (n1 - n2 < epsilon) ; else { \
+    if ((n1) > (n2)) { \
+      if ((n1) - (n2) < epsilon) ; else { \
         g_assertion_message_cmpnum (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, \
                                     #n1 " == " #n2 " (+/- " #epsilon ")", \
                                     n1, "==", n2, 'f'); \
       } \
     } else { \
-      if (n2 - n1 < epsilon) ; else { \
+      if ((n2) - (n1) < epsilon) ; else { \
         g_assertion_message_cmpnum (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, \
                                     #n1 " == " #n2 " (+/- " #epsilon ")", \
                                     n1, "==", n2, 'f'); \
@@ -49,5 +49,4 @@
     } \
   } G_STMT_END
 
-/* _MSC_VER */
-#endif
+#endif /* __GNUC__ */
