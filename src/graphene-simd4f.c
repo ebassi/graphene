@@ -818,6 +818,86 @@ bool
 }
 
 /**
+ * graphene_simd4f_cmp_lt:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Compares two #graphene_simd4f_t and checks if all components
+ * of the vector @a are less than the respective components of
+ * the vector @b.
+ *
+ * Returns: %true if vector @a is less than @b
+ *
+ * Since: 1.2
+ */
+bool
+(graphene_simd4f_cmp_lt) (const graphene_simd4f_t a,
+                          const graphene_simd4f_t b)
+{
+  return graphene_simd4f_cmp_lt (a, b);
+}
+
+/**
+ * graphene_simd4f_cmp_le:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Compares two #graphene_simd4f_t and checks if all components
+ * of the vector @a are less than or equal to the respective components
+ * of the vector @b.
+ *
+ * Returns: %true if vector @a is less than or equal to @b
+ *
+ * Since: 1.2
+ */
+bool
+(graphene_simd4f_cmp_le) (const graphene_simd4f_t a,
+                          const graphene_simd4f_t b)
+{
+  return graphene_simd4f_cmp_le (a, b);
+}
+
+/**
+ * graphene_simd4f_cmp_ge:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Compares two #graphene_simd4f_t and checks if all components
+ * of the vector @a are greater than or equal to the respective
+ * components of the vector @b.
+ *
+ * Returns: %true if vector @a is greater than or equal to @b
+ *
+ * Since: 1.0
+ */
+bool
+(graphene_simd4f_cmp_ge) (const graphene_simd4f_t a,
+                          const graphene_simd4f_t b)
+{
+  return graphene_simd4f_cmp_ge (a, b);
+}
+
+/**
+ * graphene_simd4f_cmp_gt:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Compares two #graphene_simd4f_t and checks if all components
+ * of the vector @a are greater than the respective components of
+ * the vector @b.
+ *
+ * Returns: %true if vector @a is greater than @b
+ *
+ * Since: 1.0
+ */
+bool
+(graphene_simd4f_cmp_gt) (const graphene_simd4f_t a,
+                          const graphene_simd4f_t b)
+{
+  return graphene_simd4f_cmp_gt (a, b);
+}
+
+/**
  * graphene_simd4f_neg:
  * @s: a #graphene_simd4f_t
  *
@@ -1148,6 +1228,46 @@ bool
          a.y != b.y &&
          a.z != b.z &&
          a.w != b.w;
+}
+
+bool
+(graphene_simd4f_cmp_lt) (const graphene_simd4f_t a,
+                          const graphene_simd4f_t b)
+{
+  return a.x < b.x &&
+         a.y < b.y &&
+         a.z < b.z &&
+         a.w < b.w;
+}
+
+bool
+(graphene_simd4f_cmp_le) (const graphene_simd4f_t a,
+                          const graphene_simd4f_t b)
+{
+  return a.x <= b.x &&
+         a.y <= b.y &&
+         a.z <= b.z &&
+         a.w <= b.w;
+}
+
+bool
+(graphene_simd4f_cmp_ge) (const graphene_simd4f_t a,
+                          const graphene_simd4f_t b)
+{
+  return a.x >= b.x &&
+         a.y >= b.y &&
+         a.z >= b.z &&
+         a.w >= b.w;
+}
+
+bool
+(graphene_simd4f_cmp_gt) (const graphene_simd4f_t a,
+                          const graphene_simd4f_t b)
+{
+  return a.x > b.x &&
+         a.y > b.y &&
+         a.z > b.z &&
+         a.w > b.w;
 }
 
 graphene_simd4f_t

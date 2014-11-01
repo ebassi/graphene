@@ -19,6 +19,7 @@ test_programs = \
 	quad \
 	quaternion \
 	rect \
+	simd \
 	size \
 	vec2 \
 	vec3 \
