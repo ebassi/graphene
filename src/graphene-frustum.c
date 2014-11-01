@@ -35,8 +35,11 @@
 #include "graphene-private.h"
 
 #include "graphene-frustum.h"
+
 #include "graphene-alloc-private.h"
 #include "graphene-matrix.h"
+#include "graphene-sphere.h"
+#include "graphene-point3d.h"
 #include "graphene-vec4.h"
 
 #define N_CLIP_PLANES 6
@@ -213,6 +216,38 @@ graphene_frustum_contains_point (const graphene_frustum_t *f,
       const graphene_plane_t *p = &f->planes[i];
 
       if (graphene_plane_distance (p, point) < 0)
+        return false;
+    }
+
+  return true;
+}
+
+/**
+ * graphene_frustum_intersects_sphere:
+ * @f: a #graphene_frustum_t
+ * @sphere: a #graphene_sphere_t
+ *
+ * Checks whether the given @sphere intersects a plane of
+ * a #graphene_frustum_t.
+ *
+ * Returns: %true if the sphere intersects the frustum
+ *
+ * Since: 1.2
+ */
+bool
+graphene_frustum_intersects_sphere (const graphene_frustum_t *f,
+                                    const graphene_sphere_t  *sphere)
+{
+  graphene_point3d_t center;
+  unsigned int i;
+
+  graphene_point3d_init_from_vec3 (&center, &sphere->center);
+
+  for (i = 0; i < N_CLIP_PLANES; i++)
+    {
+      float distance = graphene_plane_distance (&f->planes[i], &center);
+
+      if (distance < -sphere->radius)
         return false;
     }
 

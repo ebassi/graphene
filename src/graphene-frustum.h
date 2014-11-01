@@ -73,6 +73,10 @@ GRAPHENE_AVAILABLE_IN_1_2
 bool                    graphene_frustum_contains_point         (const graphene_frustum_t *f,
                                                                  const graphene_point3d_t *point);
 
+GRAPHENE_AVAILABLE_IN_1_2
+bool                    graphene_frustum_intersects_sphere      (const graphene_frustum_t *f,
+                                                                 const graphene_sphere_t  *sphere);
+
 GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_FRUSTUM_H__ */

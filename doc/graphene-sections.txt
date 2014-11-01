@@ -35,6 +35,7 @@ graphene_frustum_init
 graphene_frustum_init_from_frustum
 graphene_frustum_init_from_matrix
 graphene_frustum_contains_point
+graphene_frustum_intersects_sphere
 </SECTION>
 
 <SECTION>
