@@ -65,6 +65,8 @@ typedef struct _graphene_vec2_t         graphene_vec2_t;
 typedef struct _graphene_vec3_t         graphene_vec3_t;
 typedef struct _graphene_vec4_t         graphene_vec4_t;
 
+typedef struct _graphene_matrix_t       graphene_matrix_t;
+
 typedef struct _graphene_point_t        graphene_point_t;
 typedef struct _graphene_size_t         graphene_size_t;
 typedef struct _graphene_rect_t         graphene_rect_t;
@@ -76,8 +78,7 @@ typedef struct _graphene_quaternion_t   graphene_quaternion_t;
 typedef struct _graphene_plane_t        graphene_plane_t;
 typedef struct _graphene_frustum_t      graphene_frustum_t;
 typedef struct _graphene_sphere_t       graphene_sphere_t;
-
-typedef struct _graphene_matrix_t       graphene_matrix_t;
+typedef struct _graphene_box_t          graphene_box_t;
 
 GRAPHENE_END_DECLS
 

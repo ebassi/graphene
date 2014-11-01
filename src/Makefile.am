@@ -17,6 +17,7 @@ endif
 
 # source
 source_h = \
+	graphene-box.h \
 	graphene-frustum.h \
 	graphene-macros.h \
 	graphene-matrix.h \
@@ -37,6 +38,7 @@ source_h = \
 	$(NULL)
 source_c = \
 	graphene-alloc.c \
+	graphene-box.c \
 	graphene-frustum.c \
 	graphene-matrix.c \
 	graphene-plane.c \

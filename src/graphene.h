@@ -39,6 +39,8 @@
 #include "graphene-vec3.h"
 #include "graphene-vec4.h"
 
+#include "graphene-matrix.h"
+
 #include "graphene-point.h"
 #include "graphene-rect.h"
 
@@ -48,8 +50,7 @@
 #include "graphene-plane.h"
 #include "graphene-frustum.h"
 #include "graphene-sphere.h"
-
-#include "graphene-matrix.h"
+#include "graphene-box.h"
 
 #undef GRAPHENE_H_INSIDE
 

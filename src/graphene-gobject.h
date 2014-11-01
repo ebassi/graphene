@@ -94,6 +94,11 @@ GType graphene_frustum_get_type (void);
 GRAPHENE_AVAILABLE_IN_1_2
 GType graphene_sphere_get_type (void);
 
+#define GRAPHENE_TYPE_BOX               (graphene_box_get_type ())
+
+GRAPHENE_AVAILABLE_IN_1_2
+GType graphene_box_get_type (void);
+
 G_END_DECLS
 
 #endif /* __GRAPHENE_GOBJECT_H__ */
