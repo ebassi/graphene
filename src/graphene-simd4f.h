@@ -407,9 +407,240 @@ typedef GRAPHENE_ALIGN16 union {
     (graphene_simd4f_t) _mm_xor_ps ((s), _mm_load_ps (__mask.f)); \
   }))
 
-# else
+# elif defined (_MSC_VER)
 
-#  error "Need GCC-compatible compiler for SSE extensions."
+#include <emmintrin.h> /* for __m128i */
+
+/* Use static inline to inline all these functions */
+
+#define graphene_simd4f_init(x,y,z,w) _simd4f_init(x,y,z,w)
+
+static inline graphene_simd4f_t
+_simd4f_init (float x, float y, float z, float w)
+{
+  graphene_simd4f_t initial = {x, y, z, w};
+  return initial;
+}
+
+#define graphene_simd4f_init_zero() \
+  _mm_setzero_ps()
+
+#define graphene_simd4f_init_4f(v) \
+  _mm_loadu_ps(v)
+
+#define graphene_simd4f_init_3f(v) \
+  graphene_simd4f_init (v[0], v[1], v[2], 0.f)
+
+#define graphene_simd4f_init_2f(v) \
+  graphene_simd4f_init (v[0], v[1], 0.f, 0.f)
+
+#define graphene_simd4f_dup_4f(s,v) \
+  _mm_storeu_ps (v, s)
+
+#define graphene_simd4f_dup_3f(s,v) \
+  memcpy (v, &s, sizeof (float) * 3)
+
+#define graphene_simd4f_dup_2f(s,v) \
+  memcpy (v, &s, sizeof (float) * 2)
+
+typedef union {
+  graphene_simd4f_t s;
+  float f[4];
+  unsigned int ui[4];
+} graphene_simd4f_union_t;
+
+#define graphene_simd4f_get_x(s) _smd4f_get_xyzw(s, 0)
+#define graphene_simd4f_get_y(s) _smd4f_get_xyzw(s, 1)
+#define graphene_simd4f_get_z(s) _smd4f_get_xyzw(s, 2)
+#define graphene_simd4f_get_w(s) _smd4f_get_xyzw(s, 3)
+
+static inline float
+_smd4f_get_xyzw (graphene_simd4f_t s, int mode)
+{
+  /* mode: get_x=0
+           get_y=1
+           get_z=2
+           get_z=3 */
+
+  graphene_simd4f_union_t u;
+  u.s = s;
+  return u.f[mode];
+}
+
+#define graphene_simd4f_splat(v) \
+  _mm_set1_ps (v)
+
+#define graphene_simd4f_splat_x(v) \
+  _mm_shuffle_ps (v, v, _MM_SHUFFLE (0, 0, 0, 0))
+
+#define graphene_simd4f_splat_y(v) \
+  _mm_shuffle_ps (v, v, _MM_SHUFFLE (1, 1, 1, 1))
+
+#define graphene_simd4f_splat_z(v) \
+  _mm_shuffle_ps (v, v, _MM_SHUFFLE (2, 2, 2, 2))
+
+#define graphene_simd4f_splat_w(v) \
+  _mm_shuffle_ps (v, v, _MM_SHUFFLE (3, 3, 3, 3))
+
+#define graphene_simd4f_add(a,b) \
+  _mm_add_ps (a, b)
+
+#define graphene_simd4f_sub(a,b) \
+  _mm_sub_ps (a, b)
+
+#define graphene_simd4f_mul(a,b) \
+  _mm_mul_ps (a, b)
+
+#define graphene_simd4f_div(a,b) \
+  _mm_div_ps (a, b)
+
+#define graphene_simd4f_sqrt(v) \
+  _mm_sqrt_ps (v)
+
+#define graphene_simd4f_reciprocal(v) _simd4f_reciprocal(v)
+
+static inline graphene_simd4f_t
+_simd4f_reciprocal(const graphene_simd4f_t v)
+{
+  const graphene_simd4f_t __two = graphene_simd4f_init (2.0f, 2.0f, 2.0f, 2.0f);
+  graphene_simd4f_t __s = _mm_rcp_ps (v);
+  return graphene_simd4f_mul (__s,
+                              graphene_simd4f_sub (__two,
+                                                   graphene_simd4f_mul (v, __s)));
+}
+
+#define graphene_simd4f_rsqrt(v) _simd4f_rsqrt(v)
+
+static inline graphene_simd4f_t
+_simd4f_rsqrt(const graphene_simd4f_t v)
+{
+    const graphene_simd4f_t __half = graphene_simd4f_init (0.5f, 0.5f, 0.5f, 0.5f);
+    const graphene_simd4f_t __three = graphene_simd4f_init (3.0f, 3.0f, 3.0f, 3.0f);
+    graphene_simd4f_t __s = _mm_rsqrt_ps (v);
+    return graphene_simd4f_mul (graphene_simd4f_mul (__s, __half),
+                                graphene_simd4f_sub (__three,
+                                graphene_simd4f_mul (__s, graphene_simd4f_mul (v, __s))));
+}
+
+#define graphene_simd4f_cross3(a,b) \
+  _simd4f_cross3(a,b)
+
+static inline graphene_simd4f_t
+_simd4f_cross3 (const graphene_simd4f_t a,
+                const graphene_simd4f_t b)
+{
+  const graphene_simd4f_t __a_yzx = _mm_shuffle_ps (a, a, _MM_SHUFFLE (3, 0, 2, 1));
+  const graphene_simd4f_t __a_zxy = _mm_shuffle_ps (a, a, _MM_SHUFFLE (3, 1, 0, 2));
+  const graphene_simd4f_t __b_yzx = _mm_shuffle_ps (b, b, _MM_SHUFFLE (3, 0, 2, 1));
+  const graphene_simd4f_t __b_zxy = _mm_shuffle_ps (b, b, _MM_SHUFFLE (3, 1, 0, 2));
+
+  return _mm_sub_ps (_mm_mul_ps (__a_yzx, __b_zxy), _mm_mul_ps (__a_zxy, __b_yzx));
+}
+
+#define graphene_simd4f_min(a,b) \
+  _mm_min_ps (a, b)
+
+#define graphene_simd4f_max(a,b) \
+  _mm_max_ps (a, b)
+
+
+#define graphene_simd4f_shuffle_wxyz(v) \
+  _mm_shuffle_ps (v, v, _MM_SHUFFLE (2, 1, 0, 3))
+
+#define graphene_simd4f_shuffle_zwxy(v) \
+  _mm_shuffle_ps (v, v, _MM_SHUFFLE (1, 0, 3, 2))
+
+#define graphene_simd4f_shuffle_yzwx(v) \
+  _mm_shuffle_ps (v, v, _MM_SHUFFLE (0, 3, 2, 1))
+
+#define graphene_simd4f_zero_w(v) \
+  _mm_movelh_ps (v, _mm_unpackhi_ps (v, _mm_setzero_ps ()))
+
+#define graphene_simd4f_zero_zw(v) \
+  _mm_movelh_ps (v, _mm_setzero_ps ())
+
+#define graphene_simd4f_merge_w(s,v) \
+  _mm_movelh_ps (s, _mm_unpackhi_ps (s, _mm_set1_ps (v)))
+
+#define graphene_simd4f_merge_high(a,b) \
+  _mm_movehl_ps (b, a)
+
+#define graphene_simd4f_merge_low(a,b) \
+  _mm_movelh_ps (a, b)
+
+typedef GRAPHENE_ALIGN16 union {
+  unsigned int ui[4];
+  float f[4];
+} graphene_simd4f_uif_t;
+
+#define graphene_simd4f_flip_sign_0101(v) _simd4f_flip_sign_0101(v)
+
+static inline graphene_simd4f_t
+_simd4f_flip_sign_0101 (const graphene_simd4f_t v)
+{
+  const graphene_simd4f_uif_t __pnpn = { {
+    0x00000000,
+    0x80000000,
+    0x00000000,
+    0x80000000
+  } };
+
+  return _mm_xor_ps (v, _mm_load_ps (__pnpn.f));
+}
+
+#define graphene_simd4f_flip_sign_1010(v) _simd4f_flip_sign_1010(v)
+
+static inline graphene_simd4f_t
+_simd4f_flip_sign_1010(const graphene_simd4f_t v)
+{
+  const graphene_simd4f_uif_t __npnp = { {
+    0x80000000,
+    0x00000000,
+    0x80000000,
+    0x00000000,
+  } };
+
+  return _mm_xor_ps (v, _mm_load_ps (__npnp.f));
+}
+
+#define graphene_simd4f_cmp_eq(a,b) _simd4f_cmp_eq(a,b)
+
+static inline bool
+_simd4f_cmp_eq (const graphene_simd4f_t a,
+                        const graphene_simd4f_t b)
+{
+  __m128i __res = _mm_castps_si128 (_mm_cmpeq_ps (a, b));
+  return (_mm_movemask_epi8 (__res) == 0xffff);
+}
+
+#define graphene_simd4f_cmp_neq(a,b) _simd4f_cmp_neq(a,b)
+
+static inline bool
+_simd4f_cmp_neq (const graphene_simd4f_t a,
+                         const graphene_simd4f_t b)
+{
+  __m128i __res = _mm_castps_si128 (_mm_cmpneq_ps (a, b));
+  return (_mm_movemask_epi8 (__res) == 0xffff);
+}
+
+#define graphene_simd4f_neg(s) _simd4f_neg(s)
+
+static inline graphene_simd4f_t
+_simd4f_neg (const graphene_simd4f_t s)
+{
+  const graphene_simd4f_uif_t __mask = { {
+    0x80000000,
+    0x80000000,
+    0x80000000,
+    0x80000000,
+  } };
+
+  return _mm_xor_ps (s, _mm_load_ps (__mask.f));
+}
+
+#else 
+
+#  error "Need GCC-compatible or Visual Studio compiler for SSE extensions."
 
 /* Use static inline to inline all these functions */
 

@@ -33,18 +33,30 @@ typedef gpointer (* GrapheneBenchSetupFunc) (void);
 typedef void (* GrapheneBenchFunc) (gpointer fixture);
 typedef void (* GrapheneBenchTeardownFunc) (gpointer fixture);
 
+_GRAPHENE_PUBLIC
 void    graphene_bench_init                     (int    *argc,
                                                  char ***argv,
                                                  ...) G_GNUC_NULL_TERMINATED;
+_GRAPHENE_PUBLIC
 void    graphene_bench_set_fixture_setup        (GrapheneBenchSetupFunc     func);
+
+_GRAPHENE_PUBLIC
 void    graphene_bench_set_fixture_teardown     (GrapheneBenchTeardownFunc  func);
+
+_GRAPHENE_PUBLIC
 void    graphene_bench_add_func                 (const char                *path,
                                                  GrapheneBenchFunc          func);
+
+_GRAPHENE_PUBLIC
 int     graphene_bench_run                      (void);
 
+_GRAPHENE_PUBLIC
 double  graphene_bench_get_factor               (void);
 
+_GRAPHENE_PUBLIC
 void    graphene_bench_set_rounds_per_unit      (int n_rounds);
+
+_GRAPHENE_PUBLIC
 int     graphene_bench_get_rounds_per_unit      (void);
 
 G_END_DECLS

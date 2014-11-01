@@ -35,7 +35,10 @@ static inline graphene_line_segment_t
 graphene_line_segment_init (const graphene_point_t *start,
                             const graphene_point_t *end)
 {
-  graphene_line_segment_t l = { *start, *end };
+  graphene_line_segment_t l;
+  l.start = *start;
+  l.end = *end;
+
   return l;
 }
 

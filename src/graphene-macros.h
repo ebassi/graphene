@@ -55,8 +55,8 @@
 #endif
 
 #ifndef __GI_SCANNER__
-#if defined(_MSC_VER) && !defined(__bool_true_false_are_defined)
-typedef bool int
+#if defined(_MSC_VER) && !defined(__bool_true_false_are_defined) && (_MSC_VER < 1800)
+typedef int bool;
 # define false 0
 # define true 1
 #else
@@ -90,5 +90,16 @@ typedef bool int
 
 #define GRAPHENE_PI             3.1415926535897932384626434f
 #define GRAPHENE_PI_2           1.5707963267948966192313217f
+
+#if defined (_MSC_VER) && (_MSC_VER >= 1800)
+# ifdef _M_IX86
+/* Use __vectorcall to enable SSE intrinistics on 32-bit builds on MSVC 2013 and later */
+#  define VECTORCALL __vectorcall
+# else
+#  define VECTORCALL
+# endif
+#else
+# define VECTORCALL
+#endif
 
 #endif /* __GRAPHENE_MACROS_H__ */
