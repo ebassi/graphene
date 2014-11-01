@@ -454,8 +454,8 @@ typedef GRAPHENE_ALIGN16 union {
 static inline graphene_simd4f_t
 _simd4f_init (float x, float y, float z, float w)
 {
-  graphene_simd4f_t initial = {x, y, z, w};
-  return initial;
+  graphene_simd4f_t __s = { x, y, z, w };
+  return __s;
 }
 
 #define graphene_simd4f_init_zero() \
