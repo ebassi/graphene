@@ -48,14 +48,20 @@ struct _graphene_sphere_t
 };
 
 GRAPHENE_AVAILABLE_IN_1_2
-graphene_sphere_t *     graphene_sphere_alloc           (void);
+graphene_sphere_t *     graphene_sphere_alloc                   (void);
 GRAPHENE_AVAILABLE_IN_1_2
-void                    graphene_sphere_free            (graphene_sphere_t        *s);
+void                    graphene_sphere_free                    (graphene_sphere_t         *s);
 
 GRAPHENE_AVAILABLE_IN_1_2
-graphene_sphere_t *     graphene_sphere_init            (graphene_sphere_t        *s,
-                                                         const graphene_point3d_t *center,
-                                                         float                     radius);
+graphene_sphere_t *     graphene_sphere_init                    (graphene_sphere_t         *s,
+                                                                 const graphene_point3d_t  *center,
+                                                                 float                      radius);
+
+GRAPHENE_AVAILABLE_IN_1_2
+graphene_sphere_t *     graphene_sphere_init_from_points        (graphene_sphere_t         *s,
+                                                                 unsigned int               n_points,
+                                                                 const graphene_point3d_t **points,
+                                                                 const graphene_point3d_t  *center);
 
 GRAPHENE_END_DECLS
 

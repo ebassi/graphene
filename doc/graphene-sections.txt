@@ -369,6 +369,7 @@ graphene_sphere_t
 graphene_sphere_alloc
 graphene_sphere_free
 graphene_sphere_init
+graphene_sphere_init_from_points
 </SECTION>
 
 <SECTION>
