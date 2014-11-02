@@ -73,6 +73,10 @@ void                    graphene_box_expand             (const graphene_box_t   
                                                          const graphene_point3d_t  *point,
                                                          graphene_box_t            *res);
 GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_box_expand_scalar      (const graphene_box_t      *box,
+                                                         float                      scalar,
+                                                         graphene_box_t            *res);
+GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_box_union              (const graphene_box_t      *a,
                                                          const graphene_box_t      *b,
                                                          graphene_box_t            *res);

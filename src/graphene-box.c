@@ -190,7 +190,7 @@ graphene_box_init_from_vec3 (graphene_box_t        *box,
  * @point: the coordinates of the point to include
  * @res: (out caller-allocates): return location for the expanded box
  *
- * Expands @box to include the coordinates at @point.
+ * Expands the dimensions of @box to include the coordinates at @point.
  *
  * Since: 1.2
  */
@@ -205,6 +205,32 @@ graphene_box_expand (const graphene_box_t     *box,
 
   graphene_vec3_min (&box->min, &p, &res->min);
   graphene_vec3_max (&box->max, &p, &res->max);
+}
+
+/**
+ * graphene_box_expand_scalar:
+ * @box: a #graphene_box_t
+ * @scalar: a scalar value
+ * @res: (out caller-allocates): return location for the expanded box
+ *
+ * Expands the dimensions of @box by the given @scalar value.
+ *
+ * If @scalar is positive, the #graphene_box_t will grow; if @scalar is
+ * negative, the #graphene_box_t will shrink.
+ *
+ * Since: 1.2
+ */
+void
+graphene_box_expand_scalar (const graphene_box_t *box,
+                            float                 scalar,
+                            graphene_box_t       *res)
+{
+  float min = scalar * -1.f;
+  float max = scalar;
+  graphene_vec3_t tmp;
+
+  graphene_vec3_add (&box->min, graphene_vec3_init (&tmp, min, min, min), &res->min);
+  graphene_vec3_add (&box->max, graphene_vec3_init (&tmp, max, max, max), &res->max);
 }
 
 /**
