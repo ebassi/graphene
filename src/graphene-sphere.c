@@ -73,7 +73,8 @@ graphene_sphere_free (graphene_sphere_t *s)
 /**
  * graphene_sphere_init:
  * @s: the #graphene_sphere_t to initialize
- * @center: the coordinates of the center of the sphere
+ * @center: (nullable): the coordinates of the center of the sphere, or %NULL
+ *   for a center in (0, 0, 0)
  * @radius: the radius of the sphere
  *
  * Initializes the given #graphene_sphere_t with the give @center and @radius.
@@ -87,7 +88,11 @@ graphene_sphere_init (graphene_sphere_t        *s,
                       const graphene_point3d_t *center,
                       float                     radius)
 {
-  graphene_vec3_init (&s->center, center->x, center->y, center->z);
+  if (center == NULL)
+    graphene_vec3_init_from_vec3 (&s->center, graphene_vec3_zero ());
+  else
+    graphene_vec3_init (&s->center, center->x, center->y, center->z);
+
   s->radius = radius;
 
   return s;
