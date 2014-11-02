@@ -374,6 +374,12 @@ graphene_sphere_alloc
 graphene_sphere_free
 graphene_sphere_init
 graphene_sphere_init_from_points
+graphene_sphere_is_empty
+graphene_sphere_distance
+graphene_sphere_contains_point
+graphene_sphere_get_bounding_box
+graphene_sphere_translate
+graphene_sphere_equal
 </SECTION>
 
 <SECTION>

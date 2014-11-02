@@ -63,6 +63,25 @@ graphene_sphere_t *     graphene_sphere_init_from_points        (graphene_sphere
                                                                  const graphene_point3d_t **points,
                                                                  const graphene_point3d_t  *center);
 
+GRAPHENE_AVAILABLE_IN_1_2
+bool                    graphene_sphere_is_empty                (const graphene_sphere_t   *s);
+GRAPHENE_AVAILABLE_IN_1_2
+bool                    graphene_sphere_equal                   (const graphene_sphere_t   *a,
+                                                                 const graphene_sphere_t   *b);
+GRAPHENE_AVAILABLE_IN_1_2
+bool                    graphene_sphere_contains_point          (const graphene_sphere_t   *s,
+                                                                 const graphene_point3d_t  *point);
+GRAPHENE_AVAILABLE_IN_1_2
+float                   graphene_sphere_distance                (const graphene_sphere_t   *s,
+                                                                 const graphene_point3d_t  *point);
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_sphere_get_bounding_box        (const graphene_sphere_t   *s,
+                                                                 graphene_box_t            *box);
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_sphere_translate               (const graphene_sphere_t   *s,
+                                                                 const graphene_point3d_t  *point,
+                                                                 graphene_sphere_t         *res);
+
 GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_SPHERE_H__ */

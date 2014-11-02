@@ -33,8 +33,10 @@
 #include "graphene-private.h"
 
 #include "graphene-sphere.h"
-#include "graphene-point3d.h"
+
 #include "graphene-box.h"
+#include "graphene-point3d.h"
+#include "graphene-simd4f.h"
 
 #include <math.h>
 
@@ -159,4 +161,139 @@ graphene_sphere_init_from_points (graphene_sphere_t         *s,
   s->radius = sqrtf (max_radius_sq);
 
   return s;
+}
+
+/**
+ * graphene_sphere_is_empty:
+ * @s: a #graphene_sphere_t
+ *
+ * Checks whether the sphere has a zero radius.
+ *
+ * Returns: %true if the sphere is empty
+ *
+ * Since: 1.2
+ */
+bool
+graphene_sphere_is_empty (const graphene_sphere_t *s)
+{
+  return s != NULL && s->radius <= 0;
+}
+
+/**
+ * graphene_sphere_contains_point:
+ * @s: a #graphene_sphere_t
+ * @point: a #graphene_point3d_t
+ *
+ * Checks whether the given @point is contained in the volume
+ * of a #graphene_sphere_t.
+ *
+ * Returns: %true if the sphere contains the point
+ *
+ * Since: 1.2
+ */
+bool
+graphene_sphere_contains_point (const graphene_sphere_t  *s,
+                                const graphene_point3d_t *point)
+{
+  graphene_vec3_t tmp;
+  float radius_sq;
+
+  graphene_vec3_init (&tmp, point->x, point->y, point->z);
+  radius_sq = s->radius * s->radius;
+
+  if (distance_sq (&s->center, &tmp) <= radius_sq)
+    return true;
+
+  return false;
+}
+
+/**
+ * graphene_sphere_distance:
+ * @s: a #graphene_sphere_t
+ * @point: a #graphene_point3d_t
+ *
+ * Computes the distance of the given @point from the surface of
+ * a #graphene_sphere_t.
+ *
+ * Returns: the distance of the point
+ *
+ * Since: 1.2
+ */
+float
+graphene_sphere_distance (const graphene_sphere_t  *s,
+                          const graphene_point3d_t *point)
+{
+  graphene_vec3_t tmp;
+
+  graphene_vec3_init (&tmp, point->x, point->y, point->z);
+
+  return sqrtf (distance_sq (&s->center, &tmp)) - s->radius;
+}
+
+/**
+ * graphene_sphere_get_bounding_box:
+ * @s: a #graphene_sphere_t
+ * @box: (out caller-allocates): return location for the bounding box
+ *
+ * Computes the bounding box capable of containing the
+ * given #graphene_sphere_t.
+ *
+ * Since: 1.2
+ */
+void
+graphene_sphere_get_bounding_box (const graphene_sphere_t *s,
+                                  graphene_box_t          *box)
+{
+  graphene_box_init_from_vec3 (box, &s->center, &s->center);
+  graphene_box_expand_scalar (box, s->radius, box);
+}
+
+/**
+ * graphene_sphere_translate:
+ * @s: a #graphene_sphere_t
+ * @point: the coordinates of the translation
+ * @res: (out caller-allocates): return location for the translated sphere
+ *
+ * Translates the center of the given #graphene_sphere_t using the
+ * coordinates inside @point.
+ *
+ * Since: 1.2
+ */
+void
+graphene_sphere_translate (const graphene_sphere_t  *s,
+                           const graphene_point3d_t *point,
+                           graphene_sphere_t        *res)
+{
+  graphene_vec3_t tmp;
+
+  graphene_vec3_init (&tmp, point->x, point->y, point->z);
+  graphene_vec3_add (&s->center, &tmp, &res->center);
+}
+
+/**
+ * graphene_sphere_equal:
+ * @a: a #graphene_sphere_t
+ * @b: a #graphene_sphere_t
+ *
+ * Checks whether two #graphene_sphere_t are equal.
+ *
+ * Returns: %true if the spheres are equal
+ *
+ * Since: 1.2
+ */
+bool
+graphene_sphere_equal (const graphene_sphere_t *a,
+                       const graphene_sphere_t *b)
+{
+  if (a == b)
+    return true;
+
+  if (a == NULL || b == NULL)
+    return false;
+
+  if (a->radius != b->radius)
+    return false;
+
+  /* we cheat a bit and access the SIMD value directly */
+  return graphene_simd4f_cmp_eq (a->center.value, b->center.value);
 }
