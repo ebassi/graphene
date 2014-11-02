@@ -29,14 +29,12 @@
 #endif
 
 #include "graphene-types.h"
-#include "graphene-point3d.h"
+#include "graphene-vec3.h"
 
 GRAPHENE_BEGIN_DECLS
 
 /**
  * graphene_box_t:
- * @min: the coordinates of the minimum vertex
- * @max: the coordinates of the maximum vertex
  *
  * A 3D box, described as the volume between the @min and @max vertices.
  *
@@ -44,8 +42,9 @@ GRAPHENE_BEGIN_DECLS
  */
 struct _graphene_box_t
 {
-  graphene_point3d_t min;
-  graphene_point3d_t max;
+  /*< private >*/
+  GRAPHENE_PRIVATE_FIELD (graphene_vec3_t, min);
+  GRAPHENE_PRIVATE_FIELD (graphene_vec3_t, max);
 };
 
 GRAPHENE_AVAILABLE_IN_1_2
@@ -91,6 +90,12 @@ float                   graphene_box_get_depth          (const graphene_box_t   
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_box_get_center         (const graphene_box_t      *box,
                                                          graphene_point3d_t        *center);
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_box_get_min            (const graphene_box_t      *box,
+                                                         graphene_point3d_t        *min);
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_box_get_max            (const graphene_box_t      *box,
+                                                         graphene_point3d_t        *max);
 
 GRAPHENE_AVAILABLE_IN_1_2
 bool                    graphene_box_contains_point     (const graphene_box_t      *box,

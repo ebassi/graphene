@@ -9,6 +9,8 @@ graphene_box_init_from_points
 graphene_box_init_from_vec3
 graphene_box_equal
 graphene_box_expand
+graphene_box_get_min
+graphene_box_get_max
 graphene_box_get_center
 graphene_box_get_depth
 graphene_box_get_height

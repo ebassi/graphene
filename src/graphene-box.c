@@ -33,7 +33,7 @@
 #include "graphene-private.h"
 
 #include "graphene-box.h"
-#include "graphene-vec3.h"
+#include "graphene-point3d.h"
 #include "graphene-simd4f.h"
 
 #include <math.h>
@@ -87,8 +87,15 @@ graphene_box_init (graphene_box_t           *box,
                    const graphene_point3d_t *min,
                    const graphene_point3d_t *max)
 {
-  box->min = *min;
-  box->max = *max;
+  if (min != NULL)
+    graphene_vec3_init (&box->min, min->x, min->y, min->z);
+  else
+    graphene_vec3_init_from_vec3 (&box->min, graphene_vec3_zero ());
+
+  if (max != NULL)
+    graphene_vec3_init (&box->max, max->x, max->y, max->z);
+  else
+    graphene_vec3_init_from_vec3 (&box->max, graphene_vec3_zero ());
 
   return box;
 }
@@ -164,13 +171,15 @@ graphene_box_init_from_vec3 (graphene_box_t        *box,
                              const graphene_vec3_t *min,
                              const graphene_vec3_t *max)
 {
-  box->min.x = graphene_vec3_get_x (min);
-  box->min.y = graphene_vec3_get_y (min);
-  box->min.z = graphene_vec3_get_z (min);
+  if (min != NULL)
+    box->min = *min;
+  else
+    graphene_vec3_init_from_vec3 (&box->min, graphene_vec3_zero ());
 
-  box->max.x = graphene_vec3_get_x (max);
-  box->max.y = graphene_vec3_get_y (max);
-  box->max.z = graphene_vec3_get_z (max);
+  if (max != NULL)
+    box->max = *max;
+  else
+    graphene_vec3_init_from_vec3 (&box->max, graphene_vec3_zero ());
 
   return box;
 }
@@ -190,22 +199,12 @@ graphene_box_expand (const graphene_box_t     *box,
                      const graphene_point3d_t *point,
                      graphene_box_t           *res)
 {
-  graphene_vec3_t min, max, p;
+  graphene_vec3_t p;
 
-  graphene_vec3_init (&min, box->min.x, box->min.y, box->min.z);
-  graphene_vec3_init (&max, box->max.x, box->max.y, box->max.z);
   graphene_vec3_init (&p, point->x, point->y, point->z);
 
-  graphene_vec3_min (&min, &p, &min);
-  graphene_vec3_max (&max, &p, &max);
-
-  res->min.x = graphene_vec3_get_x (&min);
-  res->min.y = graphene_vec3_get_y (&min);
-  res->min.z = graphene_vec3_get_z (&min);
-
-  res->max.x = graphene_vec3_get_x (&max);
-  res->max.y = graphene_vec3_get_y (&max);
-  res->max.z = graphene_vec3_get_z (&max);
+  graphene_vec3_min (&box->min, &p, &res->min);
+  graphene_vec3_max (&box->max, &p, &res->max);
 }
 
 /**
@@ -223,8 +222,8 @@ graphene_box_union (const graphene_box_t *a,
                     const graphene_box_t *b,
                     graphene_box_t       *res)
 {
-  graphene_box_expand (a, &b->min, res);
-  graphene_box_expand (a, &b->max, res);
+  graphene_vec3_min (&a->min, &b->min, &res->min);
+  graphene_vec3_max (&a->max, &b->max, &res->max);
 }
 
 /**
@@ -247,17 +246,10 @@ graphene_box_intersection (const graphene_box_t *a,
                            const graphene_box_t *b,
                            graphene_box_t       *res)
 {
-  graphene_vec3_t a_min, a_max;
-  graphene_vec3_t b_min, b_max;
   graphene_vec3_t min, max;
 
-  graphene_vec3_init (&a_min, a->min.x, a->min.y, a->min.z);
-  graphene_vec3_init (&a_max, a->max.x, a->max.y, a->max.z);
-  graphene_vec3_init (&b_min, b->min.x, b->min.y, b->min.z);
-  graphene_vec3_init (&b_max, b->max.x, b->max.y, b->max.z);
-
-  graphene_vec3_max (&a_min, &b_min, &min);
-  graphene_vec3_min (&a_max, &b_max, &max);
+  graphene_vec3_max (&a->min, &b->min, &min);
+  graphene_vec3_min (&a->max, &b->max, &max);
 
   /* we cheat a bit, and access the SIMD field directly */
   if (graphene_simd4f_cmp_lt (min.value, max.value))
@@ -287,7 +279,11 @@ graphene_box_intersection (const graphene_box_t *a,
 float
 graphene_box_get_width (const graphene_box_t *box)
 {
-  return box->max.x - box->min.x;
+  graphene_vec3_t res;
+
+  graphene_vec3_subtract (&box->max, &box->min, &res);
+
+  return graphene_vec3_get_x (&res);
 }
 
 /**
@@ -303,7 +299,11 @@ graphene_box_get_width (const graphene_box_t *box)
 float
 graphene_box_get_height (const graphene_box_t *box)
 {
-  return box->max.y - box->min.y;
+  graphene_vec3_t res;
+
+  graphene_vec3_subtract (&box->max, &box->min, &res);
+
+  return graphene_vec3_get_y (&res);
 }
 
 /**
@@ -319,7 +319,11 @@ graphene_box_get_height (const graphene_box_t *box)
 float
 graphene_box_get_depth (const graphene_box_t *box)
 {
-  return box->max.z - box->min.z;
+  graphene_vec3_t res;
+
+  graphene_vec3_subtract (&box->max, &box->min, &res);
+
+  return graphene_vec3_get_z (&res);
 }
 
 /**
@@ -336,17 +340,32 @@ void
 graphene_box_get_center (const graphene_box_t *box,
                          graphene_point3d_t   *center)
 {
-  graphene_vec3_t min, max, res;
+  graphene_vec3_t res;
 
-  graphene_vec3_init (&min, box->min.x, box->min.y, box->min.z);
-  graphene_vec3_init (&max, box->max.x, box->max.y, box->max.z);
-
-  graphene_vec3_subtract (&max, &min, &res);
+  graphene_vec3_subtract (&box->max, &box->min, &res);
   graphene_vec3_scale (&res, 0.5f, &res);
 
   center->x = graphene_vec3_get_x (&res);
   center->y = graphene_vec3_get_y (&res);
   center->z = graphene_vec3_get_z (&res);
+}
+
+void
+graphene_box_get_min (const graphene_box_t *box,
+                      graphene_point3d_t   *min)
+{
+  min->x = graphene_vec3_get_x (&box->min);
+  min->y = graphene_vec3_get_y (&box->min);
+  min->z = graphene_vec3_get_z (&box->min);
+}
+
+void
+graphene_box_get_max (const graphene_box_t *box,
+                      graphene_point3d_t   *max)
+{
+  max->x = graphene_vec3_get_x (&box->max);
+  max->y = graphene_vec3_get_y (&box->max);
+  max->z = graphene_vec3_get_z (&box->max);
 }
 
 /**
@@ -364,14 +383,15 @@ bool
 graphene_box_contains_point (const graphene_box_t     *box,
                              const graphene_point3d_t *point)
 {
-  if (point->x < box->min.x ||
-      point->y < box->min.y ||
-      point->z < box->min.z)
+  graphene_vec3_t p;
+
+  graphene_vec3_init (&p, point->x, point->y, point->z);
+
+  /* we cheat a bit and access the SIMD directly */
+  if (graphene_simd4f_cmp_lt (p.value, box->min.value))
     return false;
 
-  if (point->x > box->max.x ||
-      point->y > box->max.y ||
-      point->z > box->max.z)
+  if (graphene_simd4f_cmp_gt (p.value, box->max.value))
     return false;
 
   return true;
@@ -393,8 +413,14 @@ bool
 graphene_box_contains_box (const graphene_box_t *a,
                            const graphene_box_t *b)
 {
-  return graphene_box_contains_point (a, &b->min) &&
-         graphene_box_contains_point (a, &b->max);
+  /* we cheat a bit and access the SIMD directly */
+  if (graphene_simd4f_cmp_lt (b->min.value, a->min.value))
+    return false;
+
+  if (graphene_simd4f_cmp_gt (b->max.value, a->max.value))
+    return false;
+
+  return true;
 }
 
 /**
@@ -418,50 +444,51 @@ graphene_box_equal (const graphene_box_t *a,
   if (a == NULL || b == NULL)
     return false;
 
-  return graphene_point3d_equal (&a->min, &b->min) &&
-         graphene_point3d_equal (&a->max, &b->max);
+  /* we cheat a bit and access the SIMD directly */
+  return graphene_simd4f_cmp_eq (a->min.value, b->min.value) &&
+         graphene_simd4f_cmp_eq (a->max.value, b->max.value);
 }
 
 enum {
-  BOX_ZERO,
+  BOX_ZERO = 0,
   BOX_ONE,
   BOX_MINUS_ONE,
   BOX_ONE_MINUS_ONE,
   BOX_INFINITY,
-  BOX_EMPTY
+  BOX_EMPTY,
+
+  N_STATIC_BOX
 };
 
-static const graphene_box_t graphene_boxes[] = {
-  [BOX_ZERO] = {
-    /* .min = */ GRAPHENE_POINT3D_INIT_ZERO,
-    /* .max = */ GRAPHENE_POINT3D_INIT_ZERO,
-  },
+static graphene_box_t static_box[N_STATIC_BOX];
+static bool static_box_init = false;
 
-  [BOX_ONE] = {
-    /* .min = */ GRAPHENE_POINT3D_INIT_ZERO,
-    /* .max = */ GRAPHENE_POINT3D_INIT (1.f, 1.f, 1.f),
-  },
+static inline void
+init_static_box (void)
+{
+  if (static_box_init)
+    return;
 
-  [BOX_MINUS_ONE] = {
-    /* .min = */ GRAPHENE_POINT3D_INIT (-1.f, -1.f, -1.f),
-    /* .max = */ GRAPHENE_POINT3D_INIT_ZERO,
-  },
+  static_box[BOX_ZERO].min.value = graphene_simd4f_init_zero ();
+  static_box[BOX_ZERO].max.value = graphene_simd4f_init_zero ();
 
-  [BOX_ONE_MINUS_ONE] = {
-    /* .min = */ GRAPHENE_POINT3D_INIT (-1.f, -1.f, -1.f),
-    /* .max = */ GRAPHENE_POINT3D_INIT (1.f, 1.f, 1.f),
-  },
+  static_box[BOX_ONE].min.value = graphene_simd4f_init_zero ();
+  static_box[BOX_ONE].max.value = graphene_simd4f_init (1.f, 1.f, 1.f, 0.f);
 
-  [BOX_INFINITY] = {
-    /* .min = */ GRAPHENE_POINT3D_INIT (-INFINITY, -INFINITY, -INFINITY),
-    /* .max = */ GRAPHENE_POINT3D_INIT (INFINITY, INFINITY, INFINITY),
-  },
+  static_box[BOX_MINUS_ONE].min.value = graphene_simd4f_init (-1.f, -1.f, -1.f, 0.f);
+  static_box[BOX_MINUS_ONE].max.value = graphene_simd4f_init_zero ();
 
-  [BOX_EMPTY] = {
-    /* .min = */ GRAPHENE_POINT3D_INIT (INFINITY, INFINITY, INFINITY),
-    /* .max = */ GRAPHENE_POINT3D_INIT (-INFINITY, -INFINITY, -INFINITY),
-  },
-};
+  static_box[BOX_ONE_MINUS_ONE].min.value = graphene_simd4f_init (-1.f, -1.f, -1.f, 0.f);
+  static_box[BOX_ONE_MINUS_ONE].max.value = graphene_simd4f_init (1.f, 1.f, 1.f, 0.f);
+
+  static_box[BOX_INFINITY].min.value = graphene_simd4f_init (-INFINITY, -INFINITY, -INFINITY, 0.f);
+  static_box[BOX_INFINITY].max.value = graphene_simd4f_init (INFINITY, INFINITY, INFINITY, 0.f);
+
+  static_box[BOX_EMPTY].min.value = graphene_simd4f_init (INFINITY, INFINITY, INFINITY, 0.f);
+  static_box[BOX_EMPTY].max.value = graphene_simd4f_init (-INFINITY, -INFINITY, -INFINITY, 0.f);
+
+  static_box_init = true;
+}
 
 /**
  * graphene_box_zero:
@@ -477,7 +504,9 @@ static const graphene_box_t graphene_boxes[] = {
 const graphene_box_t *
 graphene_box_zero (void)
 {
-  return &(graphene_boxes[BOX_ZERO]);
+  init_static_box ();
+
+  return &(static_box[BOX_ZERO]);
 }
 
 /**
@@ -495,7 +524,9 @@ graphene_box_zero (void)
 const graphene_box_t *
 graphene_box_one (void)
 {
-  return &(graphene_boxes[BOX_ONE]);
+  init_static_box ();
+
+  return &(static_box[BOX_ONE]);
 }
 
 /**
@@ -513,7 +544,9 @@ graphene_box_one (void)
 const graphene_box_t *
 graphene_box_minus_one (void)
 {
-  return &(graphene_boxes[BOX_MINUS_ONE]);
+  init_static_box ();
+
+  return &(static_box[BOX_MINUS_ONE]);
 }
 
 /**
@@ -531,7 +564,9 @@ graphene_box_minus_one (void)
 const graphene_box_t *
 graphene_box_one_minus_one (void)
 {
-  return &(graphene_boxes[BOX_ONE_MINUS_ONE]);
+  init_static_box ();
+
+  return &(static_box[BOX_ONE_MINUS_ONE]);
 }
 
 /**
@@ -548,7 +583,9 @@ graphene_box_one_minus_one (void)
 const graphene_box_t *
 graphene_box_infinite (void)
 {
-  return &(graphene_boxes[BOX_INFINITY]);
+  init_static_box ();
+
+  return &(static_box[BOX_INFINITY]);
 }
 
 /**
@@ -565,5 +602,7 @@ graphene_box_infinite (void)
 const graphene_box_t *
 graphene_box_empty (void)
 {
-  return &(graphene_boxes[BOX_EMPTY]);
+  init_static_box ();
+
+  return &(static_box[BOX_EMPTY]);
 }
