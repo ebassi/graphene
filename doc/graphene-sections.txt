@@ -10,12 +10,15 @@ graphene_box_init_from_vec3
 graphene_box_equal
 graphene_box_expand
 graphene_box_expand_scalar
+graphene_box_expand_vec3
 graphene_box_get_min
 graphene_box_get_max
 graphene_box_get_center
 graphene_box_get_depth
 graphene_box_get_height
 graphene_box_get_width
+graphene_box_get_size
+graphene_box_get_bounding_sphere
 graphene_box_union
 graphene_box_intersection
 graphene_box_contains_box

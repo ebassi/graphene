@@ -35,6 +35,7 @@
 #include "graphene-box.h"
 #include "graphene-point3d.h"
 #include "graphene-simd4f.h"
+#include "graphene-sphere.h"
 
 #include <math.h>
 
@@ -182,6 +183,26 @@ graphene_box_init_from_vec3 (graphene_box_t        *box,
     graphene_vec3_init_from_vec3 (&box->max, graphene_vec3_zero ());
 
   return box;
+}
+
+/**
+ * graphene_box_expand_vec3:
+ * @box: a #graphene_box_t
+ * @vec: the coordinates of the point to include, as a #graphene_vec3_t
+ * @res: (out caller-allocates): return location for the expanded box
+ *
+ * Expands the dimensions of @box to include the coordinates of the
+ * given vector.
+ *
+ * Since: 1.2
+ */
+void
+graphene_box_expand_vec3 (const graphene_box_t  *box,
+                          const graphene_vec3_t *vec,
+                          graphene_box_t        *res)
+{
+  graphene_vec3_subtract (&box->min, vec, &res->min);
+  graphene_vec3_add (&box->max, vec, &res->max);
 }
 
 /**
@@ -353,6 +374,23 @@ graphene_box_get_depth (const graphene_box_t *box)
 }
 
 /**
+ * graphene_box_get_size:
+ * @box: a #graphene_box_t
+ * @size: (out caller-allocates): return location for the size
+ *
+ * Retrieves the size of the box on all three axes, and stores
+ * it into the given @size vector.
+ *
+ * Since: 1.2
+ */
+void
+graphene_box_get_size (const graphene_box_t *box,
+                       graphene_vec3_t      *size)
+{
+  graphene_vec3_subtract (&box->max, &box->min, size);
+}
+
+/**
  * graphene_box_get_center:
  * @box: a #graphene_box_t
  * @center: (out caller-allocates): return location for the coordinates of
@@ -473,6 +511,28 @@ graphene_box_equal (const graphene_box_t *a,
   /* we cheat a bit and access the SIMD directly */
   return graphene_simd4f_cmp_eq (a->min.value, b->min.value) &&
          graphene_simd4f_cmp_eq (a->max.value, b->max.value);
+}
+
+/**
+ * graphene_box_get_bounding_sphere:
+ * @box: a #graphene_box_t
+ * @sphere: (out caller-allocates): return location for the bounding sphere
+ *
+ * Computes the bounding #graphene_sphere_t capable of containing the given
+ * #graphene_box_t.
+ *
+ * Since: 1.2
+ */
+void
+graphene_box_get_bounding_sphere (const graphene_box_t *box,
+                                  graphene_sphere_t    *sphere)
+{
+  graphene_vec3_t size;
+
+  graphene_vec3_subtract (&box->max, &box->min, &size);
+
+  graphene_vec3_scale (&size, 0.5f, &sphere->center);
+  sphere->radius = graphene_vec3_length (&size) * 0.5f;
 }
 
 enum {
