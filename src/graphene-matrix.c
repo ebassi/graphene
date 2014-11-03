@@ -921,8 +921,10 @@ graphene_matrix_transform_sphere (const graphene_matrix_t *m,
   graphene_point3d_init_from_vec3 (&center, &s->center);
   radius = s->radius;
 
-  max_scale = fmaxf (graphene_simd4f_get_x (m->value.x), graphene_simd4f_get_y (m->value.y));
-  max_scale = fmaxf (max_scale, graphene_simd4f_get_z (m->value.z));
+  max_scale = graphene_simd4f_get_x (graphene_simd4f_dot3 (m->value.x, m->value.x));
+  max_scale = fmaxf (max_scale, graphene_simd4f_get_x (graphene_simd4f_dot3 (m->value.y, m->value.y)));
+  max_scale = fmaxf (max_scale, graphene_simd4f_get_x (graphene_simd4f_dot3 (m->value.z, m->value.z)));
+  max_scale = sqrtf (max_scale);
 
   graphene_sphere_init (res, &center, radius * max_scale);
 }
