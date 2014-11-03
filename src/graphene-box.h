@@ -61,6 +61,10 @@ graphene_box_t *        graphene_box_init_from_points           (graphene_box_t 
                                                                  unsigned int               n_points,
                                                                  const graphene_point3d_t **points);
 GRAPHENE_AVAILABLE_IN_1_2
+graphene_box_t *        graphene_box_init_from_vectors          (graphene_box_t            *box,
+                                                                 unsigned int               n_vectors,
+                                                                 const graphene_vec3_t     *vectors);
+GRAPHENE_AVAILABLE_IN_1_2
 graphene_box_t *        graphene_box_init_from_box              (graphene_box_t            *box,
                                                                  const graphene_box_t      *src);
 GRAPHENE_AVAILABLE_IN_1_2
