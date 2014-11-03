@@ -133,6 +133,37 @@ graphene_box_init_from_points (graphene_box_t            *box,
 }
 
 /**
+ * graphene_box_init_from_vectors:
+ * @box: the #graphene_box_t to initialize
+ * @n_vectors: the number #graphene_point3d_t in the @vectors array
+ * @vectors: (array length=n_vectors): an array of #graphene_vec3_t
+ *
+ * Initializes the given #graphene_box_t with the given array
+ * of vertices.
+ *
+ * If @n_vectors is 0, the returned box is initialized with
+ * graphene_box_empty().
+ *
+ * Returns: (transfer none): the initialized #graphene_box_t
+ *
+ * Since: 1.2
+ */
+graphene_box_t *
+graphene_box_init_from_vectors (graphene_box_t         *box,
+                                unsigned int            n_vectors,
+                                const graphene_vec3_t  *vectors)
+{
+  unsigned int i;
+
+  graphene_box_init_from_box (box, graphene_box_empty ());
+
+  for (i = 0; i < n_vectors; i++)
+    graphene_box_expand_vec3 (box, &vectors[i], box);
+
+  return box;
+}
+
+/**
  * graphene_box_init_from_box:
  * @box: the #graphene_box_t to initialize
  * @src: a #graphene_box_t

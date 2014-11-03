@@ -167,6 +167,10 @@ GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_transform_bounds        (const graphene_matrix_t  *m,
                                                                  const graphene_rect_t    *r,
                                                                  graphene_rect_t          *res);
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_matrix_transform_sphere        (const graphene_matrix_t  *m,
+                                                                 const graphene_sphere_t  *s,
+                                                                 graphene_sphere_t        *res);
 
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_project_point           (const graphene_matrix_t  *m,
