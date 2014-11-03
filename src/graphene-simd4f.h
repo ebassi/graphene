@@ -645,7 +645,7 @@ static inline bool
 _simd4f_cmp_eq (const graphene_simd4f_t a,
                         const graphene_simd4f_t b)
 {
-  __m128i __res = _mm_castps_si128 (_mm_cmpeq_ps (a, b));
+  __m128i __res = _mm_castps_si128 (_mm_cmpneq_ps (a, b));
   return (_mm_movemask_epi8 (__res) == 0);
 }
 
@@ -666,7 +666,7 @@ _simd4f_cmp_lt (const graphene_simd4f_t a,
                 const graphene_simd4f_t b)
 {
   __m128i __res = _mm_castps_si128 (_mm_cmplt_ps (a, b));
-  return (_mm_movemask_epi8 (__res) != 0);
+  return (_mm_movemask_epi8 (__res) == 0xffff);
 }
 
 #define graphene_simd4f_cmp_le(a,b) _simd4f_cmp_le(a,b)
@@ -676,7 +676,7 @@ _simd4f_cmp_le (const graphene_simd4f_t a,
                 const graphene_simd4f_t b)
 {
   __m128i __res = _mm_castps_si128 (_mm_cmple_ps (a, b));
-  return (_mm_movemask_epi8 (__res) != 0);
+  return (_mm_movemask_epi8 (__res) == 0xffff);
 }
 
 #define graphene_simd4f_cmp_ge(a,b) _simd4f_cmp_ge(a,b)
@@ -686,17 +686,17 @@ _simd4f_cmp_ge (const graphene_simd4f_t a,
                 const graphene_simd4f_t b)
 {
   __m128i __res = _mm_castps_si128 (_mm_cmpge_ps (a, b));
-  return (_mm_movemask_epi8 (__res) != 0);
+  return (_mm_movemask_epi8 (__res) == 0xffff);
 }
 
 #define graphene_simd4f_cmp_gt(a,b) _simd4f_cmp_gt(a,b)
 
 static inline bool
-_simd4f_cmp_lt (const graphene_simd4f_t a,
+_simd4f_cmp_gt (const graphene_simd4f_t a,
                 const graphene_simd4f_t b)
 {
   __m128i __res = _mm_castps_si128 (_mm_cmpgt_ps (a, b));
-  return (_mm_movemask_epi8 (__res) != 0);
+  return (_mm_movemask_epi8 (__res) == 0xffff);
 }
 
 #define graphene_simd4f_neg(s) _simd4f_neg(s)
