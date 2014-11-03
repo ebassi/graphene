@@ -112,6 +112,9 @@ GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_box_get_max                    (const graphene_box_t     *box,
                                                                  graphene_point3d_t       *max);
 GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_box_get_vertices               (const graphene_box_t     *box,
+                                                                 graphene_vec3_t           vertices[]);
+GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_box_get_bounding_sphere        (const graphene_box_t     *box,
                                                                  graphene_sphere_t        *sphere);
 

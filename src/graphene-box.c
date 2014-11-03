@@ -484,6 +484,35 @@ graphene_box_get_max (const graphene_box_t *box,
 }
 
 /**
+ * graphene_box_get_vertices:
+ * @box: a #graphene_box_t
+ * @vertices: (array fixed-size=8) (element-type: Graphene.Vec3): return
+ *   location for an array of 8 #graphene_vec3_t
+ *
+ * Computes the vertices of the given #graphene_box_t.
+ *
+ * Since: 1.2
+ */
+void
+graphene_box_get_vertices (const graphene_box_t *box,
+                           graphene_vec3_t       vertices[])
+{
+  graphene_point3d_t min, max;
+
+  graphene_box_get_min (box, &min);
+  graphene_box_get_max (box, &max);
+
+  graphene_vec3_init (&vertices[0], min.x, min.y, min.z);
+  graphene_vec3_init (&vertices[1], min.x, min.y, max.z);
+  graphene_vec3_init (&vertices[2], min.x, max.y, min.z);
+  graphene_vec3_init (&vertices[3], min.x, max.y, max.z);
+  graphene_vec3_init (&vertices[4], max.x, min.y, min.z);
+  graphene_vec3_init (&vertices[5], max.x, min.y, max.z);
+  graphene_vec3_init (&vertices[6], max.x, max.y, min.z);
+  graphene_vec3_init (&vertices[7], max.x, max.y, max.z);
+}
+
+/**
  * graphene_box_contains_point:
  * @box: a #graphene_box_t
  * @point: the coordinates to check
