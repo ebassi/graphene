@@ -7,6 +7,7 @@ graphene_box_init
 graphene_box_init_from_box
 graphene_box_init_from_points
 graphene_box_init_from_vec3
+graphene_box_init_from_vectors
 graphene_box_equal
 graphene_box_expand
 graphene_box_expand_scalar
@@ -19,6 +20,7 @@ graphene_box_get_height
 graphene_box_get_width
 graphene_box_get_size
 graphene_box_get_bounding_sphere
+graphene_box_get_vertices
 graphene_box_union
 graphene_box_intersection
 graphene_box_contains_box
@@ -110,6 +112,8 @@ graphene_matrix_transform_point
 graphene_matrix_transform_point3d
 graphene_matrix_transform_rect
 graphene_matrix_transform_bounds
+graphene_matrix_transform_box
+graphene_matrix_transform_sphere
 graphene_matrix_project_point
 graphene_matrix_project_rect_bounds
 graphene_matrix_untransform_point
@@ -377,10 +381,13 @@ graphene_sphere_alloc
 graphene_sphere_free
 graphene_sphere_init
 graphene_sphere_init_from_points
+graphene_sphere_init_from_vectors
+graphene_sphere_get_center
+graphene_sphere_get_radius
+graphene_sphere_get_bounding_box
 graphene_sphere_is_empty
 graphene_sphere_distance
 graphene_sphere_contains_point
-graphene_sphere_get_bounding_box
 graphene_sphere_translate
 graphene_sphere_equal
 </SECTION>
