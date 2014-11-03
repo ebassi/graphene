@@ -486,8 +486,8 @@ graphene_box_get_max (const graphene_box_t *box,
 /**
  * graphene_box_get_vertices:
  * @box: a #graphene_box_t
- * @vertices: (array fixed-size=8) (element-type: Graphene.Vec3): return
- *   location for an array of 8 #graphene_vec3_t
+ * @vertices: (out) (array fixed-size=8): return location for an array
+ *   of 8 #graphene_vec3_t
  *
  * Computes the vertices of the given #graphene_box_t.
  *
