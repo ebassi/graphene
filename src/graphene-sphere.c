@@ -90,10 +90,10 @@ graphene_sphere_init (graphene_sphere_t        *s,
                       const graphene_point3d_t *center,
                       float                     radius)
 {
-  if (center == NULL)
-    graphene_vec3_init_from_vec3 (&s->center, graphene_vec3_zero ());
+  if (center != NULL)
+    graphene_point3d_to_vec3 (center, &s->center);
   else
-    graphene_vec3_init (&s->center, center->x, center->y, center->z);
+    graphene_vec3_init_from_vec3 (&s->center, graphene_vec3_zero ());
 
   s->radius = radius;
 
@@ -137,7 +137,7 @@ graphene_sphere_init_from_points (graphene_sphere_t        *s,
   unsigned int i;
 
   if (center != NULL)
-    graphene_vec3_init (&s->center, center->x, center->y, center->z);
+    graphene_point3d_to_vec3 (center, &s->center);
   else
     {
       graphene_box_t box;
@@ -145,14 +145,15 @@ graphene_sphere_init_from_points (graphene_sphere_t        *s,
 
       graphene_box_init_from_points (&box, n_points, points);
       graphene_box_get_center (&box, &c);
-      graphene_vec3_init (&s->center, c.x, c.y, c.z);
+
+      graphene_point3d_to_vec3 (&c, &s->center);
     }
 
   for (i = 0; i < n_points; i++)
     {
       graphene_vec3_t p;
 
-      graphene_vec3_init (&p, points[i].x, points[i].y, points[i].z);
+      graphene_point3d_to_vec3 (&points[i], &p);
 
       max_radius_sq = fmaxf (max_radius_sq, distance_sq (&s->center, &p));
     }
@@ -189,7 +190,7 @@ graphene_sphere_init_from_vectors (graphene_sphere_t         *s,
   unsigned int i;
 
   if (center != NULL)
-    graphene_vec3_init (&s->center, center->x, center->y, center->z);
+    graphene_point3d_to_vec3 (center, &s->center);
   else
     {
       graphene_box_t box;
@@ -197,7 +198,8 @@ graphene_sphere_init_from_vectors (graphene_sphere_t         *s,
 
       graphene_box_init_from_vectors (&box, n_vectors, vectors);
       graphene_box_get_center (&box, &c);
-      graphene_vec3_init (&s->center, c.x, c.y, c.z);
+
+      graphene_point3d_to_vec3 (&c, &s->center);
     }
 
   for (i = 0; i < n_vectors; i++)
@@ -274,7 +276,7 @@ graphene_sphere_contains_point (const graphene_sphere_t  *s,
   graphene_vec3_t tmp;
   float radius_sq;
 
-  graphene_vec3_init (&tmp, point->x, point->y, point->z);
+  graphene_point3d_to_vec3 (point, &tmp);
   radius_sq = s->radius * s->radius;
 
   if (distance_sq (&s->center, &tmp) <= radius_sq)
@@ -301,7 +303,7 @@ graphene_sphere_distance (const graphene_sphere_t  *s,
 {
   graphene_vec3_t tmp;
 
-  graphene_vec3_init (&tmp, point->x, point->y, point->z);
+  graphene_point3d_to_vec3 (point, &tmp);
 
   return sqrtf (distance_sq (&s->center, &tmp)) - s->radius;
 }
@@ -342,7 +344,7 @@ graphene_sphere_translate (const graphene_sphere_t  *s,
 {
   graphene_vec3_t tmp;
 
-  graphene_vec3_init (&tmp, point->x, point->y, point->z);
+  graphene_point3d_to_vec3 (point, &tmp);
   graphene_vec3_add (&s->center, &tmp, &res->center);
 }
 

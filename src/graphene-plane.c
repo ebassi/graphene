@@ -163,7 +163,7 @@ graphene_plane_init_from_point (graphene_plane_t         *p,
 
   graphene_vec3_init_from_vec3 (&p->normal, normal);
 
-  graphene_vec3_init (&v_p, point->x, point->y, point->z);
+  graphene_point3d_to_vec3 (point, &v_p);
   p->constant = graphene_vec3_dot (&v_p, &p->normal) * -1;
 
   return p;
@@ -196,9 +196,9 @@ graphene_plane_init_from_points (graphene_plane_t         *p,
   graphene_vec3_t v1, v2;
   graphene_vec3_t normal;
 
-  graphene_vec3_init (&v_a, a->x, a->y, a->z);
-  graphene_vec3_init (&v_b, b->x, b->y, b->z);
-  graphene_vec3_init (&v_c, c->x, c->y, c->z);
+  graphene_point3d_to_vec3 (a, &v_a);
+  graphene_point3d_to_vec3 (b, &v_b);
+  graphene_point3d_to_vec3 (c, &v_c);
 
   graphene_vec3_subtract (&v_c, &v_b, &v1);
   graphene_vec3_subtract (&v_a, &v_b, &v2);
@@ -262,7 +262,7 @@ graphene_plane_distance (const graphene_plane_t   *p,
 {
   graphene_vec3_t v;
 
-  graphene_vec3_init (&v, point->x, point->y, point->z);
+  graphene_point3d_to_vec3 (point, &v);
 
   return graphene_vec3_dot (&p->normal, &v) + p->constant;
 }
