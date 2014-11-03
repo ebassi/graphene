@@ -903,10 +903,10 @@ graphene_matrix_transform_bounds (const graphene_matrix_t *m,
  * @res: (out caller-allocates): return location for the bounds
  *   of the transformed sphere
  *
- * Transforms a #graphene_spherre_t using the given matrix @m. The
+ * Transforms a #graphene_sphere_t using the given matrix @m. The
  * result is the bounding sphere containing the transformed sphere.
  *
- * Since: 1.0
+ * Since: 1.2
  */
 void
 graphene_matrix_transform_sphere (const graphene_matrix_t *m,
