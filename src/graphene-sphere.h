@@ -62,6 +62,11 @@ graphene_sphere_t *     graphene_sphere_init_from_points        (graphene_sphere
                                                                  unsigned int               n_points,
                                                                  const graphene_point3d_t **points,
                                                                  const graphene_point3d_t  *center);
+GRAPHENE_AVAILABLE_IN_1_2
+graphene_sphere_t *     graphene_sphere_init_from_vectors       (graphene_sphere_t         *s,
+                                                                 unsigned int               n_vectors,
+                                                                 const graphene_vec3_t     *vectors,
+                                                                 const graphene_point3d_t  *center);
 
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_sphere_get_center              (const graphene_sphere_t   *s,
