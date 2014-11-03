@@ -54,6 +54,7 @@
 #include "graphene-matrix.h"
 
 #include "graphene-alloc-private.h"
+#include "graphene-box.h"
 #include "graphene-point.h"
 #include "graphene-point3d.h"
 #include "graphene-rect.h"
@@ -924,6 +925,34 @@ graphene_matrix_transform_sphere (const graphene_matrix_t *m,
   max_scale = fmaxf (max_scale, graphene_simd4f_get_z (m->value.z));
 
   graphene_sphere_init (res, &center, radius * max_scale);
+}
+
+/**
+ * graphene_matrix_transform_box:
+ * @m: a #graphene_matrix_t
+ * @b: a #graphene_box_t
+ * @res: (out caller-allocates): return location for the bounds
+ *   of the transformed box
+ *
+ * Transforms a #graphene_box_t using the given matrix @m. The
+ * result is the bounding box containing the transformed box.
+ *
+ * Since: 1.2
+ */
+void
+graphene_matrix_transform_box (const graphene_matrix_t *m,
+                               const graphene_box_t    *b,
+                               graphene_box_t          *res)
+{
+  graphene_vec3_t points[8];
+  unsigned int i;
+
+  graphene_box_get_vertices (b, points);
+
+  for (i = 0; i < 8; i++)
+    graphene_simd4x4f_point3_mul (&m->value, &(points[i].value), &(points[i].value));
+
+  graphene_box_init_from_vectors (res, 8, points);
 }
 
 /**
