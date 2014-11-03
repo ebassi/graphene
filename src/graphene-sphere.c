@@ -164,6 +164,37 @@ graphene_sphere_init_from_points (graphene_sphere_t         *s,
 }
 
 /**
+ * graphene_sphere_get_center:
+ * @sphere: a #graphene_sphere_t
+ * @center: (out caller-allocates): return location for the coordinates of
+ *   the center
+ *
+ * Retrieves the coordinates of the center of a #graphene_sphere_t.
+ *
+ * Since: 1.2
+ */
+void
+graphene_sphere_get_center (const graphene_sphere_t *sphere,
+                            graphene_point3d_t      *center)
+{
+  graphene_point3d_init_from_vec3 (center, &sphere->center);
+}
+
+/**
+ * graphene_sphere_get_radius:
+ * @sphere: a #graphene_sphere_t
+ *
+ * Retrieves the radius of a #graphene_sphere_t.
+ *
+ * Since: 1.2
+ */
+float
+graphene_sphere_get_radius (const graphene_sphere_t *sphere)
+{
+  return sphere->radius;
+}
+
+/**
  * graphene_sphere_is_empty:
  * @s: a #graphene_sphere_t
  *
