@@ -128,10 +128,10 @@ distance_sq (const graphene_vec3_t *p1,
  * Since: 1.2
  */
 graphene_sphere_t *
-graphene_sphere_init_from_points (graphene_sphere_t         *s,
-                                  unsigned int               n_points,
-                                  const graphene_point3d_t **points,
-                                  const graphene_point3d_t  *center)
+graphene_sphere_init_from_points (graphene_sphere_t        *s,
+                                  unsigned int              n_points,
+                                  const graphene_point3d_t *points,
+                                  const graphene_point3d_t *center)
 {
   float max_radius_sq = 0.f;
   unsigned int i;
@@ -150,10 +150,9 @@ graphene_sphere_init_from_points (graphene_sphere_t         *s,
 
   for (i = 0; i < n_points; i++)
     {
-      const graphene_point3d_t *point = points[i];
       graphene_vec3_t p;
 
-      graphene_vec3_init (&p, point->x, point->y, point->z);
+      graphene_vec3_init (&p, points[i].x, points[i].y, points[i].z);
 
       max_radius_sq = fmaxf (max_radius_sq, distance_sq (&s->center, &p));
     }
