@@ -59,6 +59,7 @@
 #include "graphene-rect.h"
 #include "graphene-simd4x4f.h"
 #include "graphene-quad.h"
+#include "graphene-sphere.h"
 #include "graphene-quaternion.h"
 #include "graphene-vectors-private.h"
 
@@ -893,6 +894,36 @@ graphene_matrix_transform_bounds (const graphene_matrix_t *m,
     }
 
   graphene_rect_init (res, min_x, min_y, max_x - min_x, max_y - min_y);
+}
+
+/**
+ * graphene_matrix_transform_sphere:
+ * @m: a #graphene_matrix_t
+ * @s: a #graphene_sphere_t
+ * @res: (out caller-allocates): return location for the bounds
+ *   of the transformed sphere
+ *
+ * Transforms a #graphene_spherre_t using the given matrix @m. The
+ * result is the bounding sphere containing the transformed sphere.
+ *
+ * Since: 1.0
+ */
+void
+graphene_matrix_transform_sphere (const graphene_matrix_t *m,
+                                  const graphene_sphere_t *s,
+                                  graphene_sphere_t       *res)
+{
+  graphene_point3d_t center;
+  float radius;
+  float max_scale;
+
+  graphene_point3d_init_from_vec3 (&center, &s->center);
+  radius = s->radius;
+
+  max_scale = fmaxf (graphene_simd4f_get_x (m->value.x), graphene_simd4f_get_y (m->value.y));
+  max_scale = fmaxf (max_scale, graphene_simd4f_get_z (m->value.z));
+
+  graphene_sphere_init (res, &center, radius * max_scale);
 }
 
 /**
