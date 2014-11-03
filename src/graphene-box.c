@@ -445,6 +445,16 @@ graphene_box_get_center (const graphene_box_t *box,
   center->z = graphene_vec3_get_z (&res);
 }
 
+/**
+ * graphene_box_get_min:
+ * @box: a #graphene_box_t
+ * @min: (out caller-allocates): return location for the minimum point
+ *
+ * Retrieves the coordinates of the minimum point of the given
+ * #graphene_box_t.
+ *
+ * Since: 1.2
+ */
 void
 graphene_box_get_min (const graphene_box_t *box,
                       graphene_point3d_t   *min)
@@ -454,6 +464,16 @@ graphene_box_get_min (const graphene_box_t *box,
   min->z = graphene_vec3_get_z (&box->min);
 }
 
+/**
+ * graphene_box_get_max:
+ * @box: a #graphene_box_t
+ * @max: (out caller-allocates): return location for the maximum point
+ *
+ * Retrieves the coordinates of the maximum point of the given
+ * #graphene_box_t.
+ *
+ * Since: 1.2
+ */
 void
 graphene_box_get_max (const graphene_box_t *box,
                       graphene_point3d_t   *max)
