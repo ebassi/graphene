@@ -146,7 +146,7 @@ graphene_point_init_from_point (graphene_point_t       *p,
  * you want to control the fuzziness of the match, you can use
  * graphene_point_near() instead.
  *
- * Returns: %true if the points have the same coordinates
+ * Returns: `true` if the points have the same coordinates
  *
  * Since: 1.0
  */
@@ -209,7 +209,7 @@ graphene_point_distance (const graphene_point_t *a,
  * Checks whether the two points @a and @b are within
  * the threshold of @epsilon.
  *
- * Returns: %true if the distance is within @epsilon
+ * Returns: `true` if the distance is within @epsilon
  *
  * Since: 1.0
  */

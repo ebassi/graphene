@@ -788,7 +788,7 @@ graphene_simd4f_t
  *
  * Checks if the two given #graphene_simd4f_t are equal.
  *
- * Returns: %true if the values of the vectors are equal
+ * Returns: `true` if the values of the vectors are equal
  *
  * Since: 1.0
  */
@@ -806,7 +806,7 @@ bool
  *
  * Checks if the two given #graphene_simd4f_t are not equal.
  *
- * Returns: %true if the values of the vectors are not equal
+ * Returns: `true` if the values of the vectors are not equal
  *
  * Since: 1.0
  */
@@ -826,7 +826,7 @@ bool
  * of the vector @a are less than the respective components of
  * the vector @b.
  *
- * Returns: %true if vector @a is less than @b
+ * Returns: `true` if vector @a is less than @b
  *
  * Since: 1.2
  */
@@ -846,7 +846,7 @@ bool
  * of the vector @a are less than or equal to the respective components
  * of the vector @b.
  *
- * Returns: %true if vector @a is less than or equal to @b
+ * Returns: `true` if vector @a is less than or equal to @b
  *
  * Since: 1.2
  */
@@ -866,7 +866,7 @@ bool
  * of the vector @a are greater than or equal to the respective
  * components of the vector @b.
  *
- * Returns: %true if vector @a is greater than or equal to @b
+ * Returns: `true` if vector @a is greater than or equal to @b
  *
  * Since: 1.0
  */
@@ -886,7 +886,7 @@ bool
  * of the vector @a are greater than the respective components of
  * the vector @b.
  *
- * Returns: %true if vector @a is greater than @b
+ * Returns: `true` if vector @a is greater than @b
  *
  * Since: 1.0
  */

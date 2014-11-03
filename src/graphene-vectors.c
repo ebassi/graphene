@@ -396,7 +396,7 @@ graphene_vec2_negate (const graphene_vec2_t *v,
  *
  * Checks whether the two given #graphene_vec2_t are equal.
  *
- * Returns: %true if the two vectors are equal, and false otherwise
+ * Returns: `true` if the two vectors are equal, and false otherwise
  *
  * Since: 1.2
  */
@@ -987,7 +987,7 @@ graphene_vec3_negate (const graphene_vec3_t *v,
  *
  * Checks whether the two given #graphene_vec3_t are equal.
  *
- * Returns: %true if the two vectors are equal, and false otherwise
+ * Returns: `true` if the two vectors are equal, and false otherwise
  *
  * Since: 1.2
  */
@@ -1596,7 +1596,7 @@ graphene_vec4_negate (const graphene_vec4_t *v,
  *
  * Checks whether the two given #graphene_vec4_t are equal.
  *
- * Returns: %true if the two vectors are equal, and false otherwise
+ * Returns: `true` if the two vectors are equal, and false otherwise
  *
  * Since: 1.2
  */

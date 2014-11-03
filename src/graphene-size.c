@@ -117,7 +117,7 @@ graphene_size_init_from_size (graphene_size_t       *s,
  *
  * Checks whether the two give #graphene_size_t are equal.
  *
- * Returns: %true if the sizes are equal
+ * Returns: `true` if the sizes are equal
  *
  * Since: 1.0
  */

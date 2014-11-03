@@ -247,7 +247,7 @@ graphene_sphere_get_radius (const graphene_sphere_t *s)
  *
  * Checks whether the sphere has a zero radius.
  *
- * Returns: %true if the sphere is empty
+ * Returns: `true` if the sphere is empty
  *
  * Since: 1.2
  */
@@ -265,7 +265,7 @@ graphene_sphere_is_empty (const graphene_sphere_t *s)
  * Checks whether the given @point is contained in the volume
  * of a #graphene_sphere_t.
  *
- * Returns: %true if the sphere contains the point
+ * Returns: `true` if the sphere contains the point
  *
  * Since: 1.2
  */
@@ -355,7 +355,7 @@ graphene_sphere_translate (const graphene_sphere_t  *s,
  *
  * Checks whether two #graphene_sphere_t are equal.
  *
- * Returns: %true if the spheres are equal
+ * Returns: `true` if the spheres are equal
  *
  * Since: 1.2
  */

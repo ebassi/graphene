@@ -125,7 +125,7 @@ graphene_quad_init_from_rect (graphene_quad_t       *q,
  *
  * Checks if the given #graphene_quad_t contains the given #graphene_point_t.
  *
- * Returns: %true if the point is inside the #graphene_quad_t
+ * Returns: `true` if the point is inside the #graphene_quad_t
  *
  * Since: 1.0
  */

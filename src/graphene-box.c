@@ -519,7 +519,7 @@ graphene_box_get_vertices (const graphene_box_t *box,
  *
  * Checks whether @box contains the given @point.
  *
- * Returns: %true if the point is contained in the given box
+ * Returns: `true` if the point is contained in the given box
  *
  * Since: 1.2
  */
@@ -549,7 +549,7 @@ graphene_box_contains_point (const graphene_box_t     *box,
  * Checks whether the #graphene_box_t @a contains the given
  * #graphene_box_t @b.
  *
- * Returns: %true if the box is contained in the given box
+ * Returns: `true` if the box is contained in the given box
  *
  * Since: 1.2
  */
@@ -574,7 +574,7 @@ graphene_box_contains_box (const graphene_box_t *a,
  *
  * Checks whether the two given boxes are equal.
  *
- * Returns: %true if the boxes are equal
+ * Returns: `true` if the boxes are equal
  *
  * Since: 1.2
  */

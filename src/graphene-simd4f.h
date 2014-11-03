@@ -1698,7 +1698,7 @@ graphene_simd4f_normalize2 (const graphene_simd4f_t v)
  * Checks whether the given #graphene_simd4f_t has all its components
  * set to 0.
  *
- * Returns: %true if all the vector components are zero
+ * Returns: `true` if all the vector components are zero
  *
  * Since: 1.0
  */
@@ -1716,7 +1716,7 @@ graphene_simd4f_is_zero4 (const graphene_simd4f_t v)
  * Checks whether the given #graphene_simd4f_t has the first three of
  * its components set to 0.
  *
- * Returns: %true if the vector's components are zero
+ * Returns: `true` if the vector's components are zero
  *
  * Since: 1.0
  */
@@ -1735,7 +1735,7 @@ graphene_simd4f_is_zero3 (const graphene_simd4f_t v)
  * Checks whether the given #graphene_simd4f_t has the first two of
  * its components set to 0.
  *
- * Returns: %true if the vector's components are zero
+ * Returns: `true` if the vector's components are zero
  *
  * Since: 1.0
  */

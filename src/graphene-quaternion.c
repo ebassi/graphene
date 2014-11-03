@@ -498,7 +498,7 @@ graphene_quaternion_to_angle_vec3 (const graphene_quaternion_t *q,
  *
  * Checks whether the given quaternions are equal.
  *
- * Returns: %true if the quaternions are equal
+ * Returns: `true` if the quaternions are equal
  *
  * Since: 1.0
  */

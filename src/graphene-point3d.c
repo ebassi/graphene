@@ -173,7 +173,7 @@ graphene_point3d_to_vec3 (const graphene_point3d_t *p,
  *
  * Checks whether two given points are equal.
  *
- * Returns: %true if the points are equal
+ * Returns: `true` if the points are equal
  *
  * Since: 1.0
  */
@@ -199,7 +199,7 @@ graphene_point3d_equal (const graphene_point3d_t *a,
  * Checks whether the two points are near each other, within
  * an @epsilon factor.
  *
- * Returns: %true if the points are near each other
+ * Returns: `true` if the points are near each other
  *
  * Since: 1.0
  */

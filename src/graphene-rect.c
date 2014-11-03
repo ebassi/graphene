@@ -159,7 +159,7 @@ graphene_rect_init_from_rect (graphene_rect_t       *r,
  *
  * Checks whether the two given rectangle are equal.
  *
- * Returns: %true if the rectangles are equal
+ * Returns: `true` if the rectangles are equal
  *
  * Since: 1.0
  */
@@ -422,7 +422,7 @@ graphene_rect_union (const graphene_rect_t *a,
  * If the two rectangles do not intersect, @res will contain
  * a degenerate rectangle with origin in (0, 0) and a size of 0.
  *
- * Returns: %true if the two rectangles intersect
+ * Returns: `true` if the two rectangles intersect
  *
  * Since: 1.0
  */
@@ -466,7 +466,7 @@ graphene_rect_intersection (const graphene_rect_t *a,
  *
  * Checks whether a #graphene_rect_t contains the given coordinates.
  *
- * Returns: %true if the rectangle contains the point
+ * Returns: `true` if the rectangle contains the point
  *
  * Since: 1.0
  */
@@ -493,7 +493,7 @@ graphene_rect_contains_point (const graphene_rect_t  *r,
  * Checks whether a #graphene_rect_t fully contains the given
  * rectangle.
  *
- * Returns: %true if the rectangle @a fully contains @b
+ * Returns: `true` if the rectangle @a fully contains @b
  *
  * Since: 1.0
  */

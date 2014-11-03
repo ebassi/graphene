@@ -308,7 +308,7 @@ graphene_plane_get_constant (const graphene_plane_t *p)
  *
  * Checks whether the two given #graphene_plane_t are equal.
  *
- * Returns: %true if the given planes are equal
+ * Returns: `true` if the given planes are equal
  *
  * Since: 1.2
  */

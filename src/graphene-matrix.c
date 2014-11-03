@@ -411,7 +411,7 @@ graphene_matrix_init_rotate (graphene_matrix_t     *m,
  *
  * Checks whether the given #graphene_matrix_t is the identity matrix.
  *
- * Returns: %true if the matrix is the identity matrix
+ * Returns: `true` if the matrix is the identity matrix
  *
  * Since: 1.0
  */
@@ -428,7 +428,7 @@ graphene_matrix_is_identity (const graphene_matrix_t *m)
  * Checks whether the given #graphene_matrix_t is compatible with an
  * a 2D affine transformation matrix.
  *
- * Returns: %true if the matrix is compatible with an affine
+ * Returns: `true` if the matrix is compatible with an affine
  *   transformation matrix
  *
  * Since: 1.0
@@ -445,7 +445,7 @@ graphene_matrix_is_2d (const graphene_matrix_t *m)
  *
  * Checks whether a #graphene_matrix_t has a visible back face.
  *
- * Returns: %true if the back face of the matrix is visible
+ * Returns: `true` if the back face of the matrix is visible
  *
  * Since: 1.0
  */
@@ -466,7 +466,7 @@ graphene_matrix_is_backface_visible (const graphene_matrix_t *m)
  *
  * Checks whether a matrix is singular.
  *
- * Returns: %true if the matrix is singular
+ * Returns: `true` if the matrix is singular
  *
  * Since: 1.0
  */
@@ -545,7 +545,7 @@ graphene_matrix_init_from_2d (graphene_matrix_t *m,
  * This function can be used to convert between a #graphene_matrix_t
  * and a matrix type from other libraries.
  *
- * Returns: %true if the matrix is compatible with an affine
+ * Returns: `true` if the matrix is compatible with an affine
  *   transformation matrix
  *
  * Since: 1.0
@@ -1053,7 +1053,7 @@ graphene_matrix_project_rect_bounds (const graphene_matrix_t *m,
  * Undoes the transformation of a #graphene_point_t using the
  * given matrix, within the given rectangular @bounds.
  *
- * Returns: %true if the point was successfully untransformed
+ * Returns: `true` if the point was successfully untransformed
  *
  * Since: 1.0
  */

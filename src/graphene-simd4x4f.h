@@ -934,7 +934,7 @@ graphene_simd4x4f_determinant (const graphene_simd4x4f_t *m,
  *
  * Checks whether the given matrix is the identity matrix.
  *
- * Returns: %true if the matrix is the identity matrix
+ * Returns: `true` if the matrix is the identity matrix
  *
  * Since: 1.0
  */
@@ -959,7 +959,7 @@ graphene_simd4x4f_is_identity (const graphene_simd4x4f_t *m)
  * Checks whether the given matrix is compatible with an affine
  * transformation matrix.
  *
- * Returns: %true if the matrix is compatible with an affine
+ * Returns: `true` if the matrix is compatible with an affine
  *   transformation matrix
  *
  * Since: 1.0

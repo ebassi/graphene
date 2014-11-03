@@ -198,7 +198,7 @@ graphene_frustum_init_from_matrix (graphene_frustum_t      *f,
  * Checks whether a point is inside the volume defined by the given
  * #graphene_frustum_t.
  *
- * Returns: %true if the point is inside the frustum
+ * Returns: `true` if the point is inside the frustum
  *
  * Since: 1.2
  */
@@ -230,7 +230,7 @@ graphene_frustum_contains_point (const graphene_frustum_t *f,
  * Checks whether the given @sphere intersects a plane of
  * a #graphene_frustum_t.
  *
- * Returns: %true if the sphere intersects the frustum
+ * Returns: `true` if the sphere intersects the frustum
  *
  * Since: 1.2
  */
