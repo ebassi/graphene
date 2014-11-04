@@ -518,25 +518,17 @@ graphene_simd4x4f_init_look_at (graphene_simd4x4f_t *m,
                                 graphene_simd4f_t    center,
                                 graphene_simd4f_t    up)
 {
-  graphene_simd4f_t z_axis = graphene_simd4f_normalize3 (graphene_simd4f_sub (center, eye));
-  graphene_simd4f_t x_axis = graphene_simd4f_normalize3 (graphene_simd4f_cross3 (z_axis, up));
-  graphene_simd4f_t y_axis = graphene_simd4f_cross3 (x_axis, z_axis);
-  float x, y, z;
+  const graphene_simd4f_t forward = graphene_simd4f_normalize3 (graphene_simd4f_sub (center, eye));
+  const graphene_simd4f_t side = graphene_simd4f_normalize3 (graphene_simd4f_cross3 (forward, up));
+  const graphene_simd4f_t norm_up = graphene_simd4f_cross3 (side, forward);
 
-  z_axis = graphene_simd4f_sub (graphene_simd4f_init_zero (), z_axis);
-
-  x = -graphene_simd4f_get_x (graphene_simd4f_dot3 (x_axis, eye));
-  y = -graphene_simd4f_get_x (graphene_simd4f_dot3 (y_axis, eye));
-  z = -graphene_simd4f_get_x (graphene_simd4f_dot3 (z_axis, eye));
-
-  m->x = x_axis;
-  m->y = y_axis;
-  m->z = z_axis;
-  m->w = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f);
-
-  graphene_simd4x4f_transpose_in_place (m);
-
-  m->w = graphene_simd4f_init (x, y, z, 1.0f);
+  m->x = side;
+  m->y = norm_up;
+  m->z = graphene_simd4f_neg (forward);
+  m->w = graphene_simd4f_init (-graphene_simd4f_get_x (eye),
+                               -graphene_simd4f_get_y (eye),
+                               -graphene_simd4f_get_z (eye),
+                               1.f);
 }
 
 /**
