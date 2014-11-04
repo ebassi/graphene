@@ -532,10 +532,6 @@ graphene_simd4x4f_init_look_at (graphene_simd4x4f_t *m,
   m->x = x_axis;
   m->y = y_axis;
   m->z = z_axis;
-  m->w = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f);
-
-  graphene_simd4x4f_transpose_in_place (m);
-
   m->w = graphene_simd4f_init (x, y, z, 1.0f);
 }
 
