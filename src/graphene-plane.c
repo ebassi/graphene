@@ -224,7 +224,7 @@ graphene_plane_normalize (const graphene_plane_t *p,
   float normal_length = graphene_vec3_length (&p->normal);
 
   graphene_vec3_normalize (&p->normal, &res->normal);
-  res->constant /= normal_length;
+  res->constant = p->constant / normal_length;
 }
 
 /**
