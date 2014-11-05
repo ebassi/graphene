@@ -232,8 +232,8 @@ graphene_box_expand_vec3 (const graphene_box_t  *box,
                           const graphene_vec3_t *vec,
                           graphene_box_t        *res)
 {
-  graphene_vec3_subtract (&box->min, vec, &res->min);
-  graphene_vec3_add (&box->max, vec, &res->max);
+  graphene_vec3_min (&box->min, vec, &res->min);
+  graphene_vec3_max (&box->max, vec, &res->max);
 }
 
 /**
