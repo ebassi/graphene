@@ -79,6 +79,7 @@ typedef struct _graphene_plane_t        graphene_plane_t;
 typedef struct _graphene_frustum_t      graphene_frustum_t;
 typedef struct _graphene_sphere_t       graphene_sphere_t;
 typedef struct _graphene_box_t          graphene_box_t;
+typedef struct _graphene_triangle_t     graphene_triangle_t;
 
 GRAPHENE_END_DECLS
 

@@ -51,6 +51,7 @@
 #include "graphene-frustum.h"
 #include "graphene-sphere.h"
 #include "graphene-box.h"
+#include "graphene-triangle.h"
 
 #undef GRAPHENE_H_INSIDE
 

@@ -33,6 +33,7 @@ source_h = \
 	graphene-vec2.h \
 	graphene-vec3.h \
 	graphene-vec4.h \
+	graphene-triangle.h \
 	graphene-types.h \
 	graphene-version-macros.h \
 	$(NULL)
@@ -51,6 +52,7 @@ source_c = \
 	graphene-simd4x4f.c \
 	graphene-size.c \
 	graphene-sphere.c \
+	graphene-triangle.c \
 	graphene-vectors.c \
 	$(NULL)
 
