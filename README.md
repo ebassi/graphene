@@ -103,6 +103,7 @@ Graphene provides common types needed to handle 3D transformations:
 
  * 2D points
  * 3D points
+ * triangles
  * rectangles
  * quads
  * quaternions
