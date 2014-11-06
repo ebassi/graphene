@@ -1126,6 +1126,44 @@ graphene_matrix_untransform_bounds (const graphene_matrix_t *m,
 }
 
 /**
+ * graphene_matrix_unproject_point3d:
+ * @projection: a #graphene_matrix_t for the projection matrix
+ * @modelview: a #graphene_matrix_t for the modelview matrix
+ * @point: a #graphene_point3d_t with the coordinates of the point
+ * @res: (out caller-allocates): return location for the unprojected
+ *   point
+ *
+ * Unprojects the given @point using the @projection matrix and
+ * a @modelview matrix.
+ *
+ * Since: 1.2
+ */
+void
+graphene_matrix_unproject_point3d (const graphene_matrix_t  *projection,
+                                   const graphene_matrix_t  *modelview,
+                                   const graphene_point3d_t *point,
+                                   graphene_point3d_t       *res)
+{
+  graphene_matrix_t inv_projection, tmp;
+  graphene_vec4_t v;
+  float inv_w;
+
+  graphene_matrix_inverse (projection, &tmp);
+  graphene_matrix_multiply (&inv_projection, modelview, &tmp);
+
+  graphene_vec4_init (&v, point->x, point->y, point->z, 1.f);
+  graphene_matrix_transform_vec4 (&tmp, &v, &v);
+
+  inv_w = 1.f / graphene_vec4_get_w (&v);
+  graphene_vec4_scale (&v, inv_w, &v);
+
+  graphene_point3d_init (res,
+                         graphene_vec4_get_x (&v),
+                         graphene_vec4_get_y (&v),
+                         graphene_vec4_get_z (&v));
+}
+
+/**
  * graphene_matrix_translate:
  * @m: a #graphene_matrix_t
  * @pos: a #graphene_point3d_t

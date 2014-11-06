@@ -194,6 +194,11 @@ void                    graphene_matrix_untransform_bounds      (const graphene_
                                                                  const graphene_rect_t    *r,
                                                                  const graphene_rect_t    *bounds,
                                                                  graphene_rect_t          *res);
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_matrix_unproject_point3d       (const graphene_matrix_t  *projection,
+                                                                 const graphene_matrix_t  *modelview,
+                                                                 const graphene_point3d_t *point,
+                                                                 graphene_point3d_t       *res);
 
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_translate               (graphene_matrix_t        *m,
