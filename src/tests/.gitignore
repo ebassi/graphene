@@ -5,6 +5,7 @@
 /*.trs
 /*.gcda
 /*.gcno
+/box
 /matrix
 /point
 /point3d
