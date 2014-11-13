@@ -64,6 +64,9 @@ GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_simd4f_dup_2f          (const graphene_simd4f_t s,
                                                          float                  *v);
 
+GRAPHENE_AVAILABLE_IN_1_2
+float                   graphene_simd4f_get             (const graphene_simd4f_t s,
+                                                         unsigned int            i);
 GRAPHENE_AVAILABLE_IN_1_0
 float                   graphene_simd4f_get_x           (const graphene_simd4f_t s);
 GRAPHENE_AVAILABLE_IN_1_0
@@ -217,29 +220,16 @@ typedef union {
   unsigned int ui[4];
 } graphene_simd4f_union_t;
 
-#  define graphene_simd4f_get_x(s) \
+#  define graphene_simd4f_get(s,i) \
   (__extension__ ({ \
     graphene_simd4f_union_t __u = { (s) }; \
-    __u.f[0]; \
+    (float) __u.f[(i)]; \
   }))
 
-#  define graphene_simd4f_get_y(s) \
-  (__extension__ ({ \
-    graphene_simd4f_union_t __u = { (s) }; \
-    __u.f[1]; \
-  }))
-
-#  define graphene_simd4f_get_z(s) \
-  (__extension__ ({ \
-    graphene_simd4f_union_t __u = { (s) }; \
-    __u.f[2]; \
-  }))
-
-#  define graphene_simd4f_get_w(s) \
-  (__extension__ ({ \
-    graphene_simd4f_union_t __u = { (s) }; \
-    __u.f[3]; \
-  }))
+#  define graphene_simd4f_get_x(s)      graphene_simd4f_get (s, 0)
+#  define graphene_simd4f_get_y(s)      graphene_simd4f_get (s, 1)
+#  define graphene_simd4f_get_z(s)      graphene_simd4f_get (s, 2)
+#  define graphene_simd4f_get_w(s)      graphene_simd4f_get (s, 3)
 
 #  define graphene_simd4f_splat(v) \
   (__extension__ ({ \
@@ -485,6 +475,7 @@ typedef union {
   unsigned int ui[4];
 } graphene_simd4f_union_t;
 
+#define graphene_simd4f_get(s,i) _smd4f_get_xyzw(s, i)
 #define graphene_simd4f_get_x(s) _smd4f_get_xyzw(s, 0)
 #define graphene_simd4f_get_y(s) _smd4f_get_xyzw(s, 1)
 #define graphene_simd4f_get_z(s) _smd4f_get_xyzw(s, 2)
@@ -778,29 +769,16 @@ typedef union {
     memcpy ((v), &(s), sizeof (float) * 2); \
   }))
 
-# define graphene_simd4f_get_x(s) \
+# define graphene_simd4f_get(s,i) \
   (__extension__ ({ \
     graphene_simd4f_union_t __u = { (s) }; \
-    (float) __u.f[0]; \
+    (float) __u.f[i]; \
   }))
 
-# define graphene_simd4f_get_y(s) \
-  (__extension__ ({ \
-    graphene_simd4f_union_t __u = { (s) }; \
-    (float) __u.f[1]; \
-  }))
-
-# define graphene_simd4f_get_z(s) \
-  (__extension__ ({ \
-    graphene_simd4f_union_t __u = { (s) }; \
-    (float) __u.f[2]; \
-  }))
-
-# define graphene_simd4f_get_w(s) \
-  (__extension__ ({ \
-    graphene_simd4f_union_t __u = { (s) }; \
-    (float) __u.f[3]; \
-  }))
+# define graphene_simd4f_get_x(s)       graphene_simd4f_get (s, 0)
+# define graphene_simd4f_get_y(s)       graphene_simd4f_get (s, 1)
+# define graphene_simd4f_get_z(s)       graphene_simd4f_get (s, 2)
+# define graphene_simd4f_get_w(s)       graphene_simd4f_get (s, 3)
 
 # define graphene_simd4f_splat(v) \
   (__extension__ ({ \
@@ -1087,25 +1065,15 @@ typedef union {
     vst1_f32 ((float32_t *) (v), __low); \
   }))
 
-# define graphene_simd4f_get_x(s) \
+# define graphene_simd4f_get(s,i) \
   (__extension__ ({ \
-    (float) vgetq_lane_f32 ((s), 0); \
-  }))
+    (float) vgetq_lane_f32 ((s), (i)); \
+  })
 
-# define graphene_simd4f_get_y(s) \
-  (__extension__ ({ \
-    (float) vgetq_lane_f32 ((s), 1); \
-  }))
-
-# define graphene_simd4f_get_z(s) \
-  (__extension__ ({ \
-    (float) vgetq_lane_f32 ((s), 2); \
-  }))
-
-# define graphene_simd4f_get_w(s) \
-  (__extension__ ({ \
-    (float) vgetq_lane_f32 ((s), 3); \
-  }))
+# define graphene_simd4f_get_x(s)       graphene_simd4f_get (s, 0)
+# define graphene_simd4f_get_y(s)       graphene_simd4f_get (s, 1)
+# define graphene_simd4f_get_z(s)       graphene_simd4f_get (s, 2)
+# define graphene_simd4f_get_w(s)       graphene_simd4f_get (s, 3)
 
 # define graphene_simd4f_splat(v) \
   (__extension__ ({ \
@@ -1381,6 +1349,8 @@ typedef union {
   (graphene_simd4f_dup_3f ((s), (float *) (v)))
 #define graphene_simd4f_dup_2f(s,v) \
   (graphene_simd4f_dup_2f ((s), (float *) (v)))
+#define graphene_simd4f_get(s,i) \
+  (graphene_simd4f_get ((s), (i)))
 #define graphene_simd4f_get_x(s) \
   (graphene_simd4f_get_x ((s)))
 #define graphene_simd4f_get_y(s) \

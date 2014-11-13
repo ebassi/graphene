@@ -287,6 +287,7 @@ graphene_simd4f_init_2f
 graphene_simd4f_dup_4f
 graphene_simd4f_dup_3f
 graphene_simd4f_dup_2f
+graphene_simd4f_get
 graphene_simd4f_get_x
 graphene_simd4f_get_y
 graphene_simd4f_get_z
