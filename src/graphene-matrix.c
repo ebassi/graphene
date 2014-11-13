@@ -78,7 +78,7 @@
 graphene_matrix_t *
 graphene_matrix_alloc (void)
 {
-  return graphene_alloc (sizeof (graphene_matrix_t), 1, 16);
+  return graphene_aligned_alloc (sizeof (graphene_matrix_t), 1, 16);
 }
 
 /**
@@ -92,7 +92,7 @@ graphene_matrix_alloc (void)
 void
 graphene_matrix_free (graphene_matrix_t *m)
 {
-  graphene_free (m);
+  graphene_aligned_free (m);
 }
 
 /**

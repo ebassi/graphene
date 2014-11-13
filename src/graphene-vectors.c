@@ -59,7 +59,7 @@
 graphene_vec2_t *
 graphene_vec2_alloc (void)
 {
-  return graphene_alloc (sizeof (graphene_vec2_t), 1, 16);
+  return graphene_aligned_alloc (sizeof (graphene_vec2_t), 1, 16);
 }
 
 /**
@@ -73,7 +73,7 @@ graphene_vec2_alloc (void)
 void
 graphene_vec2_free (graphene_vec2_t *v)
 {
-  graphene_free (v);
+  graphene_aligned_free (v);
 }
 
 /**
@@ -529,7 +529,7 @@ graphene_vec2_y_axis (void)
 graphene_vec3_t *
 graphene_vec3_alloc (void)
 {
-  return graphene_alloc (sizeof (graphene_vec3_t), 1, 16);
+  return graphene_aligned_alloc (sizeof (graphene_vec3_t), 1, 16);
 }
 
 /**
@@ -543,7 +543,7 @@ graphene_vec3_alloc (void)
 void
 graphene_vec3_free (graphene_vec3_t *v)
 {
-  graphene_free (v);
+  graphene_aligned_free (v);
 }
 
 /**
@@ -1143,7 +1143,7 @@ graphene_vec3_z_axis (void)
 graphene_vec4_t *
 graphene_vec4_alloc (void)
 {
-  return graphene_alloc (sizeof (graphene_vec4_t), 1, 16);
+  return graphene_aligned_alloc (sizeof (graphene_vec4_t), 1, 16);
 }
 
 /**
@@ -1157,7 +1157,7 @@ graphene_vec4_alloc (void)
 void
 graphene_vec4_free (graphene_vec4_t *v)
 {
-  graphene_free (v);
+  graphene_aligned_free (v);
 }
 
 /**

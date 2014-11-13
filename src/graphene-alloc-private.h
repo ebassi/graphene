@@ -30,14 +30,14 @@
 
 GRAPHENE_BEGIN_DECLS
 
-void *          graphene_alloc          (size_t size,
+void *          graphene_aligned_alloc  (size_t size,
                                          size_t number,
                                          size_t alignment);
-void *          graphene_alloc0         (size_t size,
+void *          graphene_aligned_alloc0 (size_t size,
                                          size_t number,
                                          size_t alignment);
 
-void            graphene_free           (void  *mem);
+void            graphene_aligned_free   (void  *mem);
 
 GRAPHENE_END_DECLS
 

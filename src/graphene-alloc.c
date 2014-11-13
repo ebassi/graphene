@@ -43,7 +43,7 @@
 #include <stdio.h>
 
 /*< private >
- * graphene_alloc:
+ * graphene_aligned_alloc:
  * @size: the size of the memory to allocate
  * @number: the multiples of @size to allocate
  * @alignment: the alignment to be enforced, as a power of 2
@@ -59,9 +59,9 @@
  * Returns: (transfer full): the allocated memory
  */
 void *
-graphene_alloc (size_t size,
-                size_t number,
-                size_t alignment)
+graphene_aligned_alloc (size_t size,
+                        size_t number,
+                        size_t alignment)
 {
   void *res;
   size_t max_size = (size_t) -1;
@@ -119,12 +119,23 @@ graphene_alloc (size_t size,
   return res;
 }
 
+/*< private >
+ * graphene_aligned_alloc:
+ * @size: the size of the memory to allocate
+ * @number: the multiples of @size to allocate
+ * @alignment: the alignment to be enforced, as a power of 2
+ *
+ * Allocates @number times @size memory, with the given @alignment,
+ * like graphene_aligned_alloc(), but it also clears the memory.
+ *
+ * Returns: (transfer full): the allocated, cleared memory
+ */
 void *
-graphene_alloc0 (size_t size,
-                 size_t number,
-                 size_t alignment)
+graphene_aligned_alloc0 (size_t size,
+                         size_t number,
+                         size_t alignment)
 {
-  void *res = graphene_alloc (size, number, alignment);
+  void *res = graphene_aligned_alloc (size, number, alignment);
 
   if (res != NULL)
     memset (res, 0, size * number);
@@ -133,13 +144,13 @@ graphene_alloc0 (size_t size,
 }
 
 /*< private >
- * graphene_free:
+ * graphene_aligned_free:
  * @mem: the memory to deallocate
  *
- * Frees the memory allocated by graphene_alloc().
+ * Frees the memory allocated by graphene_aligned_alloc().
  */
 void
-graphene_free (void *mem)
+graphene_aligned_free (void *mem)
 {
   aligned_free (mem);
 }
