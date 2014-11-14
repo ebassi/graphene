@@ -459,9 +459,7 @@ void
 graphene_box_get_min (const graphene_box_t *box,
                       graphene_point3d_t   *min)
 {
-  min->x = graphene_vec3_get_x (&box->min);
-  min->y = graphene_vec3_get_y (&box->min);
-  min->z = graphene_vec3_get_z (&box->min);
+  graphene_point3d_init_from_vec3 (min, &box->min);
 }
 
 /**
@@ -478,9 +476,7 @@ void
 graphene_box_get_max (const graphene_box_t *box,
                       graphene_point3d_t   *max)
 {
-  max->x = graphene_vec3_get_x (&box->max);
-  max->y = graphene_vec3_get_y (&box->max);
-  max->z = graphene_vec3_get_z (&box->max);
+  graphene_point3d_init_from_vec3 (max, &box->max);
 }
 
 /**
