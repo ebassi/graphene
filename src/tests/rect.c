@@ -168,6 +168,12 @@ rect_inset (void)
   g_assert_cmpfloat (r.origin.y, ==, 6.f);
   g_assert_cmpfloat (r.size.width, ==, 6.f);
   g_assert_cmpfloat (r.size.height, ==, 0.f);
+
+  graphene_rect_inset (&r, 8.f, 0.f);
+  g_assert_cmpfloat (r.origin.x, ==, 10.f);
+  g_assert_cmpfloat (r.origin.y, ==, 6.f);
+  g_assert_cmpfloat (r.size.width, ==, 0.f);
+  g_assert_cmpfloat (r.size.height, ==, 0.f);
 }
 
 static void
