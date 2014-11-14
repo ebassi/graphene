@@ -432,9 +432,9 @@ init_static_vec2 (void)
     return;
 
   static_vec2[VEC2_ZERO].value = graphene_simd4f_init_zero ();
-  static_vec2[VEC2_ONE].value = graphene_simd4f_splat (1.0f);
-  static_vec2[VEC2_X_AXIS].value = graphene_simd4f_init (1.0f, 0.0f, 0.0f, 0.0f);
-  static_vec2[VEC2_Y_AXIS].value = graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f);
+  static_vec2[VEC2_ONE].value = graphene_simd4f_init (1.f, 1.f, 0.f, 0.f);
+  static_vec2[VEC2_X_AXIS].value = graphene_simd4f_init (1.f, 0.f, 0.f, 0.f);
+  static_vec2[VEC2_Y_AXIS].value = graphene_simd4f_init (0.f, 1.f, 0.f, 0.f);
 
   static_vec2_init = true;
 }
@@ -1024,10 +1024,10 @@ init_static_vec3 (void)
     return;
 
   static_vec3[VEC3_ZERO].value = graphene_simd4f_init_zero ();
-  static_vec3[VEC3_ONE].value = graphene_simd4f_splat (1.0f);
-  static_vec3[VEC3_X_AXIS].value = graphene_simd4f_init (1.0f, 0.0f, 0.0f, 0.0f);
-  static_vec3[VEC3_Y_AXIS].value = graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f);
-  static_vec3[VEC3_Z_AXIS].value = graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f);
+  static_vec3[VEC3_ONE].value = graphene_simd4f_init (1.f, 1.f, 1.f, 0.f);
+  static_vec3[VEC3_X_AXIS].value = graphene_simd4f_init (1.f, 0.f, 0.f, 0.f);
+  static_vec3[VEC3_Y_AXIS].value = graphene_simd4f_init (0.f, 1.f, 0.f, 0.f);
+  static_vec3[VEC3_Z_AXIS].value = graphene_simd4f_init (0.f, 0.f, 1.f, 0.f);
 
   static_vec3_init = true;
 }
@@ -1634,11 +1634,11 @@ init_static_vec4 (void)
     return;
 
   static_vec4[VEC4_ZERO].value = graphene_simd4f_init_zero ();
-  static_vec4[VEC4_ONE].value = graphene_simd4f_splat (1.0f);
-  static_vec4[VEC4_X_AXIS].value = graphene_simd4f_init (1.0f, 0.0f, 0.0f, 0.0f);
-  static_vec4[VEC4_Y_AXIS].value = graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f);
-  static_vec4[VEC4_Z_AXIS].value = graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f);
-  static_vec4[VEC4_W_AXIS].value = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f);
+  static_vec4[VEC4_ONE].value = graphene_simd4f_splat (1.f);
+  static_vec4[VEC4_X_AXIS].value = graphene_simd4f_init (1.f, 0.f, 0.f, 0.f);
+  static_vec4[VEC4_Y_AXIS].value = graphene_simd4f_init (0.f, 1.f, 0.f, 0.f);
+  static_vec4[VEC4_Z_AXIS].value = graphene_simd4f_init (0.f, 0.f, 1.f, 0.f);
+  static_vec4[VEC4_W_AXIS].value = graphene_simd4f_init (0.f, 0.f, 0.f, 1.f);
 
   static_vec4_init = true;
 }
