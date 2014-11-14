@@ -22,6 +22,7 @@ test_programs = \
 	rect \
 	simd \
 	size \
+	sphere \
 	triangle \
 	vec2 \
 	vec3 \
