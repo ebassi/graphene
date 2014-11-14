@@ -36,7 +36,8 @@ GRAPHENE_BEGIN_DECLS
 /**
  * graphene_box_t:
  *
- * A 3D box, described as the volume between the @min and @max vertices.
+ * A 3D box, described as the volume between a minimum and
+ * a maximum vertices.
  *
  * Since: 1.2
  */
