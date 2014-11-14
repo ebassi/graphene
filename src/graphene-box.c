@@ -74,8 +74,8 @@ graphene_box_free (graphene_box_t *box)
 /**
  * graphene_box_init:
  * @box: the #graphene_box_t to initialize
- * @min: the coordinates of the minimum vertex
- * @max: the coordinates of the maximum vertex
+ * @min: (optional): the coordinates of the minimum vertex
+ * @max: (optional): the coordinates of the maximum vertex
  *
  * Initializes the given #graphene_box_t with two vertices.
  *
@@ -188,8 +188,8 @@ graphene_box_init_from_box (graphene_box_t       *box,
 /**
  * graphene_box_init_from_vec3:
  * @box: the #graphene_box_t to initialize
- * @min: the coordinates of the minimum vertex
- * @max: the coordinates of the maximum vertex
+ * @min: (optional): the coordinates of the minimum vertex
+ * @max: (optional): the coordinates of the maximum vertex
  *
  * Initializes the given #graphene_box_t with two vertices
  * stored inside #graphene_vec3_t.
