@@ -6,7 +6,7 @@
 static void
 quad_bounds (void)
 {
-  graphene_quad_t *p;
+  graphene_quad_t p;
   graphene_rect_t r, s;
   graphene_point_t p0, p1, p2, p3;
 
@@ -16,12 +16,27 @@ quad_bounds (void)
   graphene_rect_get_bottom_right (&r, &p2);
   graphene_rect_get_bottom_left (&r, &p3);
 
-  p = graphene_quad_init (graphene_quad_alloc (), &p0, &p1, &p2, &p3);
-  graphene_quad_bounds (p, &s);
+  graphene_quad_init (&p, &p0, &p1, &p2, &p3);
+  graphene_quad_bounds (&p, &s);
 
   g_assert_true (graphene_rect_contains_rect (&s, &r));
 
-  graphene_quad_free (p);
+  graphene_quad_init_from_rect (&p, &r);
+  graphene_quad_bounds (&p, &s);
+
+  g_assert_true (graphene_rect_contains_rect (&s, &r));
+
+  graphene_rect_get_top_left (&r, &p0);
+  g_assert_true (graphene_point_equal (graphene_quad_get_point (&p, 0), &p0));
+
+  graphene_rect_get_top_right (&r, &p1);
+  g_assert_true (graphene_point_equal (graphene_quad_get_point (&p, 1), &p1));
+
+  graphene_rect_get_bottom_right (&r, &p2);
+  g_assert_true (graphene_point_equal (graphene_quad_get_point (&p, 2), &p2));
+
+  graphene_rect_get_bottom_left (&r, &p3);
+  g_assert_true (graphene_point_equal (graphene_quad_get_point (&p, 3), &p3));
 }
 
 static void
@@ -32,27 +47,29 @@ quad_contains (void)
   graphene_point_t p2 = GRAPHENE_POINT_INIT (10.f,  9.f);
   graphene_point_t p3 = GRAPHENE_POINT_INIT ( 0.f, 10.f);
   graphene_point_t a;
-  graphene_quad_t q;
+  graphene_quad_t *q;
 
-  graphene_quad_init (&q, &p0, &p1, &p2, &p3);
+  q = graphene_quad_init (graphene_quad_alloc (), &p0, &p1, &p2, &p3);
 
   graphene_point_init_from_point (&a, &p0);
-  g_assert_true (graphene_quad_contains (&q, &a));
+  g_assert_true (graphene_quad_contains (q, &a));
 
   graphene_point_init_from_point (&a, &p1);
-  g_assert_true (graphene_quad_contains (&q, &a));
+  g_assert_true (graphene_quad_contains (q, &a));
 
   graphene_point_init_from_point (&a, &p2);
-  g_assert_true (graphene_quad_contains (&q, &a));
+  g_assert_true (graphene_quad_contains (q, &a));
 
   graphene_point_init_from_point (&a, &p3);
-  g_assert_true (graphene_quad_contains (&q, &a));
+  g_assert_true (graphene_quad_contains (q, &a));
 
   graphene_point_init (&a, 5.f, 5.f);
-  g_assert_true (graphene_quad_contains (&q, &a));
+  g_assert_true (graphene_quad_contains (q, &a));
 
   graphene_point_init (&a, 10.f, 10.f);
-  g_assert_false (graphene_quad_contains (&q, &a));
+  g_assert_false (graphene_quad_contains (q, &a));
+
+  graphene_quad_free (q);
 }
 
 int
