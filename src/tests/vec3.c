@@ -310,6 +310,30 @@ vectors_vec3_conversion (void)
   }
 }
 
+static void
+vectors_vec3_equal (void)
+{
+  const graphene_vec3_t *zero = graphene_vec3_zero ();
+  const graphene_vec3_t *one = graphene_vec3_one ();
+  graphene_vec3_t a, b;
+
+  graphene_vec3_init (&a, 0.f, 0.f, 0.f);
+  graphene_vec3_init (&b, 1.f, 1.f, 1.f);
+
+  g_assert_true (graphene_vec3_equal (zero, zero));
+  g_assert_true (graphene_vec3_equal (one, one));
+  g_assert_true (graphene_vec3_equal (zero, &a));
+  g_assert_true (graphene_vec3_equal (one, &b));
+
+  g_assert_false (graphene_vec3_equal (zero, one));
+  g_assert_false (graphene_vec3_equal (one, zero));
+  g_assert_false (graphene_vec3_equal (&a, &b));
+
+  g_assert_true (graphene_vec3_equal (NULL, NULL));
+  g_assert_false (graphene_vec3_equal (graphene_vec3_one (), NULL));
+  g_assert_false (graphene_vec3_equal (NULL, graphene_vec3_one ()));
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -329,6 +353,7 @@ main (int argc, char *argv[])
   g_test_add_func ("/vectors/vec3/normalize", vectors_vec3_normalize);
   g_test_add_func ("/vectors/vec3/compare", vectors_vec3_compare);
   g_test_add_func ("/vectors/vec3/conversion", vectors_vec3_conversion);
+  g_test_add_func ("/vectors/vec3/equal", vectors_vec3_equal);
 
   return g_test_run ();
 }

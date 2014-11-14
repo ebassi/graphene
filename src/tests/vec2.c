@@ -218,6 +218,30 @@ vectors_vec2_compare (void)
   g_assert_cmpfloat (graphene_vec2_get_y (&res), ==, 12.f);
 }
 
+static void
+vectors_vec2_equal (void)
+{
+  const graphene_vec2_t *zero = graphene_vec2_zero ();
+  const graphene_vec2_t *one = graphene_vec2_one ();
+  graphene_vec2_t a, b;
+
+  graphene_vec2_init (&a, 0.f, 0.f);
+  graphene_vec2_init (&b, 1.f, 1.f);
+
+  g_assert_true (graphene_vec2_equal (zero, zero));
+  g_assert_true (graphene_vec2_equal (one, one));
+  g_assert_true (graphene_vec2_equal (zero, &a));
+  g_assert_true (graphene_vec2_equal (one, &b));
+
+  g_assert_false (graphene_vec2_equal (zero, one));
+  g_assert_false (graphene_vec2_equal (one, zero));
+  g_assert_false (graphene_vec2_equal (&a, &b));
+
+  g_assert_true (graphene_vec2_equal (NULL, NULL));
+  g_assert_false (graphene_vec2_equal (graphene_vec2_one (), NULL));
+  g_assert_false (graphene_vec2_equal (NULL, graphene_vec2_one ()));
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -235,6 +259,7 @@ main (int argc, char *argv[])
   g_test_add_func ("/vectors/vec2/length", vectors_vec2_length);
   g_test_add_func ("/vectors/vec2/normalize", vectors_vec2_normalize);
   g_test_add_func ("/vectors/vec2/compare", vectors_vec2_compare);
+  g_test_add_func ("/vectors/vec2/equal", vectors_vec2_equal);
 
   return g_test_run ();
 }
