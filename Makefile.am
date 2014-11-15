@@ -6,7 +6,8 @@ EXTRA_DIST = \
 	build/autotools/graphene-macros.m4 \
 	build/autotools/introspection.m4 \
 	build/autotools/tap-driver.sh \
-	build/autotools/tap-test
+	build/autotools/tap-test \
+	build/solaris-hwcap.mapfile
 
 SUBDIRS = src doc
 

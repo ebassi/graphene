@@ -210,6 +210,9 @@ AS_IF([test "x$have_sse2_intrinsics" = xyes], [GRAPHENE_SIMD="$GRAPHENE_SIMD sse
 
 AM_CONDITIONAL(BUILD_WITH_SSE2, [test "x$have_sse2_intrinsics" = xyes])
 
+# this block was nibbed from Pixman; I don't have Solaris nor SunCC, so I am
+# assuming somebody has actually tested it, and it continues to work with
+# Pixman.
 AS_CASE([$host_os],
 
         [solaris*],
@@ -223,8 +226,8 @@ AS_CASE([$host_os],
                   use_hwcap_mapfile=no
                   AC_MSG_CHECKING([whether to use a hardware capability map file])
                   hwcap_save_LDFLAGS="$LDFLAGS"
-                  HWCAP_LDFLAGS='-Wl,-M,$(srcdir)/solaris-hwcap.mapfile'
-                  LDFLAGS="$LDFLAGS -Wl,-M,pixman/solaris-hwcap.mapfile"
+                  HWCAP_LDFLAGS='-Wl,-M,$(top_srcdir)/build/solaris-hwcap.mapfile'
+                  LDFLAGS="$LDFLAGS -Wl,-M,build/solaris-hwcap.mapfile"
                   AC_LINK_IFELSE([AC_LANG_SOURCE([[int main() { return 0; }]])],
                                  [use_hwcap_mapfile=yes],
                                  [HWCAP_LDFLAGS=""])
