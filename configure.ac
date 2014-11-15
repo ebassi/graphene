@@ -49,9 +49,9 @@ dnl === Base compiler flags ===================================================
 AC_PROG_SED
 
 dnl Remove all optimization flags from CFLAGS; we are going to set -O3
-dnl ourselves in GRAPHENE_CFLAGS
+dnl ourselves in BASE_CFLAGS using graphene_DEFAULT_COMPILER_FLAGS
 changequote({,})
-CFLAGS=`echo "$CFLAGS" | $SED -e 's/-O[0-9]*//g'`
+CFLAGS=`echo "$CFLAGS" | $SED -e 's/-O[s0-9]//g'`
 changequote([,])
 
 BASE_CFLAGS=""
@@ -128,10 +128,10 @@ AC_MSG_CHECKING([whether to use GCC vector])
 AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #if defined(__GNUC__)
 # if defined(__arm__)
-#   error "GCC vector intrinsics are disabled on ARM
+#   error "GCC vector intrinsics are disabled on ARM"
 # endif
 #else
-# error "Need GCC for vectors intrinsics"
+# error "Need GCC for GCC vectors intrinsics"
 #endif
 typedef float simd4f __attribute__((vector_size(16)));
 typedef int simd4i __attribute__((vector_size(16)));
@@ -188,7 +188,7 @@ AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #include <emmintrin.h>
 int main () {
     __m128i a = _mm_set1_epi32 (0), b = _mm_set1_epi32 (0), c;
-        c = _mm_xor_si128 (a, b);
+    c = _mm_xor_si128 (a, b);
     return 0;
 }]])], [have_sse2_intrinsics=yes])
 CFLAGS="$saved_CFLAGS"
@@ -252,7 +252,8 @@ AS_CASE([$host_os],
           NEON_CFLAGS="$NEON_CFLAGS -mfloat-abi=softfp"
         ],
         
-        [AC_MSG_RESULT([no])])
+        [AC_MSG_RESULT([no])]
+)
 
 have_arm_neon=no
 AC_MSG_CHECKING([whether to use ARM NEON intrinsics])
@@ -263,7 +264,7 @@ CFLAGS="$NEON_CFLAGS $CFLAGS"
 
 AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #ifndef __ARM_EABI__
-#error EABI is required (to be sure that calling conventions are compatible)
+#error "EABI is required (to be sure that calling conventions are compatible)"
 #endif
 #include <arm_neon.h>
 int main () {
@@ -323,32 +324,42 @@ AS_IF([test "x$enable_Bsymbolic" = "xyes"], [GRAPHENE_LINK_FLAGS=-Wl[,]-Bsymboli
 dnl === Visibility ============================================================
 
 GRAPHENE_VISIBILITY_CFLAGS=""
-case "$host" in
-  *-*-mingw*)
-    dnl on mingw32 we do -fvisibility=hidden and __declspec(dllexport)
-    AC_DEFINE([_GRAPHENE_PUBLIC], [__attribute__((visibility("default"))) __declspec(dllexport) extern],
-              [defines how to decorate public symbols while building])
-    GRAPHENE_VISIBILITY_CFLAGS="-fvisibility=hidden"
-    ;;
-  *)
-    dnl on other compilers, check if we can do -fvisibility=hidden
-    SAVED_CFLAGS="${CFLAGS}"
-    CFLAGS="-fvisibility=hidden"
-    AC_MSG_CHECKING([for -fvisibility=hidden compiler flag])
-    AC_TRY_COMPILE([], [int main (void) { return 0; }],
-                   AC_MSG_RESULT(yes)
-                   enable_fvisibility_hidden=yes,
-                   AC_MSG_RESULT(no)
-                   enable_fvisibility_hidden=no)
-    CFLAGS="${SAVED_CFLAGS}"
+AS_CASE(["$host"],
 
-    AS_IF([test "${enable_fvisibility_hidden}" = "yes"], [
-      AC_DEFINE([_GRAPHENE_PUBLIC], [__attribute__((visibility("default"))) extern],
-                [defines how to decorate public symbols while building])
-      GRAPHENE_VISIBILITY_CFLAGS="-fvisibility=hidden"
-    ])
-    ;;
-esac
+        [*-*-mingw*],
+        [
+          dnl on mingw32 we do -fvisibility=hidden and __declspec(dllexport)
+          AC_DEFINE([_GRAPHENE_PUBLIC],
+                    [__attribute__((visibility("default"))) __declspec(dllexport) extern],
+                    [defines how to decorate public symbols while building])
+          GRAPHENE_VISIBILITY_CFLAGS="-fvisibility=hidden"
+        ],
+
+        [
+          dnl on other compilers, check if we can do -fvisibility=hidden
+          SAVED_CFLAGS="${CFLAGS}"
+          CFLAGS="-fvisibility=hidden"
+          AC_MSG_CHECKING([for -fvisibility=hidden compiler flag])
+          AC_TRY_COMPILE([], [int main (void) { return 0; }],
+                         [
+                           AC_MSG_RESULT(yes)
+                           enable_fvisibility_hidden=yes
+                         ],
+                         [
+                           AC_MSG_RESULT(no)
+                           enable_fvisibility_hidden=no
+                         ])
+          CFLAGS="${SAVED_CFLAGS}"
+
+          AS_IF([test "${enable_fvisibility_hidden}" = "yes"],
+                [
+                  AC_DEFINE([_GRAPHENE_PUBLIC],
+                            [__attribute__((visibility("default"))) extern],
+                            [defines how to decorate public symbols while building])
+                  GRAPHENE_VISIBILITY_CFLAGS="-fvisibility=hidden"
+                ])
+        ]
+)
 
 dnl === Enable debug level ====================================================
 
@@ -503,7 +514,7 @@ AS_IF([test "x$use_gcov" = "xyes"],
 
         dnl Remove all compiler optimization flags
         changequote({,})
-        GRAPHENE_CFLAGS=`echo "$GRAPHENE_CFLAGS" | $SED -e 's/-O[0-9]*//g'`
+        BASE_CFLAGS=`echo "$BASE_CFLAGS" | $SED -e 's/-O[s0-9]//g'`
         changequote([,])
 
         dnl Define the special gcc flags
