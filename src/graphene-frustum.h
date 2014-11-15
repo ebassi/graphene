@@ -77,6 +77,10 @@ GRAPHENE_AVAILABLE_IN_1_2
 bool                    graphene_frustum_intersects_sphere      (const graphene_frustum_t *f,
                                                                  const graphene_sphere_t  *sphere);
 
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_frustum_get_planes             (const graphene_frustum_t *f,
+                                                                 graphene_plane_t          planes[]);
+
 GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_FRUSTUM_H__ */

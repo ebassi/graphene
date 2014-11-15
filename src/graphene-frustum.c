@@ -191,6 +191,26 @@ graphene_frustum_init_from_matrix (graphene_frustum_t      *f,
 }
 
 /**
+ * graphene_frustum_get_planes:
+ * @f: a #graphene_frustum_t
+ * @planes: (out) (array fixed-size=6): return location for an array
+ *   of 6 #graphene_plane_t
+ *
+ * Retrieves the planes that define the given #graphene_frustum_t.
+ *
+ * Since: 1.2
+ */
+void
+graphene_frustum_get_planes (const graphene_frustum_t *f,
+                             graphene_plane_t          planes[])
+{
+  unsigned int i;
+
+  for (i = 0; i < N_CLIP_PLANES; i++)
+    graphene_plane_init_from_plane (&planes[i], &f->planes[i]);
+}
+
+/**
  * graphene_frustum_contains_point:
  * @f: a #graphene_frustum_t
  * @point: a #graphene_point3d_t
