@@ -37,6 +37,7 @@
 #include "graphene-frustum.h"
 
 #include "graphene-alloc-private.h"
+#include "graphene-box.h"
 #include "graphene-matrix.h"
 #include "graphene-sphere.h"
 #include "graphene-point3d.h"
@@ -268,6 +269,56 @@ graphene_frustum_intersects_sphere (const graphene_frustum_t *f,
       float distance = graphene_plane_distance (&f->planes[i], &center);
 
       if (distance < -sphere->radius)
+        return false;
+    }
+
+  return true;
+}
+
+/**
+ * graphene_frustum_intersects_box:
+ * @f: a #graphene_frustum_t
+ * @box: a #graphene_box_t
+ *
+ * Checks whether the given @box intersects a plane of
+ * a #graphene_frustum_t.
+ *
+ * Returns: `true` if the box intersects the frustum
+ *
+ * Since: 1.2
+ */
+bool
+graphene_frustum_intersects_box (const graphene_frustum_t *f,
+                                 const graphene_box_t     *box)
+{
+  graphene_point3d_t min, max, normal;
+  graphene_point3d_t p0, p1;
+  const graphene_plane_t *plane;
+  unsigned int i;
+  float d0, d1;
+
+  graphene_box_get_min (box, &min);
+  graphene_box_get_max (box, &max);
+
+  for (i = 0; i < N_CLIP_PLANES; i++)
+    {
+      plane = &f->planes[i];
+
+      graphene_point3d_init_from_vec3 (&normal, &(plane->normal));
+
+      p0.x = normal.x > 0 ? min.x : max.x;
+      p1.x = normal.x > 0 ? max.x : min.x;
+
+      p0.y = normal.y > 0 ? min.y : max.y;
+      p1.y = normal.y > 0 ? max.y : min.y;
+
+      p0.z = normal.z > 0 ? min.z : max.z;
+      p1.z = normal.z > 0 ? max.z : min.z;
+
+      d0 = graphene_plane_distance (plane, &p0);
+      d1 = graphene_plane_distance (plane, &p1);
+
+      if (d0 < 0 && d1 < 0)
         return false;
     }
 

@@ -76,6 +76,9 @@ bool                    graphene_frustum_contains_point         (const graphene_
 GRAPHENE_AVAILABLE_IN_1_2
 bool                    graphene_frustum_intersects_sphere      (const graphene_frustum_t *f,
                                                                  const graphene_sphere_t  *sphere);
+GRAPHENE_AVAILABLE_IN_1_2
+bool                    graphene_frustum_intersects_box         (const graphene_frustum_t *f,
+                                                                 const graphene_box_t     *box);
 
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_frustum_get_planes             (const graphene_frustum_t *f,

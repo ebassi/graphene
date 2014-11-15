@@ -45,6 +45,7 @@ graphene_frustum_init_from_matrix
 graphene_frustum_get_planes
 graphene_frustum_contains_point
 graphene_frustum_intersects_sphere
+graphene_frustum_intersects_box
 </SECTION>
 
 <SECTION>
