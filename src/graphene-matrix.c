@@ -39,10 +39,8 @@
  *   | w |    | w.x   w.y   w.z   w.w |
  * ]|
  *
- * The layout of a #graphene_matrix_t matrix in memory will be
- * identical to GL and Direct3D matrices, so it's cheap to convert between
- * #graphene_matrix_t and arrays of floating point values to pass to other
- * API.
+ * It is possible to easily convert a #graphene_matrix_t to and from an array
+ * of floating point values that can be used with other libraries.
  *
  * The contents of a #graphene_matrix_t are private, and direct access is not
  * possible. You can modify and read the contents of a #graphene_matrix_t
@@ -226,9 +224,7 @@ graphene_matrix_init_perspective (graphene_matrix_t *m,
                                   float              z_near,
                                   float              z_far)
 {
-  float fovy_rad;
-
-  fovy_rad = fovy * GRAPHENE_PI / 180.f;
+  float fovy_rad = GRAPHENE_DEG_TO_RAD (fovy);
 
   graphene_simd4x4f_init_perspective (&m->value, fovy_rad, aspect, z_near, z_far);
 
@@ -396,9 +392,7 @@ graphene_matrix_init_rotate (graphene_matrix_t     *m,
                              float                  angle,
                              const graphene_vec3_t *axis)
 {
-  float rad;
-
-  rad = angle * GRAPHENE_PI / 180.f;
+  float rad = GRAPHENE_DEG_TO_RAD (angle);
 
   graphene_simd4x4f_rotation (&m->value, rad, axis->value);
 
@@ -636,7 +630,9 @@ graphene_matrix_get_value (const graphene_matrix_t *m,
                            unsigned int             col)
 {
   graphene_simd4f_t r;
-  float c = 0.f;
+
+  if (row > 3 || col > 3)
+    return 0.f;
 
   switch (row)
     {
@@ -660,29 +656,7 @@ graphene_matrix_get_value (const graphene_matrix_t *m,
       return 0.f;
     }
 
-  switch (col)
-    {
-    case 0:
-      c = graphene_simd4f_get_x (r);
-      break;
-
-    case 1:
-      c = graphene_simd4f_get_y (r);
-      break;
-
-    case 2:
-      c = graphene_simd4f_get_z (r);
-      break;
-
-    case 3:
-      c = graphene_simd4f_get_w (r);
-      break;
-
-    default:
-      return 0;
-    }
-
-  return c;
+  return graphene_simd4f_get (r, col);
 }
 
 /**
@@ -1188,7 +1162,7 @@ graphene_matrix_rotate_internal (graphene_simd4x4f_t *m,
                                  float                angle,
                                  graphene_simd4f_t    axis)
 {
-  float rad = angle * GRAPHENE_PI / 180.f;
+  float rad = GRAPHENE_DEG_TO_RAD (angle);
   graphene_simd4x4f_t rot_m;
 
   graphene_simd4x4f_rotation (&rot_m, rad, axis);
@@ -1307,7 +1281,7 @@ graphene_matrix_skew_xy (graphene_matrix_t *m,
   m_x = m->value.x;
   m_y = m->value.y;
 
-  m->value.y = graphene_simd4f_add (m_y, graphene_simd4f_mul (m_x, graphene_simd4f_splat (factor)));
+  m->value.y = graphene_simd4f_madd (m_x, graphene_simd4f_splat (factor), m_y);
 }
 
 /**
@@ -1328,7 +1302,7 @@ graphene_matrix_skew_xz (graphene_matrix_t *m,
   m_x = m->value.x;
   m_z = m->value.z;
 
-  m->value.z = graphene_simd4f_add (m_z, graphene_simd4f_mul (m_x, graphene_simd4f_splat (factor)));
+  m->value.z = graphene_simd4f_madd (m_x, graphene_simd4f_splat (factor), m_z);
 }
 
 /**
@@ -1349,7 +1323,7 @@ graphene_matrix_skew_yz (graphene_matrix_t *m,
   m_y = m->value.y;
   m_z = m->value.z;
 
-  m->value.z = graphene_simd4f_add (m_z, graphene_simd4f_mul (m_y, graphene_simd4f_splat (factor)));
+  m->value.z = graphene_simd4f_madd (m_y, graphene_simd4f_splat (factor), m_z);
 }
 
 static void
