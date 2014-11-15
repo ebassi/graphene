@@ -39,8 +39,14 @@
 
 #include <math.h>
 
+/*< private >
+ * graphene_rect_normalize_in_place:
+ * @r: (inout): a #graphene_rect_t
+ *
+ * Normalizes the passed #graphene_rect_t.
+ */
 static void
-graphene_rect_normalize_internal (graphene_rect_t *r)
+graphene_rect_normalize_in_place (graphene_rect_t *r)
 {
   if (likely (r->size.width >= 0.f && r->size.height >= 0.f))
     return;
@@ -117,12 +123,10 @@ graphene_rect_init (graphene_rect_t *r,
                     float            width,
                     float            height)
 {
-  r->origin.x = x;
-  r->origin.y = y;
-  r->size.width = width;
-  r->size.height = height;
+  graphene_point_init (&r->origin, x, y);
+  graphene_size_init (&r->size, width, height);
 
-  graphene_rect_normalize_internal (r);
+  graphene_rect_normalize_in_place (r);
 
   return r;
 }
@@ -147,7 +151,7 @@ graphene_rect_init_from_rect (graphene_rect_t       *r,
 {
   *r = *src;
 
-  graphene_rect_normalize_internal (r);
+  graphene_rect_normalize_in_place (r);
 
   return r;
 }
@@ -178,8 +182,8 @@ graphene_rect_equal (const graphene_rect_t *a,
   r_a = *a;
   r_b = *b;
 
-  graphene_rect_normalize_internal (&r_a);
-  graphene_rect_normalize_internal (&r_b);
+  graphene_rect_normalize_in_place (&r_a);
+  graphene_rect_normalize_in_place (&r_b);
 
   return graphene_point_equal (&r_a.origin, &r_b.origin) &&
          graphene_size_equal (&r_a.size, &r_b.size);
@@ -202,7 +206,7 @@ graphene_rect_equal (const graphene_rect_t *a,
 graphene_rect_t *
 graphene_rect_normalize (graphene_rect_t *r)
 {
-  graphene_rect_normalize_internal (r);
+  graphene_rect_normalize_in_place (r);
 
   return r;
 }
@@ -223,7 +227,7 @@ graphene_rect_get_center (const graphene_rect_t  *r,
   graphene_rect_t rr;
 
   rr = *r;
-  graphene_rect_normalize_internal (&rr);
+  graphene_rect_normalize_in_place (&rr);
 
   graphene_point_init (p,
                        rr.origin.x + (rr.size.width / 2.f),
@@ -240,13 +244,13 @@ graphene_rect_get_center (const graphene_rect_t  *r,
  * Since: 1.0
  */
 void
-graphene_rect_get_top_left (const graphene_rect_t  *r,
-                            graphene_point_t       *p)
+graphene_rect_get_top_left (const graphene_rect_t *r,
+                            graphene_point_t      *p)
 {
   graphene_rect_t rr;
 
   rr = *r;
-  graphene_rect_normalize_internal (&rr);
+  graphene_rect_normalize_in_place (&rr);
 
   graphene_point_init_from_point (p, &rr.origin);
 }
@@ -267,7 +271,7 @@ graphene_rect_get_top_right (const graphene_rect_t *r,
   graphene_rect_t rr;
 
   rr = *r;
-  graphene_rect_normalize_internal (&rr);
+  graphene_rect_normalize_in_place (&rr);
 
   graphene_point_init (p, rr.origin.x + rr.size.width, rr.origin.y);
 }
@@ -288,7 +292,7 @@ graphene_rect_get_bottom_left (const graphene_rect_t *r,
   graphene_rect_t rr;
 
   rr = *r;
-  graphene_rect_normalize_internal (&rr);
+  graphene_rect_normalize_in_place (&rr);
 
   graphene_point_init (p, rr.origin.x, rr.origin.y + rr.size.height);
 }
@@ -309,21 +313,21 @@ graphene_rect_get_bottom_right (const graphene_rect_t  *r,
   graphene_rect_t rr;
 
   rr = *r;
-  graphene_rect_normalize_internal (&rr);
+  graphene_rect_normalize_in_place (&rr);
 
   graphene_point_init (p,
                        rr.origin.x + rr.size.width,
                        rr.origin.y + rr.size.height);
 }
 
-#define GRAPHENE_RECT_GET(part,field) \
+#define GRAPHENE_RECT_GET(arg,part,field) \
 float \
-graphene_rect_get_##field (const graphene_rect_t *r) \
+graphene_rect_get_##field (const graphene_rect_t *arg) \
 { \
   graphene_rect_t rr; \
 \
-  rr = *r; \
-  graphene_rect_normalize_internal (&rr); \
+  rr = *arg; \
+  graphene_rect_normalize_in_place (&rr); \
 \
   return rr.part.field; \
 }
@@ -332,14 +336,14 @@ graphene_rect_get_##field (const graphene_rect_t *r) \
  * graphene_rect_get_x:
  * @r: a #graphene_rect_t
  *
- * Retrieves the X coordinate of the origin of the given
+ * Retrieves the normalized X coordinate of the origin of the given
  * rectangle.
  *
- * Returns: the normalized X coordinate of the origin
+ * Returns: the normalized X coordinate of the rectangle
  *
  * Since: 1.0
  */
-GRAPHENE_RECT_GET (origin, x)
+GRAPHENE_RECT_GET (r, origin, x)
 
 /**
  * graphene_rect_get_y:
@@ -348,11 +352,11 @@ GRAPHENE_RECT_GET (origin, x)
  * Retrieves the normalized Y coordinate of the origin of the given
  * rectangle.
  *
- * Returns: the Y coordinate of the origin
+ * Returns: the normalized Y coordinate of the rectangle
  *
  * Since: 1.0
  */
-GRAPHENE_RECT_GET (origin, y)
+GRAPHENE_RECT_GET (r, origin, y)
 
 /**
  * graphene_rect_get_width:
@@ -360,11 +364,11 @@ GRAPHENE_RECT_GET (origin, y)
  *
  * Retrieves the normalized width of the given rectangle.
  *
- * Returns: the width
+ * Returns: the normalized width of the rectangle
  *
  * Since: 1.0
  */
-GRAPHENE_RECT_GET (size, width)
+GRAPHENE_RECT_GET (r, size, width)
 
 /**
  * graphene_rect_get_height:
@@ -372,11 +376,11 @@ GRAPHENE_RECT_GET (size, width)
  *
  * Retrieves the normalized height of the given rectangle.
  *
- * Returns: the height
+ * Returns: the normalized height of the rectangle
  *
  * Since: 1.0
  */
-GRAPHENE_RECT_GET (size, height)
+GRAPHENE_RECT_GET (r, size, height)
 
 #undef GRAPHENE_RECT_GET
 
@@ -400,8 +404,8 @@ graphene_rect_union (const graphene_rect_t *a,
   ra = *a;
   rb = *b;
 
-  graphene_rect_normalize_internal (&ra);
-  graphene_rect_normalize_internal (&rb);
+  graphene_rect_normalize_in_place (&ra);
+  graphene_rect_normalize_in_place (&rb);
 
   res->origin.x = MIN (ra.origin.x, rb.origin.x);
   res->origin.y = MIN (ra.origin.y, rb.origin.y);
@@ -437,8 +441,8 @@ graphene_rect_intersection (const graphene_rect_t *a,
   ra = *a;
   rb = *b;
 
-  graphene_rect_normalize_internal (&ra);
-  graphene_rect_normalize_internal (&rb);
+  graphene_rect_normalize_in_place (&ra);
+  graphene_rect_normalize_in_place (&rb);
 
   x_1 = MAX (ra.origin.x, rb.origin.x);
   y_1 = MAX (ra.origin.y, rb.origin.y);
@@ -477,7 +481,7 @@ graphene_rect_contains_point (const graphene_rect_t  *r,
   graphene_rect_t rr;
 
   rr = *r;
-  graphene_rect_normalize_internal (&rr);
+  graphene_rect_normalize_in_place (&rr);
 
   return p->x >= rr.origin.x &&
          p->y >= rr.origin.y &&
@@ -527,7 +531,7 @@ graphene_rect_offset (graphene_rect_t *r,
                       float            d_x,
                       float            d_y)
 {
-  graphene_rect_normalize_internal (r);
+  graphene_rect_normalize_in_place (r);
 
   r->origin.x += d_x;
   r->origin.y += d_y;
@@ -565,7 +569,7 @@ graphene_rect_inset (graphene_rect_t *r,
                      float            d_x,
                      float            d_y)
 {
-  graphene_rect_normalize_internal (r);
+  graphene_rect_normalize_in_place (r);
 
   r->origin.x += d_x;
   r->origin.y += d_y;
@@ -604,7 +608,7 @@ graphene_rect_inset (graphene_rect_t *r,
 graphene_rect_t *
 graphene_rect_round_to_pixel (graphene_rect_t *r)
 {
-  graphene_rect_normalize_internal (r);
+  graphene_rect_normalize_in_place (r);
 
   r->origin.x = floorf (r->origin.x);
   r->origin.y = floorf (r->origin.y);
@@ -637,10 +641,10 @@ graphene_rect_interpolate (const graphene_rect_t *a,
   graphene_rect_t ra, rb;
 
   ra = *a;
-  graphene_rect_normalize_internal (&ra);
+  graphene_rect_normalize_in_place (&ra);
 
   rb = *b;
-  graphene_rect_normalize_internal (&rb);
+  graphene_rect_normalize_in_place (&rb);
 
 #define INTERPOLATE(r_a,r_b,member,field,p) \
   (r_a).member.field + (((r_b).member.field - ((r_a).member.field)) * (p));
