@@ -330,18 +330,18 @@ graphene_box_intersection (const graphene_box_t *a,
   graphene_vec3_min (&a->max, &b->max, &max);
 
   /* we cheat a bit, and access the SIMD field directly */
-  if (graphene_simd4f_cmp_lt (min.value, max.value))
+  if (graphene_simd4f_cmp_ge (min.value, max.value))
     {
       if (res != NULL)
-        graphene_box_init_from_vec3 (res, &min, &max);
+        graphene_box_init_from_box (res, graphene_box_empty ());
 
-      return true;
+      return false;
     }
 
   if (res != NULL)
-    graphene_box_init_from_box (res, graphene_box_empty ());
+    graphene_box_init_from_vec3 (res, &min, &max);
 
-  return false;
+  return true;
 }
 
 /**
