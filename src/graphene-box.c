@@ -127,7 +127,12 @@ graphene_box_init_from_points (graphene_box_t           *box,
   graphene_box_init_from_box (box, graphene_box_empty ());
 
   for (i = 0; i < n_points; i++)
-    graphene_box_expand (box, &points[i], box);
+    {
+      graphene_vec3_t v;
+
+      graphene_point3d_to_vec3 (&points[i], &v);
+      graphene_box_expand_vec3 (box, &v, box);
+    }
 
   return box;
 }
@@ -254,9 +259,7 @@ graphene_box_expand (const graphene_box_t     *box,
   graphene_vec3_t p;
 
   graphene_point3d_to_vec3 (point, &p);
-
-  graphene_vec3_min (&box->min, &p, &res->min);
-  graphene_vec3_max (&box->max, &p, &res->max);
+  graphene_box_expand_vec3 (box, &p, res);
 }
 
 /**
