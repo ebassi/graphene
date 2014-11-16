@@ -531,13 +531,11 @@ graphene_box_contains_point (const graphene_box_t     *box,
   graphene_point3d_to_vec3 (point, &p);
 
   /* we cheat a bit and access the SIMD directly */
-  if (graphene_simd4f_cmp_lt (p.value, box->min.value))
-    return false;
+  if (graphene_simd4f_cmp_ge (p.value, box->min.value) &&
+      graphene_simd4f_cmp_le (p.value, box->max.value))
+    return true;
 
-  if (graphene_simd4f_cmp_gt (p.value, box->max.value))
-    return false;
-
-  return true;
+  return false;
 }
 
 /**
@@ -557,13 +555,11 @@ graphene_box_contains_box (const graphene_box_t *a,
                            const graphene_box_t *b)
 {
   /* we cheat a bit and access the SIMD directly */
-  if (graphene_simd4f_cmp_lt (b->min.value, a->min.value))
-    return false;
+  if (graphene_simd4f_cmp_ge (b->min.value, a->min.value) &&
+      graphene_simd4f_cmp_le (b->max.value, a->max.value))
+    return true;
 
-  if (graphene_simd4f_cmp_gt (b->max.value, a->max.value))
-    return false;
-
-  return true;
+  return false;
 }
 
 /**
