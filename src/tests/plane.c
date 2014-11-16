@@ -29,7 +29,6 @@ GRAPHENE_TEST_UNIT_END
 
 GRAPHENE_TEST_UNIT_BEGIN (plane_init_normal_point)
 {
-  graphene_point3d_t zero = GRAPHENE_POINT3D_INIT_ZERO;
   graphene_vec3_t normal, check;
   graphene_plane_t *p;
 

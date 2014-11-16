@@ -51,12 +51,24 @@
 
 #endif /* __GNUC__ */
 
+#define GRAPHENE_TEST_UNUSED(var) \
+  if (0) var = var
+
 #define GRAPHENE_TEST_UNIT_BEGIN(name) \
 static void \
 name (void) \
-{
+{ \
+  float x = 2.f, y = 3.f, z = 4.f, w = 5.f; \
+  graphene_point3d_t zero = GRAPHENE_POINT3D_INIT_ZERO; \
+  graphene_point3d_t one = GRAPHENE_POINT3D_INIT (1.f, 1.f, 1.f);
 
 #define GRAPHENE_TEST_UNIT_END \
+  GRAPHENE_TEST_UNUSED (x); \
+  GRAPHENE_TEST_UNUSED (y); \
+  GRAPHENE_TEST_UNUSED (z); \
+  GRAPHENE_TEST_UNUSED (w); \
+  GRAPHENE_TEST_UNUSED (zero); \
+  GRAPHENE_TEST_UNUSED (one); \
 }
 
 #define GRAPHENE_TEST_UNIT(path,name) \
