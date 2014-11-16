@@ -60,7 +60,9 @@ name (void) \
 { \
   float x = 2.f, y = 3.f, z = 4.f, w = 5.f; \
   graphene_point3d_t zero = GRAPHENE_POINT3D_INIT_ZERO; \
-  graphene_point3d_t one = GRAPHENE_POINT3D_INIT (1.f, 1.f, 1.f);
+  graphene_point3d_t one = GRAPHENE_POINT3D_INIT (1.f, 1.f, 1.f); \
+  graphene_point3d_t two = GRAPHENE_POINT3D_INIT (2.f, 2.f, 2.f); \
+  graphene_point3d_t half = GRAPHENE_POINT3D_INIT (.5f, .5f, .5f);
 
 #define GRAPHENE_TEST_UNIT_END \
   GRAPHENE_TEST_UNUSED (x); \
@@ -69,6 +71,8 @@ name (void) \
   GRAPHENE_TEST_UNUSED (w); \
   GRAPHENE_TEST_UNUSED (zero); \
   GRAPHENE_TEST_UNUSED (one); \
+  GRAPHENE_TEST_UNUSED (two); \
+  GRAPHENE_TEST_UNUSED (half); \
 }
 
 #define GRAPHENE_TEST_UNIT(path,name) \

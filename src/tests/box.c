@@ -119,7 +119,6 @@ GRAPHENE_TEST_UNIT_END
 
 GRAPHENE_TEST_UNIT_BEGIN (box_center)
 {
-  const graphene_point3d_t half = GRAPHENE_POINT3D_INIT (.5f, .5f, .5f);
   graphene_point3d_t center;
   graphene_box_t b;
 
