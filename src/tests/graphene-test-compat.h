@@ -50,3 +50,27 @@
   } G_STMT_END
 
 #endif /* __GNUC__ */
+
+#define GRAPHENE_TEST_UNIT_BEGIN(name) \
+static void \
+name (void) \
+{
+
+#define GRAPHENE_TEST_UNIT_END \
+}
+
+#define GRAPHENE_TEST_UNIT(path,name) \
+  g_test_add_func (path, name);
+
+#define GRAPHENE_TEST_SUITE(stanzas) \
+int \
+main (int argc, char *argv[]) \
+{ \
+  g_test_init (&argc, &argv, NULL); \
+\
+  { \
+    stanzas \
+  } \
+\
+  return g_test_run (); \
+}
