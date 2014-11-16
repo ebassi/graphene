@@ -23,6 +23,7 @@ endif
 # source
 source_h = \
 	graphene-box.h \
+	graphene-euler.h \
 	graphene-frustum.h \
 	graphene-macros.h \
 	graphene-matrix.h \
@@ -45,6 +46,7 @@ source_h = \
 source_c = \
 	graphene-alloc.c \
 	graphene-box.c \
+	graphene-euler.c \
 	graphene-frustum.c \
 	graphene-matrix.c \
 	graphene-plane.c \

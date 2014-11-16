@@ -83,6 +83,9 @@ GRAPHENE_AVAILABLE_IN_1_0
 graphene_quaternion_t * graphene_quaternion_init_from_angle_vec3        (graphene_quaternion_t       *q,
                                                                          float                        angle,
                                                                          const graphene_vec3_t       *axis);
+GRAPHENE_AVAILABLE_IN_1_2
+graphene_quaternion_t * graphene_quaternion_init_from_euler             (graphene_quaternion_t       *q,
+                                                                         const graphene_euler_t      *e);
 
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_quaternion_to_vec4                     (const graphene_quaternion_t *q,

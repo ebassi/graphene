@@ -36,12 +36,13 @@
 
 #include "graphene-quaternion.h"
 
+#include "graphene-euler.h"
+#include "graphene-matrix.h"
+#include "graphene-point3d.h"
 #include "graphene-simd4f.h"
 #include "graphene-simd4x4f.h"
 #include "graphene-vec3.h"
 #include "graphene-vec4.h"
-#include "graphene-matrix.h"
-#include "graphene-point3d.h"
 
 #include <math.h>
 
@@ -489,6 +490,86 @@ graphene_quaternion_to_angle_vec3 (const graphene_quaternion_t *q,
 
       graphene_vec3_init (axis, q_n.x / sin_a, q_n.y / sin_a, q_n.z / sin_a);
     }
+}
+
+/**
+ * graphene_quaternion_init_from_euler:
+ * @q: the #graphene_quaternion_t to initialize
+ * @e: a #graphene_euler_t
+ *
+ * Initializes a #graphene_quaternion_t using the given #graphene_euler_t.
+ *
+ * Returns: (transfer none): the initialized #graphene_quaternion_t
+ *
+ * Since: 1.2
+ */
+graphene_quaternion_t *
+graphene_quaternion_init_from_euler (graphene_quaternion_t  *q,
+                                     const graphene_euler_t *e)
+{
+  graphene_euler_order_t order = graphene_euler_get_order (e);
+  float c1 = cosf (GRAPHENE_DEG_TO_RAD (graphene_euler_get_x (e)) / 2.f);
+  float c2 = cosf (GRAPHENE_DEG_TO_RAD (graphene_euler_get_y (e)) / 2.f);
+  float c3 = cosf (GRAPHENE_DEG_TO_RAD (graphene_euler_get_z (e)) / 2.f);
+  float s1 = sinf (GRAPHENE_DEG_TO_RAD (graphene_euler_get_x (e)) / 2.f);
+  float s2 = sinf (GRAPHENE_DEG_TO_RAD (graphene_euler_get_y (e)) / 2.f);
+  float s3 = sinf (GRAPHENE_DEG_TO_RAD (graphene_euler_get_z (e)) / 2.f);
+  float x = 0.f, y = 0.f, z = 0.f, w = 1.f;
+
+  switch (order)
+    {
+    case GRAPHENE_EULER_ORDER_XYZ:
+      x = s1 * c2 * c3 + c1 * s2 * s3;
+      y = c1 * s2 * c3 - s1 * c2 * s3;
+      z = c1 * c2 * s3 + s1 * s2 * c3;
+      w = c1 * c2 * c3 - s1 * s2 * s3;
+      break;
+
+    case GRAPHENE_EULER_ORDER_YXZ:
+      x = s1 * c2 * c3 + c1 * s2 * s3;
+      y = c1 * s2 * c3 - s1 * c2 * s3;
+      z = c1 * c2 * s3 - s1 * s2 * c3;
+      w = c1 * c2 * c3 + s1 * s2 * s3;
+      break;
+
+    case GRAPHENE_EULER_ORDER_ZXY:
+      x = s1 * c2 * c3 - c1 * s2 * s3;
+      y = c1 * s2 * c3 + s1 * c2 * s3;
+      z = c1 * c2 * s3 + s1 * s2 * c3;
+      w = c1 * c2 * c3 - s1 * s2 * s3;
+      break;
+
+    case GRAPHENE_EULER_ORDER_ZYX:
+      x = s1 * c2 * c3 - c1 * s2 * s3;
+      y = c1 * s2 * c3 + s1 * c2 * s3;
+      z = c1 * c2 * s3 - s1 * s2 * c3;
+      w = c1 * c2 * c3 + s1 * s2 * s3;
+      break;
+
+    case GRAPHENE_EULER_ORDER_YZX:
+      x = s1 * c2 * c3 + c1 * s2 * s3;
+      y = c1 * s2 * c3 + s1 * c2 * s3;
+      z = c1 * c2 * s3 - s1 * s2 * c3;
+      w = c1 * c2 * c3 - s1 * s2 * s3;
+      break;
+
+    case GRAPHENE_EULER_ORDER_XZY:
+      x = s1 * c2 * c3 - c1 * s2 * s3;
+      y = c1 * s2 * c3 - s1 * c2 * s3;
+      z = c1 * c2 * s3 + s1 * s2 * c3;
+      w = c1 * c2 * c3 + s1 * s2 * s3;
+      break;
+
+    case GRAPHENE_EULER_ORDER_DEFAULT:
+      break;
+    }
+
+  q->x = x;
+  q->y = y;
+  q->z = z;
+  q->w = w;
+
+  return q;
 }
 
 /**

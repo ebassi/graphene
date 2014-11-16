@@ -62,6 +62,26 @@
 
 #include "graphene-gobject.h"
 
+#define GRAPHENE_ENUM_VALUE(EnumValue,EnumNick) { EnumValue, #EnumValue, EnumNick },
+
+#define GRAPHENE_DEFINE_ENUM_TYPE(TypeName,type_name,values) \
+GType \
+type_name ## _get_type (void) \
+{ \
+  static volatile gsize graphene_define_id__volatile = 0; \
+  if (g_once_init_enter (&graphene_define_id__volatile)) \
+    { \
+      static const GEnumValue v[] = { \
+        values \
+        { 0, NULL, NULL }, \
+      }; \
+      GType graphene_define_id = \
+        g_enum_register_static (g_intern_static_string (#TypeName), v); \
+      g_once_init_leave (&graphene_define_id__volatile, graphene_define_id); \
+    } \
+  return graphene_define_id__volatile; \
+}
+
 #define GRAPHENE_DEFINE_BOXED_TYPE(TypeName,type_name) \
 static type_name ## _t * \
 type_name ## _copy_internal (type_name ## _t *v) \
@@ -119,3 +139,5 @@ GRAPHENE_DEFINE_BOXED_TYPE (GrapheneSphere, graphene_sphere)
 GRAPHENE_DEFINE_BOXED_TYPE (GrapheneBox, graphene_box)
 
 GRAPHENE_DEFINE_BOXED_TYPE (GrapheneTriangle, graphene_triangle)
+
+GRAPHENE_DEFINE_BOXED_TYPE (GrapheneEuler, graphene_euler)
