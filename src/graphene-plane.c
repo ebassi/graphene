@@ -38,6 +38,8 @@
 #include "graphene-vec3.h"
 #include "graphene-vec4.h"
 
+#include <math.h>
+
 /**
  * graphene_plane_alloc: (constructor)
  *
@@ -327,5 +329,5 @@ graphene_plane_equal (const graphene_plane_t *p1,
     return false;
 
   return graphene_vec3_equal (&p1->normal, &p2->normal) &&
-         p1->constant == p2->constant;
+         fabsf (p1->constant- p2->constant) < GRAPHENE_FLOAT_EPSILON;
 }
