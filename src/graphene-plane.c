@@ -74,7 +74,7 @@ graphene_plane_free (graphene_plane_t *p)
 /**
  * graphene_plane_init:
  * @p: the #graphene_plane_t to initialize
- * @normal: a normal vector defining the plane pointing towards the origin
+ * @normal: (optional): a normal vector defining the plane pointing towards the origin
  * @constant: the negative distance from the origin to the plane along the
  *   normal vector
  *
@@ -90,7 +90,11 @@ graphene_plane_init (graphene_plane_t      *p,
                      const graphene_vec3_t *normal,
                      float                  constant)
 {
-  graphene_vec3_init_from_vec3 (&p->normal, normal);
+  if (normal != NULL)
+    graphene_vec3_init_from_vec3 (&p->normal, normal);
+  else
+    graphene_vec3_init_from_vec3 (&p->normal, graphene_vec3_x_axis ());
+
   p->constant = constant;
 
   return p;
