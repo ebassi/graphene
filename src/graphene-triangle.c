@@ -75,9 +75,9 @@ graphene_triangle_free (graphene_triangle_t *t)
 /**
  * graphene_triangle_init_from_point3d:
  * @t: the #graphene_triangle_t to initialize
- * @a: a #graphene_point3d_t
- * @b: a #graphene_point3d_t
- * @c: a #graphene_point3d_t
+ * @a: (nullable): a #graphene_point3d_t
+ * @b: (nullable): a #graphene_point3d_t
+ * @c: (nullable): a #graphene_point3d_t
  *
  * Initializes a #graphene_triangle_t using the three given 3D points.
  *
@@ -91,9 +91,20 @@ graphene_triangle_init_from_point3d (graphene_triangle_t      *t,
                                      const graphene_point3d_t *b,
                                      const graphene_point3d_t *c)
 {
-  graphene_point3d_to_vec3 (a, &t->a);
-  graphene_point3d_to_vec3 (b, &t->b);
-  graphene_point3d_to_vec3 (c, &t->c);
+  if (a != NULL)
+    graphene_point3d_to_vec3 (a, &t->a);
+  else
+    graphene_vec3_init_from_vec3 (&t->a, graphene_vec3_zero ());
+
+  if (b != NULL)
+    graphene_point3d_to_vec3 (b, &t->b);
+  else
+    graphene_vec3_init_from_vec3 (&t->b, graphene_vec3_zero ());
+
+  if (c != NULL)
+    graphene_point3d_to_vec3 (c, &t->c);
+  else
+    graphene_vec3_init_from_vec3 (&t->b, graphene_vec3_zero ());
 
   return t;
 }
@@ -101,9 +112,9 @@ graphene_triangle_init_from_point3d (graphene_triangle_t      *t,
 /**
  * graphene_triangle_init_from_vec3:
  * @t: the #graphene_triangle_t to initialize
- * @a: a #graphene_vec3_t
- * @b: a #graphene_vec3_t
- * @c: a #graphene_vec3_t
+ * @a: (nullable): a #graphene_vec3_t
+ * @b: (nullable): a #graphene_vec3_t
+ * @c: (nullable): a #graphene_vec3_t
  *
  * Initializes a #graphene_triangle_t using the three given vectors.
  *
@@ -117,9 +128,20 @@ graphene_triangle_init_from_vec3 (graphene_triangle_t   *t,
                                   const graphene_vec3_t *b,
                                   const graphene_vec3_t *c)
 {
-  t->a = *a;
-  t->b = *b;
-  t->c = *c;
+  if (a != NULL)
+    t->a = *a;
+  else
+    graphene_vec3_init_from_vec3 (&t->a, graphene_vec3_zero ());
+
+  if (b != NULL)
+    t->b = *b;
+  else
+    graphene_vec3_init_from_vec3 (&t->b, graphene_vec3_zero ());
+
+  if (c != NULL)
+    t->c = *c;
+  else
+    graphene_vec3_init_from_vec3 (&t->c, graphene_vec3_zero ());
 
   return t;
 }
