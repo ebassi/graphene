@@ -3,8 +3,7 @@
 
 #include "graphene-test-compat.h"
 
-static void
-rect_init (void)
+GRAPHENE_TEST_UNIT_BEGIN (rect_init)
 {
   graphene_rect_t *r;
   graphene_rect_t s;
@@ -20,9 +19,9 @@ rect_init (void)
 
   graphene_rect_free (r);
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-rect_normalize (void)
+GRAPHENE_TEST_UNIT_BEGIN (rect_normalize)
 {
   graphene_rect_t r = GRAPHENE_RECT_INIT (10.f, 10.f, -10.f, -10.f);
   graphene_rect_t s = GRAPHENE_RECT_INIT ( 0.f,  0.f,  10.f,  10.f);
@@ -37,9 +36,9 @@ rect_normalize (void)
   graphene_rect_normalize (&r);
   g_assert_true (graphene_rect_equal (&r, &s));
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-rect_equal (void)
+GRAPHENE_TEST_UNIT_BEGIN (rect_equal)
 {
   graphene_rect_t *r, *s;
 
@@ -54,9 +53,9 @@ rect_equal (void)
   graphene_rect_free (r);
   graphene_rect_free (s);
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-rect_contains_point (void)
+GRAPHENE_TEST_UNIT_BEGIN (rect_contains_point)
 {
   graphene_rect_t r = GRAPHENE_RECT_INIT (0.f, 0.f, 10.f, 10.f);
   graphene_point_t p;
@@ -82,9 +81,9 @@ rect_contains_point (void)
   graphene_point_init (&p, 11.f, 11.f);
   g_assert_false (graphene_rect_contains_point (&r, &p));
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-rect_contains_rect (void)
+GRAPHENE_TEST_UNIT_BEGIN (rect_contains_rect)
 {
   graphene_rect_t *r, *s;
 
@@ -99,9 +98,9 @@ rect_contains_rect (void)
   graphene_rect_free (r);
   graphene_rect_free (s);
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-rect_intersect (void)
+GRAPHENE_TEST_UNIT_BEGIN (rect_intersect)
 {
   graphene_rect_t r = GRAPHENE_RECT_INIT (0.f, 0.f, 10.f, 10.f);
   graphene_rect_t s = GRAPHENE_RECT_INIT (5.f, 5.f, 15.f, 15.f);
@@ -121,9 +120,9 @@ rect_intersect (void)
   g_assert_cmpfloat (j.size.width, ==, 0.f);
   g_assert_cmpfloat (j.size.height, ==, 0.f);
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-rect_union (void)
+GRAPHENE_TEST_UNIT_BEGIN (rect_union)
 {
   graphene_rect_t r = GRAPHENE_RECT_INIT (0.f, 0.f, 10.f, 10.f);
   graphene_rect_t s = GRAPHENE_RECT_INIT (5.f, 5.f, 15.f, 15.f);
@@ -133,9 +132,9 @@ rect_union (void)
   g_assert_true (graphene_rect_contains_rect (&u, &r));
   g_assert_true (graphene_rect_contains_rect (&u, &s));
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-rect_offset (void)
+GRAPHENE_TEST_UNIT_BEGIN (rect_offset)
 {
   graphene_rect_t r = GRAPHENE_RECT_INIT (0.f, 0.f, 10.f, 10.f);
 
@@ -145,9 +144,9 @@ rect_offset (void)
   g_assert_cmpfloat (r.size.width, ==, 10.f);
   g_assert_cmpfloat (r.size.height, ==, 10.f);
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-rect_inset (void)
+GRAPHENE_TEST_UNIT_BEGIN (rect_inset)
 {
   graphene_rect_t r = GRAPHENE_RECT_INIT (0.f, 0.f, 10.f, 10.f);
 
@@ -175,9 +174,9 @@ rect_inset (void)
   g_assert_cmpfloat (r.size.width, ==, 0.f);
   g_assert_cmpfloat (r.size.height, ==, 0.f);
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-rect_round_to_pixel (void)
+GRAPHENE_TEST_UNIT_BEGIN (rect_round_to_pixel)
 {
   graphene_rect_t r = GRAPHENE_RECT_INIT (0.5f, 1.9f,  9.3f, 8.7f);
   graphene_rect_t s = GRAPHENE_RECT_INIT (0.0f, 1.0f, 10.0f, 9.0f);
@@ -186,9 +185,9 @@ rect_round_to_pixel (void)
   g_assert_true (graphene_rect_contains_rect (&s, &r));
   g_assert_true (graphene_rect_equal (&r, &s));
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-rect_interpolate (void)
+GRAPHENE_TEST_UNIT_BEGIN (rect_interpolate)
 {
   graphene_rect_t a = GRAPHENE_RECT_INIT ( 0.f, 0.f, 10.f, 10.f);
   graphene_rect_t b = GRAPHENE_RECT_INIT (10.f, 5.f, 30.f, 20.f);
@@ -208,23 +207,18 @@ rect_interpolate (void)
   graphene_rect_interpolate (&a, &b, 0.25, &res);
   g_assert_true (graphene_rect_equal (&c, &res));
 }
+GRAPHENE_TEST_UNIT_END
 
-int
-main (int argc, char *argv[])
-{
-  g_test_init (&argc, &argv, NULL);
-
-  g_test_add_func ("/rect/init", rect_init);
-  g_test_add_func ("/rect/normalize", rect_normalize);
-  g_test_add_func ("/rect/equal", rect_equal);
-  g_test_add_func ("/rect/contains/point", rect_contains_point);
-  g_test_add_func ("/rect/contains/rect", rect_contains_rect);
-  g_test_add_func ("/rect/intersect", rect_intersect);
-  g_test_add_func ("/rect/union", rect_union);
-  g_test_add_func ("/rect/offset", rect_offset);
-  g_test_add_func ("/rect/inset", rect_inset);
-  g_test_add_func ("/rect/round-to-pixel", rect_round_to_pixel);
-  g_test_add_func ("/rect/interpolate", rect_interpolate);
-
-  return g_test_run ();
-}
+GRAPHENE_TEST_SUITE (
+  GRAPHENE_TEST_UNIT ("/rect/init", rect_init)
+  GRAPHENE_TEST_UNIT ("/rect/normalize", rect_normalize)
+  GRAPHENE_TEST_UNIT ("/rect/equal", rect_equal)
+  GRAPHENE_TEST_UNIT ("/rect/contains/point", rect_contains_point)
+  GRAPHENE_TEST_UNIT ("/rect/contains/rect", rect_contains_rect)
+  GRAPHENE_TEST_UNIT ("/rect/intersect", rect_intersect)
+  GRAPHENE_TEST_UNIT ("/rect/union", rect_union)
+  GRAPHENE_TEST_UNIT ("/rect/offset", rect_offset)
+  GRAPHENE_TEST_UNIT ("/rect/inset", rect_inset)
+  GRAPHENE_TEST_UNIT ("/rect/round-to-pixel", rect_round_to_pixel)
+  GRAPHENE_TEST_UNIT ("/rect/interpolate", rect_interpolate)
+)
