@@ -394,6 +394,13 @@ AS_CASE([$enable_debug],
 
 AC_SUBST(GRAPHENE_DEBUG_CFLAGS)
 
+dnl === GLib ==================================================================
+
+PKG_CHECK_MODULES(GLIB,
+                  [glib-2.0 >= glib_req_version],
+                  [has_glib=yes],
+                  [has_glib=no])
+
 dnl === GObject types ancillary libary ========================================
 
 AC_ARG_ENABLE([gobject-types],
@@ -406,7 +413,7 @@ AS_IF([test "x$enable_gobject" = xyes],
       [
         PKG_CHECK_MODULES(GRAPHENE_GOBJECT, [gobject-2.0],
                           [build_gobject=yes],
-                          [build_gobject=disabled])
+                          [build_gobject="disabled (missing GObject)"])
         AS_IF([test "x$build_gobject" = xyes], [GRAPHENE_REQS="$GRAPHENE_REQS gobject-2.0"])
       ],
       [
@@ -426,28 +433,61 @@ AS_IF([test "x$build_gobject" = xyes],
         enable_introspection=disabled
       ])
 
-dnl === Test suite ============================================================
+dnl === Test suite (require GLib) =============================================
 
 AC_ARG_ENABLE([tests],
               [AS_HELP_STRING([--enable-tests], [Enable test suite])],
               [enable_tests=$enableval],
-              [enable_tests=yes])
+              [enable_tests=check])
 
 GLIB_TESTS
 
-AS_IF([test "x$enable_tests" = xyes],
-      [
-        PKG_CHECK_MODULES(GLIB, [glib-2.0 >= glib_req_version],
-                          [build_tests=yes],
-                          [build_tests=no])
-      ],
-      [ build_tests=disabled ])
+AS_CASE([$enable_tests],
+        [check],
+        [
+          AS_IF([test "x$has_glib" = xyes],
+                [build_tests=yes],
+                [build_tests="disabled (missing GLib)"])
+        ],
+        
+        [yes],
+        [
+          AS_IF([test "x$has_glib" = xyes],
+                [build_tests=yes],
+                [AC_MSG_ERROR([Cannot build the test suite without GLib])])
+        ],
 
-AS_IF([test "x$build_tests" = xno -a "x$enable_tests" = xyes],
-      [AC_MSG_ERROR([Cannot build the requested test suite without GLib])])
+        [no],
+        [ build_tests=disabled ])
 
-AC_SUBST(GLIB_CFLAGS)
-AC_SUBST(GLIB_LIBS)
+AM_CONDITIONAL(BUILD_TESTS, [test "x$build_tests" = xyes])
+
+dnl === Benchmarks (require GLib) =============================================
+
+AC_ARG_ENABLE([benchmarks],
+              [AS_HELP_STRING([--enable-benchmarks], [Enable benchmarks])],
+              [enable_benchmarks=$enableval],
+              [enable_benchmarks=check])
+
+AS_CASE([$enable_benchmarks],
+        [check],
+        [
+          AS_IF([test "x$has_glib" = xyes],
+                [build_benchmarks=yes],
+                [build_benchmarks="disabled (missing GLib)"])
+        ],
+
+        [yes],
+        [
+          AS_IF([test "x$has_glib" = xyes],
+                [build_benchmarks=yes],
+                [AC_MSG_ERROR([Cannot build the benchmarks suite without GLib])])
+        ],
+
+        [no],
+        [ build_benchmarks=disabled ])
+
+AM_CONDITIONAL(BUILD_BENCHMARKS, [test "x$build_benchmarks" = xyes])
 
 dnl === Code coverage =========================================================
 
@@ -524,15 +564,6 @@ AS_IF([test "x$use_gcov" = "xyes"],
 
 AM_CONDITIONAL(ENABLE_GCOV, [test "x$use_gcov" = xyes])
 
-dnl === Benchmarks ============================================================
-
-AC_ARG_ENABLE([benchmarks],
-              [AS_HELP_STRING([--enable-benchmarks], [Enable benchmarks])],
-              [build_benchmarks=$enableval],
-              [build_benchmarks=yes])
-
-AM_CONDITIONAL(BUILD_BENCHMARKS, [test "x$build_benchmarks" = xyes])
-
 dnl === API Reference =========================================================
 
 GLIB_PREFIX="`$PKG_CONFIG --variable=prefix glib-2.0`"
@@ -553,6 +584,8 @@ AC_SUBST(GRAPHENE_SIMD)
 AC_SUBST(SSE2_CFLAGS)
 AC_SUBST(SSE2_LDFLAGS)
 AC_SUBST(NEON_CFLAGS)
+AC_SUBST(GLIB_CFLAGS)
+AC_SUBST(GLIB_LIBS)
 
 AC_CONFIG_COMMANDS([src/graphene-config.h],
 [
