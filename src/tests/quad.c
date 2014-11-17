@@ -3,8 +3,7 @@
 
 #include "graphene-test-compat.h"
 
-static void
-quad_bounds (void)
+GRAPHENE_TEST_UNIT_BEGIN (quad_bounds)
 {
   graphene_quad_t p;
   graphene_rect_t r, s;
@@ -38,9 +37,9 @@ quad_bounds (void)
   graphene_rect_get_bottom_left (&r, &p3);
   g_assert_true (graphene_point_equal (graphene_quad_get_point (&p, 3), &p3));
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-quad_contains (void)
+GRAPHENE_TEST_UNIT_BEGIN (quad_contains)
 {
   graphene_point_t p0 = GRAPHENE_POINT_INIT ( 0.f,  0.f);
   graphene_point_t p1 = GRAPHENE_POINT_INIT (10.f,  1.f);
@@ -71,14 +70,9 @@ quad_contains (void)
 
   graphene_quad_free (q);
 }
+GRAPHENE_TEST_UNIT_END
 
-int
-main (int argc, char *argv[])
-{
-  g_test_init (&argc, &argv, NULL);
-
-  g_test_add_func ("/quad/bounds", quad_bounds);
-  g_test_add_func ("/quad/contains", quad_contains);
-
-  return g_test_run ();
-}
+GRAPHENE_TEST_SUITE (
+  GRAPHENE_TEST_UNIT ("/quad/bounds", quad_bounds)
+  GRAPHENE_TEST_UNIT ("/quad/contains", quad_contains)
+)
