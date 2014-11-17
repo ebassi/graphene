@@ -3,26 +3,20 @@
 
 #include "graphene-test-compat.h"
 
-static void
-quaternion_angles_to_from (void)
+GRAPHENE_TEST_UNIT_BEGIN (quaternion_angles_to_from)
 {
   graphene_quaternion_t q;
-  float x, y, z;
+  float a, b, c;
 
   graphene_quaternion_init_from_angles (&q, 90.f, 45.f, -105.f);
-  graphene_quaternion_to_angles (&q, &x, &y, &z);
+  graphene_quaternion_to_angles (&q, &a, &b, &c);
 
-  graphene_assert_fuzzy_equals (x,   90.f, 0.0001);
-  graphene_assert_fuzzy_equals (y,   45.f, 0.0001);
-  graphene_assert_fuzzy_equals (z, -105.f, 0.0001);
+  graphene_assert_fuzzy_equals (a,   90.f, 0.0001);
+  graphene_assert_fuzzy_equals (b,   45.f, 0.0001);
+  graphene_assert_fuzzy_equals (c, -105.f, 0.0001);
 }
+GRAPHENE_TEST_UNIT_END
 
-int
-main (int argc, char *argv[])
-{
-  g_test_init (&argc, &argv, NULL);
-
-  g_test_add_func ("/quaternion/angles/to-from", quaternion_angles_to_from);
-
-  return g_test_run ();
-}
+GRAPHENE_TEST_SUITE (
+  GRAPHENE_TEST_UNIT ("/quaternion/angles/to-from", quaternion_angles_to_from)
+)
