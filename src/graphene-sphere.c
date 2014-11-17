@@ -115,7 +115,7 @@ distance_sq (const graphene_vec3_t *p1,
  * @s: the #graphene_sphere_t to initialize
  * @n_points: the number of #graphene_point3d_t in the @points array
  * @points: (array length=n_points): an array of #graphene_point3d_t
- * @center: (optional): the center of the sphere
+ * @center: (nullable): the center of the sphere
  *
  * Initializes the given #graphene_sphere_t using the given array
  * of 3D coordinates so that the sphere includes them.
@@ -168,7 +168,7 @@ graphene_sphere_init_from_points (graphene_sphere_t        *s,
  * @s: the #graphene_sphere_t to initialize
  * @n_vectors: the number of #graphene_vec3_t in the @vectors array
  * @vectors: (array length=n_vectors): an array of #graphene_vec3_t
- * @center: (optional): the center of the sphere
+ * @center: (nullable): the center of the sphere
  *
  * Initializes the given #graphene_sphere_t using the given array
  * of 3D coordinates so that the sphere includes them.
