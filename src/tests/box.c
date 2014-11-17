@@ -17,8 +17,8 @@ GRAPHENE_TEST_UNIT_BEGIN (box_init_min_max)
 
   graphene_box_get_min (b, &min);
   graphene_box_get_max (b, &max);
-  g_assert_true (graphene_point3d_equal (&min, &zero));
-  g_assert_true (graphene_point3d_equal (&max, &one));
+  g_assert_true (graphene_point3d_equal (&min, &zero3));
+  g_assert_true (graphene_point3d_equal (&max, &one3));
 
   graphene_box_init (b, NULL, NULL);
   g_assert_true (graphene_box_equal (b, graphene_box_zero ()));
@@ -27,8 +27,8 @@ GRAPHENE_TEST_UNIT_BEGIN (box_init_min_max)
 
   graphene_box_get_min (b, &min);
   graphene_box_get_max (b, &max);
-  g_assert_true (graphene_point3d_equal (&min, &zero));
-  g_assert_true (graphene_point3d_equal (&max, &one));
+  g_assert_true (graphene_point3d_equal (&min, &zero3));
+  g_assert_true (graphene_point3d_equal (&max, &one3));
 
   graphene_box_init_from_vec3 (b, NULL, NULL);
   g_assert_true (graphene_box_equal (b, graphene_box_zero ()));
@@ -124,11 +124,11 @@ GRAPHENE_TEST_UNIT_BEGIN (box_center)
 
   graphene_box_init_from_box (&b, graphene_box_zero ());
   graphene_box_get_center (&b, &center);
-  g_assert_true (graphene_point3d_equal (&center, &zero));
+  g_assert_true (graphene_point3d_equal (&center, &zero3));
 
   graphene_box_init_from_box (&b, graphene_box_one ());
   graphene_box_get_center (&b, &center);
-  g_assert_true (graphene_point3d_equal (&center, &half));
+  g_assert_true (graphene_point3d_equal (&center, &half3));
 }
 GRAPHENE_TEST_UNIT_END
 
@@ -183,11 +183,11 @@ GRAPHENE_TEST_UNIT_BEGIN (box_expand_by_point)
   graphene_box_get_size (&b, &size);
   g_assert_true (graphene_vec3_equal (&size, graphene_vec3_zero ()));
 
-  graphene_box_expand (&b, &zero, &b);
+  graphene_box_expand (&b, &zero3, &b);
   graphene_box_get_size (&b, &size);
   g_assert_true (graphene_vec3_equal (&size, graphene_vec3_zero ()));
 
-  graphene_box_expand (&b, &one, &b);
+  graphene_box_expand (&b, &one3, &b);
   graphene_box_get_size (&b, &size);
   g_assert_true (graphene_vec3_equal (&size, graphene_vec3_one ()));
 

@@ -34,7 +34,7 @@ GRAPHENE_TEST_UNIT_BEGIN (plane_init_normal_point)
 
   graphene_vec3_normalize (graphene_vec3_one (), &normal);
 
-  p = graphene_plane_init_from_point (graphene_plane_alloc (), &normal, &zero);
+  p = graphene_plane_init_from_point (graphene_plane_alloc (), &normal, &zero3);
 
   graphene_plane_get_normal (p, &check);
   g_assert_true (graphene_vec3_equal (&check, &normal));

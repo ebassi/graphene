@@ -109,20 +109,20 @@ GRAPHENE_TEST_UNIT_BEGIN (point_interpolate)
 {
   graphene_point3d_t res;
 
-  graphene_point3d_interpolate (&zero, &one, 0.0, &res);
-  g_assert_cmpfloat (res.x, ==, zero.x);
-  g_assert_cmpfloat (res.y, ==, zero.y);
-  g_assert_cmpfloat (res.z, ==, zero.z);
+  graphene_point3d_interpolate (&zero3, &one3, 0.0, &res);
+  g_assert_cmpfloat (res.x, ==, zero3.x);
+  g_assert_cmpfloat (res.y, ==, zero3.y);
+  g_assert_cmpfloat (res.z, ==, zero3.z);
 
-  graphene_point3d_interpolate (&zero, &one, 0.5, &res);
-  g_assert_cmpfloat (res.x, ==, half.x);
-  g_assert_cmpfloat (res.y, ==, half.y);
-  g_assert_cmpfloat (res.z, ==, half.z);
+  graphene_point3d_interpolate (&zero3, &one3, 0.5, &res);
+  g_assert_cmpfloat (res.x, ==, half3.x);
+  g_assert_cmpfloat (res.y, ==, half3.y);
+  g_assert_cmpfloat (res.z, ==, half3.z);
 
-  graphene_point3d_interpolate (&zero, &one, 1.0, &res);
-  g_assert_cmpfloat (res.x, ==, one.x);
-  g_assert_cmpfloat (res.y, ==, one.y);
-  g_assert_cmpfloat (res.z, ==, one.z);
+  graphene_point3d_interpolate (&zero3, &one3, 1.0, &res);
+  g_assert_cmpfloat (res.x, ==, one3.x);
+  g_assert_cmpfloat (res.y, ==, one3.y);
+  g_assert_cmpfloat (res.z, ==, one3.z);
 }
 GRAPHENE_TEST_UNIT_END
 
