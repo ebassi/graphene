@@ -77,6 +77,7 @@ The "no block for single statements" rule has only three exceptions:
  1.  if the single statement covers multiple lines, e.g. for functions with
      many arguments, and it is followed by else or else if:
 
+```
     /* valid */
     if (condition)
       {
@@ -87,9 +88,11 @@ The "no block for single statements" rule has only three exceptions:
       }
     else
       another_single_statement (arg1, arg2);
+```
 
  2.  if the condition is composed of many lines:
 
+```
     /* valid */
     if (condition1 ||
         (condition2 && condition3) ||
@@ -98,10 +101,11 @@ The "no block for single statements" rule has only three exceptions:
       {
         a_single_statement ();
       }
+```
 
  3.  Nested if's, in which case the block should be placed on the
      outermost if:
-
+```
     /* valid */
     if (condition)
       {
@@ -117,6 +121,7 @@ The "no block for single statements" rule has only three exceptions:
         single_statement ();
       else if (yet_another_condition)
         another_single_statement ();
+```
 
 In general, new blocks should be placed on a new indentation level,
 like:
