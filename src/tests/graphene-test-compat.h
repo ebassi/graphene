@@ -87,6 +87,7 @@ int \
 main (int argc, char *argv[]) \
 { \
   g_test_init (&argc, &argv, NULL); \
+  g_test_bug_base ("https://github.com/ebassi/graphene/issues/%s"); \
 \
   { \
     stanzas \
