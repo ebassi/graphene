@@ -3,8 +3,7 @@
 
 #include "graphene-test-compat.h"
 
-static void
-size_zero (void)
+GRAPHENE_TEST_UNIT_BEGIN (size_zero)
 {
   const graphene_size_t *zero;
   graphene_size_t *s;
@@ -22,9 +21,9 @@ size_zero (void)
 
   graphene_size_free (s);
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-size_equal (void)
+GRAPHENE_TEST_UNIT_BEGIN (size_equal)
 {
   const graphene_size_t *zero;
 
@@ -34,9 +33,9 @@ size_equal (void)
   g_assert_false (graphene_size_equal (zero, NULL));
   g_assert_false (graphene_size_equal (NULL, zero));
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-size_init (void)
+GRAPHENE_TEST_UNIT_BEGIN (size_init)
 {
   graphene_size_t s;
 
@@ -44,9 +43,9 @@ size_init (void)
   g_assert_cmpfloat (s.width, ==, 10.f);
   g_assert_cmpfloat (s.height, ==, 20.f);
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-size_scale (void)
+GRAPHENE_TEST_UNIT_BEGIN (size_scale)
 {
   graphene_size_t s, r;
 
@@ -57,9 +56,9 @@ size_scale (void)
   g_assert_cmpfloat (s.width, ==, (r.width * 2.f));
   g_assert_cmpfloat (s.height, ==, (r.height * 2.f));
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-size_interpolate (void)
+GRAPHENE_TEST_UNIT_BEGIN (size_interpolate)
 {
   graphene_size_t a, b, half, res;
 
@@ -76,17 +75,12 @@ size_interpolate (void)
   graphene_size_interpolate (&a, &b, 0.5, &res);
   g_assert_true (graphene_size_equal (&half, &res));
 }
+GRAPHENE_TEST_UNIT_END
 
-int
-main (int argc, char *argv[])
-{
-  g_test_init (&argc, &argv, NULL);
-
-  g_test_add_func ("/size/init", size_init);
-  g_test_add_func ("/size/zero", size_zero);
-  g_test_add_func ("/size/equal", size_equal);
-  g_test_add_func ("/size/scale", size_scale);
-  g_test_add_func ("/size/interpolate", size_interpolate);
-
-  return g_test_run ();
-}
+GRAPHENE_TEST_SUITE (
+  GRAPHENE_TEST_UNIT ("/size/init", size_init)
+  GRAPHENE_TEST_UNIT ("/size/zero", size_zero)
+  GRAPHENE_TEST_UNIT ("/size/equal", size_equal)
+  GRAPHENE_TEST_UNIT ("/size/scale", size_scale)
+  GRAPHENE_TEST_UNIT ("/size/interpolate", size_interpolate)
+)
