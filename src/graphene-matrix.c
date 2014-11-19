@@ -1122,7 +1122,7 @@ graphene_matrix_unproject_point3d (const graphene_matrix_t  *projection,
   graphene_vec4_t v;
   float inv_w;
 
-  graphene_matrix_inverse (projection, &tmp);
+  graphene_matrix_inverse (projection, &inv_projection);
   graphene_matrix_multiply (&inv_projection, modelview, &tmp);
 
   graphene_vec4_init (&v, point->x, point->y, point->z, 1.f);
