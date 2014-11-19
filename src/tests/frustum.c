@@ -41,6 +41,17 @@ GRAPHENE_TEST_UNIT_BEGIN (frustum_contains_point)
 
   g_assert_false (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 0.f, 0.f, 0.f)));
   g_assert_true (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 0.f, 0.f, -50.f)));
+  g_assert_true (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 0.f, 0.f, -1.001f)));
+  g_assert_true (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, -1.f, -1.f, -1.001f)));
+  g_assert_false (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, -1.1f, -1.1f, -1.001f)));
+  g_assert_true (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 1.f, 1.f, -1.001f)));
+  g_assert_false (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 1.1f, 1.1f, -1.001f)));
+  g_assert_true (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 0.f, 0.f, -100.f)));
+  g_assert_true (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, -1.f, -1.f, -100.f)));
+  g_assert_false (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, -1.1f, -1.1f, -100.1f)));
+  g_assert_true (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 1.f, 1.f, -100.f)));
+  g_assert_false (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 1.1f, 1.1f, -100.1f)));
+  g_assert_false (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 0.f, 0.f, -101.f)));
 }
 GRAPHENE_TEST_UNIT_END
 
