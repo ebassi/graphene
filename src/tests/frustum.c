@@ -30,6 +30,21 @@ GRAPHENE_TEST_UNIT_BEGIN (frustum_init)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (frustum_contains_point)
+{
+  graphene_matrix_t m;
+  graphene_frustum_t f;
+  graphene_point3d_t p;
+
+  graphene_matrix_init_ortho (&m, -1.f, 1.f, -1.f, 1.f, 1.f, 100.f);
+  graphene_frustum_init_from_matrix (&f, &m);
+
+  g_assert_false (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 0.f, 0.f, 0.f)));
+  g_assert_true (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 0.f, 0.f, -50.f)));
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/frustum/init", frustum_init)
+  GRAPHENE_TEST_UNIT ("/frustum/contains-point", frustum_contains_point)
 )
