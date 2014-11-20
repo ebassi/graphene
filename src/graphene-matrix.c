@@ -290,6 +290,38 @@ graphene_matrix_init_look_at (graphene_matrix_t     *m,
 }
 
 /**
+ * graphene_matrix_init_frustum:
+ * @m: a #graphene_matrix_t
+ * @left: distance of the left clipping plane
+ * @right: distance of the right clipping plane
+ * @bottom: distance of the bottom clipping plane
+ * @top: distance of the top clipping plane
+ * @z_near: distance of the near clipping plane
+ * @z_far: distance of the far clipping plane
+ *
+ * Initializes a #graphene_matrix_t compatible with #graphene_frustum_t.
+ *
+ * See also: graphene_frustum_init_from_matrix()
+ *
+ * Returns: (transfer none): the initialized matrix
+ *
+ * Since: 1.2
+ */
+graphene_matrix_t *
+graphene_matrix_init_frustum (graphene_matrix_t *m,
+                              float              left,
+                              float              right,
+                              float              bottom,
+                              float              top,
+                              float              z_near,
+                              float              z_far)
+{
+  graphene_simd4x4f_init_frustum (&m->value, left, right, bottom, top, z_near, z_far);
+
+  return m;
+}
+
+/**
  * graphene_matrix_init_scale:
  * @m: a #graphene_matrix_t
  * @x: the scale factor on the X axis

@@ -80,6 +80,14 @@ graphene_matrix_t *     graphene_matrix_init_look_at            (graphene_matrix
                                                                  const graphene_vec3_t    *eye,
                                                                  const graphene_vec3_t    *center,
                                                                  const graphene_vec3_t    *up);
+GRAPHENE_AVAILABLE_IN_1_2
+graphene_matrix_t *     graphene_matrix_init_frustum            (graphene_matrix_t        *m,
+                                                                 float                     left,
+                                                                 float                     right,
+                                                                 float                     bottom,
+                                                                 float                     top,
+                                                                 float                     z_near,
+                                                                 float                     z_far);
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_matrix_t *     graphene_matrix_init_scale              (graphene_matrix_t        *m,
                                                                  float                     x,
