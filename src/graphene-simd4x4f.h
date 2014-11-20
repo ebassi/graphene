@@ -533,6 +533,37 @@ graphene_simd4x4f_init_look_at (graphene_simd4x4f_t *m,
 }
 
 /**
+ * graphene_simd4x4f_init_frustum:
+ *
+ * Initializes a SIMD matrix with a frustum described by the distances
+ * of six clipping planes.
+ *
+ * Since: 1.2
+ */
+static inline void
+graphene_simd4x4f_init_frustum (graphene_simd4x4f_t *m,
+                                float                left,
+                                float                right,
+                                float                bottom,
+                                float                top,
+                                float                z_near,
+                                float                z_far)
+{
+  float x = 2.f * z_near / (right - left);
+  float y = 2.f * z_near / (top - bottom);
+
+  float a = (right + left) / (right - left);
+  float b = (top + bottom) / (top - bottom);
+  float c = -1.f * (z_far + z_near) / (z_far - z_near);
+  float d = -2.f * z_far * z_near / (z_far - z_near);
+
+  m->x = graphene_simd4f_init (  x, 0.f, 0.f,  0.f);
+  m->y = graphene_simd4f_init (0.f,   y, 0.f,  0.f);
+  m->z = graphene_simd4f_init (  a,   b,   c, -1.f);
+  m->w = graphene_simd4f_init (0.f, 0.f,   d,  0.f);
+}
+
+/**
  * graphene_simd4x4f_perspective:
  * @m: a #graphene_simd4x4f_t
  * @depth: depth of the perspective
