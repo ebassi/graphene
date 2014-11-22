@@ -214,6 +214,69 @@ always go at the end of the line:
         do_blah ();
       }
 
+### Types
+
+All public types in Graphene should conform to the `<namespace>_<type>_t`
+pattern, e.g.:
+
+    /* valid */
+    typedef struct _graphene_quaternion_t	graphene_quaternion_t;
+
+    /* valid */
+    typedef enum {
+      ...
+    } graphene_euler_order_t;
+
+    /* invalid */
+    typedef struct _foo_bar_t	foo_bar_t;
+
+    /* invalid */
+    typedef enum {
+      ...
+    } GrapheneBlah;
+
+CamelCase is not allowed in the public API, and it's strongly discouraged
+for the internals as well.
+
+All public types should have public structure definitions, but if fields are
+to be considered private then you should add them at the end of the
+structure definition, and use the `GRAPHENE_PRIVATE_FIELD` macro to declare
+them, e.g.:
+
+    /* valid */
+    struct _graphene_euler_t
+    {
+      GRAPHENE_PRIVATE_FIELD (graphene_vec3_t, angles);
+      GRAPHENE_PRIVATE_FIELD (graphene_euler_order_t, order);
+    };
+
+    /* invalid */
+    struct _graphene_foo_t
+    {
+      graphene_vec4_t __some_private_field;
+      graphene_vec4_t public_field;
+    };
+
+All public types should have the following functions:
+
+ * a `graphene_<type>_alloc()` allocator; the contents of the structure
+   returned by this function are undefined
+ * a `graphene_<type>_free()` deallocator; this function should be NULL-safe
+ * a `graphene_<type>_init()` initializer
+
+All initializer functions should take a pointer of the type they initialize
+as their first argument, and return the initialized structure, e.g.:
+
+    /* valid */
+    graphene_rect_t *	graphene_rect_init	(graphene_rect_t *rect,
+    						 float            x,
+    						 float            y,
+						 float            width,
+						 float            height);
+
+All types should be usable on the stack, after being initialized; the
+behaviour of a type before initialization is undefined.
+
 ### Functions
 
 Functions should be declared by placing the returned value on a separate
