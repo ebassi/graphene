@@ -10,7 +10,7 @@ and consistent answers to common questions regarding the coding style,
 and will also try to identify the allowed exceptions.
 
 The examples will show the preferred coding style; the negative examples
-will be clearly identified. Please, don't submit code to Clutter that
+will be clearly identified. Please, don't submit code to Graphene that
 looks like any of these.
 
 Part of the rationales for these coding style rules are available either
@@ -37,7 +37,7 @@ using tab characters alone, or using a combination of spaces and tabs.
 
 Do not change the editor's configuration to change the meaning of a
 tab character (see below); code using tabs to indent will not be accepted
-into Clutter.
+into Graphene.
 
 Even if two spaces for each indentation level allows deeper nesting than
 8 spaces, Graphene favours self-documenting function names that can take
@@ -371,7 +371,7 @@ patch for review.
 
 ### Headers
 
-Headers are special, for Clutter, in that they don't have to obey the
+Headers are special, for Graphene, in that they don't have to obey the
 80 characters limit. The only major rule for headers is that the functions
 definition should be vertically aligned in three columns:
 
@@ -385,7 +385,7 @@ column:
     bool        graphene_type_set_property (graphene_type_t  *type,
                                             const char       *value,
                                             char            **out_value);
-    const char *clutter_type_get_property (ClutterType  *type);
+    const char *graphene_type_get_property (graphene_type_t  *type);
 
 It is also possible to align the columns to the next tab:
 
@@ -496,7 +496,7 @@ after the license header:
      */
 
 To properly document a new function, macro, function type or struct,
-it needs to be listed in the clutter-sections.txt file.
+it needs to be listed in the graphene-sections.txt file.
 
 To properly document a new type, it needs to be given its own section
 in `graphene-sections.txt`, and it needs to be included in `graphene-docs.xml`.
