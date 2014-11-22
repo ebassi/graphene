@@ -14,6 +14,7 @@ dist_uninstalled_test_data = graphene-test-compat.h
 
 test_programs = \
 	box \
+	euler \
 	frustum \
 	matrix \
 	plane \

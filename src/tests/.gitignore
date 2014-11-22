@@ -6,6 +6,7 @@
 /*.gcda
 /*.gcno
 /box
+/euler
 /frustum
 /matrix
 /plane
