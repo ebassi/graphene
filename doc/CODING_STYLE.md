@@ -50,8 +50,10 @@ The tab character must always be expanded to spaces. If a literal
 tab must be used inside the source, the tab must always be interpreted
 according to its traditional meaning:
 
+```
 	Advance to the next column which is a multiple of 8.
         [ these two lines should be aligned ]
+```
 
 ### Braces
 
