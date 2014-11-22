@@ -126,6 +126,7 @@ Graphene provides common types needed to handle 3D transformations:
  * rectangles
  * quads
  * quaternions
+ * euler angles
  * vectors (2, 3, or 4-sized)
  * matrices
  * planes
