@@ -534,6 +534,13 @@ graphene_simd4x4f_init_look_at (graphene_simd4x4f_t *m,
 
 /**
  * graphene_simd4x4f_init_frustum:
+ * @m: a #graphene_simd4x4f_t
+ * @left: distance of the left clipping plane
+ * @right: distance of the right clipping plane
+ * @bottom: distance of the bottom clipping plane
+ * @top: distance of the top clipping plane
+ * @z_near: distance of the near clipping plane
+ * @z_far: distance of the far clipping plane
  *
  * Initializes a SIMD matrix with a frustum described by the distances
  * of six clipping planes.
