@@ -269,10 +269,10 @@ as their first argument, and return the initialized structure, e.g.:
 
     /* valid */
     graphene_rect_t *	graphene_rect_init	(graphene_rect_t *rect,
-    						 float            x,
-    						 float            y,
-						 float            width,
-						 float            height);
+                                                 float            x,
+                                                 float            y,
+                                                 float            width,
+                                                 float            height);
 
 All types should be usable on the stack, after being initialized; the
 behaviour of a type before initialization is undefined.
