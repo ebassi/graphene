@@ -268,7 +268,7 @@ All initializer functions should take a pointer of the type they initialize
 as their first argument, and return the initialized structure, e.g.:
 
     /* valid */
-    graphene_rect_t *	graphene_rect_init	(graphene_rect_t *rect,
+    graphene_rect_t *   graphene_rect_init      (graphene_rect_t *rect,
                                                  float            x,
                                                  float            y,
                                                  float            width,
