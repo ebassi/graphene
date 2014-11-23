@@ -224,6 +224,12 @@ void                    graphene_matrix_rotate_y                (graphene_matrix
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_rotate_z                (graphene_matrix_t        *m,
                                                                  float                     angle);
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_matrix_rotate_quaternion       (graphene_matrix_t        *m,
+                                                                 const graphene_quaternion_t *q);
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_matrix_rotate_euler            (graphene_matrix_t        *m,
+                                                                 const graphene_euler_t   *e);
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_scale                   (graphene_matrix_t        *m,
                                                                  float                     factor_x,

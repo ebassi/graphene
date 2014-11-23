@@ -53,13 +53,14 @@
 
 #include "graphene-alloc-private.h"
 #include "graphene-box.h"
+#include "graphene-euler.h"
 #include "graphene-point.h"
 #include "graphene-point3d.h"
+#include "graphene-quad.h"
+#include "graphene-quaternion.h"
 #include "graphene-rect.h"
 #include "graphene-simd4x4f.h"
-#include "graphene-quad.h"
 #include "graphene-sphere.h"
-#include "graphene-quaternion.h"
 #include "graphene-vectors-private.h"
 
 #include <stdio.h>
@@ -1189,6 +1190,46 @@ graphene_matrix_translate (graphene_matrix_t        *m,
   graphene_simd4x4f_matrix_mul (&m->value, &trans_m, &m->value);
 }
 
+/**
+ * graphene_matrix_rotate_quaternion:
+ * @m: a #graphene_matrix_t
+ * @q: a rotation described by a #graphene_quaternion_t
+ *
+ * Adds a rotation transformation to @m, using the given
+ * #graphene_quaternion_t.
+ *
+ * Since: 1.2
+ */
+void
+graphene_matrix_rotate_quaternion (graphene_matrix_t           *m,
+                                   const graphene_quaternion_t *q)
+{
+  graphene_matrix_t rot;
+
+  graphene_quaternion_to_matrix (q, &rot);
+  graphene_matrix_multiply (m, &rot, m);
+}
+
+/**
+ * graphene_matrix_rotate_euler:
+ * @m: a #graphene_matrix_t
+ * @e: a rotation described by a #graphene_euler_t
+ *
+ * Adds a rotation transformation to @m, using the given
+ * #graphene_euler_t.
+ *
+ * Since: 1.2
+ */
+void
+graphene_matrix_rotate_euler (graphene_matrix_t      *m,
+                              const graphene_euler_t *e)
+{
+  graphene_quaternion_t q;
+
+  graphene_quaternion_init_from_euler (&q, e);
+  graphene_matrix_rotate_quaternion (m, &q);
+}
+
 static inline void
 graphene_matrix_rotate_internal (graphene_simd4x4f_t *m,
                                  float                angle,
@@ -1729,7 +1770,6 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
 
   graphene_point3d_t scale_r = { 1.f, 1.f, 1.f }, translate_r;
   graphene_quaternion_t rotate_r;
-  graphene_matrix_t tmp;
   float shear;
 
   if (graphene_matrix_is_2d (a) &&
@@ -1754,9 +1794,7 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
   graphene_matrix_translate (res, &translate_r);
 
   graphene_quaternion_slerp (&rotate_a, &rotate_b, factor, &rotate_r);
-  graphene_quaternion_to_matrix (&rotate_r, &tmp);
-  if (!graphene_matrix_is_identity (&tmp))
-    graphene_matrix_multiply (res, &tmp, res);
+  graphene_matrix_rotate_quaternion (res, &rotate_r);
 
   shear = shear_a[YZ_SHEAR] + (shear_b[YZ_SHEAR] - shear_a[YZ_SHEAR]) * factor;
   if (shear != 0.f)
