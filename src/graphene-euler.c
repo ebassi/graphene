@@ -263,7 +263,10 @@ graphene_euler_init_from_matrix (graphene_euler_t        *e,
       break;
     }
 
-  graphene_vec3_init (&e->angles, x, y, z);
+  graphene_vec3_init (&e->angles,
+                      GRAPHENE_RAD_TO_DEG (x),
+                      GRAPHENE_RAD_TO_DEG (y),
+                      GRAPHENE_RAD_TO_DEG (z));
 
   return e;
 }
@@ -344,7 +347,10 @@ graphene_euler_init_from_quaternion (graphene_euler_t            *e,
       break;
     }
 
-  graphene_vec3_init (&e->angles, x, y, z);
+  graphene_vec3_init (&e->angles,
+                      GRAPHENE_RAD_TO_DEG (x),
+                      GRAPHENE_RAD_TO_DEG (y),
+                      GRAPHENE_RAD_TO_DEG (z));
 
   return e;
 }
