@@ -587,18 +587,16 @@ bool
 graphene_quaternion_equal (const graphene_quaternion_t *a,
                            const graphene_quaternion_t *b)
 {
-  graphene_simd4f_t v_a, v_b;
-
   if (a == b)
     return true;
 
   if (a == NULL || b == NULL)
     return false;
 
-  v_a = graphene_simd4f_init (a->x, a->y, a->z, a->w);
-  v_b = graphene_simd4f_init (b->x, b->y, b->z, b->w);
-
-  return graphene_simd4f_cmp_eq (v_a, v_b);
+  return fabsf (a->x - b->x) < 0.00001 &&
+         fabsf (a->y - b->y) < 0.00001 &&
+         fabsf (a->z - b->z) < 0.00001 &&
+         fabsf (a->w - b->w) < 0.00001;
 }
 
 /**
