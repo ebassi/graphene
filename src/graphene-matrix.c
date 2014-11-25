@@ -1224,10 +1224,10 @@ void
 graphene_matrix_rotate_euler (graphene_matrix_t      *m,
                               const graphene_euler_t *e)
 {
-  graphene_quaternion_t q;
+  graphene_matrix_t rot;
 
-  graphene_quaternion_init_from_euler (&q, e);
-  graphene_matrix_rotate_quaternion (m, &q);
+  graphene_euler_to_matrix (e, &rot);
+  graphene_matrix_multiply (m, &rot, m);
 }
 
 static inline void
