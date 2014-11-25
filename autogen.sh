@@ -5,16 +5,7 @@ test -n "$srcdir" || srcdir=`dirname "$0"`
 test -n "$srcdir" || srcdir=.
 
 olddir=`pwd`
-
 cd $srcdir
-PROJECT=Graphene
-TEST_TYPE=-f
-FILE=src/graphene.h
-
-test $TEST_TYPE $FILE || {
-	echo "You must run this script in the top-level $PROJECT directory"
-	exit 1
-}
 
 AUTORECONF=`which autoreconf`
 if test -z $AUTORECONF; then
