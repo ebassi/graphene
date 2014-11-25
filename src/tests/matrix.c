@@ -18,8 +18,7 @@
       g_print ("\n"); \
   }                                     } G_STMT_END
 
-static void
-matrix_identity (void)
+GRAPHENE_TEST_UNIT_BEGIN (matrix_identity)
 {
   graphene_matrix_t m;
   float v[16];
@@ -43,9 +42,9 @@ matrix_identity (void)
   graphene_matrix_scale (&m, 2.0f, 2.0f, 2.0f);
   g_assert_false (graphene_matrix_is_identity (&m));
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-matrix_rotation (void)
+GRAPHENE_TEST_UNIT_BEGIN (matrix_rotation)
 {
   graphene_matrix_t m;
   graphene_matrix_t m2;
@@ -69,9 +68,9 @@ matrix_rotation (void)
 
   compare_matrices (&m, &m2);
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-matrix_translation (void)
+GRAPHENE_TEST_UNIT_BEGIN (matrix_translation)
 {
   graphene_matrix_t m;
   graphene_matrix_t m2;
@@ -90,9 +89,9 @@ matrix_translation (void)
 
   compare_matrices (&m, &m2);
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-matrix_scale (void)
+GRAPHENE_TEST_UNIT_BEGIN (matrix_scale)
 {
   graphene_matrix_t m;
   graphene_matrix_t m2;
@@ -112,9 +111,9 @@ matrix_scale (void)
   g_assert_cmpfloat (graphene_matrix_get_y_scale (&m), ==, graphene_matrix_get_y_scale (&m2));
   g_assert_cmpfloat (graphene_matrix_get_z_scale (&m), ==, graphene_matrix_get_z_scale (&m2));
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-matrix_invert (void)
+GRAPHENE_TEST_UNIT_BEGIN (matrix_invert)
 {
   graphene_matrix_t m;
   graphene_matrix_t identity;
@@ -170,9 +169,9 @@ matrix_invert (void)
   graphene_matrix_print (&res);
   */
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-matrix_neutral_element (void)
+GRAPHENE_TEST_UNIT_BEGIN (matrix_neutral_element)
 {
   graphene_matrix_t identity;
   graphene_matrix_t scale;
@@ -199,9 +198,9 @@ matrix_neutral_element (void)
   graphene_matrix_init_translate (&translation, &null_vector);
   g_assert_true (graphene_matrix_is_identity (&translation));
 }
+GRAPHENE_TEST_UNIT_END
 
-static void
-matrix_look_at (void)
+GRAPHENE_TEST_UNIT_BEGIN (matrix_look_at)
 {
   graphene_matrix_t m;
   graphene_vec3_t neg_z_axis;
@@ -304,19 +303,14 @@ matrix_look_at (void)
   graphene_assert_fuzzy_equals (graphene_vec4_get_w (&res), 1, 0.01f);
 #endif
 }
+GRAPHENE_TEST_UNIT_END
 
-int
-main (int argc, char *argv[])
-{
-  g_test_init (&argc, &argv, NULL);
-
-  g_test_add_func ("/matrix/identity", matrix_identity);
-  g_test_add_func ("/matrix/scale", matrix_scale);
-  g_test_add_func ("/matrix/rotation", matrix_rotation);
-  g_test_add_func ("/matrix/translation", matrix_translation);
-  g_test_add_func ("/matrix/neutral_element", matrix_neutral_element);
-  g_test_add_func ("/matrix/look_at", matrix_look_at);
-  g_test_add_func ("/matrix/invert", matrix_invert);
-
-  return g_test_run ();
-}
+GRAPHENE_TEST_SUITE (
+  GRAPHENE_TEST_UNIT ("/matrix/identity", matrix_identity)
+  GRAPHENE_TEST_UNIT ("/matrix/scale", matrix_scale)
+  GRAPHENE_TEST_UNIT ("/matrix/rotation", matrix_rotation)
+  GRAPHENE_TEST_UNIT ("/matrix/translation", matrix_translation)
+  GRAPHENE_TEST_UNIT ("/matrix/neutral_element", matrix_neutral_element)
+  GRAPHENE_TEST_UNIT ("/matrix/look_at", matrix_look_at)
+  GRAPHENE_TEST_UNIT ("/matrix/invert", matrix_invert)
+)
