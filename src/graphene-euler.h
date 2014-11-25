@@ -128,6 +128,7 @@ void                    graphene_euler_to_matrix                (const graphene_
 
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_euler_reorder                  (const graphene_euler_t      *e,
+                                                                 graphene_euler_order_t       order,
                                                                  graphene_euler_t            *res);
 
 GRAPHENE_END_DECLS

@@ -623,26 +623,25 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
 /**
  * graphene_euler_reorder:
  * @e: a #graphene_euler_t
+ * @order: the new order
  * @res: (out caller-allocates): return location for the reordered
  *   #graphene_euler_t
  *
- * Reorders a #graphene_euler_t.
+ * Reorders a #graphene_euler_t using @order.
  *
  * This function is equivalent to creating a #graphene_quaternion_t from the
  * given #graphene_euler_t, and then converting the quaternion into another
  * #graphene_euler_t.
  *
- * This function does not preserve the order of @e when reordering, and
- * sets the order of @res to %GRAPHENE_EULER_ORDER_DEFAULT.
- *
  * Since: 1.2
  */
 void
 graphene_euler_reorder (const graphene_euler_t *e,
+                        graphene_euler_order_t  order,
                         graphene_euler_t       *res)
 {
   graphene_quaternion_t q;
 
   graphene_quaternion_init_from_euler (&q, e);
-  graphene_euler_init_from_quaternion (res, &q, GRAPHENE_EULER_ORDER_DEFAULT);
+  graphene_euler_init_from_quaternion (res, &q, order);
 }
