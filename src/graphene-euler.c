@@ -524,6 +524,103 @@ graphene_euler_to_vec3 (const graphene_euler_t *e,
 }
 
 /**
+ * graphene_euler_to_matrix:
+ * @e: a #graphene_euler_t
+ * @res: (out caller-allocates): return location for a #graphene_matrix_t
+ *
+ * Converts a #graphene_euler_t into a transformation matrix expressing
+ * the rotations described by the Euler angles.
+ *
+ * Since: 1.2
+ */
+void
+graphene_euler_to_matrix (const graphene_euler_t *e,
+                          graphene_matrix_t      *res)
+{
+  graphene_euler_order_t order = graphene_euler_get_order (e);
+  float x = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_x (&e->angles));
+  float y = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_y (&e->angles));
+  float z = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_z (&e->angles));
+  float cos_x = cosf (x), sin_x = sinf (x);
+  float cos_y = cosf (y), sin_y = sinf (y);
+  float cos_z = cosf (z), sin_z = sinf (z);
+  graphene_vec4_t row_x, row_y, row_z, row_w;
+
+  switch (order)
+    {
+    case GRAPHENE_EULER_ORDER_XYZ:
+      {
+        float ae = cos_x * cos_z, af = cos_x * sin_z, be = sin_x * cos_z, bf = sin_x * sin_z;
+
+        graphene_vec4_init (&row_x, cos_y * cos_z, -1.f * cos_y * sin_z, sin_y, 0.f);
+        graphene_vec4_init (&row_y, af + be * sin_y, ae - bf * sin_y, -1.f * sin_x * cos_y, 0.f);
+        graphene_vec4_init (&row_z, bf - ae * sin_y, be + af * sin_y, cos_x * cos_y, 0.f);
+      }
+      break;
+
+    case GRAPHENE_EULER_ORDER_YXZ:
+      {
+        float ce = cos_y * cos_z, cf = cos_y * sin_z, de = sin_y * cos_z, df = sin_y * sin_z;
+
+        graphene_vec4_init (&row_x, ce + df * sin_x, de * sin_x - cf, cos_x * sin_y, 0.f);
+        graphene_vec4_init (&row_y, cos_x * sin_z, cos_x * cos_z, -1.f * sin_x, 0.f);
+        graphene_vec4_init (&row_z, cf * sin_x - de, df + ce * sin_x, cos_x * cos_y, 0.f);
+      }
+      break;
+
+    case GRAPHENE_EULER_ORDER_ZXY:
+      {
+        float ce = cos_y * cos_z, cf = cos_y * sin_z, de = sin_y * cos_z, df = sin_y * sin_z;
+
+        graphene_vec4_init (&row_x, ce - df * sin_x, -1.f * cos_x * sin_z, de + cf * sin_x, 0.f);
+        graphene_vec4_init (&row_y, cf + de * sin_x, cos_x * cos_z, df - ce * sin_x, 0.f);
+        graphene_vec4_init (&row_z, -1.f * cos_x * sin_y, sin_x, cos_x * cos_y, 0.f);
+      }
+      break;
+
+    case GRAPHENE_EULER_ORDER_ZYX:
+      {
+        float ae = cos_x * cos_z, af = cos_x * sin_z, be = sin_x * cos_z, bf = sin_x * sin_z;
+
+        graphene_vec4_init (&row_x, cos_y * cos_z, be * sin_y - af, ae * sin_y + bf, 0.f);
+        graphene_vec4_init (&row_y, cos_y * sin_z, bf * sin_y + ae, af * sin_y - be, 0.f);
+        graphene_vec4_init (&row_z, -1.f * sin_y, sin_x * cos_y, cos_x * cos_y, 0.f);
+      }
+      break;
+
+    case GRAPHENE_EULER_ORDER_YZX:
+      {
+        float ac = cos_x * cos_y, ad = cos_x * sin_y, bc = sin_x * cos_y, bd = sin_x * sin_y;
+
+        graphene_vec4_init (&row_x, cos_y * cos_z, bd - ac * sin_z, bc * sin_z + ad, 0.f);
+        graphene_vec4_init (&row_y, sin_z, cos_x * cos_z, -1.f * sin_x * cos_z, 0.f);
+        graphene_vec4_init (&row_z, -1.f * sin_y * cos_z, ad * sin_z + bc, ac - bd * sin_z, 0.f);
+      }
+      break;
+
+    case GRAPHENE_EULER_ORDER_XZY:
+      {
+        float ac = cos_x * cos_y, ad = cos_x * sin_y, bc = sin_x * cos_y, bd = sin_x * sin_y;
+
+        graphene_vec4_init (&row_x, cos_y * cos_z, -1.f * sin_z, sin_y * cos_z, 0.f);
+        graphene_vec4_init (&row_y, ac * sin_z + bd, cos_x * cos_z, ad * sin_z - bc, 0.f);
+        graphene_vec4_init (&row_z, bc * sin_z - ad, sin_x * cos_z, bd * sin_z + ac, 0.f);
+      }
+      break;
+
+    default:
+      graphene_vec4_init (&row_x, 1.f, 0.f, 0.f, 0.f);
+      graphene_vec4_init (&row_y, 0.f, 1.f, 0.f, 0.f);
+      graphene_vec4_init (&row_z, 0.f, 0.f, 1.f, 0.f);
+      break;
+    }
+
+  graphene_vec4_init (&row_z, 0.f, 0.f, 0.f, 1.f);
+
+  graphene_matrix_init_from_vec4 (res, &row_x, &row_y, &row_z, &row_w);
+}
+
+/**
  * graphene_euler_reorder:
  * @e: a #graphene_euler_t
  * @res: (out caller-allocates): return location for the reordered

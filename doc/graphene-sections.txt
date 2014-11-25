@@ -52,6 +52,7 @@ graphene_euler_get_y
 graphene_euler_get_z
 graphene_euler_get_order
 graphene_euler_to_vec3
+graphene_euler_to_matrix
 graphene_euler_reorder
 </SECTION>
 

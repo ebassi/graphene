@@ -122,6 +122,9 @@ graphene_euler_order_t  graphene_euler_get_order                (const graphene_
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_euler_to_vec3                  (const graphene_euler_t      *e,
                                                                  graphene_vec3_t             *res);
+GRAPHENE_AVAILABLE_IN_1_2
+void                    graphene_euler_to_matrix                (const graphene_euler_t      *e,
+                                                                 graphene_matrix_t           *res);
 
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_euler_reorder                  (const graphene_euler_t      *e,
