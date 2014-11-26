@@ -6,7 +6,7 @@ compiler:
 install:
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update
-  - sudo apt-get install libglib2.0-0 libglib2.0-dev gtk-doc-tools
+  - sudo apt-get install gcc-4.8 libglib2.0-0 libglib2.0-dev gtk-doc-tools
 
 script:
-  - ./autogen.sh --disable-introspection --disable-gtk-doc --disable-benchmarks && make && make check
+  - CC="gcc-4.8" ./autogen.sh --disable-introspection --disable-gtk-doc --disable-benchmarks && make && make check
