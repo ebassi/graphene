@@ -72,6 +72,29 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_rotation)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (matrix_rotation_euler_quaternion)
+{
+  graphene_matrix_t m0, m1, m2;
+  graphene_quaternion_t q;
+  graphene_euler_t e;
+
+  graphene_matrix_init_rotate (&m0, 60.f, graphene_vec3_x_axis ());
+
+  graphene_euler_init (&e, 60.f, 0.f, 0.f);
+  graphene_quaternion_init_from_euler (&q, &e);
+
+  graphene_matrix_init_identity (&m1);
+  graphene_matrix_rotate_euler (&m1, &e);
+
+  graphene_matrix_init_identity (&m2);
+  graphene_matrix_rotate_quaternion (&m2, &q);
+
+  compare_matrices (&m0, &m1);
+  compare_matrices (&m0, &m2);
+  compare_matrices (&m1, &m2);
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_UNIT_BEGIN (matrix_translation)
 {
   graphene_matrix_t m;
@@ -311,6 +334,7 @@ GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/matrix/identity", matrix_identity)
   GRAPHENE_TEST_UNIT ("/matrix/scale", matrix_scale)
   GRAPHENE_TEST_UNIT ("/matrix/rotation", matrix_rotation)
+  GRAPHENE_TEST_UNIT ("/matrix/rotation/euler-quaternion", matrix_rotation_euler_quaternion)
   GRAPHENE_TEST_UNIT ("/matrix/translation", matrix_translation)
   GRAPHENE_TEST_UNIT ("/matrix/neutral_element", matrix_neutral_element)
   GRAPHENE_TEST_UNIT ("/matrix/look_at", matrix_look_at)
