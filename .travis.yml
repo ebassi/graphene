@@ -9,4 +9,5 @@ install:
   - sudo apt-get install gcc-4.8 libglib2.0-0 libglib2.0-dev gtk-doc-tools
 
 script:
-  - CC="gcc-4.8" ./autogen.sh --disable-introspection --disable-gtk-doc --disable-benchmarks && make && make check
+  - if [ "$CC" = "gcc" ]; then export CC="gcc-4.8"; fi
+  - ./autogen.sh --disable-introspection --disable-gtk-doc --disable-benchmarks && make && make check
