@@ -556,22 +556,21 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
   float y = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_y (&e->angles));
   float z = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_z (&e->angles));
 
-  float cos_x = cosf (x), sin_x = sinf (x);
-  float cos_y = cosf (y), sin_y = sinf (y);
-  float cos_z = cosf (z), sin_z = sinf (z);
-  float c3c2 = cos_z * cos_y;
-  float s3c1 = sin_z * cos_x;
-  float c3s2s1 = cos_z * sin_y * sin_x;
-  float s3s1 = sin_z * sin_x;
-  float c3s2c1 = cos_z * sin_y * cos_x;
-  float s3c2 = sin_z * cos_y;
-  float c3c1 = cos_z * cos_x;
-  float s3s2s1 = sin_z * sin_y * sin_x;
-  float c3s1 = cos_z * sin_x;
-  float s3s2c1 = sin_z * sin_y * cos_x;
-  float c2s1 = cos_y * sin_x;
-  float c2c1 = cos_y * cos_x;
-  float s2 = sin_y;
+  float c1 = cosf (x), s1 = sinf (x);
+  float c2 = cosf (y), s2 = sinf (y);
+  float c3 = cosf (z), s3 = sinf (z);
+  float c3c2 = c3 * c2;
+  float s3c1 = s3 * c1;
+  float c3s2s1 = c3 * s2 * s1;
+  float s3s1 = s3 * s1;
+  float c3s2c1 = c3 * s2 * c1;
+  float s3c2 = s3 * c2;
+  float c3c1 = c3 * c1;
+  float s3s2s1 = s3 * s2 * s1;
+  float c3s1 = c3 * s1;
+  float s3s2c1 = s3 * s2 * c1;
+  float c2s1 = c2 * s1;
+  float c2c1 = c2 * c1;
 
   graphene_vec4_t row_x, row_y, row_z, row_w;
 
