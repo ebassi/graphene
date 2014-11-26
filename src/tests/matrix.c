@@ -14,7 +14,7 @@
       unsigned int __idx = __x + __y; \
       if (g_test_verbose ()) \
         g_print ("[%d][%d] ", __x, __y); \
-      graphene_assert_fuzzy_equals (__me1[__idx], __me2[__idx], 0.0001f); \
+      graphene_assert_fuzzy_matrix_equal (__x, __y, __me1[__idx], __me2[__idx], 0.0001f); \
     } \
     if (g_test_verbose ()) \
       g_print ("\n"); \
