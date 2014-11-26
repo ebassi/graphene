@@ -529,7 +529,21 @@ graphene_euler_to_vec3 (const graphene_euler_t *e,
  * @res: (out caller-allocates): return location for a #graphene_matrix_t
  *
  * Converts a #graphene_euler_t into a transformation matrix expressing
- * the rotations described by the Euler angles.
+ * the extrinsic composition of rotations described by the Euler angles.
+ *
+ * The rotations are applied over the reference frame axes in the order
+ * associated with the #graphene_euler_t; for instance, if the order
+ * used to initialize @e is %GRAPHENE_EULER_ORDER_XYZ:
+ *
+ *  * the first rotation moves the body around the X axis with
+ *    an angle φ
+ *  * the second rotation moves the body around the Y axis with
+ *    an angle of ϑ
+ *  * the third rotation moves the body around the Z axis with
+ *    an angle of ψ
+ *
+ * The rotation sign convention is left-handed, to preserve compatibility
+ * between Euler-based, quaternion-based, and angle-axis-based rotations.
  *
  * Since: 1.2
  */
@@ -541,70 +555,97 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
   float x = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_x (&e->angles));
   float y = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_y (&e->angles));
   float z = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_z (&e->angles));
+
   float cos_x = cosf (x), sin_x = sinf (x);
   float cos_y = cosf (y), sin_y = sinf (y);
   float cos_z = cosf (z), sin_z = sinf (z);
+  float c3c2 = cos_z * cos_y;
+  float s3c1 = sin_z * cos_x;
+  float c3s2s1 = cos_z * sin_y * sin_x;
+  float s3s1 = sin_z * sin_x;
+  float c3s2c1 = cos_z * sin_y * cos_x;
+  float s3c2 = sin_z * cos_y;
+  float c3c1 = cos_z * cos_x;
+  float s3s2s1 = sin_z * sin_y * sin_x;
+  float c3s1 = cos_z * sin_x;
+  float s3s2c1 = sin_z * sin_y * cos_x;
+  float c2s1 = cos_y * sin_x;
+  float c2c1 = cos_y * cos_x;
+  float s2 = sin_y;
+
   graphene_vec4_t row_x, row_y, row_z, row_w;
 
   switch (order)
     {
     case GRAPHENE_EULER_ORDER_XYZ:
       {
-        float ae = cos_x * cos_z, af = cos_x * sin_z, be = sin_x * cos_z, bf = sin_x * sin_z;
-
-        graphene_vec4_init (&row_x, cos_y * cos_z, -1.f * cos_y * sin_z, sin_y, 0.f);
-        graphene_vec4_init (&row_y, af + be * sin_y, ae - bf * sin_y, -1.f * sin_x * cos_y, 0.f);
-        graphene_vec4_init (&row_z, bf - ae * sin_y, be + af * sin_y, cos_x * cos_y, 0.f);
+        /* ⎡  c3 s3 0 ⎤ ⎡ c2  0 -s2 ⎤ ⎡ 1   0  0 ⎤
+         * ⎢ -s3 c3 0 ⎥ ⎢  0  1   0 ⎥ ⎢ 0  c1 s1 ⎥
+         * ⎣   0  0 1 ⎦ ⎣ s2  0  c2 ⎦ ⎣ 0 -s1 c1 ⎦
+         */
+        graphene_vec4_init (&row_x,  c3c2, s3c1 + c3s2s1, s3s1 - c3s2c1, 0.f);
+        graphene_vec4_init (&row_y, -s3c2, c3c1 - s3s2s1, c3s1 + s3s2c1, 0.f);
+        graphene_vec4_init (&row_z,    s2,         -c2s1,          c2c1, 0.f);
       }
       break;
 
     case GRAPHENE_EULER_ORDER_YXZ:
       {
-        float ce = cos_y * cos_z, cf = cos_y * sin_z, de = sin_y * cos_z, df = sin_y * sin_z;
-
-        graphene_vec4_init (&row_x, ce + df * sin_x, de * sin_x - cf, cos_x * sin_y, 0.f);
-        graphene_vec4_init (&row_y, cos_x * sin_z, cos_x * cos_z, -1.f * sin_x, 0.f);
-        graphene_vec4_init (&row_z, cf * sin_x - de, df + ce * sin_x, cos_x * cos_y, 0.f);
+        /* ⎡  c3 s3 0 ⎤ ⎡ 1   0  0 ⎤ ⎡ c1 0 -s1 ⎤
+         * ⎢ -s2 c3 0 ⎥ ⎢ 0  c2 s2 ⎥ ⎢  0 1   0 ⎥
+         * ⎣   0  0 1 ⎦ ⎣ 0 -s2 c2 ⎦ ⎣ s1 0  c1 ⎦
+         */
+        graphene_vec4_init (&row_x,  c3c1 + s3s2s1, s3c2, -c3s1 + s3s2c1, 0.f);
+        graphene_vec4_init (&row_y, -s3c1 + c3s2s1, c3c2,  s3s1 + c3s2c1, 0.f);
+        graphene_vec4_init (&row_z,           c2s1,  -s2,           c2c1, 0.f);
       }
       break;
 
     case GRAPHENE_EULER_ORDER_ZXY:
       {
-        float ce = cos_y * cos_z, cf = cos_y * sin_z, de = sin_y * cos_z, df = sin_y * sin_z;
-
-        graphene_vec4_init (&row_x, ce - df * sin_x, -1.f * cos_x * sin_z, de + cf * sin_x, 0.f);
-        graphene_vec4_init (&row_y, cf + de * sin_x, cos_x * cos_z, df - ce * sin_x, 0.f);
-        graphene_vec4_init (&row_z, -1.f * cos_x * sin_y, sin_x, cos_x * cos_y, 0.f);
+        /* ⎡ 1   0  0 ⎤ ⎡ c2  0 -s2 ⎤ ⎡  c1 s1 0 ⎤
+         * ⎢ 0  c3 s3 ⎥ ⎢  0  1   0 ⎥ ⎢ -s1 c1 0 ⎥
+         * ⎣ 0 -s3 c3 ⎦ ⎣ s2  0  c2 ⎦ ⎣   0  0 1 ⎦
+         */
+        graphene_vec4_init (&row_x, c3c1 - s3s2s1, c3s1 + s3s2c1, -s3c2, 0.f);
+        graphene_vec4_init (&row_y,         -c2s1,          c2c1,    s2, 0.f);
+        graphene_vec4_init (&row_z, s3c1 + c3s2s1, s3s1 - c3s2c1,  c3c2, 0.f);
       }
       break;
 
     case GRAPHENE_EULER_ORDER_ZYX:
       {
-        float ae = cos_x * cos_z, af = cos_x * sin_z, be = sin_x * cos_z, bf = sin_x * sin_z;
-
-        graphene_vec4_init (&row_x, cos_y * cos_z, be * sin_y - af, ae * sin_y + bf, 0.f);
-        graphene_vec4_init (&row_y, cos_y * sin_z, bf * sin_y + ae, af * sin_y - be, 0.f);
-        graphene_vec4_init (&row_z, -1.f * sin_y, sin_x * cos_y, cos_x * cos_y, 0.f);
+        /* ⎡ 1   0  0 ⎤ ⎡ c2  0 -s2 ⎤ ⎡  c1 s1 0 ⎤
+         * ⎢ 0  c3 s3 ⎥ ⎢  0  1   0 ⎥ ⎢ -s1 c1 0 ⎥
+         * ⎣ 0 -s3 c3 ⎦ ⎣ s2  0  c2 ⎦ ⎣   0  0 1 ⎦
+         */
+        graphene_vec4_init (&row_x,          c2c1,          c2s1,  -s2, 0.f);
+        graphene_vec4_init (&row_y, s3s2c1 - c3s1, s3s2s1 + c3c1, s3c2, 0.f);
+        graphene_vec4_init (&row_z, c3s2c1 + s3s1, c3s2s1 - s3c1, c3c2, 0.f);
       }
       break;
 
     case GRAPHENE_EULER_ORDER_YZX:
       {
-        float ac = cos_x * cos_y, ad = cos_x * sin_y, bc = sin_x * cos_y, bd = sin_x * sin_y;
-
-        graphene_vec4_init (&row_x, cos_y * cos_z, bd - ac * sin_z, bc * sin_z + ad, 0.f);
-        graphene_vec4_init (&row_y, sin_z, cos_x * cos_z, -1.f * sin_x * cos_z, 0.f);
-        graphene_vec4_init (&row_z, -1.f * sin_y * cos_z, ad * sin_z + bc, ac - bd * sin_z, 0.f);
+        /* ⎡ 1   0  0 ⎤ ⎡  c2 s2 0 ⎤ ⎡ c1 0 -s1 ⎤
+         * ⎢ 0  c3 s3 ⎥ ⎢ -s2 c2 0 ⎥ ⎢  0 1   0 ⎥
+         * ⎣ 0 -s3 c3 ⎦ ⎣   0  0 1 ⎦ ⎣ s1 0  c1 ⎦
+         */
+        graphene_vec4_init (&row_x,           c2c1,    s2,          -c2s1, 0.f);
+        graphene_vec4_init (&row_y, -c3s2c1 + s3s1,  c3c2,  c3s2s1 + s3c1, 0.f);
+        graphene_vec4_init (&row_z,  s3s2c1 + c3s1, -s3c2, -s3s2s1 + c3c1, 0.f);
       }
       break;
 
     case GRAPHENE_EULER_ORDER_XZY:
       {
-        float ac = cos_x * cos_y, ad = cos_x * sin_y, bc = sin_x * cos_y, bd = sin_x * sin_y;
-
-        graphene_vec4_init (&row_x, cos_y * cos_z, -1.f * sin_z, sin_y * cos_z, 0.f);
-        graphene_vec4_init (&row_y, ac * sin_z + bd, cos_x * cos_z, ad * sin_z - bc, 0.f);
-        graphene_vec4_init (&row_z, bc * sin_z - ad, sin_x * cos_z, bd * sin_z + ac, 0.f);
+        /* ⎡ c3 0 -s3 ⎤ ⎡  c2 s2 0 ⎤ ⎡ 1   0  0 ⎤
+         * ⎢  0 1   0 ⎥ ⎢ -s2 c2 0 ⎥ ⎢ 0  c1 s1 ⎥
+         * ⎣ s3 0  c3 ⎦ ⎣   0  0 1 ⎦ ⎣ 0 -s1 c1 ⎦
+         */
+        graphene_vec4_init (&row_x, c3c2, c3s2c1 + s3s1, c3s2s1 - s3c1, 0.f);
+        graphene_vec4_init (&row_y,  -s2,          c2c1,          c2s1, 0.f);
+        graphene_vec4_init (&row_z, s3c2, s3s2c1 - c3s1, s3s2s1 + c3c1, 0.f);
       }
       break;
 
