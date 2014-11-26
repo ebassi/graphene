@@ -5,14 +5,16 @@
 #include "graphene-test-compat.h"
 
 #define compare_matrices(m1,m2)         G_STMT_START { \
-  int __x, __y; \
+  float __me1[16], __me2[16]; \
+  unsigned int __x, __y; \
+  graphene_matrix_to_float ((m1), __me1); \
+  graphene_matrix_to_float ((m2), __me2); \
   for (__x = 0; __x < 4; __x++) { \
     for (__y = 0; __y < 4; __y++) { \
+      unsigned int __idx = __x + __y; \
       if (g_test_verbose ()) \
         g_print ("[%d][%d] ", __x, __y); \
-      graphene_assert_fuzzy_equals (graphene_matrix_get_value ((m1), __x, __y), \
-                                    graphene_matrix_get_value ((m2), __x, __y), \
-                                    0.0001f); \
+      graphene_assert_fuzzy_equals (__me1[__idx], __me2[__idx], 0.0001f); \
     } \
     if (g_test_verbose ()) \
       g_print ("\n"); \
