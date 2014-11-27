@@ -104,7 +104,7 @@ graphene_triangle_init_from_point3d (graphene_triangle_t      *t,
   if (c != NULL)
     graphene_point3d_to_vec3 (c, &t->c);
   else
-    graphene_vec3_init_from_vec3 (&t->b, graphene_vec3_zero ());
+    graphene_vec3_init_from_vec3 (&t->c, graphene_vec3_zero ());
 
   return t;
 }
