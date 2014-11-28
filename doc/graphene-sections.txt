@@ -441,6 +441,7 @@ graphene_triangle_get_midpoint
 graphene_triangle_get_normal
 graphene_triangle_get_plane
 graphene_triangle_get_bounding_box
+graphene_triangle_get_barycoords
 graphene_triangle_contains_point
 graphene_triangle_equal
 </SECTION>

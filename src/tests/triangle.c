@@ -67,11 +67,15 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_contains_point)
   graphene_point3d_t b = GRAPHENE_POINT3D_INIT ( 1.f, -1.f, 0.f);
   graphene_point3d_t c = GRAPHENE_POINT3D_INIT (-1.f, -1.f, 0.f);
   graphene_triangle_t *t;
+  graphene_point3d_t midpoint;
 
   t = graphene_triangle_init_from_point3d (graphene_triangle_alloc (), &a, &b, &c);
+  graphene_triangle_get_midpoint (t, &midpoint);
 
   g_assert_true (graphene_triangle_contains_point (t, &zero3));
   g_assert_false (graphene_triangle_contains_point (t, &one3));
+
+  g_assert_true (graphene_triangle_contains_point (t, &midpoint));
 
   graphene_triangle_free (t);
 }

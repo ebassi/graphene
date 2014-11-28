@@ -37,6 +37,7 @@
 #include "graphene-box.h"
 #include "graphene-plane.h"
 #include "graphene-point3d.h"
+#include "graphene-vec2.h"
 
 #include <math.h>
 
@@ -316,6 +317,84 @@ graphene_triangle_get_bounding_box (const graphene_triangle_t *t,
   graphene_box_expand_vec3 (res, &t->c, res);
 }
 
+static inline bool
+graphene_triangle_get_uv (const graphene_triangle_t *t,
+                          const graphene_vec3_t     *point,
+                          float                     *u,
+                          float                     *v)
+{
+  graphene_vec3_t v0, v1, v2;
+  float dot00, dot01, dot02;
+  float dot11, dot12;
+  float denom, inv_denom;
+
+  /* we use the barycoordinates from the given point to check
+   * if the point is inside the triangle.
+   *
+   * see: http://www.blackpawn.com/texts/pointinpoly/default.html
+   */
+  graphene_vec3_subtract (&t->c, &t->a, &v0);
+  graphene_vec3_subtract (&t->b, &t->a, &v1);
+  graphene_vec3_subtract (point, &t->a, &v2);
+
+  dot00 = graphene_vec3_dot (&v0, &v0);
+  dot01 = graphene_vec3_dot (&v0, &v1);
+  dot02 = graphene_vec3_dot (&v0, &v2);
+  dot11 = graphene_vec3_dot (&v1, &v1);
+  dot12 = graphene_vec3_dot (&v1, &v2);
+
+  denom = dot00 * dot11 - dot01 * dot01;
+  if (denom == 0.f)
+    return false;
+
+  inv_denom = 1.f / denom;
+  *u = (dot11 * dot02 - dot01 * dot12) * inv_denom;
+  *v = (dot00 * dot12 - dot01 * dot02) * inv_denom;
+
+  return true;
+}
+
+/**
+ * graphene_triangle_get_barycoords:
+ * @t: a #graphene_triangle_t
+ * @p: (nullable): a #graphene_point3d_t
+ * @res: (out caller-allocates): return location for the vector
+ *   with the barycentric coordinates
+ *
+ * Computes the [barycentric coordinates](http://en.wikipedia.org/wiki/Barycentric_coordinate_system)
+ * of the given point @p.
+ *
+ * The returned #graphene_vec2_t contains the following values, in order:
+ *
+ *  * `x = u`
+ *  * `y = v`
+ *
+ * Returns: `true` if the barycentric coordinates are valid
+ *
+ * Since: 1.2
+ */
+bool
+graphene_triangle_get_barycoords (const graphene_triangle_t *t,
+                                  const graphene_point3d_t  *p,
+                                  graphene_vec2_t           *res)
+{
+  graphene_vec3_t point;
+  float u, v;
+
+  if (p == NULL)
+    graphene_vec3_init (&point, 0.f, 0.f, 0.f);
+  else
+    graphene_point3d_to_vec3 (p, &point);
+
+  if (graphene_triangle_get_uv (t, &point, &u, &v))
+    {
+      graphene_vec2_init (res, u, v);
+      return true;
+    }
+
+  return false;
+}
+
 /**
  * graphene_triangle_contains_point:
  * @t: a #graphene_triangle_t
@@ -331,31 +410,12 @@ bool
 graphene_triangle_contains_point (const graphene_triangle_t *t,
                                   const graphene_point3d_t  *p)
 {
-  graphene_vec3_t point, v0, v1, v2;
-  float dot00, dot01, dot02;
-  float dot11, dot12;
-  float inv_denom, u, v;
+  graphene_vec3_t point;
+  float u, v;
 
   graphene_point3d_to_vec3 (p, &point);
-
-  /* we use the barycoordinates from the given point to check
-   * if the point is inside the triangle.
-   *
-   * see: http://www.blackpawn.com/texts/pointinpoly/default.html
-   */
-  graphene_vec3_subtract (&t->c, &t->a, &v0);
-  graphene_vec3_subtract (&t->b, &t->a, &v1);
-  graphene_vec3_subtract (&point, &t->a, &v2);
-
-  dot00 = graphene_vec3_dot (&v0, &v0);
-  dot01 = graphene_vec3_dot (&v0, &v1);
-  dot02 = graphene_vec3_dot (&v0, &v2);
-  dot11 = graphene_vec3_dot (&v1, &v1);
-  dot12 = graphene_vec3_dot (&v1, &v2);
-
-  inv_denom = 1.f / (dot00 * dot11 - dot01 * dot01);
-  u = (dot11 * dot02 - dot01 * dot12) * inv_denom;
-  v = (dot00 * dot12 - dot01 * dot02) * inv_denom;
+  if (!graphene_triangle_get_uv (t, &point, &u, &v))
+    return false;
 
   return (u >= 0.f) && (v >= 0.f) && (u + v < 1.f);
 }

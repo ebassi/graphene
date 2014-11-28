@@ -88,6 +88,10 @@ void                    graphene_triangle_get_plane             (const graphene_
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_triangle_get_bounding_box      (const graphene_triangle_t *t,
                                                                  graphene_box_t            *res);
+GRAPHENE_AVAILABLE_IN_1_2
+bool                    graphene_triangle_get_barycoords        (const graphene_triangle_t *t,
+                                                                 const graphene_point3d_t  *p,
+                                                                 graphene_vec2_t           *res);
 
 GRAPHENE_AVAILABLE_IN_1_2
 bool                    graphene_triangle_contains_point        (const graphene_triangle_t *t,
