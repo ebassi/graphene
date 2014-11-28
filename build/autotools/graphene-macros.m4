@@ -140,6 +140,9 @@ graphene_TESTSET_CFLAG([[BASE_]PREFIX[FLAGS]], [-Wredundant-decls])
 graphene_TESTSET_CFLAG([[BASE_]PREFIX[FLAGS]], [-Wlogical-op])
 graphene_TESTSET_CFLAG([[BASE_]PREFIX[FLAGS]], [-Wcast-align])
 
+# Disable some warnings
+graphene_TESTSET_CFLAG([[BASE_]PREFIX[FLAGS]], [-Wno-unused-local-typedefs])
+
 # Turn some warnings into errors, so we don't accidently get successful builds
 # when there are problems that should be fixed.
 graphene_TESTSET_CFLAG([[BASE_]PREFIX[FLAGS]], [-Werror=implicit], [-errwarn=E_NO_EXPLICIT_TYPE_GIVEN -errwarn=E_NO_IMPLICIT_DECL_ALLOWED])
