@@ -311,9 +311,9 @@ bool
 graphene_triangle_contains_point (const graphene_triangle_t *t,
                                   const graphene_point3d_t  *p)
 {
-  graphene_vec3_t point, v1, v2, v3;
-  float dot_11, dot_12, dot_13;
-  float dot_22, dot_23;
+  graphene_vec3_t point, v0, v1, v2;
+  float dot00, dot01, dot02;
+  float dot11, dot12;
   float inv_denom, u, v;
 
   graphene_point3d_to_vec3 (p, &point);
@@ -323,19 +323,19 @@ graphene_triangle_contains_point (const graphene_triangle_t *t,
    *
    * see: http://www.blackpawn.com/texts/pointinpoly/default.html
    */
-  graphene_vec3_subtract (&t->c, &t->a, &v1);
-  graphene_vec3_subtract (&t->b, &t->a, &v2);
-  graphene_vec3_subtract (&point, &t->a, &v3);
+  graphene_vec3_subtract (&t->c, &t->a, &v0);
+  graphene_vec3_subtract (&t->b, &t->a, &v1);
+  graphene_vec3_subtract (&point, &t->a, &v2);
 
-  dot_11 = graphene_vec3_dot (&v1, &v1);
-  dot_12 = graphene_vec3_dot (&v1, &v2);
-  dot_13 = graphene_vec3_dot (&v1, &v3);
-  dot_22 = graphene_vec3_dot (&v2, &v2);
-  dot_23 = graphene_vec3_dot (&v2, &v3);
+  dot00 = graphene_vec3_dot (&v0, &v0);
+  dot01 = graphene_vec3_dot (&v0, &v1);
+  dot02 = graphene_vec3_dot (&v0, &v2);
+  dot11 = graphene_vec3_dot (&v1, &v1);
+  dot12 = graphene_vec3_dot (&v1, &v2);
 
-  inv_denom = 1.f / (dot_11 * dot_22 - dot_12 * dot_12);
-  u = (dot_22 * dot_13 - dot_12 * dot_23) * inv_denom;
-  v = (dot_11 * dot_23 - dot_12 * dot_13) * inv_denom;
+  inv_denom = 1.f / (dot00 * dot11 - dot01 * dot01);
+  u = (dot11 * dot02 - dot01 * dot12) * inv_denom;
+  v = (dot00 * dot12 - dot01 * dot02) * inv_denom;
 
   return (u >= 0.f) && (v >= 0.f) && (u + v < 1.f);
 }
