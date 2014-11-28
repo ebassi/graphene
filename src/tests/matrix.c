@@ -84,7 +84,6 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_rotation_euler_quaternion)
   if (g_test_verbose ())
     g_test_message ("Disabled on GCC < 4.9");
 # endif
-  return 0;
 #else
   graphene_matrix_t m0, m1, m2;
   graphene_quaternion_t q;
