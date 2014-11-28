@@ -77,9 +77,13 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_rotation_euler_quaternion)
 /* XXX: disable on GCC < 4.9; it seems the compiler emits wrong floating
  *      point instructions with -ffast-math
  */
-#if defined(__GNUC__) && __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
+#if !defined(__clang__) && defined(__GNUC__) && __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
+# if GLIB_CHECK_VERSION (2, 38, 0)
+  g_test_skip ("Disabled on GCC < 4.9");
+# else
   if (g_test_verbose ())
-    g_test_skip ("Disabled on GCC < 4.9");
+    g_test_message ("Disabled on GCC < 4.9");
+# endif
   return 0;
 #else
   graphene_matrix_t m0, m1, m2;
