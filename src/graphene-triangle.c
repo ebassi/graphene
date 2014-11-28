@@ -328,11 +328,6 @@ graphene_triangle_get_uv (const graphene_triangle_t *t,
   float dot11, dot12;
   float denom, inv_denom;
 
-  /* we use the barycoordinates from the given point to check
-   * if the point is inside the triangle.
-   *
-   * see: http://www.blackpawn.com/texts/pointinpoly/default.html
-   */
   graphene_vec3_subtract (&t->c, &t->a, &v0);
   graphene_vec3_subtract (&t->b, &t->a, &v1);
   graphene_vec3_subtract (point, &t->a, &v2);
@@ -413,6 +408,11 @@ graphene_triangle_contains_point (const graphene_triangle_t *t,
   graphene_vec3_t point;
   float u, v;
 
+  /* we use the barycoordinates from the given point to check
+   * if the point is inside the triangle.
+   *
+   * see: http://www.blackpawn.com/texts/pointinpoly/default.html
+   */
   graphene_point3d_to_vec3 (p, &point);
   if (!graphene_triangle_get_uv (t, &point, &u, &v))
     return false;
