@@ -361,8 +361,8 @@ graphene_triangle_get_uv (const graphene_triangle_t *t,
  *
  * The returned #graphene_vec2_t contains the following values, in order:
  *
- *  * `x = u`
- *  * `y = v`
+ *  - `res.x = u`
+ *  - `res.y = v`
  *
  * Returns: `true` if the barycentric coordinates are valid
  *
