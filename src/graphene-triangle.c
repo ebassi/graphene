@@ -34,6 +34,7 @@
 
 #include "graphene-triangle.h"
 
+#include "graphene-box.h"
 #include "graphene-plane.h"
 #include "graphene-point3d.h"
 
@@ -294,6 +295,25 @@ graphene_triangle_get_plane (const graphene_triangle_t *t,
   graphene_point3d_init_from_vec3 (&c, &t->c);
 
   graphene_plane_init_from_points (res, &a, &b, &c);
+}
+
+/**
+ * graphene_triangle_get_bounding_box:
+ * @t: a #graphene_triangle_t
+ * @res: (out caller-allocates): return location for the box
+ *
+ * Computes the bounding box of the given #graphene_triangle_t.
+ *
+ * Since: 1.2
+ */
+void
+graphene_triangle_get_bounding_box (const graphene_triangle_t *t,
+                                    graphene_box_t            *res)
+{
+  graphene_box_init_from_box (res, graphene_box_empty ());
+  graphene_box_expand_vec3 (res, &t->a, res);
+  graphene_box_expand_vec3 (res, &t->b, res);
+  graphene_box_expand_vec3 (res, &t->c, res);
 }
 
 /**
