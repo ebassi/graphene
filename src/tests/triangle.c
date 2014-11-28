@@ -81,8 +81,62 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_contains_point)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (triangle_plane)
+{
+  graphene_triangle_t t;
+  graphene_plane_t p;
+  graphene_point3d_t a, b, c;
+  graphene_vec3_t t_norm, p_norm;
+
+  graphene_triangle_init_from_point3d (&t, NULL, NULL, NULL);
+  graphene_triangle_get_plane (&t, &p);
+  graphene_triangle_get_points (&t, &a, &b, &c);
+
+  g_assert_cmpfloat (graphene_plane_distance (&p, &a), ==, 0.f);
+  g_assert_cmpfloat (graphene_plane_distance (&p, &b), ==, 0.f);
+  g_assert_cmpfloat (graphene_plane_distance (&p, &c), ==, 0.f);
+
+  graphene_triangle_get_normal (&t, &t_norm);
+  graphene_plane_get_normal (&p, &p_norm);
+
+  /* we create an artificial normal for the a:0, b:0, c:0 degenerate triangle */
+  g_assert_true (graphene_vec3_equal (&t_norm, graphene_vec3_zero ()));
+  g_assert_false (graphene_vec3_equal (&t_norm, &p_norm));
+
+  graphene_point3d_init (&a, 0.f, 0.f, 0.f);
+  graphene_point3d_init (&b, 1.f, 0.f, 0.f);
+  graphene_point3d_init (&c, 0.f, 1.f, 0.f);
+  graphene_triangle_init_from_point3d (&t, &a, &b, &c);
+  graphene_triangle_get_plane (&t, &p);
+
+  g_assert_cmpfloat (graphene_plane_distance (&p, &a), ==, 0.f);
+  g_assert_cmpfloat (graphene_plane_distance (&p, &b), ==, 0.f);
+  g_assert_cmpfloat (graphene_plane_distance (&p, &c), ==, 0.f);
+
+  graphene_triangle_get_normal (&t, &t_norm);
+  graphene_plane_get_normal (&p, &p_norm);
+  g_assert_true (graphene_vec3_equal (&t_norm, &p_norm));
+
+  graphene_point3d_init (&a, 2.f, 0.f, 0.f);
+  graphene_point3d_init (&b, 0.f, 0.f, 0.f);
+  graphene_point3d_init (&c, 0.f, 0.f, 2.f);
+  graphene_triangle_init_from_point3d (&t, &a, &b, &c);
+  graphene_triangle_get_plane (&t, &p);
+
+  g_assert_cmpfloat (graphene_plane_distance (&p, &a), ==, 0.f);
+  g_assert_cmpfloat (graphene_plane_distance (&p, &b), ==, 0.f);
+  g_assert_cmpfloat (graphene_plane_distance (&p, &c), ==, 0.f);
+
+  graphene_triangle_get_normal (&t, &t_norm);
+  graphene_vec3_normalize (&t_norm, &t_norm);
+  graphene_plane_get_normal (&p, &p_norm);
+  g_assert_true (graphene_vec3_equal (&t_norm, &p_norm));
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/triangle/init/from-point3", triangle_init_from_point3d)
   GRAPHENE_TEST_UNIT ("/triangle/init/from-vec3", triangle_init_from_vec3)
   GRAPHENE_TEST_UNIT ("/triangle/contains-point", triangle_contains_point);
+  GRAPHENE_TEST_UNIT ("/triangle/plane", triangle_plane);
 )
