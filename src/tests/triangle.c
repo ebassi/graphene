@@ -101,7 +101,7 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_plane)
 
   /* we create an artificial normal for the a:0, b:0, c:0 degenerate triangle */
   g_assert_true (graphene_vec3_equal (&t_norm, graphene_vec3_zero ()));
-  g_assert_false (graphene_vec3_equal (&t_norm, &p_norm));
+  g_assert_true (graphene_vec3_equal (&t_norm, &p_norm));
 
   graphene_point3d_init (&a, 0.f, 0.f, 0.f);
   graphene_point3d_init (&b, 1.f, 0.f, 0.f);
