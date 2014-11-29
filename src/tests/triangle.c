@@ -115,7 +115,9 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_plane)
 
   graphene_triangle_get_normal (&t, &t_norm);
   graphene_plane_get_normal (&p, &p_norm);
-  g_assert_true (graphene_vec3_equal (&t_norm, &p_norm));
+  graphene_assert_fuzzy_equals (graphene_vec3_get_x (&t_norm), graphene_vec3_get_x (&p_norm), 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_vec3_get_y (&t_norm), graphene_vec3_get_y (&p_norm), 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_vec3_get_z (&t_norm), graphene_vec3_get_z (&p_norm), 0.0001f);
 
   graphene_point3d_init (&a, 2.f, 0.f, 0.f);
   graphene_point3d_init (&b, 0.f, 0.f, 0.f);
@@ -130,7 +132,9 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_plane)
   graphene_triangle_get_normal (&t, &t_norm);
   graphene_vec3_normalize (&t_norm, &t_norm);
   graphene_plane_get_normal (&p, &p_norm);
-  g_assert_true (graphene_vec3_equal (&t_norm, &p_norm));
+  graphene_assert_fuzzy_equals (graphene_vec3_get_x (&t_norm), graphene_vec3_get_x (&p_norm), 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_vec3_get_y (&t_norm), graphene_vec3_get_y (&p_norm), 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_vec3_get_z (&t_norm), graphene_vec3_get_z (&p_norm), 0.0001f);
 }
 GRAPHENE_TEST_UNIT_END
 
