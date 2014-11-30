@@ -9,54 +9,54 @@
 
 #if defined(__GNUC__)
 /* Use typeof on GCC */
-# define graphene_assert_fuzzy_equals(n1,n2,epsilon) \
-  G_STMT_START { \
+# define graphene_fuzzy_equals(n1,n2,epsilon) \
+  G_GNUC_EXTENSION({ \
     typeof ((n1)) __n1 = (n1); \
     typeof ((n2)) __n2 = (n2); \
     typeof ((epsilon)) __epsilon = (epsilon); \
-    if ((__n1 > __n2 ? (__n1 - __n2) : (__n2 - __n1)) < __epsilon) ; else { \
-      g_assertion_message_cmpnum (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, \
-                                  #n1 " == " #n2 " (+/- " #epsilon ")", \
-                                  __n1, "==", __n2, 'f'); \
-    } \
-  } G_STMT_END
+    (bool) ((__n1 > __n2 ? (__n1 - __n2) : (__n2 - __n1)) < __epsilon); \
+  })
 
-# define graphene_assert_fuzzy_matrix_equal(row,col,n1,n2,epsilon) \
-  G_STMT_START { \
-    typeof ((n1)) __n1 = (n1); \
-    typeof ((n2)) __n2 = (n2); \
-    typeof ((epsilon)) __epsilon = (epsilon); \
-    if ((__n1 > __n2 ? (__n1 - __n2) : (__n2 - __n1)) < __epsilon) ; else { \
-      char *s = g_strdup_printf ("[%d][%d]: " #n1 " == " #n2 " (+/- " #epsilon "): (%.7g == %.7g)", \
-                                 row, col, __n1, __n2); \
-      g_assertion_message (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, s); \
-      g_free (s); \
-    } \
-  } G_STMT_END
-
-/* __GNUC__ */
 #else
-/* fallback for Visual Studio, decltype not supported */
-# define graphene_assert_fuzzy_equals(n1,n2,epsilon) \
+/* fallback for Visual Studio, typeof not supported */
+# define graphene_fuzzy_equals(n1,n2,epsilon) \
+  (((n1) > (n2) ? ((n1) - (n2)) : ((n2) - (n1))) < (epsilon))
+
+#endif /* __GNUC__ */
+
+#define graphene_assert_fuzzy_equals(n1,n2,epsilon) \
   G_STMT_START { \
-    if (((n1) > (n2) ? ((n1) - (n2)) : ((n2) - (n1))) < (epsilon)) ; else { \
+    if (graphene_fuzzy_equals (n1, n2, epsilon)) ; else { \
       g_assertion_message_cmpnum (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, \
                                   #n1 " == " #n2 " (+/- " #epsilon ")", \
                                   n1, "==", n2, 'f'); \
     } \
   } G_STMT_END
 
-# define graphene_assert_fuzzy_matrix_equal(row,col,n1,n2,epsilon) \
+#define graphene_assert_fuzzy_matrix_equal(row,col,n1,n2,epsilon) \
   G_STMT_START { \
-    if (((n1) > (n2) ? ((n1) - (n2)) : ((n2) - (n1))) < (epsilon)) ; else { \
+    if (graphene_fuzzy_equals (n1, n2, epsilon)) ; else { \
       char *s = g_strdup_printf ("[%d][%d]: " #n1 " == " #n2 " (+/- " #epsilon "): (%.7g == %.7g)", \
-                                 row, col, (n1), (n2)); \
+                                 row, col, n1, n2); \
       g_assertion_message (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, s); \
       g_free (s); \
     } \
   } G_STMT_END
 
-#endif /* __GNUC__ */
+#define graphene_assert_fuzzy_vec3_equal(v1,v2,epsilon) \
+  G_STMT_START { \
+    if (graphene_fuzzy_equals (graphene_vec3_get_x (v1), graphene_vec3_get_x (v2), epsilon) && \
+        graphene_fuzzy_equals (graphene_vec3_get_y (v1), graphene_vec3_get_y (v2), epsilon) && \
+        graphene_fuzzy_equals (graphene_vec3_get_z (v1), graphene_vec3_get_z (v2), epsilon)) ; \
+    else { \
+      char *s = g_strdup_printf (#v1 " == " #v2 " (+/- " #epsilon "): " \
+                                 "{ x:%.7g, y:%.7g, z:%.7g } == { x:%.7g, y:%.7g, z:%.7g }", \
+                                 graphene_vec3_get_x (v1), graphene_vec3_get_y (v1), graphene_vec3_get_z (v1), \
+                                 graphene_vec3_get_x (v2), graphene_vec3_get_y (v2), graphene_vec3_get_z (v2)); \
+      g_assertion_message (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, s); \
+      g_free (s); \
+    } \
+  } G_STMT_END
 
 #define GRAPHENE_TEST_UNUSED(var) \
   if (0) var = var
