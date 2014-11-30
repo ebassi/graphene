@@ -53,8 +53,9 @@ GRAPHENE_TEST_UNIT_BEGIN (plane_normalize)
 
   graphene_plane_normalize (&p, &p);
   graphene_plane_get_normal (&p, &tmp);
-  graphene_assert_fuzzy_equals (graphene_vec3_length (&tmp), 1.f, 0.0001);
-  graphene_assert_fuzzy_equals (graphene_plane_get_constant (&p), 1.f, 0.0001);
+  graphene_assert_fuzzy_vec3_equal (&tmp, graphene_vec3_x_axis (), 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_vec3_length (&tmp), 1.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_plane_get_constant (&p), 1.f, 0.0001f);
 }
 GRAPHENE_TEST_UNIT_END
 
