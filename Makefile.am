@@ -1,6 +1,7 @@
 ACLOCAL_AMFLAGS = -I build/autotools
 
 EXTRA_DIST = \
+	build/autotools/ax_pthread.m4 \
 	build/autotools/glibtests.m4 \
 	build/autotools/glib-tap.mk \
 	build/autotools/graphene-macros.m4 \
