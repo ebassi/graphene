@@ -32,6 +32,11 @@
 #include <stdio.h>
 #endif
 
+#if HAVE_INIT_ONCE
+#define _WIN32_WINNT 0x600
+#include <windows.h>
+#endif
+
 /**
  * SECTION:graphene-vectors
  * @Title: Vectors
@@ -461,7 +466,29 @@ init_static_vec2 (void)
     }
 }
 
-#else /* !HAVE_PTHREAD */
+#elif HAVE_INIT_ONCE
+static INIT_ONCE static_vec2_once = INIT_ONCE_STATIC_INIT;
+
+BOOL CALLBACK InitVec2Func (PINIT_ONCE InitOnce,
+                            PVOID Parameter,
+                            PVOID *lpContext)
+{
+  init_static_vec2_once ();
+  return TRUE;
+}
+
+static inline void
+init_static_vec2 (void)
+{
+  BOOL bStatus = InitOnceExecuteOnce (&static_vec2_once,
+                                      InitVec2Func,
+                                      NULL,
+                                      NULL);
+  if (!bStatus)
+    fprintf (stderr, "InitOnceExecuteOnce failed\n");
+}
+
+#else /* !HAVE_PTHREAD && !HAVE_INIT_ONCE */
 static bool static_vec2_init = false;
 
 static inline void
@@ -1083,7 +1110,29 @@ init_static_vec3 (void)
     }
 }
 
-#else /* !HAVE_PTHREAD */
+#elif HAVE_INIT_ONCE
+static INIT_ONCE static_vec3_once = INIT_ONCE_STATIC_INIT;
+
+BOOL CALLBACK InitVec3Func (PINIT_ONCE InitOnce,
+                            PVOID Parameter,
+                            PVOID *lpContext)
+{
+  init_static_vec3_once ();
+  return TRUE;
+}
+
+static inline void
+init_static_vec3 (void)
+{
+  BOOL bStatus = InitOnceExecuteOnce (&static_vec3_once,
+                                      InitVec3Func,
+                                      NULL,
+                                      NULL);
+  if (!bStatus)
+    fprintf (stderr, "InitOnceExecuteOnce failed\n");
+}
+
+#else /* !HAVE_PTHREAD && !HAVE_INIT_ONCE*/
 static bool static_vec3_init = false;
 
 static inline void
@@ -1722,7 +1771,30 @@ init_static_vec4 (void)
                saved_errno);
     }
 }
-#else /* !HAVE_PTHREAD */
+
+#elif HAVE_INIT_ONCE
+static INIT_ONCE static_vec4_once = INIT_ONCE_STATIC_INIT;
+
+BOOL CALLBACK InitVec4Func (PINIT_ONCE InitOnce,
+                            PVOID Parameter,
+                            PVOID *lpContext)
+{
+  init_static_vec4_once ();
+  return TRUE;
+}
+
+static inline void
+init_static_vec2 (void)
+{
+  BOOL bStatus = InitOnceExecuteOnce (&static_vec4_once,
+                                      InitVec4Func,
+                                      NULL,
+                                      NULL);
+  if (!bStatus)
+    fprintf (stderr, "InitOnceExecuteOnce failed\n");
+}
+
+#else /* !HAVE_PTHREAD && !HAVE_INIT_ONCE */
 
 static bool static_vec4_init = false;
 

@@ -670,6 +670,28 @@ init_static_box (void)
     }
 }
 
+#elif HAVE_INIT_ONCE
+static INIT_ONCE static_box_once = INIT_ONCE_STATIC_INIT;
+
+BOOL CALLBACK InitBoxFunc (PINIT_ONCE InitOnce,
+                           PVOID param,
+                           PVOID *ctx)
+{
+  init_static_box_once ();
+  return TRUE;
+}
+
+static inline void
+init_static_box (void)
+{
+  BOOL bStatus = InitOnceExecuteOnce (&static_box_once,
+                                      InitBoxFunc,
+                                      NULL,
+                                      NULL);
+  if (!bStatus)
+    fprintf (stderr, "InitOnceExecuteOnce failed\n");
+}
+
 #else /* !HAVE_PTHREAD */
 static bool static_box_init = false;
 
