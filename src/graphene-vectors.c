@@ -25,6 +25,13 @@
 #include "graphene-vectors-private.h"
 #include "graphene-alloc-private.h"
 
+#if HAVE_PTHREAD
+#include <pthread.h>
+#include <errno.h>
+#include <string.h>
+#include <stdio.h>
+#endif
+
 /**
  * SECTION:graphene-vectors
  * @Title: Vectors
@@ -426,6 +433,35 @@ enum {
 };
 
 static graphene_vec2_t static_vec2[N_STATIC_VEC2];
+
+static void
+init_static_vec2_once (void)
+{
+  static_vec2[VEC2_ZERO].value = graphene_simd4f_init_zero ();
+  static_vec2[VEC2_ONE].value = graphene_simd4f_init (1.f, 1.f, 0.f, 0.f);
+  static_vec2[VEC2_X_AXIS].value = graphene_simd4f_init (1.f, 0.f, 0.f, 0.f);
+  static_vec2[VEC2_Y_AXIS].value = graphene_simd4f_init (0.f, 1.f, 0.f, 0.f);
+}
+
+#if HAVE_PTHREAD
+static pthread_once_t static_vec2_once = PTHREAD_ONCE_INIT;
+
+static inline void
+init_static_vec2 (void)
+{
+  int status = pthread_once (&static_vec2_once, init_static_vec2_once);
+
+  if (status < 0)
+    {
+      int saved_errno = errno;
+
+      fprintf (stderr, "pthread_once failed: %s (errno:%d)\n",
+               strerror (saved_errno),
+               saved_errno);
+    }
+}
+
+#else /* !HAVE_PTHREAD */
 static bool static_vec2_init = false;
 
 static inline void
@@ -434,13 +470,10 @@ init_static_vec2 (void)
   if (static_vec2_init)
     return;
 
-  static_vec2[VEC2_ZERO].value = graphene_simd4f_init_zero ();
-  static_vec2[VEC2_ONE].value = graphene_simd4f_init (1.f, 1.f, 0.f, 0.f);
-  static_vec2[VEC2_X_AXIS].value = graphene_simd4f_init (1.f, 0.f, 0.f, 0.f);
-  static_vec2[VEC2_Y_AXIS].value = graphene_simd4f_init (0.f, 1.f, 0.f, 0.f);
-
+  init_static_vec2_once ();
   static_vec2_init = true;
 }
+#endif /* HAVE_PTHREAD */
 
 /**
  * graphene_vec2_zero:
@@ -1021,6 +1054,36 @@ enum {
 };
 
 static graphene_vec3_t static_vec3[N_STATIC_VEC3];
+
+static void
+init_static_vec3_once (void)
+{
+  static_vec3[VEC3_ZERO].value = graphene_simd4f_init_zero ();
+  static_vec3[VEC3_ONE].value = graphene_simd4f_init (1.f, 1.f, 1.f, 0.f);
+  static_vec3[VEC3_X_AXIS].value = graphene_simd4f_init (1.f, 0.f, 0.f, 0.f);
+  static_vec3[VEC3_Y_AXIS].value = graphene_simd4f_init (0.f, 1.f, 0.f, 0.f);
+  static_vec3[VEC3_Z_AXIS].value = graphene_simd4f_init (0.f, 0.f, 1.f, 0.f);
+}
+
+#if HAVE_PTHREAD
+static pthread_once_t static_vec3_once = PTHREAD_ONCE_INIT;
+
+static inline void
+init_static_vec3 (void)
+{
+  int status = pthread_once (&static_vec3_once, init_static_vec3_once);
+
+  if (status < 0)
+    {
+      int saved_errno = errno;
+
+      fprintf (stderr, "pthread_once failed: %s (errno:%d)\n",
+               strerror (saved_errno),
+               saved_errno);
+    }
+}
+
+#else /* !HAVE_PTHREAD */
 static bool static_vec3_init = false;
 
 static inline void
@@ -1029,14 +1092,10 @@ init_static_vec3 (void)
   if (static_vec3_init)
     return;
 
-  static_vec3[VEC3_ZERO].value = graphene_simd4f_init_zero ();
-  static_vec3[VEC3_ONE].value = graphene_simd4f_init (1.f, 1.f, 1.f, 0.f);
-  static_vec3[VEC3_X_AXIS].value = graphene_simd4f_init (1.f, 0.f, 0.f, 0.f);
-  static_vec3[VEC3_Y_AXIS].value = graphene_simd4f_init (0.f, 1.f, 0.f, 0.f);
-  static_vec3[VEC3_Z_AXIS].value = graphene_simd4f_init (0.f, 0.f, 1.f, 0.f);
-
+  init_static_vec3_once ();
   static_vec3_init = true;
 }
+#endif /* HAVE_PTHREAD */
 
 /**
  * graphene_vec3_zero:
@@ -1634,6 +1693,37 @@ enum {
 };
 
 static graphene_vec4_t static_vec4[N_STATIC_VEC4];
+
+static void
+init_static_vec4_once (void)
+{
+  static_vec4[VEC4_ZERO].value = graphene_simd4f_init_zero ();
+  static_vec4[VEC4_ONE].value = graphene_simd4f_splat (1.f);
+  static_vec4[VEC4_X_AXIS].value = graphene_simd4f_init (1.f, 0.f, 0.f, 0.f);
+  static_vec4[VEC4_Y_AXIS].value = graphene_simd4f_init (0.f, 1.f, 0.f, 0.f);
+  static_vec4[VEC4_Z_AXIS].value = graphene_simd4f_init (0.f, 0.f, 1.f, 0.f);
+  static_vec4[VEC4_W_AXIS].value = graphene_simd4f_init (0.f, 0.f, 0.f, 1.f);
+}
+
+#if HAVE_PTHREAD
+static pthread_once_t static_vec4_init_once = PTHREAD_ONCE_INIT;
+
+static inline void
+init_static_vec4 (void)
+{
+  int status = pthread_once (&static_vec4_init_once, init_static_vec4_once);
+
+  if (status < 0)
+    {
+      int saved_errno = errno;
+
+      fprintf (stderr, "pthread_once failed: %s (errno:%d)\n",
+               strerror (saved_errno),
+               saved_errno);
+    }
+}
+#else /* !HAVE_PTHREAD */
+
 static bool static_vec4_init = false;
 
 static inline void
@@ -1642,15 +1732,10 @@ init_static_vec4 (void)
   if (static_vec4_init)
     return;
 
-  static_vec4[VEC4_ZERO].value = graphene_simd4f_init_zero ();
-  static_vec4[VEC4_ONE].value = graphene_simd4f_splat (1.f);
-  static_vec4[VEC4_X_AXIS].value = graphene_simd4f_init (1.f, 0.f, 0.f, 0.f);
-  static_vec4[VEC4_Y_AXIS].value = graphene_simd4f_init (0.f, 1.f, 0.f, 0.f);
-  static_vec4[VEC4_Z_AXIS].value = graphene_simd4f_init (0.f, 0.f, 1.f, 0.f);
-  static_vec4[VEC4_W_AXIS].value = graphene_simd4f_init (0.f, 0.f, 0.f, 1.f);
-
+  init_static_vec4_once ();
   static_vec4_init = true;
 }
+#endif /* HAVE_PTHREAD */
 
 /**
  * graphene_vec4_zero:
