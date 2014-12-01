@@ -100,10 +100,18 @@ AC_CANONICAL_HOST
 AC_MSG_CHECKING([if building for some Win32 platform])
 AS_CASE([$host],
 
-        [*-*-mingw*|*-*-cygwin*],
+        [*-*-mingw*],
         [
           GRAPHENE_LT_LDFLAGS="$GRAPHENE_LT_LDFLAGS -no-undefined"
           platform_win32=yes
+          os_win32=yes
+        ],
+
+        [*-*-cygwin*],
+        [
+          GRAPHENE_LT_LDFLAGS="$GRAPHENE_LT_LDFLAGS -no-undefined"
+          platform_win32=yes
+          os_win32=no
         ],
 
         [*-*-linux*],
@@ -121,6 +129,22 @@ AM_CONDITIONAL(OS_WIN32, [test "$platform_win32" = "yes"])
 AC_CHECK_FUNCS([aligned_alloc posix_memalign memalign])
 
 AX_PTHREAD
+
+AS_IF([test "x$os_win32" = "xyes"], [
+  AC_COMPILE_IFELSE([AC_LANG_PROGRAM(
+[[
+#define _WIN32_WINNT 0x0600
+#include <windows.h>
+INIT_ONCE g_InitOnce = INIT_ONCE_STATIC_INIT;
+BOOL CALLBACK InitHandleFunc (PINIT_ONCE i, PVOID arg, PVOID *ctx) { return TRUE; }
+int main (void) {
+  BOOL bInitStatus = InitOnceExecuteOnce (&g_InitOnce, InitHandleFunc, NULL, NULL);
+  return 0;
+}
+]])],
+                    [AC_DEFINE([HAVE_INIT_ONCE], [1], [Define if you have InitOnceExecuteOnce])],
+                    [])
+])
 
 dnl === Fast paths ============================================================
 
