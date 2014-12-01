@@ -33,13 +33,27 @@
     } \
   } G_STMT_END
 
-#define graphene_assert_fuzzy_matrix_equal(row,col,n1,n2,epsilon) \
+#define graphene_assert_fuzzy_matrix_cell_equal(row,col,n1,n2,epsilon) \
   G_STMT_START { \
     if (graphene_fuzzy_equals (n1, n2, epsilon)) ; else { \
       char *s = g_strdup_printf ("[%d][%d]: " #n1 " == " #n2 " (+/- " #epsilon "): (%.7g == %.7g)", \
                                  row, col, n1, n2); \
       g_assertion_message (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, s); \
       g_free (s); \
+    } \
+  } G_STMT_END
+
+#define graphene_assert_fuzzy_matrix_equal(m1,m2,epsilon) \
+  G_STMT_START { \
+    unsigned int __i, __j; \
+    float __m1[16], __m2[16]; \
+    graphene_matrix_to_float ((m1), __m1); \
+    graphene_matrix_to_float ((m2), __m2); \
+    for (__i = 0; __i < 4; __i++) { \
+      for (__j = 0; __j < 4; __j++) { \
+        unsigned int __idx = __i + __j; \
+        graphene_assert_fuzzy_matrix_cell_equal (__i, __j, __m1[__idx], __m2[__idx], epsilon); \
+      } \
     } \
   } G_STMT_END
 

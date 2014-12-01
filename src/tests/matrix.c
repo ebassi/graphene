@@ -4,22 +4,6 @@
 
 #include "graphene-test-compat.h"
 
-#define compare_matrices(m1,m2)         G_STMT_START { \
-  float __me1[16], __me2[16]; \
-  unsigned int __x, __y; \
-  graphene_matrix_to_float ((m1), __me1); \
-  graphene_matrix_to_float ((m2), __me2); \
-  for (__x = 0; __x < 4; __x++) { \
-    for (__y = 0; __y < 4; __y++) { \
-      unsigned int __idx = __x + __y; \
-      if (g_test_verbose ()) \
-        g_print ("[%d][%d] ", __x, __y); \
-      graphene_assert_fuzzy_matrix_equal (__x, __y, __me1[__idx], __me2[__idx], 0.0001f); \
-    } \
-    if (g_test_verbose ()) \
-      g_print ("\n"); \
-  }                                     } G_STMT_END
-
 GRAPHENE_TEST_UNIT_BEGIN (matrix_identity)
 {
   graphene_matrix_t m;
@@ -60,7 +44,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_rotation)
   if (g_test_verbose ())
     graphene_matrix_print (&m);
 
-  compare_matrices (&m, &m2);
+  graphene_assert_fuzzy_matrix_equal (&m, &m2, 0.0001f);
 
   graphene_matrix_rotate (&m, 15.0f, graphene_vec3_x_axis ());
   graphene_matrix_init_rotate (&m2, 60.0f, graphene_vec3_x_axis ());
@@ -68,7 +52,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_rotation)
   if (g_test_verbose ())
     graphene_matrix_print (&m);
 
-  compare_matrices (&m, &m2);
+  graphene_assert_fuzzy_matrix_equal (&m, &m2, 0.0001f);
 }
 GRAPHENE_TEST_UNIT_END
 
@@ -100,9 +84,9 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_rotation_euler_quaternion)
   graphene_matrix_init_identity (&m2);
   graphene_matrix_rotate_quaternion (&m2, &q);
 
-  compare_matrices (&m0, &m1);
-  compare_matrices (&m0, &m2);
-  compare_matrices (&m1, &m2);
+  graphene_assert_fuzzy_matrix_equal (&m0, &m1, 0.0001f);
+  graphene_assert_fuzzy_matrix_equal (&m0, &m2, 0.0001f);
+  graphene_assert_fuzzy_matrix_equal (&m1, &m2, 0.0001f);
 #endif
 }
 GRAPHENE_TEST_UNIT_END
@@ -124,7 +108,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_translation)
   if (g_test_verbose ())
     graphene_matrix_print (&m);
 
-  compare_matrices (&m, &m2);
+  graphene_assert_fuzzy_matrix_equal (&m, &m2, 0.0001f);
 }
 GRAPHENE_TEST_UNIT_END
 
@@ -142,7 +126,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_scale)
   if (g_test_verbose ())
     graphene_matrix_print (&m);
 
-  compare_matrices (&m, &m2);
+  graphene_assert_fuzzy_matrix_equal (&m, &m2, 0.0001f);
 
   g_assert_cmpfloat (graphene_matrix_get_x_scale (&m), ==, graphene_matrix_get_x_scale (&m2));
   g_assert_cmpfloat (graphene_matrix_get_y_scale (&m), ==, graphene_matrix_get_y_scale (&m2));
@@ -164,38 +148,38 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_invert)
   
   graphene_matrix_inverse (&m , &inv);
   graphene_matrix_multiply (&m, &inv, &res);
-  compare_matrices (&identity, &res);
+  graphene_assert_fuzzy_matrix_equal (&identity, &res, 0.0001f);
   
   graphene_matrix_scale (&m, 1.0f, 2.0f, 3.0f);
 
   graphene_matrix_inverse (&m , &inv);
   graphene_matrix_multiply (&m, &inv, &res);
-  compare_matrices (&identity, &res);
+  graphene_assert_fuzzy_matrix_equal (&identity, &res, 0.0001f);
 
   graphene_matrix_rotate (&m, 44, graphene_vec3_x_axis ());
 
   graphene_matrix_inverse (&m , &inv);
   graphene_matrix_multiply (&m, &inv, &res);
-  compare_matrices (&identity, &res);
+  graphene_assert_fuzzy_matrix_equal (&identity, &res, 0.0001f);
 
   graphene_matrix_rotate (&m, 12, graphene_vec3_y_axis ());
 
   graphene_matrix_inverse (&m , &inv);
   graphene_matrix_multiply (&m, &inv, &res);
-  compare_matrices (&identity, &res);
+  graphene_assert_fuzzy_matrix_equal (&identity, &res, 0.0001f);
 
   graphene_matrix_translate (&m,
 			     graphene_point3d_init (&p, 1,2,3));
 
   graphene_matrix_inverse (&m , &inv);
   graphene_matrix_multiply (&m, &inv, &res);
-  compare_matrices (&identity, &res);
+  graphene_assert_fuzzy_matrix_equal (&identity, &res, 0.0001f);
 
   graphene_matrix_rotate (&m, 200, graphene_vec3_z_axis ());
 
   graphene_matrix_inverse (&m , &inv);
   graphene_matrix_multiply (&m, &inv, &res);
-  compare_matrices (&identity, &res);
+  graphene_assert_fuzzy_matrix_equal (&identity, &res, 0.0001f);
   
   /*
   g_print ("m:\n");
@@ -261,7 +245,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_look_at)
                                 graphene_vec3_zero (),
                                 &neg_z_axis,
                                 graphene_vec3_y_axis());
-  compare_matrices (&m, &identity);
+  graphene_assert_fuzzy_matrix_equal (&m, &identity, 0.0001f);
 
   if (g_test_verbose ())
     g_print ("look at: eye: (0, 0, 1), center: (0, 0, 0), up: (0, 1, 0)\n");
@@ -273,7 +257,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_look_at)
   identity_translated = identity;
   graphene_matrix_translate (&identity_translated,
                              graphene_point3d_init (&p, 0, 0, -1));
-  compare_matrices (&m, &identity_translated);
+  graphene_assert_fuzzy_matrix_equal (&m, &identity_translated, 0.0001f);
 
   if (g_test_verbose ())
     g_print ("look at: eye: (0, 0, 0), center: (1, 0, -1), up: (0, 1, 0)\n");
@@ -282,7 +266,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_look_at)
                                 &dir_xz,
                                 graphene_vec3_y_axis());
   graphene_matrix_init_rotate (&rotated, -45, graphene_vec3_y_axis());
-  compare_matrices (&m, &rotated);
+  graphene_assert_fuzzy_matrix_equal (&m, &rotated, 0.0001f);
 
   if (g_test_verbose ())
     g_print ("look at: eye: (0, 0, 0), center: (0, 1, -1), up: (0, 1, 0)\n");
@@ -291,7 +275,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_look_at)
                                 &dir_yz,
                                 graphene_vec3_y_axis());
   graphene_matrix_init_rotate (&rotated, 45, graphene_vec3_x_axis());
-  compare_matrices (&m, &rotated);
+  graphene_assert_fuzzy_matrix_equal (&m, &rotated, 0.0001f);
 
 #if 0
   graphene_vec3_init (&eye,
