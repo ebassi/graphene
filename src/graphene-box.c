@@ -39,6 +39,13 @@
 
 #include <math.h>
 
+#if HAVE_PTHREAD
+#include <pthread.h>
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
+#endif
+
 /**
  * graphene_box_alloc: (constructor)
  *
@@ -622,14 +629,10 @@ enum {
 };
 
 static graphene_box_t static_box[N_STATIC_BOX];
-static bool static_box_init = false;
 
-static inline void
-init_static_box (void)
+static void
+init_static_box_once (void)
 {
-  if (static_box_init)
-    return;
-
   static_box[BOX_ZERO].min.value = graphene_simd4f_init_zero ();
   static_box[BOX_ZERO].max.value = graphene_simd4f_init_zero ();
 
@@ -647,9 +650,40 @@ init_static_box (void)
 
   static_box[BOX_EMPTY].min.value = graphene_simd4f_init (INFINITY, INFINITY, INFINITY, 0.f);
   static_box[BOX_EMPTY].max.value = graphene_simd4f_init (-INFINITY, -INFINITY, -INFINITY, 0.f);
+}
 
+#if HAVE_PTHREAD
+static pthread_once_t static_box_once = PTHREAD_ONCE_INIT;
+
+static inline void
+init_static_box (void)
+{
+  int status = pthread_once (&static_box_once, init_static_box_once);
+
+  if (status < 0)
+    {
+      int saved_errno = errno;
+
+      fprintf (stderr, "pthread_once failed: %s (errno:%d)\n",
+               strerror (saved_errno),
+               saved_errno);
+    }
+}
+
+#else /* !HAVE_PTHREAD */
+static bool static_box_init = false;
+
+static inline void
+init_static_box (void)
+{
+  if (static_box_init)
+    return;
+
+  init_static_box_once ();
   static_box_init = true;
 }
+
+#endif /* HAVE_PTHREAD */
 
 /**
  * graphene_box_zero:
