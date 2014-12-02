@@ -232,18 +232,17 @@ vectors_vec4_length (void)
 static void
 vectors_vec4_normalize (void)
 {
-  graphene_vec4_t a, b;
-  float len;
+  graphene_vec4_t a, b, c;
+  float inv_len;
 
   graphene_vec4_init (&a, 1.f, 2.f, 3.f, 4.f);
-  len = graphene_vec4_length (&a);
+  inv_len = 1.f / graphene_vec4_length (&a);
 
   graphene_vec4_normalize (&a, &b);
 
-  graphene_assert_fuzzy_equals (graphene_vec4_get_x (&b), graphene_vec4_get_x (&a) / len, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_vec4_get_y (&b), graphene_vec4_get_y (&a) / len, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_vec4_get_z (&b), graphene_vec4_get_z (&a) / len, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_vec4_get_w (&b), graphene_vec4_get_w (&a) / len, 0.0001f);
+  graphene_vec4_scale (&a, inv_len, &c);
+
+  graphene_assert_fuzzy_vec4_equal (&b, &c, 0.0001f);
 }
 
 static void
