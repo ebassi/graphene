@@ -72,6 +72,22 @@
     } \
   } G_STMT_END
 
+#define graphene_assert_fuzzy_vec4_equal(v1,v2,epsilon) \
+  G_STMT_START { \
+    if (graphene_fuzzy_equals (graphene_vec4_get_x (v1), graphene_vec4_get_x (v2), epsilon) && \
+        graphene_fuzzy_equals (graphene_vec4_get_y (v1), graphene_vec4_get_y (v2), epsilon) && \
+        graphene_fuzzy_equals (graphene_vec4_get_z (v1), graphene_vec4_get_z (v2), epsilon) && \
+        graphene_fuzzy_equals (graphene_vec4_get_w (v1), graphene_vec4_get_w (v2), epsilon)) ; \
+    else { \
+      char *s = g_strdup_printf (#v1 " == " #v2 " (+/- " #epsilon "): " \
+                                 "{ x:%.7g, y:%.7g, z:%.7g, w:%.7g } == { x:%.7g, y:%.7g, z:%.7g, w:%.7g }", \
+                                 graphene_vec4_get_x (v1), graphene_vec4_get_y (v1), graphene_vec4_get_z (v1), graphene_vec4_get_w (v1), \
+                                 graphene_vec4_get_x (v2), graphene_vec4_get_y (v2), graphene_vec4_get_z (v2), graphene_vec4_get_w (v2)); \
+      g_assertion_message (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, s); \
+      g_free (s); \
+    } \
+  } G_STMT_END
+
 #define GRAPHENE_TEST_UNUSED(var) \
   if (0) var = var
 
