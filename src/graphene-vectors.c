@@ -425,7 +425,10 @@ graphene_vec2_equal (const graphene_vec2_t *v1,
   if (v1 == NULL || v2 == NULL)
     return false;
 
-  return graphene_simd4f_cmp_eq (v1->value, v2->value);
+  if (graphene_simd4f_cmp_eq (v1->value, v2->value))
+    return true;
+
+  return graphene_vec2_near (v1, v2, GRAPHENE_FLOAT_EPSILON);
 }
 
 /**
@@ -1099,7 +1102,10 @@ graphene_vec3_equal (const graphene_vec3_t *v1,
   if (v1 == NULL || v2 == NULL)
     return false;
 
-  return graphene_simd4f_cmp_eq (v1->value, v2->value);
+  if (graphene_simd4f_cmp_eq (v1->value, v2->value))
+    return true;
+
+  return graphene_vec3_near (v1, v2, GRAPHENE_FLOAT_EPSILON);
 }
 
 /**
@@ -1791,7 +1797,10 @@ graphene_vec4_equal (const graphene_vec4_t *v1,
   if (v1 == NULL || v2 == NULL)
     return false;
 
-  return graphene_simd4f_cmp_eq (v1->value, v2->value);
+  if (graphene_simd4f_cmp_eq (v1->value, v2->value))
+    return true;
+
+  return graphene_vec4_near (v1, v2, GRAPHENE_FLOAT_EPSILON);
 }
 
 /**
