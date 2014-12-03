@@ -59,9 +59,7 @@
 
 #define graphene_assert_fuzzy_vec3_equal(v1,v2,epsilon) \
   G_STMT_START { \
-    if (graphene_fuzzy_equals (graphene_vec3_get_x (v1), graphene_vec3_get_x (v2), epsilon) && \
-        graphene_fuzzy_equals (graphene_vec3_get_y (v1), graphene_vec3_get_y (v2), epsilon) && \
-        graphene_fuzzy_equals (graphene_vec3_get_z (v1), graphene_vec3_get_z (v2), epsilon)) ; \
+    if (graphene_vec3_near (v1, v2, epsilon)) ; \
     else { \
       char *s = g_strdup_printf (#v1 " == " #v2 " (+/- " #epsilon "): " \
                                  "{ x:%.7g, y:%.7g, z:%.7g } == { x:%.7g, y:%.7g, z:%.7g }", \
@@ -74,10 +72,7 @@
 
 #define graphene_assert_fuzzy_vec4_equal(v1,v2,epsilon) \
   G_STMT_START { \
-    if (graphene_fuzzy_equals (graphene_vec4_get_x (v1), graphene_vec4_get_x (v2), epsilon) && \
-        graphene_fuzzy_equals (graphene_vec4_get_y (v1), graphene_vec4_get_y (v2), epsilon) && \
-        graphene_fuzzy_equals (graphene_vec4_get_z (v1), graphene_vec4_get_z (v2), epsilon) && \
-        graphene_fuzzy_equals (graphene_vec4_get_w (v1), graphene_vec4_get_w (v2), epsilon)) ; \
+    if (graphene_vec4_near (v1, v2, epsilon)) ; \
     else { \
       char *s = g_strdup_printf (#v1 " == " #v2 " (+/- " #epsilon "): " \
                                  "{ x:%.7g, y:%.7g, z:%.7g, w:%.7g } == { x:%.7g, y:%.7g, z:%.7g, w:%.7g }", \
