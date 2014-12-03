@@ -95,6 +95,10 @@ GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_vec2_negate            (const graphene_vec2_t *v,
                                                          graphene_vec2_t       *res);
 GRAPHENE_AVAILABLE_IN_1_2
+bool                    graphene_vec2_near              (const graphene_vec2_t *v1,
+                                                         const graphene_vec2_t *v2,
+                                                         float                  epsilon);
+GRAPHENE_AVAILABLE_IN_1_2
 bool                    graphene_vec2_equal             (const graphene_vec2_t *v1,
                                                          const graphene_vec2_t *v2);
 

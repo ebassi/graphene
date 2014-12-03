@@ -428,6 +428,38 @@ graphene_vec2_equal (const graphene_vec2_t *v1,
   return graphene_simd4f_cmp_eq (v1->value, v2->value);
 }
 
+/**
+ * graphene_vec2_near:
+ * @v1: a #graphene_vec2_t
+ * @v2: a #graphene_vec2_t
+ * @epsilon: the threshold between the two vectors
+ *
+ * Compares the two given #graphene_vec2_t vectors and checks
+ * whether their values are within the given @epsilon.
+ *
+ * Returns: `true` if the two vectors are near each other
+ *
+ * Since: 1.2
+ */
+bool
+graphene_vec2_near (const graphene_vec2_t *v1,
+                    const graphene_vec2_t *v2,
+                    float                  epsilon)
+{
+  float epsilon_sq = epsilon * epsilon;
+  graphene_simd4f_t d;
+
+  if (v1 == v2)
+    return true;
+
+  if (v1 == NULL || v2 == NULL)
+    return false;
+
+  d = graphene_simd4f_sub (v1->value, v2->value);
+
+  return graphene_simd4f_get_x (graphene_simd4f_dot2 (d, d)) < epsilon_sq;
+}
+
 enum {
   VEC2_ZERO,
   VEC2_ONE,

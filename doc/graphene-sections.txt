@@ -466,6 +466,7 @@ graphene_vec2_length
 graphene_vec2_normalize
 graphene_vec2_negate
 graphene_vec2_equal
+graphene_vec2_near
 graphene_vec2_min
 graphene_vec2_max
 graphene_vec2_get_x
