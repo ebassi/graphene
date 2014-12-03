@@ -532,6 +532,7 @@ graphene_vec4_length
 graphene_vec4_normalize
 graphene_vec4_negate
 graphene_vec4_equal
+graphene_vec4_near
 graphene_vec4_min
 graphene_vec4_max
 graphene_vec4_get_x
