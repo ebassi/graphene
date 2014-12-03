@@ -102,6 +102,10 @@ void                    graphene_vec3_negate            (const graphene_vec3_t *
 GRAPHENE_AVAILABLE_IN_1_2
 bool                    graphene_vec3_equal             (const graphene_vec3_t *v1,
                                                          const graphene_vec3_t *v2);
+GRAPHENE_AVAILABLE_IN_1_2
+bool                    graphene_vec3_near              (const graphene_vec3_t *v1,
+                                                         const graphene_vec3_t *v2,
+                                                         float                  epsilon);
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_vec3_min               (const graphene_vec3_t *a,
                                                          const graphene_vec3_t *b,
