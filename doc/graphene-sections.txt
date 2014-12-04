@@ -338,6 +338,7 @@ graphene_simd4f_cross3
 graphene_simd4f_min
 graphene_simd4f_max
 graphene_simd4f_clamp
+graphene_simd4f_clamp_scalar
 graphene_simd4f_shuffle_wxyz
 graphene_simd4f_shuffle_zwxy
 graphene_simd4f_shuffle_yzwx
