@@ -869,7 +869,7 @@ typedef union {
                           __ua.f[3] < __ub.f[3] ? __ua.f[3] : __ub.f[3]); \
   }))
 
-# define graphene_simd4f_max (a,b) \
+# define graphene_simd4f_max(a,b) \
   (__extension__ ({ \
     graphene_simd4f_union_t __ua = { (a) }; \
     graphene_simd4f_union_t __ub = { (b) }; \
