@@ -1739,6 +1739,27 @@ graphene_simd4f_interpolate (const graphene_simd4f_t a,
                                a);
 }
 
+/**
+ * graphene_simd4f_clamp:
+ * @v: a #graphene_simd4f_t
+ * @min: the lower boundary
+ * @max: the upper boundary
+ *
+ * Ensures that all components of the vector @v are within
+ * the @lower and @upper boundaries.
+ *
+ * Returns: the clamped vector
+ *
+ * Since: 1.2
+ */
+static inline graphene_simd4f_t
+graphene_simd4f_clamp (const graphene_simd4f_t v,
+                       const graphene_simd4f_t min,
+                       const graphene_simd4f_t max)
+{
+  return graphene_simd4f_min (graphene_simd4f_max (min, v), max);
+}
+
 GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_SIMD4F_H__ */
