@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Graphene Reference Manual: GObject integration</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Graphene Reference Manual">
+<link rel="up" href="ch01.html" title="Graphene">
+<link rel="prev" href="graphene-Versioning-information.html" title="Versioning information">
+<link rel="next" href="graphene-SIMD-vector.html" title="SIMD vector">
+<meta name="generator" content="GTK-Doc V1.21 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#graphene-GObject-integration.description" class="shortcut">Description</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="graphene-Versioning-information.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="graphene-SIMD-vector.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="graphene-GObject-integration"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="graphene-GObject-integration.top_of_page"></a>GObject integration</span></h2>
+<p>GObject integration — Types for GObject properties and signals</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="graphene-GObject-integration.description"></a><h2>Description</h2>
+<p>Graphene optionally provides information for using its own types with
+GObject properties and signals.</p>
+<div class="refsect3">
+<a name="id-1.2.17.3.3"></a><h4>Using Graphene with GObject</h4>
+<p>In order to discover at compile time if Graphene exposes type information
+for the GType type system, you need to check if the <code class="literal">graphene-gobject-1.0</code>
+pkg-config file exists. In build systems using autotools, you can use
+the <code class="literal">PKG_CHECK_EXISTS</code> m4 macro, for instance:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function">PKG_CHECK_EXISTS</span><span class="symbol">([</span><span class="normal">graphene</span><span class="symbol">-</span><span class="normal">gobject</span><span class="symbol">-</span><span class="number">1.0</span><span class="symbol">],</span>
+<span class="normal">                 </span><span class="symbol">[</span><span class="normal">action</span><span class="symbol">-</span><span class="keyword">if</span><span class="symbol">-</span><span class="normal">found</span><span class="symbol">],</span>
+<span class="normal">                 </span><span class="symbol">[</span><span class="normal">action</span><span class="symbol">-</span><span class="keyword">if</span><span class="symbol">-</span><span class="normal">not</span><span class="symbol">-</span><span class="normal">found</span><span class="symbol">]</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<p>All the types provided by Graphene are boxed types, which means you
+will have to use the <span class="type">GBoxed</span> API when dealing with <a href="../gobject/gobject-Generic-values.html#GValue"><span class="type">GValue</span></a>, <a href="../gobject/gobject-GParamSpec.html#GParamSpec"><span class="type">GParamSpec</span></a>,
+and signal marshallers.</p>
+<p>Graphene type names for use in GObject are the camel case version of
+the C name, minus the <code class="literal">_t</code> suffix; for instance:</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p><a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> becomes <code class="literal">GraphenePoint</code></p></li>
+<li class="listitem"><p><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> becomes <code class="literal">GraphenePoint3D</code></p></li>
+<li class="listitem"><p><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> becomes <code class="literal">GrapheneRect</code></p></li>
+<li class="listitem"><p><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> becomes <code class="literal">GrapheneMatrix</code></p></li>
+</ul></div>
+<p>There is no direct access for the low level <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> and
+<a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> SIMD types.</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="graphene-GObject-integration.functions_details"></a><h2>Functions</h2>
+</div>
+<div class="refsect1">
+<a name="graphene-GObject-integration.other_details"></a><h2>Types and Values</h2>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.21</div>
+</body>
+</html>

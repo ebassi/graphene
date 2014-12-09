@@ -1,0 +1,2864 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Graphene Reference Manual: Matrix</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Graphene Reference Manual">
+<link rel="up" href="ch01.html" title="Graphene">
+<link rel="prev" href="graphene-Quaternion.html" title="Quaternion">
+<link rel="next" href="graphene-Plane.html" title="Plane">
+<meta name="generator" content="GTK-Doc V1.21 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#graphene-Matrix.description" class="shortcut">Description</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="graphene-Quaternion.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="graphene-Plane.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="graphene-Matrix"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="graphene-Matrix.top_of_page"></a>Matrix</span></h2>
+<p>Matrix — 4x4 matrices</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="graphene-Matrix.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-alloc" title="graphene_matrix_alloc ()">graphene_matrix_alloc</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-free" title="graphene_matrix_free ()">graphene_matrix_free</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-init-identity" title="graphene_matrix_init_identity ()">graphene_matrix_init_identity</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-init-from-float" title="graphene_matrix_init_from_float ()">graphene_matrix_init_from_float</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-init-from-vec4" title="graphene_matrix_init_from_vec4 ()">graphene_matrix_init_from_vec4</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-init-from-matrix" title="graphene_matrix_init_from_matrix ()">graphene_matrix_init_from_matrix</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-init-from-2d" title="graphene_matrix_init_from_2d ()">graphene_matrix_init_from_2d</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-init-perspective" title="graphene_matrix_init_perspective ()">graphene_matrix_init_perspective</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-init-ortho" title="graphene_matrix_init_ortho ()">graphene_matrix_init_ortho</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-init-look-at" title="graphene_matrix_init_look_at ()">graphene_matrix_init_look_at</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-init-frustum" title="graphene_matrix_init_frustum ()">graphene_matrix_init_frustum</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-init-scale" title="graphene_matrix_init_scale ()">graphene_matrix_init_scale</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-init-translate" title="graphene_matrix_init_translate ()">graphene_matrix_init_translate</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-init-rotate" title="graphene_matrix_init_rotate ()">graphene_matrix_init_rotate</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-init-skew" title="graphene_matrix_init_skew ()">graphene_matrix_init_skew</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-is-identity" title="graphene_matrix_is_identity ()">graphene_matrix_is_identity</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-is-2d" title="graphene_matrix_is_2d ()">graphene_matrix_is_2d</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-is-backface-visible" title="graphene_matrix_is_backface_visible ()">graphene_matrix_is_backface_visible</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-is-singular" title="graphene_matrix_is_singular ()">graphene_matrix_is_singular</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-to-float" title="graphene_matrix_to_float ()">graphene_matrix_to_float</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-to-2d" title="graphene_matrix_to_2d ()">graphene_matrix_to_2d</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-get-row" title="graphene_matrix_get_row ()">graphene_matrix_get_row</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-get-value" title="graphene_matrix_get_value ()">graphene_matrix_get_value</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-multiply" title="graphene_matrix_multiply ()">graphene_matrix_multiply</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-determinant" title="graphene_matrix_determinant ()">graphene_matrix_determinant</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-transform-vec4" title="graphene_matrix_transform_vec4 ()">graphene_matrix_transform_vec4</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-transform-vec3" title="graphene_matrix_transform_vec3 ()">graphene_matrix_transform_vec3</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-transform-point" title="graphene_matrix_transform_point ()">graphene_matrix_transform_point</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-transform-point3d" title="graphene_matrix_transform_point3d ()">graphene_matrix_transform_point3d</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-transform-rect" title="graphene_matrix_transform_rect ()">graphene_matrix_transform_rect</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-transform-bounds" title="graphene_matrix_transform_bounds ()">graphene_matrix_transform_bounds</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-transform-box" title="graphene_matrix_transform_box ()">graphene_matrix_transform_box</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-transform-sphere" title="graphene_matrix_transform_sphere ()">graphene_matrix_transform_sphere</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-project-point" title="graphene_matrix_project_point ()">graphene_matrix_project_point</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-project-rect-bounds" title="graphene_matrix_project_rect_bounds ()">graphene_matrix_project_rect_bounds</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-untransform-point" title="graphene_matrix_untransform_point ()">graphene_matrix_untransform_point</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-untransform-bounds" title="graphene_matrix_untransform_bounds ()">graphene_matrix_untransform_bounds</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-unproject-point3d" title="graphene_matrix_unproject_point3d ()">graphene_matrix_unproject_point3d</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-translate" title="graphene_matrix_translate ()">graphene_matrix_translate</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-rotate" title="graphene_matrix_rotate ()">graphene_matrix_rotate</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-rotate-x" title="graphene_matrix_rotate_x ()">graphene_matrix_rotate_x</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-rotate-y" title="graphene_matrix_rotate_y ()">graphene_matrix_rotate_y</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-rotate-z" title="graphene_matrix_rotate_z ()">graphene_matrix_rotate_z</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-rotate-quaternion" title="graphene_matrix_rotate_quaternion ()">graphene_matrix_rotate_quaternion</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-rotate-euler" title="graphene_matrix_rotate_euler ()">graphene_matrix_rotate_euler</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-scale" title="graphene_matrix_scale ()">graphene_matrix_scale</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-skew-xy" title="graphene_matrix_skew_xy ()">graphene_matrix_skew_xy</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-skew-xz" title="graphene_matrix_skew_xz ()">graphene_matrix_skew_xz</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-skew-yz" title="graphene_matrix_skew_yz ()">graphene_matrix_skew_yz</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-transpose" title="graphene_matrix_transpose ()">graphene_matrix_transpose</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-inverse" title="graphene_matrix_inverse ()">graphene_matrix_inverse</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-perspective" title="graphene_matrix_perspective ()">graphene_matrix_perspective</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-normalize" title="graphene_matrix_normalize ()">graphene_matrix_normalize</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-get-x-scale" title="graphene_matrix_get_x_scale ()">graphene_matrix_get_x_scale</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-get-y-scale" title="graphene_matrix_get_y_scale ()">graphene_matrix_get_y_scale</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-get-z-scale" title="graphene_matrix_get_z_scale ()">graphene_matrix_get_z_scale</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-interpolate" title="graphene_matrix_interpolate ()">graphene_matrix_interpolate</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-print" title="graphene_matrix_print ()">graphene_matrix_print</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Matrix.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t">graphene_matrix_t</a></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Matrix.description"></a><h2>Description</h2>
+<p><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> is a type that provides a 4x4 square matrix, useful for
+representing 3D transformations.</p>
+<p>The matrix is treated as row-major, i.e. it has four vectors (x, y, z, and
+w) representing rows, and elements of each vector are a column:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">|</span><span class="normal"> x </span><span class="symbol">|</span><span class="normal">    </span><span class="symbol">|</span><span class="normal"> x</span><span class="symbol">.</span><span class="usertype">x</span><span class="normal">   x</span><span class="symbol">.</span><span class="usertype">y</span><span class="normal">   x</span><span class="symbol">.</span><span class="usertype">z</span><span class="normal">   x</span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">|</span>
+<span class="symbol">|</span><span class="normal"> y </span><span class="symbol">|</span><span class="normal"> </span><span class="symbol">-\</span><span class="normal"> </span><span class="symbol">|</span><span class="normal"> y</span><span class="symbol">.</span><span class="usertype">x</span><span class="normal">   y</span><span class="symbol">.</span><span class="usertype">y</span><span class="normal">   y</span><span class="symbol">.</span><span class="usertype">z</span><span class="normal">   y</span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">|</span>
+<span class="symbol">|</span><span class="normal"> z </span><span class="symbol">|</span><span class="normal"> </span><span class="symbol">-/</span><span class="normal"> </span><span class="symbol">|</span><span class="normal"> z</span><span class="symbol">.</span><span class="usertype">x</span><span class="normal">   z</span><span class="symbol">.</span><span class="usertype">y</span><span class="normal">   z</span><span class="symbol">.</span><span class="usertype">z</span><span class="normal">   z</span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">|</span>
+<span class="symbol">|</span><span class="normal"> w </span><span class="symbol">|</span><span class="normal">    </span><span class="symbol">|</span><span class="normal"> w</span><span class="symbol">.</span><span class="usertype">x</span><span class="normal">   w</span><span class="symbol">.</span><span class="usertype">y</span><span class="normal">   w</span><span class="symbol">.</span><span class="usertype">z</span><span class="normal">   w</span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">|</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<p>It is possible to easily convert a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> to and from an array
+of floating point values that can be used with other libraries.</p>
+<p>The contents of a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> are private, and direct access is not
+possible. You can modify and read the contents of a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>
+only through the provided API.</p>
+</div>
+<div class="refsect1">
+<a name="graphene-Matrix.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="graphene-matrix-alloc"></a><h3>graphene_matrix_alloc ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_alloc (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Allocates a new <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.2.5"></a><h4>Returns</h4>
+<p> the newly allocated matrix. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-free"></a><h3>graphene_matrix_free ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_free (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Frees the resources allocated by <a class="link" href="graphene-Matrix.html#graphene-matrix-alloc" title="graphene_matrix_alloc ()"><code class="function">graphene_matrix_alloc()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-init-identity"></a><h3>graphene_matrix_init_identity ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_init_identity (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> with the identity matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.4.6"></a><h4>Returns</h4>
+<p> the initialized matrix. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-init-from-float"></a><h3>graphene_matrix_init_from_float ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_init_from_float (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                 <em class="parameter"><code>const <span class="type">float</span> *v</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> with the given array of floating
+point values.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p> an array of at least 16 floating
+point values. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=16]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.5.6"></a><h4>Returns</h4>
+<p> the initialized matrix. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-init-from-vec4"></a><h3>graphene_matrix_init_from_vec4 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_init_from_vec4 (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v0</code></em>,
+                                <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v1</code></em>,
+                                <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v2</code></em>,
+                                <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v3</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> with the given four row
+vectors.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v0</p></td>
+<td class="parameter_description"><p>the first row vector</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v1</p></td>
+<td class="parameter_description"><p>the second row vector</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v2</p></td>
+<td class="parameter_description"><p>the third row vector</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v3</p></td>
+<td class="parameter_description"><p>the fourth row vector</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.6.6"></a><h4>Returns</h4>
+<p> the initialized matrix. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-init-from-matrix"></a><h3>graphene_matrix_init_from_matrix ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_init_from_matrix (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                  <em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *src</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> using the values of the
+given matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>src</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.7.6"></a><h4>Returns</h4>
+<p> the initialized matrix. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-init-from-2d"></a><h3>graphene_matrix_init_from_2d ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_init_from_2d (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                              <em class="parameter"><code><span class="type">double</span> xx</code></em>,
+                              <em class="parameter"><code><span class="type">double</span> yx</code></em>,
+                              <em class="parameter"><code><span class="type">double</span> xy</code></em>,
+                              <em class="parameter"><code><span class="type">double</span> yy</code></em>,
+                              <em class="parameter"><code><span class="type">double</span> x_0</code></em>,
+                              <em class="parameter"><code><span class="type">double</span> y_0</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> from the values of an affine
+transformation matrix.</p>
+<p>The arguments map to the following matrix layout:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">|</span><span class="normal"> </span><span class="usertype">xx</span><span class="normal"> yx </span><span class="symbol">|</span><span class="normal">   </span><span class="symbol">|</span><span class="normal">  a  b  </span><span class="number">0</span><span class="normal"> </span><span class="symbol">|</span>
+<span class="symbol">|</span><span class="normal"> </span><span class="usertype">xy</span><span class="normal"> yy </span><span class="symbol">|</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">|</span><span class="normal">  c  d  </span><span class="number">0</span><span class="normal"> </span><span class="symbol">|</span>
+<span class="symbol">|</span><span class="normal"> </span><span class="usertype">x0</span><span class="normal"> y0 </span><span class="symbol">|</span><span class="normal">   </span><span class="symbol">|</span><span class="normal"> tx ty  </span><span class="number">1</span><span class="normal"> </span><span class="symbol">|</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<p>This function can be used to convert between a matrix type from
+other libraries and a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.8.9"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>xx</p></td>
+<td class="parameter_description"><p>the xx member</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>yx</p></td>
+<td class="parameter_description"><p>the yx member</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>xy</p></td>
+<td class="parameter_description"><p>the xy member</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>yy</p></td>
+<td class="parameter_description"><p>the yy member</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>x_0</p></td>
+<td class="parameter_description"><p>the x0 member</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>y_0</p></td>
+<td class="parameter_description"><p>the y0 member</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.8.10"></a><h4>Returns</h4>
+<p> the initialized matrix. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-init-perspective"></a><h3>graphene_matrix_init_perspective ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_init_perspective (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                  <em class="parameter"><code><span class="type">float</span> fovy</code></em>,
+                                  <em class="parameter"><code><span class="type">float</span> aspect</code></em>,
+                                  <em class="parameter"><code><span class="type">float</span> z_near</code></em>,
+                                  <em class="parameter"><code><span class="type">float</span> z_far</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> with a perspective projection.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.9.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>fovy</p></td>
+<td class="parameter_description"><p>the field of view angle, in degrees</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>aspect</p></td>
+<td class="parameter_description"><p>the aspect value</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>z_near</p></td>
+<td class="parameter_description"><p>the near Z plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>z_far</p></td>
+<td class="parameter_description"><p>the far Z plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.9.6"></a><h4>Returns</h4>
+<p> the initialized matrix. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-init-ortho"></a><h3>graphene_matrix_init_ortho ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_init_ortho (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                            <em class="parameter"><code><span class="type">float</span> left</code></em>,
+                            <em class="parameter"><code><span class="type">float</span> right</code></em>,
+                            <em class="parameter"><code><span class="type">float</span> top</code></em>,
+                            <em class="parameter"><code><span class="type">float</span> bottom</code></em>,
+                            <em class="parameter"><code><span class="type">float</span> z_near</code></em>,
+                            <em class="parameter"><code><span class="type">float</span> z_far</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> with an orthographic projection.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.10.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>left</p></td>
+<td class="parameter_description"><p>the left edge of the clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>right</p></td>
+<td class="parameter_description"><p>the right edge of the clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>top</p></td>
+<td class="parameter_description"><p>the top edge of the clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>bottom</p></td>
+<td class="parameter_description"><p>the bottom edge of the clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>z_near</p></td>
+<td class="parameter_description"><p>the distance of the near clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>z_far</p></td>
+<td class="parameter_description"><p>the distance of the far clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.10.6"></a><h4>Returns</h4>
+<p> the initialized matrix. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-init-look-at"></a><h3>graphene_matrix_init_look_at ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_init_look_at (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                              <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *eye</code></em>,
+                              <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *center</code></em>,
+                              <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *up</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> so that it positions the "camera"
+at the given <em class="parameter"><code>eye</code></em>
+ coordinates towards an object at the <em class="parameter"><code>center</code></em>
+
+coordinates. The top of the camera is aligned to the direction
+of the <em class="parameter"><code>up</code></em>
+ vector.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.11.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>eye</p></td>
+<td class="parameter_description"><p>the vector describing the position to look from</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>center</p></td>
+<td class="parameter_description"><p>the vector describing the position to look at</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>up</p></td>
+<td class="parameter_description"><p>the vector describing the world's upward direction; usually,
+this is the <a class="link" href="graphene-Vectors.html#graphene-vec3-y-axis" title="graphene_vec3_y_axis ()"><code class="function">graphene_vec3_y_axis()</code></a> vector</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.11.6"></a><h4>Returns</h4>
+<p> the initialized matrix. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-init-frustum"></a><h3>graphene_matrix_init_frustum ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_init_frustum (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                              <em class="parameter"><code><span class="type">float</span> left</code></em>,
+                              <em class="parameter"><code><span class="type">float</span> right</code></em>,
+                              <em class="parameter"><code><span class="type">float</span> bottom</code></em>,
+                              <em class="parameter"><code><span class="type">float</span> top</code></em>,
+                              <em class="parameter"><code><span class="type">float</span> z_near</code></em>,
+                              <em class="parameter"><code><span class="type">float</span> z_far</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> compatible with <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a>.</p>
+<p>See also: <a class="link" href="graphene-Frustum.html#graphene-frustum-init-from-matrix" title="graphene_frustum_init_from_matrix ()"><code class="function">graphene_frustum_init_from_matrix()</code></a></p>
+<div class="refsect3">
+<a name="id-1.2.10.6.12.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>left</p></td>
+<td class="parameter_description"><p>distance of the left clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>right</p></td>
+<td class="parameter_description"><p>distance of the right clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>bottom</p></td>
+<td class="parameter_description"><p>distance of the bottom clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>top</p></td>
+<td class="parameter_description"><p>distance of the top clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>z_near</p></td>
+<td class="parameter_description"><p>distance of the near clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>z_far</p></td>
+<td class="parameter_description"><p>distance of the far clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.12.7"></a><h4>Returns</h4>
+<p> the initialized matrix. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-init-scale"></a><h3>graphene_matrix_init_scale ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_init_scale (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                            <em class="parameter"><code><span class="type">float</span> x</code></em>,
+                            <em class="parameter"><code><span class="type">float</span> y</code></em>,
+                            <em class="parameter"><code><span class="type">float</span> z</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> with the given scaling factors.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.13.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>x</p></td>
+<td class="parameter_description"><p>the scale factor on the X axis</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>y</p></td>
+<td class="parameter_description"><p>the scale factor on the Y axis</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>z</p></td>
+<td class="parameter_description"><p>the scale factor on the Z axis</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.13.6"></a><h4>Returns</h4>
+<p> the initialized matrix. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-init-translate"></a><h3>graphene_matrix_init_translate ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_init_translate (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *p</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> with a translation to the
+given coordinates.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.14.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p</p></td>
+<td class="parameter_description"><p>the translation coordinates</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.14.6"></a><h4>Returns</h4>
+<p> the initialized matrix. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-init-rotate"></a><h3>graphene_matrix_init_rotate ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_init_rotate (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                             <em class="parameter"><code><span class="type">float</span> angle</code></em>,
+                             <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *axis</code></em>);</pre>
+<p>Initializes <em class="parameter"><code>m</code></em>
+ to represent a rotation of <em class="parameter"><code>angle</code></em>
+ degrees on
+the axis represented by the <em class="parameter"><code>axis</code></em>
+ vector.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.15.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>angle</p></td>
+<td class="parameter_description"><p>the rotation angle, in degrees</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>axis</p></td>
+<td class="parameter_description"><p>the axis vector as a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.15.6"></a><h4>Returns</h4>
+<p> the initialized matrix. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-init-skew"></a><h3>graphene_matrix_init_skew ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="returnvalue">graphene_matrix_t</span></a> *
+graphene_matrix_init_skew (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                           <em class="parameter"><code><span class="type">float</span> x_skew</code></em>,
+                           <em class="parameter"><code><span class="type">float</span> y_skew</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> with a skew transformation
+with the given factors.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.16.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>x_skew</p></td>
+<td class="parameter_description"><p>skew factor on the X axis</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>y_skew</p></td>
+<td class="parameter_description"><p>skew factor on the Y axis</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.16.6"></a><h4>Returns</h4>
+<p> the initialized matrix. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-is-identity"></a><h3>graphene_matrix_is_identity ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_matrix_is_identity (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Checks whether the given <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> is the identity matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.17.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.17.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the matrix is the identity matrix</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-is-2d"></a><h3>graphene_matrix_is_2d ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_matrix_is_2d (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Checks whether the given <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> is compatible with an
+a 2D affine transformation matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.18.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.18.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the matrix is compatible with an affine
+transformation matrix</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-is-backface-visible"></a><h3>graphene_matrix_is_backface_visible ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_matrix_is_backface_visible (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Checks whether a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> has a visible back face.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.19.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.19.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the back face of the matrix is visible</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-is-singular"></a><h3>graphene_matrix_is_singular ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_matrix_is_singular (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Checks whether a matrix is singular.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.20.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.20.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the matrix is singular</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-to-float"></a><h3>graphene_matrix_to_float ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_to_float (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                          <em class="parameter"><code><span class="type">float</span> *v</code></em>);</pre>
+<p>Converts a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> to an array of floating point
+values.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.21.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p> return location
+for an array of floating point values. The array must be capable
+of holding at least 16 values. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=16][<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-to-2d"></a><h3>graphene_matrix_to_2d ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_matrix_to_2d (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                       <em class="parameter"><code><span class="type">double</span> *xx</code></em>,
+                       <em class="parameter"><code><span class="type">double</span> *yx</code></em>,
+                       <em class="parameter"><code><span class="type">double</span> *xy</code></em>,
+                       <em class="parameter"><code><span class="type">double</span> *yy</code></em>,
+                       <em class="parameter"><code><span class="type">double</span> *x_0</code></em>,
+                       <em class="parameter"><code><span class="type">double</span> *y_0</code></em>);</pre>
+<p>Converts a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> to an affine transformation
+matrix, if the given matrix is compatible.</p>
+<p>The returned values have the following layout:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">|</span><span class="normal"> </span><span class="usertype">xx</span><span class="normal"> yx </span><span class="symbol">|</span><span class="normal">   </span><span class="symbol">|</span><span class="normal">  a  b  </span><span class="number">0</span><span class="normal"> </span><span class="symbol">|</span>
+<span class="symbol">|</span><span class="normal"> </span><span class="usertype">xy</span><span class="normal"> yy </span><span class="symbol">|</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">|</span><span class="normal">  c  d  </span><span class="number">0</span><span class="normal"> </span><span class="symbol">|</span>
+<span class="symbol">|</span><span class="normal"> </span><span class="usertype">x0</span><span class="normal"> y0 </span><span class="symbol">|</span><span class="normal">   </span><span class="symbol">|</span><span class="normal"> tx ty  </span><span class="number">1</span><span class="normal"> </span><span class="symbol">|</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<p>This function can be used to convert between a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>
+and a matrix type from other libraries.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.22.9"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>xx</p></td>
+<td class="parameter_description"><p> return location for the xx member. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>yx</p></td>
+<td class="parameter_description"><p> return location for the yx member. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>xy</p></td>
+<td class="parameter_description"><p> return location for the xy member. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>yy</p></td>
+<td class="parameter_description"><p> return location for the yy member. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>x_0</p></td>
+<td class="parameter_description"><p> return location for the x0 member. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>y_0</p></td>
+<td class="parameter_description"><p> return location for the y0 member. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.22.10"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the matrix is compatible with an affine
+transformation matrix</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-get-row"></a><h3>graphene_matrix_get_row ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_get_row (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                         <em class="parameter"><code>unsigned <span class="type">int</span> index_</code></em>,
+                         <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *res</code></em>);</pre>
+<p>Retrieves the given row vector at <em class="parameter"><code>index_</code></em>
+ inside a matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.23.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>index_</p></td>
+<td class="parameter_description"><p>the index of the row vector, between 0 and 3</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>
+that is used to store the row vector. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-get-value"></a><h3>graphene_matrix_get_value ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_matrix_get_value (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                           <em class="parameter"><code>unsigned <span class="type">int</span> row</code></em>,
+                           <em class="parameter"><code>unsigned <span class="type">int</span> col</code></em>);</pre>
+<p>Retrieves the value at the given <em class="parameter"><code>row</code></em>
+ and <em class="parameter"><code>col</code></em>
+ index.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.24.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <span class="type">grapheme_matrix_t</span></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>row</p></td>
+<td class="parameter_description"><p>the row index</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>col</p></td>
+<td class="parameter_description"><p>the column index</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.24.6"></a><h4>Returns</h4>
+<p> the value at the given indices</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-multiply"></a><h3>graphene_matrix_multiply ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_multiply (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *a</code></em>,
+                          <em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *b</code></em>,
+                          <em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *res</code></em>);</pre>
+<p>Multiplies two <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>.</p>
+<p>Remember: matrix multiplication is not commutative, except for the
+identity matrix; the product of this multiplication is (A * B).</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.25.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the matrix
+result. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-determinant"></a><h3>graphene_matrix_determinant ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_matrix_determinant (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Computes the determinant of the given matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.26.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.26.6"></a><h4>Returns</h4>
+<p> the value of the determinant</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-transform-vec4"></a><h3>graphene_matrix_transform_vec4 ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_transform_vec4 (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v</code></em>,
+                                <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *res</code></em>);</pre>
+<p>Transforms the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> using the matrix <em class="parameter"><code>m</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.27.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-transform-vec3"></a><h3>graphene_matrix_transform_vec3 ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_transform_vec3 (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *v</code></em>,
+                                <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *res</code></em>);</pre>
+<p>Transforms the given <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> using the matrix <em class="parameter"><code>m</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.28.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-transform-point"></a><h3>graphene_matrix_transform_point ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_transform_point (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                 <em class="parameter"><code>const <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p</code></em>,
+                                 <em class="parameter"><code><a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *res</code></em>);</pre>
+<p>Transforms the given <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> using the matrix <em class="parameter"><code>m</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.29.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the
+transformed <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-transform-point3d"></a><h3>graphene_matrix_transform_point3d ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_transform_point3d (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                   <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *p</code></em>,
+                                   <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *res</code></em>);</pre>
+<p>Transforms the given <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> using the matrix <em class="parameter"><code>m</code></em>
+.</p>
+<p>Unlike <a class="link" href="graphene-Matrix.html#graphene-matrix-transform-vec3" title="graphene_matrix_transform_vec3 ()"><code class="function">graphene_matrix_transform_vec3()</code></a>, this function will take into
+account the fourth row vector of the <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.30.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the result. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-transform-rect"></a><h3>graphene_matrix_transform_rect ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_transform_rect (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
+                                <em class="parameter"><code><a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> *res</code></em>);</pre>
+<p>Transforms a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the given matrix <em class="parameter"><code>m</code></em>
+. The
+result is a coplanar quad.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.31.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the
+transformed quad. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-transform-bounds"></a><h3>graphene_matrix_transform_bounds ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_transform_bounds (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                  <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
+                                  <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
+<p>Transforms a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the given matrix <em class="parameter"><code>m</code></em>
+. The
+result is the bounding box containing the coplanar quad.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.32.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the bounds
+of the transformed rectangle. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-transform-box"></a><h3>graphene_matrix_transform_box ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_transform_box (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                               <em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *b</code></em>,
+                               <em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *res</code></em>);</pre>
+<p>Transforms a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> using the given matrix <em class="parameter"><code>m</code></em>
+. The
+result is the bounding box containing the transformed box.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.33.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the bounds
+of the transformed box. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-transform-sphere"></a><h3>graphene_matrix_transform_sphere ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_transform_sphere (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                  <em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>,
+                                  <em class="parameter"><code><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *res</code></em>);</pre>
+<p>Transforms a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> using the given matrix <em class="parameter"><code>m</code></em>
+. The
+result is the bounding sphere containing the transformed sphere.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.34.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the bounds
+of the transformed sphere. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-project-point"></a><h3>graphene_matrix_project_point ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_project_point (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                               <em class="parameter"><code>const <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p</code></em>,
+                               <em class="parameter"><code><a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *res</code></em>);</pre>
+<p>Projects a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> using the matrix <em class="parameter"><code>m</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.35.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the projected
+point. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-project-rect-bounds"></a><h3>graphene_matrix_project_rect_bounds ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_project_rect_bounds (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                     <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
+                                     <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
+<p>Projects a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the given matrix.</p>
+<p>The resulting rectangle is the bounding box capable of containing
+fully the projected rectangle.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.36.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the projected
+rectangle. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-untransform-point"></a><h3>graphene_matrix_untransform_point ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_matrix_untransform_point (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                   <em class="parameter"><code>const <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p</code></em>,
+                                   <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *bounds</code></em>,
+                                   <em class="parameter"><code><a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *res</code></em>);</pre>
+<p>Undoes the transformation of a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> using the
+given matrix, within the given rectangular <em class="parameter"><code>bounds</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.37.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>bounds</p></td>
+<td class="parameter_description"><p>the bounds of the transformation</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the
+untransformed point. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.37.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the point was successfully untransformed</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-untransform-bounds"></a><h3>graphene_matrix_untransform_bounds ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_untransform_bounds (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                    <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
+                                    <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *bounds</code></em>,
+                                    <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
+<p>Undoes the transformation on the points of a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a>
+using the given matrix, within the given rectangular <em class="parameter"><code>bounds</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.38.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>bounds</p></td>
+<td class="parameter_description"><p>the bounds of the transformation</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the
+untransformed rectangle. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-unproject-point3d"></a><h3>graphene_matrix_unproject_point3d ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_unproject_point3d (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *projection</code></em>,
+                                   <em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *modelview</code></em>,
+                                   <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *point</code></em>,
+                                   <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *res</code></em>);</pre>
+<p>Unprojects the given <em class="parameter"><code>point</code></em>
+ using the <em class="parameter"><code>projection</code></em>
+ matrix and
+a <em class="parameter"><code>modelview</code></em>
+ matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.39.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>projection</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> for the projection matrix</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>modelview</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> for the modelview matrix</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>point</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> with the coordinates of the point</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the unprojected
+point. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-translate"></a><h3>graphene_matrix_translate ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_translate (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                           <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *pos</code></em>);</pre>
+<p>Adds a translation transformation to <em class="parameter"><code>m</code></em>
+ using the coordinates
+of the given <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.40.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>pos</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-rotate"></a><h3>graphene_matrix_rotate ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_rotate (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                        <em class="parameter"><code><span class="type">float</span> angle</code></em>,
+                        <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *axis</code></em>);</pre>
+<p>Adds a rotation transformation to <em class="parameter"><code>m</code></em>
+, using the given <em class="parameter"><code>angle</code></em>
+
+and <em class="parameter"><code>axis</code></em>
+ vector.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.41.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>angle</p></td>
+<td class="parameter_description"><p>the rotation angle, in degrees</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>axis</p></td>
+<td class="parameter_description"><p>the rotation axis, as a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-rotate-x"></a><h3>graphene_matrix_rotate_x ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_rotate_x (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                          <em class="parameter"><code><span class="type">float</span> angle</code></em>);</pre>
+<p>Adds a rotation transformation around the X axis to <em class="parameter"><code>m</code></em>
+, using
+the given <em class="parameter"><code>angle</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.42.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>angle</p></td>
+<td class="parameter_description"><p>the rotation angle, in degrees</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-rotate-y"></a><h3>graphene_matrix_rotate_y ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_rotate_y (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                          <em class="parameter"><code><span class="type">float</span> angle</code></em>);</pre>
+<p>Adds a rotation transformation around the Y axis to <em class="parameter"><code>m</code></em>
+, using
+the given <em class="parameter"><code>angle</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.43.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>angle</p></td>
+<td class="parameter_description"><p>the rotation angle, in degrees</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-rotate-z"></a><h3>graphene_matrix_rotate_z ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_rotate_z (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                          <em class="parameter"><code><span class="type">float</span> angle</code></em>);</pre>
+<p>Adds a rotation transformation around the Z axis to <em class="parameter"><code>m</code></em>
+, using
+the given <em class="parameter"><code>angle</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.44.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>angle</p></td>
+<td class="parameter_description"><p>the rotation angle, in degrees</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-rotate-quaternion"></a><h3>graphene_matrix_rotate_quaternion ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_rotate_quaternion (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                                   <em class="parameter"><code>const <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> *q</code></em>);</pre>
+<p>Adds a rotation transformation to <em class="parameter"><code>m</code></em>
+, using the given
+<a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.45.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>q</p></td>
+<td class="parameter_description"><p>a rotation described by a <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-rotate-euler"></a><h3>graphene_matrix_rotate_euler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_rotate_euler (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                              <em class="parameter"><code>const <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> *e</code></em>);</pre>
+<p>Adds a rotation transformation to <em class="parameter"><code>m</code></em>
+, using the given
+<a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.46.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>e</p></td>
+<td class="parameter_description"><p>a rotation described by a <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-scale"></a><h3>graphene_matrix_scale ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_scale (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                       <em class="parameter"><code><span class="type">float</span> factor_x</code></em>,
+                       <em class="parameter"><code><span class="type">float</span> factor_y</code></em>,
+                       <em class="parameter"><code><span class="type">float</span> factor_z</code></em>);</pre>
+<p>Adds a scaling transformation to <em class="parameter"><code>m</code></em>
+, using the three
+given factors.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.47.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>factor_x</p></td>
+<td class="parameter_description"><p>scaling factor on the X axis</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>factor_y</p></td>
+<td class="parameter_description"><p>scaling factor on the Y axis</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>factor_z</p></td>
+<td class="parameter_description"><p>scaling factor on the Z axis</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-skew-xy"></a><h3>graphene_matrix_skew_xy ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_skew_xy (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                         <em class="parameter"><code><span class="type">float</span> factor</code></em>);</pre>
+<p>Adds a skew of <em class="parameter"><code>factor</code></em>
+ on the X and Y axis to the given matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.48.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>factor</p></td>
+<td class="parameter_description"><p>skew factor</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-skew-xz"></a><h3>graphene_matrix_skew_xz ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_skew_xz (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                         <em class="parameter"><code><span class="type">float</span> factor</code></em>);</pre>
+<p>Adds a skew of <em class="parameter"><code>factor</code></em>
+ on the X and Z axis to the given matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.49.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>factor</p></td>
+<td class="parameter_description"><p>skew factor</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-skew-yz"></a><h3>graphene_matrix_skew_yz ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_skew_yz (<em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                         <em class="parameter"><code><span class="type">float</span> factor</code></em>);</pre>
+<p>Adds a skew of <em class="parameter"><code>factor</code></em>
+ on the Y and Z axis to the given matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.50.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>factor</p></td>
+<td class="parameter_description"><p>skew factor</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-transpose"></a><h3>graphene_matrix_transpose ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_transpose (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *res</code></em>);</pre>
+<p>Transposes the given matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.51.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the
+transposed matrix. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-inverse"></a><h3>graphene_matrix_inverse ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_inverse (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                         <em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *res</code></em>);</pre>
+<p>Inverts the given matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.52.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the
+inverse matrix. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-perspective"></a><h3>graphene_matrix_perspective ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_perspective (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                             <em class="parameter"><code><span class="type">float</span> depth</code></em>,
+                             <em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *res</code></em>);</pre>
+<p>Applies a perspective of <em class="parameter"><code>depth</code></em>
+ to the matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.53.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>depth</p></td>
+<td class="parameter_description"><p>the depth of the perspective</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the
+perspective matrix. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-normalize"></a><h3>graphene_matrix_normalize ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_normalize (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *res</code></em>);</pre>
+<p>Normalizes the given <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.54.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the normalized matrix. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-get-x-scale"></a><h3>graphene_matrix_get_x_scale ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_matrix_get_x_scale (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Retrieves the scaling factor on the X axis in <em class="parameter"><code>m</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.55.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.55.6"></a><h4>Returns</h4>
+<p> the value of the scaling factor</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-get-y-scale"></a><h3>graphene_matrix_get_y_scale ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_matrix_get_y_scale (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Retrieves the scaling factor on the Y axis in <em class="parameter"><code>m</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.56.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.56.6"></a><h4>Returns</h4>
+<p> the value of the scaling factor</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-get-z-scale"></a><h3>graphene_matrix_get_z_scale ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_matrix_get_z_scale (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Retrieves the scaling factor on the Z axis in <em class="parameter"><code>m</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.57.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.10.6.57.6"></a><h4>Returns</h4>
+<p> the value of the scaling factor</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-interpolate"></a><h3>graphene_matrix_interpolate ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_interpolate (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *a</code></em>,
+                             <em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *b</code></em>,
+                             <em class="parameter"><code><span class="type">double</span> factor</code></em>,
+                             <em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *res</code></em>);</pre>
+<p>Linearly interpolates the two given <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> by
+interpolating the decomposed transformations separately.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.58.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>factor</p></td>
+<td class="parameter_description"><p>the linear interpolation factor</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the
+interpolated matrix. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-print"></a><h3>graphene_matrix_print ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_matrix_print (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Prints the contents of a matrix.</p>
+<div class="refsect3">
+<a name="id-1.2.10.6.59.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>The matrix to print</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="graphene-Matrix.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="graphene-matrix-t"></a><h3>graphene_matrix_t</h3>
+<pre class="programlisting">typedef struct {
+} graphene_matrix_t;
+</pre>
+<p>A structure capable of holding a 4x4 matrix.</p>
+<p>The contents of the <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> structure are private and
+should never be accessed directly.</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.21</div>
+</body>
+</html>

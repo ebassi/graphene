@@ -1,0 +1,640 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Graphene Reference Manual: Sphere</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Graphene Reference Manual">
+<link rel="up" href="ch01.html" title="Graphene">
+<link rel="prev" href="graphene-Box.html" title="Box">
+<link rel="next" href="graphene-Frustum.html" title="Frustum">
+<meta name="generator" content="GTK-Doc V1.21 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#graphene-Sphere.description" class="shortcut">Description</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="graphene-Box.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="graphene-Frustum.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="graphene-Sphere"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="graphene-Sphere.top_of_page"></a>Sphere</span></h2>
+<p>Sphere — A sphere</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="graphene-Sphere.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="returnvalue">graphene_sphere_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-alloc" title="graphene_sphere_alloc ()">graphene_sphere_alloc</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-free" title="graphene_sphere_free ()">graphene_sphere_free</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="returnvalue">graphene_sphere_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-init" title="graphene_sphere_init ()">graphene_sphere_init</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="returnvalue">graphene_sphere_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-init-from-points" title="graphene_sphere_init_from_points ()">graphene_sphere_init_from_points</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="returnvalue">graphene_sphere_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-init-from-vectors" title="graphene_sphere_init_from_vectors ()">graphene_sphere_init_from_vectors</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-get-center" title="graphene_sphere_get_center ()">graphene_sphere_get_center</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-get-radius" title="graphene_sphere_get_radius ()">graphene_sphere_get_radius</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-get-bounding-box" title="graphene_sphere_get_bounding_box ()">graphene_sphere_get_bounding_box</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-is-empty" title="graphene_sphere_is_empty ()">graphene_sphere_is_empty</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-distance" title="graphene_sphere_distance ()">graphene_sphere_distance</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-contains-point" title="graphene_sphere_contains_point ()">graphene_sphere_contains_point</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-translate" title="graphene_sphere_translate ()">graphene_sphere_translate</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Sphere.html#graphene-sphere-equal" title="graphene_sphere_equal ()">graphene_sphere_equal</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Sphere.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t">graphene_sphere_t</a></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Sphere.description"></a><h2>Description</h2>
+<p><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> provides a representation of a sphere using its center
+and radius.</p>
+</div>
+<div class="refsect1">
+<a name="graphene-Sphere.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="graphene-sphere-alloc"></a><h3>graphene_sphere_alloc ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="returnvalue">graphene_sphere_t</span></a> *
+graphene_sphere_alloc (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Allocates a new <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
+<p>The contents of the newly allocated structure are undefined.</p>
+<div class="refsect3">
+<a name="id-1.2.14.6.2.6"></a><h4>Returns</h4>
+<p> the newly allocated <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. Use
+<a class="link" href="graphene-Sphere.html#graphene-sphere-free" title="graphene_sphere_free ()"><code class="function">graphene_sphere_free()</code></a> to free the resources allocated by this function. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-sphere-free"></a><h3>graphene_sphere_free ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_sphere_free (<em class="parameter"><code><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>);</pre>
+<p>Frees the resources allocated by <a class="link" href="graphene-Sphere.html#graphene-sphere-alloc" title="graphene_sphere_alloc ()"><code class="function">graphene_sphere_alloc()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.14.6.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-sphere-init"></a><h3>graphene_sphere_init ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="returnvalue">graphene_sphere_t</span></a> *
+graphene_sphere_init (<em class="parameter"><code><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>,
+                      <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *center</code></em>,
+                      <em class="parameter"><code><span class="type">float</span> radius</code></em>);</pre>
+<p>Initializes the given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> with the give <em class="parameter"><code>center</code></em>
+ and <em class="parameter"><code>radius</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.14.6.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>center</p></td>
+<td class="parameter_description"><p> the coordinates of the center of the sphere, or <a href="../glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
+for a center in (0, 0, 0). </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>radius</p></td>
+<td class="parameter_description"><p>the radius of the sphere</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.14.6.4.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-sphere-init-from-points"></a><h3>graphene_sphere_init_from_points ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="returnvalue">graphene_sphere_t</span></a> *
+graphene_sphere_init_from_points (<em class="parameter"><code><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>,
+                                  <em class="parameter"><code>unsigned <span class="type">int</span> n_points</code></em>,
+                                  <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *points</code></em>,
+                                  <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *center</code></em>);</pre>
+<p>Initializes the given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> using the given array
+of 3D coordinates so that the sphere includes them.</p>
+<p>The center of the sphere can either be specified, or will be center
+of the 3D volume that encompasses all <em class="parameter"><code>points</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.14.6.5.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>n_points</p></td>
+<td class="parameter_description"><p>the number of <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> in the <em class="parameter"><code>points</code></em>
+array</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>points</p></td>
+<td class="parameter_description"><p> an array of <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=n_points]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>center</p></td>
+<td class="parameter_description"><p> the center of the sphere. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.14.6.5.7"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-sphere-init-from-vectors"></a><h3>graphene_sphere_init_from_vectors ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="returnvalue">graphene_sphere_t</span></a> *
+graphene_sphere_init_from_vectors (<em class="parameter"><code><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>,
+                                   <em class="parameter"><code>unsigned <span class="type">int</span> n_vectors</code></em>,
+                                   <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *vectors</code></em>,
+                                   <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *center</code></em>);</pre>
+<p>Initializes the given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> using the given array
+of 3D coordinates so that the sphere includes them.</p>
+<p>The center of the sphere can either be specified, or will be center
+of the 3D volume that encompasses all <em class="parameter"><code>vectors</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.14.6.6.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>n_vectors</p></td>
+<td class="parameter_description"><p>the number of <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> in the <em class="parameter"><code>vectors</code></em>
+array</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>vectors</p></td>
+<td class="parameter_description"><p> an array of <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=n_vectors]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>center</p></td>
+<td class="parameter_description"><p> the center of the sphere. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.14.6.6.7"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-sphere-get-center"></a><h3>graphene_sphere_get_center ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_sphere_get_center (<em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>,
+                            <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *center</code></em>);</pre>
+<p>Retrieves the coordinates of the center of a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.14.6.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>center</p></td>
+<td class="parameter_description"><p> return location for the coordinates of
+the center. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-sphere-get-radius"></a><h3>graphene_sphere_get_radius ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_sphere_get_radius (<em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>);</pre>
+<p>Retrieves the radius of a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.14.6.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-sphere-get-bounding-box"></a><h3>graphene_sphere_get_bounding_box ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_sphere_get_bounding_box (<em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>,
+                                  <em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>);</pre>
+<p>Computes the bounding box capable of containing the
+given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.14.6.9.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p> return location for the bounding box. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-sphere-is-empty"></a><h3>graphene_sphere_is_empty ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_sphere_is_empty (<em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>);</pre>
+<p>Checks whether the sphere has a zero radius.</p>
+<div class="refsect3">
+<a name="id-1.2.14.6.10.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.14.6.10.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the sphere is empty</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-sphere-distance"></a><h3>graphene_sphere_distance ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_sphere_distance (<em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>,
+                          <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *point</code></em>);</pre>
+<p>Computes the distance of the given <em class="parameter"><code>point</code></em>
+ from the surface of
+a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.14.6.11.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>point</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.14.6.11.6"></a><h4>Returns</h4>
+<p> the distance of the point</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-sphere-contains-point"></a><h3>graphene_sphere_contains_point ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_sphere_contains_point (<em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>,
+                                <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *point</code></em>);</pre>
+<p>Checks whether the given <em class="parameter"><code>point</code></em>
+ is contained in the volume
+of a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.14.6.12.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>point</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.14.6.12.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the sphere contains the point</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-sphere-translate"></a><h3>graphene_sphere_translate ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_sphere_translate (<em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>,
+                           <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *point</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *res</code></em>);</pre>
+<p>Translates the center of the given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> using the
+coordinates inside <em class="parameter"><code>point</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.14.6.13.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>point</p></td>
+<td class="parameter_description"><p>the coordinates of the translation</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the translated sphere. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-sphere-equal"></a><h3>graphene_sphere_equal ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_sphere_equal (<em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *a</code></em>,
+                       <em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *b</code></em>);</pre>
+<p>Checks whether two <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> are equal.</p>
+<div class="refsect3">
+<a name="id-1.2.14.6.14.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.14.6.14.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the spheres are equal</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="graphene-Sphere.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="graphene-sphere-t"></a><h3>graphene_sphere_t</h3>
+<pre class="programlisting">typedef struct {
+} graphene_sphere_t;
+</pre>
+<p>A sphere, represented by its center and radius.</p>
+<p class="since">Since 1.2</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.21</div>
+</body>
+</html>

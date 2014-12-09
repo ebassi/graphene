@@ -1,0 +1,1254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Graphene Reference Manual: Box</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Graphene Reference Manual">
+<link rel="up" href="ch01.html" title="Graphene">
+<link rel="prev" href="graphene-Triangle.html" title="Triangle">
+<link rel="next" href="graphene-Sphere.html" title="Sphere">
+<meta name="generator" content="GTK-Doc V1.21 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#graphene-Box.description" class="shortcut">Description</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="graphene-Triangle.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="graphene-Sphere.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="graphene-Box"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="graphene-Box.top_of_page"></a>Box</span></h2>
+<p>Box — A box</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="graphene-Box.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-alloc" title="graphene_box_alloc ()">graphene_box_alloc</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-free" title="graphene_box_free ()">graphene_box_free</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-init" title="graphene_box_init ()">graphene_box_init</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-init-from-box" title="graphene_box_init_from_box ()">graphene_box_init_from_box</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-init-from-points" title="graphene_box_init_from_points ()">graphene_box_init_from_points</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-init-from-vec3" title="graphene_box_init_from_vec3 ()">graphene_box_init_from_vec3</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-init-from-vectors" title="graphene_box_init_from_vectors ()">graphene_box_init_from_vectors</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-equal" title="graphene_box_equal ()">graphene_box_equal</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-expand" title="graphene_box_expand ()">graphene_box_expand</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-expand-scalar" title="graphene_box_expand_scalar ()">graphene_box_expand_scalar</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-expand-vec3" title="graphene_box_expand_vec3 ()">graphene_box_expand_vec3</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-get-min" title="graphene_box_get_min ()">graphene_box_get_min</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-get-max" title="graphene_box_get_max ()">graphene_box_get_max</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-get-center" title="graphene_box_get_center ()">graphene_box_get_center</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-get-depth" title="graphene_box_get_depth ()">graphene_box_get_depth</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-get-height" title="graphene_box_get_height ()">graphene_box_get_height</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-get-width" title="graphene_box_get_width ()">graphene_box_get_width</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-get-size" title="graphene_box_get_size ()">graphene_box_get_size</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-get-bounding-sphere" title="graphene_box_get_bounding_sphere ()">graphene_box_get_bounding_sphere</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-get-vertices" title="graphene_box_get_vertices ()">graphene_box_get_vertices</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-union" title="graphene_box_union ()">graphene_box_union</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-intersection" title="graphene_box_intersection ()">graphene_box_intersection</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-contains-box" title="graphene_box_contains_box ()">graphene_box_contains_box</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-contains-point" title="graphene_box_contains_point ()">graphene_box_contains_point</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-zero" title="graphene_box_zero ()">graphene_box_zero</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-one" title="graphene_box_one ()">graphene_box_one</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-minus-one" title="graphene_box_minus_one ()">graphene_box_minus_one</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-one-minus-one" title="graphene_box_one_minus_one ()">graphene_box_one_minus_one</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-empty" title="graphene_box_empty ()">graphene_box_empty</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Box.html#graphene-box-infinite" title="graphene_box_infinite ()">graphene_box_infinite</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Box.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t">graphene_box_t</a></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Box.description"></a><h2>Description</h2>
+<p><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> provides a representation of a box using the coordinates
+of its minimum and maximum vertices.</p>
+</div>
+<div class="refsect1">
+<a name="graphene-Box.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="graphene-box-alloc"></a><h3>graphene_box_alloc ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+graphene_box_alloc (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Allocates a new <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>.</p>
+<p>The contents of the returned structure are undefined.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.2.6"></a><h4>Returns</h4>
+<p> the newly allocated <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> structure.
+Use <a class="link" href="graphene-Box.html#graphene-box-free" title="graphene_box_free ()"><code class="function">graphene_box_free()</code></a> to free the resources allocated by this function. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-free"></a><h3>graphene_box_free ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_box_free (<em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>);</pre>
+<p>Frees the resources allocated by <a class="link" href="graphene-Box.html#graphene-box-alloc" title="graphene_box_alloc ()"><code class="function">graphene_box_alloc()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-init"></a><h3>graphene_box_init ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+graphene_box_init (<em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                   <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *min</code></em>,
+                   <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *max</code></em>);</pre>
+<p>Initializes the given <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> with two vertices.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>min</p></td>
+<td class="parameter_description"><p> the coordinates of the minimum vertex. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>max</p></td>
+<td class="parameter_description"><p> the coordinates of the maximum vertex. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.13.6.4.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-init-from-box"></a><h3>graphene_box_init_from_box ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+graphene_box_init_from_box (<em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                            <em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *src</code></em>);</pre>
+<p>Initializes the given <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> with the vertices of
+another <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>src</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.13.6.5.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-init-from-points"></a><h3>graphene_box_init_from_points ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+graphene_box_init_from_points (<em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                               <em class="parameter"><code>unsigned <span class="type">int</span> n_points</code></em>,
+                               <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *points</code></em>);</pre>
+<p>Initializes the given <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> with the given array
+of vertices.</p>
+<p>If <em class="parameter"><code>n_points</code></em>
+ is 0, the returned box is initialized with
+<a class="link" href="graphene-Box.html#graphene-box-empty" title="graphene_box_empty ()"><code class="function">graphene_box_empty()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.6.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>n_points</p></td>
+<td class="parameter_description"><p>the number <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> in the <em class="parameter"><code>points</code></em>
+array</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>points</p></td>
+<td class="parameter_description"><p> an array of <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=n_points]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.13.6.6.7"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-init-from-vec3"></a><h3>graphene_box_init_from_vec3 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+graphene_box_init_from_vec3 (<em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                             <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *min</code></em>,
+                             <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *max</code></em>);</pre>
+<p>Initializes the given <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> with two vertices
+stored inside <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>min</p></td>
+<td class="parameter_description"><p> the coordinates of the minimum vertex. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>max</p></td>
+<td class="parameter_description"><p> the coordinates of the maximum vertex. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.13.6.7.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-init-from-vectors"></a><h3>graphene_box_init_from_vectors ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+graphene_box_init_from_vectors (<em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                                <em class="parameter"><code>unsigned <span class="type">int</span> n_vectors</code></em>,
+                                <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *vectors</code></em>);</pre>
+<p>Initializes the given <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> with the given array
+of vertices.</p>
+<p>If <em class="parameter"><code>n_vectors</code></em>
+ is 0, the returned box is initialized with
+<a class="link" href="graphene-Box.html#graphene-box-empty" title="graphene_box_empty ()"><code class="function">graphene_box_empty()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.8.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>n_vectors</p></td>
+<td class="parameter_description"><p>the number <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> in the <em class="parameter"><code>vectors</code></em>
+array</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>vectors</p></td>
+<td class="parameter_description"><p> an array of <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=n_vectors]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.13.6.8.7"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-equal"></a><h3>graphene_box_equal ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_box_equal (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *a</code></em>,
+                    <em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *b</code></em>);</pre>
+<p>Checks whether the two given boxes are equal.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.9.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.13.6.9.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the boxes are equal</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-expand"></a><h3>graphene_box_expand ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_box_expand (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                     <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *point</code></em>,
+                     <em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *res</code></em>);</pre>
+<p>Expands the dimensions of <em class="parameter"><code>box</code></em>
+ to include the coordinates at <em class="parameter"><code>point</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.10.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>point</p></td>
+<td class="parameter_description"><p>the coordinates of the point to include</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the expanded box. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-expand-scalar"></a><h3>graphene_box_expand_scalar ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_box_expand_scalar (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                            <em class="parameter"><code><span class="type">float</span> scalar</code></em>,
+                            <em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *res</code></em>);</pre>
+<p>Expands the dimensions of <em class="parameter"><code>box</code></em>
+ by the given <em class="parameter"><code>scalar</code></em>
+ value.</p>
+<p>If <em class="parameter"><code>scalar</code></em>
+ is positive, the <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> will grow; if <em class="parameter"><code>scalar</code></em>
+ is
+negative, the <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> will shrink.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.11.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>scalar</p></td>
+<td class="parameter_description"><p>a scalar value</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the expanded box. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-expand-vec3"></a><h3>graphene_box_expand_vec3 ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_box_expand_vec3 (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                          <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *vec</code></em>,
+                          <em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *res</code></em>);</pre>
+<p>Expands the dimensions of <em class="parameter"><code>box</code></em>
+ to include the coordinates of the
+given vector.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.12.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>vec</p></td>
+<td class="parameter_description"><p>the coordinates of the point to include, as a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the expanded box. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-get-min"></a><h3>graphene_box_get_min ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_box_get_min (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                      <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *min</code></em>);</pre>
+<p>Retrieves the coordinates of the minimum point of the given
+<a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.13.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>min</p></td>
+<td class="parameter_description"><p> return location for the minimum point. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-get-max"></a><h3>graphene_box_get_max ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_box_get_max (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                      <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *max</code></em>);</pre>
+<p>Retrieves the coordinates of the maximum point of the given
+<a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.14.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>max</p></td>
+<td class="parameter_description"><p> return location for the maximum point. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-get-center"></a><h3>graphene_box_get_center ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_box_get_center (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                         <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *center</code></em>);</pre>
+<p>Retrieves the coordinates of the center of a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.15.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>center</p></td>
+<td class="parameter_description"><p> return location for the coordinates of
+the center. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-get-depth"></a><h3>graphene_box_get_depth ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_box_get_depth (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>);</pre>
+<p>Retrieves the size of the <em class="parameter"><code>box</code></em>
+ on the Z axis.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.16.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.13.6.16.6"></a><h4>Returns</h4>
+<p> the depth of the box</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-get-height"></a><h3>graphene_box_get_height ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_box_get_height (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>);</pre>
+<p>Retrieves the size of the <em class="parameter"><code>box</code></em>
+ on the Y axis.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.17.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.13.6.17.6"></a><h4>Returns</h4>
+<p> the height of the box</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-get-width"></a><h3>graphene_box_get_width ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_box_get_width (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>);</pre>
+<p>Retrieves the size of the <em class="parameter"><code>box</code></em>
+ on the X axis.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.18.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.13.6.18.6"></a><h4>Returns</h4>
+<p> the width of the box</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-get-size"></a><h3>graphene_box_get_size ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_box_get_size (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                       <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *size</code></em>);</pre>
+<p>Retrieves the size of the box on all three axes, and stores
+it into the given <em class="parameter"><code>size</code></em>
+ vector.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.19.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>size</p></td>
+<td class="parameter_description"><p> return location for the size. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-get-bounding-sphere"></a><h3>graphene_box_get_bounding_sphere ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_box_get_bounding_sphere (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                                  <em class="parameter"><code><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *sphere</code></em>);</pre>
+<p>Computes the bounding <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> capable of containing the given
+<a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.20.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>sphere</p></td>
+<td class="parameter_description"><p> return location for the bounding sphere. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-get-vertices"></a><h3>graphene_box_get_vertices ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_box_get_vertices (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> vertices[]</code></em>);</pre>
+<p>Computes the vertices of the given <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.21.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>vertices</p></td>
+<td class="parameter_description"><p> return location for an array
+of 8 <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=8]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-union"></a><h3>graphene_box_union ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_box_union (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *a</code></em>,
+                    <em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *b</code></em>,
+                    <em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *res</code></em>);</pre>
+<p>Unions the two given <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.22.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>the box to union to <em class="parameter"><code>a</code></em>
+</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the result. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-intersection"></a><h3>graphene_box_intersection ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_box_intersection (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *a</code></em>,
+                           <em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *b</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *res</code></em>);</pre>
+<p>Intersects the two given <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>.</p>
+<p>If the two boxes do not intersect, <em class="parameter"><code>res</code></em>
+ will contain a degenerate box
+initialized with <a class="link" href="graphene-Box.html#graphene-box-empty" title="graphene_box_empty ()"><code class="function">graphene_box_empty()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.23.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the result. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.13.6.23.7"></a><h4>Returns</h4>
+<p> true if the two boxes intersect</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-contains-box"></a><h3>graphene_box_contains_box ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_box_contains_box (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *a</code></em>,
+                           <em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *b</code></em>);</pre>
+<p>Checks whether the <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> <em class="parameter"><code>a</code></em>
+ contains the given
+<a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> <em class="parameter"><code>b</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.24.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.13.6.24.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the box is contained in the given box</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-contains-point"></a><h3>graphene_box_contains_point ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_box_contains_point (<em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>,
+                             <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *point</code></em>);</pre>
+<p>Checks whether <em class="parameter"><code>box</code></em>
+ contains the given <em class="parameter"><code>point</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.25.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>point</p></td>
+<td class="parameter_description"><p>the coordinates to check</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.13.6.25.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the point is contained in the given box</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-zero"></a><h3>graphene_box_zero ()</h3>
+<pre class="programlisting">const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+graphene_box_zero (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>A <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> with both the minimum and maximum vertices set at (0, 0, 0).</p>
+<p>The returned value is owned by Graphene and should not be modified or freed.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.26.6"></a><h4>Returns</h4>
+<p> a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-one"></a><h3>graphene_box_one ()</h3>
+<pre class="programlisting">const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+graphene_box_one (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>A <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> with the minimum vertex set at (0, 0, 0) and the
+maximum vertex set at (1, 1, 1).</p>
+<p>The returned value is owned by Graphene and should not be modified or freed.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.27.6"></a><h4>Returns</h4>
+<p> a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-minus-one"></a><h3>graphene_box_minus_one ()</h3>
+<pre class="programlisting">const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+graphene_box_minus_one (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>A <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> with the minimum vertex set at (-1, -1, -1) and the
+maximum vertex set at (0, 0, 0).</p>
+<p>The returned value is owned by Graphene and should not be modified or freed.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.28.6"></a><h4>Returns</h4>
+<p> a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-one-minus-one"></a><h3>graphene_box_one_minus_one ()</h3>
+<pre class="programlisting">const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+graphene_box_one_minus_one (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>A <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> with the minimum vertex set at (-1, -1, -1) and the
+maximum vertex set at (1, 1, 1).</p>
+<p>The returned value is owned by Graphene and should not be modified or freed.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.29.6"></a><h4>Returns</h4>
+<p> a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-empty"></a><h3>graphene_box_empty ()</h3>
+<pre class="programlisting">const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+graphene_box_empty (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>A degenerate <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> that can only be expanded.</p>
+<p>The returned value is owned by Graphene and should not be modified or freed.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.30.6"></a><h4>Returns</h4>
+<p> a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-box-infinite"></a><h3>graphene_box_infinite ()</h3>
+<pre class="programlisting">const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="returnvalue">graphene_box_t</span></a> *
+graphene_box_infinite (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>A degenerate <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> that cannot be expanded.</p>
+<p>The returned value is owned by Graphene and should not be modified or freed.</p>
+<div class="refsect3">
+<a name="id-1.2.13.6.31.6"></a><h4>Returns</h4>
+<p> a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="graphene-Box.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="graphene-box-t"></a><h3>graphene_box_t</h3>
+<pre class="programlisting">typedef struct {
+} graphene_box_t;
+</pre>
+<p>A 3D box, described as the volume between a minimum and
+a maximum vertices.</p>
+<p class="since">Since 1.2</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.21</div>
+</body>
+</html>

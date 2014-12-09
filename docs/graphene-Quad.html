@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Graphene Reference Manual: Quad</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Graphene Reference Manual">
+<link rel="up" href="ch01.html" title="Graphene">
+<link rel="prev" href="graphene-Rectangle.html" title="Rectangle">
+<link rel="next" href="graphene-Vectors.html" title="Vectors">
+<meta name="generator" content="GTK-Doc V1.21 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#graphene-Quad.description" class="shortcut">Description</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="graphene-Rectangle.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="graphene-Vectors.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="graphene-Quad"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="graphene-Quad.top_of_page"></a>Quad</span></h2>
+<p>Quad — Four-vertex quadrilateral</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="graphene-Quad.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="returnvalue">graphene_quad_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Quad.html#graphene-quad-alloc" title="graphene_quad_alloc ()">graphene_quad_alloc</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Quad.html#graphene-quad-free" title="graphene_quad_free ()">graphene_quad_free</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="returnvalue">graphene_quad_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Quad.html#graphene-quad-init" title="graphene_quad_init ()">graphene_quad_init</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="returnvalue">graphene_quad_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Quad.html#graphene-quad-init-from-rect" title="graphene_quad_init_from_rect ()">graphene_quad_init_from_rect</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Quad.html#graphene-quad-contains" title="graphene_quad_contains ()">graphene_quad_contains</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Quad.html#graphene-quad-bounds" title="graphene_quad_bounds ()">graphene_quad_bounds</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="returnvalue">graphene_point_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Quad.html#graphene-quad-get-point" title="graphene_quad_get_point ()">graphene_quad_get_point</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Quad.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t">graphene_quad_t</a></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Quad.description"></a><h2>Description</h2>
+<p>A <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> represents a coplanar, four vertex quadrilateral shape.</p>
+</div>
+<div class="refsect1">
+<a name="graphene-Quad.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="graphene-quad-alloc"></a><h3>graphene_quad_alloc ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="returnvalue">graphene_quad_t</span></a> *
+graphene_quad_alloc (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Allocates a new <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> instance.</p>
+<p>The contents of the returned instance are undefined.</p>
+<div class="refsect3">
+<a name="id-1.2.6.6.2.6"></a><h4>Returns</h4>
+<p> the newly created <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> instance. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-quad-free"></a><h3>graphene_quad_free ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_quad_free (<em class="parameter"><code><a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> *q</code></em>);</pre>
+<p>Frees the resources allocated by <a class="link" href="graphene-Quad.html#graphene-quad-alloc" title="graphene_quad_alloc ()"><code class="function">graphene_quad_alloc()</code></a></p>
+<div class="refsect3">
+<a name="id-1.2.6.6.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>q</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-quad-init"></a><h3>graphene_quad_init ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="returnvalue">graphene_quad_t</span></a> *
+graphene_quad_init (<em class="parameter"><code><a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> *q</code></em>,
+                    <em class="parameter"><code>const <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p1</code></em>,
+                    <em class="parameter"><code>const <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p2</code></em>,
+                    <em class="parameter"><code>const <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p3</code></em>,
+                    <em class="parameter"><code>const <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p4</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> with the given points.</p>
+<div class="refsect3">
+<a name="id-1.2.6.6.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>q</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p1</p></td>
+<td class="parameter_description"><p>the first point of the quadrilateral</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p2</p></td>
+<td class="parameter_description"><p>the second point of the quadrilateral</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p3</p></td>
+<td class="parameter_description"><p>the third point of the quadrilateral</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p4</p></td>
+<td class="parameter_description"><p>the fourth point of the quadrilateral</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.6.6.4.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-quad-init-from-rect"></a><h3>graphene_quad_init_from_rect ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="returnvalue">graphene_quad_t</span></a> *
+graphene_quad_init_from_rect (<em class="parameter"><code><a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> *q</code></em>,
+                              <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> using the four corners of the
+given <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.6.6.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>q</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.6.6.5.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-quad-contains"></a><h3>graphene_quad_contains ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_quad_contains (<em class="parameter"><code>const <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> *q</code></em>,
+                        <em class="parameter"><code>const <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p</code></em>);</pre>
+<p>Checks if the given <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> contains the given <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.6.6.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>q</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.6.6.6.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the point is inside the <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-quad-bounds"></a><h3>graphene_quad_bounds ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_quad_bounds (<em class="parameter"><code>const <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> *q</code></em>,
+                      <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>);</pre>
+<p>Computes the bounding rectangle of <em class="parameter"><code>q</code></em>
+ and places it into <em class="parameter"><code>r</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.6.6.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>q</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p> return location for a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-quad-get-point"></a><h3>graphene_quad_get_point ()</h3>
+<pre class="programlisting">const <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="returnvalue">graphene_point_t</span></a> *
+graphene_quad_get_point (<em class="parameter"><code>const <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> *q</code></em>,
+                         <em class="parameter"><code>unsigned <span class="type">int</span> index_</code></em>);</pre>
+<p>Retrieves the point of a <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> at the given index.</p>
+<div class="refsect3">
+<a name="id-1.2.6.6.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>q</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>index_</p></td>
+<td class="parameter_description"><p>the index of the point to retrieve</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.6.6.8.6"></a><h4>Returns</h4>
+<p> a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="graphene-Quad.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="graphene-quad-t"></a><h3>graphene_quad_t</h3>
+<pre class="programlisting">typedef struct {
+} graphene_quad_t;
+</pre>
+<p>A 4 vertex quadrilateral, as represented by four <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a>.</p>
+<p>The contents of a <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> are private and should never be
+accessed directly.</p>
+<p class="since">Since 1.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.21</div>
+</body>
+</html>

@@ -1,0 +1,2854 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Graphene Reference Manual: SIMD vector</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Graphene Reference Manual">
+<link rel="up" href="ch01.html" title="Graphene">
+<link rel="prev" href="graphene-GObject-integration.html" title="GObject integration">
+<link rel="next" href="graphene-SIMD-matrix.html" title="SIMD matrix">
+<meta name="generator" content="GTK-Doc V1.21 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#graphene-SIMD-vector.description" class="shortcut">Description</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="graphene-GObject-integration.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="graphene-SIMD-matrix.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="graphene-SIMD-vector"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="graphene-SIMD-vector.top_of_page"></a>SIMD vector</span></h2>
+<p>SIMD vector — Low level floating point 4-sized vector</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="graphene-SIMD-vector.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-init" title="graphene_simd4f_init ()">graphene_simd4f_init</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-init-zero" title="graphene_simd4f_init_zero ()">graphene_simd4f_init_zero</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-init-4f" title="graphene_simd4f_init_4f ()">graphene_simd4f_init_4f</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-init-3f" title="graphene_simd4f_init_3f ()">graphene_simd4f_init_3f</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-init-2f" title="graphene_simd4f_init_2f ()">graphene_simd4f_init_2f</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-dup-4f" title="graphene_simd4f_dup_4f ()">graphene_simd4f_dup_4f</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-dup-3f" title="graphene_simd4f_dup_3f ()">graphene_simd4f_dup_3f</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-dup-2f" title="graphene_simd4f_dup_2f ()">graphene_simd4f_dup_2f</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-get" title="graphene_simd4f_get ()">graphene_simd4f_get</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-get-x" title="graphene_simd4f_get_x ()">graphene_simd4f_get_x</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-get-y" title="graphene_simd4f_get_y ()">graphene_simd4f_get_y</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-get-z" title="graphene_simd4f_get_z ()">graphene_simd4f_get_z</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-get-w" title="graphene_simd4f_get_w ()">graphene_simd4f_get_w</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-splat" title="graphene_simd4f_splat ()">graphene_simd4f_splat</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-splat-x" title="graphene_simd4f_splat_x ()">graphene_simd4f_splat_x</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-splat-y" title="graphene_simd4f_splat_y ()">graphene_simd4f_splat_y</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-splat-z" title="graphene_simd4f_splat_z ()">graphene_simd4f_splat_z</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-splat-w" title="graphene_simd4f_splat_w ()">graphene_simd4f_splat_w</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-add" title="graphene_simd4f_add ()">graphene_simd4f_add</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-sub" title="graphene_simd4f_sub ()">graphene_simd4f_sub</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-mul" title="graphene_simd4f_mul ()">graphene_simd4f_mul</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-div" title="graphene_simd4f_div ()">graphene_simd4f_div</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-sqrt" title="graphene_simd4f_sqrt ()">graphene_simd4f_sqrt</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-reciprocal" title="graphene_simd4f_reciprocal ()">graphene_simd4f_reciprocal</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-rsqrt" title="graphene_simd4f_rsqrt ()">graphene_simd4f_rsqrt</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-cross3" title="graphene_simd4f_cross3 ()">graphene_simd4f_cross3</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-min" title="graphene_simd4f_min ()">graphene_simd4f_min</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-max" title="graphene_simd4f_max ()">graphene_simd4f_max</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-clamp" title="graphene_simd4f_clamp ()">graphene_simd4f_clamp</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-clamp-scalar" title="graphene_simd4f_clamp_scalar ()">graphene_simd4f_clamp_scalar</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-shuffle-wxyz" title="graphene_simd4f_shuffle_wxyz ()">graphene_simd4f_shuffle_wxyz</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-shuffle-zwxy" title="graphene_simd4f_shuffle_zwxy ()">graphene_simd4f_shuffle_zwxy</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-shuffle-yzwx" title="graphene_simd4f_shuffle_yzwx ()">graphene_simd4f_shuffle_yzwx</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-zero-w" title="graphene_simd4f_zero_w ()">graphene_simd4f_zero_w</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-zero-zw" title="graphene_simd4f_zero_zw ()">graphene_simd4f_zero_zw</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-merge-w" title="graphene_simd4f_merge_w ()">graphene_simd4f_merge_w</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-merge-high" title="graphene_simd4f_merge_high ()">graphene_simd4f_merge_high</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-merge-low" title="graphene_simd4f_merge_low ()">graphene_simd4f_merge_low</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-flip-sign-0101" title="graphene_simd4f_flip_sign_0101 ()">graphene_simd4f_flip_sign_0101</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-flip-sign-1010" title="graphene_simd4f_flip_sign_1010 ()">graphene_simd4f_flip_sign_1010</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-cmp-eq" title="graphene_simd4f_cmp_eq ()">graphene_simd4f_cmp_eq</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-cmp-neq" title="graphene_simd4f_cmp_neq ()">graphene_simd4f_cmp_neq</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-cmp-lt" title="graphene_simd4f_cmp_lt ()">graphene_simd4f_cmp_lt</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-cmp-le" title="graphene_simd4f_cmp_le ()">graphene_simd4f_cmp_le</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-cmp-ge" title="graphene_simd4f_cmp_ge ()">graphene_simd4f_cmp_ge</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-cmp-gt" title="graphene_simd4f_cmp_gt ()">graphene_simd4f_cmp_gt</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-neg" title="graphene_simd4f_neg ()">graphene_simd4f_neg</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-madd" title="graphene_simd4f_madd ()">graphene_simd4f_madd</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-sum" title="graphene_simd4f_sum ()">graphene_simd4f_sum</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-sum-scalar" title="graphene_simd4f_sum_scalar ()">graphene_simd4f_sum_scalar</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-dot4" title="graphene_simd4f_dot4 ()">graphene_simd4f_dot4</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-dot3" title="graphene_simd4f_dot3 ()">graphene_simd4f_dot3</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-dot2" title="graphene_simd4f_dot2 ()">graphene_simd4f_dot2</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-length4" title="graphene_simd4f_length4 ()">graphene_simd4f_length4</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-length3" title="graphene_simd4f_length3 ()">graphene_simd4f_length3</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-length2" title="graphene_simd4f_length2 ()">graphene_simd4f_length2</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-normalize4" title="graphene_simd4f_normalize4 ()">graphene_simd4f_normalize4</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-normalize3" title="graphene_simd4f_normalize3 ()">graphene_simd4f_normalize3</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-normalize2" title="graphene_simd4f_normalize2 ()">graphene_simd4f_normalize2</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-is-zero4" title="graphene_simd4f_is_zero4 ()">graphene_simd4f_is_zero4</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-is-zero3" title="graphene_simd4f_is_zero3 ()">graphene_simd4f_is_zero3</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-is-zero2" title="graphene_simd4f_is_zero2 ()">graphene_simd4f_is_zero2</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-interpolate" title="graphene_simd4f_interpolate ()">graphene_simd4f_interpolate</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-SIMD-vector.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t">graphene_simd4f_t</a></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-SIMD-vector.description"></a><h2>Description</h2>
+<p>The <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> type wraps a platform specific implementation of
+a vector of four floating point values.</p>
+<p>Graphene can be compiled to use different implementations of the SIMD
+types, and will generally prefer the faster hardware-backed implementation
+if one is available.</p>
+<p>The <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> should be treated as an opaque, integral type;
+you cannot access its components directly, and you can only operate on
+all components at the same time.</p>
+</div>
+<div class="refsect1">
+<a name="graphene-SIMD-vector.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="graphene-simd4f-init"></a><h3>graphene_simd4f_init ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_init (<em class="parameter"><code><span class="type">float</span> x</code></em>,
+                      <em class="parameter"><code><span class="type">float</span> y</code></em>,
+                      <em class="parameter"><code><span class="type">float</span> z</code></em>,
+                      <em class="parameter"><code><span class="type">float</span> w</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> with the given values.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.2.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>x</p></td>
+<td class="parameter_description"><p>the first component of the vector</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>y</p></td>
+<td class="parameter_description"><p>the second component of the vector</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>z</p></td>
+<td class="parameter_description"><p>the third component of the vector</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>w</p></td>
+<td class="parameter_description"><p>the fourth component of the vector</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.2.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-init-zero"></a><h3>graphene_simd4f_init_zero ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_init_zero (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> with 0 in all components.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.3.5"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-init-4f"></a><h3>graphene_simd4f_init_4f ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_init_4f (<em class="parameter"><code>const <span class="type">float</span> *v</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> using an array of 4 floating
+point values.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p> an array of at least 4 floating
+point values. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=4]</span></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.4.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-init-3f"></a><h3>graphene_simd4f_init_3f ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_init_3f (<em class="parameter"><code>const <span class="type">float</span> *v</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> using an array of 3 floating
+point values.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p> an array of at least 3 floating
+point values. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=3]</span></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.5.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-init-2f"></a><h3>graphene_simd4f_init_2f ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_init_2f (<em class="parameter"><code>const <span class="type">float</span> *v</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> using an array of 2 floating
+point values.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p> an array of at least 2 floating
+point values. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=2]</span></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.6.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-dup-4f"></a><h3>graphene_simd4f_dup_4f ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_simd4f_dup_4f (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>,
+                        <em class="parameter"><code><span class="type">float</span> *v</code></em>);</pre>
+<p>Copies the contents of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> into an
+array of floating points.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p> return location for an
+array of at least 4 floating point values. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=4]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-dup-3f"></a><h3>graphene_simd4f_dup_3f ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_simd4f_dup_3f (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>,
+                        <em class="parameter"><code><span class="type">float</span> *v</code></em>);</pre>
+<p>Copies the contents of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> into an
+array of floating points.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p> return location for an
+array of at least 3 floating point values. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=3]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-dup-2f"></a><h3>graphene_simd4f_dup_2f ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_simd4f_dup_2f (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>,
+                        <em class="parameter"><code><span class="type">float</span> *v</code></em>);</pre>
+<p>Copies the contents of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> into an
+array of floating points.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.9.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p> return location for an
+array of at least 2 floating point values. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=2]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-get"></a><h3>graphene_simd4f_get ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_simd4f_get (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>,
+                     <em class="parameter"><code>unsigned <span class="type">int</span> i</code></em>);</pre>
+<p>Retrieves the given component of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.10.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>i</p></td>
+<td class="parameter_description"><p>the index of the component to retrieve</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-get-x"></a><h3>graphene_simd4f_get_x ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_simd4f_get_x (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Retrieves the first component of <em class="parameter"><code>s</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.11.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.11.6"></a><h4>Returns</h4>
+<p> the first component of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-get-y"></a><h3>graphene_simd4f_get_y ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_simd4f_get_y (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Retrieves the second component of <em class="parameter"><code>s</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.12.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.12.6"></a><h4>Returns</h4>
+<p> the second component of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-get-z"></a><h3>graphene_simd4f_get_z ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_simd4f_get_z (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Retrieves the third component of <em class="parameter"><code>s</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.13.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.13.6"></a><h4>Returns</h4>
+<p> the third component of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-get-w"></a><h3>graphene_simd4f_get_w ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_simd4f_get_w (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Retrieves the fourth component of <em class="parameter"><code>s</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.14.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.14.6"></a><h4>Returns</h4>
+<p> the fourth component of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-splat"></a><h3>graphene_simd4f_splat ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_splat (<em class="parameter"><code><span class="type">float</span> v</code></em>);</pre>
+<p>Sets all the components of a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> to the
+same value <em class="parameter"><code>v</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.15.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a floating point value</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.15.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-splat-x"></a><h3>graphene_simd4f_splat_x ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_splat_x (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Sets all the components of a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> to the
+same value of the first component of the passed vector.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.16.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.16.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-splat-y"></a><h3>graphene_simd4f_splat_y ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_splat_y (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Sets all the components of a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> to the
+same value of the second component of the passed vector.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.17.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.17.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-splat-z"></a><h3>graphene_simd4f_splat_z ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_splat_z (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Sets all the components of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> to the
+same value of the third component of the passed vector.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.18.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.18.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-splat-w"></a><h3>graphene_simd4f_splat_w ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_splat_w (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Sets all the components of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> to the
+same value of the fourth component of the passed vector.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.19.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.19.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-add"></a><h3>graphene_simd4f_add ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_add (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                     <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector where each
+component is the sum of the respective components
+in <em class="parameter"><code>a</code></em>
+ and <em class="parameter"><code>b</code></em>
+.</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="cbracket">{</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">x </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">x </span><span class="symbol">+</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">x</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">y </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">y </span><span class="symbol">+</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">y</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">z </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">z </span><span class="symbol">+</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">z</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">+</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">w</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<div class="refsect3">
+<a name="id-1.2.18.6.20.7"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.20.8"></a><h4>Returns</h4>
+<p> the sum vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-sub"></a><h3>graphene_simd4f_sub ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_sub (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                     <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector where each
+component is the subtraction of the respective components
+in <em class="parameter"><code>a</code></em>
+ and <em class="parameter"><code>b</code></em>
+.</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="cbracket">{</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">x </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">x </span><span class="symbol">-</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">x</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">y </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">y </span><span class="symbol">-</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">y</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">z </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">z </span><span class="symbol">-</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">z</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">-</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">w</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<div class="refsect3">
+<a name="id-1.2.18.6.21.7"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.21.8"></a><h4>Returns</h4>
+<p> the subtraction vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-mul"></a><h3>graphene_simd4f_mul ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_mul (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                     <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector where each
+component is the multiplication of the respective components
+in <em class="parameter"><code>a</code></em>
+ and <em class="parameter"><code>b</code></em>
+.</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="cbracket">{</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">x </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">x </span><span class="symbol">*</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">x</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">y </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">y </span><span class="symbol">*</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">y</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">z </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">z </span><span class="symbol">*</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">z</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">*</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">w</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<div class="refsect3">
+<a name="id-1.2.18.6.22.7"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.22.8"></a><h4>Returns</h4>
+<p> the multiplication vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-div"></a><h3>graphene_simd4f_div ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_div (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                     <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector where each
+component is the division of the respective components
+in <em class="parameter"><code>a</code></em>
+ and <em class="parameter"><code>b</code></em>
+.</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="cbracket">{</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">x </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">x </span><span class="symbol">/</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">x</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">y </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">y </span><span class="symbol">/</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">y</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">z </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">z </span><span class="symbol">/</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">z</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">/</span><span class="normal"> b</span><span class="symbol">.</span><span class="normal">w</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<div class="refsect3">
+<a name="id-1.2.18.6.23.7"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.23.8"></a><h4>Returns</h4>
+<p> the division vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-sqrt"></a><h3>graphene_simd4f_sqrt ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_sqrt (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Computes the square root of every component of <em class="parameter"><code>s</code></em>
+.</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="cbracket">{</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">x </span><span class="symbol">=</span><span class="normal"> </span><span class="function">sqrt</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">s</span><span class="symbol">.</span><span class="normal">x</span><span class="symbol">),</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">y </span><span class="symbol">=</span><span class="normal"> </span><span class="function">sqrt</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">s</span><span class="symbol">.</span><span class="normal">y</span><span class="symbol">),</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">z </span><span class="symbol">=</span><span class="normal"> </span><span class="function">sqrt</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">s</span><span class="symbol">.</span><span class="normal">z</span><span class="symbol">),</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">=</span><span class="normal"> </span><span class="function">sqrt</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">s</span><span class="symbol">.</span><span class="normal">w</span><span class="symbol">)</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<div class="refsect3">
+<a name="id-1.2.18.6.24.7"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.24.8"></a><h4>Returns</h4>
+<p> a vector containing the square root of the
+passed vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-reciprocal"></a><h3>graphene_simd4f_reciprocal ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_reciprocal (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Computes the reciprocal of every component of <em class="parameter"><code>s</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.25.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.25.6"></a><h4>Returns</h4>
+<p> a vector containing the reciprocal of the
+passed vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-rsqrt"></a><h3>graphene_simd4f_rsqrt ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_rsqrt (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Computes the reciprocal square root of every component
+of <em class="parameter"><code>s</code></em>
+.</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="cbracket">{</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">x </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1.0</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="function">sqrt</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">s</span><span class="symbol">.</span><span class="normal">x</span><span class="symbol">),</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">y </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1.0</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="function">sqrt</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">s</span><span class="symbol">.</span><span class="normal">y</span><span class="symbol">),</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">z </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1.0</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="function">sqrt</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">s</span><span class="symbol">.</span><span class="normal">z</span><span class="symbol">),</span>
+<span class="normal">  </span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1.0</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="function">sqrt</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">s</span><span class="symbol">.</span><span class="normal">w</span><span class="symbol">)</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<div class="refsect3">
+<a name="id-1.2.18.6.26.7"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.26.8"></a><h4>Returns</h4>
+<p> a vector containing the reciprocal square root
+of the passed vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-cross3"></a><h3>graphene_simd4f_cross3 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_cross3 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                        <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector where each
+component contains the 3-way cross product of the
+given <em class="parameter"><code>a</code></em>
+ and <em class="parameter"><code>b</code></em>
+ vectors. You can access the result
+as a floating point value through <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-get-x" title="graphene_simd4f_get_x ()"><code class="function">graphene_simd4f_get_x()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.27.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.27.6"></a><h4>Returns</h4>
+<p> the cross3 vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-min"></a><h3>graphene_simd4f_min ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_min (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                     <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> that contains the
+minimum value of each component of <em class="parameter"><code>a</code></em>
+ and <em class="parameter"><code>b</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.28.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.28.6"></a><h4>Returns</h4>
+<p> the new minimum vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-max"></a><h3>graphene_simd4f_max ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_max (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                     <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> that contains the
+maximum value of each component of <em class="parameter"><code>a</code></em>
+ and <em class="parameter"><code>b</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.29.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.29.6"></a><h4>Returns</h4>
+<p> the new maximum vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-clamp"></a><h3>graphene_simd4f_clamp ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_clamp (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>,
+                       <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> min</code></em>,
+                       <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> max</code></em>);</pre>
+<p>Ensures that all components of the vector <em class="parameter"><code>v</code></em>
+ are within
+the components of the <em class="parameter"><code>lower</code></em>
+ and <em class="parameter"><code>upper</code></em>
+ boundaries.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.30.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>min</p></td>
+<td class="parameter_description"><p>the lower boundary</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>max</p></td>
+<td class="parameter_description"><p>the upper boundary</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.30.6"></a><h4>Returns</h4>
+<p> the clamped vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-clamp-scalar"></a><h3>graphene_simd4f_clamp_scalar ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_clamp_scalar (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>,
+                              <em class="parameter"><code><span class="type">float</span> min</code></em>,
+                              <em class="parameter"><code><span class="type">float</span> max</code></em>);</pre>
+<p>Ensures that all components of the vector <em class="parameter"><code>v</code></em>
+ are within
+the <em class="parameter"><code>lower</code></em>
+ and <em class="parameter"><code>upper</code></em>
+ boundary scalar values.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.31.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>min</p></td>
+<td class="parameter_description"><p>the lower boundary</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>max</p></td>
+<td class="parameter_description"><p>the upper boundary</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.31.6"></a><h4>Returns</h4>
+<p> the clamped vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-shuffle-wxyz"></a><h3>graphene_simd4f_shuffle_wxyz ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_shuffle_wxyz (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> that contains the
+re-ordered values of the W, X, Y, and Z components
+of <em class="parameter"><code>s</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.32.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.32.6"></a><h4>Returns</h4>
+<p> the new vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-shuffle-zwxy"></a><h3>graphene_simd4f_shuffle_zwxy ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_shuffle_zwxy (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> that contains the
+re-ordered values of the Z, W, X, and Y components
+of <em class="parameter"><code>s</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.33.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.33.6"></a><h4>Returns</h4>
+<p> the new vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-shuffle-yzwx"></a><h3>graphene_simd4f_shuffle_yzwx ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_shuffle_yzwx (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> that contains the
+re-ordered values of the Y, Z, W, and X components
+of <em class="parameter"><code>s</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.34.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.34.6"></a><h4>Returns</h4>
+<p> the new vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-zero-w"></a><h3>graphene_simd4f_zero_w ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_zero_w (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> that contains the
+same values of the given <em class="parameter"><code>s</code></em>
+ vector, except for the
+W component, which is set to 0.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.35.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.35.6"></a><h4>Returns</h4>
+<p> the new vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-zero-zw"></a><h3>graphene_simd4f_zero_zw ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_zero_zw (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> that contains the
+same values of the given <em class="parameter"><code>s</code></em>
+ vector, except for the
+Z and W components, which are set to 0.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.36.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.36.6"></a><h4>Returns</h4>
+<p> the new vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-merge-w"></a><h3>graphene_simd4f_merge_w ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_merge_w (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>,
+                         <em class="parameter"><code><span class="type">float</span> v</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> that contains the
+same values of the given <em class="parameter"><code>s</code></em>
+ vector, except for the
+W component, which is set to <em class="parameter"><code>v</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.37.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>the new value of the W component</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.37.6"></a><h4>Returns</h4>
+<p> the new vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-merge-high"></a><h3>graphene_simd4f_merge_high ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_merge_high (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                            <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> that contains the
+last two components of the vector <em class="parameter"><code>a</code></em>
+ and the last
+two components of the vector <em class="parameter"><code>b</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.38.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.38.6"></a><h4>Returns</h4>
+<p> the new vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-merge-low"></a><h3>graphene_simd4f_merge_low ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_merge_low (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                           <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Creates a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> that contains the
+first two components of the vector <em class="parameter"><code>a</code></em>
+ and the first
+two components of the vector <em class="parameter"><code>b</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.39.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.39.6"></a><h4>Returns</h4>
+<p> the new vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-flip-sign-0101"></a><h3>graphene_simd4f_flip_sign_0101 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_flip_sign_0101 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Flips the signs of the second and fourth components of
+the given vector <em class="parameter"><code>s</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.40.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.40.6"></a><h4>Returns</h4>
+<p> the new vector, with the changed signs</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-flip-sign-1010"></a><h3>graphene_simd4f_flip_sign_1010 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_flip_sign_1010 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Flips the signs of the first and third components of
+the given vector <em class="parameter"><code>s</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.41.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.41.6"></a><h4>Returns</h4>
+<p> the new vector, with the changed signs</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-cmp-eq"></a><h3>graphene_simd4f_cmp_eq ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_simd4f_cmp_eq (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                        <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Checks if the two given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> are equal.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.42.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.42.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the values of the vectors are equal</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-cmp-neq"></a><h3>graphene_simd4f_cmp_neq ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_simd4f_cmp_neq (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                         <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Checks if the two given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> are not equal.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.43.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.43.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the values of the vectors are not equal</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-cmp-lt"></a><h3>graphene_simd4f_cmp_lt ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_simd4f_cmp_lt (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                        <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Compares two <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> and checks if all components
+of the vector <em class="parameter"><code>a</code></em>
+ are less than the respective components of
+the vector <em class="parameter"><code>b</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.44.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.44.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if vector <em class="parameter"><code>a</code></em>
+is less than <em class="parameter"><code>b</code></em>
+</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-cmp-le"></a><h3>graphene_simd4f_cmp_le ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_simd4f_cmp_le (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                        <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Compares two <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> and checks if all components
+of the vector <em class="parameter"><code>a</code></em>
+ are less than or equal to the respective components
+of the vector <em class="parameter"><code>b</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.45.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.45.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if vector <em class="parameter"><code>a</code></em>
+is less than or equal to <em class="parameter"><code>b</code></em>
+</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-cmp-ge"></a><h3>graphene_simd4f_cmp_ge ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_simd4f_cmp_ge (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                        <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Compares two <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> and checks if all components
+of the vector <em class="parameter"><code>a</code></em>
+ are greater than or equal to the respective
+components of the vector <em class="parameter"><code>b</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.46.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.46.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if vector <em class="parameter"><code>a</code></em>
+is greater than or equal to <em class="parameter"><code>b</code></em>
+</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-cmp-gt"></a><h3>graphene_simd4f_cmp_gt ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_simd4f_cmp_gt (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                        <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Compares two <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> and checks if all components
+of the vector <em class="parameter"><code>a</code></em>
+ are greater than the respective components of
+the vector <em class="parameter"><code>b</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.47.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.47.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if vector <em class="parameter"><code>a</code></em>
+is greater than <em class="parameter"><code>b</code></em>
+</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-neg"></a><h3>graphene_simd4f_neg ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_neg (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> s</code></em>);</pre>
+<p>Negates the values of <em class="parameter"><code>s</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.48.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.48.6"></a><h4>Returns</h4>
+<p> the negated vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-madd"></a><h3>graphene_simd4f_madd ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_madd (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> m1</code></em>,
+                      <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> m2</code></em>,
+                      <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>);</pre>
+<p>Adds <em class="parameter"><code>a</code></em>
+ to the product of <em class="parameter"><code>m1</code></em>
+ and <em class="parameter"><code>m2</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.49.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m1</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>m2</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.49.6"></a><h4>Returns</h4>
+<p> the result vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-sum"></a><h3>graphene_simd4f_sum ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_sum (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>);</pre>
+<p>Sums all components of the given vector.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.50.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.50.6"></a><h4>Returns</h4>
+<p> a vector with all components set to be the
+sum of the passed <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-sum-scalar"></a><h3>graphene_simd4f_sum_scalar ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_simd4f_sum_scalar (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>);</pre>
+<p>Sums all the components of the given vector.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.51.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.51.6"></a><h4>Returns</h4>
+<p> a scalar value with the sum of the components
+of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-dot4"></a><h3>graphene_simd4f_dot4 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_dot4 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                      <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Computes the dot product of all the components of the two
+given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.52.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.52.6"></a><h4>Returns</h4>
+<p> a vector whose components are all set to be the
+dot product of the components of the two operands</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-dot3"></a><h3>graphene_simd4f_dot3 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_dot3 (<em class="parameter"><code><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                      <em class="parameter"><code><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Computes the dot product of the first three components of the
+two given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.53.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.53.6"></a><h4>Returns</h4>
+<p> a vector whose components are all set to the the
+dot product of the componets of the two operands</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-dot2"></a><h3>graphene_simd4f_dot2 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_dot2 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                      <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
+<p>Computes the dot product of the first two components of the
+two given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.54.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.54.6"></a><h4>Returns</h4>
+<p> a vector whose components are all set to the the
+dot product of the componets of the two operands</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-length4"></a><h3>graphene_simd4f_length4 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_length4 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>);</pre>
+<p>Computes the length of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector,
+using all four of its components.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.55.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.55.6"></a><h4>Returns</h4>
+<p> the length vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-length3"></a><h3>graphene_simd4f_length3 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_length3 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>);</pre>
+<p>Computes the length of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector,
+using the first three of its components.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.56.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.56.6"></a><h4>Returns</h4>
+<p> the length vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-length2"></a><h3>graphene_simd4f_length2 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_length2 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>);</pre>
+<p>Computes the length of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector,
+using the first two of its components.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.57.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.57.6"></a><h4>Returns</h4>
+<p> the length vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-normalize4"></a><h3>graphene_simd4f_normalize4 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_normalize4 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>);</pre>
+<p>Computes the normalization of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector,
+using all of its components.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.58.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.58.6"></a><h4>Returns</h4>
+<p> the normalized vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-normalize3"></a><h3>graphene_simd4f_normalize3 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_normalize3 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>);</pre>
+<p>Computes the normalization of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector,
+using the first three of its components.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.59.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.59.6"></a><h4>Returns</h4>
+<p> the normalized vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-normalize2"></a><h3>graphene_simd4f_normalize2 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_normalize2 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>);</pre>
+<p>Computes the normalization of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector,
+using the first two of its components.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.60.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.60.6"></a><h4>Returns</h4>
+<p> the normalized vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-is-zero4"></a><h3>graphene_simd4f_is_zero4 ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_simd4f_is_zero4 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>);</pre>
+<p>Checks whether the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> has all its components
+set to 0.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.61.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.61.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if all the vector components are zero</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-is-zero3"></a><h3>graphene_simd4f_is_zero3 ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_simd4f_is_zero3 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>);</pre>
+<p>Checks whether the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> has the first three of
+its components set to 0.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.62.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.62.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the vector's components are zero</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-is-zero2"></a><h3>graphene_simd4f_is_zero2 ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_simd4f_is_zero2 (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>);</pre>
+<p>Checks whether the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> has the first two of
+its components set to 0.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.63.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>v</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.63.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the vector's components are zero</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-simd4f-interpolate"></a><h3>graphene_simd4f_interpolate ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="returnvalue">graphene_simd4f_t</span></a>
+graphene_simd4f_interpolate (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> a</code></em>,
+                             <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>,
+                             <em class="parameter"><code><span class="type">float</span> f</code></em>);</pre>
+<p>Linearly interpolates all components of the two given
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vectors using the given factor <em class="parameter"><code>f</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.18.6.64.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>f</p></td>
+<td class="parameter_description"><p>the interpolation factor</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.18.6.64.6"></a><h4>Returns</h4>
+<p> the intrerpolated vector</p>
+<p></p>
+</div>
+<p class="since">Since 1.0</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="graphene-SIMD-vector.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="graphene-simd4f-t"></a><h3>graphene_simd4f_t</h3>
+<pre class="programlisting">typedef struct _graphene_simd4f_t graphene_simd4f_t;</pre>
+<p>A vector type containing four floating point values.</p>
+<p>The contents of the <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> type are private and
+cannot be directly accessed; use the provided API instead.</p>
+<p class="since">Since 1.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.21</div>
+</body>
+</html>

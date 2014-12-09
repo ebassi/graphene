@@ -1,0 +1,694 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Graphene Reference Manual: Triangle</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Graphene Reference Manual">
+<link rel="up" href="ch01.html" title="Graphene">
+<link rel="prev" href="graphene-Plane.html" title="Plane">
+<link rel="next" href="graphene-Box.html" title="Box">
+<meta name="generator" content="GTK-Doc V1.21 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#graphene-Triangle.description" class="shortcut">Description</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="graphene-Plane.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="graphene-Box.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="graphene-Triangle"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="graphene-Triangle.top_of_page"></a>Triangle</span></h2>
+<p>Triangle — A triangle described by 3D points</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="graphene-Triangle.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="returnvalue">graphene_triangle_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-alloc" title="graphene_triangle_alloc ()">graphene_triangle_alloc</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-free" title="graphene_triangle_free ()">graphene_triangle_free</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="returnvalue">graphene_triangle_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-init-from-point3d" title="graphene_triangle_init_from_point3d ()">graphene_triangle_init_from_point3d</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="returnvalue">graphene_triangle_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-init-from-vec3" title="graphene_triangle_init_from_vec3 ()">graphene_triangle_init_from_vec3</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-get-points" title="graphene_triangle_get_points ()">graphene_triangle_get_points</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-get-vertices" title="graphene_triangle_get_vertices ()">graphene_triangle_get_vertices</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-get-area" title="graphene_triangle_get_area ()">graphene_triangle_get_area</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-get-midpoint" title="graphene_triangle_get_midpoint ()">graphene_triangle_get_midpoint</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-get-normal" title="graphene_triangle_get_normal ()">graphene_triangle_get_normal</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-get-plane" title="graphene_triangle_get_plane ()">graphene_triangle_get_plane</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-get-bounding-box" title="graphene_triangle_get_bounding_box ()">graphene_triangle_get_bounding_box</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-get-barycoords" title="graphene_triangle_get_barycoords ()">graphene_triangle_get_barycoords</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-contains-point" title="graphene_triangle_contains_point ()">graphene_triangle_contains_point</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Triangle.html#graphene-triangle-equal" title="graphene_triangle_equal ()">graphene_triangle_equal</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Triangle.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t">graphene_triangle_t</a></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Triangle.description"></a><h2>Description</h2>
+<p><a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> represents a triangle in 3D space.</p>
+</div>
+<div class="refsect1">
+<a name="graphene-Triangle.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="graphene-triangle-alloc"></a><h3>graphene_triangle_alloc ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="returnvalue">graphene_triangle_t</span></a> *
+graphene_triangle_alloc (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Allocates a new <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>.</p>
+<p>The contents of the returned structure are undefined.</p>
+<div class="refsect3">
+<a name="id-1.2.12.6.2.6"></a><h4>Returns</h4>
+<p> the newly allocated <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>
+structure. Use <a class="link" href="graphene-Triangle.html#graphene-triangle-free" title="graphene_triangle_free ()"><code class="function">graphene_triangle_free()</code></a> to free the resources
+allocated by this function. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-triangle-free"></a><h3>graphene_triangle_free ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_triangle_free (<em class="parameter"><code><a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>);</pre>
+<p>Frees the resources allocated by <a class="link" href="graphene-Triangle.html#graphene-triangle-alloc" title="graphene_triangle_alloc ()"><code class="function">graphene_triangle_alloc()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.6.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-triangle-init-from-point3d"></a><h3>graphene_triangle_init_from_point3d ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="returnvalue">graphene_triangle_t</span></a> *
+graphene_triangle_init_from_point3d (<em class="parameter"><code><a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>,
+                                     <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *a</code></em>,
+                                     <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *b</code></em>,
+                                     <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *c</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> using the three given 3D points.</p>
+<div class="refsect3">
+<a name="id-1.2.12.6.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p> a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p> a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>c</p></td>
+<td class="parameter_description"><p> a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.6.4.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-triangle-init-from-vec3"></a><h3>graphene_triangle_init_from_vec3 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="returnvalue">graphene_triangle_t</span></a> *
+graphene_triangle_init_from_vec3 (<em class="parameter"><code><a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>,
+                                  <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *a</code></em>,
+                                  <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *b</code></em>,
+                                  <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *c</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> using the three given vectors.</p>
+<div class="refsect3">
+<a name="id-1.2.12.6.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p> a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p> a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>c</p></td>
+<td class="parameter_description"><p> a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.6.5.6"></a><h4>Returns</h4>
+<p> the initialized <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-triangle-get-points"></a><h3>graphene_triangle_get_points ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_triangle_get_points (<em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>,
+                              <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *a</code></em>,
+                              <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *b</code></em>,
+                              <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *c</code></em>);</pre>
+<p>Retrieves the three vertices of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> and returns
+their coordinates as <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.6.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p> return location for the coordinates
+of the first vertex. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p> return location for the coordinates
+of the second vertex. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>c</p></td>
+<td class="parameter_description"><p> return location for the coordinates
+of the third vertex. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-triangle-get-vertices"></a><h3>graphene_triangle_get_vertices ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_triangle_get_vertices (<em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>,
+                                <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *a</code></em>,
+                                <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *b</code></em>,
+                                <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *c</code></em>);</pre>
+<p>Retrieves the three vertices of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.6.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p> return location for the first vertex. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p> return location for the second vertex. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>c</p></td>
+<td class="parameter_description"><p> return location for the third vertex. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-triangle-get-area"></a><h3>graphene_triangle_get_area ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_triangle_get_area (<em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>);</pre>
+<p>Computes the area of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.6.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.6.8.6"></a><h4>Returns</h4>
+<p> the area of the triangle</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-triangle-get-midpoint"></a><h3>graphene_triangle_get_midpoint ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_triangle_get_midpoint (<em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>,
+                                <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *res</code></em>);</pre>
+<p>Computes the coordinates of the midpoint of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.6.9.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the coordinates of
+the midpoint. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-triangle-get-normal"></a><h3>graphene_triangle_get_normal ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_triangle_get_normal (<em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>,
+                              <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *res</code></em>);</pre>
+<p>Computes the normal vector of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.6.10.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the normal vector. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-triangle-get-plane"></a><h3>graphene_triangle_get_plane ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_triangle_get_plane (<em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>,
+                             <em class="parameter"><code><a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *res</code></em>);</pre>
+<p>Computes the plane based on the vertices of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.6.11.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the plane. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-triangle-get-bounding-box"></a><h3>graphene_triangle_get_bounding_box ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_triangle_get_bounding_box (<em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>,
+                                    <em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *res</code></em>);</pre>
+<p>Computes the bounding box of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.6.12.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the box. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-triangle-get-barycoords"></a><h3>graphene_triangle_get_barycoords ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_triangle_get_barycoords (<em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>,
+                                  <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *p</code></em>,
+                                  <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *res</code></em>);</pre>
+<p>Computes the <a class="ulink" href="http://en.wikipedia.org/wiki/Barycentric_coordinate_system" target="_top">barycentric coordinates</a>
+of the given point <em class="parameter"><code>p</code></em>
+.</p>
+<p>The returned <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> contains the following values, in order:</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p><code class="literal">res.x = u</code></p></li>
+<li class="listitem"><p><code class="literal">res.y = v</code></p></li>
+</ul></div>
+<div class="refsect3">
+<a name="id-1.2.12.6.13.7"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p</p></td>
+<td class="parameter_description"><p> a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the vector
+with the barycentric coordinates. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.6.13.8"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the barycentric coordinates are valid</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-triangle-contains-point"></a><h3>graphene_triangle_contains_point ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_triangle_contains_point (<em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>,
+                                  <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *p</code></em>);</pre>
+<p>Checks whether the given triangle <em class="parameter"><code>t</code></em>
+ contains the point <em class="parameter"><code>p</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.12.6.14.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.6.14.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the point is inside the triangle</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-triangle-equal"></a><h3>graphene_triangle_equal ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_triangle_equal (<em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *a</code></em>,
+                         <em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *b</code></em>);</pre>
+<p>Checks whether the two given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> are equal.</p>
+<div class="refsect3">
+<a name="id-1.2.12.6.15.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.6.15.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the triangles are equal</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="graphene-Triangle.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="graphene-triangle-t"></a><h3>graphene_triangle_t</h3>
+<pre class="programlisting">typedef struct {
+} graphene_triangle_t;
+</pre>
+<p>A triangle.</p>
+<p class="since">Since 1.2</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.21</div>
+</body>
+</html>

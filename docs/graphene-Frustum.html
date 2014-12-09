@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Graphene Reference Manual: Frustum</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Graphene Reference Manual">
+<link rel="up" href="ch01.html" title="Graphene">
+<link rel="prev" href="graphene-Sphere.html" title="Sphere">
+<link rel="next" href="graphene-Versioning-information.html" title="Versioning information">
+<meta name="generator" content="GTK-Doc V1.21 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#graphene-Frustum.description" class="shortcut">Description</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="graphene-Sphere.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="graphene-Versioning-information.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="graphene-Frustum"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="graphene-Frustum.top_of_page"></a>Frustum</span></h2>
+<p>Frustum — A 3D field of view</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="graphene-Frustum.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="returnvalue">graphene_frustum_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Frustum.html#graphene-frustum-alloc" title="graphene_frustum_alloc ()">graphene_frustum_alloc</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Frustum.html#graphene-frustum-free" title="graphene_frustum_free ()">graphene_frustum_free</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="returnvalue">graphene_frustum_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Frustum.html#graphene-frustum-init" title="graphene_frustum_init ()">graphene_frustum_init</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="returnvalue">graphene_frustum_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Frustum.html#graphene-frustum-init-from-frustum" title="graphene_frustum_init_from_frustum ()">graphene_frustum_init_from_frustum</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="returnvalue">graphene_frustum_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Frustum.html#graphene-frustum-init-from-matrix" title="graphene_frustum_init_from_matrix ()">graphene_frustum_init_from_matrix</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Frustum.html#graphene-frustum-get-planes" title="graphene_frustum_get_planes ()">graphene_frustum_get_planes</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Frustum.html#graphene-frustum-contains-point" title="graphene_frustum_contains_point ()">graphene_frustum_contains_point</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Frustum.html#graphene-frustum-intersects-sphere" title="graphene_frustum_intersects_sphere ()">graphene_frustum_intersects_sphere</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Frustum.html#graphene-frustum-intersects-box" title="graphene_frustum_intersects_box ()">graphene_frustum_intersects_box</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Frustum.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t">graphene_frustum_t</a></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Frustum.description"></a><h2>Description</h2>
+<p>A <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> represents a volume of space delimited by planes. It
+is usually employed to represent the field of view of a camera, and can be
+used to determine whether an object falls within that view, to efficiently
+remove invisible objects from the render process.</p>
+</div>
+<div class="refsect1">
+<a name="graphene-Frustum.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="graphene-frustum-alloc"></a><h3>graphene_frustum_alloc ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="returnvalue">graphene_frustum_t</span></a> *
+graphene_frustum_alloc (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Allocates a new <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> structure.</p>
+<p>The contents of the returned structure are undefined.</p>
+<div class="refsect3">
+<a name="id-1.2.15.6.2.6"></a><h4>Returns</h4>
+<p> the newly allocated <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a>
+structure. Use <a class="link" href="graphene-Frustum.html#graphene-frustum-free" title="graphene_frustum_free ()"><code class="function">graphene_frustum_free()</code></a> to free the resources
+allocated by this function. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-frustum-free"></a><h3>graphene_frustum_free ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_frustum_free (<em class="parameter"><code><a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> *f</code></em>);</pre>
+<p>Frees the resources allocated by <a class="link" href="graphene-Frustum.html#graphene-frustum-alloc" title="graphene_frustum_alloc ()"><code class="function">graphene_frustum_alloc()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.15.6.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>f</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-frustum-init"></a><h3>graphene_frustum_init ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="returnvalue">graphene_frustum_t</span></a> *
+graphene_frustum_init (<em class="parameter"><code><a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> *f</code></em>,
+                       <em class="parameter"><code>const <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *p0</code></em>,
+                       <em class="parameter"><code>const <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *p1</code></em>,
+                       <em class="parameter"><code>const <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *p2</code></em>,
+                       <em class="parameter"><code>const <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *p3</code></em>,
+                       <em class="parameter"><code>const <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *p4</code></em>,
+                       <em class="parameter"><code>const <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *p5</code></em>);</pre>
+<p>Initializes the given <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> using the provided
+clipping planes.</p>
+<div class="refsect3">
+<a name="id-1.2.15.6.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>f</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p0</p></td>
+<td class="parameter_description"><p>a clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p1</p></td>
+<td class="parameter_description"><p>a clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p2</p></td>
+<td class="parameter_description"><p>a clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p3</p></td>
+<td class="parameter_description"><p>a clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p4</p></td>
+<td class="parameter_description"><p>a clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p5</p></td>
+<td class="parameter_description"><p>a clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.15.6.4.6"></a><h4>Returns</h4>
+<p> the initialized frustum. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-frustum-init-from-frustum"></a><h3>graphene_frustum_init_from_frustum ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="returnvalue">graphene_frustum_t</span></a> *
+graphene_frustum_init_from_frustum (<em class="parameter"><code><a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> *f</code></em>,
+                                    <em class="parameter"><code>const <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> *src</code></em>);</pre>
+<p>Initializes the given <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> using the clipping
+planes of another <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.15.6.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>f</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>src</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.15.6.5.6"></a><h4>Returns</h4>
+<p> the initialized frustum. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-frustum-init-from-matrix"></a><h3>graphene_frustum_init_from_matrix ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="returnvalue">graphene_frustum_t</span></a> *
+graphene_frustum_init_from_matrix (<em class="parameter"><code><a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> *f</code></em>,
+                                   <em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *matrix</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> using the given <em class="parameter"><code>matrix</code></em>
+.</p>
+<div class="refsect3">
+<a name="id-1.2.15.6.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>f</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>matrix</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.15.6.6.6"></a><h4>Returns</h4>
+<p> the initialized frustum. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-frustum-get-planes"></a><h3>graphene_frustum_get_planes ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_frustum_get_planes (<em class="parameter"><code>const <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> *f</code></em>,
+                             <em class="parameter"><code><a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> planes[]</code></em>);</pre>
+<p>Retrieves the planes that define the given <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.15.6.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>f</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>planes</p></td>
+<td class="parameter_description"><p> return location for an array
+of 6 <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=6]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-frustum-contains-point"></a><h3>graphene_frustum_contains_point ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_frustum_contains_point (<em class="parameter"><code>const <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> *f</code></em>,
+                                 <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *point</code></em>);</pre>
+<p>Checks whether a point is inside the volume defined by the given
+<a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.15.6.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>f</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>point</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.15.6.8.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the point is inside the frustum</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-frustum-intersects-sphere"></a><h3>graphene_frustum_intersects_sphere ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_frustum_intersects_sphere (<em class="parameter"><code>const <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> *f</code></em>,
+                                    <em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *sphere</code></em>);</pre>
+<p>Checks whether the given <em class="parameter"><code>sphere</code></em>
+ intersects a plane of
+a <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.15.6.9.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>f</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>sphere</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.15.6.9.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the sphere intersects the frustum</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-frustum-intersects-box"></a><h3>graphene_frustum_intersects_box ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_frustum_intersects_box (<em class="parameter"><code>const <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a> *f</code></em>,
+                                 <em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *box</code></em>);</pre>
+<p>Checks whether the given <em class="parameter"><code>box</code></em>
+ intersects a plane of
+a <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.15.6.10.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>f</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Frustum.html#graphene-frustum-t" title="graphene_frustum_t"><span class="type">graphene_frustum_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>box</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.15.6.10.6"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the box intersects the frustum</p>
+<p></p>
+</div>
+<p class="since">Since 1.2</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="graphene-Frustum.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="graphene-frustum-t"></a><h3>graphene_frustum_t</h3>
+<pre class="programlisting">typedef struct {
+} graphene_frustum_t;
+</pre>
+<p>A 3D volume delimited by 2D clip planes.</p>
+<p>The contents of the <code class="literal">graphene_frustum_t</code> are private, and should not be
+modified directly.</p>
+<p class="since">Since 1.2</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.21</div>
+</body>
+</html>
