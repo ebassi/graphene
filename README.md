@@ -142,8 +142,8 @@ for working on the heap as well. The contents of all structure types, unless
 noted otherwise, should be considered private, and should never be accessed
 directly.
 
-The full API reference for the for Graphene is available online here:
-https://people.gnome.org/~ebassi/docs/graphene/
+The full API reference for the for Graphene is [available
+online](http://ebassi.github.io/graphene/docs/).
 
 ### License
 
