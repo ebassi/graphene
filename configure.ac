@@ -2,7 +2,7 @@
 # bump micro_version to the next odd number after each release
 m4_define([graphene_major_version], [1])
 m4_define([graphene_minor_version], [1])
-m4_define([graphene_micro_version], [2])
+m4_define([graphene_micro_version], [3])
 
 m4_define([graphene_version], [graphene_major_version.graphene_minor_version.graphene_micro_version])
 
