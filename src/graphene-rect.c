@@ -646,13 +646,8 @@ graphene_rect_interpolate (const graphene_rect_t *a,
   rb = *b;
   graphene_rect_normalize_in_place (&rb);
 
-#define INTERPOLATE(r_a,r_b,member,field,p) \
-  (r_a).member.field + (((r_b).member.field - ((r_a).member.field)) * (p));
-
-  res->origin.x = INTERPOLATE (ra, rb, origin, x, factor)
-  res->origin.y = INTERPOLATE (ra, rb, origin, y, factor)
-  res->size.width = INTERPOLATE (ra, rb, size, width, factor)
-  res->size.height = INTERPOLATE (ra, rb, size, height, factor)
-
-#undef INTERPOLATE
+  res->origin.x = graphene_lerp (ra.origin.x, rb.origin.x, factor);
+  res->origin.y = graphene_lerp (ra.origin.y, rb.origin.y, factor);
+  res->size.width = graphene_lerp (ra.size.width, rb.size.width, factor);
+  res->size.height = graphene_lerp (ra.size.height, rb.size.height, factor);
 }
