@@ -120,19 +120,19 @@ directory.
 
 Graphene provides common types needed to handle 3D transformations:
 
- * 2D points
- * 3D points
- * triangles
- * rectangles
- * quads
- * quaternions
- * euler angles
- * vectors (2, 3, or 4-sized)
- * matrices
- * planes
- * 3D boxes
- * spheres
- * frustums
+ * [2D points](http://ebassi.github.io/graphene/docs/graphene-Point.html)
+ * [3D points](http://ebassi.github.io/graphene/docs/graphene-Point3D.html)
+ * [triangles](http://ebassi.github.io/graphene/docs/graphene-Triangle.html)
+ * [rectangles](http://ebassi.github.io/graphene/docs/graphene-Rectangle.html)
+ * [quads](http://ebassi.github.io/graphene/docs/graphene-Quad.html)
+ * [quaternions](http://ebassi.github.io/graphene/docs/graphene-Quaternion.html)
+ * [euler angles](http://ebassi.github.io/graphene/docs/graphene-Euler.html)
+ * [vectors](http://ebassi.github.io/graphene/docs/graphene-Vectors.html) (2, 3, or 4-sized)
+ * [matrices](http://ebassi.github.io/graphene/docs/graphene-Matrix.html)
+ * [planes](http://ebassi.github.io/graphene/docs/graphene-Plane.html)
+ * [3D boxes](http://ebassi.github.io/graphene/docs/graphene-Box.html)
+ * [spheres](http://ebassi.github.io/graphene/docs/graphene-Sphere.html)
+ * [frustums](http://ebassi.github.io/graphene/docs/graphene-Frustum.html)
 
 Graphene also provides its low-level SIMD vector and matrix types, which are
 used to implement the API above.
