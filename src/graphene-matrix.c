@@ -1726,9 +1726,9 @@ matrix_decompose_3d (const graphene_matrix_t *m,
       scale_y *= -1.f;
       scale_z *= -1.f;
 
-      graphene_simd4f_mul (local.value.x, graphene_simd4f_splat (-1.f));
-      graphene_simd4f_mul (local.value.y, graphene_simd4f_splat (-1.f));
-      graphene_simd4f_mul (local.value.z, graphene_simd4f_splat (-1.f));
+      local.value.x = graphene_simd4f_neg (local.value.x);
+      local.value.y = graphene_simd4f_neg (local.value.y);
+      local.value.z = graphene_simd4f_neg (local.value.z);
     }
 
   graphene_point3d_init (scale_r, scale_x, scale_y, scale_z);
