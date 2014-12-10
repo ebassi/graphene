@@ -1636,7 +1636,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
   graphene_matrix_t local, perspective;
   float shear_xy, shear_xz, shear_yz;
   float scale_x, scale_y, scale_z;
-  graphene_simd4f_t dot, cross;
+  graphene_simd4f_t cross;
 
   if (graphene_matrix_get_value (m, 3, 3) == 0.f)
     return false;
@@ -1686,7 +1686,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
 
   /* compute the X scale factor and normalize the first row */
   scale_x = graphene_simd4f_get_x (graphene_simd4f_length4 (local.value.x));
-  local.value.x = graphene_simd4f_div (local.value.x, graphene_simd4f_splat (scale_x));
+  local.value.x = graphene_simd4f_normalize4 (local.value.x);
 
   /* compute XY shear factor and the second row orthogonal to the first */
   shear_xy = graphene_simd4f_get_x (graphene_simd4f_dot4 (local.value.x, local.value.y));
@@ -1694,7 +1694,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
 
   /* now, compute the Y scale factor and normalize the second row */
   scale_y = graphene_simd4f_get_x (graphene_simd4f_length4 (local.value.y));
-  local.value.y = graphene_simd4f_div (local.value.y, graphene_simd4f_splat (scale_y));
+  local.value.y = graphene_simd4f_normalize4 (local.value.y);
   shear_xy /= scale_y;
 
   /* compute XZ and YZ shears, make the third row orthogonal */
@@ -1705,7 +1705,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
 
   /* next, get the Z scale and normalize the third row */
   scale_z = graphene_simd4f_get_x (graphene_simd4f_length4 (local.value.z));
-  local.value.z = graphene_simd4f_div (local.value.z, graphene_simd4f_splat (scale_z));
+  local.value.z = graphene_simd4f_normalize4 (local.value.z);
 
   shear_xz /= scale_z;
   shear_yz /= scale_z;
@@ -1718,8 +1718,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
    * coordinate system flip. if the determinant is -1, then
    * negate the matrix and the scaling factors
    */
-  dot = graphene_simd4f_cross3 (local.value.y, local.value.z);
-  cross = graphene_simd4f_dot4 (local.value.x, dot);
+  cross = graphene_simd4f_dot4 (local.value.x, graphene_simd4f_cross3 (local.value.y, local.value.z));
   if (graphene_simd4f_get_x (cross) < 0.f)
     {
       scale_x *= -1.f;
@@ -1796,15 +1795,15 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
   graphene_quaternion_slerp (&rotate_a, &rotate_b, factor, &rotate_r);
   graphene_matrix_rotate_quaternion (res, &rotate_r);
 
-  shear = shear_a[YZ_SHEAR] + (shear_b[YZ_SHEAR] - shear_a[YZ_SHEAR]) * factor;
+  shear = graphene_lerp (shear_a[YZ_SHEAR], shear_b[YZ_SHEAR], factor);
   if (shear != 0.f)
     graphene_matrix_skew_yz (res, shear);
 
-  shear = shear_a[XZ_SHEAR] + (shear_b[XZ_SHEAR] - shear_a[XZ_SHEAR]) * factor;
+  shear = graphene_lerp (shear_a[XZ_SHEAR], shear_b[XZ_SHEAR], factor);
   if (shear != 0.f)
     graphene_matrix_skew_xz (res, shear);
 
-  shear = shear_a[XY_SHEAR] + (shear_b[XY_SHEAR] - shear_a[XY_SHEAR]) * factor;
+  shear = graphene_lerp (shear_a[XY_SHEAR], shear_b[XY_SHEAR], factor);
   if (shear != 0.f)
     graphene_matrix_skew_xy (res, shear);
 
