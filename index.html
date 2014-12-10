@@ -71,13 +71,13 @@ with support for them <em>and</em> if the system you're running on has them.
 Currently, Graphene supports the following platform-specific fast paths:</p>
 
 <ul>
-<li>Streaming SIMD Extensions (SSE) 2</li>
-<li>ARM NEON</li>
-<li>GCC vector extensions</li>
+<li><a class="external" href="http://en.wikipedia.org/wiki/SSE2">Streaming SIMD Extensions (SSE) 2</a></li>
+<li><a class="external" href="http://www.arm.com/products/processors/technologies/neon.php">ARM NEON</a></li>
+<li><a class="external" href="https://gcc.gnu.org/onlinedocs/gcc/Vector-Extensions.html">GCC vector extensions</a></li>
 </ul>
 
 <p>In the remote case in which none of these optimizations are available,
-Graphene will fall back to a naive scalar implementation.</p>
+Graphene will fall back to a naïve scalar implementation.</p>
 
 <p>Graphene can, optionally, provide types for integrating with GObject
 properties and signals, as well as introspection information for its
