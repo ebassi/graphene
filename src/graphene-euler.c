@@ -493,7 +493,11 @@ graphene_euler_get_z (const graphene_euler_t *e)
  * #graphene_euler_t structure, when converting to and from other
  * structures, like #graphene_quaternion_t and #graphene_matrix_t.
  *
- * Returns: the rotation angle
+ * This function does not return the %GRAPHENE_EULER_ORDER_DEFAULT
+ * enumeration value; it will return the effective order of rotation
+ * instead.
+ *
+ * Returns: the order used to apply the rotations
  *
  * Since: 1.2
  */

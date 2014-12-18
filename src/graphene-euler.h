@@ -35,7 +35,8 @@ GRAPHENE_BEGIN_DECLS
 
 /**
  * graphene_euler_order_t:
- * @GRAPHENE_EULER_ORDER_DEFAULT: Rotate in the default order
+ * @GRAPHENE_EULER_ORDER_DEFAULT: Rotate in the default order; the
+ *   default order is one of the following enumeration values
  * @GRAPHENE_EULER_ORDER_XYZ: Rotate in the X, Y, and Z order
  * @GRAPHENE_EULER_ORDER_YZX: Rotate in the Y, Z, and X order
  * @GRAPHENE_EULER_ORDER_ZXY: Rotate in the Z, X, and Y order
@@ -44,6 +45,9 @@ GRAPHENE_BEGIN_DECLS
  * @GRAPHENE_EULER_ORDER_ZYX: Rotate in the Z, Y, and X order
  *
  * Specify the order of the rotations on each axis.
+ *
+ * The %GRAPHENE_EULER_ORDER_DEFAULT value is special, and is used
+ * as an alias for one of the other orders.
  *
  * Since: 1.2
  */
