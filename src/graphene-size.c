@@ -174,8 +174,8 @@ graphene_size_interpolate (const graphene_size_t *a,
                            double                 factor,
                            graphene_size_t       *res)
 {
-  res->width = a->width + (b->width - a->width) * factor;
-  res->height = a->height + (b->height - a->height) * factor;
+  res->width = graphene_lerp (a->width, b->width, factor);
+  res->height = graphene_lerp (a->height, b->height, factor);
 }
 
 static const graphene_size_t _graphene_size_zero = GRAPHENE_SIZE_INIT_ZERO;

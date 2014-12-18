@@ -358,16 +358,9 @@ graphene_point3d_interpolate (const graphene_point3d_t *a,
                               double                    factor,
                               graphene_point3d_t       *res)
 {
-  graphene_simd4f_t a_v, b_v, r_v;
-
-  /* linear interpolation: r = a + (b - a) * f */
-  a_v = graphene_simd4f_init (a->x, a->y, a->z, 0.f);
-  b_v = graphene_simd4f_init (b->x, b->y, b->z, 0.f);
-  r_v = graphene_simd4f_add (a_v,
-                             graphene_simd4f_mul (graphene_simd4f_sub (b_v, a_v),
-                                                  graphene_simd4f_splat (factor)));
-
-  graphene_point3d_init_from_simd4f (res, r_v);
+  res->x = graphene_lerp (a->x, b->x, factor);
+  res->y = graphene_lerp (a->y, b->y, factor);
+  res->z = graphene_lerp (a->z, b->z, factor);
 }
 
 static const graphene_point3d_t _graphene_point3d_zero = GRAPHENE_POINT3D_INIT_ZERO;

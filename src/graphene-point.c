@@ -250,8 +250,8 @@ graphene_point_interpolate (const graphene_point_t *a,
                             double                  factor,
                             graphene_point_t       *res)
 {
-  res->x = a->x + (b->x - a->x) * factor;
-  res->y = a->y + (b->y - a->y) * factor;
+  res->x = graphene_lerp (a->x, b->x, factor);
+  res->y = graphene_lerp (a->y, b->y, factor);
 }
 
 static const graphene_point_t _graphene_point_zero = GRAPHENE_POINT_INIT_ZERO;
