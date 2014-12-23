@@ -81,6 +81,26 @@ respectively.
 See the output of `configure --help` for more information on the available
 configuration switches and environment variables.
 
+#### Installing on Windows
+
+In order to build on Windows, it's recommended to use the
+[MSYS2](http://sourceforge.net/projects/msys2/) environment.
+
+First,  install MSYS2
+
+Then, use `pacman` to set up the build environment, by building and
+installing the necessary prerequisites:
+
+    $ pacman -Sy
+    $ pacman -S automake
+    $ pacman -S autoconf
+    $ pacman -S libtool
+    $ pacman -S pkg-config
+    $ pacman -S gtk-doc
+
+Then, clone the Graphene repository and build as usual by following the
+instructions in the section above.
+
 ### Contributing
 
 If you found a bug (which I'm sure there will be plenty), or if you want
