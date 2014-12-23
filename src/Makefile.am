@@ -93,7 +93,6 @@ shared_libadd = $(GRAPHENE_LIBS)
 
 if BUILD_WITH_SSE2
 shared_cflags += $(SSE2_CFLAGS)
-shared_libadd += $(SSE2_LDFLAGS)
 endif
 
 if BUILD_WITH_ARM_NEON
