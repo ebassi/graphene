@@ -152,10 +152,7 @@ static graphene_quaternion_t *
 graphene_quaternion_init_from_simd4f (graphene_quaternion_t *q,
                                       graphene_simd4f_t      v)
 {
-  q->x = graphene_simd4f_get_x (v);
-  q->y = graphene_simd4f_get_y (v);
-  q->z = graphene_simd4f_get_z (v);
-  q->w = graphene_simd4f_get_w (v);
+  graphene_simd4f_dup_4f (v, (float *) q);
 
   return q;
 }
