@@ -30,6 +30,8 @@
  * rotation transformations in 3D space; unlike the usual Euler representation
  * with roll, pitch, and yaw, quaternions do not suffer from the so-called
  * ["Gimbal Lock"](http://en.wikipedia.org/wiki/Gimbal_lock) problem.
+ *
+ * See also: #graphene_euler_t
  */
 
 #include "graphene-private.h"
@@ -324,6 +326,8 @@ graphene_quaternion_slerp (const graphene_quaternion_t *a,
  * Initializes a #graphene_quaternion_t using the values of
  * the [Euler angles](http://en.wikipedia.org/wiki/Euler_angles)
  * on each axis.
+ *
+ * See also: graphene_quaternion_init_from_euler()
  *
  * Returns: (transfer none): the initialized quaternion
  *
