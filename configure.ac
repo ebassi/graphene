@@ -100,7 +100,7 @@ AC_CANONICAL_HOST
 AC_MSG_CHECKING([if building for some Win32 platform])
 AS_CASE([$host],
 
-        [*-*-mingw*],
+        [*-*-mingw*|*-*-msys*],
         [
           GRAPHENE_LT_LDFLAGS="$GRAPHENE_LT_LDFLAGS -no-undefined"
           platform_win32=yes
