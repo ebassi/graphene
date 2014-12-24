@@ -88,7 +88,7 @@ In order to build on Windows, it's recommended to use the
 
 First,  install MSYS2
 
-Then, use `pacman` to set up the build environment, by building and
+Then, use `pacman` to set up the build environment, by 
 installing the necessary prerequisites:
 
     $ pacman -Sy
@@ -97,6 +97,7 @@ installing the necessary prerequisites:
     $ pacman -S libtool
     $ pacman -S pkg-config
     $ pacman -S gtk-doc
+    $ pacman -S make
 
 Then, clone the Graphene repository and build as usual by following the
 instructions in the section above.
