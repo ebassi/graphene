@@ -108,9 +108,9 @@ graphene_euler_init (graphene_euler_t *e,
 /**
  * graphene_euler_init_with_order:
  * @e: the #graphene_euler_t to initialize
- * @x: rotation angle on the X axis
- * @y: rotation angle on the Y axis
- * @z: rotation angle on the Z axis
+ * @x: rotation angle on the X axis, in degrees
+ * @y: rotation angle on the Y axis, in degrees
+ * @z: rotation angle on the Z axis, in degrees
  * @order: the order used to apply the rotations
  *
  * Initializes a #graphene_euler_t with the given angles and @order.
