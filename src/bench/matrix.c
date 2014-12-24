@@ -150,7 +150,7 @@ int
 main (int argc, char *argv[])
 {
   graphene_bench_init (&argc, &argv,
-                       "implementation", IMPL,
+                       "implementation", GRAPHENE_SIMD_S,
                        NULL);
 
   graphene_bench_set_fixture_setup (matrix_setup);
