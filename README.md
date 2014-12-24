@@ -92,12 +92,13 @@ Then, use `pacman` to set up the build environment, by
 installing the necessary prerequisites:
 
     $ pacman -Sy
+    $ pacman -S make
     $ pacman -S automake
     $ pacman -S autoconf
     $ pacman -S libtool
     $ pacman -S pkg-config
     $ pacman -S gtk-doc
-    $ pacman -S make
+    $ pacman -S glib2		# optional
 
 Then, clone the Graphene repository and build as usual by following the
 instructions in the section above.
