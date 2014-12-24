@@ -36,6 +36,8 @@
  * should use #graphene_euler_t to expose rotation angles in your API, or to
  * store them, but use #graphene_quaternion_t to apply rotations to modelview
  * matrices, or interpolate between initial and final rotation transformations.
+ *
+ * See also: #graphene_quaternion_t.
  */
 
 #include "graphene-private.h"
