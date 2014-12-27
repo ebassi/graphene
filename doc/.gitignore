@@ -15,3 +15,8 @@
 /graphene.prerequisites
 /graphene.signals
 /graphene.types
+/gtkdoc-check.log
+/gtkdoc-check.test
+/gtkdoc-check.trs
+/test-suite.log
+
