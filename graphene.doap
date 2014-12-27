@@ -7,14 +7,11 @@
   <name>Graphene</name>
   <shortname>graphene</shortname>
   <shortdesc>A thin layer of types for graphic libraries</shortdesc>
-  <description>Graphene provides a small set of mathematical types needed
-  to implement graphic libraries that deal with 2D and 3D transformations
-  and projections.</description>
+  <description>Graphene provides a small set of mathematical types needed to implement graphic libraries that deal with 2D and 3D transformations and projections.</description>
 
-  <homepage rdf:resource="https://github.com/ebassi/graphene"/>
+  <homepage rdf:resource="https://ebassi.github.io/graphene"/>
   <bug-database rdf:resource="https://github.com/ebassi/graphene/issues"/>
   <license rdf:resource="http://usefulinc.com/doap/licenses/mit"/>
-
   <category rdf:resource="http://api.gnome.org/doap-extensions#development"/>
 
   <programming-language>C</programming-language>
