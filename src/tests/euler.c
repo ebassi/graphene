@@ -6,11 +6,15 @@
 GRAPHENE_TEST_UNIT_BEGIN (euler_init)
 {
   graphene_euler_t *e;
+  graphene_vec3_t v;
 
   e = graphene_euler_init (graphene_euler_alloc (), 0.f, 0.f, 0.f);
   g_assert_cmpfloat (graphene_euler_get_x (e), ==, 0.f);
   g_assert_cmpfloat (graphene_euler_get_y (e), ==, 0.f);
   g_assert_cmpfloat (graphene_euler_get_z (e), ==, 0.f);
+
+  graphene_euler_to_vec3 (e, &v);
+  graphene_assert_fuzzy_vec3_equal (&v, graphene_vec3_zero (), 0.00001);
 
   graphene_euler_free (e);
 }
