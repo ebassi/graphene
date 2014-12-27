@@ -97,7 +97,7 @@ installing the necessary prerequisites:
     $ pacman -S autoconf
     $ pacman -S libtool
     $ pacman -S pkg-config
-    $ pacman -S gtk-doc
+    $ pacman -S gtk-doc		# optional
     $ pacman -S glib2		# optional
 
 Then, clone the Graphene repository and build as usual by following the

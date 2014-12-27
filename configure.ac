@@ -597,7 +597,13 @@ dnl === API Reference =========================================================
 GLIB_PREFIX="`$PKG_CONFIG --variable=prefix glib-2.0`"
 AC_SUBST(GLIB_PREFIX)
 
+# gtkdocize greps for ^GTK_DOC_CHECK, so we need to put it on its own line
+m4_ifdef([GTK_DOC_CHECK], [
 GTK_DOC_CHECK([1.20], [--flavour no-tmpl])
+],[
+enable_gtk_doc=disabled (no gtk-doc)
+AM_CONDITIONAL([ENABLE_GTK_DOC], [false])
+])
 
 dnl === Output ================================================================
 
@@ -730,6 +736,7 @@ Graphene - $VERSION (${GRAPHENE_RELEASE_STATUS})
 
   • Prefix: ${prefix}
 
+  • Documentation: ${enable_gtk_doc}
   • Debug level: ${enable_debug}
   • Test suite: ${build_tests}
   • Code coverage: ${use_gcov}
