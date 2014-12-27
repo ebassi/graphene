@@ -26,8 +26,8 @@
  * @Title: Box
  * @Short_Description: A box
  *
- * #graphene_box_t provides a representation of a box using the coordinates
- * of its minimum and maximum vertices.
+ * #graphene_box_t provides a representation of an axis aligned minimum
+ * bounding box using the coordinates of its minimum and maximum vertices.
  */
 
 #include "graphene-private.h"
