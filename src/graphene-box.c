@@ -590,9 +590,8 @@ graphene_box_equal (const graphene_box_t *a,
   if (a == NULL || b == NULL)
     return false;
 
-  /* we cheat a bit and access the SIMD directly */
-  return graphene_simd4f_cmp_eq (a->min.value, b->min.value) &&
-         graphene_simd4f_cmp_eq (a->max.value, b->max.value);
+  return graphene_vec3_equal (&a->min, &b->min) &&
+         graphene_vec3_equal (&a->max, &b->max);
 }
 
 /**
