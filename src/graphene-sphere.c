@@ -372,6 +372,5 @@ graphene_sphere_equal (const graphene_sphere_t *a,
   if (a->radius != b->radius)
     return false;
 
-  /* we cheat a bit and access the SIMD value directly */
-  return graphene_simd4f_cmp_eq (a->center.value, b->center.value);
+  return graphene_vec3_equal (&a->center, &b->center);
 }
