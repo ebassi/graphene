@@ -42,6 +42,8 @@ AM_INIT_AUTOMAKE([1.11 no-define foreign -Wno-portability dist-xz no-dist-gzip t
 
 AM_SILENT_RULES([yes])
 
+AM_MAINTAINER_MODE([enable])
+
 AC_USE_SYSTEM_EXTENSIONS
 
 dnl === Base compiler flags ===================================================
