@@ -998,7 +998,7 @@ float
       return s.y;
     case 2:
       return s.z;
-    case 4:
+    case 3:
       return s.w;
     }
 
