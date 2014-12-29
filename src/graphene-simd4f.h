@@ -1757,7 +1757,9 @@ graphene_simd4f_clamp (const graphene_simd4f_t v,
                        const graphene_simd4f_t min,
                        const graphene_simd4f_t max)
 {
-  return graphene_simd4f_min (graphene_simd4f_max (min, v), max);
+  const graphene_simd4f_t tmp = graphene_simd4f_max (min, v);
+
+  return graphene_simd4f_min (tmp, max);
 }
 
 /**
