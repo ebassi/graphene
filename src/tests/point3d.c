@@ -187,7 +187,7 @@ GRAPHENE_TEST_UNIT_BEGIN (point_length)
   graphene_point3d_init (&p, 1.f, 3.f, 5.f);
   res = sqrtf (1.f + (3.f * 3.f) + (5.f * 5.f));
 
-  g_assert_cmpfloat (graphene_point3d_length (&p), ==, res);
+  graphene_assert_fuzzy_equals (graphene_point3d_length (&p), res, 0.0001f);
 }
 GRAPHENE_TEST_UNIT_END
 

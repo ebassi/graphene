@@ -135,9 +135,9 @@ vectors_vec3_ops_div (void)
 
   graphene_vec3_divide (&a, &b, &res);
 
-  g_assert_cmpfloat (graphene_vec3_get_x (&res), ==, 2.f);
-  g_assert_cmpfloat (graphene_vec3_get_y (&res), ==, 2.f);
-  g_assert_cmpfloat (graphene_vec3_get_z (&res), ==, 2.f);
+  graphene_assert_fuzzy_equals (graphene_vec3_get_x (&res), 2.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_vec3_get_y (&res), 2.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_vec3_get_z (&res), 2.f, 0.0001f);
 }
 
 static void

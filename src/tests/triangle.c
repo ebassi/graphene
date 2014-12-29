@@ -14,7 +14,7 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_init_from_point3d)
   t = graphene_triangle_init_from_point3d (graphene_triangle_alloc (), &a, &b, &c);
   graphene_triangle_get_points (t, &check_a, &check_b, &check_c);
 
-  g_assert_cmpfloat (graphene_triangle_get_area (t), ==, 2.f);
+  graphene_assert_fuzzy_equals (graphene_triangle_get_area (t), 2.f, 0.0001f);
   g_assert_true (graphene_point3d_equal (&check_a, &a));
   g_assert_true (graphene_point3d_equal (&check_b, &b));
   g_assert_true (graphene_point3d_equal (&check_c, &c));
@@ -44,7 +44,7 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_init_from_vec3)
   t = graphene_triangle_init_from_vec3 (graphene_triangle_alloc (), &a, &b, &c);
   graphene_triangle_get_vertices (t, &check_a, &check_b, &check_c);
 
-  g_assert_cmpfloat (graphene_triangle_get_area (t), ==, 2.f);
+  graphene_assert_fuzzy_equals (graphene_triangle_get_area (t), 2.f, 0.0001f);
   g_assert_true (graphene_vec3_equal (&check_a, &a));
   g_assert_true (graphene_vec3_equal (&check_b, &b));
   g_assert_true (graphene_vec3_equal (&check_c, &c));

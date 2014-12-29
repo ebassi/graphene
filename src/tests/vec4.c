@@ -168,10 +168,10 @@ vectors_vec4_ops_div (void)
 
   graphene_vec4_divide (&a, &b, &res);
 
-  g_assert_cmpfloat (graphene_vec4_get_x (&res), ==, 2.f);
-  g_assert_cmpfloat (graphene_vec4_get_y (&res), ==, 2.f);
-  g_assert_cmpfloat (graphene_vec4_get_z (&res), ==, 2.f);
-  g_assert_cmpfloat (graphene_vec4_get_w (&res), ==, 2.f);
+  graphene_assert_fuzzy_equals (graphene_vec4_get_x (&res), 2.f, 0.0001);
+  graphene_assert_fuzzy_equals (graphene_vec4_get_y (&res), 2.f, 0.0001);
+  graphene_assert_fuzzy_equals (graphene_vec4_get_z (&res), 2.f, 0.0001);
+  graphene_assert_fuzzy_equals (graphene_vec4_get_w (&res), 2.f, 0.0001);
 }
 
 static void

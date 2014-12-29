@@ -116,8 +116,8 @@ vectors_vec2_ops_div (void)
 
   graphene_vec2_divide (&a, &b, &res);
 
-  g_assert_cmpfloat (graphene_vec2_get_x (&res), ==, 2.f);
-  g_assert_cmpfloat (graphene_vec2_get_y (&res), ==, 2.f);
+  graphene_assert_fuzzy_equals (graphene_vec2_get_x (&res), 2.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_vec2_get_y (&res), 2.f, 0.0001f);
 }
 
 static void
