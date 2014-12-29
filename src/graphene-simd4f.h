@@ -1414,13 +1414,13 @@ typedef union {
 #define graphene_simd4f_cmp_neq(a,b) \
   (graphene_simd4f_cmp_neq ((a), (b)))
 #define graphene_simd4f_cmp_lt(a,b) \
-  (graphene_simd4f_cmp_lt ((a), (b))
+  (graphene_simd4f_cmp_lt ((a), (b)))
 #define graphene_simd4f_cmp_le(a,b) \
-  (graphene_simd4f_cmp_le ((a), (b))
+  (graphene_simd4f_cmp_le ((a), (b)))
 #define graphene_simd4f_cmp_ge(a,b) \
-  (graphene_simd4f_cmp_ge ((a), (b))
+  (graphene_simd4f_cmp_ge ((a), (b)))
 #define graphene_simd4f_cmp_gt(a,b) \
-  (graphene_simd4f_cmp_gt ((a), (b))
+  (graphene_simd4f_cmp_gt ((a), (b)))
 #define graphene_simd4f_neg(s) \
   (graphene_simd4f_neg ((s)))
 
