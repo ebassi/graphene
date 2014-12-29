@@ -151,9 +151,20 @@ int main (void) {
 dnl === Fast paths ============================================================
 
 # Check for GCC vectors
-have_gcc_vector=no
-AC_MSG_CHECKING([whether to use GCC vector])
-AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
+AC_ARG_ENABLE([gcc-vector],
+              [AC_HELP_STRING([--disable-gcc-vector], [disable GCC vector fast paths])],
+              [enable_gcc_vector=$enableval],
+              [enable_gcc_vector=auto])
+
+AC_CACHE_CHECK([whether to use GCC vector intrinsics],
+               [graphene_cv_use_gcc_vector],
+               [
+                 graphene_cv_use_gcc_vector=no
+
+                 AS_IF([test "x$enable_gcc_vector" = xno],
+                       [graphene_cv_use_gcc_vector="no (disabled)"],
+                       [
+                 AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #if defined(__GNUC__)
 # if defined(__arm__)
 #   error "GCC vector intrinsics are disabled on ARM"
@@ -168,24 +179,18 @@ int main () {
   simd4i m = { 0,   1,   1,   3   };
   simd4f r = __builtin_shuffle (s, m);
   return 0;
-}]])], [have_gcc_vector=yes])
+}]])],  [graphene_cv_use_gcc_vector=yes])
+                       ])
+               ])
 
-AC_ARG_ENABLE([gcc-vector],
-              [AC_HELP_STRING([--disable-gcc-vector], [disable GCC vector fast paths])],
-              [enable_gcc_vector=$enableval],
-              [enable_gcc_vector=auto])
-
-AS_IF([test "x$enable_gcc_vector" = xno], [have_gcc_vector=disabled])
-
-AC_MSG_RESULT($have_gcc_vector)
-AS_IF([test "x$enable_gcc_vector" = xyes && test "x$have_gcc_vector" = xno],
+AS_IF([test "x$enable_gcc_vector" = xyes && test "x$graphene_cv_use_gcc_vector" = xno],
       [
-        AC_MSG_ERROR([GNUC vector intrinsics not detected])
+        AC_MSG_ERROR([GNUC vector intrinsics not detected when explicitly enabled])
       ])
 
-AS_IF([test "x$have_gcc_vector" = xyes], [GRAPHENE_SIMD="$GRAPHENE_SIMD gcc"])
+AS_IF([test "x$graphene_cv_use_gcc_vector" = xyes], [GRAPHENE_SIMD="$GRAPHENE_SIMD gcc"])
 
-AM_CONDITIONAL(BUILD_WITH_GCC, [test "x$have_gcc_vector" = xyes])
+AM_CONDITIONAL(BUILD_WITH_GCC, [test "x$graphene_cv_use_gcc_vector" = xyes])
 
 # Check for SSE2 intrinsics
 AS_IF([test "x$SSE2_CFLAGS" = "x"],
@@ -199,44 +204,6 @@ AS_IF([test "x$SSE2_CFLAGS" = "x"],
                 SSE2_CFLAGS="-msse -msse2 -mfpmath=sse -Winline"
               ])
       ])
-
-have_sse2_intrinsics=no
-AC_MSG_CHECKING([whether to use SSE2 intrinsics])
-saved_CFLAGS="$CFLAGS"
-CFLAGS="$SSE2_CFLAGS $CFLAGS"
-
-AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
-#if defined(__GNUC__) && (__GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 2))
-#   if !defined(__amd64__) && !defined(__x86_64__)
-#      error "Need GCC >= 4.2 for SSE2 intrinsics on x86"
-#   endif
-#endif
-#include <mmintrin.h>
-#include <xmmintrin.h>
-#include <emmintrin.h>
-int main () {
-    __m128i a = _mm_set1_epi32 (0), b = _mm_set1_epi32 (0), c;
-    c = _mm_xor_si128 (a, b);
-    return 0;
-}]])], [have_sse2_intrinsics=yes])
-CFLAGS="$saved_CFLAGS"
-
-AC_ARG_ENABLE([sse2],
-              [AC_HELP_STRING([--disable-sse2], [disable SSE2 fast paths])],
-              [enable_sse2=$enableval],
-              [enable_sse2=auto])
-
-AS_IF([test "x$enable_sse2" = xno], [have_sse2_intrinsics=disabled])
-
-AC_MSG_RESULT($have_sse2_intrinsics)
-AS_IF([test "x$enable_sse2" = xyes && test "x$have_sse2_intrinsics" = xno],
-      [
-        AC_MSG_ERROR([SSE2 intrinsics not detected])
-      ])
-
-AS_IF([test "x$have_sse2_intrinsics" = xyes], [GRAPHENE_SIMD="$GRAPHENE_SIMD sse2"])
-
-AM_CONDITIONAL(BUILD_WITH_SSE2, [test "x$have_sse2_intrinsics" = xyes])
 
 # this block was nibbed from Pixman; I don't have Solaris nor SunCC, so I am
 # assuming somebody has actually tested it, and it continues to work with
@@ -267,6 +234,49 @@ AS_CASE([$host_os],
         ]
 )
 
+AC_ARG_ENABLE([sse2],
+              [AC_HELP_STRING([--disable-sse2], [disable SSE2 fast paths])],
+              [enable_sse2=$enableval],
+              [enable_sse2=auto])
+
+AC_CACHE_CHECK([whether to use SSE2 intrinsics],
+               [graphene_cv_use_sse2],
+               [
+                 graphene_cv_use_sse2=no
+
+                 AS_IF([test "x$enable_sse2" = xno],
+                       [graphene_cv_use_sse2="no (disabled)"],
+                       [
+                         saved_CFLAGS="$CFLAGS"
+                         CFLAGS="$SSE2_CFLAGS $CFLAGS"
+
+                         AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
+#if defined(__GNUC__) && (__GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 2))
+#   if !defined(__amd64__) && !defined(__x86_64__)
+#      error "Need GCC >= 4.2 for SSE2 intrinsics on x86"
+#   endif
+#endif
+#include <mmintrin.h>
+#include <xmmintrin.h>
+#include <emmintrin.h>
+int main () {
+    __m128i a = _mm_set1_epi32 (0), b = _mm_set1_epi32 (0), c;
+    c = _mm_xor_si128 (a, b);
+    return 0;
+}]])], [graphene_cv_use_sse2=yes])
+                        CFLAGS="$saved_CFLAGS"
+                      ])
+               ])
+
+AS_IF([test "x$enable_sse2" = xyes && test "x$graphene_cv_use_sse2" = xno],
+      [
+        AC_MSG_ERROR([SSE2 intrinsics not detected when explicitly enabled])
+      ])
+
+AS_IF([test "x$graphene_cv_use_sse2" = xyes], [GRAPHENE_SIMD="$GRAPHENE_SIMD sse2"])
+
+AM_CONDITIONAL(BUILD_WITH_SSE2, [test "x$graphene_cv_use_sse2" = xyes])
+
 # Check for ARM NEON instructions
 AS_IF([test "x$NEON_CFLAGS" = "x"], [NEON_CFLAGS="-mfpu=neon"])
 
@@ -283,14 +293,23 @@ AS_CASE([$host_os],
         [AC_MSG_RESULT([no])]
 )
 
-have_arm_neon=no
-AC_MSG_CHECKING([whether to use ARM NEON intrinsics])
-saved_CFLAGS="$CFLAGS"
+AC_ARG_ENABLE([arm-neon],
+              [AC_HELP_STRING([--disable-arm-neon], [disable ARM NEON fast paths])],
+              [enable_arm_neon=$enableval],
+              [enable_arm_neon=auto])
 
-saved_CFLAGS="$CFLAGS"
-CFLAGS="$NEON_CFLAGS $CFLAGS"
+AC_CACHE_CHECK([whether to use ARM NEON intrinsics],
+               [graphene_cv_use_arm_neon],
+               [
+                 graphene_cv_use_arm_neon=no
 
-AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
+                 AS_IF([test "x$enable_arm_neon" = xno],
+                       [graphene_cv_use_arm_neon="no (disabled)"],
+                       [
+                         saved_CFLAGS="$CFLAGS"
+                         CFLAGS="$NEON_CFLAGS $CFLAGS"
+
+                         AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #ifndef __ARM_EABI__
 #error "EABI is required (to be sure that calling conventions are compatible)"
 #endif
@@ -307,25 +326,20 @@ int main () {
     float32x4_t s = vld1q_f32 (__v); \
     float32x4_t c = vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 (s), __mask)); \
     return 0;
-}]])], [have_arm_neon=yes])
-CFLAGS="$saved_CFLAGS"
+}]])], [graphene_cv_use_arm_neon=yes])
 
-AC_ARG_ENABLE([arm-neon],
-              [AC_HELP_STRING([--disable-arm-neon], [disable ARM NEON fast paths])],
-              [enable_arm_neon=$enableval],
-              [enable_arm_neon=auto])
+                         CFLAGS="$saved_CFLAGS"
+                       ])
+               ])
 
-AS_IF([test "x$enable_arm_neon" = xno], [have_arm_neon=disabled])
-
-AC_MSG_RESULT($have_arm_neon)
-AS_IF([test "x$enable_arm_neon" = xyes && test "x$have_arm_neon" = xno],
+AS_IF([test "x$enable_arm_neon" = xyes && test "x$graphene_cvs_use_arm_neon" = xno],
       [
-        AC_MSG_ERROR([ARM NEON intrinsics not detected])
+        AC_MSG_ERROR([ARM NEON intrinsics not detected when explicitly enabled])
       ])
 
-AS_IF([test "x$have_arm_neon" = xyes], [GRAPHENE_SIMD="$GRAPHENE_SIMD neon"])
+AS_IF([test "x$graphene_cv_use_arm_neon" = xyes], [GRAPHENE_SIMD="$GRAPHENE_SIMD neon"])
 
-AM_CONDITIONAL(BUILD_WITH_ARM_NEON, [test "x$have_arm_neon" = xyes])
+AM_CONDITIONAL(BUILD_WITH_ARM_NEON, [test "x$graphene_cv_use_arm_neon" = xyes])
 
 # Check for -Bsymbolic-functions to avoid intra-library PLT jumps
 AC_ARG_ENABLE([Bsymbolic],
@@ -333,21 +347,18 @@ AC_ARG_ENABLE([Bsymbolic],
               [],
               [
                 saved_LDFLAGS="${LDFLAGS}"
+
                 AC_MSG_CHECKING([for -Bsymbolic-functions linker flag])
                 LDFLAGS=-Wl,-Bsymbolic-functions
                 AC_TRY_LINK([], [int main (void) { return 0; }],
-                            [
-                              AC_MSG_RESULT([yes])
-                              enable_Bsymbolic=yes
-                            ],
-                            [
-                              AC_MSG_RESULT([no])
-                              enable_Bsymbolic=no
-                            ])
+                            [ enable_Bsymbolic=yes ],
+                            [ enable_Bsymbolic=no  ])
+                AC_MSG_RESULT([$enable_Bsymbolic])
+
                 LDFLAGS="${saved_LDFLAGS}"
               ])
 
-AS_IF([test "x$enable_Bsymbolic" = "xyes"], [GRAPHENE_LINK_FLAGS=-Wl[,]-Bsymbolic-functions])
+AS_IF([test "x$enable_Bsymbolic" = xyes], [GRAPHENE_LINK_FLAGS=-Wl[,]-Bsymbolic-functions])
 
 dnl === Visibility ============================================================
 
@@ -707,9 +718,9 @@ _______EOF
           mv $outfile src/graphene-config.h
         fi
 ], [
-graphene_has_sse2="$have_sse2_intrinsics"
-graphene_has_arm_neon="$have_arm_neon"
-graphene_has_gcc_vector="$have_gcc_vector"
+graphene_has_sse2="$graphene_cv_use_sse2"
+graphene_has_arm_neon="$graphene_cv_use_arm_neon"
+graphene_has_gcc_vector="$graphene_cv_use_gcc_vector"
 ])
 
 AC_CONFIG_FILES([
@@ -745,7 +756,7 @@ Graphene - $VERSION (${GRAPHENE_RELEASE_STATUS})
   • GObject introspection: ${enable_introspection}
 
   • Available optimizations:
-    • GCC vectors: ${have_gcc_vector}
-    • SSE2 intrinsics: ${have_sse2_intrinsics}
-    • ARM NEON intrinsics: ${have_arm_neon}
+    • GCC vectors: ${graphene_cv_use_gcc_vector}
+    • SSE2 intrinsics: ${graphene_cv_use_sse2}
+    • ARM NEON intrinsics: ${graphene_cv_use_arm_neon}
 ])
