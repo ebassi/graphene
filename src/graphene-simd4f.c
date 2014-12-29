@@ -1259,9 +1259,9 @@ bool
 (graphene_simd4f_cmp_neq) (const graphene_simd4f_t a,
                            const graphene_simd4f_t b)
 {
-  return a.x != b.x &&
-         a.y != b.y &&
-         a.z != b.z &&
+  return a.x != b.x ||
+         a.y != b.y ||
+         a.z != b.z ||
          a.w != b.w;
 }
 
