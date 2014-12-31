@@ -475,14 +475,14 @@ typedef union {
   unsigned int ui[4];
 } graphene_simd4f_union_t;
 
-#define graphene_simd4f_get(s,i) _smd4f_get_xyzw(s, i)
-#define graphene_simd4f_get_x(s) _smd4f_get_xyzw(s, 0)
-#define graphene_simd4f_get_y(s) _smd4f_get_xyzw(s, 1)
-#define graphene_simd4f_get_z(s) _smd4f_get_xyzw(s, 2)
-#define graphene_simd4f_get_w(s) _smd4f_get_xyzw(s, 3)
+#define graphene_simd4f_get(s,i) _simd4f_get_xyzw(s, i)
+#define graphene_simd4f_get_x(s) _simd4f_get_xyzw(s, 0)
+#define graphene_simd4f_get_y(s) _simd4f_get_xyzw(s, 1)
+#define graphene_simd4f_get_z(s) _simd4f_get_xyzw(s, 2)
+#define graphene_simd4f_get_w(s) _simd4f_get_xyzw(s, 3)
 
 static inline float
-_smd4f_get_xyzw (graphene_simd4f_t s, int mode)
+_simd4f_get_xyzw (graphene_simd4f_t s, int mode)
 {
   /* mode: get_x=0
            get_y=1
