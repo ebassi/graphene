@@ -1526,11 +1526,11 @@ graphene_simd4f_dot3 (graphene_simd4f_t a,
                       graphene_simd4f_t b)
 {
   const graphene_simd4f_t m = graphene_simd4f_mul (a, b);
-  const graphene_simd4f_t s1 = graphene_simd4f_add (graphene_simd4f_splat_x (m),
-                                                    graphene_simd4f_splat_y (m));
-  const graphene_simd4f_t s2 = graphene_simd4f_add (s1,
-                                                    graphene_simd4f_splat_z (m));
-  return s2;
+  const graphene_simd4f_t x = graphene_simd4f_splat_x (m);
+  const graphene_simd4f_t y = graphene_simd4f_splat_y (m);
+  const graphene_simd4f_t z = graphene_simd4f_splat_z (m);
+
+  return graphene_simd4f_add (graphene_simd4f_add (x, y), z);
 }
 
 /**
@@ -1551,9 +1551,10 @@ graphene_simd4f_dot2 (const graphene_simd4f_t a,
                       const graphene_simd4f_t b)
 {
   const graphene_simd4f_t m = graphene_simd4f_mul (a, b);
-  const graphene_simd4f_t s1 = graphene_simd4f_add (graphene_simd4f_splat_x (m),
-                                                    graphene_simd4f_splat_y (m));
-  return s1;
+  const graphene_simd4f_t x = graphene_simd4f_splat_x (m);
+  const graphene_simd4f_t y = graphene_simd4f_splat_y (m);
+
+  return graphene_simd4f_add (x, y);
 }
 
 /**
