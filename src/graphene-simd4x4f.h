@@ -156,7 +156,21 @@ void    graphene_simd4x4f_transpose_in_place    (graphene_simd4x4f_t *s);
   _MM_TRANSPOSE4_PS ((s)->x, (s)->y, (s)->z, (s)->w)
 #endif
 
-#elif defined(GRAPHENE_USE_ARM_NEON) || defined(GRAPHENE_USE_GCC)
+#elif defined(GRAPHENE_USE_GCC)
+
+#define graphene_simd4x4f_transpose_in_place(s) \
+  (__extension__ ({ \
+    const graphene_simd4f_t sx = (s)->x; \
+    const graphene_simd4f_t sy = (s)->y; \
+    const graphene_simd4f_t sz = (s)->z; \
+    const graphene_simd4f_t sw = (s)->w; \
+    (s)->x = graphene_simd4f_init (sx[0], sy[0], sz[0], sw[0]); \
+    (s)->y = graphene_simd4f_init (sx[1], sy[1], sz[1], sw[1]); \
+    (s)->z = graphene_simd4f_init (sx[2], sy[2], sz[2], sw[2]); \
+    (s)->w = graphene_simd4f_init (sx[3], sy[3], sz[3], sw[3]); \
+  }))
+
+#elif defined(GRAPHENE_USE_ARM_NEON)
 
 #define graphene_simd4x4f_transpose_in_place(s) \
   (__extension__ ({ \
