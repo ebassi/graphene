@@ -5,7 +5,7 @@ AM_CPPFLAGS = \
 	$(GRAPHENE_DEBUG_CFLAGS) \
 	-DG_LOG_DOMAIN=\"Graphene\" \
 	-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30 \
-	-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_42 \
+	-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32 \
 	-I$(top_srcdir)/src \
 	-I$(top_builddir)/src
 LDADD = $(top_builddir)/src/libgraphene-1.0.la $(GRAPHENE_LIBS) $(GLIB_LIBS)
