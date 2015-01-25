@@ -34,6 +34,8 @@
 #include "graphene-rect.h"
 #include "graphene-line-segment.h"
 
+#include <string.h>
+
 /**
  * graphene_quad_alloc: (constructor)
  *
@@ -114,6 +116,26 @@ graphene_quad_init_from_rect (graphene_quad_t       *q,
   graphene_rect_get_top_right (r, &(q->points[1]));
   graphene_rect_get_bottom_right (r, &(q->points[2]));
   graphene_rect_get_bottom_left (r, &(q->points[3]));
+
+  return q;
+}
+
+/**
+ * graphene_quad_init_from_points:
+ * @q: the #graphene_quad_t to initialize
+ * @points: (array fixed-size=4): an array of 4 #graphene_point_t
+ *
+ * Initializes a #graphene_quad_t using an array of points.
+ *
+ * Returns: (transfer none): the initialized #graphene_quad_t
+ *
+ * Since: 1.2
+ */
+graphene_quad_t *
+graphene_quad_init_from_points (graphene_quad_t        *q,
+                                const graphene_point_t  points[])
+{
+  memcpy (q->points, points, sizeof (graphene_point_t) * 4);
 
   return q;
 }

@@ -59,6 +59,9 @@ graphene_quad_t *       graphene_quad_init              (graphene_quad_t        
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_quad_t *       graphene_quad_init_from_rect    (graphene_quad_t        *q,
                                                          const graphene_rect_t  *r);
+GRAPHENE_AVAILABLE_IN_1_2
+graphene_quad_t *       graphene_quad_init_from_points  (graphene_quad_t        *q,
+                                                         const graphene_point_t  points[]);
 
 GRAPHENE_AVAILABLE_IN_1_0
 bool                    graphene_quad_contains          (const graphene_quad_t  *q,

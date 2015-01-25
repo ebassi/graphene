@@ -41,25 +41,27 @@ GRAPHENE_TEST_UNIT_END
 
 GRAPHENE_TEST_UNIT_BEGIN (quad_contains)
 {
-  graphene_point_t p0 = GRAPHENE_POINT_INIT ( 0.f,  0.f);
-  graphene_point_t p1 = GRAPHENE_POINT_INIT (10.f,  1.f);
-  graphene_point_t p2 = GRAPHENE_POINT_INIT (10.f,  9.f);
-  graphene_point_t p3 = GRAPHENE_POINT_INIT ( 0.f, 10.f);
+  graphene_point_t p[4] = {
+    GRAPHENE_POINT_INIT ( 0.f,  0.f),
+    GRAPHENE_POINT_INIT (10.f,  1.f),
+    GRAPHENE_POINT_INIT (10.f,  9.f),
+    GRAPHENE_POINT_INIT ( 0.f, 10.f),
+  };
   graphene_point_t a;
   graphene_quad_t *q;
 
-  q = graphene_quad_init (graphene_quad_alloc (), &p0, &p1, &p2, &p3);
+  q = graphene_quad_init_from_points (graphene_quad_alloc (), p);
 
-  graphene_point_init_from_point (&a, &p0);
+  graphene_point_init_from_point (&a, &p[0]);
   g_assert_true (graphene_quad_contains (q, &a));
 
-  graphene_point_init_from_point (&a, &p1);
+  graphene_point_init_from_point (&a, &p[1]);
   g_assert_true (graphene_quad_contains (q, &a));
 
-  graphene_point_init_from_point (&a, &p2);
+  graphene_point_init_from_point (&a, &p[2]);
   g_assert_true (graphene_quad_contains (q, &a));
 
-  graphene_point_init_from_point (&a, &p3);
+  graphene_point_init_from_point (&a, &p[3]);
   g_assert_true (graphene_quad_contains (q, &a));
 
   graphene_point_init (&a, 5.f, 5.f);

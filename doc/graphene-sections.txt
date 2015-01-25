@@ -248,6 +248,7 @@ graphene_quad_alloc
 graphene_quad_free
 graphene_quad_init
 graphene_quad_init_from_rect
+graphene_quad_init_from_points
 graphene_quad_contains
 graphene_quad_bounds
 graphene_quad_get_point
