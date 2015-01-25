@@ -1051,6 +1051,39 @@ graphene_matrix_project_rect_bounds (const graphene_matrix_t *m,
 }
 
 /**
+ * graphene_matrix_project_rect:
+ * @m: a #graphene_matrix_t
+ * @r: a #graphene_rect_t
+ * @res: (out caller-allocates): return location for the projected
+ *   rectangle
+ *
+ * Projects a #graphene_rect_t using the given matrix.
+ *
+ * Since: 1.2
+ */
+void
+graphene_matrix_project_rect (const graphene_matrix_t *m,
+                              const graphene_rect_t   *r,
+                              graphene_quad_t         *res)
+{
+  graphene_point_t p[4];
+
+  graphene_rect_get_top_left (r, &p[0]);
+  graphene_matrix_project_point (m, &p[0], &p[0]);
+
+  graphene_rect_get_top_right (r, &p[1]);
+  graphene_matrix_project_point (m, &p[1], &p[1]);
+
+  graphene_rect_get_bottom_left (r, &p[2]);
+  graphene_matrix_project_point (m, &p[2], &p[2]);
+
+  graphene_rect_get_bottom_right (r, &p[3]);
+  graphene_matrix_project_point (m, &p[3], &p[3]);
+
+  graphene_quad_init_from_points (res, p);
+}
+
+/**
  * graphene_matrix_untransform_point:
  * @m: a #graphene_matrix_t
  * @p: a #graphene_point_t
