@@ -25,6 +25,8 @@
 #include "graphene-vectors-private.h"
 #include "graphene-alloc-private.h"
 
+#include <stdio.h>
+
 #if HAVE_PTHREAD
 #include <pthread.h>
 #include <errno.h>
@@ -33,7 +35,7 @@
 #endif
 
 #if HAVE_INIT_ONCE
-#define _WIN32_WINNT 0x600
+#define _WIN32_WINNT 0x0600
 #include <windows.h>
 #endif
 
@@ -1889,7 +1891,7 @@ BOOL CALLBACK InitVec4Func (PINIT_ONCE InitOnce,
 }
 
 static inline void
-init_static_vec2 (void)
+init_static_vec4 (void)
 {
   BOOL bStatus = InitOnceExecuteOnce (&static_vec4_once,
                                       InitVec4Func,
