@@ -38,6 +38,7 @@
 #include "graphene-sphere.h"
 
 #include <math.h>
+#include <stdio.h>
 
 #if HAVE_PTHREAD
 #include <pthread.h>

@@ -25,6 +25,8 @@
 #include "graphene-vectors-private.h"
 #include "graphene-alloc-private.h"
 
+#include <stdio.h>
+
 #if HAVE_PTHREAD
 #include <pthread.h>
 #include <errno.h>
