@@ -1257,9 +1257,11 @@ void
 graphene_matrix_rotate_euler (graphene_matrix_t      *m,
                               const graphene_euler_t *e)
 {
+  graphene_quaternion_t q;
   graphene_matrix_t rot;
 
-  graphene_euler_to_matrix (e, &rot);
+  graphene_quaternion_init_from_euler (&q, e);
+  graphene_quaternion_to_matrix (&q, &rot);
   graphene_matrix_multiply (m, &rot, m);
 }
 
