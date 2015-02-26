@@ -11,5 +11,5 @@ Description: Math classes for graphic libraries
 Version: @VERSION@
 Libs: -L${libdir} -lgraphene-1.0
 Libs.private: @PTHREAD_LIBS@
-Cflags: -I${includedir}/graphene-1.0
+Cflags: -I${includedir}/graphene-1.0 -I${libdir}/graphene-1.0/include
 Requires.private: @GRAPHENE_REQS@
