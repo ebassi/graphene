@@ -79,6 +79,8 @@ endif
 # config header
 DISTCLEANFILES += graphene-config-stamp graphene-config.h
 BUILT_SOURCES += graphene-config-stamp
+configexecincludedir = $(libdir)/graphene-1.0/include
+nodist_configexecinclude_HEADERS = graphene-config.h
 graphene-config-stamp: ../config.status
 	$(AM_V_GEN) cd $(top_builddir) && \
 	  $(SHELL) ./config.status src/graphene-config.h
@@ -119,7 +121,6 @@ lib_LTLIBRARIES += libgraphene-1.0.la
 grapheneincludedir = $(includedir)/graphene-1.0
 grapheneinclude_HEADERS = $(source_h) graphene.h
 nodist_grapheneinclude_HEADERS = \
-	$(top_builddir)/src/graphene-config.h \
 	$(top_builddir)/src/graphene-version.h \
 	$(NULL)
 
