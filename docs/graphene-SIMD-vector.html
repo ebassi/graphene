@@ -6,9 +6,9 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
-<link rel="prev" href="graphene-GObject-integration.html" title="GObject integration">
+<link rel="prev" href="graphene-Frustum.html" title="Frustum">
 <link rel="next" href="graphene-SIMD-matrix.html" title="SIMD matrix">
-<meta name="generator" content="GTK-Doc V1.21 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -19,7 +19,7 @@
 </td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
 <td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
-<td><a accesskey="p" href="graphene-GObject-integration.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="graphene-Frustum.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
 <td><a accesskey="n" href="graphene-SIMD-matrix.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
@@ -581,7 +581,7 @@ graphene_simd4f_init (<em class="parameter"><code><span class="type">float</span
                       <em class="parameter"><code><span class="type">float</span> w</code></em>);</pre>
 <p>Initializes a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> with the given values.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.2.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.2.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -613,7 +613,7 @@ graphene_simd4f_init (<em class="parameter"><code><span class="type">float</span
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.2.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.2.6"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -626,7 +626,7 @@ graphene_simd4f_init (<em class="parameter"><code><span class="type">float</span
 graphene_simd4f_init_zero (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Initializes a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> with 0 in all components.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.3.5"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.3.5"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -640,7 +640,7 @@ graphene_simd4f_init_4f (<em class="parameter"><code>const <span class="type">fl
 <p>Initializes a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> using an array of 4 floating
 point values.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.4.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.4.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -656,7 +656,7 @@ point values. </p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.4.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.4.6"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -670,7 +670,7 @@ graphene_simd4f_init_3f (<em class="parameter"><code>const <span class="type">fl
 <p>Initializes a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> using an array of 3 floating
 point values.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.5.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.5.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -686,7 +686,7 @@ point values. </p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.5.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.5.6"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -700,7 +700,7 @@ graphene_simd4f_init_2f (<em class="parameter"><code>const <span class="type">fl
 <p>Initializes a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> using an array of 2 floating
 point values.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.6.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.6.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -716,7 +716,7 @@ point values. </p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.6.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.6.6"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -731,7 +731,7 @@ graphene_simd4f_dup_4f (<em class="parameter"><code>const <a class="link" href="
 <p>Copies the contents of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> into an
 array of floating points.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.7.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.7.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -764,7 +764,7 @@ graphene_simd4f_dup_3f (<em class="parameter"><code>const <a class="link" href="
 <p>Copies the contents of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> into an
 array of floating points.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.8.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.8.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -797,7 +797,7 @@ graphene_simd4f_dup_2f (<em class="parameter"><code>const <a class="link" href="
 <p>Copies the contents of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> into an
 array of floating points.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.9.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.9.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -829,7 +829,7 @@ graphene_simd4f_get (<em class="parameter"><code>const <a class="link" href="gra
                      <em class="parameter"><code>unsigned <span class="type">int</span> i</code></em>);</pre>
 <p>Retrieves the given component of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.10.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.10.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -860,7 +860,7 @@ graphene_simd4f_get_x (<em class="parameter"><code>const <a class="link" href="g
 <p>Retrieves the first component of <em class="parameter"><code>s</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.11.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.11.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -875,7 +875,7 @@ graphene_simd4f_get_x (<em class="parameter"><code>const <a class="link" href="g
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.11.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.11.6"></a><h4>Returns</h4>
 <p> the first component of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -889,7 +889,7 @@ graphene_simd4f_get_y (<em class="parameter"><code>const <a class="link" href="g
 <p>Retrieves the second component of <em class="parameter"><code>s</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.12.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.12.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -904,7 +904,7 @@ graphene_simd4f_get_y (<em class="parameter"><code>const <a class="link" href="g
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.12.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.12.6"></a><h4>Returns</h4>
 <p> the second component of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -918,7 +918,7 @@ graphene_simd4f_get_z (<em class="parameter"><code>const <a class="link" href="g
 <p>Retrieves the third component of <em class="parameter"><code>s</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.13.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.13.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -933,7 +933,7 @@ graphene_simd4f_get_z (<em class="parameter"><code>const <a class="link" href="g
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.13.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.13.6"></a><h4>Returns</h4>
 <p> the third component of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -947,7 +947,7 @@ graphene_simd4f_get_w (<em class="parameter"><code>const <a class="link" href="g
 <p>Retrieves the fourth component of <em class="parameter"><code>s</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.14.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.14.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -962,7 +962,7 @@ graphene_simd4f_get_w (<em class="parameter"><code>const <a class="link" href="g
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.14.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.14.6"></a><h4>Returns</h4>
 <p> the fourth component of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -977,7 +977,7 @@ graphene_simd4f_splat (<em class="parameter"><code><span class="type">float</spa
 same value <em class="parameter"><code>v</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.15.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.15.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -992,7 +992,7 @@ same value <em class="parameter"><code>v</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.15.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.15.6"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -1006,7 +1006,7 @@ graphene_simd4f_splat_x (<em class="parameter"><code>const <a class="link" href=
 <p>Sets all the components of a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> to the
 same value of the first component of the passed vector.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.16.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.16.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1021,7 +1021,7 @@ same value of the first component of the passed vector.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.16.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.16.6"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -1035,7 +1035,7 @@ graphene_simd4f_splat_y (<em class="parameter"><code>const <a class="link" href=
 <p>Sets all the components of a new <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> to the
 same value of the second component of the passed vector.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.17.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.17.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1050,7 +1050,7 @@ same value of the second component of the passed vector.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.17.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.17.6"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -1064,7 +1064,7 @@ graphene_simd4f_splat_z (<em class="parameter"><code>const <a class="link" href=
 <p>Sets all the components of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> to the
 same value of the third component of the passed vector.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.18.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.18.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1079,7 +1079,7 @@ same value of the third component of the passed vector.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.18.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.18.6"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -1093,7 +1093,7 @@ graphene_simd4f_splat_w (<em class="parameter"><code>const <a class="link" href=
 <p>Sets all the components of a <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> to the
 same value of the fourth component of the passed vector.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.19.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.19.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1108,7 +1108,7 @@ same value of the fourth component of the passed vector.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.19.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.19.6"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
 </div>
@@ -1148,7 +1148,7 @@ in <em class="parameter"><code>a</code></em>
 
 <p></p>
 <div class="refsect3">
-<a name="id-1.2.18.6.20.7"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.20.7"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1170,7 +1170,7 @@ in <em class="parameter"><code>a</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.20.8"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.20.8"></a><h4>Returns</h4>
 <p> the sum vector</p>
 <p></p>
 </div>
@@ -1210,7 +1210,7 @@ in <em class="parameter"><code>a</code></em>
 
 <p></p>
 <div class="refsect3">
-<a name="id-1.2.18.6.21.7"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.21.7"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1232,7 +1232,7 @@ in <em class="parameter"><code>a</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.21.8"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.21.8"></a><h4>Returns</h4>
 <p> the subtraction vector</p>
 <p></p>
 </div>
@@ -1272,7 +1272,7 @@ in <em class="parameter"><code>a</code></em>
 
 <p></p>
 <div class="refsect3">
-<a name="id-1.2.18.6.22.7"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.22.7"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1294,7 +1294,7 @@ in <em class="parameter"><code>a</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.22.8"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.22.8"></a><h4>Returns</h4>
 <p> the multiplication vector</p>
 <p></p>
 </div>
@@ -1334,7 +1334,7 @@ in <em class="parameter"><code>a</code></em>
 
 <p></p>
 <div class="refsect3">
-<a name="id-1.2.18.6.23.7"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.23.7"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1356,7 +1356,7 @@ in <em class="parameter"><code>a</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.23.8"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.23.8"></a><h4>Returns</h4>
 <p> the division vector</p>
 <p></p>
 </div>
@@ -1392,7 +1392,7 @@ graphene_simd4f_sqrt (<em class="parameter"><code>const <a class="link" href="gr
 
 <p></p>
 <div class="refsect3">
-<a name="id-1.2.18.6.24.7"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.24.7"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1407,7 +1407,7 @@ graphene_simd4f_sqrt (<em class="parameter"><code>const <a class="link" href="gr
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.24.8"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.24.8"></a><h4>Returns</h4>
 <p> a vector containing the square root of the
 passed vector</p>
 <p></p>
@@ -1422,7 +1422,7 @@ graphene_simd4f_reciprocal (<em class="parameter"><code>const <a class="link" hr
 <p>Computes the reciprocal of every component of <em class="parameter"><code>s</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.25.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.25.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1437,7 +1437,7 @@ graphene_simd4f_reciprocal (<em class="parameter"><code>const <a class="link" hr
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.25.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.25.6"></a><h4>Returns</h4>
 <p> a vector containing the reciprocal of the
 passed vector</p>
 <p></p>
@@ -1475,7 +1475,7 @@ of <em class="parameter"><code>s</code></em>
 
 <p></p>
 <div class="refsect3">
-<a name="id-1.2.18.6.26.7"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.26.7"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1490,7 +1490,7 @@ of <em class="parameter"><code>s</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.26.8"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.26.8"></a><h4>Returns</h4>
 <p> a vector containing the reciprocal square root
 of the passed vector</p>
 <p></p>
@@ -1510,7 +1510,7 @@ given <em class="parameter"><code>a</code></em>
  vectors. You can access the result
 as a floating point value through <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-get-x" title="graphene_simd4f_get_x ()"><code class="function">graphene_simd4f_get_x()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.27.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.27.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1532,7 +1532,7 @@ as a floating point value through <a class="link" href="graphene-SIMD-vector.htm
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.27.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.27.6"></a><h4>Returns</h4>
 <p> the cross3 vector</p>
 <p></p>
 </div>
@@ -1549,7 +1549,7 @@ minimum value of each component of <em class="parameter"><code>a</code></em>
  and <em class="parameter"><code>b</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.28.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.28.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1571,7 +1571,7 @@ minimum value of each component of <em class="parameter"><code>a</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.28.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.28.6"></a><h4>Returns</h4>
 <p> the new minimum vector</p>
 <p></p>
 </div>
@@ -1588,7 +1588,7 @@ maximum value of each component of <em class="parameter"><code>a</code></em>
  and <em class="parameter"><code>b</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.29.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.29.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1610,7 +1610,7 @@ maximum value of each component of <em class="parameter"><code>a</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.29.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.29.6"></a><h4>Returns</h4>
 <p> the new maximum vector</p>
 <p></p>
 </div>
@@ -1629,7 +1629,7 @@ the components of the <em class="parameter"><code>lower</code></em>
  and <em class="parameter"><code>upper</code></em>
  boundaries.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.30.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.30.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1656,7 +1656,7 @@ the components of the <em class="parameter"><code>lower</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.30.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.30.6"></a><h4>Returns</h4>
 <p> the clamped vector</p>
 <p></p>
 </div>
@@ -1675,7 +1675,7 @@ the <em class="parameter"><code>lower</code></em>
  and <em class="parameter"><code>upper</code></em>
  boundary scalar values.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.31.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.31.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1702,7 +1702,7 @@ the <em class="parameter"><code>lower</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.31.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.31.6"></a><h4>Returns</h4>
 <p> the clamped vector</p>
 <p></p>
 </div>
@@ -1718,7 +1718,7 @@ re-ordered values of the W, X, Y, and Z components
 of <em class="parameter"><code>s</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.32.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.32.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1733,7 +1733,7 @@ of <em class="parameter"><code>s</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.32.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.32.6"></a><h4>Returns</h4>
 <p> the new vector</p>
 <p></p>
 </div>
@@ -1749,7 +1749,7 @@ re-ordered values of the Z, W, X, and Y components
 of <em class="parameter"><code>s</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.33.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.33.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1764,7 +1764,7 @@ of <em class="parameter"><code>s</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.33.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.33.6"></a><h4>Returns</h4>
 <p> the new vector</p>
 <p></p>
 </div>
@@ -1780,7 +1780,7 @@ re-ordered values of the Y, Z, W, and X components
 of <em class="parameter"><code>s</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.34.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.34.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1795,7 +1795,7 @@ of <em class="parameter"><code>s</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.34.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.34.6"></a><h4>Returns</h4>
 <p> the new vector</p>
 <p></p>
 </div>
@@ -1811,7 +1811,7 @@ same values of the given <em class="parameter"><code>s</code></em>
  vector, except for the
 W component, which is set to 0.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.35.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.35.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1826,7 +1826,7 @@ W component, which is set to 0.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.35.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.35.6"></a><h4>Returns</h4>
 <p> the new vector</p>
 <p></p>
 </div>
@@ -1842,7 +1842,7 @@ same values of the given <em class="parameter"><code>s</code></em>
  vector, except for the
 Z and W components, which are set to 0.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.36.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.36.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1857,7 +1857,7 @@ Z and W components, which are set to 0.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.36.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.36.6"></a><h4>Returns</h4>
 <p> the new vector</p>
 <p></p>
 </div>
@@ -1875,7 +1875,7 @@ same values of the given <em class="parameter"><code>s</code></em>
 W component, which is set to <em class="parameter"><code>v</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.37.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.37.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1897,7 +1897,7 @@ W component, which is set to <em class="parameter"><code>v</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.37.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.37.6"></a><h4>Returns</h4>
 <p> the new vector</p>
 <p></p>
 </div>
@@ -1915,7 +1915,7 @@ last two components of the vector <em class="parameter"><code>a</code></em>
 two components of the vector <em class="parameter"><code>b</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.38.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.38.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1937,7 +1937,7 @@ two components of the vector <em class="parameter"><code>b</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.38.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.38.6"></a><h4>Returns</h4>
 <p> the new vector</p>
 <p></p>
 </div>
@@ -1955,7 +1955,7 @@ first two components of the vector <em class="parameter"><code>a</code></em>
 two components of the vector <em class="parameter"><code>b</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.39.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.39.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1977,7 +1977,7 @@ two components of the vector <em class="parameter"><code>b</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.39.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.39.6"></a><h4>Returns</h4>
 <p> the new vector</p>
 <p></p>
 </div>
@@ -1992,7 +1992,7 @@ graphene_simd4f_flip_sign_0101 (<em class="parameter"><code>const <a class="link
 the given vector <em class="parameter"><code>s</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.40.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.40.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2007,7 +2007,7 @@ the given vector <em class="parameter"><code>s</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.40.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.40.6"></a><h4>Returns</h4>
 <p> the new vector, with the changed signs</p>
 <p></p>
 </div>
@@ -2022,7 +2022,7 @@ graphene_simd4f_flip_sign_1010 (<em class="parameter"><code>const <a class="link
 the given vector <em class="parameter"><code>s</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.41.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.41.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2037,7 +2037,7 @@ the given vector <em class="parameter"><code>s</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.41.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.41.6"></a><h4>Returns</h4>
 <p> the new vector, with the changed signs</p>
 <p></p>
 </div>
@@ -2051,7 +2051,7 @@ graphene_simd4f_cmp_eq (<em class="parameter"><code>const <a class="link" href="
                         <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
 <p>Checks if the two given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> are equal.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.42.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.42.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2073,7 +2073,7 @@ graphene_simd4f_cmp_eq (<em class="parameter"><code>const <a class="link" href="
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.42.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.42.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the values of the vectors are equal</p>
 <p></p>
 </div>
@@ -2087,7 +2087,7 @@ graphene_simd4f_cmp_neq (<em class="parameter"><code>const <a class="link" href=
                          <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> b</code></em>);</pre>
 <p>Checks if the two given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> are not equal.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.43.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.43.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2109,7 +2109,7 @@ graphene_simd4f_cmp_neq (<em class="parameter"><code>const <a class="link" href=
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.43.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.43.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the values of the vectors are not equal</p>
 <p></p>
 </div>
@@ -2127,7 +2127,7 @@ of the vector <em class="parameter"><code>a</code></em>
 the vector <em class="parameter"><code>b</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.44.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.44.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2149,7 +2149,7 @@ the vector <em class="parameter"><code>b</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.44.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.44.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if vector <em class="parameter"><code>a</code></em>
 is less than <em class="parameter"><code>b</code></em>
 </p>
@@ -2169,7 +2169,7 @@ of the vector <em class="parameter"><code>a</code></em>
 of the vector <em class="parameter"><code>b</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.45.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.45.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2191,7 +2191,7 @@ of the vector <em class="parameter"><code>b</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.45.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.45.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if vector <em class="parameter"><code>a</code></em>
 is less than or equal to <em class="parameter"><code>b</code></em>
 </p>
@@ -2211,7 +2211,7 @@ of the vector <em class="parameter"><code>a</code></em>
 components of the vector <em class="parameter"><code>b</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.46.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.46.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2233,7 +2233,7 @@ components of the vector <em class="parameter"><code>b</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.46.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.46.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if vector <em class="parameter"><code>a</code></em>
 is greater than or equal to <em class="parameter"><code>b</code></em>
 </p>
@@ -2253,7 +2253,7 @@ of the vector <em class="parameter"><code>a</code></em>
 the vector <em class="parameter"><code>b</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.47.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.47.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2275,7 +2275,7 @@ the vector <em class="parameter"><code>b</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.47.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.47.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if vector <em class="parameter"><code>a</code></em>
 is greater than <em class="parameter"><code>b</code></em>
 </p>
@@ -2291,7 +2291,7 @@ graphene_simd4f_neg (<em class="parameter"><code>const <a class="link" href="gra
 <p>Negates the values of <em class="parameter"><code>s</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.48.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.48.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2306,7 +2306,7 @@ graphene_simd4f_neg (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.48.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.48.6"></a><h4>Returns</h4>
 <p> the negated vector</p>
 <p></p>
 </div>
@@ -2324,7 +2324,7 @@ graphene_simd4f_madd (<em class="parameter"><code>const <a class="link" href="gr
  and <em class="parameter"><code>m2</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.49.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.49.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2351,7 +2351,7 @@ graphene_simd4f_madd (<em class="parameter"><code>const <a class="link" href="gr
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.49.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.49.6"></a><h4>Returns</h4>
 <p> the result vector</p>
 <p></p>
 </div>
@@ -2364,7 +2364,7 @@ graphene_simd4f_madd (<em class="parameter"><code>const <a class="link" href="gr
 graphene_simd4f_sum (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>);</pre>
 <p>Sums all components of the given vector.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.50.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.50.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2379,7 +2379,7 @@ graphene_simd4f_sum (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.50.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.50.6"></a><h4>Returns</h4>
 <p> a vector with all components set to be the
 sum of the passed <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
@@ -2393,7 +2393,7 @@ sum of the passed <a class="link" href="graphene-SIMD-vector.html#graphene-simd4
 graphene_simd4f_sum_scalar (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> v</code></em>);</pre>
 <p>Sums all the components of the given vector.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.51.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.51.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2408,7 +2408,7 @@ graphene_simd4f_sum_scalar (<em class="parameter"><code>const <a class="link" hr
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.51.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.51.6"></a><h4>Returns</h4>
 <p> a scalar value with the sum of the components
 of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a></p>
 <p></p>
@@ -2424,7 +2424,7 @@ graphene_simd4f_dot4 (<em class="parameter"><code>const <a class="link" href="gr
 <p>Computes the dot product of all the components of the two
 given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.52.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.52.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2446,7 +2446,7 @@ given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.52.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.52.6"></a><h4>Returns</h4>
 <p> a vector whose components are all set to be the
 dot product of the components of the two operands</p>
 <p></p>
@@ -2462,7 +2462,7 @@ graphene_simd4f_dot3 (<em class="parameter"><code><a class="link" href="graphene
 <p>Computes the dot product of the first three components of the
 two given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.53.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.53.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2484,7 +2484,7 @@ two given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" tit
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.53.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.53.6"></a><h4>Returns</h4>
 <p> a vector whose components are all set to the the
 dot product of the componets of the two operands</p>
 <p></p>
@@ -2500,7 +2500,7 @@ graphene_simd4f_dot2 (<em class="parameter"><code>const <a class="link" href="gr
 <p>Computes the dot product of the first two components of the
 two given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.54.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.54.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2522,7 +2522,7 @@ two given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" tit
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.54.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.54.6"></a><h4>Returns</h4>
 <p> a vector whose components are all set to the the
 dot product of the componets of the two operands</p>
 <p></p>
@@ -2537,7 +2537,7 @@ graphene_simd4f_length4 (<em class="parameter"><code>const <a class="link" href=
 <p>Computes the length of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector,
 using all four of its components.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.55.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.55.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2552,7 +2552,7 @@ using all four of its components.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.55.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.55.6"></a><h4>Returns</h4>
 <p> the length vector</p>
 <p></p>
 </div>
@@ -2566,7 +2566,7 @@ graphene_simd4f_length3 (<em class="parameter"><code>const <a class="link" href=
 <p>Computes the length of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector,
 using the first three of its components.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.56.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.56.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2581,7 +2581,7 @@ using the first three of its components.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.56.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.56.6"></a><h4>Returns</h4>
 <p> the length vector</p>
 <p></p>
 </div>
@@ -2595,7 +2595,7 @@ graphene_simd4f_length2 (<em class="parameter"><code>const <a class="link" href=
 <p>Computes the length of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector,
 using the first two of its components.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.57.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.57.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2610,7 +2610,7 @@ using the first two of its components.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.57.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.57.6"></a><h4>Returns</h4>
 <p> the length vector</p>
 <p></p>
 </div>
@@ -2624,7 +2624,7 @@ graphene_simd4f_normalize4 (<em class="parameter"><code>const <a class="link" hr
 <p>Computes the normalization of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector,
 using all of its components.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.58.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.58.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2639,7 +2639,7 @@ using all of its components.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.58.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.58.6"></a><h4>Returns</h4>
 <p> the normalized vector</p>
 <p></p>
 </div>
@@ -2653,7 +2653,7 @@ graphene_simd4f_normalize3 (<em class="parameter"><code>const <a class="link" hr
 <p>Computes the normalization of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector,
 using the first three of its components.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.59.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.59.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2668,7 +2668,7 @@ using the first three of its components.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.59.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.59.6"></a><h4>Returns</h4>
 <p> the normalized vector</p>
 <p></p>
 </div>
@@ -2682,7 +2682,7 @@ graphene_simd4f_normalize2 (<em class="parameter"><code>const <a class="link" hr
 <p>Computes the normalization of the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vector,
 using the first two of its components.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.60.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.60.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2697,7 +2697,7 @@ using the first two of its components.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.60.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.60.6"></a><h4>Returns</h4>
 <p> the normalized vector</p>
 <p></p>
 </div>
@@ -2711,7 +2711,7 @@ graphene_simd4f_is_zero4 (<em class="parameter"><code>const <a class="link" href
 <p>Checks whether the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> has all its components
 set to 0.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.61.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.61.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2726,7 +2726,7 @@ set to 0.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.61.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.61.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if all the vector components are zero</p>
 <p></p>
 </div>
@@ -2740,7 +2740,7 @@ graphene_simd4f_is_zero3 (<em class="parameter"><code>const <a class="link" href
 <p>Checks whether the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> has the first three of
 its components set to 0.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.62.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.62.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2755,7 +2755,7 @@ its components set to 0.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.62.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.62.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the vector's components are zero</p>
 <p></p>
 </div>
@@ -2769,7 +2769,7 @@ graphene_simd4f_is_zero2 (<em class="parameter"><code>const <a class="link" href
 <p>Checks whether the given <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> has the first two of
 its components set to 0.</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.63.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.63.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2784,7 +2784,7 @@ its components set to 0.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.63.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.63.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the vector's components are zero</p>
 <p></p>
 </div>
@@ -2801,7 +2801,7 @@ graphene_simd4f_interpolate (<em class="parameter"><code>const <a class="link" h
 <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> vectors using the given factor <em class="parameter"><code>f</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.18.6.64.5"></a><h4>Parameters</h4>
+<a name="id-1.2.12.6.64.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2828,7 +2828,7 @@ graphene_simd4f_interpolate (<em class="parameter"><code>const <a class="link" h
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.18.6.64.6"></a><h4>Returns</h4>
+<a name="id-1.2.12.6.64.6"></a><h4>Returns</h4>
 <p> the intrerpolated vector</p>
 <p></p>
 </div>
@@ -2849,6 +2849,6 @@ cannot be directly accessed; use the provided API instead.</p>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.21</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

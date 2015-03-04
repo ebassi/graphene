@@ -8,19 +8,19 @@
       <sub name="Size" link="graphene-Size.html"/>
       <sub name="Rectangle" link="graphene-Rectangle.html"/>
       <sub name="Quad" link="graphene-Quad.html"/>
-      <sub name="Vectors" link="graphene-Vectors.html"/>
-      <sub name="Euler" link="graphene-Euler.html"/>
-      <sub name="Quaternion" link="graphene-Quaternion.html"/>
-      <sub name="Matrix" link="graphene-Matrix.html"/>
-      <sub name="Plane" link="graphene-Plane.html"/>
       <sub name="Triangle" link="graphene-Triangle.html"/>
       <sub name="Box" link="graphene-Box.html"/>
       <sub name="Sphere" link="graphene-Sphere.html"/>
       <sub name="Frustum" link="graphene-Frustum.html"/>
-      <sub name="Versioning information" link="graphene-Versioning-information.html"/>
-      <sub name="GObject integration" link="graphene-GObject-integration.html"/>
       <sub name="SIMD vector" link="graphene-SIMD-vector.html"/>
       <sub name="SIMD matrix" link="graphene-SIMD-matrix.html"/>
+      <sub name="Vectors" link="graphene-Vectors.html"/>
+      <sub name="Matrix" link="graphene-Matrix.html"/>
+      <sub name="Euler" link="graphene-Euler.html"/>
+      <sub name="Quaternion" link="graphene-Quaternion.html"/>
+      <sub name="Plane" link="graphene-Plane.html"/>
+      <sub name="Versioning information" link="graphene-Versioning-information.html"/>
+      <sub name="GObject integration" link="graphene-GObject-integration.html"/>
     </sub>
     <sub name="Object Hierarchy" link="object-tree.html"/>
     <sub name="API Index" link="api-index-full.html"/>
@@ -30,6 +30,7 @@
     <sub name="Annotation Glossary" link="annotation-glossary.html"/>
   </chapters>
   <functions>
+    <keyword type="" name="" link="ch01.html#overview"/>
     <keyword type="macro" name="GRAPHENE_POINT_INIT()" link="graphene-Point.html#GRAPHENE-POINT-INIT:CAPS" since="1.0"/>
     <keyword type="function" name="graphene_point_alloc ()" link="graphene-Point.html#graphene-point-alloc" since="1.0"/>
     <keyword type="function" name="graphene_point_free ()" link="graphene-Point.html#graphene-point-free" since="1.0"/>
@@ -100,10 +101,175 @@
     <keyword type="function" name="graphene_quad_free ()" link="graphene-Quad.html#graphene-quad-free" since="1.0"/>
     <keyword type="function" name="graphene_quad_init ()" link="graphene-Quad.html#graphene-quad-init" since="1.0"/>
     <keyword type="function" name="graphene_quad_init_from_rect ()" link="graphene-Quad.html#graphene-quad-init-from-rect" since="1.0"/>
+    <keyword type="function" name="graphene_quad_init_from_points ()" link="graphene-Quad.html#graphene-quad-init-from-points" since="1.2"/>
     <keyword type="function" name="graphene_quad_contains ()" link="graphene-Quad.html#graphene-quad-contains" since="1.0"/>
     <keyword type="function" name="graphene_quad_bounds ()" link="graphene-Quad.html#graphene-quad-bounds" since="1.0"/>
     <keyword type="function" name="graphene_quad_get_point ()" link="graphene-Quad.html#graphene-quad-get-point" since="1.0"/>
     <keyword type="struct" name="graphene_quad_t" link="graphene-Quad.html#graphene-quad-t" since="1.0"/>
+    <keyword type="function" name="graphene_triangle_alloc ()" link="graphene-Triangle.html#graphene-triangle-alloc" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_free ()" link="graphene-Triangle.html#graphene-triangle-free" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_init_from_point3d ()" link="graphene-Triangle.html#graphene-triangle-init-from-point3d" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_init_from_vec3 ()" link="graphene-Triangle.html#graphene-triangle-init-from-vec3" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_get_points ()" link="graphene-Triangle.html#graphene-triangle-get-points" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_get_vertices ()" link="graphene-Triangle.html#graphene-triangle-get-vertices" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_get_area ()" link="graphene-Triangle.html#graphene-triangle-get-area" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_get_midpoint ()" link="graphene-Triangle.html#graphene-triangle-get-midpoint" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_get_normal ()" link="graphene-Triangle.html#graphene-triangle-get-normal" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_get_plane ()" link="graphene-Triangle.html#graphene-triangle-get-plane" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_get_bounding_box ()" link="graphene-Triangle.html#graphene-triangle-get-bounding-box" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_get_barycoords ()" link="graphene-Triangle.html#graphene-triangle-get-barycoords" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_contains_point ()" link="graphene-Triangle.html#graphene-triangle-contains-point" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_equal ()" link="graphene-Triangle.html#graphene-triangle-equal" since="1.2"/>
+    <keyword type="struct" name="graphene_triangle_t" link="graphene-Triangle.html#graphene-triangle-t" since="1.2"/>
+    <keyword type="function" name="graphene_box_alloc ()" link="graphene-Box.html#graphene-box-alloc" since="1.2"/>
+    <keyword type="function" name="graphene_box_free ()" link="graphene-Box.html#graphene-box-free" since="1.2"/>
+    <keyword type="function" name="graphene_box_init ()" link="graphene-Box.html#graphene-box-init" since="1.2"/>
+    <keyword type="function" name="graphene_box_init_from_box ()" link="graphene-Box.html#graphene-box-init-from-box" since="1.2"/>
+    <keyword type="function" name="graphene_box_init_from_points ()" link="graphene-Box.html#graphene-box-init-from-points" since="1.2"/>
+    <keyword type="function" name="graphene_box_init_from_vec3 ()" link="graphene-Box.html#graphene-box-init-from-vec3" since="1.2"/>
+    <keyword type="function" name="graphene_box_init_from_vectors ()" link="graphene-Box.html#graphene-box-init-from-vectors" since="1.2"/>
+    <keyword type="function" name="graphene_box_equal ()" link="graphene-Box.html#graphene-box-equal" since="1.2"/>
+    <keyword type="function" name="graphene_box_expand ()" link="graphene-Box.html#graphene-box-expand" since="1.2"/>
+    <keyword type="function" name="graphene_box_expand_scalar ()" link="graphene-Box.html#graphene-box-expand-scalar" since="1.2"/>
+    <keyword type="function" name="graphene_box_expand_vec3 ()" link="graphene-Box.html#graphene-box-expand-vec3" since="1.2"/>
+    <keyword type="function" name="graphene_box_get_min ()" link="graphene-Box.html#graphene-box-get-min" since="1.2"/>
+    <keyword type="function" name="graphene_box_get_max ()" link="graphene-Box.html#graphene-box-get-max" since="1.2"/>
+    <keyword type="function" name="graphene_box_get_center ()" link="graphene-Box.html#graphene-box-get-center" since="1.2"/>
+    <keyword type="function" name="graphene_box_get_depth ()" link="graphene-Box.html#graphene-box-get-depth" since="1.2"/>
+    <keyword type="function" name="graphene_box_get_height ()" link="graphene-Box.html#graphene-box-get-height" since="1.2"/>
+    <keyword type="function" name="graphene_box_get_width ()" link="graphene-Box.html#graphene-box-get-width" since="1.2"/>
+    <keyword type="function" name="graphene_box_get_size ()" link="graphene-Box.html#graphene-box-get-size" since="1.2"/>
+    <keyword type="function" name="graphene_box_get_bounding_sphere ()" link="graphene-Box.html#graphene-box-get-bounding-sphere" since="1.2"/>
+    <keyword type="function" name="graphene_box_get_vertices ()" link="graphene-Box.html#graphene-box-get-vertices" since="1.2"/>
+    <keyword type="function" name="graphene_box_union ()" link="graphene-Box.html#graphene-box-union" since="1.2"/>
+    <keyword type="function" name="graphene_box_intersection ()" link="graphene-Box.html#graphene-box-intersection" since="1.2"/>
+    <keyword type="function" name="graphene_box_contains_box ()" link="graphene-Box.html#graphene-box-contains-box" since="1.2"/>
+    <keyword type="function" name="graphene_box_contains_point ()" link="graphene-Box.html#graphene-box-contains-point" since="1.2"/>
+    <keyword type="function" name="graphene_box_zero ()" link="graphene-Box.html#graphene-box-zero" since="1.2"/>
+    <keyword type="function" name="graphene_box_one ()" link="graphene-Box.html#graphene-box-one" since="1.2"/>
+    <keyword type="function" name="graphene_box_minus_one ()" link="graphene-Box.html#graphene-box-minus-one" since="1.2"/>
+    <keyword type="function" name="graphene_box_one_minus_one ()" link="graphene-Box.html#graphene-box-one-minus-one" since="1.2"/>
+    <keyword type="function" name="graphene_box_empty ()" link="graphene-Box.html#graphene-box-empty" since="1.2"/>
+    <keyword type="function" name="graphene_box_infinite ()" link="graphene-Box.html#graphene-box-infinite" since="1.2"/>
+    <keyword type="struct" name="graphene_box_t" link="graphene-Box.html#graphene-box-t" since="1.2"/>
+    <keyword type="function" name="graphene_sphere_alloc ()" link="graphene-Sphere.html#graphene-sphere-alloc" since="1.2"/>
+    <keyword type="function" name="graphene_sphere_free ()" link="graphene-Sphere.html#graphene-sphere-free" since="1.2"/>
+    <keyword type="function" name="graphene_sphere_init ()" link="graphene-Sphere.html#graphene-sphere-init" since="1.2"/>
+    <keyword type="function" name="graphene_sphere_init_from_points ()" link="graphene-Sphere.html#graphene-sphere-init-from-points" since="1.2"/>
+    <keyword type="function" name="graphene_sphere_init_from_vectors ()" link="graphene-Sphere.html#graphene-sphere-init-from-vectors" since="1.2"/>
+    <keyword type="function" name="graphene_sphere_get_center ()" link="graphene-Sphere.html#graphene-sphere-get-center" since="1.2"/>
+    <keyword type="function" name="graphene_sphere_get_radius ()" link="graphene-Sphere.html#graphene-sphere-get-radius" since="1.2"/>
+    <keyword type="function" name="graphene_sphere_get_bounding_box ()" link="graphene-Sphere.html#graphene-sphere-get-bounding-box" since="1.2"/>
+    <keyword type="function" name="graphene_sphere_is_empty ()" link="graphene-Sphere.html#graphene-sphere-is-empty" since="1.2"/>
+    <keyword type="function" name="graphene_sphere_distance ()" link="graphene-Sphere.html#graphene-sphere-distance" since="1.2"/>
+    <keyword type="function" name="graphene_sphere_contains_point ()" link="graphene-Sphere.html#graphene-sphere-contains-point" since="1.2"/>
+    <keyword type="function" name="graphene_sphere_translate ()" link="graphene-Sphere.html#graphene-sphere-translate" since="1.2"/>
+    <keyword type="function" name="graphene_sphere_equal ()" link="graphene-Sphere.html#graphene-sphere-equal" since="1.2"/>
+    <keyword type="struct" name="graphene_sphere_t" link="graphene-Sphere.html#graphene-sphere-t" since="1.2"/>
+    <keyword type="function" name="graphene_frustum_alloc ()" link="graphene-Frustum.html#graphene-frustum-alloc" since="1.2"/>
+    <keyword type="function" name="graphene_frustum_free ()" link="graphene-Frustum.html#graphene-frustum-free" since="1.2"/>
+    <keyword type="function" name="graphene_frustum_init ()" link="graphene-Frustum.html#graphene-frustum-init" since="1.2"/>
+    <keyword type="function" name="graphene_frustum_init_from_frustum ()" link="graphene-Frustum.html#graphene-frustum-init-from-frustum" since="1.2"/>
+    <keyword type="function" name="graphene_frustum_init_from_matrix ()" link="graphene-Frustum.html#graphene-frustum-init-from-matrix" since="1.2"/>
+    <keyword type="function" name="graphene_frustum_get_planes ()" link="graphene-Frustum.html#graphene-frustum-get-planes" since="1.2"/>
+    <keyword type="function" name="graphene_frustum_contains_point ()" link="graphene-Frustum.html#graphene-frustum-contains-point" since="1.2"/>
+    <keyword type="function" name="graphene_frustum_intersects_sphere ()" link="graphene-Frustum.html#graphene-frustum-intersects-sphere" since="1.2"/>
+    <keyword type="function" name="graphene_frustum_intersects_box ()" link="graphene-Frustum.html#graphene-frustum-intersects-box" since="1.2"/>
+    <keyword type="struct" name="graphene_frustum_t" link="graphene-Frustum.html#graphene-frustum-t" since="1.2"/>
+    <keyword type="function" name="graphene_simd4f_init ()" link="graphene-SIMD-vector.html#graphene-simd4f-init" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_init_zero ()" link="graphene-SIMD-vector.html#graphene-simd4f-init-zero" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_init_4f ()" link="graphene-SIMD-vector.html#graphene-simd4f-init-4f" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_init_3f ()" link="graphene-SIMD-vector.html#graphene-simd4f-init-3f" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_init_2f ()" link="graphene-SIMD-vector.html#graphene-simd4f-init-2f" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_dup_4f ()" link="graphene-SIMD-vector.html#graphene-simd4f-dup-4f" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_dup_3f ()" link="graphene-SIMD-vector.html#graphene-simd4f-dup-3f" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_dup_2f ()" link="graphene-SIMD-vector.html#graphene-simd4f-dup-2f" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_get ()" link="graphene-SIMD-vector.html#graphene-simd4f-get" since="1.2"/>
+    <keyword type="function" name="graphene_simd4f_get_x ()" link="graphene-SIMD-vector.html#graphene-simd4f-get-x" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_get_y ()" link="graphene-SIMD-vector.html#graphene-simd4f-get-y" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_get_z ()" link="graphene-SIMD-vector.html#graphene-simd4f-get-z" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_get_w ()" link="graphene-SIMD-vector.html#graphene-simd4f-get-w" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_splat ()" link="graphene-SIMD-vector.html#graphene-simd4f-splat" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_splat_x ()" link="graphene-SIMD-vector.html#graphene-simd4f-splat-x" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_splat_y ()" link="graphene-SIMD-vector.html#graphene-simd4f-splat-y" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_splat_z ()" link="graphene-SIMD-vector.html#graphene-simd4f-splat-z" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_splat_w ()" link="graphene-SIMD-vector.html#graphene-simd4f-splat-w" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_add ()" link="graphene-SIMD-vector.html#graphene-simd4f-add" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_sub ()" link="graphene-SIMD-vector.html#graphene-simd4f-sub" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_mul ()" link="graphene-SIMD-vector.html#graphene-simd4f-mul" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_div ()" link="graphene-SIMD-vector.html#graphene-simd4f-div" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_sqrt ()" link="graphene-SIMD-vector.html#graphene-simd4f-sqrt" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_reciprocal ()" link="graphene-SIMD-vector.html#graphene-simd4f-reciprocal" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_rsqrt ()" link="graphene-SIMD-vector.html#graphene-simd4f-rsqrt" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_cross3 ()" link="graphene-SIMD-vector.html#graphene-simd4f-cross3" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_min ()" link="graphene-SIMD-vector.html#graphene-simd4f-min" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_max ()" link="graphene-SIMD-vector.html#graphene-simd4f-max" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_clamp ()" link="graphene-SIMD-vector.html#graphene-simd4f-clamp" since="1.2"/>
+    <keyword type="function" name="graphene_simd4f_clamp_scalar ()" link="graphene-SIMD-vector.html#graphene-simd4f-clamp-scalar" since="1.2"/>
+    <keyword type="function" name="graphene_simd4f_shuffle_wxyz ()" link="graphene-SIMD-vector.html#graphene-simd4f-shuffle-wxyz" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_shuffle_zwxy ()" link="graphene-SIMD-vector.html#graphene-simd4f-shuffle-zwxy" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_shuffle_yzwx ()" link="graphene-SIMD-vector.html#graphene-simd4f-shuffle-yzwx" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_zero_w ()" link="graphene-SIMD-vector.html#graphene-simd4f-zero-w" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_zero_zw ()" link="graphene-SIMD-vector.html#graphene-simd4f-zero-zw" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_merge_w ()" link="graphene-SIMD-vector.html#graphene-simd4f-merge-w" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_merge_high ()" link="graphene-SIMD-vector.html#graphene-simd4f-merge-high" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_merge_low ()" link="graphene-SIMD-vector.html#graphene-simd4f-merge-low" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_flip_sign_0101 ()" link="graphene-SIMD-vector.html#graphene-simd4f-flip-sign-0101" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_flip_sign_1010 ()" link="graphene-SIMD-vector.html#graphene-simd4f-flip-sign-1010" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_cmp_eq ()" link="graphene-SIMD-vector.html#graphene-simd4f-cmp-eq" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_cmp_neq ()" link="graphene-SIMD-vector.html#graphene-simd4f-cmp-neq" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_cmp_lt ()" link="graphene-SIMD-vector.html#graphene-simd4f-cmp-lt" since="1.2"/>
+    <keyword type="function" name="graphene_simd4f_cmp_le ()" link="graphene-SIMD-vector.html#graphene-simd4f-cmp-le" since="1.2"/>
+    <keyword type="function" name="graphene_simd4f_cmp_ge ()" link="graphene-SIMD-vector.html#graphene-simd4f-cmp-ge" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_cmp_gt ()" link="graphene-SIMD-vector.html#graphene-simd4f-cmp-gt" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_neg ()" link="graphene-SIMD-vector.html#graphene-simd4f-neg" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_madd ()" link="graphene-SIMD-vector.html#graphene-simd4f-madd" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_sum ()" link="graphene-SIMD-vector.html#graphene-simd4f-sum" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_sum_scalar ()" link="graphene-SIMD-vector.html#graphene-simd4f-sum-scalar" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_dot4 ()" link="graphene-SIMD-vector.html#graphene-simd4f-dot4" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_dot3 ()" link="graphene-SIMD-vector.html#graphene-simd4f-dot3" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_dot2 ()" link="graphene-SIMD-vector.html#graphene-simd4f-dot2" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_length4 ()" link="graphene-SIMD-vector.html#graphene-simd4f-length4" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_length3 ()" link="graphene-SIMD-vector.html#graphene-simd4f-length3" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_length2 ()" link="graphene-SIMD-vector.html#graphene-simd4f-length2" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_normalize4 ()" link="graphene-SIMD-vector.html#graphene-simd4f-normalize4" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_normalize3 ()" link="graphene-SIMD-vector.html#graphene-simd4f-normalize3" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_normalize2 ()" link="graphene-SIMD-vector.html#graphene-simd4f-normalize2" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_is_zero4 ()" link="graphene-SIMD-vector.html#graphene-simd4f-is-zero4" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_is_zero3 ()" link="graphene-SIMD-vector.html#graphene-simd4f-is-zero3" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_is_zero2 ()" link="graphene-SIMD-vector.html#graphene-simd4f-is-zero2" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_interpolate ()" link="graphene-SIMD-vector.html#graphene-simd4f-interpolate" since="1.0"/>
+    <keyword type="struct" name="graphene_simd4f_t" link="graphene-SIMD-vector.html#graphene-simd4f-t" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_init ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_init_identity ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init-identity" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_init_from_float ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init-from-float" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_to_float ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-to-float" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_transpose_in_place ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-transpose-in-place" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_sum ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-sum" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_vec4_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-vec4-mul" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_vec3_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-vec3-mul" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_point3_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-point3-mul" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_transpose ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-transpose" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_inv_ortho_vec3_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-inv-ortho-vec3-mul" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_inv_ortho_point3_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-inv-ortho-point3-mul" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_matrix_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-matrix-mul" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_init_perspective ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init-perspective" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_init_ortho ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init-ortho" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_init_look_at ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init-look-at" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_init_frustum ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init-frustum" since="1.2"/>
+    <keyword type="function" name="graphene_simd4x4f_perspective ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-perspective" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_translation ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-translation" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_scale ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-scale" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_rotation ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-rotation" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_add ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-add" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_sub ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-sub" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-mul" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_div ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-div" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_inverse ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-inverse" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_determinant ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-determinant" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_is_identity ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-is-identity" since="1.0"/>
+    <keyword type="function" name="graphene_simd4x4f_is_2d ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-is-2d" since="1.0"/>
+    <keyword type="struct" name="graphene_simd4x4f_t" link="graphene-SIMD-matrix.html#graphene-simd4x4f-t" since="1.0"/>
     <keyword type="function" name="graphene_vec2_alloc ()" link="graphene-Vectors.html#graphene-vec2-alloc" since="1.0"/>
     <keyword type="function" name="graphene_vec2_free ()" link="graphene-Vectors.html#graphene-vec2-free" since="1.0"/>
     <keyword type="function" name="graphene_vec2_init ()" link="graphene-Vectors.html#graphene-vec2-init" since="1.0"/>
@@ -201,6 +367,66 @@
     <keyword type="struct" name="graphene_vec3_t" link="graphene-Vectors.html#graphene-vec3-t"/>
     <keyword type="macro" name="GRAPHENE_VEC4_LEN" link="graphene-Vectors.html#GRAPHENE-VEC4-LEN:CAPS" since="1.0"/>
     <keyword type="struct" name="graphene_vec4_t" link="graphene-Vectors.html#graphene-vec4-t"/>
+    <keyword type="function" name="graphene_matrix_alloc ()" link="graphene-Matrix.html#graphene-matrix-alloc" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_free ()" link="graphene-Matrix.html#graphene-matrix-free" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_init_identity ()" link="graphene-Matrix.html#graphene-matrix-init-identity" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_init_from_float ()" link="graphene-Matrix.html#graphene-matrix-init-from-float" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_init_from_vec4 ()" link="graphene-Matrix.html#graphene-matrix-init-from-vec4" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_init_from_matrix ()" link="graphene-Matrix.html#graphene-matrix-init-from-matrix" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_init_from_2d ()" link="graphene-Matrix.html#graphene-matrix-init-from-2d" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_init_perspective ()" link="graphene-Matrix.html#graphene-matrix-init-perspective" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_init_ortho ()" link="graphene-Matrix.html#graphene-matrix-init-ortho" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_init_look_at ()" link="graphene-Matrix.html#graphene-matrix-init-look-at" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_init_frustum ()" link="graphene-Matrix.html#graphene-matrix-init-frustum" since="1.2"/>
+    <keyword type="function" name="graphene_matrix_init_scale ()" link="graphene-Matrix.html#graphene-matrix-init-scale" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_init_translate ()" link="graphene-Matrix.html#graphene-matrix-init-translate" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_init_rotate ()" link="graphene-Matrix.html#graphene-matrix-init-rotate" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_init_skew ()" link="graphene-Matrix.html#graphene-matrix-init-skew" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_is_identity ()" link="graphene-Matrix.html#graphene-matrix-is-identity" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_is_2d ()" link="graphene-Matrix.html#graphene-matrix-is-2d" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_is_backface_visible ()" link="graphene-Matrix.html#graphene-matrix-is-backface-visible" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_is_singular ()" link="graphene-Matrix.html#graphene-matrix-is-singular" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_to_float ()" link="graphene-Matrix.html#graphene-matrix-to-float" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_to_2d ()" link="graphene-Matrix.html#graphene-matrix-to-2d" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_get_row ()" link="graphene-Matrix.html#graphene-matrix-get-row" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_get_value ()" link="graphene-Matrix.html#graphene-matrix-get-value" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_multiply ()" link="graphene-Matrix.html#graphene-matrix-multiply" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_determinant ()" link="graphene-Matrix.html#graphene-matrix-determinant" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_transform_vec4 ()" link="graphene-Matrix.html#graphene-matrix-transform-vec4" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_transform_vec3 ()" link="graphene-Matrix.html#graphene-matrix-transform-vec3" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_transform_point ()" link="graphene-Matrix.html#graphene-matrix-transform-point" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_transform_point3d ()" link="graphene-Matrix.html#graphene-matrix-transform-point3d" since="1.2"/>
+    <keyword type="function" name="graphene_matrix_transform_rect ()" link="graphene-Matrix.html#graphene-matrix-transform-rect" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_transform_bounds ()" link="graphene-Matrix.html#graphene-matrix-transform-bounds" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_transform_box ()" link="graphene-Matrix.html#graphene-matrix-transform-box" since="1.2"/>
+    <keyword type="function" name="graphene_matrix_transform_sphere ()" link="graphene-Matrix.html#graphene-matrix-transform-sphere" since="1.2"/>
+    <keyword type="function" name="graphene_matrix_project_point ()" link="graphene-Matrix.html#graphene-matrix-project-point" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_project_rect_bounds ()" link="graphene-Matrix.html#graphene-matrix-project-rect-bounds" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_project_rect ()" link="graphene-Matrix.html#graphene-matrix-project-rect" since="1.2"/>
+    <keyword type="function" name="graphene_matrix_untransform_point ()" link="graphene-Matrix.html#graphene-matrix-untransform-point" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_untransform_bounds ()" link="graphene-Matrix.html#graphene-matrix-untransform-bounds" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_unproject_point3d ()" link="graphene-Matrix.html#graphene-matrix-unproject-point3d" since="1.2"/>
+    <keyword type="function" name="graphene_matrix_translate ()" link="graphene-Matrix.html#graphene-matrix-translate" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_rotate ()" link="graphene-Matrix.html#graphene-matrix-rotate" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_rotate_x ()" link="graphene-Matrix.html#graphene-matrix-rotate-x" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_rotate_y ()" link="graphene-Matrix.html#graphene-matrix-rotate-y" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_rotate_z ()" link="graphene-Matrix.html#graphene-matrix-rotate-z" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_rotate_quaternion ()" link="graphene-Matrix.html#graphene-matrix-rotate-quaternion" since="1.2"/>
+    <keyword type="function" name="graphene_matrix_rotate_euler ()" link="graphene-Matrix.html#graphene-matrix-rotate-euler" since="1.2"/>
+    <keyword type="function" name="graphene_matrix_scale ()" link="graphene-Matrix.html#graphene-matrix-scale" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_skew_xy ()" link="graphene-Matrix.html#graphene-matrix-skew-xy" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_skew_xz ()" link="graphene-Matrix.html#graphene-matrix-skew-xz" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_skew_yz ()" link="graphene-Matrix.html#graphene-matrix-skew-yz" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_transpose ()" link="graphene-Matrix.html#graphene-matrix-transpose" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_inverse ()" link="graphene-Matrix.html#graphene-matrix-inverse" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_perspective ()" link="graphene-Matrix.html#graphene-matrix-perspective" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_normalize ()" link="graphene-Matrix.html#graphene-matrix-normalize" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_get_x_scale ()" link="graphene-Matrix.html#graphene-matrix-get-x-scale" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_get_y_scale ()" link="graphene-Matrix.html#graphene-matrix-get-y-scale" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_get_z_scale ()" link="graphene-Matrix.html#graphene-matrix-get-z-scale" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_interpolate ()" link="graphene-Matrix.html#graphene-matrix-interpolate" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_print ()" link="graphene-Matrix.html#graphene-matrix-print" since="1.0"/>
+    <keyword type="struct" name="graphene_matrix_t" link="graphene-Matrix.html#graphene-matrix-t"/>
     <keyword type="function" name="graphene_euler_alloc ()" link="graphene-Euler.html#graphene-euler-alloc" since="1.2"/>
     <keyword type="function" name="graphene_euler_free ()" link="graphene-Euler.html#graphene-euler-free" since="1.2"/>
     <keyword type="function" name="graphene_euler_init ()" link="graphene-Euler.html#graphene-euler-init" since="1.2"/>
@@ -239,65 +465,6 @@
     <keyword type="function" name="graphene_quaternion_normalize ()" link="graphene-Quaternion.html#graphene-quaternion-normalize" since="1.0"/>
     <keyword type="function" name="graphene_quaternion_slerp ()" link="graphene-Quaternion.html#graphene-quaternion-slerp" since="1.0"/>
     <keyword type="struct" name="graphene_quaternion_t" link="graphene-Quaternion.html#graphene-quaternion-t" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_alloc ()" link="graphene-Matrix.html#graphene-matrix-alloc" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_free ()" link="graphene-Matrix.html#graphene-matrix-free" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_init_identity ()" link="graphene-Matrix.html#graphene-matrix-init-identity" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_init_from_float ()" link="graphene-Matrix.html#graphene-matrix-init-from-float" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_init_from_vec4 ()" link="graphene-Matrix.html#graphene-matrix-init-from-vec4" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_init_from_matrix ()" link="graphene-Matrix.html#graphene-matrix-init-from-matrix" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_init_from_2d ()" link="graphene-Matrix.html#graphene-matrix-init-from-2d" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_init_perspective ()" link="graphene-Matrix.html#graphene-matrix-init-perspective" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_init_ortho ()" link="graphene-Matrix.html#graphene-matrix-init-ortho" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_init_look_at ()" link="graphene-Matrix.html#graphene-matrix-init-look-at" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_init_frustum ()" link="graphene-Matrix.html#graphene-matrix-init-frustum" since="1.2"/>
-    <keyword type="function" name="graphene_matrix_init_scale ()" link="graphene-Matrix.html#graphene-matrix-init-scale" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_init_translate ()" link="graphene-Matrix.html#graphene-matrix-init-translate" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_init_rotate ()" link="graphene-Matrix.html#graphene-matrix-init-rotate" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_init_skew ()" link="graphene-Matrix.html#graphene-matrix-init-skew" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_is_identity ()" link="graphene-Matrix.html#graphene-matrix-is-identity" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_is_2d ()" link="graphene-Matrix.html#graphene-matrix-is-2d" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_is_backface_visible ()" link="graphene-Matrix.html#graphene-matrix-is-backface-visible" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_is_singular ()" link="graphene-Matrix.html#graphene-matrix-is-singular" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_to_float ()" link="graphene-Matrix.html#graphene-matrix-to-float" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_to_2d ()" link="graphene-Matrix.html#graphene-matrix-to-2d" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_get_row ()" link="graphene-Matrix.html#graphene-matrix-get-row" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_get_value ()" link="graphene-Matrix.html#graphene-matrix-get-value" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_multiply ()" link="graphene-Matrix.html#graphene-matrix-multiply" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_determinant ()" link="graphene-Matrix.html#graphene-matrix-determinant" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_transform_vec4 ()" link="graphene-Matrix.html#graphene-matrix-transform-vec4" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_transform_vec3 ()" link="graphene-Matrix.html#graphene-matrix-transform-vec3" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_transform_point ()" link="graphene-Matrix.html#graphene-matrix-transform-point" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_transform_point3d ()" link="graphene-Matrix.html#graphene-matrix-transform-point3d" since="1.2"/>
-    <keyword type="function" name="graphene_matrix_transform_rect ()" link="graphene-Matrix.html#graphene-matrix-transform-rect" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_transform_bounds ()" link="graphene-Matrix.html#graphene-matrix-transform-bounds" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_transform_box ()" link="graphene-Matrix.html#graphene-matrix-transform-box" since="1.2"/>
-    <keyword type="function" name="graphene_matrix_transform_sphere ()" link="graphene-Matrix.html#graphene-matrix-transform-sphere" since="1.2"/>
-    <keyword type="function" name="graphene_matrix_project_point ()" link="graphene-Matrix.html#graphene-matrix-project-point" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_project_rect_bounds ()" link="graphene-Matrix.html#graphene-matrix-project-rect-bounds" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_untransform_point ()" link="graphene-Matrix.html#graphene-matrix-untransform-point" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_untransform_bounds ()" link="graphene-Matrix.html#graphene-matrix-untransform-bounds" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_unproject_point3d ()" link="graphene-Matrix.html#graphene-matrix-unproject-point3d" since="1.2"/>
-    <keyword type="function" name="graphene_matrix_translate ()" link="graphene-Matrix.html#graphene-matrix-translate" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_rotate ()" link="graphene-Matrix.html#graphene-matrix-rotate" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_rotate_x ()" link="graphene-Matrix.html#graphene-matrix-rotate-x" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_rotate_y ()" link="graphene-Matrix.html#graphene-matrix-rotate-y" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_rotate_z ()" link="graphene-Matrix.html#graphene-matrix-rotate-z" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_rotate_quaternion ()" link="graphene-Matrix.html#graphene-matrix-rotate-quaternion" since="1.2"/>
-    <keyword type="function" name="graphene_matrix_rotate_euler ()" link="graphene-Matrix.html#graphene-matrix-rotate-euler" since="1.2"/>
-    <keyword type="function" name="graphene_matrix_scale ()" link="graphene-Matrix.html#graphene-matrix-scale" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_skew_xy ()" link="graphene-Matrix.html#graphene-matrix-skew-xy" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_skew_xz ()" link="graphene-Matrix.html#graphene-matrix-skew-xz" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_skew_yz ()" link="graphene-Matrix.html#graphene-matrix-skew-yz" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_transpose ()" link="graphene-Matrix.html#graphene-matrix-transpose" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_inverse ()" link="graphene-Matrix.html#graphene-matrix-inverse" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_perspective ()" link="graphene-Matrix.html#graphene-matrix-perspective" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_normalize ()" link="graphene-Matrix.html#graphene-matrix-normalize" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_get_x_scale ()" link="graphene-Matrix.html#graphene-matrix-get-x-scale" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_get_y_scale ()" link="graphene-Matrix.html#graphene-matrix-get-y-scale" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_get_z_scale ()" link="graphene-Matrix.html#graphene-matrix-get-z-scale" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_interpolate ()" link="graphene-Matrix.html#graphene-matrix-interpolate" since="1.0"/>
-    <keyword type="function" name="graphene_matrix_print ()" link="graphene-Matrix.html#graphene-matrix-print" since="1.0"/>
-    <keyword type="struct" name="graphene_matrix_t" link="graphene-Matrix.html#graphene-matrix-t"/>
     <keyword type="function" name="graphene_plane_alloc ()" link="graphene-Plane.html#graphene-plane-alloc" since="1.2"/>
     <keyword type="function" name="graphene_plane_free ()" link="graphene-Plane.html#graphene-plane-free" since="1.2"/>
     <keyword type="function" name="graphene_plane_init ()" link="graphene-Plane.html#graphene-plane-init" since="1.2"/>
@@ -312,172 +479,8 @@
     <keyword type="function" name="graphene_plane_get_normal ()" link="graphene-Plane.html#graphene-plane-get-normal" since="1.2"/>
     <keyword type="function" name="graphene_plane_get_constant ()" link="graphene-Plane.html#graphene-plane-get-constant" since="1.2"/>
     <keyword type="struct" name="graphene_plane_t" link="graphene-Plane.html#graphene-plane-t" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_alloc ()" link="graphene-Triangle.html#graphene-triangle-alloc" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_free ()" link="graphene-Triangle.html#graphene-triangle-free" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_init_from_point3d ()" link="graphene-Triangle.html#graphene-triangle-init-from-point3d" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_init_from_vec3 ()" link="graphene-Triangle.html#graphene-triangle-init-from-vec3" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_get_points ()" link="graphene-Triangle.html#graphene-triangle-get-points" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_get_vertices ()" link="graphene-Triangle.html#graphene-triangle-get-vertices" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_get_area ()" link="graphene-Triangle.html#graphene-triangle-get-area" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_get_midpoint ()" link="graphene-Triangle.html#graphene-triangle-get-midpoint" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_get_normal ()" link="graphene-Triangle.html#graphene-triangle-get-normal" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_get_plane ()" link="graphene-Triangle.html#graphene-triangle-get-plane" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_get_bounding_box ()" link="graphene-Triangle.html#graphene-triangle-get-bounding-box" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_get_barycoords ()" link="graphene-Triangle.html#graphene-triangle-get-barycoords" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_contains_point ()" link="graphene-Triangle.html#graphene-triangle-contains-point" since="1.2"/>
-    <keyword type="function" name="graphene_triangle_equal ()" link="graphene-Triangle.html#graphene-triangle-equal" since="1.2"/>
-    <keyword type="struct" name="graphene_triangle_t" link="graphene-Triangle.html#graphene-triangle-t" since="1.2"/>
-    <keyword type="function" name="graphene_box_alloc ()" link="graphene-Box.html#graphene-box-alloc" since="1.2"/>
-    <keyword type="function" name="graphene_box_free ()" link="graphene-Box.html#graphene-box-free" since="1.2"/>
-    <keyword type="function" name="graphene_box_init ()" link="graphene-Box.html#graphene-box-init" since="1.2"/>
-    <keyword type="function" name="graphene_box_init_from_box ()" link="graphene-Box.html#graphene-box-init-from-box" since="1.2"/>
-    <keyword type="function" name="graphene_box_init_from_points ()" link="graphene-Box.html#graphene-box-init-from-points" since="1.2"/>
-    <keyword type="function" name="graphene_box_init_from_vec3 ()" link="graphene-Box.html#graphene-box-init-from-vec3" since="1.2"/>
-    <keyword type="function" name="graphene_box_init_from_vectors ()" link="graphene-Box.html#graphene-box-init-from-vectors" since="1.2"/>
-    <keyword type="function" name="graphene_box_equal ()" link="graphene-Box.html#graphene-box-equal" since="1.2"/>
-    <keyword type="function" name="graphene_box_expand ()" link="graphene-Box.html#graphene-box-expand" since="1.2"/>
-    <keyword type="function" name="graphene_box_expand_scalar ()" link="graphene-Box.html#graphene-box-expand-scalar" since="1.2"/>
-    <keyword type="function" name="graphene_box_expand_vec3 ()" link="graphene-Box.html#graphene-box-expand-vec3" since="1.2"/>
-    <keyword type="function" name="graphene_box_get_min ()" link="graphene-Box.html#graphene-box-get-min" since="1.2"/>
-    <keyword type="function" name="graphene_box_get_max ()" link="graphene-Box.html#graphene-box-get-max" since="1.2"/>
-    <keyword type="function" name="graphene_box_get_center ()" link="graphene-Box.html#graphene-box-get-center" since="1.2"/>
-    <keyword type="function" name="graphene_box_get_depth ()" link="graphene-Box.html#graphene-box-get-depth" since="1.2"/>
-    <keyword type="function" name="graphene_box_get_height ()" link="graphene-Box.html#graphene-box-get-height" since="1.2"/>
-    <keyword type="function" name="graphene_box_get_width ()" link="graphene-Box.html#graphene-box-get-width" since="1.2"/>
-    <keyword type="function" name="graphene_box_get_size ()" link="graphene-Box.html#graphene-box-get-size" since="1.2"/>
-    <keyword type="function" name="graphene_box_get_bounding_sphere ()" link="graphene-Box.html#graphene-box-get-bounding-sphere" since="1.2"/>
-    <keyword type="function" name="graphene_box_get_vertices ()" link="graphene-Box.html#graphene-box-get-vertices" since="1.2"/>
-    <keyword type="function" name="graphene_box_union ()" link="graphene-Box.html#graphene-box-union" since="1.2"/>
-    <keyword type="function" name="graphene_box_intersection ()" link="graphene-Box.html#graphene-box-intersection" since="1.2"/>
-    <keyword type="function" name="graphene_box_contains_box ()" link="graphene-Box.html#graphene-box-contains-box" since="1.2"/>
-    <keyword type="function" name="graphene_box_contains_point ()" link="graphene-Box.html#graphene-box-contains-point" since="1.2"/>
-    <keyword type="function" name="graphene_box_zero ()" link="graphene-Box.html#graphene-box-zero" since="1.2"/>
-    <keyword type="function" name="graphene_box_one ()" link="graphene-Box.html#graphene-box-one" since="1.2"/>
-    <keyword type="function" name="graphene_box_minus_one ()" link="graphene-Box.html#graphene-box-minus-one" since="1.2"/>
-    <keyword type="function" name="graphene_box_one_minus_one ()" link="graphene-Box.html#graphene-box-one-minus-one" since="1.2"/>
-    <keyword type="function" name="graphene_box_empty ()" link="graphene-Box.html#graphene-box-empty" since="1.2"/>
-    <keyword type="function" name="graphene_box_infinite ()" link="graphene-Box.html#graphene-box-infinite" since="1.2"/>
-    <keyword type="struct" name="graphene_box_t" link="graphene-Box.html#graphene-box-t" since="1.2"/>
-    <keyword type="function" name="graphene_sphere_alloc ()" link="graphene-Sphere.html#graphene-sphere-alloc" since="1.2"/>
-    <keyword type="function" name="graphene_sphere_free ()" link="graphene-Sphere.html#graphene-sphere-free" since="1.2"/>
-    <keyword type="function" name="graphene_sphere_init ()" link="graphene-Sphere.html#graphene-sphere-init" since="1.2"/>
-    <keyword type="function" name="graphene_sphere_init_from_points ()" link="graphene-Sphere.html#graphene-sphere-init-from-points" since="1.2"/>
-    <keyword type="function" name="graphene_sphere_init_from_vectors ()" link="graphene-Sphere.html#graphene-sphere-init-from-vectors" since="1.2"/>
-    <keyword type="function" name="graphene_sphere_get_center ()" link="graphene-Sphere.html#graphene-sphere-get-center" since="1.2"/>
-    <keyword type="function" name="graphene_sphere_get_radius ()" link="graphene-Sphere.html#graphene-sphere-get-radius" since="1.2"/>
-    <keyword type="function" name="graphene_sphere_get_bounding_box ()" link="graphene-Sphere.html#graphene-sphere-get-bounding-box" since="1.2"/>
-    <keyword type="function" name="graphene_sphere_is_empty ()" link="graphene-Sphere.html#graphene-sphere-is-empty" since="1.2"/>
-    <keyword type="function" name="graphene_sphere_distance ()" link="graphene-Sphere.html#graphene-sphere-distance" since="1.2"/>
-    <keyword type="function" name="graphene_sphere_contains_point ()" link="graphene-Sphere.html#graphene-sphere-contains-point" since="1.2"/>
-    <keyword type="function" name="graphene_sphere_translate ()" link="graphene-Sphere.html#graphene-sphere-translate" since="1.2"/>
-    <keyword type="function" name="graphene_sphere_equal ()" link="graphene-Sphere.html#graphene-sphere-equal" since="1.2"/>
-    <keyword type="struct" name="graphene_sphere_t" link="graphene-Sphere.html#graphene-sphere-t" since="1.2"/>
-    <keyword type="function" name="graphene_frustum_alloc ()" link="graphene-Frustum.html#graphene-frustum-alloc" since="1.2"/>
-    <keyword type="function" name="graphene_frustum_free ()" link="graphene-Frustum.html#graphene-frustum-free" since="1.2"/>
-    <keyword type="function" name="graphene_frustum_init ()" link="graphene-Frustum.html#graphene-frustum-init" since="1.2"/>
-    <keyword type="function" name="graphene_frustum_init_from_frustum ()" link="graphene-Frustum.html#graphene-frustum-init-from-frustum" since="1.2"/>
-    <keyword type="function" name="graphene_frustum_init_from_matrix ()" link="graphene-Frustum.html#graphene-frustum-init-from-matrix" since="1.2"/>
-    <keyword type="function" name="graphene_frustum_get_planes ()" link="graphene-Frustum.html#graphene-frustum-get-planes" since="1.2"/>
-    <keyword type="function" name="graphene_frustum_contains_point ()" link="graphene-Frustum.html#graphene-frustum-contains-point" since="1.2"/>
-    <keyword type="function" name="graphene_frustum_intersects_sphere ()" link="graphene-Frustum.html#graphene-frustum-intersects-sphere" since="1.2"/>
-    <keyword type="function" name="graphene_frustum_intersects_box ()" link="graphene-Frustum.html#graphene-frustum-intersects-box" since="1.2"/>
-    <keyword type="struct" name="graphene_frustum_t" link="graphene-Frustum.html#graphene-frustum-t" since="1.2"/>
     <keyword type="macro" name="GRAPHENE_MAJOR_VERSION" link="graphene-Versioning-information.html#GRAPHENE-MAJOR-VERSION:CAPS" since="1.0"/>
     <keyword type="macro" name="GRAPHENE_MINOR_VERSION" link="graphene-Versioning-information.html#GRAPHENE-MINOR-VERSION:CAPS" since="1.0"/>
     <keyword type="macro" name="GRAPHENE_MICRO_VERSION" link="graphene-Versioning-information.html#GRAPHENE-MICRO-VERSION:CAPS" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_init ()" link="graphene-SIMD-vector.html#graphene-simd4f-init" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_init_zero ()" link="graphene-SIMD-vector.html#graphene-simd4f-init-zero" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_init_4f ()" link="graphene-SIMD-vector.html#graphene-simd4f-init-4f" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_init_3f ()" link="graphene-SIMD-vector.html#graphene-simd4f-init-3f" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_init_2f ()" link="graphene-SIMD-vector.html#graphene-simd4f-init-2f" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_dup_4f ()" link="graphene-SIMD-vector.html#graphene-simd4f-dup-4f" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_dup_3f ()" link="graphene-SIMD-vector.html#graphene-simd4f-dup-3f" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_dup_2f ()" link="graphene-SIMD-vector.html#graphene-simd4f-dup-2f" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_get ()" link="graphene-SIMD-vector.html#graphene-simd4f-get" since="1.2"/>
-    <keyword type="function" name="graphene_simd4f_get_x ()" link="graphene-SIMD-vector.html#graphene-simd4f-get-x" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_get_y ()" link="graphene-SIMD-vector.html#graphene-simd4f-get-y" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_get_z ()" link="graphene-SIMD-vector.html#graphene-simd4f-get-z" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_get_w ()" link="graphene-SIMD-vector.html#graphene-simd4f-get-w" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_splat ()" link="graphene-SIMD-vector.html#graphene-simd4f-splat" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_splat_x ()" link="graphene-SIMD-vector.html#graphene-simd4f-splat-x" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_splat_y ()" link="graphene-SIMD-vector.html#graphene-simd4f-splat-y" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_splat_z ()" link="graphene-SIMD-vector.html#graphene-simd4f-splat-z" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_splat_w ()" link="graphene-SIMD-vector.html#graphene-simd4f-splat-w" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_add ()" link="graphene-SIMD-vector.html#graphene-simd4f-add" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_sub ()" link="graphene-SIMD-vector.html#graphene-simd4f-sub" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_mul ()" link="graphene-SIMD-vector.html#graphene-simd4f-mul" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_div ()" link="graphene-SIMD-vector.html#graphene-simd4f-div" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_sqrt ()" link="graphene-SIMD-vector.html#graphene-simd4f-sqrt" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_reciprocal ()" link="graphene-SIMD-vector.html#graphene-simd4f-reciprocal" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_rsqrt ()" link="graphene-SIMD-vector.html#graphene-simd4f-rsqrt" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_cross3 ()" link="graphene-SIMD-vector.html#graphene-simd4f-cross3" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_min ()" link="graphene-SIMD-vector.html#graphene-simd4f-min" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_max ()" link="graphene-SIMD-vector.html#graphene-simd4f-max" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_clamp ()" link="graphene-SIMD-vector.html#graphene-simd4f-clamp" since="1.2"/>
-    <keyword type="function" name="graphene_simd4f_clamp_scalar ()" link="graphene-SIMD-vector.html#graphene-simd4f-clamp-scalar" since="1.2"/>
-    <keyword type="function" name="graphene_simd4f_shuffle_wxyz ()" link="graphene-SIMD-vector.html#graphene-simd4f-shuffle-wxyz" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_shuffle_zwxy ()" link="graphene-SIMD-vector.html#graphene-simd4f-shuffle-zwxy" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_shuffle_yzwx ()" link="graphene-SIMD-vector.html#graphene-simd4f-shuffle-yzwx" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_zero_w ()" link="graphene-SIMD-vector.html#graphene-simd4f-zero-w" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_zero_zw ()" link="graphene-SIMD-vector.html#graphene-simd4f-zero-zw" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_merge_w ()" link="graphene-SIMD-vector.html#graphene-simd4f-merge-w" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_merge_high ()" link="graphene-SIMD-vector.html#graphene-simd4f-merge-high" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_merge_low ()" link="graphene-SIMD-vector.html#graphene-simd4f-merge-low" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_flip_sign_0101 ()" link="graphene-SIMD-vector.html#graphene-simd4f-flip-sign-0101" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_flip_sign_1010 ()" link="graphene-SIMD-vector.html#graphene-simd4f-flip-sign-1010" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_cmp_eq ()" link="graphene-SIMD-vector.html#graphene-simd4f-cmp-eq" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_cmp_neq ()" link="graphene-SIMD-vector.html#graphene-simd4f-cmp-neq" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_cmp_lt ()" link="graphene-SIMD-vector.html#graphene-simd4f-cmp-lt" since="1.2"/>
-    <keyword type="function" name="graphene_simd4f_cmp_le ()" link="graphene-SIMD-vector.html#graphene-simd4f-cmp-le" since="1.2"/>
-    <keyword type="function" name="graphene_simd4f_cmp_ge ()" link="graphene-SIMD-vector.html#graphene-simd4f-cmp-ge" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_cmp_gt ()" link="graphene-SIMD-vector.html#graphene-simd4f-cmp-gt" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_neg ()" link="graphene-SIMD-vector.html#graphene-simd4f-neg" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_madd ()" link="graphene-SIMD-vector.html#graphene-simd4f-madd" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_sum ()" link="graphene-SIMD-vector.html#graphene-simd4f-sum" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_sum_scalar ()" link="graphene-SIMD-vector.html#graphene-simd4f-sum-scalar" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_dot4 ()" link="graphene-SIMD-vector.html#graphene-simd4f-dot4" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_dot3 ()" link="graphene-SIMD-vector.html#graphene-simd4f-dot3" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_dot2 ()" link="graphene-SIMD-vector.html#graphene-simd4f-dot2" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_length4 ()" link="graphene-SIMD-vector.html#graphene-simd4f-length4" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_length3 ()" link="graphene-SIMD-vector.html#graphene-simd4f-length3" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_length2 ()" link="graphene-SIMD-vector.html#graphene-simd4f-length2" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_normalize4 ()" link="graphene-SIMD-vector.html#graphene-simd4f-normalize4" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_normalize3 ()" link="graphene-SIMD-vector.html#graphene-simd4f-normalize3" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_normalize2 ()" link="graphene-SIMD-vector.html#graphene-simd4f-normalize2" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_is_zero4 ()" link="graphene-SIMD-vector.html#graphene-simd4f-is-zero4" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_is_zero3 ()" link="graphene-SIMD-vector.html#graphene-simd4f-is-zero3" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_is_zero2 ()" link="graphene-SIMD-vector.html#graphene-simd4f-is-zero2" since="1.0"/>
-    <keyword type="function" name="graphene_simd4f_interpolate ()" link="graphene-SIMD-vector.html#graphene-simd4f-interpolate" since="1.0"/>
-    <keyword type="struct" name="graphene_simd4f_t" link="graphene-SIMD-vector.html#graphene-simd4f-t" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_init ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_init_identity ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init-identity" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_init_from_float ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init-from-float" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_to_float ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-to-float" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_transpose_in_place ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-transpose-in-place" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_sum ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-sum" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_vec4_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-vec4-mul" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_vec3_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-vec3-mul" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_point3_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-point3-mul" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_transpose ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-transpose" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_inv_ortho_vec3_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-inv-ortho-vec3-mul" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_inv_ortho_point3_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-inv-ortho-point3-mul" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_matrix_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-matrix-mul" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_init_perspective ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init-perspective" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_init_ortho ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init-ortho" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_init_look_at ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init-look-at" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_init_frustum ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-init-frustum" since="1.2"/>
-    <keyword type="function" name="graphene_simd4x4f_perspective ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-perspective" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_translation ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-translation" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_scale ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-scale" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_rotation ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-rotation" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_add ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-add" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_sub ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-sub" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_mul ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-mul" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_div ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-div" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_inverse ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-inverse" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_determinant ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-determinant" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_is_identity ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-is-identity" since="1.0"/>
-    <keyword type="function" name="graphene_simd4x4f_is_2d ()" link="graphene-SIMD-matrix.html#graphene-simd4x4f-is-2d" since="1.0"/>
-    <keyword type="struct" name="graphene_simd4x4f_t" link="graphene-SIMD-matrix.html#graphene-simd4x4f-t" since="1.0"/>
   </functions>
 </book>

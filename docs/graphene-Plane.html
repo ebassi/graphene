@@ -6,9 +6,9 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
-<link rel="prev" href="graphene-Matrix.html" title="Matrix">
-<link rel="next" href="graphene-Triangle.html" title="Triangle">
-<meta name="generator" content="GTK-Doc V1.21 (XML mode)">
+<link rel="prev" href="graphene-Quaternion.html" title="Quaternion">
+<link rel="next" href="graphene-Versioning-information.html" title="Versioning information">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -19,8 +19,8 @@
 </td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
 <td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
-<td><a accesskey="p" href="graphene-Matrix.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
-<td><a accesskey="n" href="graphene-Triangle.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+<td><a accesskey="p" href="graphene-Quaternion.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="graphene-Versioning-information.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
 <a name="graphene-Plane"></a><div class="titlepage"></div>
@@ -174,7 +174,7 @@ graphene_plane_alloc (<em class="parameter"><code><span class="type">void</span>
 <p>Allocates a new <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> structure.</p>
 <p>The contents of the returned structure are undefined.</p>
 <div class="refsect3">
-<a name="id-1.2.11.6.2.6"></a><h4>Returns</h4>
+<a name="id-1.2.18.6.2.6"></a><h4>Returns</h4>
 <p> the newly allocated <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a>.
 Use <a class="link" href="graphene-Plane.html#graphene-plane-free" title="graphene_plane_free ()"><code class="function">graphene_plane_free()</code></a> to free the resources allocated by
 this function. </p>
@@ -189,7 +189,7 @@ this function. </p>
 graphene_plane_free (<em class="parameter"><code><a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *p</code></em>);</pre>
 <p>Frees the resources allocated by <a class="link" href="graphene-Plane.html#graphene-plane-alloc" title="graphene_plane_alloc ()"><code class="function">graphene_plane_alloc()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.11.6.3.5"></a><h4>Parameters</h4>
+<a name="id-1.2.18.6.3.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -217,7 +217,7 @@ graphene_plane_init (<em class="parameter"><code><a class="link" href="graphene-
 and <em class="parameter"><code>constant</code></em>
  values.</p>
 <div class="refsect3">
-<a name="id-1.2.11.6.4.5"></a><h4>Parameters</h4>
+<a name="id-1.2.18.6.4.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -245,7 +245,7 @@ normal vector</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.11.6.4.6"></a><h4>Returns</h4>
+<a name="id-1.2.18.6.4.6"></a><h4>Returns</h4>
 <p> the initialized plane. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -260,7 +260,7 @@ graphene_plane_init_from_vec4 (<em class="parameter"><code><a class="link" href=
 <p>Initializes the given <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> using the components of
 the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> vector.</p>
 <div class="refsect3">
-<a name="id-1.2.11.6.5.5"></a><h4>Parameters</h4>
+<a name="id-1.2.18.6.5.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -283,7 +283,7 @@ three components, and the distance in its fourth component</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.11.6.5.6"></a><h4>Returns</h4>
+<a name="id-1.2.18.6.5.6"></a><h4>Returns</h4>
 <p> the initialized plane. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -298,7 +298,7 @@ graphene_plane_init_from_plane (<em class="parameter"><code><a class="link" href
 <p>Initializes the given <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> using the normal
 vector and constant of another <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.11.6.6.5"></a><h4>Parameters</h4>
+<a name="id-1.2.18.6.6.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -320,7 +320,7 @@ vector and constant of another <a class="link" href="graphene-Plane.html#graphen
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.11.6.6.6"></a><h4>Returns</h4>
+<a name="id-1.2.18.6.6.6"></a><h4>Returns</h4>
 <p> the initialized plane. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -336,7 +336,7 @@ graphene_plane_init_from_point (<em class="parameter"><code><a class="link" href
 <p>Initializes the given <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> using the given normal vector
 and an arbitrary co-planar point.</p>
 <div class="refsect3">
-<a name="id-1.2.11.6.7.5"></a><h4>Parameters</h4>
+<a name="id-1.2.18.6.7.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -363,7 +363,7 @@ and an arbitrary co-planar point.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.11.6.7.6"></a><h4>Returns</h4>
+<a name="id-1.2.18.6.7.6"></a><h4>Returns</h4>
 <p> the initialized plane. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -382,7 +382,7 @@ points.</p>
 <p>The winding order is counter-clockwise, and determines which direction
 the normal vector will point.</p>
 <div class="refsect3">
-<a name="id-1.2.11.6.8.6"></a><h4>Parameters</h4>
+<a name="id-1.2.18.6.8.6"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -414,7 +414,7 @@ the normal vector will point.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.11.6.8.7"></a><h4>Returns</h4>
+<a name="id-1.2.18.6.8.7"></a><h4>Returns</h4>
 <p> the initialized plane. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -428,7 +428,7 @@ graphene_plane_normalize (<em class="parameter"><code>const <a class="link" href
                           <em class="parameter"><code><a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *res</code></em>);</pre>
 <p>Normalizes the vector and constant of a <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.11.6.9.5"></a><h4>Parameters</h4>
+<a name="id-1.2.18.6.9.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -460,7 +460,7 @@ graphene_plane_negate (<em class="parameter"><code>const <a class="link" href="g
 <p>Negates the normal vector and constant of a <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a>, effectively
 mirroring the plane across the origin.</p>
 <div class="refsect3">
-<a name="id-1.2.11.6.10.5"></a><h4>Parameters</h4>
+<a name="id-1.2.18.6.10.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -491,7 +491,7 @@ graphene_plane_equal (<em class="parameter"><code>const <a class="link" href="gr
                       <em class="parameter"><code>const <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *p2</code></em>);</pre>
 <p>Checks whether the two given <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> are equal.</p>
 <div class="refsect3">
-<a name="id-1.2.11.6.11.5"></a><h4>Parameters</h4>
+<a name="id-1.2.18.6.11.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -513,7 +513,7 @@ graphene_plane_equal (<em class="parameter"><code>const <a class="link" href="gr
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.11.6.11.6"></a><h4>Returns</h4>
+<a name="id-1.2.18.6.11.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the given planes are equal</p>
 <p></p>
 </div>
@@ -528,7 +528,7 @@ graphene_plane_distance (<em class="parameter"><code>const <a class="link" href=
 <p>Computes the distance of <em class="parameter"><code>point</code></em>
  from a <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.11.6.12.5"></a><h4>Parameters</h4>
+<a name="id-1.2.18.6.12.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -550,7 +550,7 @@ graphene_plane_distance (<em class="parameter"><code>const <a class="link" href=
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.11.6.12.6"></a><h4>Returns</h4>
+<a name="id-1.2.18.6.12.6"></a><h4>Returns</h4>
 <p> the distance of the given <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> from the plane</p>
 <p></p>
 </div>
@@ -565,7 +565,7 @@ graphene_plane_get_normal (<em class="parameter"><code>const <a class="link" hre
 <p>Retrieves the normal vector pointing towards the origin of the
 given <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.11.6.13.5"></a><h4>Parameters</h4>
+<a name="id-1.2.18.6.13.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -596,7 +596,7 @@ graphene_plane_get_constant (<em class="parameter"><code>const <a class="link" h
 <p>Retrieves the distance along the normal vector of the
 given <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> from the origin.</p>
 <div class="refsect3">
-<a name="id-1.2.11.6.14.5"></a><h4>Parameters</h4>
+<a name="id-1.2.18.6.14.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -611,7 +611,7 @@ given <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphen
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.11.6.14.6"></a><h4>Returns</h4>
+<a name="id-1.2.18.6.14.6"></a><h4>Returns</h4>
 <p> the constant value of the plane</p>
 <p></p>
 </div>
@@ -634,6 +634,6 @@ modified directly.</p>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.21</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

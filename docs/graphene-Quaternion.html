@@ -7,8 +7,8 @@
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Euler.html" title="Euler">
-<link rel="next" href="graphene-Matrix.html" title="Matrix">
-<meta name="generator" content="GTK-Doc V1.21 (XML mode)">
+<link rel="next" href="graphene-Plane.html" title="Plane">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -20,7 +20,7 @@
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
 <td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
 <td><a accesskey="p" href="graphene-Euler.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
-<td><a accesskey="n" href="graphene-Matrix.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="graphene-Plane.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
 <a name="graphene-Quaternion"></a><div class="titlepage"></div>
@@ -213,6 +213,7 @@
 rotation transformations in 3D space; unlike the usual Euler representation
 with roll, pitch, and yaw, quaternions do not suffer from the so-called
 <a class="ulink" href="http://en.wikipedia.org/wiki/Gimbal_lock" target="_top">"Gimbal Lock"</a> problem.</p>
+<p>See also: <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a></p>
 </div>
 <div class="refsect1">
 <a name="graphene-Quaternion.functions_details"></a><h2>Functions</h2>
@@ -223,7 +224,7 @@ graphene_quaternion_alloc (<em class="parameter"><code><span class="type">void</
 <p>Allocates a new <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a>.</p>
 <p>The contents of the returned value are undefined.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.2.6"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.2.6"></a><h4>Returns</h4>
 <p> the newly allocated <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -236,7 +237,7 @@ graphene_quaternion_alloc (<em class="parameter"><code><span class="type">void</
 graphene_quaternion_free (<em class="parameter"><code><a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> *q</code></em>);</pre>
 <p>Releases the resources allocated by <a class="link" href="graphene-Quaternion.html#graphene-quaternion-alloc" title="graphene_quaternion_alloc ()"><code class="function">graphene_quaternion_alloc()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.3.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.3.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -263,7 +264,7 @@ graphene_quaternion_init (<em class="parameter"><code><a class="link" href="grap
                           <em class="parameter"><code><span class="type">float</span> w</code></em>);</pre>
 <p>Initializes a <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> using the given four values.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.4.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.4.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -300,7 +301,7 @@ graphene_quaternion_init (<em class="parameter"><code><a class="link" href="grap
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.9.6.4.6"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.4.6"></a><h4>Returns</h4>
 <p> the initialized quaternion. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -314,7 +315,7 @@ graphene_quaternion_init_identity (<em class="parameter"><code><a class="link" h
 <p>Initializes a <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> using the identity
 transformation.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.5.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.5.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -329,7 +330,7 @@ transformation.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.9.6.5.6"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.5.6"></a><h4>Returns</h4>
 <p> the initialized quaternion. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -345,7 +346,7 @@ graphene_quaternion_init_from_quaternion
 <p>Initializes a <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> with the values from <em class="parameter"><code>src</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.6.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.6.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -367,7 +368,7 @@ graphene_quaternion_init_from_quaternion
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.9.6.6.6"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.6.6"></a><h4>Returns</h4>
 <p> the initialized quaternion. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -382,7 +383,7 @@ graphene_quaternion_init_from_vec4 (<em class="parameter"><code><a class="link" 
 <p>Initializes a <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> with the values from <em class="parameter"><code>src</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.7.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.7.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -404,7 +405,7 @@ graphene_quaternion_init_from_vec4 (<em class="parameter"><code><a class="link" 
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.9.6.7.6"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.7.6"></a><h4>Returns</h4>
 <p> the initialized quaternion. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -419,7 +420,7 @@ graphene_quaternion_init_from_matrix (<em class="parameter"><code><a class="link
 <p>Initializes a <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> using the rotation components
 of a transformation matrix.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.8.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.8.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -441,7 +442,7 @@ of a transformation matrix.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.9.6.8.6"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.8.6"></a><h4>Returns</h4>
 <p> the initialized quaternion. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -458,8 +459,9 @@ graphene_quaternion_init_from_angles (<em class="parameter"><code><a class="link
 <p>Initializes a <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> using the values of
 the <a class="ulink" href="http://en.wikipedia.org/wiki/Euler_angles" target="_top">Euler angles</a>
 on each axis.</p>
+<p>See also: <a class="link" href="graphene-Quaternion.html#graphene-quaternion-init-from-euler" title="graphene_quaternion_init_from_euler ()"><code class="function">graphene_quaternion_init_from_euler()</code></a></p>
 <div class="refsect3">
-<a name="id-1.2.9.6.9.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.9.6"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -491,7 +493,7 @@ on each axis.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.9.6.9.6"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.9.7"></a><h4>Returns</h4>
 <p> the initialized quaternion. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -510,7 +512,7 @@ graphene_quaternion_init_from_angle_vec3
 specific <em class="parameter"><code>axis</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.10.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.10.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -537,7 +539,7 @@ specific <em class="parameter"><code>axis</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.9.6.10.6"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.10.6"></a><h4>Returns</h4>
 <p> the initialized quaternion. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -551,7 +553,7 @@ graphene_quaternion_init_from_euler (<em class="parameter"><code><a class="link"
                                      <em class="parameter"><code>const <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> *e</code></em>);</pre>
 <p>Initializes a <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> using the given <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.11.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.11.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -573,7 +575,7 @@ graphene_quaternion_init_from_euler (<em class="parameter"><code><a class="link"
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.9.6.11.6"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.11.6"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -588,7 +590,7 @@ graphene_quaternion_to_vec4 (<em class="parameter"><code>const <a class="link" h
 <p>Copies the components of a <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> into a
 <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.12.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.12.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -621,7 +623,7 @@ graphene_quaternion_to_matrix (<em class="parameter"><code>const <a class="link"
 <p>Converts a quaternion into a transformation matrix expressing
 the rotation defined by the <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.13.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.13.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -656,7 +658,7 @@ graphene_quaternion_to_angles (<em class="parameter"><code>const <a class="link"
 on the <a class="ulink" href="http://en.wikipedia.org/wiki/Euler_angles" target="_top">Euler angles</a>
 on each axis.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.14.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.14.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -703,7 +705,7 @@ graphene_quaternion_to_angle_vec3 (<em class="parameter"><code>const <a class="l
 , <em class="parameter"><code>axis</code></em>
  pair.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.15.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.15.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -739,7 +741,7 @@ graphene_quaternion_equal (<em class="parameter"><code>const <a class="link" hre
                            <em class="parameter"><code>const <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> *b</code></em>);</pre>
 <p>Checks whether the given quaternions are equal.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.16.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.16.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -761,7 +763,7 @@ graphene_quaternion_equal (<em class="parameter"><code>const <a class="link" hre
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.9.6.16.6"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.16.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the quaternions are equal</p>
 <p></p>
 </div>
@@ -775,7 +777,7 @@ graphene_quaternion_dot (<em class="parameter"><code>const <a class="link" href=
                          <em class="parameter"><code>const <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> *b</code></em>);</pre>
 <p>Computes the dot product of two <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.17.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.17.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -797,7 +799,7 @@ graphene_quaternion_dot (<em class="parameter"><code>const <a class="link" href=
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.9.6.17.6"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.17.6"></a><h4>Returns</h4>
 <p> the value of the dot products</p>
 <p></p>
 </div>
@@ -811,7 +813,7 @@ graphene_quaternion_invert (<em class="parameter"><code>const <a class="link" hr
                             <em class="parameter"><code><a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> *res</code></em>);</pre>
 <p>Inverts a <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.18.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.18.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -843,7 +845,7 @@ graphene_quaternion_normalize (<em class="parameter"><code>const <a class="link"
                                <em class="parameter"><code><a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> *res</code></em>);</pre>
 <p>Normalizes a <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.19.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.19.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -880,7 +882,7 @@ linear interpolation, or <a class="ulink" href="http://en.wikipedia.org/wiki/Sle
 using the given interpolation <em class="parameter"><code>factor</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.9.6.20.5"></a><h4>Parameters</h4>
+<a name="id-1.2.17.6.20.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -931,6 +933,6 @@ and should never be accessed directly.</p>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.21</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

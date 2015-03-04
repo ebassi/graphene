@@ -7,8 +7,8 @@
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-SIMD-vector.html" title="SIMD vector">
-<link rel="next" href="object-tree.html" title="Object Hierarchy">
-<meta name="generator" content="GTK-Doc V1.21 (XML mode)">
+<link rel="next" href="graphene-Vectors.html" title="Vectors">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -20,7 +20,7 @@
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
 <td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
 <td><a accesskey="p" href="graphene-SIMD-vector.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
-<td><a accesskey="n" href="object-tree.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="graphene-Vectors.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
 <a name="graphene-SIMD-matrix"></a><div class="titlepage"></div>
@@ -308,7 +308,7 @@ graphene_simd4x4f_init (<em class="parameter"><code><a class="link" href="graphe
 <p>Creates a new <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> using the given row vectors
 to initialize it.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.2.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.2.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -340,7 +340,7 @@ to initialize it.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.19.6.2.6"></a><h4>Returns</h4>
+<a name="id-1.2.13.6.2.6"></a><h4>Returns</h4>
 <p> the newly created <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a></p>
 <p></p>
 </div>
@@ -354,7 +354,7 @@ graphene_simd4x4f_init_identity (<em class="parameter"><code><a class="link" hre
 <p>Initializes <em class="parameter"><code>m</code></em>
  to be the identity matrix.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.3.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.3.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -379,7 +379,7 @@ graphene_simd4x4f_init_from_float (<em class="parameter"><code><a class="link" h
 <p>Initializes a <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> with the given array
 of floating point values.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.4.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.4.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -411,7 +411,7 @@ graphene_simd4x4f_to_float (<em class="parameter"><code>const <a class="link" hr
 <p>Copies the content of <em class="parameter"><code>m</code></em>
  in a float array.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.5.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.5.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -443,7 +443,7 @@ graphene_simd4x4f_transpose_in_place (<em class="parameter"><code><a class="link
 <p>Transposes <em class="parameter"><code>s</code></em>
  in place.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.6.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.6.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -468,7 +468,7 @@ graphene_simd4x4f_sum (<em class="parameter"><code>const <a class="link" href="g
 <p>Adds all the row vectors of <em class="parameter"><code>a</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.7.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.7.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -501,7 +501,7 @@ graphene_simd4x4f_vec4_mul (<em class="parameter"><code>const <a class="link" hr
 <p>Multiplies the given <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> with the given
 <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> using a dot product.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.8.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.8.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -540,7 +540,7 @@ graphene_simd4x4f_vec3_mul (<em class="parameter"><code>const <a class="link" hr
 <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a>, using only the first three row vectors
 of the matrix, and the first three components of the vector.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.9.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.9.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -580,7 +580,7 @@ graphene_simd4x4f_point3_mul (<em class="parameter"><code>const <a class="link" 
 <p>Unlike <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-vec3-mul" title="graphene_simd4x4f_vec3_mul ()"><code class="function">graphene_simd4x4f_vec3_mul()</code></a>, this function will
 also use the fourth row vector of the matrix.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.10.6"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.10.6"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -616,7 +616,7 @@ graphene_simd4x4f_transpose (<em class="parameter"><code>const <a class="link" h
                              <em class="parameter"><code><a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> *res</code></em>);</pre>
 <p>Transposes the given <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.11.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.11.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -650,7 +650,7 @@ graphene_simd4x4f_inv_ortho_vec3_mul (<em class="parameter"><code>const <a class
 three components in the given vector, using the first three
 row vectors of the given SIMD matrix.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.12.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.12.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -692,7 +692,7 @@ matrix.</p>
 <p>Unlike <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-inv-ortho-vec3-mul" title="graphene_simd4x4f_inv_ortho_vec3_mul ()"><code class="function">graphene_simd4x4f_inv_ortho_vec3_mul()</code></a>, this function
 will also use the fourth row vector of the SIMD matrix.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.13.6"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.13.6"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -729,7 +729,7 @@ graphene_simd4x4f_matrix_mul (<em class="parameter"><code>const <a class="link" 
                               <em class="parameter"><code><a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> *res</code></em>);</pre>
 <p>Multiplies the two matrices.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.14.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.14.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -768,7 +768,7 @@ graphene_simd4x4f_init_perspective (<em class="parameter"><code><a class="link" 
                                     <em class="parameter"><code><span class="type">float</span> z_far</code></em>);</pre>
 <p>Initializes a <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> with a perspective projection.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.15.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.15.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -819,7 +819,7 @@ graphene_simd4x4f_init_ortho (<em class="parameter"><code><a class="link" href="
                               <em class="parameter"><code><span class="type">float</span> z_far</code></em>);</pre>
 <p>Initializes the given SIMD matrix with an orthographic projection.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.16.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.16.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -883,7 +883,7 @@ the <em class="parameter"><code>center</code></em>
 the <em class="parameter"><code>up</code></em>
  vector.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.17.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.17.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -930,7 +930,7 @@ graphene_simd4x4f_init_frustum (<em class="parameter"><code><a class="link" href
 <p>Initializes a SIMD matrix with a frustum described by the distances
 of six clipping planes.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.18.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.18.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -987,7 +987,7 @@ graphene_simd4x4f_perspective (<em class="parameter"><code><a class="link" href=
 <p>Adds a perspective transformation for the given <em class="parameter"><code>depth</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.19.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.19.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1021,7 +1021,7 @@ graphene_simd4x4f_translation (<em class="parameter"><code><a class="link" href=
 <p>Initializes <em class="parameter"><code>m</code></em>
  to contain a translation to the given coordinates.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.20.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.20.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1066,7 +1066,7 @@ graphene_simd4x4f_scale (<em class="parameter"><code><a class="link" href="graph
  to contain a scaling transformation with the
 given factors.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.21.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.21.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1110,7 +1110,7 @@ graphene_simd4x4f_rotation (<em class="parameter"><code><a class="link" href="gr
  to contain a rotation of the given angle
 along the given axis.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.22.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.22.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1150,7 +1150,7 @@ graphene_simd4x4f_add (<em class="parameter"><code>const <a class="link" href="g
  and places the results in <em class="parameter"><code>res</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.23.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.23.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1190,7 +1190,7 @@ graphene_simd4x4f_sub (<em class="parameter"><code>const <a class="link" href="g
  and places the results in <em class="parameter"><code>res</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.24.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.24.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1231,7 +1231,7 @@ graphene_simd4x4f_mul (<em class="parameter"><code>const <a class="link" href="g
 .</p>
 <p>You most likely want <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-matrix-mul" title="graphene_simd4x4f_matrix_mul ()"><code class="function">graphene_simd4x4f_matrix_mul()</code></a> instead.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.25.6"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.25.6"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1271,7 +1271,7 @@ graphene_simd4x4f_div (<em class="parameter"><code>const <a class="link" href="g
  and places the results in <em class="parameter"><code>res</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.26.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.26.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1307,7 +1307,7 @@ graphene_simd4x4f_inverse (<em class="parameter"><code>const <a class="link" hre
                            <em class="parameter"><code><a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> *res</code></em>);</pre>
 <p>Inverts the given <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.27.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.27.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1339,7 +1339,7 @@ graphene_simd4x4f_determinant (<em class="parameter"><code>const <a class="link"
                                <em class="parameter"><code><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> *invdet_r</code></em>);</pre>
 <p>Computes the determinant (and its inverse) of the given matrix</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.28.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.28.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1375,7 +1375,7 @@ determinant. </p></td>
 graphene_simd4x4f_is_identity (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> *m</code></em>);</pre>
 <p>Checks whether the given matrix is the identity matrix.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.29.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.29.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1390,7 +1390,7 @@ graphene_simd4x4f_is_identity (<em class="parameter"><code>const <a class="link"
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.19.6.29.6"></a><h4>Returns</h4>
+<a name="id-1.2.13.6.29.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the matrix is the identity matrix</p>
 <p></p>
 </div>
@@ -1404,7 +1404,7 @@ graphene_simd4x4f_is_2d (<em class="parameter"><code>const <a class="link" href=
 <p>Checks whether the given matrix is compatible with an affine
 transformation matrix.</p>
 <div class="refsect3">
-<a name="id-1.2.19.6.30.5"></a><h4>Parameters</h4>
+<a name="id-1.2.13.6.30.5"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1419,7 +1419,7 @@ transformation matrix.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.19.6.30.6"></a><h4>Returns</h4>
+<a name="id-1.2.13.6.30.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the matrix is compatible with an affine
 transformation matrix</p>
 <p></p>
@@ -1465,6 +1465,6 @@ cannot be accessed directly; use the provided API instead.</p>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.21</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>
