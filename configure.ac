@@ -130,6 +130,11 @@ AM_CONDITIONAL(OS_WIN32, [test "$platform_win32" = "yes"])
 
 AC_CHECK_FUNCS([aligned_alloc posix_memalign memalign])
 
+saved_LIBS="$LIBS"
+LIBS=$LIBM
+AC_CHECK_FUNCS([sincos])
+LIBS="$saved_LIBS"
+
 AX_PTHREAD
 
 AS_IF([test "x$os_win32" = "xyes"], [
