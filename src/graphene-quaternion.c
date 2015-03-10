@@ -340,17 +340,13 @@ graphene_quaternion_init_from_angles (graphene_quaternion_t *q,
   float sin_x, sin_y, sin_z;
   float cos_x, cos_y, cos_z;
 
-  rad_x = GRAPHENE_DEG_TO_RAD (deg_x);
-  rad_y = GRAPHENE_DEG_TO_RAD (deg_y);
-  rad_z = GRAPHENE_DEG_TO_RAD (deg_z);
+  rad_x = GRAPHENE_DEG_TO_RAD (deg_x) * .5f;
+  rad_y = GRAPHENE_DEG_TO_RAD (deg_y) * .5f;
+  rad_z = GRAPHENE_DEG_TO_RAD (deg_z) * .5f;
 
-  sin_x = sinf (rad_x * .5f);
-  sin_y = sinf (rad_y * .5f);
-  sin_z = sinf (rad_z * .5f);
-
-  cos_x = cosf (rad_x * .5f);
-  cos_y = cosf (rad_y * .5f);
-  cos_z = cosf (rad_z * .5f);
+  graphene_sincos (rad_x, &sin_x, &cos_x);
+  graphene_sincos (rad_y, &sin_y, &cos_y);
+  graphene_sincos (rad_z, &sin_z, &cos_z);
 
   q->x = sin_x * cos_y * cos_z + cos_x * sin_y * sin_z;
   q->y = cos_x * sin_y * cos_z - sin_x * cos_y * sin_z;
@@ -442,10 +438,9 @@ graphene_quaternion_init_from_angle_vec3 (graphene_quaternion_t *q,
   float rad, sin_a, cos_a;
   graphene_simd4f_t axis_n;
 
-  rad = GRAPHENE_DEG_TO_RAD (angle);
+  rad = GRAPHENE_DEG_TO_RAD (angle) / 2.f;
+  graphene_sincos (rad, &sin_a, &cos_a);
 
-  sin_a = sinf (rad / 2.f);
-  cos_a = cosf (rad / 2.f);
   axis_n = graphene_simd4f_mul (graphene_simd4f_normalize3 (axis->value),
                                 graphene_simd4f_splat (sin_a));
 
@@ -509,13 +504,15 @@ graphene_quaternion_init_from_euler (graphene_quaternion_t  *q,
                                      const graphene_euler_t *e)
 {
   graphene_euler_order_t order = graphene_euler_get_order (e);
-  float c1 = cosf (GRAPHENE_DEG_TO_RAD (graphene_euler_get_x (e)) / 2.f);
-  float c2 = cosf (GRAPHENE_DEG_TO_RAD (graphene_euler_get_y (e)) / 2.f);
-  float c3 = cosf (GRAPHENE_DEG_TO_RAD (graphene_euler_get_z (e)) / 2.f);
-  float s1 = sinf (GRAPHENE_DEG_TO_RAD (graphene_euler_get_x (e)) / 2.f);
-  float s2 = sinf (GRAPHENE_DEG_TO_RAD (graphene_euler_get_y (e)) / 2.f);
-  float s3 = sinf (GRAPHENE_DEG_TO_RAD (graphene_euler_get_z (e)) / 2.f);
+  float ex = GRAPHENE_DEG_TO_RAD (graphene_euler_get_x (e)) / 2.f;
+  float ey = GRAPHENE_DEG_TO_RAD (graphene_euler_get_y (e)) / 2.f;
+  float ez = GRAPHENE_DEG_TO_RAD (graphene_euler_get_z (e)) / 2.f;
   float x = 0.f, y = 0.f, z = 0.f, w = 1.f;
+  float c1, c2, c3, s1, s2, s3;
+
+  graphene_sincos (ex, &s1, &c1);
+  graphene_sincos (ey, &s2, &c2);
+  graphene_sincos (ez, &s3, &c3);
 
   switch (order)
     {
