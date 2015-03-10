@@ -152,20 +152,20 @@ Graphene provides common types needed to handle 3D transformations:
  * [vectors](http://ebassi.github.io/graphene/docs/graphene-Vectors.html) (2, 3, or 4-sized)
  * [matrices](http://ebassi.github.io/graphene/docs/graphene-Matrix.html)
  * [planes](http://ebassi.github.io/graphene/docs/graphene-Plane.html)
- * [3D boxes](http://ebassi.github.io/graphene/docs/graphene-Box.html)
+ * [axis aligned bounding boxes](http://ebassi.github.io/graphene/docs/graphene-Box.html)
  * [spheres](http://ebassi.github.io/graphene/docs/graphene-Sphere.html)
  * [frustums](http://ebassi.github.io/graphene/docs/graphene-Frustum.html)
 
-Graphene also provides its low-level SIMD vector and matrix types, which are
-used to implement the API above.
+Graphene also provides its low-level SIMD [vector](http://ebassi.github.io/graphene/docs/graphene-SIMD-vector.html)
+and [matrix](http://ebassi.github.io/graphene/docs/graphene-SIMD-matrix.html)
+types, which are used to implement the API above.
 
 All types can be placed on the stack, but provide allocation/free functions
 for working on the heap as well. The contents of all structure types, unless
 noted otherwise, should be considered private, and should never be accessed
 directly.
 
-The full API reference for the for Graphene is [available
-online](http://ebassi.github.io/graphene/docs/).
+The full API reference for the for Graphene is [available online](http://ebassi.github.io/graphene/docs/).
 
 ### License
 
