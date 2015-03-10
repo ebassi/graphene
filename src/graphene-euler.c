@@ -558,27 +558,34 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
                           graphene_matrix_t      *res)
 {
   graphene_euler_order_t order = graphene_euler_get_order (e);
-  float x = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_x (&e->angles));
-  float y = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_y (&e->angles));
-  float z = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_z (&e->angles));
 
-  float c1 = cosf (x), s1 = sinf (x);
-  float c2 = cosf (y), s2 = sinf (y);
-  float c3 = cosf (z), s3 = sinf (z);
-  float c3c2 = c3 * c2;
-  float s3c1 = s3 * c1;
-  float c3s2s1 = c3 * s2 * s1;
-  float s3s1 = s3 * s1;
-  float c3s2c1 = c3 * s2 * c1;
-  float s3c2 = s3 * c2;
-  float c3c1 = c3 * c1;
-  float s3s2s1 = s3 * s2 * s1;
-  float c3s1 = c3 * s1;
-  float s3s2c1 = s3 * s2 * c1;
-  float c2s1 = c2 * s1;
-  float c2c1 = c2 * c1;
+  const float x = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_x (&e->angles));
+  const float y = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_y (&e->angles));
+  const float z = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_z (&e->angles));
 
   graphene_vec4_t row_x, row_y, row_z, row_w;
+
+  float c1, s1, c2, s2, c3, s3;
+  float c3c2, s3c1, c3s2s1, s3s1;
+  float c3s2c1, s3c2, c3c1, s3s2s1;
+  float c3s1, s3s2c1, c2s1, c2c1;
+
+  graphene_sincos (x, &c1, &s1);
+  graphene_sincos (y, &c2, &s2);
+  graphene_sincos (z, &c3, &s3);
+
+  c3c2 = c3 * c2;
+  s3c1 = s3 * c1;
+  c3s2s1 = c3 * s2 * s1;
+  s3s1 = s3 * s1;
+  c3s2c1 = c3 * s2 * c1;
+  s3c2 = s3 * c2;
+  c3c1 = c3 * c1;
+  s3s2s1 = s3 * s2 * s1;
+  c3s1 = c3 * s1;
+  s3s2c1 = s3 * s2 * c1;
+  c2s1 = c2 * s1;
+  c2c1 = c2 * c1;
 
   switch (order)
     {
