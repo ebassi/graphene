@@ -33,6 +33,8 @@
 #include "graphene-private.h"
 
 #include "graphene-box.h"
+
+#include "graphene-alloc-private.h"
 #include "graphene-point3d.h"
 #include "graphene-simd4f.h"
 #include "graphene-sphere.h"
@@ -67,7 +69,7 @@
 graphene_box_t *
 graphene_box_alloc (void)
 {
-  return calloc (1, sizeof (graphene_box_t));
+  return graphene_aligned_alloc0 (sizeof (graphene_box_t), 1, 16);
 }
 
 /**
@@ -81,7 +83,7 @@ graphene_box_alloc (void)
 void
 graphene_box_free (graphene_box_t *box)
 {
-  free (box);
+  graphene_aligned_free (box);
 }
 
 /**
