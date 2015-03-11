@@ -1784,6 +1784,10 @@ matrix_decompose_3d (const graphene_matrix_t *m,
  * Linearly interpolates the two given #graphene_matrix_t by
  * interpolating the decomposed transformations separately.
  *
+ * If either matrix cannot be reduced to their transformations
+ * then the interpolation cannot be performed, and this function
+ * will return an identity matrix.
+ *
  * Since: 1.0
  */
 void
@@ -1793,12 +1797,10 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
                              graphene_matrix_t       *res)
 {
   graphene_point3d_t scale_a = { 1.f, 1.f, 1.f }, translate_a;
-  graphene_vec4_t perspective_a;
   graphene_quaternion_t rotate_a;
   float shear_a[3] = { 0.f, 0.f, 0.f };
 
   graphene_point3d_t scale_b = { 1.f, 1.f, 1.f }, translate_b;
-  graphene_vec4_t perspective_b;
   graphene_quaternion_t rotate_b;
   float shear_b[3] = { 0.f, 0.f, 0.f };
 
@@ -1806,23 +1808,34 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
   graphene_quaternion_t rotate_r;
   float shear;
 
+  bool success = false;
+
   if (graphene_matrix_is_2d (a) &&
       graphene_matrix_is_2d (b))
     {
-      graphene_vec4_init (&perspective_a, 0.f, 0.f, 0.f, 1.f);
-      graphene_vec4_init (&perspective_b, 0.f, 0.f, 0.f, 1.f);
-      matrix_decompose_2d (a, &scale_a, shear_a, &rotate_a, &translate_a);
-      matrix_decompose_2d (b, &scale_b, shear_b, &rotate_b, &translate_b);
+      success |= matrix_decompose_2d (a, &scale_a, shear_a, &rotate_a, &translate_a);
+      success |= matrix_decompose_2d (b, &scale_b, shear_b, &rotate_b, &translate_b);
+
     }
   else
     {
-      matrix_decompose_3d (a, &scale_a, shear_a, &rotate_a, &translate_a, &perspective_a);
-      matrix_decompose_3d (b, &scale_b, shear_b, &rotate_b, &translate_b, &perspective_b);
+      graphene_vec4_t perspective_a;
+      graphene_vec4_t perspective_b;
+
+      success |= matrix_decompose_3d (a, &scale_a, shear_a, &rotate_a, &translate_a, &perspective_a);
+      success |= matrix_decompose_3d (b, &scale_b, shear_b, &rotate_b, &translate_b, &perspective_b);
+
+      res->value.w = graphene_simd4f_interpolate (perspective_a.value,
+                                                  perspective_b.value,
+                                                  factor);
     }
 
-  res->value.w = graphene_simd4f_interpolate (perspective_a.value,
-                                              perspective_b.value,
-                                              factor);
+  /* If we cannot decompose either matrix we bail out with an identity */
+  if (!success)
+    {
+      graphene_matrix_init_identity (res);
+      return;
+    }
 
   graphene_point3d_interpolate (&translate_a, &translate_b, factor, &translate_r);
   graphene_matrix_translate (res, &translate_r);
