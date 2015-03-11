@@ -34,6 +34,7 @@
 
 #include "graphene-triangle.h"
 
+#include "graphene-alloc-private.h"
 #include "graphene-box.h"
 #include "graphene-plane.h"
 #include "graphene-point3d.h"
@@ -57,7 +58,7 @@
 graphene_triangle_t *
 graphene_triangle_alloc (void)
 {
-  return calloc (1, sizeof (graphene_triangle_t));
+  return graphene_aligned_alloc0 (sizeof (graphene_triangle_t), 1, 16);
 }
 
 /**
@@ -71,7 +72,7 @@ graphene_triangle_alloc (void)
 void
 graphene_triangle_free (graphene_triangle_t *t)
 {
-  free (t);
+  graphene_aligned_free (t);
 }
 
 /**
