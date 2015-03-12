@@ -83,7 +83,11 @@
 #define GRAPHENE_DEG_TO_RAD(x)          ((x) * (GRAPHENE_PI / 180.f))
 #define GRAPHENE_RAD_TO_DEG(x)          ((x) * (180.f / GRAPHENE_PI))
 
-#define graphene_lerp(a,b,factor)       (((1.f - (factor)) * (a)) + ((factor) * (b)))
+static inline float
+graphene_lerp (float a, float b, float factor)
+{
+  return ((1.f - factor) * a) + (factor * b);
+}
 
 static inline void
 graphene_sincos (float angle, float *sin_out, float *cos_out)
