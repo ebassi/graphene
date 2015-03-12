@@ -132,7 +132,7 @@ AC_CHECK_FUNCS([aligned_alloc posix_memalign memalign])
 
 saved_LIBS="$LIBS"
 LIBS=$LIBM
-AC_CHECK_FUNCS([sincos])
+AC_CHECK_FUNCS([sincosf])
 LIBS="$saved_LIBS"
 
 AX_PTHREAD

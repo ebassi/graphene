@@ -85,17 +85,17 @@
 
 #define graphene_lerp(a,b,factor)       (((1.f - (factor)) * (a)) + ((factor) * (b)))
 
-#ifdef HAVE_SINCOS
-# define graphene_sincos(_a,_s,_c)      sincosf ((_a), (_s), (_c))
-#else
 static inline void
 graphene_sincos (float angle, float *sin_out, float *cos_out)
 {
+#ifdef HAVE_SINCOSF
+  sincosf (angle, sin_out, cos_out);
+#else
   if (sin_out != NULL)
     *sin_out = sinf (angle);
   if (cos_out != NULL)
     *cos_out = cosf (angle);
+#endif /* HAVE_SINCOSF */
 }
-#endif /* HAVE_SINCOS */
 
 #endif /* __GRAPHENE_PRIVATE_H__ */
