@@ -592,15 +592,15 @@ graphene_matrix_to_2d (const graphene_matrix_t *m,
   if (xx != NULL)
     *xx = graphene_matrix_get_value (m, 0, 0);
   if (yx != NULL)
-    *yx = graphene_matrix_get_value (m, 0, 1);
+    *yx = graphene_matrix_get_value (m, 1, 0);
   if (xy != NULL)
-    *xy = graphene_matrix_get_value (m, 1, 0);
+    *xy = graphene_matrix_get_value (m, 0, 1);
   if (yy != NULL)
     *yy = graphene_matrix_get_value (m, 1, 1);
   if (x_0 != NULL)
-    *x_0 = graphene_matrix_get_value (m, 3, 0);
+    *x_0 = graphene_matrix_get_value (m, 0, 3);
   if (y_0 != NULL)
-    *y_0 = graphene_matrix_get_value (m, 3, 1);
+    *y_0 = graphene_matrix_get_value (m, 1, 3);
 
   return true;
 }
