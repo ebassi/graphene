@@ -598,9 +598,9 @@ graphene_matrix_to_2d (const graphene_matrix_t *m,
   if (yy != NULL)
     *yy = graphene_matrix_get_value (m, 1, 1);
   if (x_0 != NULL)
-    *x_0 = graphene_matrix_get_value (m, 0, 3);
+    *x_0 = graphene_matrix_get_value (m, 3, 0);
   if (y_0 != NULL)
-    *y_0 = graphene_matrix_get_value (m, 1, 3);
+    *y_0 = graphene_matrix_get_value (m, 3, 1);
 
   return true;
 }
