@@ -171,7 +171,9 @@ AC_CACHE_CHECK([whether to use GCC vector intrinsics],
                        [
                  AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #if defined(__GNUC__)
-# if defined(__arm__)
+# if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
+#   error "GCC vector intrinsics are disabled on GCC prior to 4.9"
+# elif defined(__arm__)
 #   error "GCC vector intrinsics are disabled on ARM"
 # endif
 #else
