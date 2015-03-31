@@ -24,7 +24,7 @@
 /**
  * SECTION:graphene-box
  * @Title: Box
- * @Short_Description: A box
+ * @Short_Description: Axis-aligned bounding box
  *
  * #graphene_box_t provides a representation of an axis aligned minimum
  * bounding box using the coordinates of its minimum and maximum vertices.
