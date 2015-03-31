@@ -482,5 +482,12 @@
     <keyword type="macro" name="GRAPHENE_MAJOR_VERSION" link="graphene-Versioning-information.html#GRAPHENE-MAJOR-VERSION:CAPS" since="1.0"/>
     <keyword type="macro" name="GRAPHENE_MINOR_VERSION" link="graphene-Versioning-information.html#GRAPHENE-MINOR-VERSION:CAPS" since="1.0"/>
     <keyword type="macro" name="GRAPHENE_MICRO_VERSION" link="graphene-Versioning-information.html#GRAPHENE-MICRO-VERSION:CAPS" since="1.0"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_DEFAULT" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-DEFAULT:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_XYZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-XYZ:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_YZX" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-YZX:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_ZXY" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-ZXY:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_XZY" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-XZY:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_YXZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-YXZ:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_ZYX" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-ZYX:CAPS"/>
   </functions>
 </book>

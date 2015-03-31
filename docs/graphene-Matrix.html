@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Graphene Reference Manual: Matrix</title>
+<title>Matrix: Graphene Reference Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
@@ -2831,8 +2831,11 @@ graphene_matrix_interpolate (<em class="parameter"><code>const <a class="link" h
                              <em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *res</code></em>);</pre>
 <p>Linearly interpolates the two given <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> by
 interpolating the decomposed transformations separately.</p>
+<p>If either matrix cannot be reduced to their transformations
+then the interpolation cannot be performed, and this function
+will return an identity matrix.</p>
 <div class="refsect3">
-<a name="id-1.2.15.6.59.5"></a><h4>Parameters</h4>
+<a name="id-1.2.15.6.59.6"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
