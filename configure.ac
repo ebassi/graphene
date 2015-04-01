@@ -27,7 +27,7 @@ AC_INIT([graphene],
         [graphene_version],
         [https://github.com/ebassi/graphene/issues],
         [graphene],
-        [https://github.com/ebassi/graphene])
+        [https://ebassi.github.io/graphene])
 
 AC_CONFIG_HEADER([src/config.h])
 AC_CONFIG_SRCDIR([src/graphene.h])
