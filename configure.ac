@@ -1,8 +1,10 @@
 # bump micro_version to the next even number for each point release
 # bump micro_version to the next odd number after each release
+# keep interface_age in sync with micro_version, or set to 0 during development cycles
 m4_define([graphene_major_version], [1])
 m4_define([graphene_minor_version], [2])
 m4_define([graphene_micro_version], [3])
+m4_define([graphene_interface_age], [3])
 
 m4_define([graphene_version], [graphene_major_version.graphene_minor_version.graphene_micro_version])
 
@@ -10,9 +12,6 @@ m4_define([graphene_release_status],
           [m4_if(m4_eval(graphene_micro_version % 2), [1], [git],
                  [m4_if(m4_eval(graphene_minor_version % 2), [1], [snapshot], [release])])])
 
-# bump up by 1 for every micro release with no API changes, otherwise
-# set to 0. after release, bump up by 1
-m4_define([graphene_interface_age], [3])
 m4_define([graphene_binary_age], [m4_eval(100 * graphene_minor_version + graphene_micro_version)])
 
 m4_define([lt_current], [m4_eval(100 * graphene_minor_version + graphene_micro_version - graphene_interface_age)])
