@@ -83,32 +83,35 @@
     } \
   } G_STMT_END
 
-#define GRAPHENE_TEST_UNUSED(var) \
-  if (0) var = var
+#define GRAPHENE_TEST_UNUSED(type,var) \
+  if (0) { \
+    type unused G_GNUC_UNUSED; \
+    unused = var; \
+  }
 
 #define GRAPHENE_TEST_UNIT_BEGIN(name) \
 static void \
 name (void) \
 { \
-  float x = 2.f, y = 3.f, z = 4.f, w = 5.f; \
-  graphene_point_t zero2 = GRAPHENE_POINT_INIT_ZERO; \
-  graphene_point_t one2 = GRAPHENE_POINT_INIT (1.f, 1.f); \
-  graphene_point_t half2 = GRAPHENE_POINT_INIT (.5f, .5f); \
-  graphene_point3d_t zero3 = GRAPHENE_POINT3D_INIT_ZERO; \
-  graphene_point3d_t one3 = GRAPHENE_POINT3D_INIT (1.f, 1.f, 1.f); \
-  graphene_point3d_t half3 = GRAPHENE_POINT3D_INIT (.5f, .5f, .5f);
+  const float x = 2.f, y = 3.f, z = 4.f, w = 5.f; \
+  const graphene_point_t zero2 = GRAPHENE_POINT_INIT_ZERO; \
+  const graphene_point_t one2 = GRAPHENE_POINT_INIT (1.f, 1.f); \
+  const graphene_point_t half2 = GRAPHENE_POINT_INIT (.5f, .5f); \
+  const graphene_point3d_t zero3 = GRAPHENE_POINT3D_INIT_ZERO; \
+  const graphene_point3d_t one3 = GRAPHENE_POINT3D_INIT (1.f, 1.f, 1.f); \
+  const graphene_point3d_t half3 = GRAPHENE_POINT3D_INIT (.5f, .5f, .5f);
 
 #define GRAPHENE_TEST_UNIT_END \
-  GRAPHENE_TEST_UNUSED (x); \
-  GRAPHENE_TEST_UNUSED (y); \
-  GRAPHENE_TEST_UNUSED (z); \
-  GRAPHENE_TEST_UNUSED (w); \
-  GRAPHENE_TEST_UNUSED (zero2); \
-  GRAPHENE_TEST_UNUSED (one2); \
-  GRAPHENE_TEST_UNUSED (half2); \
-  GRAPHENE_TEST_UNUSED (zero3); \
-  GRAPHENE_TEST_UNUSED (one3); \
-  GRAPHENE_TEST_UNUSED (half3); \
+  GRAPHENE_TEST_UNUSED (float, x) \
+  GRAPHENE_TEST_UNUSED (float, y) \
+  GRAPHENE_TEST_UNUSED (float, z) \
+  GRAPHENE_TEST_UNUSED (float, w) \
+  GRAPHENE_TEST_UNUSED (graphene_point_t, zero2) \
+  GRAPHENE_TEST_UNUSED (graphene_point_t, one2) \
+  GRAPHENE_TEST_UNUSED (graphene_point_t, half2) \
+  GRAPHENE_TEST_UNUSED (graphene_point3d_t, zero3) \
+  GRAPHENE_TEST_UNUSED (graphene_point3d_t, one3) \
+  GRAPHENE_TEST_UNUSED (graphene_point3d_t, half3) \
 }
 
 #define GRAPHENE_TEST_UNIT(path,name) \
