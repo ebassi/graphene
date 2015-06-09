@@ -35,16 +35,6 @@ GTKDOC_LIBS = $(top_builddir)/src/libgraphene-1.0.la $(GRAPHENE_LIBS)
 
 include $(top_srcdir)/gtk-doc.make
 
-API_VERSION = $(GRAPHENE_MAJOR_VERSION).$(GRAPHENE_MINOR_VERSION)
-SSH_HOST = master.gnome.org
-SSH_BASEPATH = ~ebassi/public_html/docs/graphene
-SSH_FULLPATH = $(SSH_BASEPATH)/$(API_VERSION)
-
-publish:
-	scp -r ./html/* $(SSH_HOST):$(SSH_FULLPATH)
-
-.PHONY: publish
-
 if ENABLE_GTK_DOC
 TESTS_ENVIRONMENT = \
 	DOC_MODULE=$(DOC_MODULE) DOC_MAIN_SGML_FILE=$(DOC_MAIN_SGML_FILE) \
