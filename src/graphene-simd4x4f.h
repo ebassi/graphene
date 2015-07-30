@@ -710,6 +710,9 @@ graphene_simd4x4f_rotation (graphene_simd4x4f_t *m,
   rad = -rad;
   axis = graphene_simd4f_normalize3 (axis);
 
+  /* We cannot use graphene_sincos() because it's a private function, whereas
+   * graphene-simd4x4f.h is a public header
+   */
   sine = sinf (rad);
   cosine = cosf (rad);
 
