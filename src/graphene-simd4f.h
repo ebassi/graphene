@@ -1692,9 +1692,11 @@ graphene_simd4f_interpolate (const graphene_simd4f_t a,
                              const graphene_simd4f_t b,
                              float                   f)
 {
-  return graphene_simd4f_madd (graphene_simd4f_sub (b, a),
-                               graphene_simd4f_splat (f),
-                               a);
+  const graphene_simd4f_t one_minus_f = graphene_simd4f_sub (graphene_simd4f_splat (1.f),
+                                                             graphene_simd4f_splat (f));
+
+  return graphene_simd4f_add (graphene_simd4f_mul (one_minus_f, a),
+                              graphene_simd4f_mul (graphene_simd4f_splat (f), b));
 }
 
 /**
