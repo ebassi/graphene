@@ -10,4 +10,7 @@ install:
 
 script:
   - if [ "$CC" = "gcc" ]; then export CC="gcc-4.8"; fi
-  - ./autogen.sh --disable-introspection --disable-gtk-doc --disable-benchmarks && make && make check
+  - NOCONFIGURE=1 ./autogen.sh
+  - ./configure --disable-introspection --disable-gtk-doc --disable-benchmarks && make && make check
+  - ./configure --disable-introspection --disable-gtk-doc --disable-benchmarks --disable-sse2 && make && make check
+  - ./configure --disable-introspection --disable-gtk-doc --disable-benchmarks --disable-sse2 --disable-gcc-vector && make && make check
