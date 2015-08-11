@@ -102,6 +102,14 @@
 # define GRAPHENE_VERSION_PREV_STABLE   (_GRAPHENE_ENCODE_VERSION (GRAPHENE_MAJOR_VERSION, GRAPHENE_MINOR_VERSION - 2))
 #endif
 
+/* version defines
+ *
+ * remember to add new macros at the beginning of each development cycle
+ */
+
+#define GRAPHENE_VERSION_1_0    (_GRAPHENE_ENCODE_VERSION (1, 0))
+#define GRAPHENE_VERSION_1_2    (_GRAPHENE_ENCODE_VERSION (1, 2))
+
 #ifndef GRAPHENE_VERSION_MIN_REQUIRED
 # define GRAPHENE_VERSION_MIN_REQUIRED  (GRAPHENE_VERSION_1_0)
 #endif
@@ -122,21 +130,12 @@
 # error "GRAPHENE_VERSION_MIN_REQUIRED must be >= GRAPHENE_VERSION_1_0"
 #endif
 
-/* version defines
- *
- * remember to add new macros at the beginning of each development cycle
- */
-
-#define GRAPHENE_VERSION_1_0    (_GRAPHENE_ENCODE_VERSION (1, 0))
-
 /* unconditional */
 #define GRAPHENE_DEPRECATED_IN_1_0              GRAPHENE_DEPRECATED
 #define GRAPHENE_DEPRECATED_IN_1_0_FOR(f)       GRAPHENE_DEPRECATED_FOR(f)
 #define GRAPHENE_AVAILABLE_IN_1_0               _GRAPHENE_PUBLIC
 
 /* Graphene 1.2 */
-#define GRAPHENE_VERSION_1_2    (_GRAPHENE_ENCODE_VERSION (1, 2))
-
 #if GRAPHENE_VERSION_MIN_REQUIRED >= GRAPHENE_VERSION_1_2
 # define GRAPHENE_DEPRECATED_IN_1_2             GRAPHENE_DEPRECATED
 # define GRAPHENE_DEPRECATED_IN_1_2_FOR(f)      GRAPHENE_DEPRECATED_FOR(f)
