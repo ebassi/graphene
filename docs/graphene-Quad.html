@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Rectangle.html" title="Rectangle">
 <link rel="next" href="graphene-Triangle.html" title="Triangle">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.23.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -130,12 +130,13 @@
 graphene_quad_alloc (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Allocates a new <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> instance.</p>
 <p>The contents of the returned instance are undefined.</p>
+<p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
-<a name="id-1.2.7.6.2.6"></a><h4>Returns</h4>
+<a name="id-1.2.7.6.2.7"></a><h4>Returns</h4>
 <p> the newly created <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> instance. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -158,7 +159,7 @@ graphene_quad_free (<em class="parameter"><code><a class="link" href="graphene-Q
 </tr></tbody>
 </table></div>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -212,7 +213,7 @@ graphene_quad_init (<em class="parameter"><code><a class="link" href="graphene-Q
 <p> the initialized <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -249,7 +250,7 @@ given <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="grap
 <p> the initialized <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -285,7 +286,7 @@ graphene_quad_init_from_points (<em class="parameter"><code><a class="link" href
 <p> the initialized <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -319,9 +320,8 @@ graphene_quad_contains (<em class="parameter"><code>const <a class="link" href="
 <div class="refsect3">
 <a name="id-1.2.7.6.7.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the point is inside the <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a></p>
-<p></p>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -354,7 +354,7 @@ graphene_quad_bounds (<em class="parameter"><code>const <a class="link" href="gr
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -390,7 +390,7 @@ graphene_quad_get_point (<em class="parameter"><code>const <a class="link" href=
 <p> a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -403,12 +403,11 @@ graphene_quad_get_point (<em class="parameter"><code>const <a class="link" href=
 <p>A 4 vertex quadrilateral, as represented by four <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a>.</p>
 <p>The contents of a <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> are private and should never be
 accessed directly.</p>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.23.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Triangle.html" title="Triangle">
 <link rel="next" href="graphene-Sphere.html" title="Sphere">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.23.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -27,7 +27,7 @@
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2><span class="refentrytitle"><a name="graphene-Box.top_of_page"></a>Box</span></h2>
-<p>Box — A box</p>
+<p>Box — Axis-aligned bounding box</p>
 </td>
 <td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
@@ -302,13 +302,14 @@ bounding box using the coordinates of its minimum and maximum vertices.</p>
 graphene_box_alloc (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Allocates a new <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>.</p>
 <p>The contents of the returned structure are undefined.</p>
+<p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
-<a name="id-1.2.9.6.2.6"></a><h4>Returns</h4>
+<a name="id-1.2.9.6.2.7"></a><h4>Returns</h4>
 <p> the newly allocated <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> structure.
 Use <a class="link" href="graphene-Box.html#graphene-box-free" title="graphene_box_free ()"><code class="function">graphene_box_free()</code></a> to free the resources allocated by this function. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -331,7 +332,7 @@ graphene_box_free (<em class="parameter"><code><a class="link" href="graphene-Bo
 </tr></tbody>
 </table></div>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -373,7 +374,7 @@ graphene_box_init (<em class="parameter"><code><a class="link" href="graphene-Bo
 <p> the initialized <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -410,7 +411,7 @@ another <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_
 <p> the initialized <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -457,7 +458,7 @@ array</p></td>
 <p> the initialized <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -500,7 +501,7 @@ stored inside <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title
 <p> the initialized <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -547,7 +548,7 @@ array</p></td>
 <p> the initialized <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -581,9 +582,8 @@ graphene_box_equal (<em class="parameter"><code>const <a class="link" href="grap
 <div class="refsect3">
 <a name="id-1.2.9.6.9.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the boxes are equal</p>
-<p></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -622,7 +622,7 @@ graphene_box_expand (<em class="parameter"><code>const <a class="link" href="gra
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -665,7 +665,7 @@ negative, the <a class="link" href="graphene-Box.html#graphene-box-t" title="gra
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -704,7 +704,7 @@ given vector.</p>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -736,7 +736,7 @@ graphene_box_get_min (<em class="parameter"><code>const <a class="link" href="gr
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -768,7 +768,7 @@ graphene_box_get_max (<em class="parameter"><code>const <a class="link" href="gr
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -800,7 +800,7 @@ the center. </p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -827,9 +827,8 @@ graphene_box_get_depth (<em class="parameter"><code>const <a class="link" href="
 <div class="refsect3">
 <a name="id-1.2.9.6.16.6"></a><h4>Returns</h4>
 <p> the depth of the box</p>
-<p></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -856,9 +855,8 @@ graphene_box_get_height (<em class="parameter"><code>const <a class="link" href=
 <div class="refsect3">
 <a name="id-1.2.9.6.17.6"></a><h4>Returns</h4>
 <p> the height of the box</p>
-<p></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -885,9 +883,8 @@ graphene_box_get_width (<em class="parameter"><code>const <a class="link" href="
 <div class="refsect3">
 <a name="id-1.2.9.6.18.6"></a><h4>Returns</h4>
 <p> the width of the box</p>
-<p></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -920,7 +917,7 @@ it into the given <em class="parameter"><code>size</code></em>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -952,7 +949,7 @@ graphene_box_get_bounding_sphere (<em class="parameter"><code>const <a class="li
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -984,7 +981,7 @@ of 8 <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphen
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1022,7 +1019,7 @@ graphene_box_union (<em class="parameter"><code>const <a class="link" href="grap
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1065,9 +1062,8 @@ initialized with <a class="link" href="graphene-Box.html#graphene-box-empty" tit
 <div class="refsect3">
 <a name="id-1.2.9.6.23.7"></a><h4>Returns</h4>
 <p> true if the two boxes intersect</p>
-<p></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1104,9 +1100,8 @@ graphene_box_contains_box (<em class="parameter"><code>const <a class="link" hre
 <div class="refsect3">
 <a name="id-1.2.9.6.24.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the box is contained in the given box</p>
-<p></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1142,9 +1137,8 @@ graphene_box_contains_point (<em class="parameter"><code>const <a class="link" h
 <div class="refsect3">
 <a name="id-1.2.9.6.25.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the point is contained in the given box</p>
-<p></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1158,7 +1152,7 @@ graphene_box_zero (<em class="parameter"><code><span class="type">void</span></c
 <p> a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1173,7 +1167,7 @@ maximum vertex set at (1, 1, 1).</p>
 <p> a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1188,7 +1182,7 @@ maximum vertex set at (0, 0, 0).</p>
 <p> a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1203,7 +1197,7 @@ maximum vertex set at (1, 1, 1).</p>
 <p> a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1217,7 +1211,7 @@ graphene_box_empty (<em class="parameter"><code><span class="type">void</span></
 <p> a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1231,7 +1225,7 @@ graphene_box_infinite (<em class="parameter"><code><span class="type">void</span
 <p> a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -1243,12 +1237,11 @@ graphene_box_infinite (<em class="parameter"><code><span class="type">void</span
 </pre>
 <p>A 3D box, described as the volume between a minimum and
 a maximum vertices.</p>
-<p class="since">Since 1.2</p>
+<p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.23.1</div>
 </body>
 </html>

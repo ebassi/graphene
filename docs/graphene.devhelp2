@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
-<book xmlns="http://www.devhelp.net/book" title="Graphene Reference Manual" link="index.html" author="" name="graphene" version="2" language="c">
+<book xmlns="" title="Graphene Reference Manual" link="index.html" author="" name="graphene" version="2" language="c">
   <chapters>
     <sub name="Graphene" link="ch01.html">
       <sub name="Point" link="graphene-Point.html"/>
@@ -30,7 +29,6 @@
     <sub name="Annotation Glossary" link="annotation-glossary.html"/>
   </chapters>
   <functions>
-    <keyword type="" name="" link="ch01.html#overview"/>
     <keyword type="macro" name="GRAPHENE_POINT_INIT()" link="graphene-Point.html#GRAPHENE-POINT-INIT:CAPS" since="1.0"/>
     <keyword type="function" name="graphene_point_alloc ()" link="graphene-Point.html#graphene-point-alloc" since="1.0"/>
     <keyword type="function" name="graphene_point_free ()" link="graphene-Point.html#graphene-point-free" since="1.0"/>

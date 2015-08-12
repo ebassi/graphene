@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Point3D.html" title="Point3D">
 <link rel="next" href="graphene-Rectangle.html" title="Rectangle">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.23.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -179,7 +179,7 @@ declaring it, e.g.:</p>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -188,12 +188,13 @@ declaring it, e.g.:</p>
 graphene_size_alloc (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Allocates a new <a class="link" href="graphene-Size.html#graphene-size-t" title="graphene_size_t"><span class="type">graphene_size_t</span></a>.</p>
 <p>The contents of the returned value are undefined.</p>
+<p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
-<a name="id-1.2.5.6.3.6"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.3.7"></a><h4>Returns</h4>
 <p> the newly allocated <a class="link" href="graphene-Size.html#graphene-size-t" title="graphene_size_t"><span class="type">graphene_size_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -216,7 +217,7 @@ graphene_size_free (<em class="parameter"><code><a class="link" href="graphene-S
 </tr></tbody>
 </table></div>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -260,7 +261,7 @@ graphene_size_init (<em class="parameter"><code><a class="link" href="graphene-S
 <p> the initialized <a class="link" href="graphene-Size.html#graphene-size-t" title="graphene_size_t"><span class="type">graphene_size_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -298,7 +299,7 @@ the given <em class="parameter"><code>src</code></em>
 <p> the initialized <a class="link" href="graphene-Size.html#graphene-size-t" title="graphene_size_t"><span class="type">graphene_size_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -332,9 +333,8 @@ graphene_size_equal (<em class="parameter"><code>const <a class="link" href="gra
 <div class="refsect3">
 <a name="id-1.2.5.6.7.6"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the sizes are equal</p>
-<p></p>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -372,7 +372,7 @@ graphene_size_scale (<em class="parameter"><code>const <a class="link" href="gra
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -417,7 +417,7 @@ interpolation <em class="parameter"><code>factor</code></em>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -431,7 +431,7 @@ equality checks and interpolations.</p>
 <p> a constant size. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -441,7 +441,7 @@ equality checks and interpolations.</p>
 <pre class="programlisting">#define GRAPHENE_SIZE_INIT_ZERO         GRAPHENE_SIZE_INIT (0.f, 0.f)
 </pre>
 <p>Initializes a <a class="link" href="graphene-Size.html#graphene-size-t" title="graphene_size_t"><span class="type">graphene_size_t</span></a> to (0, 0) when declaring it.</p>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -474,12 +474,11 @@ equality checks and interpolations.</p>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since 1.0</p>
+<p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.23.1</div>
 </body>
 </html>
