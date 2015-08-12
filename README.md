@@ -138,6 +138,11 @@ directory.
 
 ## Documentation
 
+### Release notes
+
+The release notes are available on the Graphene
+[wiki](https://github.com/ebassi/graphene/wiki/Release-Notes).
+
 ### Available types
 
 Graphene provides common types needed to handle 3D transformations:
