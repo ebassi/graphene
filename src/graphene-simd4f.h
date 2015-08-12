@@ -166,7 +166,7 @@ bool                    graphene_simd4f_cmp_gt          (const graphene_simd4f_t
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_neg             (const graphene_simd4f_t s);
 
-#if defined(GRAPHENE_USE_SSE)
+#if !defined(__GI_SCANNER__) && defined(GRAPHENE_USE_SSE)
 
 /* SSE2 implementation of SIMD 4f */
 
@@ -713,7 +713,7 @@ _simd4f_neg (const graphene_simd4f_t s)
 
 # endif /* __GNUC__ */
 
-#elif defined(GRAPHENE_USE_GCC)
+#elif !defined(__GI_SCANNER__) && defined(GRAPHENE_USE_GCC)
 
 /* GCC vector intrinsic implementation of SIMD 4f */
 
@@ -962,7 +962,7 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
     graphene_simd4f_init (-__s[0], -__s[1], -__s[2], -__s[3]); \
   }))
 
-#elif defined(GRAPHENE_USE_ARM_NEON)
+#elif !defined(__GI_SCANNER__) && defined(GRAPHENE_USE_ARM_NEON)
 
 /* ARM Neon implementation of SIMD4f */
 # warning "The ARM Neon implementation of graphene_simd4f_t is experimental."
@@ -1286,7 +1286,7 @@ typedef union {
     (graphene_simd4f_t) vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 ((s)), __mask)); \
   }))
 
-#elif defined(GRAPHENE_USE_SCALAR)
+#elif defined(__GI_SCANNER__) || defined(GRAPHENE_USE_SCALAR)
 
 /* Fallback implementation using scalar types */
 

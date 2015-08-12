@@ -689,22 +689,35 @@ _______EOF
 # error "Unsupported platform."
 #endif
 
-#if defined(GRAPHENE_USE_SSE)
-#include <xmmintrin.h>
+#ifndef __GI_SCANNER__
+# if defined(GRAPHENE_USE_SSE)
+#  include <xmmintrin.h>
 typedef __m128 graphene_simd4f_t;
-#elif defined(GRAPHENE_USE_ARM_NEON)
-#include <arm_neon.h>
+# elif defined(GRAPHENE_USE_ARM_NEON)
+#  include <arm_neon.h>
 typedef float32x4_t graphene_simd4f_t;
-#elif defined(GRAPHENE_USE_GCC)
+# elif defined(GRAPHENE_USE_GCC)
 typedef float graphene_simd4f_t __attribute__((vector_size(16)));
-#elif defined(GRAPHENE_USE_SCALAR)
+# elif defined(GRAPHENE_USE_SCALAR)
 typedef struct {
   /*< private >*/
   float x, y, z, w;
 } graphene_simd4f_t;
-#else
-# error "Unsupported platform."
-#endif
+# else
+#  error "Unsupported platform."
+# endif
+#else /* __GI_SCANNER__ */
+/* The gobject-introspection scanner has issues parsing the
+ * system headers with SIMD built-ins, so we fall back to
+ * scalars; it does not really matter, as we wrap them in
+ * our public API, and introspection cannot use the SIMD API
+ * directly anyway.
+ */
+typedef struct {
+  /*< private >*/
+  float x, y, z, w;
+} graphene_simd4f_t;
+#endif /* __GI_SCANNER__ */
 
 typedef struct {
   /*< private >*/
