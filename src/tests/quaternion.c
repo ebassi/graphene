@@ -9,17 +9,23 @@ GRAPHENE_TEST_UNIT_BEGIN (quaternion_init)
 
   graphene_quaternion_init (&q1, 0.f, 0.f, 0.f, 1.f);
   graphene_quaternion_init_identity (&q2);
-  graphene_quaternion_equal (&q1, &q2);
+  g_assert_true (graphene_quaternion_equal (&q1, &q2));
 }
 GRAPHENE_TEST_UNIT_END
 
 GRAPHENE_TEST_UNIT_BEGIN (quaternion_operators_invert)
 {
-  graphene_quaternion_t q1, q2;
+  graphene_quaternion_t q1, q2, tmp;
 
   graphene_quaternion_init_identity (&q1);
   graphene_quaternion_invert (&q1, &q2);
-  graphene_quaternion_equal (&q1, &q2);
+  g_assert_true (graphene_quaternion_equal (&q1, &q2));
+
+  graphene_quaternion_init (&q1, 1.f, 1.f, 1.f, 1.f);
+  g_assert_true (graphene_quaternion_equal (&q1, graphene_quaternion_init (&tmp, 1.f, 1.f, 1.f, 1.f)));
+
+  graphene_quaternion_invert (&q1, &q2);
+  g_assert_true (graphene_quaternion_equal (&q2, graphene_quaternion_init (&tmp, -1.f, -1.f, -1.f, 1.f)));
 }
 GRAPHENE_TEST_UNIT_END
 
@@ -30,7 +36,7 @@ GRAPHENE_TEST_UNIT_BEGIN (quaternion_operators_dot)
   graphene_quaternion_init (&q1, 1.f, 1.f, 1.f, 1.f);
   graphene_quaternion_invert (&q1, &q2);
 
-  g_assert_cmpfloat (graphene_quaternion_dot (&q1, &q2), ==, -3.f);
+  g_assert_cmpfloat (graphene_quaternion_dot (&q1, &q2), ==, -2.f);
 }
 GRAPHENE_TEST_UNIT_END
 

@@ -637,6 +637,7 @@ graphene_quaternion_invert (const graphene_quaternion_t *q,
   res->x = -q->x;
   res->y = -q->y;
   res->z = -q->z;
+  res->w = q->w;
 }
 
 /**
