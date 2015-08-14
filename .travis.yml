@@ -1,12 +1,19 @@
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r/test
+    packages:
+    - gcc-4.8
+    - libglib2.0-0
+    - libglib2.0-dev
+    - gtk-doc-tools
+
+sudo: false
+
 language: c
 compiler:
   - gcc
   - clang
-
-install:
-  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-  - sudo apt-get update
-  - sudo apt-get install gcc-4.8 libglib2.0-0 libglib2.0-dev gtk-doc-tools
 
 script:
   - if [ "$CC" = "gcc" ]; then export CC="gcc-4.8"; fi
