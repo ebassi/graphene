@@ -618,7 +618,7 @@ AC_SUBST(GLIB_PREFIX)
 m4_ifdef([GTK_DOC_CHECK], [
 GTK_DOC_CHECK([1.20], [--flavour no-tmpl])
 ],[
-enable_gtk_doc=disabled (no gtk-doc)
+enable_gtk_doc="disabled (no gtk-doc)"
 AM_CONDITIONAL([ENABLE_GTK_DOC], [false])
 ])
 
