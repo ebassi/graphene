@@ -53,7 +53,7 @@
     <title>Object Hierarchy</title>
      <xi:include href="xml/tree_index.sgml"/>
   </chapter>
-  <index id="api-index-full">
+  <index id="api-index">
     <title>API Index</title>
     <xi:include href="xml/api-index-full.xml"><xi:fallback /></xi:include>
   </index>
