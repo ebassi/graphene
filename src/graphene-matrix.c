@@ -463,6 +463,7 @@ graphene_matrix_is_identity (const graphene_matrix_t *m)
 bool
 graphene_matrix_is_2d (const graphene_matrix_t *m)
 {
+#if 0
   float res[4];
 
   graphene_simd4f_dup_4f (m->value.x, res);
@@ -488,6 +489,9 @@ graphene_matrix_is_2d (const graphene_matrix_t *m)
     return false;
 
   return true;
+#else
+  return graphene_simd4x4f_is_2d (&m->value);
+#endif
 }
 
 /**
