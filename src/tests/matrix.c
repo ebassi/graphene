@@ -382,6 +382,29 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_transforms)
   graphene_assert_fuzzy_equals (yy, 2.0, 0.0001);
   graphene_assert_fuzzy_equals (x_0, 0.5, 0.0001);
   graphene_assert_fuzzy_equals (y_0, 0.5, 0.0001);
+
+  graphene_matrix_init_identity (&m1);
+  graphene_matrix_translate (&m1, graphene_point3d_init (&tmp, 50, 50, 0));
+  graphene_matrix_rotate_z (&m1, 45.0);
+  graphene_matrix_translate (&m1, graphene_point3d_init (&tmp, -50, -50, 0));
+  if (g_test_verbose ())
+    {
+      g_test_message ("m1 -> translate(50,50) -> rotate(45deg) -> translate(-50, -50)");
+      graphene_matrix_print (&m1);
+    }
+
+  g_assert_true (graphene_matrix_is_2d (&m1));
+
+  graphene_matrix_init_identity (&m1);
+  graphene_matrix_perspective (&m1, 500, &m1);
+  graphene_matrix_rotate_y (&m1, 50.0);
+  if (g_test_verbose ())
+    {
+      g_test_message ("m1 -> perspective(500) -> rotateY(50deg)");
+      graphene_matrix_print (&m1);
+    }
+
+  g_assert_false (graphene_matrix_is_2d (&m1));
 }
 GRAPHENE_TEST_UNIT_END
 
