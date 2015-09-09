@@ -326,6 +326,89 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_look_at)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_identity)
+{
+  graphene_matrix_t m1;
+
+  graphene_matrix_init_from_2d (&m1,
+                                1, 0,
+                                0, 1,
+                                0, 0);
+  g_assert_true (graphene_matrix_is_2d (&m1));
+  g_assert_true (graphene_matrix_is_identity (&m1));
+
+  graphene_matrix_init_from_2d (&m1,
+                                1, 1,
+                                1, 1,
+                                0, 0);
+  g_assert_true (graphene_matrix_is_2d (&m1));
+  g_assert_false (graphene_matrix_is_identity (&m1));
+}
+GRAPHENE_TEST_UNIT_END
+
+GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_transforms)
+{
+  graphene_matrix_t m1, m2;
+  double xx, xy, yx, yy, x_0, y_0;
+  graphene_point3d_t tmp;
+
+  graphene_matrix_init_identity (&m1);
+  graphene_matrix_scale (&m1, 2.0, 2.0, 1.0);
+  graphene_matrix_translate (&m1, graphene_point3d_init (&tmp, 0.5, 0.5, 0.0));
+  if (g_test_verbose ())
+    {
+      g_test_message ("m1 -> translate(0.5, 0.5, 0.0) -> scale(2.0, 2.0)");
+      graphene_matrix_print (&m1);
+    }
+
+  g_assert_true (graphene_matrix_is_2d (&m1));
+
+  graphene_matrix_init_from_2d (&m2,
+                                2.0, 0.0,
+                                0.0, 2.0,
+                                0.5, 0.5);
+  if (g_test_verbose ())
+    {
+      g_test_message ("m2 -> [ 2.0, 0.0 | 0.0, 2.0 | 0.5, 0.5 ]");
+      graphene_matrix_print (&m2);
+    }
+
+  graphene_assert_fuzzy_matrix_equal (&m1, &m2, 0.0001);
+
+  graphene_matrix_to_2d (&m1, &xx, &yx, &xy, &yy, &x_0, &y_0);
+  graphene_assert_fuzzy_equals (xx, 2.0, 0.0001);
+  graphene_assert_fuzzy_equals (yx, 0.0, 0.0001);
+  graphene_assert_fuzzy_equals (xy, 0.0, 0.0001);
+  graphene_assert_fuzzy_equals (yy, 2.0, 0.0001);
+  graphene_assert_fuzzy_equals (x_0, 0.5, 0.0001);
+  graphene_assert_fuzzy_equals (y_0, 0.5, 0.0001);
+}
+GRAPHENE_TEST_UNIT_END
+
+GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_round_trip)
+{
+  graphene_matrix_t m1, m2;
+  double xx, xy, yx, yy, x_0, y_0;
+
+  graphene_matrix_init_from_2d (&m1,
+                                2.0, 0.0,
+                                0.0, 2.0,
+                                0.5, 0.5);
+  g_assert_true (graphene_matrix_is_2d (&m1));
+
+  graphene_matrix_to_2d (&m1, &xx, &yx, &xy, &yy, &x_0, &y_0);
+  graphene_assert_fuzzy_equals (xx, 2.0, 0.0001);
+  graphene_assert_fuzzy_equals (yx, 0.0, 0.0001);
+  graphene_assert_fuzzy_equals (xy, 0.0, 0.0001);
+  graphene_assert_fuzzy_equals (yy, 2.0, 0.0001);
+  graphene_assert_fuzzy_equals (x_0, 0.5, 0.0001);
+  graphene_assert_fuzzy_equals (y_0, 0.5, 0.0001);
+
+  graphene_matrix_init_from_2d (&m2, xx, yx, xy, yy, x_0, y_0);
+  graphene_assert_fuzzy_matrix_equal (&m1, &m2, 0.0001);
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/matrix/identity", matrix_identity)
   GRAPHENE_TEST_UNIT ("/matrix/scale", matrix_scale)
@@ -335,4 +418,7 @@ GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/matrix/neutral_element", matrix_neutral_element)
   GRAPHENE_TEST_UNIT ("/matrix/look_at", matrix_look_at)
   GRAPHENE_TEST_UNIT ("/matrix/invert", matrix_invert)
+  GRAPHENE_TEST_UNIT ("/matrix/2d/identity", matrix_2d_identity)
+  GRAPHENE_TEST_UNIT ("/matrix/2d/transforms", matrix_2d_transforms)
+  GRAPHENE_TEST_UNIT ("/matrix/2d/round-trip", matrix_2d_round_trip)
 )
