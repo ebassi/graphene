@@ -463,7 +463,31 @@ graphene_matrix_is_identity (const graphene_matrix_t *m)
 bool
 graphene_matrix_is_2d (const graphene_matrix_t *m)
 {
-  return graphene_simd4x4f_is_2d (&m->value);
+  float res[4];
+
+  graphene_simd4f_dup_4f (m->value.x, res);
+  if (!(graphene_fuzzy_equals (res[2], 0.f, 0.000001) &&
+        graphene_fuzzy_equals (res[3], 0.f, 0.000001)))
+    return false;
+
+  graphene_simd4f_dup_4f (m->value.y, res);
+  if (!(graphene_fuzzy_equals (res[2], 0.f, 0.000001) &&
+        graphene_fuzzy_equals (res[3], 0.f, 0.000001)))
+    return false;
+
+  graphene_simd4f_dup_4f (m->value.z, res);
+  if (!(graphene_fuzzy_equals (res[0], 0.f, 0.000001) &&
+        graphene_fuzzy_equals (res[1], 0.f, 0.000001) &&
+        graphene_fuzzy_equals (res[2], 1.f, 0.000001) &&
+        graphene_fuzzy_equals (res[3], 0.f, 0.000001)))
+    return false;
+
+  graphene_simd4f_dup_4f (m->value.w, res);
+  if (!(graphene_fuzzy_equals (res[2], 0.f, 0.000001) &&
+        graphene_fuzzy_equals (res[3], 1.f, 0.000001)))
+    return false;
+
+  return true;
 }
 
 /**
