@@ -83,6 +83,23 @@
 #define GRAPHENE_DEG_TO_RAD(x)          ((x) * (GRAPHENE_PI / 180.f))
 #define GRAPHENE_RAD_TO_DEG(x)          ((x) * (180.f / GRAPHENE_PI))
 
+#if defined(__GNUC__)
+/* Use typeof on GCC */
+# define graphene_fuzzy_equals(n1,n2,epsilon) \
+  __extension__({ \
+    typeof ((n1)) __n1 = (n1); \
+    typeof ((n2)) __n2 = (n2); \
+    typeof ((epsilon)) __epsilon = (epsilon); \
+    (bool) ((__n1 > __n2 ? (__n1 - __n2) : (__n2 - __n1)) < __epsilon); \
+  })
+
+#else
+/* fallback for Visual Studio, typeof not supported */
+# define graphene_fuzzy_equals(n1,n2,epsilon) \
+  (((n1) > (n2) ? ((n1) - (n2)) : ((n2) - (n1))) < (epsilon))
+
+#endif /* __GNUC__ */
+
 static inline float
 graphene_lerp (float a, float b, float factor)
 {
