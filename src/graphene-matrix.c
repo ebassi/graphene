@@ -541,7 +541,7 @@ graphene_matrix_init_from_2d (graphene_matrix_t *m,
                               double             y_0)
 {
   m->value = graphene_simd4x4f_init (graphene_simd4f_init ( xx,  yx, 0.f, 0.f),
-                                     graphene_simd4f_init ( yx,  yy, 0.f, 0.f),
+                                     graphene_simd4f_init ( xy,  yy, 0.f, 0.f),
                                      graphene_simd4f_init (0.f, 0.f, 1.f, 0.f),
                                      graphene_simd4f_init (x_0, y_0, 0.f, 1.f));
 
