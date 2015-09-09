@@ -150,13 +150,9 @@ INTROSPECTION_GIRS = Graphene-1.0.gir
 introspection_source_h = $(filter-out graphene-simd4f.h graphene-simd4x4f.h,$(source_h))
 introspection_source_c = $(filter-out graphene-simd4f.c graphene-simd4x4f.c,$(source_c))
 
-filter_cmd = $(SED) \
-	-e 's|\(.*\)_t\b|\1|' \
-	-e 's|^\([a-z]\)|\u\1|' \
-	-e 's|_\([a-z]\)|\u\1|g' \
-	-e 's|\([0-9]\)\([a-z]\)|\1\u\2|g'
+filter_cmd = "$(top_srcdir)/build/identfilter.py"
 
-Graphene-1.0.gir: libgraphene-1.0.la Makefile
+Graphene-1.0.gir: libgraphene-1.0.la $(top_srcdir)/build/identfilter.py Makefile
 
 Graphene_1_0_gir_SCANNERFLAGS = \
 	    --identifier-filter-cmd="$(filter_cmd)" \

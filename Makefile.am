@@ -8,7 +8,8 @@ EXTRA_DIST = \
 	build/autotools/introspection.m4 \
 	build/autotools/tap-driver.sh \
 	build/autotools/tap-test \
-	build/solaris-hwcap.mapfile
+	build/solaris-hwcap.mapfile \
+	build/identfilter.py
 
 SUBDIRS = src doc
 
