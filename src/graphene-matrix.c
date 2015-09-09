@@ -586,21 +586,37 @@ graphene_matrix_to_2d (const graphene_matrix_t *m,
                        double                  *x_0,
                        double                  *y_0)
 {
-  if (!graphene_simd4x4f_is_2d (&m->value))
+  float res[4];
+
+  graphene_simd4f_dup_4f (m->value.x, res);
+  if (res[2] != 0.f && res[3] != 0.f)
     return false;
 
   if (xx != NULL)
-    *xx = graphene_matrix_get_value (m, 0, 0);
+    *xx = res[0];
   if (yx != NULL)
-    *yx = graphene_matrix_get_value (m, 1, 0);
+    *yx = res[1];
+
+  graphene_simd4f_dup_4f (m->value.y, res);
+  if (res[2] != 0.f && res[3] != 0.f)
+    return false;
+
   if (xy != NULL)
-    *xy = graphene_matrix_get_value (m, 0, 1);
+    *xy = res[0];
   if (yy != NULL)
-    *yy = graphene_matrix_get_value (m, 1, 1);
+    *yy = res[1];
+
+  if (graphene_simd4f_cmp_neq (m->value.z, graphene_simd4f_init (0.f, 0., 1.f, 0.f)))
+    return false;
+
+  graphene_simd4f_dup_4f (m->value.w, res);
+  if (res[2] != 0.f && res[3] != 1.f)
+    return false;
+
   if (x_0 != NULL)
-    *x_0 = graphene_matrix_get_value (m, 3, 0);
+    *x_0 = res[0];
   if (y_0 != NULL)
-    *y_0 = graphene_matrix_get_value (m, 3, 1);
+    *y_0 = res[1];
 
   return true;
 }
