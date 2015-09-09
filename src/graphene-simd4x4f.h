@@ -1015,16 +1015,22 @@ graphene_simd4x4f_is_identity (const graphene_simd4x4f_t *m)
 static inline bool
 graphene_simd4x4f_is_2d (const graphene_simd4x4f_t *m)
 {
-  if (!(graphene_simd4f_get_z (m->x) == 0.f && graphene_simd4f_get_w (m->x) == 0.f))
+  float f[4];
+
+  if (!(nearbyintf (graphene_simd4f_get_z (m->x)) == 0 && nearbyintf (graphene_simd4f_get_w (m->x)) == 0))
     return false;
 
-  if (!(graphene_simd4f_get_z (m->y) == 0.f && graphene_simd4f_get_w (m->y) == 0.f))
+  if (!(nearbyintf (graphene_simd4f_get_z (m->y)) == 0 && nearbyintf (graphene_simd4f_get_w (m->y)) == 0))
     return false;
 
-  if (graphene_simd4f_cmp_neq (m->z, graphene_simd4f_init (0, 0, 1, 0)))
+  graphene_simd4f_dup_4f (m->z, f);
+  if (!(nearbyintf (f[0]) == 0 &&
+        nearbyintf (f[1]) == 0 &&
+        nearbyintf (f[2]) == 1 &&
+        nearbyintf (f[3]) == 0))
     return false;
 
-  if (!(graphene_simd4f_get_z (m->w) == 0.f && graphene_simd4f_get_w (m->w) == 1.f))
+  if (!(nearbyintf (graphene_simd4f_get_z (m->w)) == 0 && nearbyintf (graphene_simd4f_get_w (m->w)) == 1))
     return false;
 
   return true;
