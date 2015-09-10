@@ -29,8 +29,9 @@
 #include "config.h"
 #include <stdlib.h>
 #include <math.h>
+#include <float.h>
 
-#define GRAPHENE_FLOAT_EPSILON  (1e-15)
+#define GRAPHENE_FLOAT_EPSILON  FLT_EPSILON
 
 #ifndef MIN
 # if defined(__GNUC__) && __GNUC__ > 3
