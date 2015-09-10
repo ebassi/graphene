@@ -27,6 +27,7 @@
 #include "graphene-simd4f.h"
 
 #include <math.h>
+#include <float.h>
 
 GRAPHENE_BEGIN_DECLS
 
@@ -1017,20 +1018,20 @@ graphene_simd4x4f_is_2d (const graphene_simd4x4f_t *m)
 {
   float f[4];
 
-  if (!(nearbyintf (graphene_simd4f_get_z (m->x)) == 0 && nearbyintf (graphene_simd4f_get_w (m->x)) == 0))
+  if (!(fabsf (graphene_simd4f_get_z (m->x)) < FLT_EPSILON && fabsf (graphene_simd4f_get_w (m->x)) < FLT_EPSILON))
     return false;
 
-  if (!(nearbyintf (graphene_simd4f_get_z (m->y)) == 0 && nearbyintf (graphene_simd4f_get_w (m->y)) == 0))
+  if (!(fabsf (graphene_simd4f_get_z (m->y)) < FLT_EPSILON && fabsf (graphene_simd4f_get_w (m->y)) < FLT_EPSILON))
     return false;
 
   graphene_simd4f_dup_4f (m->z, f);
-  if (!(nearbyintf (f[0]) == 0 &&
-        nearbyintf (f[1]) == 0 &&
-        nearbyintf (f[2]) == 1 &&
-        nearbyintf (f[3]) == 0))
+  if (!(fabsf (f[0]) < FLT_EPSILON &&
+        fabsf (f[1]) < FLT_EPSILON &&
+        1.f - fabsf (f[2]) < FLT_EPSILON &&
+        fabsf (f[3]) < FLT_EPSILON))
     return false;
 
-  if (!(nearbyintf (graphene_simd4f_get_z (m->w)) == 0 && nearbyintf (graphene_simd4f_get_w (m->w)) == 1))
+  if (!(fabsf (graphene_simd4f_get_z (m->w)) < FLT_EPSILON && 1.f - fabsf (graphene_simd4f_get_w (m->w)) < FLT_EPSILON))
     return false;
 
   return true;
