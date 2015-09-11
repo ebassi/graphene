@@ -27,6 +27,21 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_identity)
 
   graphene_matrix_scale (&m, 2.0f, 2.0f, 2.0f);
   g_assert_false (graphene_matrix_is_identity (&m));
+
+  v[0]  = 1.f; v[4]  = 0.f; v[8]  = 0.f; v[12] = 0.f;
+  v[1]  = 0.f; v[5]  = 1.f; v[9]  = 0.f; v[13] = 0.f;
+  v[2]  = 0.f; v[6]  = 0.f; v[10] = 1.f; v[14] = 0.f;
+  v[3]  = 0.f; v[7]  = 0.f; v[11] = 0.f; v[15] = 1.f;
+
+  graphene_matrix_init_from_float (&m, v);
+  g_assert_true (graphene_matrix_is_identity (&m));
+
+  graphene_matrix_init_from_vec4 (&m,
+                                  graphene_vec4_x_axis (),
+                                  graphene_vec4_y_axis (),
+                                  graphene_vec4_z_axis (),
+                                  graphene_vec4_w_axis ());
+  g_assert_true (graphene_matrix_is_identity (&m));
 }
 GRAPHENE_TEST_UNIT_END
 
