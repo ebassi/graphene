@@ -1310,11 +1310,10 @@ graphene_matrix_rotate_euler (graphene_matrix_t      *m,
 }
 
 static inline void
-graphene_matrix_rotate_internal (graphene_simd4x4f_t *m,
-                                 float                angle,
-                                 graphene_simd4f_t    axis)
+graphene_matrix_rotate_internal (graphene_simd4x4f_t     *m,
+                                 float                    rad,
+                                 const graphene_simd4f_t  axis)
 {
-  float rad = GRAPHENE_DEG_TO_RAD (angle);
   graphene_simd4x4f_t rot_m;
 
   graphene_simd4x4f_rotation (&rot_m, rad, axis);
@@ -1337,7 +1336,7 @@ graphene_matrix_rotate (graphene_matrix_t     *m,
                         float                  angle,
                         const graphene_vec3_t *axis)
 {
-  graphene_matrix_rotate_internal (&m->value, angle, axis->value);
+  graphene_matrix_rotate_internal (&m->value, GRAPHENE_DEG_TO_RAD (angle), axis->value);
 }
 
 /**
@@ -1354,7 +1353,8 @@ void
 graphene_matrix_rotate_x (graphene_matrix_t *m,
                           float              angle)
 {
-  graphene_matrix_rotate_internal (&m->value, angle, graphene_simd4f_init (1.f, 0.f, 0.f, 0.f));
+  graphene_matrix_rotate_internal (&m->value, GRAPHENE_DEG_TO_RAD (angle),
+                                   graphene_simd4f_init (1.f, 0.f, 0.f, 0.f));
 }
 
 /**
@@ -1371,7 +1371,8 @@ void
 graphene_matrix_rotate_y (graphene_matrix_t *m,
                           float              angle)
 {
-  graphene_matrix_rotate_internal (&m->value, angle, graphene_simd4f_init (0.f, 1.f, 0.f, 0.f));
+  graphene_matrix_rotate_internal (&m->value, GRAPHENE_DEG_TO_RAD (angle),
+                                   graphene_simd4f_init (0.f, 1.f, 0.f, 0.f));
 }
 
 /**
@@ -1388,7 +1389,8 @@ void
 graphene_matrix_rotate_z (graphene_matrix_t *m,
                           float              angle)
 {
-  graphene_matrix_rotate_internal (&m->value, angle, graphene_simd4f_init (0.f, 0.f, 1.f, 0.f));
+  graphene_matrix_rotate_internal (&m->value, GRAPHENE_DEG_TO_RAD (angle),
+                                   graphene_simd4f_init (0.f, 0.f, 1.f, 0.f));
 }
 
 /**
