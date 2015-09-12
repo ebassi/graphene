@@ -53,6 +53,7 @@
 #include "graphene-sphere.h"
 #include "graphene-box.h"
 #include "graphene-triangle.h"
+#include "graphene-ray.h"
 
 #undef GRAPHENE_H_INSIDE
 

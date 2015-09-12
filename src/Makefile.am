@@ -32,6 +32,7 @@ source_h = \
 	graphene-point3d.h \
 	graphene-quad.h \
 	graphene-quaternion.h \
+	graphene-ray.h \
 	graphene-rect.h \
 	graphene-simd4f.h \
 	graphene-simd4x4f.h \
@@ -54,6 +55,7 @@ source_c = \
 	graphene-point3d.c \
 	graphene-quad.c \
 	graphene-quaternion.c \
+	graphene-ray.c \
 	graphene-rect.c \
 	graphene-simd4f.c \
 	graphene-simd4x4f.c \
