@@ -82,6 +82,7 @@ GRAPHENE_TYPE_POINT
 GRAPHENE_TYPE_POINT3D
 GRAPHENE_TYPE_QUAD
 GRAPHENE_TYPE_QUATERNION
+GRAPHENE_TYPE_RAY
 GRAPHENE_TYPE_RECT
 GRAPHENE_TYPE_SIZE
 GRAPHENE_TYPE_SPHERE
@@ -98,6 +99,7 @@ graphene_point3d_get_type
 graphene_point_get_type
 graphene_quad_get_type
 graphene_quaternion_get_type
+graphene_ray_get_type
 graphene_rect_get_type
 graphene_size_get_type
 graphene_sphere_get_type
@@ -278,6 +280,23 @@ graphene_quaternion_dot
 graphene_quaternion_invert
 graphene_quaternion_normalize
 graphene_quaternion_slerp
+</SECTION>
+
+<SECTION>
+<FILE>graphene-ray</FILE>
+graphene_ray_t
+graphene_ray_alloc
+graphene_ray_free
+graphene_ray_init
+graphene_ray_init_from_ray
+graphene_ray_init_from_vec3
+graphene_ray_get_origin
+graphene_ray_get_direction
+graphene_ray_get_position_at
+graphene_ray_get_distance_to_point
+graphene_ray_get_distance_to_plane
+graphene_ray_get_closest_point_to_point
+graphene_ray_equal
 </SECTION>
 
 <SECTION>
