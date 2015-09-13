@@ -22,6 +22,7 @@ test_programs = \
 	point3d \
 	quad \
 	quaternion \
+	ray \
 	rect \
 	simd \
 	size \
