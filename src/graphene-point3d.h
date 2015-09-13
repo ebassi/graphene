@@ -114,6 +114,10 @@ float                           graphene_point3d_length                 (const g
 GRAPHENE_AVAILABLE_IN_1_0
 void                            graphene_point3d_normalize              (const graphene_point3d_t *p,
                                                                          graphene_point3d_t       *res);
+GRAPHENE_AVAILABLE_IN_1_4
+float                           graphene_point3d_distance               (const graphene_point3d_t *a,
+                                                                         const graphene_point3d_t *b,
+                                                                         graphene_vec3_t          *delta);
 
 GRAPHENE_AVAILABLE_IN_1_0
 void                            graphene_point3d_interpolate            (const graphene_point3d_t *a,

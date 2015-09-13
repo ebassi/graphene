@@ -238,6 +238,7 @@ graphene_point3d_cross
 graphene_point3d_dot
 graphene_point3d_length
 graphene_point3d_normalize
+graphene_point3d_distance
 graphene_point3d_interpolate
 graphene_point3d_zero
 </SECTION>

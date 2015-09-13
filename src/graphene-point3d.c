@@ -340,6 +340,41 @@ graphene_point3d_normalize (const graphene_point3d_t *p,
 }
 
 /**
+ * graphene_point3d_distance:
+ * @a: a #graphene_point3d_t
+ * @b: a #graphene_point3d_t
+ * @delta: (out caller-allocates) (optional): return location for the distance
+ *   components on the X, Y, and Z axis
+ *
+ * Computes the distance between the two given #graphene_point3d_t.
+ *
+ * Returns: the distance between two points
+ *
+ * Since: 1.4
+ */
+float
+graphene_point3d_distance (const graphene_point3d_t *a,
+                           const graphene_point3d_t *b,
+                           graphene_vec3_t          *delta)
+{
+  graphene_vec3_t v_a, v_b, res;
+
+  graphene_point3d_to_vec3 (a, &v_a);
+  graphene_point3d_to_vec3 (b, &v_b);
+
+  graphene_vec3_subtract (&v_a, &v_b, &res);
+  if (delta != NULL)
+    {
+      graphene_vec3_init (delta,
+                          fabsf (graphene_vec3_get_x (&res)),
+                          fabsf (graphene_vec3_get_y (&res)),
+                          fabsf (graphene_vec3_get_z (&res)));
+    }
+
+  return graphene_vec3_length (&res);
+}
+
+/**
  * graphene_point3d_interpolate:
  * @a: a #graphene_point3d_t
  * @b: a #graphene_point3d_t
