@@ -58,6 +58,7 @@
 #include "graphene-point3d.h"
 #include "graphene-quad.h"
 #include "graphene-quaternion.h"
+#include "graphene-ray.h"
 #include "graphene-rect.h"
 #include "graphene-simd4x4f.h"
 #include "graphene-sphere.h"
@@ -1005,6 +1006,34 @@ graphene_matrix_transform_box (const graphene_matrix_t *m,
     graphene_simd4x4f_point3_mul (&m->value, &(points[i].value), &(points[i].value));
 
   graphene_box_init_from_vectors (res, 8, points);
+}
+
+/**
+ * graphene_matrix_transform_ray:
+ * @m: a #graphene_matrix_t
+ * @r: a #graphene_ray_t
+ * @res: (out caller-allocates): return location for the
+ *   transformed ray
+ *
+ * Transform a #graphene_ray_t using the given matrix @m.
+ *
+ * Since: 1.4
+ */
+void
+graphene_matrix_transform_ray (const graphene_matrix_t *m,
+                               const graphene_ray_t    *r,
+                               graphene_ray_t          *res)
+{
+  graphene_vec3_t origin, direction;
+
+  graphene_vec3_add (&r->direction, &r->origin, &direction);
+  graphene_matrix_transform_vec3 (m, &direction, &direction);
+
+  graphene_matrix_transform_vec3 (m, &r->origin, &origin);
+
+  graphene_vec3_subtract (&direction, &origin, &direction);
+
+  graphene_ray_init_from_vec3 (res, &origin, &direction);
 }
 
 /**

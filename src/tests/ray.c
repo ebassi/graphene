@@ -95,9 +95,31 @@ GRAPHENE_TEST_UNIT_BEGIN (ray_closest_point_to_point)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (ray_matrix_transform)
+{
+  graphene_ray_t r, res;
+  graphene_matrix_t m;
+
+  if (g_test_verbose ())
+    g_test_message ("Identity matrix...");
+  graphene_ray_init (&r, &one3, graphene_vec3_z_axis ());
+  graphene_matrix_init_identity (&m);
+  graphene_matrix_transform_ray (&m, &r, &res);
+  g_assert_true (graphene_ray_equal (&r, &res));
+
+  if (g_test_verbose ())
+    g_test_message ("Rotation matrix: rotateZ(90deg)");
+  graphene_ray_init (&r, &zero3, graphene_vec3_z_axis ());
+  graphene_matrix_init_rotate (&m, 90, graphene_vec3_z_axis ());
+  graphene_matrix_transform_ray (&m, &r, &res);
+  g_assert_true (graphene_ray_equal (&r, &res));
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/ray/init", ray_init)
   GRAPHENE_TEST_UNIT ("/ray/get-position-at", ray_get_position_at)
   GRAPHENE_TEST_UNIT ("/ray/get-distance-to-point", ray_get_distance_to_point)
   GRAPHENE_TEST_UNIT ("/ray/closest-point-to-point", ray_closest_point_to_point)
+  GRAPHENE_TEST_UNIT ("/ray/matrix-transform", ray_matrix_transform)
 )

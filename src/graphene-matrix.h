@@ -183,6 +183,10 @@ GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_matrix_transform_box           (const graphene_matrix_t  *m,
                                                                  const graphene_box_t     *b,
                                                                  graphene_box_t           *res);
+GRAPHENE_AVAILABLE_IN_1_4
+void                    graphene_matrix_transform_ray           (const graphene_matrix_t  *m,
+                                                                 const graphene_ray_t     *r,
+                                                                 graphene_ray_t           *res);
 
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_project_point           (const graphene_matrix_t  *m,
