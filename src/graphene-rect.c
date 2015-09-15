@@ -684,6 +684,8 @@ graphene_rect_inset_r (const graphene_rect_t *r,
  * Returns: (transfer none): the pixel-aligned rectangle.
  *
  * Since: 1.0
+ *
+ * Deprecated: 1.4: Use graphene_rect_round() instead
  */
 graphene_rect_t *
 graphene_rect_round_to_pixel (graphene_rect_t *r)
