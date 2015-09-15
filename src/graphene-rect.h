@@ -92,6 +92,9 @@ bool                    graphene_rect_equal             (const graphene_rect_t *
                                                          const graphene_rect_t *b);
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_rect_t *       graphene_rect_normalize         (graphene_rect_t       *r);
+GRAPHENE_AVAILABLE_IN_1_4
+void                    graphene_rect_normalize_r       (const graphene_rect_t *r,
+                                                         graphene_rect_t       *res);
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_rect_get_center        (const graphene_rect_t *r,
                                                          graphene_point_t      *p);
@@ -134,10 +137,20 @@ GRAPHENE_AVAILABLE_IN_1_0
 graphene_rect_t *       graphene_rect_offset            (graphene_rect_t        *r,
                                                          float                   d_x,
                                                          float                   d_y);
+GRAPHENE_AVAILABLE_IN_1_4
+void                    graphene_rect_offset_r          (const graphene_rect_t  *r,
+                                                         float                   d_x,
+                                                         float                   d_y,
+                                                         graphene_rect_t        *res);
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_rect_t *       graphene_rect_inset             (graphene_rect_t        *r,
                                                          float                   d_x,
                                                          float                   d_y);
+GRAPHENE_AVAILABLE_IN_1_4
+void                    graphene_rect_inset_r           (const graphene_rect_t  *r,
+                                                         float                   d_x,
+                                                         float                   d_y,
+                                                         graphene_rect_t        *res);
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_rect_t *       graphene_rect_round_to_pixel    (graphene_rect_t        *r);
 GRAPHENE_AVAILABLE_IN_1_0

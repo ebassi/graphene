@@ -45,7 +45,7 @@
  *
  * Normalizes the passed #graphene_rect_t.
  */
-static void
+static inline void
 graphene_rect_normalize_in_place (graphene_rect_t *r)
 {
   if (likely (r->size.width >= 0.f && r->size.height >= 0.f))
@@ -209,6 +209,30 @@ graphene_rect_normalize (graphene_rect_t *r)
   graphene_rect_normalize_in_place (r);
 
   return r;
+}
+
+/**
+ * graphene_rect_normalize_r:
+ * @r: a #graphene_rect_t
+ * @res: (out caller-allocates): the return location for the
+ *   normalized rectangle
+ *
+ * Normalizes the passed rectangle.
+ *
+ * This function ensures that the size of the rectangle is made of
+ * positive values, and the the the origin is in the top-left corner
+ * of the rectangle.
+ *
+ * Since: 1.4
+ */
+void
+graphene_rect_normalize_r (const graphene_rect_t *r,
+                           graphene_rect_t       *res)
+{
+  if (res != r)
+    *res = *r;
+
+  graphene_rect_normalize_in_place (res);
 }
 
 /**
@@ -531,12 +555,35 @@ graphene_rect_offset (graphene_rect_t *r,
                       float            d_x,
                       float            d_y)
 {
-  graphene_rect_normalize_in_place (r);
-
-  r->origin.x += d_x;
-  r->origin.y += d_y;
+  graphene_rect_offset_r (r, d_x, d_y, r);
 
   return r;
+}
+
+/**
+ * graphene_rect_offset_r:
+ * @r: a #graphene_rect_t
+ * @d_x: the horizontal offset
+ * @d_y: the vertical offset
+ * @res: (out caller-allocates): return location for the offset
+ *   rectangle
+ *
+ * Offsets the origin of the given rectangle by @d_x and @d_y.
+ *
+ * The size of the rectangle is left unchanged.
+ *
+ * Since: 1.4
+ */
+void
+graphene_rect_offset_r (const graphene_rect_t *r,
+                        float                  d_x,
+                        float                  d_y,
+                        graphene_rect_t       *res)
+{
+  graphene_rect_normalize_r (r, res);
+
+  res->origin.x += d_x;
+  res->origin.y += d_y;
 }
 
 /**
@@ -553,7 +600,7 @@ graphene_rect_offset (graphene_rect_t *r,
  * values.
  *
  * The origin of the rectangle is offset by @d_x and @d_y, while the size
- * is adjusted by (2 * @d_x, 2 * @d_y). If @d_x and @d_y are positive
+ * is adjusted by `(2 * @d_x, 2 * @d_y)`. If @d_x and @d_y are positive
  * values, the size of the rectangle is decreased; if @d_x and @d_y are
  * negative values, the size of the rectangle is increased.
  *
@@ -569,28 +616,61 @@ graphene_rect_inset (graphene_rect_t *r,
                      float            d_x,
                      float            d_y)
 {
-  graphene_rect_normalize_in_place (r);
-
-  r->origin.x += d_x;
-  r->origin.y += d_y;
-
-  if (d_x >= 0.f)
-    r->size.width -= (d_x * 2.f);
-  else
-    r->size.width += (d_x * -2.f);
-
-  if (d_y >= 0.f)
-    r->size.height -= (d_y * 2.f);
-  else
-    r->size.height += (d_y * -2.f);
-
-  if (r->size.width < 0.f)
-    r->size.width = 0.f;
-
-  if (r->size.height < 0.f)
-    r->size.height = 0.f;
+  graphene_rect_inset_r (r, d_x, d_y, r);
 
   return r;
+}
+
+/**
+ * graphene_rect_inset_r:
+ * @r: a #graphene_rect_t
+ * @d_x: the horizontal inset
+ * @d_y: the vertical inset
+ * @res: (out caller-allocates): return location for the inset rectangle
+ *
+ * Changes the given rectangle to be smaller, or larger depending on the
+ * given inset parameters.
+ *
+ * To create an inset rectangle, use positive @d_x or @d_y values; to
+ * create a larger, encompassing rectangle, use negative @d_x or @d_y
+ * values.
+ *
+ * The origin of the rectangle is offset by @d_x and @d_y, while the size
+ * is adjusted by `(2 * @d_x, 2 * @d_y)`. If @d_x and @d_y are positive
+ * values, the size of the rectangle is decreased; if @d_x and @d_y are
+ * negative values, the size of the rectangle is increased.
+ *
+ * If the size of the resulting inset rectangle has a negative width or
+ * height then the size will be set to zero.
+ *
+ * Since: 1.4
+ */
+void
+graphene_rect_inset_r (const graphene_rect_t *r,
+                       float                  d_x,
+                       float                  d_y,
+                       graphene_rect_t       *res)
+{
+  graphene_rect_normalize_r (r, res);
+
+  res->origin.x += d_x;
+  res->origin.y += d_y;
+
+  if (d_x >= 0.f)
+    res->size.width -= (d_x * 2.f);
+  else
+    res->size.width += (d_x * -2.f);
+
+  if (d_y >= 0.f)
+    res->size.height -= (d_y * 2.f);
+  else
+    res->size.height += (d_y * -2.f);
+
+  if (res->size.width < 0.f)
+    res->size.width = 0.f;
+
+  if (res->size.height < 0.f)
+    res->size.height = 0.f;
 }
 
 /**
