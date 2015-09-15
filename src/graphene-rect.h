@@ -153,6 +153,9 @@ void                    graphene_rect_inset_r           (const graphene_rect_t  
                                                          graphene_rect_t        *res);
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_rect_t *       graphene_rect_round_to_pixel    (graphene_rect_t        *r);
+GRAPHENE_AVAILABLE_IN_1_4
+void                    graphene_rect_round             (const graphene_rect_t  *r,
+                                                         graphene_rect_t        *res);
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_rect_interpolate       (const graphene_rect_t  *a,
                                                          const graphene_rect_t  *b,

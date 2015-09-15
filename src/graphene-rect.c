@@ -688,15 +688,37 @@ graphene_rect_inset_r (const graphene_rect_t *r,
 graphene_rect_t *
 graphene_rect_round_to_pixel (graphene_rect_t *r)
 {
-  graphene_rect_normalize_in_place (r);
-
-  r->origin.x = floorf (r->origin.x);
-  r->origin.y = floorf (r->origin.y);
-
-  r->size.width = ceilf (r->size.width);
-  r->size.height = ceilf (r->size.height);
+  graphene_rect_round (r, r);
 
   return r;
+}
+
+/**
+ * graphene_rect_round:
+ * @r: a #graphene_rect_t
+ * @res: (out caller-allocates): return location for the
+ *   rounded rectangle
+ *
+ * Rounds the origin and size of the given rectangle to
+ * their nearest integer values; the rounding is guaranteed
+ * to be large enough to contain the original rectangle.
+ *
+ * This function is the equivalent of calling `floor` on
+ * the coordinates of the origin, and `ceil` on the size.
+ *
+ * Since: 1.4
+ */
+void
+graphene_rect_round (const graphene_rect_t *r,
+                     graphene_rect_t       *res)
+{
+  graphene_rect_normalize_r (r, res);
+
+  res->origin.x = floorf (res->origin.x);
+  res->origin.y = floorf (res->origin.y);
+
+  res->size.width = ceilf (res->size.width);
+  res->size.height = ceilf (res->size.height);
 }
 
 /**
