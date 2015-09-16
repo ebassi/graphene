@@ -21,7 +21,7 @@
 
     <refsect2 id="overview">
       <para>
-        Graphene is a library of data types commonly used to implement 2D-in-3D as well as full 3D canvases.
+        Graphene is a library of data types commonly used to implement 2D-in-3D or full 3D canvases.
       </para>
       <para>
         Graphene only contains math data types, like vectors and matrices; it does not deal with windowing
