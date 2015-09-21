@@ -125,21 +125,13 @@ nodist_grapheneinclude_HEADERS = \
 	$(NULL)
 
 # pkg-config files
-graphene-1.0.pc: graphene.pc
-	$(AM_V_GEN)cp -f $< $@
-
-pkgconfigdir = $(libdir)/pkgconfig
-
-pkgconfig_DATA = graphene-1.0.pc
-CLEANFILES += graphene-1.0.pc
 EXTRA_DIST += graphene.pc.in
 
-if BUILD_GOBJECT
-graphene-gobject-1.0.pc: graphene.pc
-	$(AM_V_GEN)cp -f $< $@
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = graphene-1.0.pc
 
+if BUILD_GOBJECT
 pkgconfig_DATA += graphene-gobject-1.0.pc
-CLEANFILES += graphene-gobject-1.0.pc
 
 -include $(INTROSPECTION_MAKEFILE)
 
