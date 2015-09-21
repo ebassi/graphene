@@ -61,7 +61,7 @@
 graphene_frustum_t *
 graphene_frustum_alloc (void)
 {
-  return calloc (1, sizeof (graphene_frustum_t));
+  return graphene_aligned_alloc0 (sizeof (graphene_frustum_t), 1, 16);
 }
 
 /**
@@ -75,7 +75,7 @@ graphene_frustum_alloc (void)
 void
 graphene_frustum_free (graphene_frustum_t *f)
 {
-  free (f);
+  graphene_aligned_free (f);
 }
 
 /**
