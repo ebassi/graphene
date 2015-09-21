@@ -194,7 +194,7 @@ AS_IF([test "x$enable_gcc_vector" = xyes && test "x$graphene_cv_use_gcc_vector" 
         AC_MSG_ERROR([GNUC vector intrinsics not detected when explicitly enabled])
       ])
 
-AS_IF([test "x$graphene_cv_use_gcc_vector" = xyes], [GRAPHENE_SIMD="$GRAPHENE_SIMD gcc"])
+AS_IF([test "x$graphene_cv_use_gcc_vector" = xyes], [GRAPHENE_SIMD="gcc $GRAPHENE_SIMD"])
 
 AM_CONDITIONAL(BUILD_WITH_GCC, [test "x$graphene_cv_use_gcc_vector" = xyes])
 
@@ -279,7 +279,7 @@ AS_IF([test "x$enable_sse2" = xyes && test "x$graphene_cv_use_sse2" = xno],
         AC_MSG_ERROR([SSE2 intrinsics not detected when explicitly enabled])
       ])
 
-AS_IF([test "x$graphene_cv_use_sse2" = xyes], [GRAPHENE_SIMD="$GRAPHENE_SIMD sse2"])
+AS_IF([test "x$graphene_cv_use_sse2" = xyes], [GRAPHENE_SIMD="sse2 $GRAPHENE_SIMD"])
 
 AM_CONDITIONAL(BUILD_WITH_SSE2, [test "x$graphene_cv_use_sse2" = xyes])
 
@@ -343,7 +343,7 @@ AS_IF([test "x$enable_arm_neon" = xyes && test "x$graphene_cvs_use_arm_neon" = x
         AC_MSG_ERROR([ARM NEON intrinsics not detected when explicitly enabled])
       ])
 
-AS_IF([test "x$graphene_cv_use_arm_neon" = xyes], [GRAPHENE_SIMD="$GRAPHENE_SIMD neon"])
+AS_IF([test "x$graphene_cv_use_arm_neon" = xyes], [GRAPHENE_SIMD="neon $GRAPHENE_SIMD"])
 
 AM_CONDITIONAL(BUILD_WITH_ARM_NEON, [test "x$graphene_cv_use_arm_neon" = xyes])
 
