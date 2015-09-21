@@ -70,11 +70,13 @@ GRAPHENE_MAJOR_VERSION=graphene_major_version
 GRAPHENE_MINOR_VERSION=graphene_minor_version
 GRAPHENE_MICRO_VERSION=graphene_micro_version
 GRAPHENE_VERSION=graphene_version
+GRAPHENE_API_VERSION=graphene_major_version.0
 GRAPHENE_RELEASE_STATUS=graphene_release_status
 AC_SUBST(GRAPHENE_MAJOR_VERSION)
 AC_SUBST(GRAPHENE_MICRO_VERSION)
 AC_SUBST(GRAPHENE_MINOR_VERSION)
 AC_SUBST(GRAPHENE_VERSION)
+AC_SUBST(GRAPHENE_API_VERSION)
 AC_SUBST(GRAPHENE_RELEASE_STATUS)
 
 GRAPHENE_LT_CURRENT=lt_current
@@ -749,7 +751,8 @@ AC_CONFIG_FILES([
         src/tests/Makefile
         src/bench/Makefile
 
-        src/graphene.pc
+        src/graphene-$GRAPHENE_API_VERSION.pc:src/graphene.pc.in
+        src/graphene-gobject-$GRAPHENE_API_VERSION.pc:src/graphene.pc.in
 
         src/graphene-version.h
 
