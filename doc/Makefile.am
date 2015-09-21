@@ -16,7 +16,7 @@ IGNORE_HFILES = \
 	graphene.h \
 	graphene-private.h \
 	graphene-alloc-private.h \
-	graphene-line-segment.h \
+	graphene-line-segment-private.h \
 	graphene-macros.h \
 	graphene-version-macros.h \
 	graphene-vectors-private.h \
