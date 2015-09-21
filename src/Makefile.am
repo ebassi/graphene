@@ -36,6 +36,7 @@ source_h = \
 	graphene-rect.h \
 	graphene-simd4f.h \
 	graphene-simd4x4f.h \
+	graphene-size.h \
 	graphene-sphere.h \
 	graphene-vec2.h \
 	graphene-vec3.h \

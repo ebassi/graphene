@@ -31,7 +31,7 @@
  */
 
 #include "graphene-private.h"
-#include "graphene-point.h"
+#include "graphene-size.h"
 
 #include <math.h>
 

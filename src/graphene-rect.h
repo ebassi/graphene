@@ -30,6 +30,7 @@
 
 #include "graphene-types.h"
 #include "graphene-point.h"
+#include "graphene-size.h"
 
 GRAPHENE_BEGIN_DECLS
 
