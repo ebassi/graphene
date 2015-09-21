@@ -44,6 +44,7 @@
 
 #include "graphene-euler.h"
 
+#include "graphene-alloc-private.h"
 #include "graphene-matrix.h"
 #include "graphene-quaternion.h"
 #include "graphene-vectors-private.h"
@@ -64,7 +65,7 @@
 graphene_euler_t *
 graphene_euler_alloc (void)
 {
-  return calloc (1, sizeof (graphene_euler_t));
+  return graphene_aligned_alloc0 (sizeof (graphene_euler_t), 1, 16);
 }
 
 /**
@@ -78,7 +79,7 @@ graphene_euler_alloc (void)
 void
 graphene_euler_free (graphene_euler_t *e)
 {
-  free (e);
+  graphene_aligned_free (e);
 }
 
 /**

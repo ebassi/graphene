@@ -34,6 +34,8 @@
 #include "graphene-private.h"
 
 #include "graphene-plane.h"
+
+#include "graphene-alloc-private.h"
 #include "graphene-point3d.h"
 #include "graphene-vec3.h"
 #include "graphene-vec4.h"
@@ -56,7 +58,7 @@
 graphene_plane_t *
 graphene_plane_alloc (void)
 {
-  return calloc (1, sizeof (graphene_plane_t));
+  return graphene_aligned_alloc0 (sizeof (graphene_plane_t), 1, 16);
 }
 
 /**
@@ -70,7 +72,7 @@ graphene_plane_alloc (void)
 void
 graphene_plane_free (graphene_plane_t *p)
 {
-  free (p);
+  graphene_aligned_free (p);
 }
 
 /**

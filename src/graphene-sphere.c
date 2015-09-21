@@ -34,6 +34,7 @@
 
 #include "graphene-sphere.h"
 
+#include "graphene-alloc-private.h"
 #include "graphene-box.h"
 #include "graphene-point3d.h"
 #include "graphene-simd4f.h"
@@ -55,7 +56,7 @@
 graphene_sphere_t *
 graphene_sphere_alloc (void)
 {
-  return calloc (1, sizeof (graphene_sphere_t));
+  return graphene_aligned_alloc0 (sizeof (graphene_sphere_t), 1, 16);
 }
 
 /**
@@ -69,7 +70,7 @@ graphene_sphere_alloc (void)
 void
 graphene_sphere_free (graphene_sphere_t *s)
 {
-  free (s);
+  graphene_aligned_free (s);
 }
 
 /**
