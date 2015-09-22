@@ -102,9 +102,7 @@ static inline graphene_point3d_t *
 graphene_point3d_init_from_simd4f (graphene_point3d_t      *p,
                                    const graphene_simd4f_t  v)
 {
-  p->x = graphene_simd4f_get_x (v);
-  p->y = graphene_simd4f_get_y (v);
-  p->z = graphene_simd4f_get_z (v);
+  graphene_simd4f_dup_3f (v, &(p->x));
 
   return p;
 }
