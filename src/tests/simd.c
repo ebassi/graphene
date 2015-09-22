@@ -8,6 +8,7 @@ simd_dup_4f (void)
 {
   graphene_simd4f_t s;
   float v[4];
+  struct { float x, y, z, w; } p;
 
   s = graphene_simd4f_init (2.f, 3.f, 4.f, 5.f);
   graphene_simd4f_dup_4f (s, v);
@@ -16,6 +17,12 @@ simd_dup_4f (void)
   g_assert_cmpfloat (v[1], ==, 3.f);
   g_assert_cmpfloat (v[2], ==, 4.f);
   g_assert_cmpfloat (v[3], ==, 5.f);
+
+  graphene_simd4f_dup_4f (s, &(p.x));
+  g_assert_cmpfloat (p.x, ==, 2.f);
+  g_assert_cmpfloat (p.y, ==, 3.f);
+  g_assert_cmpfloat (p.z, ==, 4.f);
+  g_assert_cmpfloat (p.w, ==, 5.f);
 }
 
 static void
@@ -23,6 +30,7 @@ simd_dup_3f (void)
 {
   graphene_simd4f_t s;
   float v[3];
+  struct { float x, y, z; } p;
 
   s = graphene_simd4f_init (2.f, 3.f, 4.f, 5.f);
   graphene_simd4f_dup_3f (s, v);
@@ -30,6 +38,11 @@ simd_dup_3f (void)
   g_assert_cmpfloat (v[0], ==, 2.f);
   g_assert_cmpfloat (v[1], ==, 3.f);
   g_assert_cmpfloat (v[2], ==, 4.f);
+
+  graphene_simd4f_dup_3f (s, &(p.x));
+  g_assert_cmpfloat (p.x, ==, 2.f);
+  g_assert_cmpfloat (p.y, ==, 3.f);
+  g_assert_cmpfloat (p.z, ==, 4.f);
 }
 
 static void
@@ -37,12 +50,17 @@ simd_dup_2f (void)
 {
   graphene_simd4f_t s;
   float v[2];
+  struct { float x, y; } p;
 
   s = graphene_simd4f_init (2.f, 3.f, 4.f, 5.f);
   graphene_simd4f_dup_2f (s, v);
 
   g_assert_cmpfloat (v[0], ==, 2.f);
   g_assert_cmpfloat (v[1], ==, 3.f);
+
+  graphene_simd4f_dup_2f (s, &(p.x));
+  g_assert_cmpfloat (p.x, ==, 2.f);
+  g_assert_cmpfloat (p.y, ==, 3.f);
 }
 
 static void
