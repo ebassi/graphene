@@ -152,7 +152,7 @@ graphene_point_t *
 graphene_point_init_from_vec2 (graphene_point_t      *p,
                                const graphene_vec2_t *src)
 {
-  graphene_simd4f_dup_2f (src->value, &p[0]);
+  graphene_simd4f_dup_2f (src->value, (float *) p);
 
   return p;
 }
