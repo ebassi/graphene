@@ -201,10 +201,12 @@ graphene_point_alloc
 graphene_point_free
 graphene_point_init
 graphene_point_init_from_point
+graphene_point_init_from_vec2
 graphene_point_equal
 graphene_point_distance
 graphene_point_near
 graphene_point_interpolate
+graphene_point_to_vec2
 graphene_point_zero
 </SECTION>
 

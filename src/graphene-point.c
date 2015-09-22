@@ -34,8 +34,11 @@
  */
 
 #include "graphene-private.h"
+
 #include "graphene-point.h"
+
 #include "graphene-simd4f.h"
+#include "graphene-vec2.h"
 
 #include <math.h>
 
@@ -130,6 +133,26 @@ graphene_point_init_from_point (graphene_point_t       *p,
                                 const graphene_point_t *src)
 {
   *p = *src;
+
+  return p;
+}
+
+/**
+ * graphene_point_init_from_vec2:
+ * @p: the #graphene_point_t to initialize
+ * @src: a #graphene_vec2_t
+ *
+ * Initializes @p with the coordinates inside the given #graphene_vec2_t.
+ *
+ * Returns: (transfer none): the initialized point
+ *
+ * Since: 1.4
+ */
+graphene_point_t *
+graphene_point_init_from_vec2 (graphene_point_t      *p,
+                               const graphene_vec2_t *src)
+{
+  graphene_simd4f_dup_2f (src->value, &p[0]);
 
   return p;
 }
@@ -252,6 +275,23 @@ graphene_point_interpolate (const graphene_point_t *a,
 {
   res->x = graphene_lerp (a->x, b->x, factor);
   res->y = graphene_lerp (a->y, b->y, factor);
+}
+
+/**
+ * graphene_point_to_vec2:
+ * @p: a #graphene_point_t
+ * @v: (out caller-allocates): return location for the vertex
+ *
+ * Stores the coordinates of the given #graphene_point_t into a
+ * #graphene_vec2_t.
+ *
+ * Since: 1.4
+ */
+void
+graphene_point_to_vec2 (const graphene_point_t *p,
+                        graphene_vec2_t        *v)
+{
+  v->value = graphene_simd4f_init (p->x, p->y, 0.f, 0.f);
 }
 
 static const graphene_point_t _graphene_point_zero = GRAPHENE_POINT_INIT_ZERO;

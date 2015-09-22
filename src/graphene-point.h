@@ -82,8 +82,11 @@ graphene_point_t *              graphene_point_init             (graphene_point_
                                                                  float                   x,
                                                                  float                   y);
 GRAPHENE_AVAILABLE_IN_1_0
-graphene_point_t *              graphene_point_init_from_point  (graphene_point_t *p,
+graphene_point_t *              graphene_point_init_from_point  (graphene_point_t       *p,
                                                                  const graphene_point_t *src);
+GRAPHENE_AVAILABLE_IN_1_4
+graphene_point_t *              graphene_point_init_from_vec2   (graphene_point_t       *p,
+                                                                 const graphene_vec2_t  *src);
 GRAPHENE_AVAILABLE_IN_1_0
 bool                            graphene_point_equal            (const graphene_point_t *a,
                                                                  const graphene_point_t *b);
@@ -104,6 +107,10 @@ void                            graphene_point_interpolate      (const graphene_
                                                                  const graphene_point_t *b,
                                                                  double                  factor,
                                                                  graphene_point_t       *res);
+
+GRAPHENE_AVAILABLE_IN_1_4
+void                            graphene_point_to_vec2          (const graphene_point_t *p,
+                                                                 graphene_vec2_t        *v);
 
 GRAPHENE_AVAILABLE_IN_1_0
 const graphene_point_t *        graphene_point_zero             (void);
