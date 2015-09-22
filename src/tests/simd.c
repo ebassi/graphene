@@ -4,6 +4,48 @@
 #include "graphene-test-compat.h"
 
 static void
+simd_dup_4f (void)
+{
+  graphene_simd4f_t s;
+  float v[4];
+
+  s = graphene_simd4f_init (2.f, 3.f, 4.f, 5.f);
+  graphene_simd4f_dup_4f (s, v);
+
+  g_assert_cmpfloat (v[0], ==, 2.f);
+  g_assert_cmpfloat (v[1], ==, 3.f);
+  g_assert_cmpfloat (v[2], ==, 4.f);
+  g_assert_cmpfloat (v[3], ==, 5.f);
+}
+
+static void
+simd_dup_3f (void)
+{
+  graphene_simd4f_t s;
+  float v[3];
+
+  s = graphene_simd4f_init (2.f, 3.f, 4.f, 5.f);
+  graphene_simd4f_dup_3f (s, v);
+
+  g_assert_cmpfloat (v[0], ==, 2.f);
+  g_assert_cmpfloat (v[1], ==, 3.f);
+  g_assert_cmpfloat (v[2], ==, 4.f);
+}
+
+static void
+simd_dup_2f (void)
+{
+  graphene_simd4f_t s;
+  float v[2];
+
+  s = graphene_simd4f_init (2.f, 3.f, 4.f, 5.f);
+  graphene_simd4f_dup_2f (s, v);
+
+  g_assert_cmpfloat (v[0], ==, 2.f);
+  g_assert_cmpfloat (v[1], ==, 3.f);
+}
+
+static void
 simd_compare_eq (void)
 {
   graphene_simd4f_t a, b, c;
@@ -141,6 +183,10 @@ int
 main (int argc, char *argv[])
 {
   g_test_init (&argc, &argv, NULL);
+
+  g_test_add_func ("/simd/dup/4f", simd_dup_4f);
+  g_test_add_func ("/simd/dup/3f", simd_dup_3f);
+  g_test_add_func ("/simd/dup/2f", simd_dup_2f);
 
   g_test_add_func ("/simd/compare/eq", simd_compare_eq);
   g_test_add_func ("/simd/compare/neq", simd_compare_neq);
