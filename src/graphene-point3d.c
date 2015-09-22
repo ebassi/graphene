@@ -102,7 +102,19 @@ static inline graphene_point3d_t *
 graphene_point3d_init_from_simd4f (graphene_point3d_t      *p,
                                    const graphene_simd4f_t  v)
 {
+  /* XXX: Apparently clang 3.4 does not allow vectorised partial reads
+   * when using a pointer to a structure; this is possibly caused by some
+   * of the optimization flags we use, which means we need this ugly
+   * compiler check here. Clang 3.5 and GCC are perfectly happy with it,
+   * but Travis-CI still uses Clang 3.4.
+   */
+#if defined(__clang__) && __clang_major__ < 3 || (__clang_major__ == 3 && __clang_minor__ < 5)
+  p->x = graphene_simd4f_get (v, 0);
+  p->y = graphene_simd4f_get (v, 1);
+  p->z = graphene_simd4f_get (v, 2);
+#else
   graphene_simd4f_dup_3f (v, &(p->x));
+#endif
 
   return p;
 }
