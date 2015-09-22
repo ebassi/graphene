@@ -163,6 +163,11 @@ void                    graphene_rect_interpolate       (const graphene_rect_t  
                                                          double                  factor,
                                                          graphene_rect_t        *res);
 
+GRAPHENE_AVAILABLE_IN_1_4
+void                    graphene_rect_expand            (const graphene_rect_t  *r,
+                                                         const graphene_point_t *p,
+                                                         graphene_rect_t        *res);
+
 GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_RECT_H__ */

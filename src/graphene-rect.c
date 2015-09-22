@@ -724,6 +724,34 @@ graphene_rect_round (const graphene_rect_t *r,
 }
 
 /**
+ * graphene_rect_expand:
+ * @r: a #graphene_rect_t
+ * @p: a #graphene_point_t
+ * @res: (out caller-allocates): return location for the expanded rectangle
+ *
+ * Expands a #graphene_rect_t to contain the given #graphene_point_t.
+ *
+ * Since: 1.4
+ */
+void
+graphene_rect_expand (const graphene_rect_t  *r,
+                      const graphene_point_t *p,
+                      graphene_rect_t        *res)
+{
+  float d_x, d_y;
+
+  res->origin.x = MIN (r->origin.x, p->x);
+  res->origin.y = MIN (r->origin.y, p->y);
+
+  d_x = MAX (r->origin.x + r->size.width, p->x);
+  d_y = MAX (r->origin.y + r->size.height, p->y);
+  res->size.width = d_x;
+  res->size.height = d_y;
+
+  graphene_rect_normalize_in_place (res);
+}
+
+/**
  * graphene_rect_interpolate:
  * @a: a #graphene_rect_t
  * @b: a #graphene_rect_t

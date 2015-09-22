@@ -187,6 +187,38 @@ GRAPHENE_TEST_UNIT_BEGIN (rect_round_to_pixel)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (rect_expand)
+{
+  graphene_rect_t r = GRAPHENE_RECT_INIT (0.f, 0.f, 100.f, 100.f);
+  graphene_point_t p;
+  graphene_rect_t check;
+
+  if (g_test_verbose ())
+    g_test_message ("Behind the origin...");
+  graphene_rect_expand (&r, graphene_point_init (&p, -10.f, -10.f), &check);
+  g_assert_true (graphene_point_equal (&p, &(check.origin)));
+  g_assert_cmpfloat (check.size.width, ==, r.size.width);
+  g_assert_cmpfloat (check.size.height, ==, r.size.height);
+  g_assert_true (graphene_rect_contains_rect (&check, &r));
+
+  if (g_test_verbose ())
+    g_test_message ("Outside the anti-origin...");
+  graphene_rect_expand (&r, graphene_point_init (&p, 150.f, 150.f), &check);
+  g_assert_true (graphene_point_equal (&r.origin, &(check.origin)));
+  g_assert_cmpfloat (check.size.width, ==, 150.f);
+  g_assert_cmpfloat (check.size.height, ==, 150.f);
+  g_assert_true (graphene_rect_contains_rect (&check, &r));
+
+  if (g_test_verbose ())
+    g_test_message ("Halfway in and out...");
+  graphene_rect_expand (&r, graphene_point_init (&p, 50.f, 150.f), &check);
+  g_assert_true (graphene_point_equal (&r.origin, &(check.origin)));
+  g_assert_cmpfloat (check.size.width, ==, r.size.width);
+  g_assert_cmpfloat (check.size.height, ==, 150.f);
+  g_assert_true (graphene_rect_contains_rect (&check, &r));
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_UNIT_BEGIN (rect_interpolate)
 {
   graphene_rect_t a = GRAPHENE_RECT_INIT ( 0.f, 0.f, 10.f, 10.f);
@@ -220,5 +252,6 @@ GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/rect/offset", rect_offset)
   GRAPHENE_TEST_UNIT ("/rect/inset", rect_inset)
   GRAPHENE_TEST_UNIT ("/rect/round-to-pixel", rect_round_to_pixel)
+  GRAPHENE_TEST_UNIT ("/rect/expand", rect_expand)
   GRAPHENE_TEST_UNIT ("/rect/interpolate", rect_interpolate)
 )
