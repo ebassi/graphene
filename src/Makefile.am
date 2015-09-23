@@ -120,6 +120,15 @@ libgraphene_1_0_la_SOURCES = $(source_h) $(source_h_priv) $(source_c) $(source_c
 
 lib_LTLIBRARIES += libgraphene-1.0.la
 
+%.c.s: %.c
+	$(CC) -DGRAPHENE_COMPILATION=1 $(shared_cflags) -I$(top_srcdir)/src -I$(top_builddir)/src -S -o $(@F) $<
+
+ASM_FILES = $(source_c:.c=.c.s) $(source_c_priv:.c=.c.s)
+asm: $(source_c) $(source_c_priva) $(ASM_FILES)
+
+CLEANFILES += $(ASM_FILES)
+.PHONY: asm
+
 # headers
 grapheneincludedir = $(includedir)/graphene-1.0
 grapheneinclude_HEADERS = $(source_h) graphene.h

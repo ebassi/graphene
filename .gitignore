@@ -26,6 +26,7 @@ Makefile.in
 /libtool
 /src/.deps
 /src/.libs
+/src/*.c.s
 /src/*.la
 /src/*.lo
 /src/*.o
