@@ -508,12 +508,12 @@ graphene_matrix_is_2d (const graphene_matrix_t *m)
 bool
 graphene_matrix_is_backface_visible (const graphene_matrix_t *m)
 {
-  graphene_matrix_t tmp;
+  graphene_simd4x4f_t tmp;
 
-  graphene_matrix_inverse (m, &tmp);
+  graphene_simd4x4f_inverse (&m->value, &tmp);
 
   /* inverse.zz < 0 */
-  return graphene_matrix_get_value (&tmp, 2, 2) < 0.f;
+  return graphene_simd4f_get_z (tmp.z) < 0.f;
 }
 
 /**
@@ -529,7 +529,11 @@ graphene_matrix_is_backface_visible (const graphene_matrix_t *m)
 bool
 graphene_matrix_is_singular (const graphene_matrix_t *m)
 {
-  return graphene_matrix_determinant (m) == 0.0f;
+  graphene_simd4f_t det;
+
+  graphene_simd4x4f_determinant (&m->value, &det, NULL);
+
+  return fabsf (graphene_simd4f_get_x (det)) <= GRAPHENE_FLOAT_EPSILON;
 }
 
 /**
@@ -1052,25 +1056,22 @@ graphene_matrix_project_point (const graphene_matrix_t *m,
                                const graphene_point_t  *p,
                                graphene_point_t        *res)
 {
-  graphene_vec3_t pa, qa;
-  graphene_vec3_t pback, qback, uback;
-  float p_z, u_z, t;
+  graphene_simd4f_t pa, pb, pc;
+  float a[3], b[3];
+  float t;
 
-  graphene_vec3_init (&pa, p->x, p->y, 0.0f);
-  graphene_vec3_init (&qa, p->x, p->y, 1.0f);
+  pa = graphene_simd4f_init (p->x, p->y, 0.f, 0.f);
+  pb = graphene_simd4f_init (p->x, p->y, 1.f, 0.f);
 
-  graphene_matrix_transform_vec3 (m, &pa, &pback);
-  graphene_matrix_transform_vec3 (m, &qa, &qback);
+  graphene_simd4x4f_vec3_mul (&m->value, &pa, &pa);
+  graphene_simd4x4f_vec3_mul (&m->value, &pb, &pb);
+  pc = graphene_simd4f_sub (pa, pb);
 
-  graphene_vec3_subtract (&qback, &pback, &uback);
+  graphene_simd4f_dup_3f (pa, a);
+  graphene_simd4f_dup_3f (pc, b);
+  t = -a[2] / b[2];
 
-  p_z = graphene_vec3_get_z (&pback);
-  u_z = graphene_vec3_get_z (&uback);
-  t = -p_z / u_z;
-
-  graphene_point_init (res,
-                       graphene_vec3_get_x (&pback) + t * graphene_vec3_get_x (&uback),
-                       graphene_vec3_get_y (&pback) + t * graphene_vec3_get_y (&uback));
+  graphene_point_init (res, a[0] + t * b[0], a[1] + t * b[1]);
 }
 
 /**
@@ -1257,23 +1258,22 @@ graphene_matrix_unproject_point3d (const graphene_matrix_t  *projection,
                                    const graphene_point3d_t *point,
                                    graphene_point3d_t       *res)
 {
-  graphene_matrix_t inv_projection, tmp;
-  graphene_vec4_t v;
+  graphene_simd4x4f_t tmp;
+  graphene_simd4f_t v;
+  float values[4];
   float inv_w;
 
-  graphene_matrix_inverse (projection, &inv_projection);
-  graphene_matrix_multiply (&inv_projection, modelview, &tmp);
+  graphene_simd4x4f_inverse (&projection->value, &tmp);
+  graphene_simd4x4f_matrix_mul (&tmp, &modelview->value, &tmp);
 
-  graphene_vec4_init (&v, point->x, point->y, point->z, 1.f);
-  graphene_matrix_transform_vec4 (&tmp, &v, &v);
+  v = graphene_simd4f_init (point->x, point->y, point->z, 1.f);
+  graphene_simd4x4f_vec4_mul (&tmp, &v, &v);
 
-  inv_w = 1.f / graphene_vec4_get_w (&v);
-  graphene_vec4_scale (&v, inv_w, &v);
+  inv_w = 1.f / graphene_simd4f_get_w (v);
+  v = graphene_simd4f_mul (v, graphene_simd4f_splat (inv_w));
 
-  graphene_point3d_init (res,
-                         graphene_vec4_get_x (&v),
-                         graphene_vec4_get_y (&v),
-                         graphene_vec4_get_z (&v));
+  graphene_simd4f_dup_4f (v, values);
+  graphene_point3d_init (res, values[0], values[1], values[2]);
 }
 
 /**
@@ -1331,11 +1331,9 @@ graphene_matrix_rotate_euler (graphene_matrix_t      *m,
                               const graphene_euler_t *e)
 {
   graphene_quaternion_t q;
-  graphene_matrix_t rot;
 
   graphene_quaternion_init_from_euler (&q, e);
-  graphene_quaternion_to_matrix (&q, &rot);
-  graphene_matrix_multiply (m, &rot, m);
+  graphene_matrix_rotate_quaternion (m, &q);
 }
 
 static inline void
