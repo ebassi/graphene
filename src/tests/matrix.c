@@ -183,8 +183,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_invert)
   graphene_matrix_multiply (&m, &inv, &res);
   graphene_assert_fuzzy_matrix_equal (&identity, &res, 0.0001f);
 
-  graphene_matrix_translate (&m,
-			     graphene_point3d_init (&p, 1,2,3));
+  graphene_matrix_translate (&m, graphene_point3d_init (&p, 1.f, 2.f, 3.f));
 
   graphene_matrix_inverse (&m , &inv);
   graphene_matrix_multiply (&m, &inv, &res);
