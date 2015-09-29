@@ -197,6 +197,66 @@ simd_operators_dot_4 (void)
                                 0.0001f);
 }
 
+static void
+simd_operators_min (void)
+{
+  graphene_simd4f_t a, b, c;
+
+  a = graphene_simd4f_init (1.f, 6.f, 3.f, 8.f);
+  b = graphene_simd4f_init (5.f, 2.f, 7.f, 4.f);
+
+  c = graphene_simd4f_min (a, b);
+
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_x (c), 1.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_y (c), 2.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_z (c), 3.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_w (c), 4.f, 0.0001f);
+}
+
+static void
+simd_operators_max (void)
+{
+  graphene_simd4f_t a, b, c;
+
+  a = graphene_simd4f_init (1.f, 6.f, 3.f, 8.f);
+  b = graphene_simd4f_init (5.f, 2.f, 7.f, 4.f);
+
+  c = graphene_simd4f_max (a, b);
+
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_x (c), 5.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_y (c), 6.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_z (c), 7.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_w (c), 8.f, 0.0001f);
+}
+
+static void
+simd_operators_min_val (void)
+{
+  graphene_simd4f_t a, b;
+
+  a = graphene_simd4f_init (1.f, 2.f, 3.f, 4.f);
+  b = graphene_simd4f_min_val (a);
+
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_x (b), 1.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_y (b), 1.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_z (b), 1.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_w (b), 1.f, 0.0001f);
+}
+
+static void
+simd_operators_max_val (void)
+{
+  graphene_simd4f_t a, b;
+
+  a = graphene_simd4f_init (1.f, 2.f, 3.f, 4.f);
+  b = graphene_simd4f_max_val (a);
+
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_x (b), 4.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_y (b), 4.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_z (b), 4.f, 0.0001f);
+  graphene_assert_fuzzy_equals (graphene_simd4f_get_w (b), 4.f, 0.0001f);
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -216,6 +276,11 @@ main (int argc, char *argv[])
   g_test_add_func ("/simd/operators/dot/2", simd_operators_dot_2);
   g_test_add_func ("/simd/operators/dot/3", simd_operators_dot_3);
   g_test_add_func ("/simd/operators/dot/4", simd_operators_dot_4);
+
+  g_test_add_func ("/simd/operators/min", simd_operators_min);
+  g_test_add_func ("/simd/operators/min-val", simd_operators_min_val);
+  g_test_add_func ("/simd/operators/max", simd_operators_max);
+  g_test_add_func ("/simd/operators/max-val", simd_operators_max_val);
 
   return g_test_run ();
 }

@@ -1745,6 +1745,50 @@ graphene_simd4f_clamp_scalar (const graphene_simd4f_t v,
                                 graphene_simd4f_splat (max));
 }
 
+/**
+ * graphene_simd4f_min_val:
+ * @v: a #graphene_simd4f_t
+ *
+ * Computes the minimum value of all the channels in the given vector.
+ *
+ * Returns: a vector whose components are all set to the
+ *   minimum value in the original vector
+ *
+ * Since: 1.4
+ */
+static inline graphene_simd4f_t
+graphene_simd4f_min_val (const graphene_simd4f_t v)
+{
+  graphene_simd4f_t s = v;
+
+  s = graphene_simd4f_min (s, graphene_simd4f_shuffle_wxyz (s));
+  s = graphene_simd4f_min (s, graphene_simd4f_shuffle_zwxy (s));
+
+  return s;
+}
+
+/**
+ * graphene_simd4f_max_val:
+ * @v: a #graphene_simd4f_t
+ *
+ * Computes the maximum value of all the channels in the given vector.
+ *
+ * Returns: a vector whose components are all set to the
+ *   maximum value in the original vector
+ *
+ * Since: 1.4
+ */
+static inline graphene_simd4f_t
+graphene_simd4f_max_val (const graphene_simd4f_t v)
+{
+  graphene_simd4f_t s = v;
+
+  s = graphene_simd4f_max (s, graphene_simd4f_shuffle_wxyz (s));
+  s = graphene_simd4f_max (s, graphene_simd4f_shuffle_zwxy (s));
+
+  return s;
+}
+
 GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_SIMD4F_H__ */

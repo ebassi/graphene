@@ -367,6 +367,8 @@ graphene_simd4f_rsqrt
 graphene_simd4f_cross3
 graphene_simd4f_min
 graphene_simd4f_max
+graphene_simd4f_min_val
+graphene_simd4f_max_val
 graphene_simd4f_clamp
 graphene_simd4f_clamp_scalar
 graphene_simd4f_shuffle_wxyz
