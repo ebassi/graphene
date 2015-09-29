@@ -889,18 +889,23 @@ graphene_matrix_transform_rect (const graphene_matrix_t *m,
                                 const graphene_rect_t   *r,
                                 graphene_quad_t         *res)
 {
-  graphene_point_t points[4];
   graphene_point_t ret[4];
 
-  graphene_rect_get_top_left (r, &points[0]);
-  graphene_rect_get_top_right (r, &points[1]);
-  graphene_rect_get_bottom_right (r, &points[2]);
-  graphene_rect_get_bottom_left (r, &points[3]);
+#define TRANSFORM_POINT(matrix,rect,corner,out_p)   do { \
+  graphene_simd4f_t __s; \
+  graphene_point_t __p; \
+  graphene_rect_get_ ## corner (rect, &__p); \
+  __s = graphene_simd4f_init (__p.x, __p.y, 0.f, 0.f); \
+  graphene_simd4x4f_vec3_mul (&matrix->value, &__s, &__s); \
+  out_p.x = graphene_simd4f_get (__s, 0); \
+  out_p.y = graphene_simd4f_get (__s, 1);           } while (0)
 
-  graphene_matrix_transform_point (m, &points[0], &ret[0]);
-  graphene_matrix_transform_point (m, &points[1], &ret[1]);
-  graphene_matrix_transform_point (m, &points[2], &ret[2]);
-  graphene_matrix_transform_point (m, &points[3], &ret[3]);
+  TRANSFORM_POINT (m, r, top_left, ret[0]);
+  TRANSFORM_POINT (m, r, top_right, ret[1]);
+  TRANSFORM_POINT (m, r, bottom_right, ret[2]);
+  TRANSFORM_POINT (m, r, bottom_left, ret[3]);
+
+#undef TRANSFORM_POINT
 
   graphene_quad_init (res, &ret[0], &ret[1], &ret[2], &ret[3]);
 }
@@ -970,18 +975,15 @@ graphene_matrix_transform_sphere (const graphene_matrix_t *m,
                                   const graphene_sphere_t *s,
                                   graphene_sphere_t       *res)
 {
-  graphene_point3d_t center;
   float max_scale;
 
-  graphene_point3d_init_from_vec3 (&center, &s->center);
-  graphene_matrix_transform_point3d (m, &center, &center);
+  graphene_simd4x4f_point3_mul (&m->value, &s->center.value, &res->center.value);
 
   max_scale = graphene_simd4f_get_x (graphene_simd4f_dot3 (m->value.x, m->value.x));
   max_scale = fmaxf (max_scale, graphene_simd4f_get_x (graphene_simd4f_dot3 (m->value.y, m->value.y)));
   max_scale = fmaxf (max_scale, graphene_simd4f_get_x (graphene_simd4f_dot3 (m->value.z, m->value.z)));
-  max_scale = sqrtf (max_scale);
 
-  graphene_sphere_init (res, &center, s->radius * max_scale);
+  res->radius = s->radius * sqrtf (max_scale);
 }
 
 /**
