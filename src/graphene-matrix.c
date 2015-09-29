@@ -927,33 +927,59 @@ graphene_matrix_transform_bounds (const graphene_matrix_t *m,
                                   const graphene_rect_t   *r,
                                   graphene_rect_t         *res)
 {
-  graphene_point_t points[4];
   graphene_point_t ret[4];
   float min_x, min_y;
   float max_x, max_y;
-  int i;
 
-  graphene_rect_get_top_left (r, &points[0]);
-  graphene_rect_get_top_right (r, &points[1]);
-  graphene_rect_get_bottom_left (r, &points[2]);
-  graphene_rect_get_bottom_right (r, &points[3]);
+#define TRANSFORM_POINT(matrix,rect,corner,out_p)   do { \
+  graphene_simd4f_t __s; \
+  graphene_point_t __p; \
+  graphene_rect_get_ ## corner (rect, &__p); \
+  __s = graphene_simd4f_init (__p.x, __p.y, 0.f, 0.f); \
+  graphene_simd4x4f_vec3_mul (&matrix->value, &__s, &__s); \
+  out_p.x = graphene_simd4f_get (__s, 0); \
+  out_p.y = graphene_simd4f_get (__s, 1);           } while (0)
 
-  graphene_matrix_transform_point (m, &points[0], &ret[0]);
-  graphene_matrix_transform_point (m, &points[1], &ret[1]);
-  graphene_matrix_transform_point (m, &points[2], &ret[2]);
-  graphene_matrix_transform_point (m, &points[3], &ret[3]);
+  TRANSFORM_POINT (m, r, top_left, ret[0]);
+  TRANSFORM_POINT (m, r, top_right, ret[1]);
+  TRANSFORM_POINT (m, r, bottom_right, ret[2]);
+  TRANSFORM_POINT (m, r, bottom_left, ret[3]);
 
-  min_x = max_x = ret[0].x;
-  min_y = max_y = ret[0].y;
+#undef TRANSFORM_POINT
 
-  for (i = 1; i < 4; i += 1)
-    {
-      min_x = MIN (ret[i].x, min_x);
-      min_y = MIN (ret[i].y, min_y);
+#if 0
+  {
+    int i;
 
-      max_x = MAX (ret[i].x, max_x);
-      max_y = MAX (ret[i].y, max_y);
-    }
+    min_x = max_x = ret[0].x;
+    min_y = max_y = ret[0].y;
+
+    for (i = 1; i < 4; i += 1)
+      {
+        min_x = MIN (ret[i].x, min_x);
+        min_y = MIN (ret[i].y, min_y);
+
+        max_x = MAX (ret[i].x, max_x);
+        max_y = MAX (ret[i].y, max_y);
+      }
+  }
+#else
+  {
+    const graphene_simd4f_t vx = graphene_simd4f_init (ret[0].x, ret[1].x, ret[2].x, ret[3].x);
+    const graphene_simd4f_t vy = graphene_simd4f_init (ret[0].y, ret[1].y, ret[2].y, ret[3].y);
+
+    const graphene_simd4f_t x_min = graphene_simd4f_min_val (vx);
+    const graphene_simd4f_t x_max = graphene_simd4f_max_val (vx);
+    const graphene_simd4f_t y_min = graphene_simd4f_min_val (vy);
+    const graphene_simd4f_t y_max = graphene_simd4f_max_val (vy);
+
+    min_x = graphene_simd4f_get_x (x_min);
+    max_x = graphene_simd4f_get_x (x_max);
+
+    min_y = graphene_simd4f_get_x (y_min);
+    max_y = graphene_simd4f_get_x (y_max);
+  }
+#endif
 
   graphene_rect_init (res, min_x, min_y, max_x - min_x, max_y - min_y);
 }
