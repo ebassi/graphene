@@ -1622,13 +1622,16 @@ graphene_matrix_normalize (const graphene_matrix_t *m,
   graphene_simd4f_t n;
   float ww;
 
-  ww = graphene_matrix_get_value (m, 3, 3);
-  n = graphene_simd4f_splat (ww);
+  ww = graphene_simd4f_get_w (m->value.w);
+  if (ww == 0.f)
+    return;
 
-  res->value.x = graphene_simd4f_div (m->value.x, n);
-  res->value.y = graphene_simd4f_div (m->value.y, n);
-  res->value.z = graphene_simd4f_div (m->value.z, n);
-  res->value.w = graphene_simd4f_div (m->value.w, n);
+  n = graphene_simd4f_splat (1.f / ww);
+
+  res->value.x = graphene_simd4f_mul (m->value.x, n);
+  res->value.y = graphene_simd4f_mul (m->value.y, n);
+  res->value.z = graphene_simd4f_mul (m->value.z, n);
+  res->value.w = graphene_simd4f_mul (m->value.w, n);
 }
 
 /**
