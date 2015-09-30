@@ -1100,10 +1100,10 @@ graphene_simd4f_t
 (graphene_simd4f_sqrt) (graphene_simd4f_t v)
 {
   graphene_simd4f_t s = {
-    sqrt (v.x),
-    sqrt (v.y),
-    sqrt (v.z),
-    sqrt (v.w)
+    sqrtf (v.x),
+    sqrtf (v.y),
+    sqrtf (v.z),
+    sqrtf (v.w)
   };
   return s;
 }
@@ -1112,10 +1112,10 @@ graphene_simd4f_t
 (graphene_simd4f_rsqrt) (graphene_simd4f_t v)
 {
   graphene_simd4f_t s = {
-    1.0f / sqrt (v.x),
-    1.0f / sqrt (v.y),
-    1.0f / sqrt (v.z),
-    1.0f / sqrt (v.w)
+    1.0f / sqrtf (v.x),
+    1.0f / sqrtf (v.y),
+    1.0f / sqrtf (v.z),
+    1.0f / sqrtf (v.w)
   };
   return s;
 }
