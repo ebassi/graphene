@@ -576,6 +576,26 @@ graphene_simd4f_t
 }
 
 /**
+ * graphene_simd4f_dot3:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Computes the dot product of the first three components of the
+ * two given #graphene_simd4f_t.
+ *
+ * Returns: a vector whose components are all set to the the
+ *   dot product of the componets of the two operands
+ *
+ * Since: 1.0
+ */
+graphene_simd4f_t
+(graphene_simd4f_dot3) (const graphene_simd4f_t a,
+                        const graphene_simd4f_t b)
+{
+  return graphene_simd4f_dot3 (a, b);
+}
+
+/**
  * graphene_simd4f_min:
  * @a: a #graphene_simd4f_t
  * @b: a #graphene_simd4f_t
@@ -1160,6 +1180,15 @@ graphene_simd4f_t
                                a.z * b.x - a.x * b.z,
                                a.x * b.y - a.y * b.x,
                                0.f);
+}
+
+graphene_simd4f_t
+(graphene_simd4f_dot3) (const graphene_simd4f_t a,
+                        const graphene_simd4f_t b)
+{
+  float r = a.x * b.x + a.y * b.y + a.z * b.z;
+
+  return graphene_simd4f_init (r, r, r, 0.f);
 }
 
 graphene_simd4f_t

@@ -110,6 +110,9 @@ graphene_simd4f_t       graphene_simd4f_rsqrt           (const graphene_simd4f_t
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_cross3          (const graphene_simd4f_t a,
                                                          const graphene_simd4f_t b);
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_simd4f_t       graphene_simd4f_dot3            (const graphene_simd4f_t a,
+                                                         const graphene_simd4f_t b);
 
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_min             (const graphene_simd4f_t a,
@@ -305,6 +308,17 @@ typedef union {
     const graphene_simd4f_t __b_yzx = _mm_shuffle_ps ((b), (b), _MM_SHUFFLE (3, 0, 2, 1)); \
     const graphene_simd4f_t __b_zxy = _mm_shuffle_ps ((b), (b), _MM_SHUFFLE (3, 1, 0, 2)); \
     (graphene_simd4f_t) _mm_sub_ps (_mm_mul_ps (__a_yzx, __b_zxy), _mm_mul_ps (__a_zxy, __b_yzx)); \
+  }))
+
+#  define graphene_simd4f_dot3(a,b) \
+  (__extension__ ({ \
+    const unsigned int __mask_bits[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 }; \
+    const graphene_simd4f_t __mask = _mm_load_ps ((const float *) __mask_bits); \
+    const graphene_simd4f_t __m = _mm_mul_ps ((a), (b)); \
+    const graphene_simd4f_t __s0 = _mm_and_ps (__m, __mask); \
+    const graphene_simd4f_t __s1 = _mm_add_ps (__s0, _mm_movehl_ps (__s0, __s0)); \
+    const graphene_simd4f_t __s2 = _mm_add_ss (__s1, _mm_shuffle_ps (__s1, __s1, 1)); \
+    (graphene_simd4f_t) _mm_shuffle_ps (__s2, __s2, 0); \
   }))
 
 #  define graphene_simd4f_min(a,b) \
@@ -562,6 +576,23 @@ _simd4f_cross3 (const graphene_simd4f_t a,
   const graphene_simd4f_t __b_zxy = _mm_shuffle_ps (b, b, _MM_SHUFFLE (3, 1, 0, 2));
 
   return _mm_sub_ps (_mm_mul_ps (__a_yzx, __b_zxy), _mm_mul_ps (__a_zxy, __b_yzx));
+}
+
+#define graphene_simd4f_dot3(a,b) \
+  _simd4f_dot3(a,b)
+
+static inline graphene_simd4f_t
+_simd4f_dot3 (const graphene_simd4f_t a,
+              const graphene_simd4f_t b)
+{
+  const unsigned int __mask_bits[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 };
+  const graphene_simd4f_t __mask = _mm_load_ps ((const float *) __mask_bits);
+  const graphene_simd4f_t __m = _mm_mul_ps ((a), (b));
+  const graphene_simd4f_t __s0 = _mm_and_ps (__m, __mask);
+  const graphene_simd4f_t __s1 = _mm_add_ps (__s0, _mm_movehl_ps (__s0, __s0));
+  const graphene_simd4f_t __s2 = _mm_add_ss (__s1, _mm_shuffle_ps (__s1, __s1, 1));
+
+  return _mm_shuffle_ps (__s2, __s2, 0);
 }
 
 #define graphene_simd4f_min(a,b) \
@@ -827,6 +858,14 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
                           __a[2] * __b[0] - __a[0] * __b[2], \
                           __a[0] * __b[1] - __a[1] * __b[0], \
                           0.f); \
+  }))
+
+# define graphene_simd4f_dot3(a,b) \
+  (__extension__ ({ \
+    const graphene_simd4f_t __a = (a); \
+    const graphene_simd4f_t __b = (b); \
+    const float __res = __a[0] * __b[0] + __a[1] * __b[1] + __a[2] * __b[2]; \
+    graphene_simd4f_init (__res, __res, __res, 0.f); \
   }))
 
 # define graphene_simd4f_min(a,b) \
@@ -1126,6 +1165,14 @@ typedef union {
     (graphene_simd4f_t) vmlsq_f32 (vmulq_f32 (a_yzx, b_zxy), a_zxy, b_yzx); \
   }))
 
+# define graphene_simd4f_dot3(a,b) \
+  (__extension__ ({ \
+    const graphene_simd4f_t __m = graphene_simd4f_mul (a, b); \
+    float32x2_t s1 = vpadd_f32 (vget_low_f32 (__m), vget_low_f32 (__m)); \
+    s1 = vadd_f32 (s1, vget_high_f32 (__m)); \
+    (graphene_simd4f_t) vdupq_n_f32 (vget_lane_f32 (s1, 0)); \
+  }))
+
 # define graphene_simd4f_min(a,b) \
   (__extension__ ({ \
     (graphene_simd4f_t) vminq_f32 ((a), (b)); \
@@ -1342,6 +1389,8 @@ typedef union {
   (graphene_simd4f_reciprocal ((s)))
 #define graphene_simd4f_cross3(a,b) \
   (graphene_simd4f_cross3 ((a), (b)))
+#define graphene_simd4f_dot3(a,b) \
+  (graphene_simd4f_dot3 ((a), (b)))
 #define graphene_simd4f_min(a,b) \
   (graphene_simd4f_min ((a), (b)))
 #define graphene_simd4f_max(a,b) \
@@ -1463,31 +1512,6 @@ graphene_simd4f_dot4 (const graphene_simd4f_t a,
                       const graphene_simd4f_t b)
 {
   return graphene_simd4f_sum (graphene_simd4f_mul (a, b));
-}
-
-/**
- * graphene_simd4f_dot3:
- * @a: a #graphene_simd4f_t
- * @b: a #graphene_simd4f_t
- *
- * Computes the dot product of the first three components of the
- * two given #graphene_simd4f_t.
- *
- * Returns: a vector whose components are all set to the the
- *   dot product of the componets of the two operands
- *
- * Since: 1.0
- */
-static inline graphene_simd4f_t
-graphene_simd4f_dot3 (graphene_simd4f_t a,
-                      graphene_simd4f_t b)
-{
-  const graphene_simd4f_t m = graphene_simd4f_mul (a, b);
-  const graphene_simd4f_t x = graphene_simd4f_splat_x (m);
-  const graphene_simd4f_t y = graphene_simd4f_splat_y (m);
-  const graphene_simd4f_t z = graphene_simd4f_splat_z (m);
-
-  return graphene_simd4f_add (graphene_simd4f_add (x, y), z);
 }
 
 /**
