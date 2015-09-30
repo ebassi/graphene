@@ -1060,10 +1060,10 @@ typedef union {
 
 # define graphene_simd4f_dup_3f(s,v) \
   (__extension__ ({ \
-    graphene_simd4f_union_t __u = { (s) }; \
-    (v)[0] = __u.f[0]; \
-    (v)[1] = __u.f[1]; \
-    (v)[2] = __u.f[2]; \
+    float *__v = (v); \
+    vst1q_lane_f32 (__v++, (s), 0); \
+    vst1q_lane_f32 (__v++, (s), 1); \
+    vst1q_lane_f32 (__v, (s), 2); \
   }))
 
 # define graphene_simd4f_dup_2f(s,v) \
