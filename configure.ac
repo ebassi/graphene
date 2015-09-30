@@ -209,7 +209,7 @@ AS_IF([test "x$SSE2_CFLAGS" = "x"],
                 AS_IF([test "$AMD64_ABI" = "no"], [SSE2_CFLAGS="-xarch=sse2"])
               ],
               [
-                SSE2_CFLAGS="-msse -msse2 -mfpmath=sse -Winline"
+                SSE2_CFLAGS="-Winline -mfpmath=sse -msse -msse2"
               ])
       ])
 
@@ -260,13 +260,17 @@ AC_CACHE_CHECK([whether to use SSE2 intrinsics],
 
                          AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #if defined(__GNUC__) && (__GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 2))
-#   if !defined(__amd64__) && !defined(__x86_64__)
-#      error "Need GCC >= 4.2 for SSE2 intrinsics on x86"
-#   endif
+# if !defined(__amd64__) && !defined(__x86_64__)
+#   error "Need GCC >= 4.2 for SSE2 intrinsics on x86"
+# endif
 #endif
-#include <mmintrin.h>
-#include <xmmintrin.h>
-#include <emmintrin.h>
+#if defined(__SSE__) || (_M_IX86_FP > 0) || (_M_X64 > 0)
+# include <mmintrin.h>
+# include <xmmintrin.h>
+# include <emmintrin.h>
+#else
+# error "No SSE intrinsics available"
+#endif
 int main () {
     __m128i a = _mm_set1_epi32 (0), b = _mm_set1_epi32 (0), c;
     c = _mm_xor_si128 (a, b);
