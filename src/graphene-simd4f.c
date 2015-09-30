@@ -1188,7 +1188,7 @@ graphene_simd4f_t
 {
   float r = a.x * b.x + a.y * b.y + a.z * b.z;
 
-  return graphene_simd4f_init (r, r, r, 0.f);
+  return graphene_simd4f_init (r, r, r, r);
 }
 
 graphene_simd4f_t
