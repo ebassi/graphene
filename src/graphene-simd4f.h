@@ -876,7 +876,7 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
     const graphene_simd4f_t __a = (a); \
     const graphene_simd4f_t __b = (b); \
     const float __res = __a[0] * __b[0] + __a[1] * __b[1] + __a[2] * __b[2]; \
-    graphene_simd4f_init (__res, __res, __res, 0.f); \
+    graphene_simd4f_init (__res, __res, __res, __res); \
   }))
 
 # define graphene_simd4f_min(a,b) \
