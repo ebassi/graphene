@@ -124,7 +124,7 @@ lib_LTLIBRARIES += libgraphene-1.0.la
 	$(CC) -DGRAPHENE_COMPILATION=1 $(shared_cflags) -I$(top_srcdir)/src -I$(top_builddir)/src -S -o $(@F) $<
 
 ASM_FILES = $(source_c:.c=.c.s) $(source_c_priv:.c=.c.s)
-asm: $(source_c) $(source_c_priva) $(ASM_FILES)
+asm: $(source_c) $(source_c_priv) $(ASM_FILES)
 
 CLEANFILES += $(ASM_FILES)
 .PHONY: asm
