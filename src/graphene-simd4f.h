@@ -310,7 +310,13 @@ typedef union {
     (graphene_simd4f_t) _mm_sub_ps (_mm_mul_ps (__a_yzx, __b_zxy), _mm_mul_ps (__a_zxy, __b_yzx)); \
   }))
 
-#  define graphene_simd4f_dot3(a,b) \
+#  if defined(GRAPHENE_USE_SSE4_1)
+#   define graphene_simd4f_dot3(a,b) \
+  (__extension__ ({ \
+    (graphene_simd4f_t) _mm_dp_ps ((a), (b), 0x7f); \
+  }))
+#  else
+#   define graphene_simd4f_dot3(a,b) \
   (__extension__ ({ \
     const unsigned int __mask_bits[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 }; \
     const graphene_simd4f_t __mask = _mm_load_ps ((const float *) __mask_bits); \
@@ -320,6 +326,7 @@ typedef union {
     const graphene_simd4f_t __s2 = _mm_add_ss (__s1, _mm_shuffle_ps (__s1, __s1, 1)); \
     (graphene_simd4f_t) _mm_shuffle_ps (__s2, __s2, 0); \
   }))
+#  endif
 
 #  define graphene_simd4f_min(a,b) \
   (__extension__ ({ \
@@ -585,6 +592,9 @@ static inline graphene_simd4f_t
 _simd4f_dot3 (const graphene_simd4f_t a,
               const graphene_simd4f_t b)
 {
+#if defined(GRAPHENE_USE_SSE4_1)
+  return _mm_dp_ps (a, b, 0x7f);
+#else
   const unsigned int __mask_bits[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 };
   const graphene_simd4f_t __mask = _mm_load_ps ((const float *) __mask_bits);
   const graphene_simd4f_t __m = _mm_mul_ps ((a), (b));
@@ -593,6 +603,7 @@ _simd4f_dot3 (const graphene_simd4f_t a,
   const graphene_simd4f_t __s2 = _mm_add_ss (__s1, _mm_shuffle_ps (__s1, __s1, 1));
 
   return _mm_shuffle_ps (__s2, __s2, 0);
+#endif
 }
 
 #define graphene_simd4f_min(a,b) \
