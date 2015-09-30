@@ -844,16 +844,21 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
 # define graphene_simd4f_sqrt(v) \
   (__extension__ ({ \
     (graphene_simd4f_t) { \
-      sqrt (graphene_simd4f_get_x (v)), \
-      sqrt (graphene_simd4f_get_y (v)), \
-      sqrt (graphene_simd4f_get_z (v)), \
-      sqrt (graphene_simd4f_get_w (v)), \
+      sqrtf ((v)[0]), \
+      sqrtf ((v)[1]), \
+      sqrtf ((v)[2]), \
+      sqrtf ((v)[3]), \
     }; \
   }))
 
 # define graphene_simd4f_rsqrt(v) \
   (__extension__ ({ \
-    graphene_simd4f_splat (1.0f) / graphene_simd4f_sqrt ((v)); \
+    (graphene_simd4f_t) { \
+      (v)[0] != 0.f ? 1.f / sqrtf ((v)[0]) : 0.f, \
+      (v)[1] != 0.f ? 1.f / sqrtf ((v)[1]) : 0.f, \
+      (v)[2] != 0.f ? 1.f / sqrtf ((v)[2]) : 0.f, \
+      (v)[3] != 0.f ? 1.f / sqrtf ((v)[3]) : 0.f, \
+    }; \
   }))
 
 # define graphene_simd4f_add(a,b)       (__extension__ ({ (graphene_simd4f_t) ((a) + (b)); }))
