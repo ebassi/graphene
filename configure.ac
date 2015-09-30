@@ -289,6 +289,44 @@ AS_IF([test "x$graphene_cv_use_sse2" = xyes], [GRAPHENE_SIMD="sse2 $GRAPHENE_SIM
 
 AM_CONDITIONAL(BUILD_WITH_SSE2, [test "x$graphene_cv_use_sse2" = xyes])
 
+# Check for SSE4.1
+AS_IF([test "x$graphene_cv_use_sse2" = xyes], [
+  AS_IF([test "x$SSE41_CFLAGS" = "x"], [ SSE41_CFLAGS="-msse4.1" ])
+
+  AC_CACHE_CHECK([whether to use SSE4.1 intrinsics],[graphene_cv_use_sse41], [
+  graphene_cv_use_sse41=no
+
+  saved_CFLAGS="$CFLAGS"
+  CFLAGS="$SSE2_CFLAGS $SSE41_CFLAGS $CFLAGS"
+
+  AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
+#include <mmintrin.h>
+#include <xmmintrin.h>
+#if defined(_M_IX86_FP)
+# if _M_IX86_FP >=2
+#  define USE_SSE4_1
+# endif
+#elif defined(__SSE4_1__)
+# define USE_SSE4_1
+#endif
+#if defined(USE_SSE4_1)
+# include <smmintrin.h>
+#endif
+int main () {
+    __m128 a = _mm_setzero_ps(), b = _mm_setzero_ps(), c;
+    c = _mm_dp_ps(a, b, 0x71);
+    return 0;
+}]])], [graphene_cv_use_sse41=yes])
+
+  CFLAGS="$saved_CFLAGS"
+  ])
+])
+
+AS_IF([test "x$graphene_cv_use_sse2" = xyes -a "x$graphene_cv_use_sse41" = xyes], [
+  SSE2_CFLAGS="$SSE2_CFLAGS $SSE41_CFLAGS"
+  GRAPHENE_SIMD="sse4.1 $GRAPHENE_SIMD"
+])
+
 # Check for ARM NEON instructions
 AS_IF([test "x$NEON_CFLAGS" = "x"], [NEON_CFLAGS="-mfpu=neon"])
 
@@ -698,6 +736,16 @@ _______EOF
 #ifndef __GI_SCANNER__
 # if defined(GRAPHENE_USE_SSE)
 #  include <xmmintrin.h>
+#  if defined(_M_IX86_FP)
+#   if _M_IX86_FP >= 2
+#    define GRAPHENE_USE_SSE4_1
+#   endif
+#  elif defined(__SSE4_1__)
+#   define GRAPHENE_USE_SSE4_1
+#  endif
+#  if defined(GRAPHENE_USE_SSE4_1)
+#   include <smmintrin.h>
+#  endif
 typedef __m128 graphene_simd4f_t;
 # elif defined(GRAPHENE_USE_ARM_NEON)
 #  include <arm_neon.h>
@@ -784,5 +832,6 @@ Graphene - $VERSION (${GRAPHENE_RELEASE_STATUS})
   • Available optimizations:
     • GCC vectors: ${graphene_cv_use_gcc_vector}
     • SSE2 intrinsics: ${graphene_cv_use_sse2}
+     • SSE4.1 intrinsics: ${graphene_cv_use_sse41}
     • ARM NEON intrinsics: ${graphene_cv_use_arm_neon}
 ])
