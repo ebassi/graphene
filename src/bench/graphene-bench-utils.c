@@ -201,13 +201,13 @@ format_time (double       d,
 
   if (d > 1000000)
     {
-      *unit = "us";
+      *unit = "ms";
       return d / 1000000;
     }
 
   if (d > 1000)
     {
-      *unit = "ms";
+      *unit = "µs";
       return d / 1000;
     }
 
