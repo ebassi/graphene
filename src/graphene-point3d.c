@@ -296,13 +296,12 @@ float
 graphene_point3d_dot (const graphene_point3d_t *a,
                       const graphene_point3d_t *b)
 {
-  graphene_simd4f_t av, bv, resv;
+  graphene_simd4f_t av, bv;
 
   av = graphene_simd4f_init (a->x, a->y, a->z, 0.f);
   bv = graphene_simd4f_init (b->x, b->y, b->z, 0.f);
-  resv = graphene_simd4f_dot3 (av, bv);
 
-  return graphene_simd4f_get_x (resv);
+  return graphene_simd4f_dot3_scalar (av, bv);
 }
 
 /**

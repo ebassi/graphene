@@ -884,7 +884,7 @@ float
 graphene_vec3_dot (const graphene_vec3_t *a,
                    const graphene_vec3_t *b)
 {
-  return graphene_simd4f_get_x (graphene_simd4f_dot3 (a->value, b->value));
+  return graphene_simd4f_dot3_scalar (a->value, b->value);
 }
 
 /**
@@ -1139,7 +1139,7 @@ graphene_vec3_near (const graphene_vec3_t *v1,
 
   d = graphene_simd4f_sub (v1->value, v2->value);
 
-  return graphene_simd4f_get_x (graphene_simd4f_dot3 (d, d)) < epsilon_sq;
+  return graphene_simd4f_dot3_scalar (d, d) < epsilon_sq;
 }
 
 enum {
