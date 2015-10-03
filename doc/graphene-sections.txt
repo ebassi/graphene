@@ -393,6 +393,7 @@ graphene_simd4f_sum
 graphene_simd4f_sum_scalar
 graphene_simd4f_dot4
 graphene_simd4f_dot3
+graphene_simd4f_dot3_scalar
 graphene_simd4f_dot2
 graphene_simd4f_length4
 graphene_simd4f_length3

@@ -596,6 +596,25 @@ graphene_simd4f_t
 }
 
 /**
+ * graphene_simd4f_dot3_scalar:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ *
+ * Computes the dot product of the first three components of the
+ * two given #graphene_simd4f_t.
+ *
+ * Returns: the dot product of the two vectors, as a scalar value.
+ *
+ * Since: 1.4
+ */
+float
+(graphene_simd4f_dot3_scalar) (const graphene_simd4f_t a,
+                               const graphene_simd4f_t b)
+{
+  return graphene_simd4f_dot3_scalar (a, b);
+}
+
+/**
  * graphene_simd4f_min:
  * @a: a #graphene_simd4f_t
  * @b: a #graphene_simd4f_t
@@ -1186,9 +1205,14 @@ graphene_simd4f_t
 (graphene_simd4f_dot3) (const graphene_simd4f_t a,
                         const graphene_simd4f_t b)
 {
-  float r = a.x * b.x + a.y * b.y + a.z * b.z;
+  return graphene_simd4f_splat (graphene_simd4f_dot3_scalar (a, b));
+}
 
-  return graphene_simd4f_init (r, r, r, r);
+graphene_simd4f_t
+(graphene_simd4f_dot3_scalar) (const graphene_simd4f_t a,
+                               const graphene_simd4f_t b)
+{
+  return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
 graphene_simd4f_t

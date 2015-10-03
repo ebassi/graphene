@@ -113,6 +113,9 @@ graphene_simd4f_t       graphene_simd4f_cross3          (const graphene_simd4f_t
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_dot3            (const graphene_simd4f_t a,
                                                          const graphene_simd4f_t b);
+GRAPHENE_AVAILABLE_IN_1_4
+float                   graphene_simd4f_dot3_scalar     (const graphene_simd4f_t a,
+                                                         const graphene_simd4f_t b);
 
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_min             (const graphene_simd4f_t a,
@@ -327,6 +330,13 @@ typedef union {
     (graphene_simd4f_t) _mm_shuffle_ps (__s2, __s2, 0); \
   }))
 #  endif
+
+#  define graphene_simd4f_dot3_scalar(a,b) \
+  (__extension__ ({ \
+    float __res; \
+    _mm_store_ss (&__res, graphene_simd4f_dot3 (a, b)); \
+    __res; \
+  }))
 
 #  define graphene_simd4f_min(a,b) \
   (__extension__ ({ \
@@ -606,6 +616,18 @@ _simd4f_dot3 (const graphene_simd4f_t a,
 #endif
 }
 
+#define graphene_simd4f_dot3_scalar(a,b) \
+  _simd4f_dot3_scalar(a,b)
+
+static inline float
+_simd4f_dot3_scalar (const graphene_simd4f_t a,
+                     const graphene_simd4f_t b)
+{
+  float __res;
+  _mm_store_ss (&__res, graphene_simd4f_dot3 (a, b));
+  return __res;
+}
+
 #define graphene_simd4f_min(a,b) \
   _mm_min_ps (a, b)
 
@@ -882,6 +904,11 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
     const graphene_simd4f_t __b = (b); \
     const float __res = __a[0] * __b[0] + __a[1] * __b[1] + __a[2] * __b[2]; \
     graphene_simd4f_init (__res, __res, __res, __res); \
+  }))
+
+# define graphene_simd4f_dot3_scalar(a,b) \
+  (__extension__ ({ \
+    graphene_simd4f_get_x (graphene_simd4f_dot3 (a, b)); \
   }))
 
 # define graphene_simd4f_min(a,b) \
@@ -1183,10 +1210,15 @@ typedef union {
 
 # define graphene_simd4f_dot3(a,b) \
   (__extension__ ({ \
+    graphene_simd4f_splat (graphene_simd4f_dot3_scalar (a, b)); \
+  }))
+
+# define graphene_simd4f_dot3_scalar(a,b) \
+  (__extension__ ({ \
     const graphene_simd4f_t __m = graphene_simd4f_mul (a, b); \
     float32x2_t s1 = vpadd_f32 (vget_low_f32 (__m), vget_low_f32 (__m)); \
     s1 = vadd_f32 (s1, vget_high_f32 (__m)); \
-    (graphene_simd4f_t) vdupq_n_f32 (vget_lane_f32 (s1, 0)); \
+    (float) vget_lane_f32 (s1, 0); \
   }))
 
 # define graphene_simd4f_min(a,b) \
@@ -1406,6 +1438,8 @@ typedef union {
 #define graphene_simd4f_cross3(a,b) \
   (graphene_simd4f_cross3 ((a), (b)))
 #define graphene_simd4f_dot3(a,b) \
+  (graphene_simd4f_dot3 ((a), (b)))
+#define graphene_simd4f_dot3_scalar(a,b) \
   (graphene_simd4f_dot3 ((a), (b)))
 #define graphene_simd4f_min(a,b) \
   (graphene_simd4f_min ((a), (b)))
