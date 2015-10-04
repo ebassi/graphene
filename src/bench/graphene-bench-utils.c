@@ -165,19 +165,62 @@ static double
 graphene_bench_run_test (const char *impl,
                          const char *path,
                          GrapheneBenchFunc func,
-                         gint64 num_rounds)
+                         gint64 num_rounds,
+                         double *round_min,
+                         double *round_max,
+                         double *round_avg)
 {
   GTimer *timer = g_timer_new ();
+  double *round_elapsed = malloc (sizeof (double) * num_rounds);
   double elapsed;
+  int min_idx, max_idx;
   int i;
 
   g_timer_start (timer);
 
   for (i = 0; i < num_rounds; i += 1)
-    func (bench_fixture);
+    {
+      func (bench_fixture);
 
-  elapsed = g_timer_elapsed (timer, NULL) * 1000000000.0;
+      round_elapsed[i] = g_timer_elapsed (timer, NULL) * 1000000000.0;
+      g_timer_reset (timer);
+    }
+
   g_timer_destroy (timer);
+
+  *round_min = *round_max = 0;
+  min_idx = max_idx = 0;
+  for (i = 0; i < num_rounds; i += 1)
+    {
+      elapsed += round_elapsed[i];
+
+      if (round_elapsed[i] < *round_min)
+        {
+          *round_min = round_elapsed[i];
+          min_idx = i;
+        }
+
+      if (round_elapsed[i] > *round_max)
+        {
+          *round_max = round_elapsed[i];
+          max_idx = i;
+        }
+    }
+
+  for (i = 0; i < num_rounds; i += 1)
+    {
+      if (i == min_idx || i == max_idx)
+        continue;
+
+      *round_avg += round_elapsed[i];
+    }
+
+  if (min_idx != max_idx)
+    *round_avg = *round_avg / (num_rounds - 2);
+  else
+    *round_avg = *round_avg / (num_rounds - 1);
+
+  free (round_elapsed);
 
   if (bench_verbose)
     g_printerr ("# '[%s]:%s': %.6f usecs/round after %" G_GINT64_FORMAT " rounds\n",
@@ -220,40 +263,39 @@ static void
 graphene_bench_print_results (const char *impl,
                               const char *path,
                               double      elapsed,
-                              int         num_rounds)
+                              int         num_rounds,
+                              double      min,
+                              double      max,
+                              double      avg)
 {
-  const char *d_unit, *iter_unit, *item_unit;
+  const char *d_unit, *round_unit, *iter_unit;
   double d = format_time (elapsed, &d_unit);
-  double iter = format_time (elapsed / num_rounds, &iter_unit);
-  double item = format_time (elapsed / num_rounds / bench_unit_rounds, &item_unit);
+  double round = format_time (avg, &round_unit);
+  double iter = format_time (avg / bench_unit_rounds, &iter_unit);
 
   switch (bench_output)
     {
     case BENCH_FORMAT_NONE:
-      g_print ("### unit '%s' (using %s implementation) ###\n"
-               "Duration: %.3f %s\n"
-               "Per iteration: %.6f %s\n"
-               "Per item: %.6f %s\n",
-               path, impl,
-               d, d_unit,
-               iter, iter_unit,
-               item, item_unit);
+      g_print ("### '%s' (%ld iterations - using %s implementation) ###\n"
+               "         Total: %.6f %s (%d rounds)\n"
+               "     Per round: %.6f %s (%d iterations per round)\n"
+               " Per iteration: %.6f %s\n",
+               path, (gint64) (num_rounds * bench_unit_rounds), impl,
+               d, d_unit, num_rounds,
+               round, round_unit, bench_unit_rounds,
+               iter, iter_unit);
       break;
 
     case BENCH_FORMAT_CSV:
-      g_print ("%s,%s,%.6f,%.6f,%.6f\n",
-               path, impl,
-               elapsed,
-               elapsed / num_rounds,
-               elapsed / num_rounds / bench_unit_rounds);
+      g_print ("%s,%s,%.6f,%.6f,%.6f\n", path, impl, elapsed, avg, avg / bench_unit_rounds);
       break;
 
     case BENCH_FORMAT_JSON:
       g_print ("{\"%s\":{\"impl\":\"%s\",\"total\":%.6f,\"iteration\":%.6f,\"round\":%.6f}}\n",
                path, impl,
                elapsed,
-               elapsed / num_rounds,
-               elapsed / num_rounds / bench_unit_rounds);
+               avg,
+               avg / bench_unit_rounds);
       break;
 
     default:
@@ -282,16 +324,16 @@ graphene_bench_round_run (const char *impl)
         {
           const char *path = key;
           GrapheneBenchFunc func = value;
-          double elapsed;
+          double elapsed, min, max, avg;
 
           bench_state = BENCH_WARM_UP;
           graphene_bench_warm_up (impl, path, func, bench_warm_up_runs);
 
           bench_state = BENCH_RUNNING;
-          elapsed = graphene_bench_run_test (impl, path, func, bench_runs);
+          elapsed = graphene_bench_run_test (impl, path, func, bench_runs, &min, &max, &avg);
 
           bench_state = BENCH_OUTPUT;
-          graphene_bench_print_results (impl, path, elapsed, bench_runs);
+          graphene_bench_print_results (impl, path, elapsed, bench_runs, min, max, avg);
         }
     }
 
