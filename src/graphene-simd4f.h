@@ -1167,15 +1167,18 @@ typedef union {
     (graphene_simd4f_t) vmulq_f32 ((a), __rec); \
   }))
 
+# define _simd4f_rsqrt_iter(v,estimate) \
+  (__extension__ ({ \
+    const graphene_simd4f_t __est1 = vmulq_f32 ((estimate), (v)); \
+    (graphene_simd4f_t) vmulq_f32 ((estimate), vrsqrtsq_f32 (__est1, (estimate))); \
+  }))
+
 # define graphene_simd4f_rsqrt(s) \
   (__extension__ ({ \
-    graphene_simd4f_t __est_1 = vrecpeq_f32 ((s)); \
-    graphene_simd4f_t __est_2 = vmulq_f32 (__est_1, (s)); \
-    __est_1 = vmulq_f32 (__est_1, vrsqrtsq_f32 (__est_2, __est_1)); \
-    __est_2 = vmulq_f32 (__est_1, (s)); \
-    __est_1 = vmulq_f32 (__est_1, vrsqrtsq_f32 (__est_2, __est_1)); \
-    __est_2 = vmulq_f32 (__est_1, (s)); \
-    (graphene_simd4f_t) vmulq_f32 (__est_1, vrsqrtsq_f32 (__est_2, __est_1)); \
+    graphene_simd4f_t __estimate = vrsqrtsq_f32 ((s)); \
+    __estimate = _simd4f_rsqrt_iter ((s), __estimate); \
+    __estimate = _simd4f_rsqrt_iter ((s), __estimate); \
+    _simd4f_rsqrt_iter ((s), __estimate); \
   }))
 
 # define graphene_simd4f_sqrt(s) \
