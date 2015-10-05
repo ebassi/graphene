@@ -1438,7 +1438,7 @@ typedef float32x2_t graphene_simd2f_t;
 #define graphene_simd4f_dot3(a,b) \
   (graphene_simd4f_dot3 ((a), (b)))
 #define graphene_simd4f_dot3_scalar(a,b) \
-  (graphene_simd4f_dot3 ((a), (b)))
+  (graphene_simd4f_dot3_scalar ((a), (b)))
 #define graphene_simd4f_min(a,b) \
   (graphene_simd4f_min ((a), (b)))
 #define graphene_simd4f_max(a,b) \
