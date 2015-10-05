@@ -324,7 +324,6 @@ int main () {
 
 AS_IF([test "x$graphene_cv_use_sse2" = xyes -a "x$graphene_cv_use_sse41" = xyes], [
   SSE2_CFLAGS="$SSE2_CFLAGS $SSE41_CFLAGS"
-  GRAPHENE_SIMD="sse4.1 $GRAPHENE_SIMD"
 ])
 
 # Check for ARM NEON instructions
