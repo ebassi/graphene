@@ -1054,6 +1054,8 @@ typedef union {
   float f[4];
 } graphene_simd4f_union_t;
 
+typedef float32x2_t graphene_simd2f_t;
+
 # define graphene_simd4f_init(x,y,z,w) \
   (__extension__ ({ \
     const float32_t __v[4] = { (x), (y), (z), (w) }; \
@@ -1079,9 +1081,9 @@ typedef union {
 # define graphene_simd4f_init_2f(v) \
   (__extension__ ({ \
     const float32_t *__v32 = (const float32_t *) (v); \
-    float32x2_t __low = vld1_f32 (__v32); \
+    const graphene_simd2f_t __low = vld1_f32 (__v32); \
     const float32_t __zero = 0; \
-    float32x2_t __high = vld1_dup_f32 (&__zero); \
+    const graphene_simd2f_t __high = vld1_dup_f32 (&__zero); \
     (graphene_simd4f_t) vcombine_f32 (__low, __high); \
   }))
 
@@ -1100,7 +1102,7 @@ typedef union {
 
 # define graphene_simd4f_dup_2f(s,v) \
   (__extension__ ({ \
-    const float32x2_t __low = vget_low_f32 ((s)); \
+    const graphene_simd2f_t __low = vget_low_f32 ((s)); \
     vst1_f32 ((float32_t *) (v), __low); \
   }))
 
@@ -1219,9 +1221,8 @@ typedef union {
 # define graphene_simd4f_dot3_scalar(a,b) \
   (__extension__ ({ \
     const graphene_simd4f_t __m = graphene_simd4f_mul (a, b); \
-    float32x2_t s1 = vpadd_f32 (vget_low_f32 (__m), vget_low_f32 (__m)); \
-    s1 = vadd_f32 (s1, vget_high_f32 (__m)); \
-    (float) vget_lane_f32 (s1, 0); \
+    const graphene_simd2f_t __s1 = vpadd_f32 (vget_low_f32 (__m), vget_low_f32 (__m)); \
+    (float) vget_lane_f32 (vadd_f32 (__s1, vget_high_f32 (__m)), 0); \
   }))
 
 # define graphene_simd4f_min(a,b) \

@@ -408,6 +408,7 @@ graphene_simd4f_interpolate
 <SUBSECTION Private>
 graphene_simd4f_union_t
 graphene_simd4i_union_t
+graphene_simd2f_t
 </SECTION>
 
 <SECTION>
