@@ -209,7 +209,7 @@ AS_IF([test "x$SSE2_CFLAGS" = "x"],
                 AS_IF([test "$AMD64_ABI" = "no"], [SSE2_CFLAGS="-xarch=sse2"])
               ],
               [
-                SSE2_CFLAGS="-Winline -mfpmath=sse -msse -msse2"
+                SSE2_CFLAGS="-mfpmath=sse -msse -msse2"
               ])
       ])
 
