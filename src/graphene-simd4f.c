@@ -1208,7 +1208,7 @@ graphene_simd4f_t
   return graphene_simd4f_splat (graphene_simd4f_dot3_scalar (a, b));
 }
 
-graphene_simd4f_t
+float
 (graphene_simd4f_dot3_scalar) (const graphene_simd4f_t a,
                                const graphene_simd4f_t b)
 {
