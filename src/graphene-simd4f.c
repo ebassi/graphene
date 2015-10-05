@@ -288,7 +288,16 @@ float
  * @v: a floating point value
  *
  * Sets all the components of a new #graphene_simd4f_t to the
- * same value @v.
+ * same value @v:
+ *
+ * |[<!-- language="C" -->
+ *   {
+ *     .x = v,
+ *     .y = v,
+ *     .z = v,
+ *     .w = v
+ *   };
+ * ]|
  *
  * Returns: the initialized #graphene_simd4f_t
  *
@@ -305,7 +314,16 @@ graphene_simd4f_t
  * @s: a #graphene_simd4f_t
  *
  * Sets all the components of a new #graphene_simd4f_t to the
- * same value of the first component of the passed vector.
+ * same value of the first component of the passed vector:
+ *
+ * |[<!-- language="C" -->
+ *   {
+ *     .x = s.x,
+ *     .y = s.x,
+ *     .z = s.x,
+ *     .w = s.x
+ *   }
+ * ]|
  *
  * Returns: the initialized #graphene_simd4f_t
  *
@@ -322,7 +340,16 @@ graphene_simd4f_t
  * @s: a #graphene_simd4f_t
  *
  * Sets all the components of a new #graphene_simd4f_t to the
- * same value of the second component of the passed vector.
+ * same value of the second component of the passed vector:
+ *
+ * |[<!-- language="C" -->
+ *   {
+ *     .x = s.y,
+ *     .y = s.y,
+ *     .z = s.y,
+ *     .w = s.y
+ *   }
+ * ]|
  *
  * Returns: the initialized #graphene_simd4f_t
  *
@@ -339,7 +366,16 @@ graphene_simd4f_t
  * @s: a #graphene_simd4f_t
  *
  * Sets all the components of a #graphene_simd4f_t to the
- * same value of the third component of the passed vector.
+ * same value of the third component of the passed vector:
+ *
+ * |[<!-- language="C" -->
+ *   {
+ *     .x = s.z,
+ *     .y = s.z,
+ *     .z = s.z,
+ *     .w = s.z
+ *   }
+ * ]|
  *
  * Returns: the initialized #graphene_simd4f_t
  *
@@ -356,7 +392,16 @@ graphene_simd4f_t
  * @s: a #graphene_simd4f_t
  *
  * Sets all the components of a #graphene_simd4f_t to the
- * same value of the fourth component of the passed vector.
+ * same value of the fourth component of the passed vector:
+ *
+ * |[<!-- language="C" -->
+ *   {
+ *     .x = s.w,
+ *     .y = s.w,
+ *     .z = s.w,
+ *     .w = s.w
+ *   }
+ * ]|
  *
  * Returns: the initialized #graphene_simd4f_t
  *
@@ -373,6 +418,15 @@ graphene_simd4f_t
  * @s: a #graphene_simd4f_t
  *
  * Computes the reciprocal of every component of @s.
+ *
+ * |[<!-- language="C" -->
+ *   {
+ *     .x = 1.0 / s.x,
+ *     .y = 1.0 / s.y,
+ *     .z = 1.0 / s.z,
+ *     .w = 1.0 / s.w
+ *   }
+ * ]|
  *
  * Returns: a vector containing the reciprocal of the
  *   passed vector
@@ -561,8 +615,7 @@ graphene_simd4f_t
  *
  * Creates a new #graphene_simd4f_t vector where each
  * component contains the 3-way cross product of the
- * given @a and @b vectors. You can access the result
- * as a floating point value through graphene_simd4f_get_x().
+ * given @a and @b vectors.
  *
  * Returns: the cross3 vector
  *
