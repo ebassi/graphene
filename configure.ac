@@ -363,6 +363,9 @@ AC_CACHE_CHECK([whether to use ARM NEON intrinsics],
 #ifndef __ARM_EABI__
 #error "EABI is required (to be sure that calling conventions are compatible)"
 #endif
+#ifndef __ARM_NEON__
+#error "No ARM NEON instructions available"
+#endif
 #include <arm_neon.h>
 int main () {
     const float32_t __v[4] = { 1, 2, 3, 4 }; \
@@ -704,13 +707,19 @@ extern "C" {
 _______EOF
 
         if test "x$graphene_has_sse2" = xyes; then
-          echo '# define GRAPHENE_HAS_SSE 1' >> $outfile
+          echo '# if defined(__SSE__) || (_M_IX86_FP > 0) || (_M_X64 > 0)' >> $outfile
+          echo '#  define GRAPHENE_HAS_SSE 1' >> $outfile
+          echo '# endif' >> $outfile
         fi
         if test "x$graphene_has_arm_neon" = xyes; then
-          echo '# define GRAPHENE_HAS_ARM_NEON 1' >> $outfile
+          echo '# if defined(__ARM_NEON__)' >> $outfile
+          echo '#  define GRAPHENE_HAS_ARM_NEON 1' >> $outfile
+          echo '# endif' >> $outfile
         fi
         if test "x$graphene_has_gcc_vector" = xyes; then
-          echo '# define GRAPHENE_HAS_GCC 1' >> $outfile
+          echo '# if defined(__GNUC__) && (__GNUC__ >= 4 && __GNUC_MINOR__ >= 9) && !defined(__arm__)' >> $outfile
+          echo '#  define GRAPHENE_HAS_GCC 1' >> $outfile
+          echo '# endif' >> $outfile
         fi
 
         cat >> $outfile <<_______EOF
