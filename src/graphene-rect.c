@@ -48,9 +48,6 @@
 static inline void
 graphene_rect_normalize_in_place (graphene_rect_t *r)
 {
-  if (likely (r->size.width >= 0.f && r->size.height >= 0.f))
-    return;
-
   if (r->size.width < 0.f)
     {
       float size = fabsf (r->size.width);
