@@ -1160,10 +1160,10 @@ graphene_simd4f_t
 (graphene_simd4f_reciprocal) (graphene_simd4f_t v)
 {
   graphene_simd4f_t s = {
-    1.0f / v.x,
-    1.0f / v.y,
-    1.0f / v.z,
-    1.0f / v.w
+    v.x != 0.f ? 1.0f / v.x : 0.f,
+    v.y != 0.f ? 1.0f / v.y : 0.f,
+    v.z != 0.f ? 1.0f / v.z : 0.f,
+    v.w != 0.f ? 1.0f / v.w : 0.f
   };
   return s;
 }
