@@ -968,16 +968,11 @@ graphene_matrix_transform_bounds (const graphene_matrix_t *m,
     const graphene_simd4f_t vx = graphene_simd4f_init (ret[0].x, ret[1].x, ret[2].x, ret[3].x);
     const graphene_simd4f_t vy = graphene_simd4f_init (ret[0].y, ret[1].y, ret[2].y, ret[3].y);
 
-    const graphene_simd4f_t x_min = graphene_simd4f_min_val (vx);
-    const graphene_simd4f_t x_max = graphene_simd4f_max_val (vx);
-    const graphene_simd4f_t y_min = graphene_simd4f_min_val (vy);
-    const graphene_simd4f_t y_max = graphene_simd4f_max_val (vy);
+    min_x = graphene_simd4f_get_x (graphene_simd4f_min_val (vx));
+    min_y = graphene_simd4f_get_x (graphene_simd4f_min_val (vy));
 
-    min_x = graphene_simd4f_get_x (x_min);
-    max_x = graphene_simd4f_get_x (x_max);
-
-    min_y = graphene_simd4f_get_x (y_min);
-    max_y = graphene_simd4f_get_x (y_max);
+    max_x = graphene_simd4f_get_x (graphene_simd4f_max_val (vx));
+    max_y = graphene_simd4f_get_x (graphene_simd4f_max_val (vy));
   }
 #endif
 
