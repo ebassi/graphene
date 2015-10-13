@@ -464,6 +464,7 @@ typedef GRAPHENE_ALIGN16 union {
     (graphene_simd4f_t) _mm_xor_ps ((s), _mm_load_ps (__mask.f)); \
   }))
 
+/* On MSVC, we use static inlines */
 # elif defined (_MSC_VER)
 
 #include <emmintrin.h> /* for __m128i */
@@ -518,7 +519,7 @@ _simd4f_get_xyzw (graphene_simd4f_t s, int mode)
   /* mode: get_x=0
            get_y=1
            get_z=2
-           get_z=3 */
+           get_w=3 */
 
   graphene_simd4f_union_t u;
   u.s = s;
@@ -1049,11 +1050,13 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
 /* ARM Neon implementation of SIMD4f */
 # warning "The ARM Neon implementation of graphene_simd4f_t is experimental."
 
+/* Union type used for single lane reading without memcpy */
 typedef union {
   graphene_simd4f_t s;
   float f[4];
 } graphene_simd4f_union_t;
 
+/* NEON has optimised 2-lanes vectors we can use */
 typedef float32x2_t graphene_simd2f_t;
 
 # define graphene_simd4f_init(x,y,z,w) \
