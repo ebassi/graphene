@@ -176,6 +176,13 @@ graphene_simd4f_t       graphene_simd4f_neg             (const graphene_simd4f_t
 
 /* SSE2 implementation of SIMD 4f */
 
+/* Union type used to do single lane reading without memcpy */
+typedef union {
+  graphene_simd4f_t s;
+  float f[4];
+} graphene_simd4f_union_t;
+
+/* On GCC, we use __extension__ macros to avoid a static inline */
 # if defined(__GNUC__)
 
 /* Use GCC statement __extension__ to inline all these functions */
@@ -219,12 +226,6 @@ graphene_simd4f_t       graphene_simd4f_neg             (const graphene_simd4f_t
   (__extension__ ({ \
     memcpy ((v), &(s), sizeof (float) * 2); \
   }))
-
-typedef union {
-  graphene_simd4f_t s;
-  float f[4];
-  unsigned int ui[4];
-} graphene_simd4f_union_t;
 
 #  define graphene_simd4f_get(s,i) \
   (__extension__ ({ \
@@ -500,12 +501,6 @@ _simd4f_init (float x, float y, float z, float w)
 
 #define graphene_simd4f_dup_2f(s,v) \
   memcpy (v, &s, sizeof (float) * 2)
-
-typedef union {
-  graphene_simd4f_t s;
-  float f[4];
-  unsigned int ui[4];
-} graphene_simd4f_union_t;
 
 #define graphene_simd4f_get(s,i) _simd4f_get_xyzw(s, i)
 #define graphene_simd4f_get_x(s) _simd4f_get_xyzw(s, 0)
