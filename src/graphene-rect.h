@@ -31,6 +31,7 @@
 #include "graphene-types.h"
 #include "graphene-point.h"
 #include "graphene-size.h"
+#include "graphene-vec2.h"
 
 GRAPHENE_BEGIN_DECLS
 
@@ -111,6 +112,9 @@ void                    graphene_rect_get_bottom_right  (const graphene_rect_t *
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_rect_get_bottom_left   (const graphene_rect_t *r,
                                                          graphene_point_t      *p);
+GRAPHENE_AVAILABLE_IN_1_4
+void                    graphene_rect_get_vertices      (const graphene_rect_t *r,
+                                                         graphene_vec2_t        vertices[]);
 GRAPHENE_AVAILABLE_IN_1_0
 float                   graphene_rect_get_x             (const graphene_rect_t *r);
 GRAPHENE_AVAILABLE_IN_1_0

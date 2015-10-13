@@ -35,6 +35,7 @@
  */
 
 #include "graphene-private.h"
+
 #include "graphene-rect.h"
 
 #include <math.h>
@@ -339,6 +340,30 @@ graphene_rect_get_bottom_right (const graphene_rect_t  *r,
   graphene_point_init (p,
                        rr.origin.x + rr.size.width,
                        rr.origin.y + rr.size.height);
+}
+
+/**
+ * graphene_rect_get_vertices:
+ * @r: a #graphene_rect_t
+ * @vertices: (out) (array fixed-size=4): return location for an array
+ *  of 4 #graphene_vec2_t
+ *
+ * Computes the four vertices of a #graphene_rect_t.
+ *
+ * Since: 1.4
+ */
+void
+graphene_rect_get_vertices (const graphene_rect_t *r,
+                            graphene_vec2_t        vertices[])
+{
+  graphene_rect_t rr;
+
+  graphene_rect_normalize_r (r, &rr);
+
+  graphene_vec2_init (&vertices[0], rr.origin.x, rr.origin.y);
+  graphene_vec2_init (&vertices[1], rr.origin.x + rr.size.width, rr.origin.y);
+  graphene_vec2_init (&vertices[2], rr.origin.x + rr.size.width, rr.origin.y + rr.size.height);
+  graphene_vec2_init (&vertices[3], rr.origin.x, rr.origin.y + rr.size.height);
 }
 
 #define GRAPHENE_RECT_GET(arg,part,field) \
