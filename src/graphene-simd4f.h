@@ -571,7 +571,7 @@ _simd4f_rsqrt(const graphene_simd4f_t v)
   graphene_simd4f_t __s = _mm_rsqrt_ps (v);
   return graphene_simd4f_mul (graphene_simd4f_mul (__s, __half),
                               graphene_simd4f_sub (__three,
-                              graphene_simd4f_mul (__s, graphene_simd4f_mul (v, __s))));
+                                                   graphene_simd4f_mul (__s, graphene_simd4f_mul (v, __s))));
 }
 
 #define graphene_simd4f_cross3(a,b) \
