@@ -468,8 +468,6 @@ typedef GRAPHENE_ALIGN16 union {
 /* On MSVC, we use static inlines */
 # elif defined (_MSC_VER)
 
-#include <emmintrin.h> /* for __m128i */
-
 /* Use static inline to inline all these functions */
 
 #define graphene_simd4f_init(x,y,z,w) _simd4f_init(x,y,z,w)

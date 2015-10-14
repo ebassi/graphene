@@ -744,6 +744,7 @@ _______EOF
 #ifndef __GI_SCANNER__
 # if defined(GRAPHENE_USE_SSE)
 #  include <xmmintrin.h>
+#  include <emmintrin.h>
 #  if defined(_M_IX86_FP)
 #   if _M_IX86_FP >= 2
 #    define GRAPHENE_USE_SSE4_1
