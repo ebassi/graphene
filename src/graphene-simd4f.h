@@ -969,7 +969,8 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
 # define graphene_simd4f_neg(s) \
   (__extension__ ({ \
     const graphene_simd4f_t __s = (s); \
-    graphene_simd4f_init (-__s[0], -__s[1], -__s[2], -__s[3]); \
+    const graphene_simd4f_t __minus_one = graphene_simd4f_splat (-1.f); \
+    graphene_simd4f_mul (__s, __minus_one); \
   }))
 
 #elif !defined(__GI_SCANNER__) && defined(GRAPHENE_USE_ARM_NEON)
