@@ -1516,11 +1516,13 @@ graphene_simd4f_madd (const graphene_simd4f_t m1,
 static inline graphene_simd4f_t
 graphene_simd4f_sum (const graphene_simd4f_t v)
 {
-  const graphene_simd4f_t s0 = graphene_simd4f_splat_x (v);
-  const graphene_simd4f_t s1 = graphene_simd4f_add (s0, graphene_simd4f_splat_y (v));
-  const graphene_simd4f_t s2 = graphene_simd4f_add (s1, graphene_simd4f_splat_z (v));
-  const graphene_simd4f_t s3 = graphene_simd4f_add (s2, graphene_simd4f_splat_w (v));
-  return s3;
+  const graphene_simd4f_t x = graphene_simd4f_splat_x (v);
+  const graphene_simd4f_t y = graphene_simd4f_splat_y (v);
+  const graphene_simd4f_t z = graphene_simd4f_splat_z (v);
+  const graphene_simd4f_t w = graphene_simd4f_splat_w (v);
+
+  return graphene_simd4f_add (graphene_simd4f_add (x, y),
+                              graphene_simd4f_add (z, w));
 }
 
 /**
