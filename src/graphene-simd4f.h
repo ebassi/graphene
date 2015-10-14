@@ -796,7 +796,12 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
 
 # define graphene_simd4f_reciprocal(v) \
   (__extension__ ({ \
-    graphene_simd4f_splat (1.0f) / (v); \
+    (graphene_simd4f_t) { \
+      (v)[0] != 0.f ? 1.f / (v)[0] : 0.f, \
+      (v)[1] != 0.f ? 1.f / (v)[1] : 0.f, \
+      (v)[2] != 0.f ? 1.f / (v)[2] : 0.f, \
+      (v)[3] != 0.f ? 1.f / (v)[3] : 0.f, \
+    } \
   }))
 
 # define graphene_simd4f_sqrt(v) \
