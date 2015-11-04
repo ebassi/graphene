@@ -564,8 +564,6 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
   const float y = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_y (&e->angles));
   const float z = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_z (&e->angles));
 
-  graphene_vec4_t row_x, row_y, row_z, row_w;
-
   float c1, s1, c2, s2, c3, s3;
   float c3c2, s3c1, c3s2s1, s3s1;
   float c3s2c1, s3c2, c3c1, s3s2s1;
@@ -596,9 +594,10 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
          * ⎢ -s3 c3 0 ⎥ ⎢  0  1   0 ⎥ ⎢ 0  c1 s1 ⎥
          * ⎣   0  0 1 ⎦ ⎣ s2  0  c2 ⎦ ⎣ 0 -s1 c1 ⎦
          */
-        graphene_vec4_init (&row_x,  c3c2, s3c1 + c3s2s1, s3s1 - c3s2c1, 0.f);
-        graphene_vec4_init (&row_y, -s3c2, c3c1 - s3s2s1, c3s1 + s3s2c1, 0.f);
-        graphene_vec4_init (&row_z,    s2,         -c2s1,          c2c1, 0.f);
+        res->value.x = graphene_simd4f_init ( c3c2, s3c1 + c3s2s1, s3s1 - c3s2c1, 0.f);
+        res->value.y = graphene_simd4f_init (-s3c2, c3c1 - s3s2s1, c3s1 + s3s2c1, 0.f);
+        res->value.z = graphene_simd4f_init (   s2,         -c2s1,          c2c1, 0.f);
+        res->value.w = graphene_simd4f_init (  0.f,           0.f,           0.f, 1.f);
       }
       break;
 
@@ -608,9 +607,10 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
          * ⎢ -s2 c3 0 ⎥ ⎢ 0  c2 s2 ⎥ ⎢  0 1   0 ⎥
          * ⎣   0  0 1 ⎦ ⎣ 0 -s2 c2 ⎦ ⎣ s1 0  c1 ⎦
          */
-        graphene_vec4_init (&row_x,  c3c1 + s3s2s1, s3c2, -c3s1 + s3s2c1, 0.f);
-        graphene_vec4_init (&row_y, -s3c1 + c3s2s1, c3c2,  s3s1 + c3s2c1, 0.f);
-        graphene_vec4_init (&row_z,           c2s1,  -s2,           c2c1, 0.f);
+        res->value.x = graphene_simd4f_init ( c3c1 + s3s2s1, s3c2, -c3s1 + s3s2c1, 0.f);
+        res->value.y = graphene_simd4f_init (-s3c1 + c3s2s1, c3c2,  s3s1 + c3s2c1, 0.f);
+        res->value.z = graphene_simd4f_init (          c2s1,  -s2,           c2c1, 0.f);
+        res->value.w = graphene_simd4f_init (           0.f,  0.f,            0.f, 1.f);
       }
       break;
 
@@ -620,9 +620,10 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
          * ⎢ 0  c3 s3 ⎥ ⎢  0  1   0 ⎥ ⎢ -s1 c1 0 ⎥
          * ⎣ 0 -s3 c3 ⎦ ⎣ s2  0  c2 ⎦ ⎣   0  0 1 ⎦
          */
-        graphene_vec4_init (&row_x, c3c1 - s3s2s1, c3s1 + s3s2c1, -s3c2, 0.f);
-        graphene_vec4_init (&row_y,         -c2s1,          c2c1,    s2, 0.f);
-        graphene_vec4_init (&row_z, s3c1 + c3s2s1, s3s1 - c3s2c1,  c3c2, 0.f);
+        res->value.x = graphene_simd4f_init (c3c1 - s3s2s1, c3s1 + s3s2c1, -s3c2, 0.f);
+        res->value.y = graphene_simd4f_init (        -c2s1,          c2c1,    s2, 0.f);
+        res->value.z = graphene_simd4f_init (s3c1 + c3s2s1, s3s1 - c3s2c1,  c3c2, 0.f);
+        res->value.w = graphene_simd4f_init (          0.f,           0.f,   0.f, 1.f);
       }
       break;
 
@@ -632,9 +633,10 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
          * ⎢ 0  c3 s3 ⎥ ⎢  0  1   0 ⎥ ⎢ -s1 c1 0 ⎥
          * ⎣ 0 -s3 c3 ⎦ ⎣ s2  0  c2 ⎦ ⎣   0  0 1 ⎦
          */
-        graphene_vec4_init (&row_x,          c2c1,          c2s1,  -s2, 0.f);
-        graphene_vec4_init (&row_y, s3s2c1 - c3s1, s3s2s1 + c3c1, s3c2, 0.f);
-        graphene_vec4_init (&row_z, c3s2c1 + s3s1, c3s2s1 - s3c1, c3c2, 0.f);
+        res->value.x = graphene_simd4f_init (         c2c1,          c2s1,  -s2, 0.f);
+        res->value.y = graphene_simd4f_init (s3s2c1 - c3s1, s3s2s1 + c3c1, s3c2, 0.f);
+        res->value.z = graphene_simd4f_init (c3s2c1 + s3s1, c3s2s1 - s3c1, c3c2, 0.f);
+        res->value.w = graphene_simd4f_init (          0.f,           0.f,  0.f, 1.f);
       }
       break;
 
@@ -644,9 +646,10 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
          * ⎢ 0  c3 s3 ⎥ ⎢ -s2 c2 0 ⎥ ⎢  0 1   0 ⎥
          * ⎣ 0 -s3 c3 ⎦ ⎣   0  0 1 ⎦ ⎣ s1 0  c1 ⎦
          */
-        graphene_vec4_init (&row_x,           c2c1,    s2,          -c2s1, 0.f);
-        graphene_vec4_init (&row_y, -c3s2c1 + s3s1,  c3c2,  c3s2s1 + s3c1, 0.f);
-        graphene_vec4_init (&row_z,  s3s2c1 + c3s1, -s3c2, -s3s2s1 + c3c1, 0.f);
+        res->value.x = graphene_simd4f_init (          c2c1,    s2,          -c2s1, 0.f);
+        res->value.y = graphene_simd4f_init (-c3s2c1 + s3s1,  c3c2,  c3s2s1 + s3c1, 0.f);
+        res->value.z = graphene_simd4f_init ( s3s2c1 + c3s1, -s3c2, -s3s2s1 + c3c1, 0.f);
+        res->value.w = graphene_simd4f_init (           0.f,   0.f,            0.f, 1.f);
       }
       break;
 
@@ -656,22 +659,17 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
          * ⎢  0 1   0 ⎥ ⎢ -s2 c2 0 ⎥ ⎢ 0  c1 s1 ⎥
          * ⎣ s3 0  c3 ⎦ ⎣   0  0 1 ⎦ ⎣ 0 -s1 c1 ⎦
          */
-        graphene_vec4_init (&row_x, c3c2, c3s2c1 + s3s1, c3s2s1 - s3c1, 0.f);
-        graphene_vec4_init (&row_y,  -s2,          c2c1,          c2s1, 0.f);
-        graphene_vec4_init (&row_z, s3c2, s3s2c1 - c3s1, s3s2s1 + c3c1, 0.f);
+        res->value.x = graphene_simd4f_init (c3c2, c3s2c1 + s3s1, c3s2s1 - s3c1, 0.f);
+        res->value.y = graphene_simd4f_init ( -s2,          c2c1,          c2s1, 0.f);
+        res->value.z = graphene_simd4f_init (s3c2, s3s2c1 - c3s1, s3s2s1 + c3c1, 0.f);
+        res->value.w = graphene_simd4f_init ( 0.f,           0.f,           0.f, 1.f);
       }
       break;
 
     default:
-      graphene_vec4_init (&row_x, 1.f, 0.f, 0.f, 0.f);
-      graphene_vec4_init (&row_y, 0.f, 1.f, 0.f, 0.f);
-      graphene_vec4_init (&row_z, 0.f, 0.f, 1.f, 0.f);
+      graphene_matrix_init_identity (res);
       break;
     }
-
-  graphene_vec4_init (&row_z, 0.f, 0.f, 0.f, 1.f);
-
-  graphene_matrix_init_from_vec4 (res, &row_x, &row_y, &row_z, &row_w);
 }
 
 /**
