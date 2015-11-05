@@ -33,8 +33,9 @@
 
 #include "graphene-quad.h"
 
-#include "graphene-rect.h"
 #include "graphene-line-segment-private.h"
+#include "graphene-rect.h"
+#include "graphene-simd4f.h"
 
 #include <string.h>
 
@@ -183,21 +184,18 @@ void
 graphene_quad_bounds (const graphene_quad_t *q,
                       graphene_rect_t       *r)
 {
+  graphene_simd4f_t vx, vy;
   float min_x, max_x;
   float min_y, max_y;
-  int i;
 
-  min_x = max_x = q->points[0].x;
-  min_y = max_y = q->points[0].y;
+  vx = graphene_simd4f_init (q->points[0].x, q->points[1].x, q->points[2].x, q->points[3].x);
+  vy = graphene_simd4f_init (q->points[0].y, q->points[1].y, q->points[2].y, q->points[3].y);
 
-  for (i = 1; i < 4; i += 1)
-    {
-      min_x = MIN (q->points[i].x, min_x);
-      min_y = MIN (q->points[i].y, min_y);
+  min_x = graphene_simd4f_get_x (graphene_simd4f_min_val (vx));
+  min_y = graphene_simd4f_get_x (graphene_simd4f_min_val (vy));
 
-      max_x = MAX (q->points[i].x, max_x);
-      max_y = MAX (q->points[i].y, max_y);
-    }
+  max_x = graphene_simd4f_get_x (graphene_simd4f_max_val (vx));
+  max_y = graphene_simd4f_get_x (graphene_simd4f_max_val (vy));
 
   graphene_rect_init (r, min_x, min_y, max_x - min_x, max_y - min_y);
 }
