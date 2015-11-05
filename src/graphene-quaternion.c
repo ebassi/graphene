@@ -246,23 +246,19 @@ void
 graphene_quaternion_to_matrix (const graphene_quaternion_t *q,
                                graphene_matrix_t           *m)
 {
-  graphene_simd4f_t m_x, m_y, m_z, m_w;
-
-  m_x = graphene_simd4f_init (1.f - 2.f * (q->y * q->y + q->z * q->z),
-                                    2.f * (q->x * q->y + q->w * q->z),
-                                    2.f * (q->x * q->z - q->w * q->y),
-                              0.f);
-  m_y = graphene_simd4f_init (      2.f * (q->x * q->y - q->w * q->z),
-                              1.f - 2.f * (q->x * q->x + q->z * q->z),
-                                    2.f * (q->y * q->z + q->w * q->x),
-                              0.f);
-  m_z = graphene_simd4f_init (      2.f * (q->x * q->z + q->w * q->y),
-                                    2.f * (q->y * q->z - q->w * q->x),
-                              1.f - 2.f * (q->x * q->x + q->y * q->y),
-                              0.f);
-  m_w = graphene_simd4f_init (0.f, 0.f, 0.f, 1.f);
-
-  m->value = graphene_simd4x4f_init (m_x, m_y, m_z, m_w);
+  m->value.x = graphene_simd4f_init (1.f - 2.f * (q->y * q->y + q->z * q->z),
+                                           2.f * (q->x * q->y + q->w * q->z),
+                                           2.f * (q->x * q->z - q->w * q->y),
+                                     0.f);
+  m->value.y = graphene_simd4f_init (      2.f * (q->x * q->y - q->w * q->z),
+                                     1.f - 2.f * (q->x * q->x + q->z * q->z),
+                                           2.f * (q->y * q->z + q->w * q->x),
+                                     0.f);
+  m->value.z = graphene_simd4f_init (      2.f * (q->x * q->z + q->w * q->y),
+                                           2.f * (q->y * q->z - q->w * q->x),
+                                     1.f - 2.f * (q->x * q->x + q->y * q->y),
+                                     0.f);
+  m->value.w = graphene_simd4f_init (0.f, 0.f, 0.f, 1.f);
 }
 
 /**
