@@ -32,14 +32,6 @@ GRAPHENE_TEST_UNIT_END
 
 GRAPHENE_TEST_UNIT_BEGIN (frustum_ortho_contains_point)
 {
-#if defined(GRAPHENE_USE_GCC)
-# if GLIB_CHECK_VERSION (2, 38, 0)
-  g_test_skip ("Disabled when using GCC vectors");
-# else
-  if (g_test_verbose ())
-    g_test_message ("Disabled when using GCC vectors");
-# endif
-#else
   graphene_matrix_t m;
   graphene_frustum_t f;
   graphene_point3d_t p;
@@ -60,7 +52,6 @@ GRAPHENE_TEST_UNIT_BEGIN (frustum_ortho_contains_point)
   g_assert_true (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 1.f, 1.f, -100.f)));
   g_assert_false (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 1.1f, 1.1f, -100.1f)));
   g_assert_false (graphene_frustum_contains_point (&f, graphene_point3d_init (&p, 0.f, 0.f, -101.f)));
-#endif
 }
 GRAPHENE_TEST_UNIT_END
 
