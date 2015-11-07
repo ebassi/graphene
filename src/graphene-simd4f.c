@@ -290,7 +290,7 @@ float
  * Sets all the components of a new #graphene_simd4f_t to the
  * same value @v:
  *
- * |[<!-- language="C" -->
+ * |[<!-- language="plain" -->
  *   {
  *     .x = v,
  *     .y = v,
@@ -316,7 +316,7 @@ graphene_simd4f_t
  * Sets all the components of a new #graphene_simd4f_t to the
  * same value of the first component of the passed vector:
  *
- * |[<!-- language="C" -->
+ * |[<!-- language="plain" -->
  *   {
  *     .x = s.x,
  *     .y = s.x,
@@ -342,7 +342,7 @@ graphene_simd4f_t
  * Sets all the components of a new #graphene_simd4f_t to the
  * same value of the second component of the passed vector:
  *
- * |[<!-- language="C" -->
+ * |[<!-- language="plain" -->
  *   {
  *     .x = s.y,
  *     .y = s.y,
@@ -368,7 +368,7 @@ graphene_simd4f_t
  * Sets all the components of a #graphene_simd4f_t to the
  * same value of the third component of the passed vector:
  *
- * |[<!-- language="C" -->
+ * |[<!-- language="plain" -->
  *   {
  *     .x = s.z,
  *     .y = s.z,
@@ -394,7 +394,7 @@ graphene_simd4f_t
  * Sets all the components of a #graphene_simd4f_t to the
  * same value of the fourth component of the passed vector:
  *
- * |[<!-- language="C" -->
+ * |[<!-- language="plain" -->
  *   {
  *     .x = s.w,
  *     .y = s.w,
@@ -419,7 +419,7 @@ graphene_simd4f_t
  *
  * Computes the reciprocal of every component of @s.
  *
- * |[<!-- language="C" -->
+ * |[<!-- language="plain" -->
  *   {
  *     .x = 1.0 / s.x,
  *     .y = 1.0 / s.y,
@@ -445,7 +445,7 @@ graphene_simd4f_t
  *
  * Computes the square root of every component of @s.
  *
- * |[<!-- language="C" -->
+ * |[<!-- language="plain" -->
  *   {
  *     .x = sqrt (s.x),
  *     .y = sqrt (s.y),
@@ -472,7 +472,7 @@ graphene_simd4f_t
  * Computes the reciprocal square root of every component
  * of @s.
  *
- * |[<!-- language="C" -->
+ * |[<!-- language="plain" -->
  *   {
  *     .x = 1.0 / sqrt (s.x),
  *     .y = 1.0 / sqrt (s.y),
@@ -501,7 +501,7 @@ graphene_simd4f_t
  * component is the sum of the respective components
  * in @a and @b.
  *
- * |[<!-- lanugage="C" -->
+ * |[<!-- lanugage="plain" -->
  *   {
  *     .x = a.x + b.x,
  *     .y = a.y + b.y,
@@ -530,7 +530,7 @@ graphene_simd4f_t
  * component is the subtraction of the respective components
  * in @a and @b.
  *
- * |[<!-- lanugage="C" -->
+ * |[<!-- lanugage="plain" -->
  *   {
  *     .x = a.x - b.x,
  *     .y = a.y - b.y,
@@ -559,7 +559,7 @@ graphene_simd4f_t
  * component is the multiplication of the respective components
  * in @a and @b.
  *
- * |[<!-- lanugage="C" -->
+ * |[<!-- lanugage="plain" -->
  *   {
  *     .x = a.x * b.x,
  *     .y = a.y * b.y,
@@ -588,7 +588,7 @@ graphene_simd4f_t
  * component is the division of the respective components
  * in @a and @b.
  *
- * |[<!-- lanugage="C" -->
+ * |[<!-- lanugage="plain" -->
  *   {
  *     .x = a.x / b.x,
  *     .y = a.y / b.y,

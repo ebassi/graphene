@@ -32,7 +32,7 @@
  * The matrix is treated as row-major, i.e. it has four vectors (x, y, z, and
  * w) representing rows, and elements of each vector are a column:
  *
- * |[
+ * |[<!-- language="plain" -->
  *   | x |    | x.x   x.y   x.z   x.w |
  *   | y | -\ | y.x   y.y   y.z   y.w |
  *   | z | -/ | z.x   z.y   z.z   z.w |
@@ -551,7 +551,7 @@ graphene_matrix_is_singular (const graphene_matrix_t *m)
  *
  * The arguments map to the following matrix layout:
  *
- * |[
+ * |[<!-- language="plain" -->
  *   | xx yx |   |  a  b  0 |
  *   | xy yy | = |  c  d  0 |
  *   | x0 y0 |   | tx ty  1 |
@@ -596,7 +596,7 @@ graphene_matrix_init_from_2d (graphene_matrix_t *m,
  *
  * The returned values have the following layout:
  *
- * |[
+ * |[<!-- language="plain" -->
  *   | xx yx |   |  a  b  0 |
  *   | xy yy | = |  c  d  0 |
  *   | x0 y0 |   | tx ty  1 |
