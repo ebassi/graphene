@@ -696,7 +696,7 @@ graphene_matrix_get_row (const graphene_matrix_t *m,
 
 /**
  * graphene_matrix_get_value:
- * @m: a #grapheme_matrix_t
+ * @m: a #graphene_matrix_t
  * @row: the row index
  * @col: the column index
  *
