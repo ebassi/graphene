@@ -36,6 +36,7 @@
 
 #include "graphene-private.h"
 #include "graphene-point3d.h"
+#include "graphene-rect.h"
 #include "graphene-simd4f.h"
 #include "graphene-vec3.h"
 
@@ -405,6 +406,41 @@ graphene_point3d_interpolate (const graphene_point3d_t *a,
   res->x = graphene_lerp (a->x, b->x, factor);
   res->y = graphene_lerp (a->y, b->y, factor);
   res->z = graphene_lerp (a->z, b->z, factor);
+}
+
+/**
+ * graphene_point3d_normalize_viewport:
+ * @p: a #graphene_point3d_t
+ * @viewport: a #graphene_rect_t representing a viewport
+ * @z_near: the coordinate of the near clipping plane, or 0 for
+ *   the default near clipping plane
+ * @z_far: the coordinate of the far clipping plane, or 1 for the
+ *   default far clipping plane
+ * @res: (out caller-allocates): the return location for the
+ *   normalized #graphene_point3d_t
+ *
+ * Normalizes the coordinates of a #graphene_point3d_t using the
+ * given viewport and clipping planes.
+ *
+ * The coordinates of the resulting #graphene_point3d_t will be
+ * in the [ -1, 1 ] range.
+ *
+ * Since: 1.4
+ */
+void
+graphene_point3d_normalize_viewport (const graphene_point3d_t *p,
+                                     const graphene_rect_t    *viewport,
+                                     float                     z_near,
+                                     float                     z_far,
+                                     graphene_point3d_t       *res)
+{
+  res->x = (p->x - viewport->origin.x) / viewport->size.width;
+  res->y = (p->y - viewport->origin.y) / viewport->size.height;
+  res->z = (p->z - z_near) / (z_far - z_near);
+
+  res->x = CLAMP (res->x * 2.f - 1.f, -1.f, 1.f);
+  res->y = CLAMP (res->y * 2.f - 1.f, -1.f, 1.f);
+  res->z = CLAMP (res->z * 2.f - 1.f, -1.f, 1.f);
 }
 
 static const graphene_point3d_t _graphene_point3d_zero = GRAPHENE_POINT3D_INIT_ZERO;

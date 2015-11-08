@@ -125,6 +125,13 @@ void                            graphene_point3d_interpolate            (const g
                                                                          double                    factor,
                                                                          graphene_point3d_t       *res);
 
+GRAPHENE_AVAILABLE_IN_1_4
+void                            graphene_point3d_normalize_viewport     (const graphene_point3d_t *p,
+                                                                         const graphene_rect_t    *viewport,
+                                                                         float                     z_near,
+                                                                         float                     z_far,
+                                                                         graphene_point3d_t       *res);
+
 GRAPHENE_AVAILABLE_IN_1_0
 const graphene_point3d_t *      graphene_point3d_zero                   (void);
 

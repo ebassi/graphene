@@ -202,6 +202,26 @@ GRAPHENE_TEST_UNIT_BEGIN (point_normalize)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (point_normalize_viewport)
+{
+  graphene_point3d_t p, q;
+  graphene_rect_t v;
+
+  graphene_point3d_init (&p, 150.f, 20.f, 0.f);
+  graphene_rect_init (&v, 0.f, 0.f, 640.f, 480.f);
+  graphene_point3d_normalize_viewport (&p, &v, 1.f, 100.f, &q);
+
+  g_assert_false (graphene_point3d_equal (&p, &q));
+
+  g_assert_cmpfloat (q.x, >=, -1.f);
+  g_assert_cmpfloat (q.x, <, 1.f);
+  g_assert_cmpfloat (q.y, >=, -1.f);
+  g_assert_cmpfloat (q.y, <, 1.f);
+  g_assert_cmpfloat (q.z, >=, -1.f);
+  g_assert_cmpfloat (q.z, <, 1.f);
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/point3d/alloc", point_alloc)
   GRAPHENE_TEST_UNIT ("/point3d/init", point_init)
@@ -214,4 +234,5 @@ GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/point3d/dot", point_dot)
   GRAPHENE_TEST_UNIT ("/point3d/length", point_length)
   GRAPHENE_TEST_UNIT ("/point3d/normalize", point_normalize)
+  GRAPHENE_TEST_UNIT ("/point3d/normalize-viewport", point_normalize_viewport)
 )
