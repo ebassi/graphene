@@ -1286,14 +1286,11 @@ graphene_matrix_unproject_point3d (const graphene_matrix_t  *projection,
   float values[4];
   float inv_w;
 
-  graphene_simd4x4f_matrix_mul (&modelview->value, &projection->value, &tmp);
-  graphene_simd4x4f_inverse (&tmp, &tmp);
+  graphene_simd4x4f_inverse (&projection->value, &tmp);
+  graphene_simd4x4f_matrix_mul (&tmp, &modelview->value, &tmp);
 
   v = graphene_simd4f_init (point->x, point->y, point->z, 1.f);
   graphene_simd4x4f_vec4_mul (&tmp, &v, &v);
-
-  if (graphene_simd4f_get_w (v) == 0.f)
-    return;
 
   inv_w = 1.f / graphene_simd4f_get_w (v);
   v = graphene_simd4f_mul (v, graphene_simd4f_splat (inv_w));
