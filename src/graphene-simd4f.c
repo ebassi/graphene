@@ -636,8 +636,8 @@ graphene_simd4f_t
  * Computes the dot product of the first three components of the
  * two given #graphene_simd4f_t.
  *
- * Returns: a vector whose components are all set to the the
- *   dot product of the componets of the two operands
+ * Returns: a vector whose components are all set to the
+ *   dot product of the components of the two operands
  *
  * Since: 1.0
  */

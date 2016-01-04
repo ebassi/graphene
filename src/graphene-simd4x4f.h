@@ -518,7 +518,7 @@ graphene_simd4x4f_init_ortho (graphene_simd4x4f_t *m,
  * graphene_simd4x4f_init_look_at:
  * @m: a #graphene_simd4x4f_t
  * @eye: vector for the camera coordinates
- * @center: vector the the object coordinates
+ * @center: vector for the object coordinates
  * @up: vector for the upwards direction
  *
  * Initializes a SIMD matrix with the projection necessary for
