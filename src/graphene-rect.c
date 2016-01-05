@@ -218,7 +218,7 @@ graphene_rect_normalize (graphene_rect_t *r)
  * Normalizes the passed rectangle.
  *
  * This function ensures that the size of the rectangle is made of
- * positive values, and the the the origin is in the top-left corner
+ * positive values, and that the origin is in the top-left corner
  * of the rectangle.
  *
  * Since: 1.4
