@@ -80,7 +80,7 @@ graphene_sphere_free (graphene_sphere_t *s)
  *   for a center in (0, 0, 0)
  * @radius: the radius of the sphere
  *
- * Initializes the given #graphene_sphere_t with the give @center and @radius.
+ * Initializes the given #graphene_sphere_t with the given @center and @radius.
  *
  * Returns: (transfer none): the initialized #graphene_sphere_t
  *
