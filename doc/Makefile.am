@@ -25,7 +25,8 @@ IGNORE_HFILES = \
 
 EXTRA_HFILES =
 
-HTML_IMAGES =
+HTML_IMAGES = \
+	triangle-barycentric.png
 
 content_files =
 expand_content_files = 

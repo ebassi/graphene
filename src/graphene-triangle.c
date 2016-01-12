@@ -360,6 +360,12 @@ graphene_triangle_get_uv (const graphene_triangle_t *t,
  * Computes the [barycentric coordinates](http://en.wikipedia.org/wiki/Barycentric_coordinate_system)
  * of the given point @p.
  *
+ * If we place the origin in the coordinates of the triangle's A point,
+ * the barycentric coordinates are `u`, which is on the AC vector; and `v`
+ * which is on the AB vector:
+ *
+ * ![](triangle-barycentric.png)
+ *
  * The returned #graphene_vec2_t contains the following values, in order:
  *
  *  - `res.x = u`
