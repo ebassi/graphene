@@ -194,10 +194,33 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_barycoords)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (triangle_area)
+{
+  graphene_triangle_t t;
+  graphene_point3d_t a, b, c;
+  float area;
+
+  /* Counterclockwise */
+  graphene_point3d_init (&a, 0.f, 0.f, 0.f);
+  graphene_point3d_init (&b, 1.f, 0.f, 0.f);
+  graphene_point3d_init (&c, 1.f, 1.f, 0.f);
+
+  graphene_triangle_init_from_point3d (&t, &a, &b, &c);
+  area = graphene_triangle_get_area (&t);
+  graphene_assert_fuzzy_equals (area, 0.5f, 0.0001f);
+
+  /* Clockwise (positive too) */
+  graphene_triangle_init_from_point3d (&t, &a, &c, &b);
+  area = graphene_triangle_get_area (&t);
+  graphene_assert_fuzzy_equals (area, 0.5f, 0.0001f);
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/triangle/init/from-point3", triangle_init_from_point3d)
   GRAPHENE_TEST_UNIT ("/triangle/init/from-vec3", triangle_init_from_vec3)
   GRAPHENE_TEST_UNIT ("/triangle/contains-point", triangle_contains_point);
   GRAPHENE_TEST_UNIT ("/triangle/plane", triangle_plane);
   GRAPHENE_TEST_UNIT ("/triangle/barycoords", triangle_barycoords);
+  GRAPHENE_TEST_UNIT ("/triangle/area", triangle_area);
 )
