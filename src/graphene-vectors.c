@@ -395,7 +395,7 @@ graphene_vec2_scale (const graphene_vec2_t *v,
  * @v: a #graphene_vec2_t
  * @res: (out caller-allocates): return location for the result vector
  *
- * Negates the give #graphene_vec2_t.
+ * Negates the given #graphene_vec2_t.
  *
  * Since: 1.2
  */
@@ -1072,7 +1072,7 @@ graphene_vec3_get_xyzw (const graphene_vec3_t *v,
  * @v: a #graphene_vec3_t
  * @res: (out caller-allocates): return location for the result vector
  *
- * Negates the give #graphene_vec3_t.
+ * Negates the given #graphene_vec3_t.
  *
  * Since: 1.2
  */
@@ -1767,7 +1767,7 @@ graphene_vec4_get_xyz (const graphene_vec4_t *v,
  * @v: a #graphene_vec4_t
  * @res: (out caller-allocates): return location for the result vector
  *
- * Negates the give #graphene_vec4_t.
+ * Negates the given #graphene_vec4_t.
  *
  * Since: 1.2
  */

@@ -1,3 +1,5 @@
+<INCLUDE>graphene.h</INCLUDE>
+
 <SECTION>
 <FILE>graphene-box</FILE>
 graphene_box_t
@@ -72,6 +74,7 @@ graphene_frustum_intersects_box
 
 <SECTION>
 <FILE>graphene-gobject</FILE>
+<INCLUDE>graphene-gobject.h</INCLUDE>
 <SUBSECTION Standard>
 GRAPHENE_TYPE_BOX
 GRAPHENE_TYPE_EULER

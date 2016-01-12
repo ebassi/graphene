@@ -46,8 +46,9 @@
  * will have to use the #GBoxed API when dealing with #GValue, #GParamSpec,
  * and signal marshallers.
  *
- * Graphene type names for use in GObject are the camel case version of
- * the C name, minus the `_t` suffix; for instance:
+ * When using Graphene with another language than C, the GObject Introspection
+ * bindings change the type names to the CamelCase version of the C name, minus
+ * the `_t` suffix; for instance:
  *
  *  * #graphene_point_t becomes `GraphenePoint`
  *  * #graphene_point3d_t becomes `GraphenePoint3D`
