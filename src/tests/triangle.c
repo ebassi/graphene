@@ -134,9 +134,70 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_plane)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (triangle_barycoords)
+{
+  graphene_triangle_t t;
+  graphene_point3d_t a, b, c, p;
+  graphene_vec2_t barycoords;
+  graphene_vec2_t check;
+
+  graphene_point3d_init (&a, 0.f, 0.f, 0.f);
+  graphene_point3d_init (&b, 1.f, 0.f, 0.f);
+  graphene_point3d_init (&c, 1.f, 1.f, 0.f);
+  graphene_triangle_init_from_point3d (&t, &a, &b, &c);
+
+  /* Inside or on the border of the triangle */
+  g_assert_true (graphene_triangle_get_barycoords (&t, &a, &barycoords));
+  graphene_vec2_init (&check, 0.f, 0.f);
+  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+
+  g_assert_true (graphene_triangle_get_barycoords (&t, &b, &barycoords));
+  graphene_vec2_init (&check, 0.f, 1.f);
+  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+
+  g_assert_true (graphene_triangle_get_barycoords (&t, &c, &barycoords));
+  graphene_vec2_init (&check, 1.f, 0.f);
+  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+
+  graphene_point3d_init (&p, 0.5f, 0.f, 0.f);
+  g_assert_true (graphene_triangle_get_barycoords (&t, &p, &barycoords));
+  graphene_vec2_init (&check, 0.f, 0.5f);
+  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+
+  graphene_point3d_init (&p, 0.5f, 0.5f, 0.f);
+  g_assert_true (graphene_triangle_get_barycoords (&t, &p, &barycoords));
+  graphene_vec2_init (&check, 0.5f, 0.f);
+  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+
+  graphene_point3d_init (&p, 1.f, 0.5f, 0.f);
+  g_assert_true (graphene_triangle_get_barycoords (&t, &p, &barycoords));
+  graphene_vec2_init (&check, 0.5f, 0.5f);
+  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+
+  /* Outside the triangle, same plane */
+  graphene_point3d_init (&p, 2.f, 1.f, 0.f);
+  g_assert_true (graphene_triangle_get_barycoords (&t, &p, &barycoords));
+  graphene_vec2_init (&check, 1.f, 1.f);
+  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+
+  graphene_point3d_init (&p, -1.f, 0.f, 0.f);
+  g_assert_true (graphene_triangle_get_barycoords (&t, &p, &barycoords));
+  graphene_vec2_init (&check, 0.f, -1.f);
+  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+
+  /* Outside the triangle plane */
+  /* FIXME is that normal? */
+  graphene_point3d_init (&p, 0.f, 0.f, 1.f);
+  g_assert_true (graphene_triangle_get_barycoords (&t, &p, &barycoords));
+  graphene_vec2_init (&check, 0.f, 0.f);
+  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/triangle/init/from-point3", triangle_init_from_point3d)
   GRAPHENE_TEST_UNIT ("/triangle/init/from-vec3", triangle_init_from_vec3)
   GRAPHENE_TEST_UNIT ("/triangle/contains-point", triangle_contains_point);
   GRAPHENE_TEST_UNIT ("/triangle/plane", triangle_plane);
+  GRAPHENE_TEST_UNIT ("/triangle/barycoords", triangle_barycoords);
 )
