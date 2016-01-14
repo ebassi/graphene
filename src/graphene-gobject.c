@@ -36,7 +36,7 @@
  * pkg-config file exists. In build systems using autotools, you can use
  * the `PKG_CHECK_EXISTS` m4 macro, for instance:
  *
- * |[
+ * |[<!-- language="plain" -->
  *   PKG_CHECK_EXISTS([graphene-gobject-1.0],
  *                    [action-if-found],
  *                    [action-if-not-found]
@@ -44,7 +44,36 @@
  *
  * All the types provided by Graphene are boxed types, which means you
  * will have to use the #GBoxed API when dealing with #GValue, #GParamSpec,
- * and signal marshallers.
+ * and signal marshallers. For instance, to install a property in a #GObject
+ * class that uses #graphene_rect_t, you can use:
+ *
+ * |[<!-- language="C" -->
+ *   g_object_class_install_property (object_class, PROP_BOUNDS,
+ *     g_param_spec_boxed ("bounds", "Bounds", "Bounds of an object",
+ *                         GRAPHENE_TYPE_RECT,
+ *                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+ * ]|
+ *
+ * You'll then need to use g_value_set_boxed() and g_value_get_boxed()
+ * in order to access the #graphene_rect_t pointer from the #GValue data
+ * structure.
+ *
+ * Whereas for creating a new signal that has a #graphene_point_t parameter
+ * you can use:
+ *
+ * |[<!-- language="C" -->
+ *   signals[HIT_TEST] =
+ *     g_signal_new ("hit-test",
+ *                   G_TYPE_FROM_CLASS (object_class),
+ *                   G_SIGNAL_RUN_LAST,
+ *                   0,
+ *                   g_signal_accumulator_true_handled, NULL,
+ *                   marshal_BOOLEAN__BOXED,
+ *                   G_TYPE_BOOLEAN, 1,
+ *                   GRAPHENE_TYPE_POINT);
+ * ]|
+ *
+ * ## Using Graphene via GObject introspection
  *
  * When using Graphene with another language than C, the GObject Introspection
  * bindings change the type names to the CamelCase version of the C name, minus
