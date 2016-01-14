@@ -26,6 +26,9 @@ IGNORE_HFILES = \
 EXTRA_HFILES =
 
 HTML_IMAGES = \
+	rectangle.png \
+	rectangle-intersection.png \
+	rectangle-union.png \
 	triangle-barycentric.png
 
 content_files =

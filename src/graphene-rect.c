@@ -29,6 +29,8 @@
  * #graphene_rect_t is a type representing a rectangle through an origin
  * #graphene_point_t point and a #graphene_size_t size.
  *
+ * ![](rectangle.png)
+ *
  * Operations on a #graphene_rect_t will normalize the rectangle, to
  * ensure that the origin is always the top-left corner of the rectangle
  * and that the size is always positive.
@@ -438,6 +440,10 @@ GRAPHENE_RECT_GET (r, size, height)
  *
  * Computes the union of the two given rectangles.
  *
+ * ![](rectangle-union.png)
+ *
+ * The union in the image above is the blue outline.
+ *
  * Since: 1.0
  */
 void
@@ -468,6 +474,10 @@ graphene_rect_union (const graphene_rect_t *a,
  *   a #graphene_rect_t
  *
  * Computes the intersection of the two given rectangles.
+ *
+ * ![](rectangle-intersection.png)
+ *
+ * The intersection in the image above is the blue outline.
  *
  * If the two rectangles do not intersect, @res will contain
  * a degenerate rectangle with origin in (0, 0) and a size of 0.
