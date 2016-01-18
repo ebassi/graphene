@@ -129,6 +129,11 @@ GRAPHENE_TEST_UNIT_BEGIN (rect_union)
   graphene_rect_t u;
 
   graphene_rect_union (&r, &s, &u);
+  g_assert_cmpfloat (u.origin.x, ==, 0.f);
+  g_assert_cmpfloat (u.origin.y, ==, 0.f);
+  g_assert_cmpfloat (u.size.width, ==, 20.f);
+  g_assert_cmpfloat (u.size.height, ==, 20.f);
+
   g_assert_true (graphene_rect_contains_rect (&u, &r));
   g_assert_true (graphene_rect_contains_rect (&u, &s));
 }
@@ -197,8 +202,8 @@ GRAPHENE_TEST_UNIT_BEGIN (rect_expand)
     g_test_message ("Behind the origin...");
   graphene_rect_expand (&r, graphene_point_init (&p, -10.f, -10.f), &check);
   g_assert_true (graphene_point_equal (&p, &(check.origin)));
-  g_assert_cmpfloat (check.size.width, ==, r.size.width);
-  g_assert_cmpfloat (check.size.height, ==, r.size.height);
+  g_assert_cmpfloat (check.size.width, ==, 110.f);
+  g_assert_cmpfloat (check.size.height, ==, 110.f);
   g_assert_true (graphene_rect_contains_rect (&check, &r));
 
   if (g_test_verbose ())

@@ -462,8 +462,8 @@ graphene_rect_union (const graphene_rect_t *a,
   res->origin.x = MIN (ra.origin.x, rb.origin.x);
   res->origin.y = MIN (ra.origin.y, rb.origin.y);
 
-  res->size.width = MAX (ra.size.width, rb.size.width);
-  res->size.height = MAX (ra.size.height, rb.size.height);
+  res->size.width = MAX (ra.origin.x + ra.size.width, rb.origin.x + rb.size.width) - res->origin.x;
+  res->size.height = MAX (ra.origin.y + ra.size.height, rb.origin.y + rb.size.height) - res->origin.y;
 }
 
 /**
