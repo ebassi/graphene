@@ -770,15 +770,11 @@ graphene_rect_expand (const graphene_rect_t  *r,
                       const graphene_point_t *p,
                       graphene_rect_t        *res)
 {
+  graphene_rect_t tmp;
   float d_x, d_y;
 
-  res->origin.x = MIN (r->origin.x, p->x);
-  res->origin.y = MIN (r->origin.y, p->y);
-
-  d_x = MAX (r->origin.x + r->size.width, p->x);
-  d_y = MAX (r->origin.y + r->size.height, p->y);
-  res->size.width = d_x;
-  res->size.height = d_y;
+  graphene_rect_init (&tmp, p->x, p->y, 0.f, 0.f);
+  graphene_rect_union (r, &tmp, res);
 
   graphene_rect_normalize_in_place (res);
 }
