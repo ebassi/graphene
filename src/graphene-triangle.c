@@ -234,6 +234,9 @@ graphene_triangle_get_area (const graphene_triangle_t *t)
  *
  * Computes the coordinates of the midpoint of the given #graphene_triangle_t.
  *
+ * The midpoint G is the [centroid](https://en.wikipedia.org/wiki/Centroid#Triangle_centroid)
+ * of the triangle, i.e. the intersection of its medians.
+ *
  * Since: 1.2
  */
 void
