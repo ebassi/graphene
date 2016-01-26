@@ -771,7 +771,6 @@ graphene_rect_expand (const graphene_rect_t  *r,
                       graphene_rect_t        *res)
 {
   graphene_rect_t tmp;
-  float d_x, d_y;
 
   graphene_rect_init (&tmp, p->x, p->y, 0.f, 0.f);
   graphene_rect_union (r, &tmp, res);
