@@ -79,6 +79,11 @@ graphene_quaternion_t * graphene_quaternion_init_from_angles            (graphen
                                                                          float                        deg_x,
                                                                          float                        deg_y,
                                                                          float                        deg_z);
+GRAPHENE_AVAILABLE_IN_1_4
+graphene_quaternion_t * graphene_quaternion_init_from_radians           (graphene_quaternion_t       *q,
+                                                                         float                        rad_x,
+                                                                         float                        rad_y,
+                                                                         float                        rad_z);
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_quaternion_t * graphene_quaternion_init_from_angle_vec3        (graphene_quaternion_t       *q,
                                                                          float                        angle,
@@ -98,6 +103,11 @@ void                    graphene_quaternion_to_angles                   (const g
                                                                          float                       *deg_x,
                                                                          float                       *deg_y,
                                                                          float                       *deg_z);
+GRAPHENE_AVAILABLE_IN_1_4
+void                    graphene_quaternion_to_radians                  (const graphene_quaternion_t *q,
+                                                                         float                       *rad_x,
+                                                                         float                       *rad_y,
+                                                                         float                       *rad_z);
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_quaternion_to_angle_vec3               (const graphene_quaternion_t *q,
                                                                          float                       *angle,
