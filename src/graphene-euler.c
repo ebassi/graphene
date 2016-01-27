@@ -82,6 +82,32 @@ graphene_euler_free (graphene_euler_t *e)
   graphene_aligned_free (e);
 }
 
+/*< private >
+ * graphene_euler_init_internal:
+ * @e: the #graphene_euler_t to initialize
+ * @x: rotation angle on the X axis, in radians
+ * @y: rotation angle on the Y axis, in radians
+ * @z: rotation angle on the Z axis, in radians
+ * @order: order of rotations
+ *
+ * Initializes a #graphene_euler_t using the given angles
+ * and order of rotation.
+ *
+ * Returns: (transfer none): the initialized #graphene_euler_t
+ */
+static graphene_euler_t *
+graphene_euler_init_internal (graphene_euler_t       *e,
+                              float                   rad_x,
+                              float                   rad_y,
+                              float                   rad_z,
+                              graphene_euler_order_t  order)
+{
+  graphene_vec3_init (&e->angles, rad_x, rad_y, rad_z);
+  e->order = order;
+
+  return e;
+}
+
 /**
  * graphene_euler_init:
  * @e: the #graphene_euler_t to initialize
@@ -127,10 +153,11 @@ graphene_euler_init_with_order (graphene_euler_t       *e,
                                 float                   z,
                                 graphene_euler_order_t  order)
 {
-  graphene_vec3_init (&e->angles, x, y, z);
-  e->order = order;
-
-  return e;
+  return graphene_euler_init_internal (e,
+                                       GRAPHENE_DEG_TO_RAD (x),
+                                       GRAPHENE_DEG_TO_RAD (y),
+                                       GRAPHENE_DEG_TO_RAD (z),
+                                       order);
 }
 
 /**
@@ -266,10 +293,7 @@ graphene_euler_init_from_matrix (graphene_euler_t        *e,
       break;
     }
 
-  graphene_vec3_init (&e->angles,
-                      GRAPHENE_RAD_TO_DEG (x),
-                      GRAPHENE_RAD_TO_DEG (y),
-                      GRAPHENE_RAD_TO_DEG (z));
+  graphene_vec3_init (&e->angles, x, y, z);
 
   return e;
 }
@@ -350,10 +374,7 @@ graphene_euler_init_from_quaternion (graphene_euler_t            *e,
       break;
     }
 
-  graphene_vec3_init (&e->angles,
-                      GRAPHENE_RAD_TO_DEG (x),
-                      GRAPHENE_RAD_TO_DEG (y),
-                      GRAPHENE_RAD_TO_DEG (z));
+  graphene_vec3_init (&e->angles, x, y, z);
 
   return e;
 }
@@ -361,7 +382,8 @@ graphene_euler_init_from_quaternion (graphene_euler_t            *e,
 /**
  * graphene_euler_init_from_vec3:
  * @e: the #graphene_euler_t to initialize
- * @v: (nullable): a #graphene_vec3_t
+ * @v: (nullable): a #graphene_vec3_t containing the rotation
+ *   angles in degrees
  * @order: the order used to apply the rotations
  *
  * Initializes a #graphene_euler_t using the angles contained in a
@@ -380,7 +402,7 @@ graphene_euler_init_from_vec3 (graphene_euler_t       *e,
                                graphene_euler_order_t  order)
 {
   if (v != NULL)
-    graphene_vec3_init_from_vec3 (&e->angles, v);
+    graphene_vec3_scale (v, (GRAPHENE_PI / 180.f), &e->angles);
   else
     graphene_vec3_init_from_vec3 (&e->angles, graphene_vec3_zero ());
 
@@ -453,7 +475,7 @@ graphene_euler_equal (const graphene_euler_t *a,
 float
 graphene_euler_get_x (const graphene_euler_t *e)
 {
-  return graphene_vec3_get_x (&e->angles);
+  return GRAPHENE_RAD_TO_DEG (graphene_vec3_get_x (&e->angles));
 }
 
 /**
@@ -469,7 +491,7 @@ graphene_euler_get_x (const graphene_euler_t *e)
 float
 graphene_euler_get_y (const graphene_euler_t *e)
 {
-  return graphene_vec3_get_y (&e->angles);
+  return GRAPHENE_RAD_TO_DEG (graphene_vec3_get_y (&e->angles));
 }
 
 /**
@@ -485,7 +507,7 @@ graphene_euler_get_y (const graphene_euler_t *e)
 float
 graphene_euler_get_z (const graphene_euler_t *e)
 {
-  return graphene_vec3_get_z (&e->angles);
+  return GRAPHENE_RAD_TO_DEG (graphene_vec3_get_z (&e->angles));
 }
 
 /**
@@ -528,6 +550,7 @@ graphene_euler_to_vec3 (const graphene_euler_t *e,
                         graphene_vec3_t        *res)
 {
   graphene_vec3_init_from_vec3 (res, &e->angles);
+  graphene_vec3_scale (res, (180.f / GRAPHENE_PI), res);
 }
 
 /**
@@ -560,9 +583,9 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
 {
   graphene_euler_order_t order = graphene_euler_get_order (e);
 
-  const float x = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_x (&e->angles));
-  const float y = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_y (&e->angles));
-  const float z = GRAPHENE_DEG_TO_RAD (graphene_vec3_get_z (&e->angles));
+  const float x = graphene_vec3_get_x (&e->angles);
+  const float y = graphene_vec3_get_y (&e->angles);
+  const float z = graphene_vec3_get_z (&e->angles);
 
   float c1, s1, c2, s2, c3, s3;
   float c3c2, s3c1, c3s2s1, s3s1;
