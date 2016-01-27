@@ -1265,7 +1265,8 @@ graphene_matrix_untransform_bounds (const graphene_matrix_t *m,
 /**
  * graphene_matrix_unproject_point3d:
  * @projection: a #graphene_matrix_t for the projection matrix
- * @modelview: a #graphene_matrix_t for the modelview matrix
+ * @modelview: a #graphene_matrix_t for the modelview matrix; this is
+ *   the inverse of the modelview used when projecting the point
  * @point: a #graphene_point3d_t with the coordinates of the point
  * @res: (out caller-allocates): return location for the unprojected
  *   point
