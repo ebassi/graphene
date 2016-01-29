@@ -510,7 +510,8 @@ graphene_matrix_is_backface_visible (const graphene_matrix_t *m)
 {
   graphene_simd4x4f_t tmp;
 
-  graphene_simd4x4f_inverse (&m->value, &tmp);
+  if (!graphene_simd4x4f_inverse (&m->value, &tmp))
+    return false;
 
   /* inverse.zz < 0 */
   return graphene_simd4f_get_z (tmp.z) < 0.f;
@@ -1206,7 +1207,9 @@ graphene_matrix_untransform_point (const graphene_matrix_t *m,
 
   if (graphene_matrix_is_2d (m))
     {
-      graphene_matrix_inverse (m, &inverse);
+      if (!graphene_matrix_inverse (m, &inverse))
+        return false;
+
       graphene_matrix_transform_point (&inverse, p, res);
       return true;
     }
@@ -1215,7 +1218,9 @@ graphene_matrix_untransform_point (const graphene_matrix_t *m,
   if (!graphene_rect_contains_point (&bounds_t, p))
     return false;
 
-  graphene_matrix_inverse (m, &inverse);
+  if (!graphene_matrix_inverse (m, &inverse))
+    return false;
+
   graphene_matrix_project_point (&inverse, p, res);
 
   return true;
@@ -1246,7 +1251,9 @@ graphene_matrix_untransform_bounds (const graphene_matrix_t *m,
 
   if (graphene_matrix_is_2d (m))
     {
-      graphene_matrix_inverse (m, &inverse);
+      if (!graphene_matrix_inverse (m, &inverse))
+        return;
+
       graphene_matrix_transform_bounds (&inverse, r, res);
       return;
     }
@@ -1258,7 +1265,9 @@ graphene_matrix_untransform_bounds (const graphene_matrix_t *m,
       return;
     }
 
-  graphene_matrix_inverse (m, &inverse);
+  if (!graphene_matrix_inverse (m, &inverse))
+    return;
+
   graphene_matrix_project_rect_bounds (&inverse, &rect, res);
 }
 
@@ -1287,7 +1296,9 @@ graphene_matrix_unproject_point3d (const graphene_matrix_t  *projection,
   float values[4];
   float inv_w;
 
-  graphene_simd4x4f_inverse (&projection->value, &tmp);
+  if (!graphene_simd4x4f_inverse (&projection->value, &tmp))
+    return;
+
   graphene_simd4x4f_matrix_mul (&tmp, &modelview->value, &tmp);
 
   v = graphene_simd4f_init (point->x, point->y, point->z, 1.f);
@@ -1571,13 +1582,15 @@ graphene_matrix_transpose (const graphene_matrix_t *m,
  *
  * Inverts the given matrix.
  *
+ * Returns: `true` if the matrix is invertible
+ *
  * Since: 1.0
  */
-void
+bool
 graphene_matrix_inverse (const graphene_matrix_t *m,
                          graphene_matrix_t       *res)
 {
-  graphene_simd4x4f_inverse (&m->value, &res->value);
+  return graphene_simd4x4f_inverse (&m->value, &res->value);
 }
 
 /**
@@ -1800,7 +1813,9 @@ matrix_decompose_3d (const graphene_matrix_t *m,
       perspective_r->value = local.value.w;
 
       /* solve the equation by inverting perspective and multiplying
-       * the inverse with the perspective vector
+       * the inverse with the perspective vector; we don't need to
+       * check if the matrix is invertible here because we just checked
+       * whether the determinant is not zero.
        */
       graphene_matrix_inverse (&perspective, &tmp);
       graphene_matrix_transpose_transform_vec4 (&tmp, perspective_r, perspective_r);

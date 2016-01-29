@@ -257,7 +257,7 @@ GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_transpose               (const graphene_matrix_t  *m,
                                                                  graphene_matrix_t        *res);
 GRAPHENE_AVAILABLE_IN_1_0
-void                    graphene_matrix_inverse                 (const graphene_matrix_t  *m,
+bool                    graphene_matrix_inverse                 (const graphene_matrix_t  *m,
                                                                  graphene_matrix_t        *res);
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_perspective             (const graphene_matrix_t  *m,
