@@ -829,9 +829,11 @@ graphene_simd4x4f_div (const graphene_simd4x4f_t *a,
  *
  * Inverts the given #graphene_simd4x4f_t.
  *
+ * Returns: `true` if the matrix was invertible
+ *
  * Since: 1.0
  */
-static inline void
+static inline bool
 graphene_simd4x4f_inverse (const graphene_simd4x4f_t *m,
                            graphene_simd4x4f_t       *res)
 {
@@ -901,17 +903,24 @@ graphene_simd4x4f_inverse (const graphene_simd4x4f_t *m,
   const graphene_simd4f_t d0 = graphene_simd4f_mul (r1_sum, r0);
   const graphene_simd4f_t d1 = graphene_simd4f_add (d0, graphene_simd4f_merge_high (d0, d0));
   const graphene_simd4f_t det = graphene_simd4f_sub (d1, graphene_simd4f_splat_y (d1));
-  const graphene_simd4f_t invdet = graphene_simd4f_splat_x (graphene_simd4f_div (graphene_simd4f_splat (1.0f), det));
+  if (graphene_simd4f_get_x (det) != 0.f)
+    {
+      const graphene_simd4f_t invdet = graphene_simd4f_splat_x (graphene_simd4f_div (graphene_simd4f_splat (1.0f), det));
 
-  const graphene_simd4f_t o0 = graphene_simd4f_mul (graphene_simd4f_flip_sign_0101 (r1_sum), invdet);
-  const graphene_simd4f_t o1 = graphene_simd4f_mul (graphene_simd4f_flip_sign_1010 (r0_sum), invdet);
-  const graphene_simd4f_t o2 = graphene_simd4f_mul (graphene_simd4f_flip_sign_0101 (r3_sum), invdet);
-  const graphene_simd4f_t o3 = graphene_simd4f_mul (graphene_simd4f_flip_sign_1010 (r2_sum), invdet);
+      const graphene_simd4f_t o0 = graphene_simd4f_mul (graphene_simd4f_flip_sign_0101 (r1_sum), invdet);
+      const graphene_simd4f_t o1 = graphene_simd4f_mul (graphene_simd4f_flip_sign_1010 (r0_sum), invdet);
+      const graphene_simd4f_t o2 = graphene_simd4f_mul (graphene_simd4f_flip_sign_0101 (r3_sum), invdet);
+      const graphene_simd4f_t o3 = graphene_simd4f_mul (graphene_simd4f_flip_sign_1010 (r2_sum), invdet);
 
-  graphene_simd4x4f_t mt = graphene_simd4x4f_init (o0, o1, o2, o3);
+      graphene_simd4x4f_t mt = graphene_simd4x4f_init (o0, o1, o2, o3);
 
-  /* transpose the resulting matrix */
-  graphene_simd4x4f_transpose (&mt, res);
+      /* transpose the resulting matrix */
+      graphene_simd4x4f_transpose (&mt, res);
+
+      return true;
+    }
+
+  return false;
 }
 
 /**
