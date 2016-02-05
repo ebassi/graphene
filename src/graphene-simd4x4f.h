@@ -440,7 +440,10 @@ graphene_simd4x4f_matrix_mul (const graphene_simd4x4f_t *a,
   graphene_simd4x4f_vec4_mul (b, &row2, &r.y);
   graphene_simd4x4f_vec4_mul (b, &row3, &r.z);
   graphene_simd4x4f_vec4_mul (b, &row4, &r.w);
-  res->x = r.x; res->y = r.y; res->z = r.z; res->w = r.w;
+  res->x = r.x;
+  res->y = r.y;
+  res->z = r.z;
+  res->w = r.w;
 #endif
 }
 
