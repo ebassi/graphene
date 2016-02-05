@@ -1328,7 +1328,7 @@ graphene_matrix_translate (graphene_matrix_t        *m,
   graphene_simd4x4f_t trans_m;
 
   graphene_simd4x4f_translation (&trans_m, pos->x, pos->y, pos->z);
-  graphene_simd4x4f_matrix_mul (&m->value, &trans_m, &m->value);
+  graphene_simd4x4f_matrix_mul (&trans_m, &m->value, &m->value);
 }
 
 /**
@@ -1348,7 +1348,7 @@ graphene_matrix_rotate_quaternion (graphene_matrix_t           *m,
   graphene_matrix_t rot;
 
   graphene_quaternion_to_matrix (q, &rot);
-  graphene_matrix_multiply (m, &rot, m);
+  graphene_matrix_multiply (&rot, m, m);
 }
 
 /**
@@ -1379,7 +1379,7 @@ graphene_matrix_rotate_internal (graphene_simd4x4f_t     *m,
   graphene_simd4x4f_t rot_m;
 
   graphene_simd4x4f_rotation (&rot_m, rad, axis);
-  graphene_simd4x4f_matrix_mul (m, &rot_m, m);
+  graphene_simd4x4f_matrix_mul (&rot_m, m, m);
 }
 
 /**
@@ -1476,7 +1476,7 @@ graphene_matrix_scale (graphene_matrix_t *m,
   graphene_simd4x4f_t scale_m;
 
   graphene_simd4x4f_scale (&scale_m, factor_x, factor_y, factor_z);
-  graphene_simd4x4f_matrix_mul (&m->value, &scale_m, &m->value);
+  graphene_simd4x4f_matrix_mul (&scale_m, &m->value, &m->value);
 }
 
 /**
