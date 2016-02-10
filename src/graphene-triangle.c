@@ -363,6 +363,9 @@ graphene_triangle_get_uv (const graphene_triangle_t *t,
  * Computes the [barycentric coordinates](http://en.wikipedia.org/wiki/Barycentric_coordinate_system)
  * of the given point @p.
  *
+ * The point @p must lie on the same plane as the triangle @t; if the
+ * point is not coplanar, the result of this function is undefined.
+ *
  * If we place the origin in the coordinates of the triangle's A point,
  * the barycentric coordinates are `u`, which is on the AC vector; and `v`
  * which is on the AB vector:
