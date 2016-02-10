@@ -333,8 +333,8 @@ graphene_sphere_get_bounding_box (const graphene_sphere_t *s,
  * @point: the coordinates of the translation
  * @res: (out caller-allocates): return location for the translated sphere
  *
- * Translates the center of the given #graphene_sphere_t using the
- * coordinates inside @point.
+ * Translates the center of the given #graphene_sphere_t using the @point
+ * coordinates as the delta of the translation.
  *
  * Since: 1.2
  */
