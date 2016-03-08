@@ -5,7 +5,9 @@ DOC_SOURCE_DIR = $(top_srcdir)/src $(top_builddir)/src
 SCAN_OPTIONS = --rebuild-types
 SCANGOBJ_OPTIONS =
 MKDB_OPTIONS = --output-format=xml --name-space=graphene
-FIXXREF_OPTIONS =
+FIXXREF_OPTIONS = \
+	--extra-dir=$(GLIB_PREFIX)/share/gtk-doc/html/glib \
+	--extra-dir=$(GLIB_PREFIX)/share/gtk-doc/html/gobject
 
 HFILE_GLOB = $(top_srcdir)/src/*.h $(top_builddir)/src/*.h
 CFILE_GLOB = $(top_srcdir)/src/*.c
