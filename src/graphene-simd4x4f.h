@@ -425,19 +425,14 @@ graphene_simd4x4f_matrix_mul (const graphene_simd4x4f_t *a,
    * better numbers while retaining the same correct results as above:
    * the scalar implementation now clocks at 91ns; the GCC vector
    * implementation is 19ns; and the SSE implementation is 16ns.
-   */
-  const graphene_simd4f_t row1 = a->x;
-  const graphene_simd4f_t row2 = a->y;
-  const graphene_simd4f_t row3 = a->z;
-  const graphene_simd4f_t row4 = a->w;
-
-  /* the order is correct if we want to multiply A with B; remember
+   *
+   * the order is correct if we want to multiply A with B; remember
    * that matrix multiplication is non-commutative.
    */
-  graphene_simd4x4f_vec4_mul (b, &row1, &res->x);
-  graphene_simd4x4f_vec4_mul (b, &row2, &res->y);
-  graphene_simd4x4f_vec4_mul (b, &row3, &res->z);
-  graphene_simd4x4f_vec4_mul (b, &row4, &res->w);
+  graphene_simd4x4f_vec4_mul (b, &a->x, &res->x);
+  graphene_simd4x4f_vec4_mul (b, &a->y, &res->y);
+  graphene_simd4x4f_vec4_mul (b, &a->z, &res->z);
+  graphene_simd4x4f_vec4_mul (b, &a->w, &res->w);
 #endif
 }
 
