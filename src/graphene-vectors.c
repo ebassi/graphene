@@ -229,7 +229,8 @@ graphene_vec2_add (const graphene_vec2_t *a,
  * @b: a #graphene_vec2_t
  * @res: (out caller-allocates): return location for the result
  *
- * Subtracts each component of the two passed vectors and places
+ * Subtracts from each component of the first operand @a the
+ * corresponding component of the second operand @b and places
  * each result into the components of @res.
  *
  * Since: 1.0
@@ -267,8 +268,9 @@ graphene_vec2_multiply (const graphene_vec2_t *a,
  * @b: a #graphene_vec2_t
  * @res: (out caller-allocates): return location for the result
  *
- * Divides each component of the two passed vectors and places
- * each result into the components of @res.
+ * Divides each component of the first operand @a by the corresponding
+ * component of the second operand @b, and places the results into the
+ * vector @res.
  *
  * Since: 1.0
  */
@@ -803,7 +805,9 @@ graphene_vec3_add (const graphene_vec3_t *a,
  * @b: a #graphene_vec3_t
  * @res: (out caller-allocates): return location for the resulting vector
  *
- * Subtracts each component of the two given vectors.
+ * Subtracts from each component of the first operand @a the
+ * corresponding component of the second operand @b and places
+ * each result into the components of @res.
  *
  * Since: 1.0
  */
@@ -839,7 +843,9 @@ graphene_vec3_multiply (const graphene_vec3_t *a,
  * @b: a #graphene_vec3_t
  * @res: (out caller-allocates): return location for the resulting vector
  *
- * Divides each component of the two given vectors.
+ * Divides each component of the first operand @a by the corresponding
+ * component of the second operand @b, and places the results into the
+ * vector @res.
  *
  * Since: 1.0
  */
@@ -1570,7 +1576,9 @@ graphene_vec4_add (const graphene_vec4_t *a,
  * @b: a #graphene_vec4_t
  * @res: (out caller-allocates): return location for the resulting vector
  *
- * Subtracts each component of the two given vectors.
+ * Subtracts from each component of the first operand @a the
+ * corresponding component of the second operand @b and places
+ * each result into the components of @res.
  *
  * Since: 1.0
  */
@@ -1606,7 +1614,9 @@ graphene_vec4_multiply (const graphene_vec4_t *a,
  * @b: a #graphene_vec4_t
  * @res: (out caller-allocates): return location for the resulting vector
  *
- * Divides each component of the two given vectors.
+ * Divides each component of the first operand @a by the corresponding
+ * component of the second operand @b, and places the results into the
+ * vector @res.
  *
  * Since: 1.0
  */
