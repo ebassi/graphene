@@ -114,6 +114,13 @@ graphene_matrix_to_float (const graphene_matrix_t *m,
   graphene_simd4x4f_to_float (&m->value, v);
 }
 
+static const float graphene_identity_matrix_floats[16] = {
+  1.f, 0.f, 0.f, 0.f,
+  0.f, 1.f, 0.f, 0.f,
+  0.f, 0.f, 1.f, 0.f,
+  0.f, 0.f, 0.f, 1.f,
+};
+
 /**
  * graphene_matrix_init_identity:
  * @m: a #graphene_matrix_t
@@ -127,7 +134,7 @@ graphene_matrix_to_float (const graphene_matrix_t *m,
 graphene_matrix_t *
 graphene_matrix_init_identity (graphene_matrix_t *m)
 {
-  graphene_simd4x4f_init_identity (&m->value);
+  graphene_simd4x4f_init_from_float (&m->value, graphene_identity_matrix_floats);
 
   return m;
 }
