@@ -810,3 +810,21 @@ graphene_rect_interpolate (const graphene_rect_t *a,
   res->size.width = graphene_lerp (ra.size.width, rb.size.width, factor);
   res->size.height = graphene_lerp (ra.size.height, rb.size.height, factor);
 }
+
+static const graphene_rect_t _graphene_rect_zero = GRAPHENE_RECT_INIT (0, 0, 0, 0);
+
+/**
+ * graphene_rect_zero:
+ *
+ * Returns a degenerate rectangle with origin fixed at (0, 0) and
+ * a size of 0, 0.
+ *
+ * Returns: (transfer none): a fixed rectangle
+ *
+ * Since: 1.4
+ */
+const graphene_rect_t *
+graphene_rect_zero (void)
+{
+  return &_graphene_rect_zero;
+}
