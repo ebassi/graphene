@@ -64,10 +64,9 @@ graphene_aligned_alloc (size_t size,
                         size_t number,
                         size_t alignment)
 {
-  void *res;
+  void *res = NULL;
   size_t max_size = (size_t) -1;
   size_t real_size;
-  int err = 0;
 
   if (size == 0 || number == 0)
     return NULL;
@@ -87,8 +86,12 @@ graphene_aligned_alloc (size_t size,
 
   real_size = size * number;
 
+#ifndef G_DISABLE_ASSERT
+  errno = 0;
+#endif
+
 #if defined(HAVE_POSIX_MEMALIGN)
-  err = posix_memalign (&res, alignment, real_size);
+  errno = posix_memalign (&res, alignment, real_size);
 #elif defined(HAVE_ALIGNED_ALLOC) || defined (_MSC_VER)
   /* real_size must be a multiple of alignment */
   if (real_size % alignment != 0)
@@ -97,22 +100,17 @@ graphene_aligned_alloc (size_t size,
       real_size += (alignment - offset);
     }
 
-  errno = 0;
   res = aligned_alloc (alignment, real_size);
-  err = errno;
 #elif defined(HAVE_MEMALIGN)
-  errno = 0;
   res = memalign (alignment, real_size);
-  err = errno;
 #else
   res = malloc (real_size);
-  err = errno;
 #endif
 
 #ifndef G_DISABLE_ASSERT
-  if (err != 0 || res == NULL)
+  if (errno != 0 || res == NULL)
     {
-      fprintf (stderr, "Allocation error: %s\n", strerror (err));
+      fprintf (stderr, "Allocation error: %s\n", strerror (errno));
       abort ();
     }
 #endif
