@@ -1809,6 +1809,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
   graphene_matrix_t local, perspective;
   float shear_xy, shear_xz, shear_yz;
   float scale_x, scale_y, scale_z;
+  graphene_simd4f_t perspective_v;
   graphene_simd4f_t cross;
 
   if (graphene_matrix_get_value (m, 3, 3) == 0.f)
@@ -1829,13 +1830,18 @@ matrix_decompose_3d (const graphene_matrix_t *m,
   if (graphene_matrix_determinant (&perspective) == 0.f)
     return false;
 
+  perspective_v = graphene_simd4f_init (graphene_simd4f_get_w (local.value.x),
+                                        graphene_simd4f_get_w (local.value.y),
+                                        graphene_simd4f_get_w (local.value.z),
+                                        graphene_simd4f_get_w (local.value.w));
+
   /* isolate the perspective */
-  if (graphene_simd4f_is_zero3 (local.value.w))
+  if (!graphene_simd4f_is_zero3 (perspective_v))
     {
       graphene_matrix_t tmp;
 
       /* perspective_r is the right hand side of the equation */
-      perspective_r->value = local.value.w;
+      perspective_r->value = perspective_v;
 
       /* solve the equation by inverting perspective and multiplying
        * the inverse with the perspective vector; we don't need to
@@ -1845,8 +1851,11 @@ matrix_decompose_3d (const graphene_matrix_t *m,
       graphene_matrix_inverse (&perspective, &tmp);
       graphene_matrix_transpose_transform_vec4 (&tmp, perspective_r, perspective_r);
 
-      /* clear the perspective partition */
-      local.value.w = graphene_simd4f_init (0.f, 0.f, 0.f, 1.f);
+      /* Clear the perspective component */
+      local.value.x = graphene_simd4f_merge_w (local.value.x, 0.f);
+      local.value.y = graphene_simd4f_merge_w (local.value.y, 0.f);
+      local.value.z = graphene_simd4f_merge_w (local.value.z, 0.f);
+      local.value.w = graphene_simd4f_merge_w (local.value.w, 1.f);
     }
   else
     graphene_vec4_init (perspective_r, 0.f, 0.f, 0.f, 1.f);
@@ -1893,7 +1902,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
    * coordinate system flip. if the determinant is -1, then
    * negate the matrix and the scaling factors
    */
-  cross = graphene_simd4f_dot4 (local.value.x, graphene_simd4f_cross3 (local.value.y, local.value.z));
+  cross = graphene_simd4f_dot3 (local.value.x, graphene_simd4f_cross3 (local.value.y, local.value.z));
   if (graphene_simd4f_get_x (cross) < 0.f)
     {
       scale_x *= -1.f;
@@ -1938,6 +1947,8 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
 {
   bool success = false;
 
+  graphene_matrix_init_identity (res);
+
   /* Special case the decomposition if we're interpolating between two
    * affine transformations.
    */
@@ -1960,10 +1971,7 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
 
       /* If we cannot decompose either matrix we bail out with an identity */
       if (!success)
-        {
-          graphene_matrix_init_identity (res);
-          return;
-        }
+        return;
 
       /* Flip the scaling factor and angle so they are consistent */
       if ((scale_a.x < 0 && scale_b.y < 0) || (scale_a.y < 0 && scale_b.x < 0 ))
@@ -2040,21 +2048,21 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
 
       graphene_vec4_t perspective_a;
       graphene_vec4_t perspective_b;
+      graphene_simd4f_t tmp;
 
       success |= matrix_decompose_3d (a, &scale_a, shear_a, &rotate_a, &translate_a, &perspective_a);
       success |= matrix_decompose_3d (b, &scale_b, shear_b, &rotate_b, &translate_b, &perspective_b);
 
       /* If we cannot decompose either matrix we bail out with an identity */
       if (!success)
-        {
-          graphene_matrix_init_identity (res);
-          return;
-        }
+        return;
 
       /* Interpolate the perspective row */
-      res->value.w = graphene_simd4f_interpolate (perspective_a.value,
-                                                  perspective_b.value,
-                                                  factor);
+      tmp = graphene_simd4f_interpolate (perspective_a.value, perspective_b.value, factor);
+      res->value.x = graphene_simd4f_init (1.f, 0.f, 0.f, graphene_simd4f_get_x (tmp));
+      res->value.y = graphene_simd4f_init (0.f, 1.f, 0.f, graphene_simd4f_get_y (tmp));
+      res->value.z = graphene_simd4f_init (0.f, 0.f, 1.f, graphene_simd4f_get_z (tmp));
+      res->value.w = graphene_simd4f_init (0.f, 0.f, 0.f, graphene_simd4f_get_w (tmp));
 
       /* Translate */
       graphene_point3d_interpolate (&translate_a, &translate_b, factor, &translate_r);
