@@ -1988,7 +1988,7 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
       if (!rotate_b)
         rotate_b = 360;
 
-      if (abs (rotate_a - rotate_b) > 180)
+      if (fabs (rotate_a - rotate_b) > 180)
         {
           if (rotate_a > rotate_b)
             rotate_a -= 360;
