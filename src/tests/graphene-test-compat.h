@@ -51,7 +51,7 @@
     graphene_matrix_to_float ((m2), __m2); \
     for (__i = 0; __i < 4; __i++) { \
       for (__j = 0; __j < 4; __j++) { \
-        unsigned int __idx = __i + __j; \
+        unsigned int __idx = __i * 4 + __j; \
         graphene_assert_fuzzy_matrix_cell_equal (__i, __j, __m1[__idx], __m2[__idx], epsilon); \
       } \
     } \
