@@ -129,7 +129,11 @@ graphene_euler_init (graphene_euler_t *e,
                      float             y,
                      float             z)
 {
-  return graphene_euler_init_with_order (e, x, y, z, GRAPHENE_EULER_ORDER_DEFAULT);
+  return graphene_euler_init_internal (e,
+                                       GRAPHENE_DEG_TO_RAD (x),
+                                       GRAPHENE_DEG_TO_RAD (y),
+                                       GRAPHENE_DEG_TO_RAD (z),
+                                       GRAPHENE_EULER_ORDER_DEFAULT);
 }
 
 /**
