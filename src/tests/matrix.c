@@ -434,6 +434,28 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_round_trip)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (matrix_interpolate)
+{
+  graphene_matrix_t m1, m2, m3, mr;
+
+  graphene_matrix_init_identity (&m1);
+  graphene_matrix_init_identity (&m2);
+
+  graphene_matrix_translate (&m2, &(graphene_point3d_t) { 100.f, 100.f, 100.f });
+  g_assert_true (!graphene_matrix_is_2d (&m2));
+
+  graphene_matrix_interpolate (&m1, &m2, 0.0, &mr);
+  graphene_assert_fuzzy_matrix_equal (&mr, &m1, 0.1);
+
+  graphene_matrix_interpolate (&m1, &m2, 1.0, &mr);
+  graphene_assert_fuzzy_matrix_equal (&mr, &m2, 0.1);
+
+  graphene_matrix_init_translate (&m3, &(graphene_point3d_t) { 50.f, 50.f, 50.f });
+  graphene_matrix_interpolate (&m1, &m2, 0.5, &mr);
+  graphene_assert_fuzzy_matrix_equal (&mr, &m3, 0.1);
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_interpolate)
 {
   graphene_matrix_t m1, m2, m3, mr;
@@ -467,6 +489,7 @@ GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/matrix/neutral_element", matrix_neutral_element)
   GRAPHENE_TEST_UNIT ("/matrix/look_at", matrix_look_at)
   GRAPHENE_TEST_UNIT ("/matrix/invert", matrix_invert)
+  GRAPHENE_TEST_UNIT ("/matrix/interpolate", matrix_interpolate)
   GRAPHENE_TEST_UNIT ("/matrix/2d/identity", matrix_2d_identity)
   GRAPHENE_TEST_UNIT ("/matrix/2d/transforms", matrix_2d_transforms)
   GRAPHENE_TEST_UNIT ("/matrix/2d/round-trip", matrix_2d_round_trip)
