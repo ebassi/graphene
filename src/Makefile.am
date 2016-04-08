@@ -132,18 +132,18 @@ CLEANFILES += $(ASM_FILES)
 # headers
 grapheneincludedir = $(includedir)/graphene-1.0
 grapheneinclude_HEADERS = $(source_h) graphene.h
-nodist_grapheneinclude_HEADERS = \
-	$(top_builddir)/src/graphene-version.h \
-	$(NULL)
+nodist_grapheneinclude_HEADERS = $(top_builddir)/src/graphene-version.h
 
 # pkg-config files
 EXTRA_DIST += graphene.pc.in
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = graphene-1.0.pc
+nodist_pkgconfig_DATA = graphene-1.0.pc
+DISTCLEANFILES += graphene-1.0.pc
 
 if BUILD_GOBJECT
-pkgconfig_DATA += graphene-gobject-1.0.pc
+nodist_pkgconfig_DATA += graphene-gobject-1.0.pc
+DISTCLEANFILES += graphene-gobject-1.0.pc
 
 -include $(INTROSPECTION_MAKEFILE)
 
