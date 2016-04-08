@@ -2,8 +2,8 @@
 # bump micro_version to the next odd number after each release
 # keep interface_age in sync with micro_version, or set to 0 during development cycles
 m4_define([graphene_major_version], [1])
-m4_define([graphene_minor_version], [3])
-m4_define([graphene_micro_version], [1])
+m4_define([graphene_minor_version], [4])
+m4_define([graphene_micro_version], [0])
 m4_define([graphene_interface_age], [0])
 
 m4_define([graphene_version], [graphene_major_version.graphene_minor_version.graphene_micro_version])
