@@ -183,10 +183,16 @@ graphene_matrix_init_from_vec4 (graphene_matrix_t     *m,
                                 const graphene_vec4_t *v2,
                                 const graphene_vec4_t *v3)
 {
-  m->value = graphene_simd4x4f_init (v0->value,
-                                     v1->value,
-                                     v2->value,
-                                     v3->value);
+  graphene_simd4f_t p_x, p_y, p_z, p_w;
+
+  p_x = v0->value;
+  p_y = v1->value;
+  p_z = v2->value;
+  p_w = v3->value;
+  m->value = graphene_simd4x4f_init (GRAPHENE_SIMD4F_ADDR (p_x),
+                                     GRAPHENE_SIMD4F_ADDR (p_y),
+                                     GRAPHENE_SIMD4F_ADDR (p_z),
+                                     GRAPHENE_SIMD4F_ADDR (p_w));
 
   return m;
 }
@@ -349,11 +355,16 @@ graphene_matrix_init_scale (graphene_matrix_t *m,
                             float              y,
                             float              z)
 {
+  graphene_simd4f_t p_x = graphene_simd4f_init (   x, 0.0f, 0.0f, 0.0f);
+  graphene_simd4f_t p_y = graphene_simd4f_init (0.0f,    y, 0.0f, 0.0f);
+  graphene_simd4f_t p_z = graphene_simd4f_init (0.0f, 0.0f,    z, 0.0f);
+  graphene_simd4f_t p_w = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f);
+
   m->value =
-    graphene_simd4x4f_init (graphene_simd4f_init (   x, 0.0f, 0.0f, 0.0f),
-                            graphene_simd4f_init (0.0f,    y, 0.0f, 0.0f),
-                            graphene_simd4f_init (0.0f, 0.0f,    z, 0.0f),
-                            graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f));
+    graphene_simd4x4f_init (GRAPHENE_SIMD4F_ADDR (p_x),
+                            GRAPHENE_SIMD4F_ADDR (p_y),
+                            GRAPHENE_SIMD4F_ADDR (p_z),
+                            GRAPHENE_SIMD4F_ADDR (p_w));
 
   return m;
 }
@@ -374,11 +385,16 @@ graphene_matrix_t *
 graphene_matrix_init_translate (graphene_matrix_t        *m,
                                 const graphene_point3d_t *p)
 {
+  graphene_simd4f_t p_x = graphene_simd4f_init (1.0f, 0.0f, 0.0f, 0.0f);
+  graphene_simd4f_t p_y = graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f);
+  graphene_simd4f_t p_z = graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f);
+  graphene_simd4f_t p_w = graphene_simd4f_init (p->x, p->y, p->z, 1.0f);
+
   m->value =
-    graphene_simd4x4f_init (graphene_simd4f_init (1.0f, 0.0f, 0.0f, 0.0f),
-                            graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f),
-                            graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f),
-                            graphene_simd4f_init (p->x, p->y, p->z, 1.0f));
+    graphene_simd4x4f_init (GRAPHENE_SIMD4F_ADDR (p_x),
+                            GRAPHENE_SIMD4F_ADDR (p_y),
+                            GRAPHENE_SIMD4F_ADDR (p_z),
+                            GRAPHENE_SIMD4F_ADDR (p_w));
 
   return m;
 }
@@ -402,15 +418,21 @@ graphene_matrix_init_skew (graphene_matrix_t *m,
                            float              y_skew)
 {
   float t_x, t_y;
+  graphene_simd4f_t p_x, p_y, p_z, p_w;
 
   t_x = tanf (x_skew);
   t_y = tanf (y_skew);
 
+  p_x = graphene_simd4f_init (1.0f,  t_y, 0.0f, 0.0f);
+  p_y = graphene_simd4f_init ( t_x, 1.0f, 0.0f, 0.0f);
+  p_z = graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f);
+  p_w = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f);
+
   m->value =
-    graphene_simd4x4f_init (graphene_simd4f_init (1.0f,  t_y, 0.0f, 0.0f),
-                            graphene_simd4f_init ( t_x, 1.0f, 0.0f, 0.0f),
-                            graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f),
-                            graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f));
+    graphene_simd4x4f_init (GRAPHENE_SIMD4F_ADDR (p_x),
+                            GRAPHENE_SIMD4F_ADDR (p_y),
+                            GRAPHENE_SIMD4F_ADDR (p_z),
+                            GRAPHENE_SIMD4F_ADDR (p_w));
 
   return m;
 }
@@ -581,10 +603,16 @@ graphene_matrix_init_from_2d (graphene_matrix_t *m,
                               double             x_0,
                               double             y_0)
 {
-  m->value = graphene_simd4x4f_init (graphene_simd4f_init ( xx,  yx, 0.f, 0.f),
-                                     graphene_simd4f_init ( xy,  yy, 0.f, 0.f),
-                                     graphene_simd4f_init (0.f, 0.f, 1.f, 0.f),
-                                     graphene_simd4f_init (x_0, y_0, 0.f, 1.f));
+  graphene_simd4f_t p_x = graphene_simd4f_init ( xx,  yx, 0.f, 0.f);
+  graphene_simd4f_t p_y = graphene_simd4f_init ( xy,  yy, 0.f, 0.f);
+  graphene_simd4f_t p_z = graphene_simd4f_init (0.f, 0.f, 1.f, 0.f);
+  graphene_simd4f_t p_w = graphene_simd4f_init (x_0, y_0, 0.f, 1.f);
+
+  m->value =
+    graphene_simd4x4f_init (GRAPHENE_SIMD4F_ADDR (p_x),
+                            GRAPHENE_SIMD4F_ADDR (p_y),
+                            GRAPHENE_SIMD4F_ADDR (p_z),
+                            GRAPHENE_SIMD4F_ADDR (p_w));
 
   return m;
 }
@@ -1965,6 +1993,7 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
       float m_a[4], m_b[4], m_res[4];
       float rot_sin, rot_cos;
       graphene_simd4x4f_t tmp_m;
+      graphene_simd4f_t p_x, p_y, p_z, p_w;
 
       success |= matrix_decompose_2d (a, &translate_a, &scale_a, &rotate_a, m_a);
       success |= matrix_decompose_2d (b, &translate_b, &scale_b, &rotate_b, m_b);
@@ -2022,10 +2051,15 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
 
       /* Rotate using a (2,2) rotation matrix */
       graphene_sincos (GRAPHENE_DEG_TO_RAD (rotate_res), &rot_sin, &rot_cos);
-      tmp_m = graphene_simd4x4f_init (graphene_simd4f_init (rot_cos, -rot_sin, 0.f, 0.f),
-                                      graphene_simd4f_init (rot_sin,  rot_cos, 0.f, 0.f),
-                                      graphene_simd4f_init (    0.f,      0.f, 1.f, 0.f),
-                                      graphene_simd4f_init (    0.f,      0.f, 0.f, 1.f));
+
+      p_x = graphene_simd4f_init (rot_cos, -rot_sin, 0.f, 0.f);
+      p_y = graphene_simd4f_init (rot_sin,  rot_cos, 0.f, 0.f);
+      p_z = graphene_simd4f_init (    0.f,      0.f, 1.f, 0.f);
+      p_w = graphene_simd4f_init (    0.f,      0.f, 0.f, 1.f);
+      tmp_m = graphene_simd4x4f_init (GRAPHENE_SIMD4F_ADDR (p_x),
+                                      GRAPHENE_SIMD4F_ADDR (p_y),
+                                      GRAPHENE_SIMD4F_ADDR (p_z),
+                                      GRAPHENE_SIMD4F_ADDR (p_w));
       graphene_simd4x4f_matrix_mul (&res->value, &tmp_m, &res->value);
 
       /* Scale */
