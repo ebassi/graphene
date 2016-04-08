@@ -68,8 +68,7 @@ GRAPHENE_BEGIN_DECLS
  *
  * Since: 1.0
  */
-GRAPHENE_VECTORCALL
-static inline graphene_simd4x4f_t
+static inline graphene_simd4x4f_t GRAPHENE_VECTORCALL
 graphene_simd4x4f_init (graphene_simd4f_t x,
                         graphene_simd4f_t y,
                         graphene_simd4f_t z,
