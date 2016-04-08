@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Quad.html" title="Quad">
 <link rel="next" href="graphene-Box.html" title="Box">
-<meta name="generator" content="GTK-Doc V1.23.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -168,6 +168,11 @@
 </table></div>
 </div>
 <div class="refsect1">
+<a name="graphene-Triangle.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;graphene.h&gt;
+</pre>
+</div>
+<div class="refsect1">
 <a name="graphene-Triangle.description"></a><h2>Description</h2>
 <p><a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> represents a triangle in 3D space.</p>
 </div>
@@ -181,7 +186,7 @@ graphene_triangle_alloc (<em class="parameter"><code><span class="type">void</sp
 <p>The contents of the returned structure are undefined.</p>
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
-<a name="id-1.2.8.6.2.7"></a><h4>Returns</h4>
+<a name="graphene-triangle-alloc.returns"></a><h4>Returns</h4>
 <p> the newly allocated <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>
 structure. Use <a class="link" href="graphene-Triangle.html#graphene-triangle-free" title="graphene_triangle_free ()"><code class="function">graphene_triangle_free()</code></a> to free the resources
 allocated by this function. </p>
@@ -196,7 +201,7 @@ allocated by this function. </p>
 graphene_triangle_free (<em class="parameter"><code><a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>);</pre>
 <p>Frees the resources allocated by <a class="link" href="graphene-Triangle.html#graphene-triangle-alloc" title="graphene_triangle_alloc ()"><code class="function">graphene_triangle_alloc()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.8.6.3.5"></a><h4>Parameters</h4>
+<a name="graphene-triangle-free.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -222,7 +227,7 @@ graphene_triangle_init_from_point3d (<em class="parameter"><code><a class="link"
                                      <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *c</code></em>);</pre>
 <p>Initializes a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> using the three given 3D points.</p>
 <div class="refsect3">
-<a name="id-1.2.8.6.4.5"></a><h4>Parameters</h4>
+<a name="graphene-triangle-init-from-point3d.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -254,7 +259,7 @@ graphene_triangle_init_from_point3d (<em class="parameter"><code><a class="link"
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.8.6.4.6"></a><h4>Returns</h4>
+<a name="graphene-triangle-init-from-point3d.returns"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -270,7 +275,7 @@ graphene_triangle_init_from_vec3 (<em class="parameter"><code><a class="link" hr
                                   <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *c</code></em>);</pre>
 <p>Initializes a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> using the three given vectors.</p>
 <div class="refsect3">
-<a name="id-1.2.8.6.5.5"></a><h4>Parameters</h4>
+<a name="graphene-triangle-init-from-vec3.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -302,7 +307,7 @@ graphene_triangle_init_from_vec3 (<em class="parameter"><code><a class="link" hr
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.8.6.5.6"></a><h4>Returns</h4>
+<a name="graphene-triangle-init-from-vec3.returns"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -319,7 +324,7 @@ graphene_triangle_get_points (<em class="parameter"><code>const <a class="link" 
 <p>Retrieves the three vertices of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> and returns
 their coordinates as <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.8.6.6.5"></a><h4>Parameters</h4>
+<a name="graphene-triangle-get-points.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -365,7 +370,7 @@ graphene_triangle_get_vertices (<em class="parameter"><code>const <a class="link
                                 <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *c</code></em>);</pre>
 <p>Retrieves the three vertices of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.8.6.7.5"></a><h4>Parameters</h4>
+<a name="graphene-triangle-get-vertices.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -405,7 +410,7 @@ graphene_triangle_get_vertices (<em class="parameter"><code>const <a class="link
 graphene_triangle_get_area (<em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>);</pre>
 <p>Computes the area of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.8.6.8.5"></a><h4>Parameters</h4>
+<a name="graphene-triangle-get-area.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -420,7 +425,7 @@ graphene_triangle_get_area (<em class="parameter"><code>const <a class="link" hr
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.8.6.8.6"></a><h4>Returns</h4>
+<a name="graphene-triangle-get-area.returns"></a><h4>Returns</h4>
 <p> the area of the triangle</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -432,8 +437,10 @@ graphene_triangle_get_area (<em class="parameter"><code>const <a class="link" hr
 graphene_triangle_get_midpoint (<em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>,
                                 <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *res</code></em>);</pre>
 <p>Computes the coordinates of the midpoint of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>.</p>
+<p>The midpoint G is the <a class="ulink" href="https://en.wikipedia.org/wiki/Centroid#Triangle_centroid" target="_top">centroid</a>
+of the triangle, i.e. the intersection of its medians.</p>
 <div class="refsect3">
-<a name="id-1.2.8.6.9.5"></a><h4>Parameters</h4>
+<a name="graphene-triangle-get-midpoint.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -465,7 +472,7 @@ graphene_triangle_get_normal (<em class="parameter"><code>const <a class="link" 
                               <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *res</code></em>);</pre>
 <p>Computes the normal vector of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.8.6.10.5"></a><h4>Parameters</h4>
+<a name="graphene-triangle-get-normal.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -496,7 +503,7 @@ graphene_triangle_get_plane (<em class="parameter"><code>const <a class="link" h
                              <em class="parameter"><code><a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *res</code></em>);</pre>
 <p>Computes the plane based on the vertices of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.8.6.11.5"></a><h4>Parameters</h4>
+<a name="graphene-triangle-get-plane.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -527,7 +534,7 @@ graphene_triangle_get_bounding_box (<em class="parameter"><code>const <a class="
                                     <em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *res</code></em>);</pre>
 <p>Computes the bounding box of the given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.8.6.12.5"></a><h4>Parameters</h4>
+<a name="graphene-triangle-get-bounding-box.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -560,13 +567,21 @@ graphene_triangle_get_barycoords (<em class="parameter"><code>const <a class="li
 <p>Computes the <a class="ulink" href="http://en.wikipedia.org/wiki/Barycentric_coordinate_system" target="_top">barycentric coordinates</a>
 of the given point <em class="parameter"><code>p</code></em>
 .</p>
+<p>The point <em class="parameter"><code>p</code></em>
+ must lie on the same plane as the triangle <em class="parameter"><code>t</code></em>
+; if the
+point is not coplanar, the result of this function is undefined.</p>
+<p>If we place the origin in the coordinates of the triangle's A point,
+the barycentric coordinates are <code class="literal">u</code>, which is on the AC vector; and <code class="literal">v</code>
+which is on the AB vector:</p>
+<p><span class="inlinemediaobject"><img src="triangle-barycentric.png"></span></p>
 <p>The returned <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> contains the following values, in order:</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p><code class="literal">res.x = u</code></p></li>
 <li class="listitem"><p><code class="literal">res.y = v</code></p></li>
 </ul></div>
 <div class="refsect3">
-<a name="id-1.2.8.6.13.7"></a><h4>Parameters</h4>
+<a name="graphene-triangle-get-barycoords.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -594,7 +609,7 @@ with the barycentric coordinates. </p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.8.6.13.8"></a><h4>Returns</h4>
+<a name="graphene-triangle-get-barycoords.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the barycentric coordinates are valid</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -609,7 +624,7 @@ graphene_triangle_contains_point (<em class="parameter"><code>const <a class="li
  contains the point <em class="parameter"><code>p</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.8.6.14.5"></a><h4>Parameters</h4>
+<a name="graphene-triangle-contains-point.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -631,7 +646,7 @@ graphene_triangle_contains_point (<em class="parameter"><code>const <a class="li
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.8.6.14.6"></a><h4>Returns</h4>
+<a name="graphene-triangle-contains-point.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the point is inside the triangle</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -644,7 +659,7 @@ graphene_triangle_equal (<em class="parameter"><code>const <a class="link" href=
                          <em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *b</code></em>);</pre>
 <p>Checks whether the two given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> are equal.</p>
 <div class="refsect3">
-<a name="id-1.2.8.6.15.5"></a><h4>Parameters</h4>
+<a name="graphene-triangle-equal.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -666,7 +681,7 @@ graphene_triangle_equal (<em class="parameter"><code>const <a class="link" href=
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.8.6.15.6"></a><h4>Returns</h4>
+<a name="graphene-triangle-equal.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the triangles are equal</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -685,6 +700,6 @@ graphene_triangle_equal (<em class="parameter"><code>const <a class="link" href=
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.23.1</div>
+<hr>Generated by GTK-Doc V1.25</div>
 </body>
 </html>

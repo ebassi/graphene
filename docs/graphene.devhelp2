@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<book xmlns="" title="Graphene Reference Manual" link="index.html" author="" name="graphene" version="2" language="c">
+<book xmlns="http://www.devhelp.net/book" title="Graphene Reference Manual" link="index.html" author="" name="graphene" version="2" language="c">
   <chapters>
     <sub name="Graphene" link="ch01.html">
       <sub name="Point" link="graphene-Point.html"/>
@@ -18,14 +18,16 @@
       <sub name="Euler" link="graphene-Euler.html"/>
       <sub name="Quaternion" link="graphene-Quaternion.html"/>
       <sub name="Plane" link="graphene-Plane.html"/>
+      <sub name="Ray" link="graphene-Ray.html"/>
       <sub name="Versioning information" link="graphene-Versioning-information.html"/>
       <sub name="GObject integration" link="graphene-GObject-integration.html"/>
     </sub>
     <sub name="Object Hierarchy" link="object-tree.html"/>
-    <sub name="API Index" link="api-index-full.html"/>
+    <sub name="API Index" link="api-index.html"/>
     <sub name="Index of deprecated API" link="deprecated-api-index.html"/>
     <sub name="Index of new symbols in 1.0" link="ix03.html"/>
     <sub name="Index of new symbols in 1.2" link="ix04.html"/>
+    <sub name="Index of new symbols in 1.4" link="ix05.html"/>
     <sub name="Annotation Glossary" link="annotation-glossary.html"/>
   </chapters>
   <functions>
@@ -34,10 +36,12 @@
     <keyword type="function" name="graphene_point_free ()" link="graphene-Point.html#graphene-point-free" since="1.0"/>
     <keyword type="function" name="graphene_point_init ()" link="graphene-Point.html#graphene-point-init" since="1.0"/>
     <keyword type="function" name="graphene_point_init_from_point ()" link="graphene-Point.html#graphene-point-init-from-point" since="1.0"/>
+    <keyword type="function" name="graphene_point_init_from_vec2 ()" link="graphene-Point.html#graphene-point-init-from-vec2" since="1.4"/>
     <keyword type="function" name="graphene_point_equal ()" link="graphene-Point.html#graphene-point-equal" since="1.0"/>
     <keyword type="function" name="graphene_point_distance ()" link="graphene-Point.html#graphene-point-distance" since="1.0"/>
     <keyword type="function" name="graphene_point_near ()" link="graphene-Point.html#graphene-point-near" since="1.0"/>
     <keyword type="function" name="graphene_point_interpolate ()" link="graphene-Point.html#graphene-point-interpolate" since="1.0"/>
+    <keyword type="function" name="graphene_point_to_vec2 ()" link="graphene-Point.html#graphene-point-to-vec2" since="1.4"/>
     <keyword type="function" name="graphene_point_zero ()" link="graphene-Point.html#graphene-point-zero" since="1.0"/>
     <keyword type="macro" name="GRAPHENE_POINT_INIT_ZERO" link="graphene-Point.html#GRAPHENE-POINT-INIT-ZERO:CAPS" since="1.0"/>
     <keyword type="struct" name="graphene_point_t" link="graphene-Point.html#graphene-point-t" since="1.0"/>
@@ -55,6 +59,8 @@
     <keyword type="function" name="graphene_point3d_dot ()" link="graphene-Point3D.html#graphene-point3d-dot" since="1.0"/>
     <keyword type="function" name="graphene_point3d_length ()" link="graphene-Point3D.html#graphene-point3d-length" since="1.0"/>
     <keyword type="function" name="graphene_point3d_normalize ()" link="graphene-Point3D.html#graphene-point3d-normalize" since="1.0"/>
+    <keyword type="function" name="graphene_point3d_normalize_viewport ()" link="graphene-Point3D.html#graphene-point3d-normalize-viewport" since="1.4"/>
+    <keyword type="function" name="graphene_point3d_distance ()" link="graphene-Point3D.html#graphene-point3d-distance" since="1.4"/>
     <keyword type="function" name="graphene_point3d_interpolate ()" link="graphene-Point3D.html#graphene-point3d-interpolate" since="1.0"/>
     <keyword type="function" name="graphene_point3d_zero ()" link="graphene-Point3D.html#graphene-point3d-zero" since="1.0"/>
     <keyword type="macro" name="GRAPHENE_POINT3D_INIT_ZERO" link="graphene-Point3D.html#GRAPHENE-POINT3D-INIT-ZERO:CAPS" since="1.0"/>
@@ -77,6 +83,7 @@
     <keyword type="function" name="graphene_rect_init_from_rect ()" link="graphene-Rectangle.html#graphene-rect-init-from-rect" since="1.0"/>
     <keyword type="function" name="graphene_rect_equal ()" link="graphene-Rectangle.html#graphene-rect-equal" since="1.0"/>
     <keyword type="function" name="graphene_rect_normalize ()" link="graphene-Rectangle.html#graphene-rect-normalize" since="1.0"/>
+    <keyword type="function" name="graphene_rect_normalize_r ()" link="graphene-Rectangle.html#graphene-rect-normalize-r" since="1.4"/>
     <keyword type="function" name="graphene_rect_get_center ()" link="graphene-Rectangle.html#graphene-rect-get-center" since="1.0"/>
     <keyword type="function" name="graphene_rect_get_top_left ()" link="graphene-Rectangle.html#graphene-rect-get-top-left" since="1.0"/>
     <keyword type="function" name="graphene_rect_get_top_right ()" link="graphene-Rectangle.html#graphene-rect-get-top-right" since="1.0"/>
@@ -86,14 +93,20 @@
     <keyword type="function" name="graphene_rect_get_y ()" link="graphene-Rectangle.html#graphene-rect-get-y" since="1.0"/>
     <keyword type="function" name="graphene_rect_get_width ()" link="graphene-Rectangle.html#graphene-rect-get-width" since="1.0"/>
     <keyword type="function" name="graphene_rect_get_height ()" link="graphene-Rectangle.html#graphene-rect-get-height" since="1.0"/>
+    <keyword type="function" name="graphene_rect_get_vertices ()" link="graphene-Rectangle.html#graphene-rect-get-vertices" since="1.4"/>
     <keyword type="function" name="graphene_rect_union ()" link="graphene-Rectangle.html#graphene-rect-union" since="1.0"/>
     <keyword type="function" name="graphene_rect_intersection ()" link="graphene-Rectangle.html#graphene-rect-intersection" since="1.0"/>
     <keyword type="function" name="graphene_rect_contains_point ()" link="graphene-Rectangle.html#graphene-rect-contains-point" since="1.0"/>
     <keyword type="function" name="graphene_rect_contains_rect ()" link="graphene-Rectangle.html#graphene-rect-contains-rect" since="1.0"/>
     <keyword type="function" name="graphene_rect_offset ()" link="graphene-Rectangle.html#graphene-rect-offset" since="1.0"/>
+    <keyword type="function" name="graphene_rect_offset_r ()" link="graphene-Rectangle.html#graphene-rect-offset-r" since="1.4"/>
     <keyword type="function" name="graphene_rect_inset ()" link="graphene-Rectangle.html#graphene-rect-inset" since="1.0"/>
-    <keyword type="function" name="graphene_rect_round_to_pixel ()" link="graphene-Rectangle.html#graphene-rect-round-to-pixel" since="1.0"/>
+    <keyword type="function" name="graphene_rect_inset_r ()" link="graphene-Rectangle.html#graphene-rect-inset-r" since="1.4"/>
+    <keyword type="function" name="graphene_rect_round_to_pixel ()" link="graphene-Rectangle.html#graphene-rect-round-to-pixel" deprecated="1.4: Use graphene_rect_round() instead" since="1.0"/>
+    <keyword type="function" name="graphene_rect_round ()" link="graphene-Rectangle.html#graphene-rect-round" since="1.4"/>
+    <keyword type="function" name="graphene_rect_expand ()" link="graphene-Rectangle.html#graphene-rect-expand" since="1.4"/>
     <keyword type="function" name="graphene_rect_interpolate ()" link="graphene-Rectangle.html#graphene-rect-interpolate" since="1.0"/>
+    <keyword type="function" name="graphene_rect_zero ()" link="graphene-Rectangle.html#graphene-rect-zero" since="1.4"/>
     <keyword type="struct" name="graphene_rect_t" link="graphene-Rectangle.html#graphene-rect-t" since="1.0"/>
     <keyword type="function" name="graphene_quad_alloc ()" link="graphene-Quad.html#graphene-quad-alloc" since="1.0"/>
     <keyword type="function" name="graphene_quad_free ()" link="graphene-Quad.html#graphene-quad-free" since="1.0"/>
@@ -202,6 +215,8 @@
     <keyword type="function" name="graphene_simd4f_cross3 ()" link="graphene-SIMD-vector.html#graphene-simd4f-cross3" since="1.0"/>
     <keyword type="function" name="graphene_simd4f_min ()" link="graphene-SIMD-vector.html#graphene-simd4f-min" since="1.0"/>
     <keyword type="function" name="graphene_simd4f_max ()" link="graphene-SIMD-vector.html#graphene-simd4f-max" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_min_val ()" link="graphene-SIMD-vector.html#graphene-simd4f-min-val" since="1.4"/>
+    <keyword type="function" name="graphene_simd4f_max_val ()" link="graphene-SIMD-vector.html#graphene-simd4f-max-val" since="1.4"/>
     <keyword type="function" name="graphene_simd4f_clamp ()" link="graphene-SIMD-vector.html#graphene-simd4f-clamp" since="1.2"/>
     <keyword type="function" name="graphene_simd4f_clamp_scalar ()" link="graphene-SIMD-vector.html#graphene-simd4f-clamp-scalar" since="1.2"/>
     <keyword type="function" name="graphene_simd4f_shuffle_wxyz ()" link="graphene-SIMD-vector.html#graphene-simd4f-shuffle-wxyz" since="1.0"/>
@@ -226,6 +241,7 @@
     <keyword type="function" name="graphene_simd4f_sum_scalar ()" link="graphene-SIMD-vector.html#graphene-simd4f-sum-scalar" since="1.0"/>
     <keyword type="function" name="graphene_simd4f_dot4 ()" link="graphene-SIMD-vector.html#graphene-simd4f-dot4" since="1.0"/>
     <keyword type="function" name="graphene_simd4f_dot3 ()" link="graphene-SIMD-vector.html#graphene-simd4f-dot3" since="1.0"/>
+    <keyword type="function" name="graphene_simd4f_dot3_scalar ()" link="graphene-SIMD-vector.html#graphene-simd4f-dot3-scalar" since="1.4"/>
     <keyword type="function" name="graphene_simd4f_dot2 ()" link="graphene-SIMD-vector.html#graphene-simd4f-dot2" since="1.0"/>
     <keyword type="function" name="graphene_simd4f_length4 ()" link="graphene-SIMD-vector.html#graphene-simd4f-length4" since="1.0"/>
     <keyword type="function" name="graphene_simd4f_length3 ()" link="graphene-SIMD-vector.html#graphene-simd4f-length3" since="1.0"/>
@@ -398,6 +414,7 @@
     <keyword type="function" name="graphene_matrix_transform_bounds ()" link="graphene-Matrix.html#graphene-matrix-transform-bounds" since="1.0"/>
     <keyword type="function" name="graphene_matrix_transform_box ()" link="graphene-Matrix.html#graphene-matrix-transform-box" since="1.2"/>
     <keyword type="function" name="graphene_matrix_transform_sphere ()" link="graphene-Matrix.html#graphene-matrix-transform-sphere" since="1.2"/>
+    <keyword type="function" name="graphene_matrix_transform_ray ()" link="graphene-Matrix.html#graphene-matrix-transform-ray" since="1.4"/>
     <keyword type="function" name="graphene_matrix_project_point ()" link="graphene-Matrix.html#graphene-matrix-project-point" since="1.0"/>
     <keyword type="function" name="graphene_matrix_project_rect_bounds ()" link="graphene-Matrix.html#graphene-matrix-project-rect-bounds" since="1.0"/>
     <keyword type="function" name="graphene_matrix_project_rect ()" link="graphene-Matrix.html#graphene-matrix-project-rect" since="1.2"/>
@@ -451,11 +468,13 @@
     <keyword type="function" name="graphene_quaternion_init_from_vec4 ()" link="graphene-Quaternion.html#graphene-quaternion-init-from-vec4" since="1.0"/>
     <keyword type="function" name="graphene_quaternion_init_from_matrix ()" link="graphene-Quaternion.html#graphene-quaternion-init-from-matrix" since="1.0"/>
     <keyword type="function" name="graphene_quaternion_init_from_angles ()" link="graphene-Quaternion.html#graphene-quaternion-init-from-angles" since="1.0"/>
+    <keyword type="function" name="graphene_quaternion_init_from_radians ()" link="graphene-Quaternion.html#graphene-quaternion-init-from-radians" since="1.0"/>
     <keyword type="function" name="graphene_quaternion_init_from_angle_vec3 ()" link="graphene-Quaternion.html#graphene-quaternion-init-from-angle-vec3" since="1.0"/>
     <keyword type="function" name="graphene_quaternion_init_from_euler ()" link="graphene-Quaternion.html#graphene-quaternion-init-from-euler" since="1.2"/>
     <keyword type="function" name="graphene_quaternion_to_vec4 ()" link="graphene-Quaternion.html#graphene-quaternion-to-vec4" since="1.0"/>
     <keyword type="function" name="graphene_quaternion_to_matrix ()" link="graphene-Quaternion.html#graphene-quaternion-to-matrix" since="1.0"/>
     <keyword type="function" name="graphene_quaternion_to_angles ()" link="graphene-Quaternion.html#graphene-quaternion-to-angles" since="1.2"/>
+    <keyword type="function" name="graphene_quaternion_to_radians ()" link="graphene-Quaternion.html#graphene-quaternion-to-radians" since="1.2"/>
     <keyword type="function" name="graphene_quaternion_to_angle_vec3 ()" link="graphene-Quaternion.html#graphene-quaternion-to-angle-vec3" since="1.0"/>
     <keyword type="function" name="graphene_quaternion_equal ()" link="graphene-Quaternion.html#graphene-quaternion-equal" since="1.0"/>
     <keyword type="function" name="graphene_quaternion_dot ()" link="graphene-Quaternion.html#graphene-quaternion-dot" since="1.0"/>
@@ -477,6 +496,19 @@
     <keyword type="function" name="graphene_plane_get_normal ()" link="graphene-Plane.html#graphene-plane-get-normal" since="1.2"/>
     <keyword type="function" name="graphene_plane_get_constant ()" link="graphene-Plane.html#graphene-plane-get-constant" since="1.2"/>
     <keyword type="struct" name="graphene_plane_t" link="graphene-Plane.html#graphene-plane-t" since="1.2"/>
+    <keyword type="function" name="graphene_ray_alloc ()" link="graphene-Ray.html#graphene-ray-alloc" since="1.4"/>
+    <keyword type="function" name="graphene_ray_free ()" link="graphene-Ray.html#graphene-ray-free" since="1.4"/>
+    <keyword type="function" name="graphene_ray_init ()" link="graphene-Ray.html#graphene-ray-init" since="1.4"/>
+    <keyword type="function" name="graphene_ray_init_from_ray ()" link="graphene-Ray.html#graphene-ray-init-from-ray" since="1.4"/>
+    <keyword type="function" name="graphene_ray_init_from_vec3 ()" link="graphene-Ray.html#graphene-ray-init-from-vec3" since="1.4"/>
+    <keyword type="function" name="graphene_ray_get_origin ()" link="graphene-Ray.html#graphene-ray-get-origin" since="1.4"/>
+    <keyword type="function" name="graphene_ray_get_direction ()" link="graphene-Ray.html#graphene-ray-get-direction" since="1.4"/>
+    <keyword type="function" name="graphene_ray_get_position_at ()" link="graphene-Ray.html#graphene-ray-get-position-at" since="1.4"/>
+    <keyword type="function" name="graphene_ray_get_distance_to_point ()" link="graphene-Ray.html#graphene-ray-get-distance-to-point" since="1.4"/>
+    <keyword type="function" name="graphene_ray_get_distance_to_plane ()" link="graphene-Ray.html#graphene-ray-get-distance-to-plane" since="1.4"/>
+    <keyword type="function" name="graphene_ray_get_closest_point_to_point ()" link="graphene-Ray.html#graphene-ray-get-closest-point-to-point" since="1.4"/>
+    <keyword type="function" name="graphene_ray_equal ()" link="graphene-Ray.html#graphene-ray-equal" since="1.4"/>
+    <keyword type="struct" name="graphene_ray_t" link="graphene-Ray.html#graphene-ray-t" since="1.4"/>
     <keyword type="macro" name="GRAPHENE_MAJOR_VERSION" link="graphene-Versioning-information.html#GRAPHENE-MAJOR-VERSION:CAPS" since="1.0"/>
     <keyword type="macro" name="GRAPHENE_MINOR_VERSION" link="graphene-Versioning-information.html#GRAPHENE-MINOR-VERSION:CAPS" since="1.0"/>
     <keyword type="macro" name="GRAPHENE_MICRO_VERSION" link="graphene-Versioning-information.html#GRAPHENE-MICRO-VERSION:CAPS" since="1.0"/>
@@ -487,5 +519,14 @@
     <keyword type="constant" name="GRAPHENE_EULER_ORDER_XZY" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-XZY:CAPS"/>
     <keyword type="constant" name="GRAPHENE_EULER_ORDER_YXZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-YXZ:CAPS"/>
     <keyword type="constant" name="GRAPHENE_EULER_ORDER_ZYX" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-ZYX:CAPS"/>
+    <keyword type="member" name="graphene-point-t.x" link="graphene-Point.html#graphene-point-t.x"/>
+    <keyword type="member" name="graphene-point-t.y" link="graphene-Point.html#graphene-point-t.y"/>
+    <keyword type="member" name="graphene-point3d-t.x" link="graphene-Point3D.html#graphene-point3d-t.x"/>
+    <keyword type="member" name="graphene-point3d-t.y" link="graphene-Point3D.html#graphene-point3d-t.y"/>
+    <keyword type="member" name="graphene-point3d-t.z" link="graphene-Point3D.html#graphene-point3d-t.z"/>
+    <keyword type="member" name="graphene-size-t.width" link="graphene-Size.html#graphene-size-t.width"/>
+    <keyword type="member" name="graphene-size-t.height" link="graphene-Size.html#graphene-size-t.height"/>
+    <keyword type="member" name="graphene-rect-t.origin" link="graphene-Rectangle.html#graphene-rect-t.origin"/>
+    <keyword type="member" name="graphene-rect-t.size" link="graphene-Rectangle.html#graphene-rect-t.size"/>
   </functions>
 </book>

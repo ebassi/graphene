@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-SIMD-matrix.html" title="SIMD matrix">
 <link rel="next" href="graphene-Matrix.html" title="Matrix">
-<meta name="generator" content="GTK-Doc V1.23.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -791,6 +791,11 @@
 </table></div>
 </div>
 <div class="refsect1">
+<a name="graphene-Vectors.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;graphene.h&gt;
+</pre>
+</div>
+<div class="refsect1">
 <a name="graphene-Vectors.description"></a><h2>Description</h2>
 <p>Graphene has three vector types, distinguished by their length:</p>
 <div class="orderedlist"><ol class="orderedlist" type="1">
@@ -811,7 +816,7 @@ graphene_vec2_alloc (<em class="parameter"><code><span class="type">void</span><
 <p>Use <a class="link" href="graphene-Vectors.html#graphene-vec2-init" title="graphene_vec2_init ()"><code class="function">graphene_vec2_init()</code></a> to initialize the vector.</p>
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
-<a name="id-1.2.14.6.2.8"></a><h4>Returns</h4>
+<a name="graphene-vec2-alloc.returns"></a><h4>Returns</h4>
 <p> the newly allocated <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a>
 structure. Use <a class="link" href="graphene-Vectors.html#graphene-vec2-free" title="graphene_vec2_free ()"><code class="function">graphene_vec2_free()</code></a> to free the resources allocated
 by this function. </p>
@@ -827,7 +832,7 @@ graphene_vec2_free (<em class="parameter"><code><a class="link" href="graphene-V
 <p>Frees the resources allocated by <em class="parameter"><code>v</code></em>
 </p>
 <div class="refsect3">
-<a name="id-1.2.14.6.3.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-free.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -853,7 +858,7 @@ graphene_vec2_init (<em class="parameter"><code><a class="link" href="graphene-V
 <p>Initializes a <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> using the given values.</p>
 <p>This function can be called multiple times.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.4.6"></a><h4>Parameters</h4>
+<a name="graphene-vec2-init.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -880,7 +885,7 @@ graphene_vec2_init (<em class="parameter"><code><a class="link" href="graphene-V
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.4.7"></a><h4>Returns</h4>
+<a name="graphene-vec2-init.returns"></a><h4>Returns</h4>
 <p> the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -896,7 +901,7 @@ graphene_vec2_init_from_vec2 (<em class="parameter"><code><a class="link" href="
  into <em class="parameter"><code>v</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.5.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-init-from-vec2.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -918,7 +923,7 @@ graphene_vec2_init_from_vec2 (<em class="parameter"><code><a class="link" href="
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.5.6"></a><h4>Returns</h4>
+<a name="graphene-vec2-init-from-vec2.returns"></a><h4>Returns</h4>
 <p> the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -933,7 +938,7 @@ graphene_vec2_init_from_float (<em class="parameter"><code><a class="link" href=
 <p>Initializes <em class="parameter"><code>v</code></em>
  with the contents of the given array.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.6.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-init-from-float.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -956,7 +961,7 @@ with at least two elements. </p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.6.6"></a><h4>Returns</h4>
+<a name="graphene-vec2-init-from-float.returns"></a><h4>Returns</h4>
 <p> the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -971,7 +976,7 @@ graphene_vec2_to_float (<em class="parameter"><code>const <a class="link" href="
 <p>Stores the components of <em class="parameter"><code>v</code></em>
  into an array.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.7.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-to-float.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1006,7 +1011,7 @@ graphene_vec2_add (<em class="parameter"><code>const <a class="link" href="graph
 each result into the components of <em class="parameter"><code>res</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.8.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-add.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1041,11 +1046,14 @@ each result into the components of <em class="parameter"><code>res</code></em>
 graphene_vec2_subtract (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *a</code></em>,
                         <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *b</code></em>,
                         <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *res</code></em>);</pre>
-<p>Subtracts each component of the two passed vectors and places
+<p>Subtracts from each component of the first operand <em class="parameter"><code>a</code></em>
+ the
+corresponding component of the second operand <em class="parameter"><code>b</code></em>
+ and places
 each result into the components of <em class="parameter"><code>res</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.9.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-subtract.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1084,7 +1092,7 @@ graphene_vec2_multiply (<em class="parameter"><code>const <a class="link" href="
 each result into the components of <em class="parameter"><code>res</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.10.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-multiply.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1119,11 +1127,14 @@ each result into the components of <em class="parameter"><code>res</code></em>
 graphene_vec2_divide (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *a</code></em>,
                       <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *b</code></em>,
                       <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *res</code></em>);</pre>
-<p>Divides each component of the two passed vectors and places
-each result into the components of <em class="parameter"><code>res</code></em>
+<p>Divides each component of the first operand <em class="parameter"><code>a</code></em>
+ by the corresponding
+component of the second operand <em class="parameter"><code>b</code></em>
+, and places the results into the
+vector <em class="parameter"><code>res</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.11.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-divide.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1159,7 +1170,7 @@ graphene_vec2_dot (<em class="parameter"><code>const <a class="link" href="graph
                    <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *b</code></em>);</pre>
 <p>Computes the dot product of the two given vectors.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.12.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-dot.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1181,7 +1192,7 @@ graphene_vec2_dot (<em class="parameter"><code>const <a class="link" href="graph
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.12.6"></a><h4>Returns</h4>
+<a name="graphene-vec2-dot.returns"></a><h4>Returns</h4>
 <p> the dot product of the vectors</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -1196,7 +1207,7 @@ graphene_vec2_scale (<em class="parameter"><code>const <a class="link" href="gra
 <p>Multiplies all components of the given vector with the given scalar <em class="parameter"><code>factor</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.13.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-scale.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1231,7 +1242,7 @@ graphene_vec2_scale (<em class="parameter"><code>const <a class="link" href="gra
 graphene_vec2_length (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *v</code></em>);</pre>
 <p>Computes the length of the given vector.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.14.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-length.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1246,7 +1257,7 @@ graphene_vec2_length (<em class="parameter"><code>const <a class="link" href="gr
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.14.6"></a><h4>Returns</h4>
+<a name="graphene-vec2-length.returns"></a><h4>Returns</h4>
 <p> the length of the vector</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -1260,7 +1271,7 @@ graphene_vec2_normalize (<em class="parameter"><code>const <a class="link" href=
 <p>Computes the normalized vector for the given vector <em class="parameter"><code>v</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.15.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-normalize.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1290,9 +1301,9 @@ normalized vector. </p></td>
 <pre class="programlisting"><span class="returnvalue">void</span>
 graphene_vec2_negate (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *v</code></em>,
                       <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *res</code></em>);</pre>
-<p>Negates the give <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a>.</p>
+<p>Negates the given <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.16.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-negate.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1323,7 +1334,7 @@ graphene_vec2_equal (<em class="parameter"><code>const <a class="link" href="gra
                      <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *v2</code></em>);</pre>
 <p>Checks whether the two given <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> are equal.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.17.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-equal.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1345,7 +1356,7 @@ graphene_vec2_equal (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.17.6"></a><h4>Returns</h4>
+<a name="graphene-vec2-equal.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the two vectors are equal, and false otherwise</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -1361,7 +1372,7 @@ graphene_vec2_near (<em class="parameter"><code>const <a class="link" href="grap
 whether their values are within the given <em class="parameter"><code>epsilon</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.18.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-near.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1388,7 +1399,7 @@ whether their values are within the given <em class="parameter"><code>epsilon</c
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.18.6"></a><h4>Returns</h4>
+<a name="graphene-vec2-near.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the two vectors are near each other</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -1404,7 +1415,7 @@ graphene_vec2_min (<em class="parameter"><code>const <a class="link" href="graph
 values of each component into <em class="parameter"><code>res</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.19.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-min.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1443,7 +1454,7 @@ graphene_vec2_max (<em class="parameter"><code>const <a class="link" href="graph
 values of each component into <em class="parameter"><code>res</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.20.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-max.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1478,7 +1489,7 @@ values of each component into <em class="parameter"><code>res</code></em>
 graphene_vec2_get_x (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *v</code></em>);</pre>
 <p>Retrieves the X component of the <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.21.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-get-x.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1493,7 +1504,7 @@ graphene_vec2_get_x (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.21.6"></a><h4>Returns</h4>
+<a name="graphene-vec2-get-x.returns"></a><h4>Returns</h4>
 <p> the value of the X component</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -1505,7 +1516,7 @@ graphene_vec2_get_x (<em class="parameter"><code>const <a class="link" href="gra
 graphene_vec2_get_y (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *v</code></em>);</pre>
 <p>Retrieves the Y component of the <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.22.5"></a><h4>Parameters</h4>
+<a name="graphene-vec2-get-y.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1520,7 +1531,7 @@ graphene_vec2_get_y (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.22.6"></a><h4>Returns</h4>
+<a name="graphene-vec2-get-y.returns"></a><h4>Returns</h4>
 <p> the value of the Y component</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -1532,7 +1543,7 @@ graphene_vec2_get_y (<em class="parameter"><code>const <a class="link" href="gra
 graphene_vec2_zero (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Retrieves a constant vector with (0, 0) components.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.23.5"></a><h4>Returns</h4>
+<a name="graphene-vec2-zero.returns"></a><h4>Returns</h4>
 <p> the zero vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -1545,7 +1556,7 @@ graphene_vec2_zero (<em class="parameter"><code><span class="type">void</span></
 graphene_vec2_one (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Retrieves a constant vector with (1, 1) components.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.24.5"></a><h4>Returns</h4>
+<a name="graphene-vec2-one.returns"></a><h4>Returns</h4>
 <p> the one vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -1558,7 +1569,7 @@ graphene_vec2_one (<em class="parameter"><code><span class="type">void</span></c
 graphene_vec2_x_axis (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Retrieves a constant vector with (1, 0) components.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.25.5"></a><h4>Returns</h4>
+<a name="graphene-vec2-x-axis.returns"></a><h4>Returns</h4>
 <p> the X axis vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -1571,7 +1582,7 @@ graphene_vec2_x_axis (<em class="parameter"><code><span class="type">void</span>
 graphene_vec2_y_axis (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Retrieves a constant vector with (0, 1) components.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.26.5"></a><h4>Returns</h4>
+<a name="graphene-vec2-y-axis.returns"></a><h4>Returns</h4>
 <p> the Y axis vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -1587,7 +1598,7 @@ graphene_vec3_alloc (<em class="parameter"><code><span class="type">void</span><
 <p>Use <a class="link" href="graphene-Vectors.html#graphene-vec3-init" title="graphene_vec3_init ()"><code class="function">graphene_vec3_init()</code></a> to initialize the vector.</p>
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
-<a name="id-1.2.14.6.27.8"></a><h4>Returns</h4>
+<a name="graphene-vec3-alloc.returns"></a><h4>Returns</h4>
 <p> the newly allocated <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>
 structure. Use <a class="link" href="graphene-Vectors.html#graphene-vec3-free" title="graphene_vec3_free ()"><code class="function">graphene_vec3_free()</code></a> to free the resources allocated
 by this function. </p>
@@ -1603,7 +1614,7 @@ graphene_vec3_free (<em class="parameter"><code><a class="link" href="graphene-V
 <p>Frees the resources allocated by <em class="parameter"><code>v</code></em>
 </p>
 <div class="refsect3">
-<a name="id-1.2.14.6.28.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-free.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1630,7 +1641,7 @@ graphene_vec3_init (<em class="parameter"><code><a class="link" href="graphene-V
 <p>Initializes a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> using the given values.</p>
 <p>This function can be called multiple times.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.29.6"></a><h4>Parameters</h4>
+<a name="graphene-vec3-init.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1662,7 +1673,7 @@ graphene_vec3_init (<em class="parameter"><code><a class="link" href="graphene-V
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.29.7"></a><h4>Returns</h4>
+<a name="graphene-vec3-init.returns"></a><h4>Returns</h4>
 <p> a pointer to the initialized
 vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
@@ -1678,7 +1689,7 @@ graphene_vec3_init_from_vec3 (<em class="parameter"><code><a class="link" href="
 <p>Initializes a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> with the values of another
 <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.30.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-init-from-vec3.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1700,7 +1711,7 @@ graphene_vec3_init_from_vec3 (<em class="parameter"><code><a class="link" href="
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.30.6"></a><h4>Returns</h4>
+<a name="graphene-vec3-init-from-vec3.returns"></a><h4>Returns</h4>
 <p> the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -1714,7 +1725,7 @@ graphene_vec3_init_from_float (<em class="parameter"><code><a class="link" href=
                                <em class="parameter"><code>const <span class="type">float</span> *src</code></em>);</pre>
 <p>Initializes a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> with the values from an array.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.31.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-init-from-float.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1736,7 +1747,7 @@ graphene_vec3_init_from_float (<em class="parameter"><code><a class="link" href=
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.31.6"></a><h4>Returns</h4>
+<a name="graphene-vec3-init-from-float.returns"></a><h4>Returns</h4>
 <p> the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -1750,7 +1761,7 @@ graphene_vec3_to_float (<em class="parameter"><code>const <a class="link" href="
                         <em class="parameter"><code><span class="type">float</span> *dest</code></em>);</pre>
 <p>Copies the components of a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> into the given array.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.32.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-to-float.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1783,7 +1794,7 @@ graphene_vec3_add (<em class="parameter"><code>const <a class="link" href="graph
                    <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *res</code></em>);</pre>
 <p>Adds each component of the two given vectors.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.33.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-add.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1818,9 +1829,14 @@ graphene_vec3_add (<em class="parameter"><code>const <a class="link" href="graph
 graphene_vec3_subtract (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *a</code></em>,
                         <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *b</code></em>,
                         <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *res</code></em>);</pre>
-<p>Subtracts each component of the two given vectors.</p>
+<p>Subtracts from each component of the first operand <em class="parameter"><code>a</code></em>
+ the
+corresponding component of the second operand <em class="parameter"><code>b</code></em>
+ and places
+each result into the components of <em class="parameter"><code>res</code></em>
+.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.34.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-subtract.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1857,7 +1873,7 @@ graphene_vec3_multiply (<em class="parameter"><code>const <a class="link" href="
                         <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *res</code></em>);</pre>
 <p>Multiplies each component of the two given vectors.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.35.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-multiply.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1892,9 +1908,14 @@ graphene_vec3_multiply (<em class="parameter"><code>const <a class="link" href="
 graphene_vec3_divide (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *a</code></em>,
                       <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *b</code></em>,
                       <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *res</code></em>);</pre>
-<p>Divides each component of the two given vectors.</p>
+<p>Divides each component of the first operand <em class="parameter"><code>a</code></em>
+ by the corresponding
+component of the second operand <em class="parameter"><code>b</code></em>
+, and places the results into the
+vector <em class="parameter"><code>res</code></em>
+.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.36.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-divide.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1931,7 +1952,7 @@ graphene_vec3_cross (<em class="parameter"><code>const <a class="link" href="gra
                      <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *res</code></em>);</pre>
 <p>Computes the cross product of the two given vectors.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.37.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-cross.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1967,7 +1988,7 @@ graphene_vec3_dot (<em class="parameter"><code>const <a class="link" href="graph
                    <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *b</code></em>);</pre>
 <p>Computes the dot product of the two given vectors.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.38.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-dot.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1989,7 +2010,7 @@ graphene_vec3_dot (<em class="parameter"><code>const <a class="link" href="graph
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.38.6"></a><h4>Returns</h4>
+<a name="graphene-vec3-dot.returns"></a><h4>Returns</h4>
 <p> the value of the dot product</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2004,7 +2025,7 @@ graphene_vec3_scale (<em class="parameter"><code>const <a class="link" href="gra
 <p>Multiplies all components of the given vector with the given scalar <em class="parameter"><code>factor</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.39.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-scale.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2040,7 +2061,7 @@ graphene_vec3_length (<em class="parameter"><code>const <a class="link" href="gr
 <p>Retrieves the length of the given vector <em class="parameter"><code>v</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.40.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-length.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2055,7 +2076,7 @@ graphene_vec3_length (<em class="parameter"><code>const <a class="link" href="gr
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.40.6"></a><h4>Returns</h4>
+<a name="graphene-vec3-length.returns"></a><h4>Returns</h4>
 <p> the value of the length of the vector</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2068,7 +2089,7 @@ graphene_vec3_normalize (<em class="parameter"><code>const <a class="link" href=
                          <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *res</code></em>);</pre>
 <p>Normalizes the given <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.41.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-normalize.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2097,9 +2118,9 @@ graphene_vec3_normalize (<em class="parameter"><code>const <a class="link" href=
 <pre class="programlisting"><span class="returnvalue">void</span>
 graphene_vec3_negate (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *v</code></em>,
                       <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *res</code></em>);</pre>
-<p>Negates the give <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>.</p>
+<p>Negates the given <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.42.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-negate.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2130,7 +2151,7 @@ graphene_vec3_equal (<em class="parameter"><code>const <a class="link" href="gra
                      <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *v2</code></em>);</pre>
 <p>Checks whether the two given <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> are equal.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.43.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-equal.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2152,7 +2173,7 @@ graphene_vec3_equal (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.43.6"></a><h4>Returns</h4>
+<a name="graphene-vec3-equal.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the two vectors are equal, and false otherwise</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -2168,7 +2189,7 @@ graphene_vec3_near (<em class="parameter"><code>const <a class="link" href="grap
 whether their values are within the given <em class="parameter"><code>epsilon</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.44.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-near.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2195,7 +2216,7 @@ whether their values are within the given <em class="parameter"><code>epsilon</c
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.44.6"></a><h4>Returns</h4>
+<a name="graphene-vec3-near.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the two vectors are near each other</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -2210,7 +2231,7 @@ graphene_vec3_min (<em class="parameter"><code>const <a class="link" href="graph
 <p>Compares each component of the two given vectors and creates a
 vector that contains the minimum values.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.45.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-min.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2248,7 +2269,7 @@ graphene_vec3_max (<em class="parameter"><code>const <a class="link" href="graph
 <p>Compares each component of the two given vectors and creates a
 vector that contains the maximum values.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.46.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-max.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2284,7 +2305,7 @@ graphene_vec3_get_x (<em class="parameter"><code>const <a class="link" href="gra
 <p>Retrieves the first component of the given vector <em class="parameter"><code>v</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.47.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-get-x.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2299,7 +2320,7 @@ graphene_vec3_get_x (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.47.6"></a><h4>Returns</h4>
+<a name="graphene-vec3-get-x.returns"></a><h4>Returns</h4>
 <p> the value of the first component of the vector</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2312,7 +2333,7 @@ graphene_vec3_get_y (<em class="parameter"><code>const <a class="link" href="gra
 <p>Retrieves the second component of the given vector <em class="parameter"><code>v</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.48.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-get-y.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2327,7 +2348,7 @@ graphene_vec3_get_y (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.48.6"></a><h4>Returns</h4>
+<a name="graphene-vec3-get-y.returns"></a><h4>Returns</h4>
 <p> the value of the second component of the vector</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2340,7 +2361,7 @@ graphene_vec3_get_z (<em class="parameter"><code>const <a class="link" href="gra
 <p>Retrieves the third component of the given vector <em class="parameter"><code>v</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.49.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-get-z.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2355,7 +2376,7 @@ graphene_vec3_get_z (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.49.6"></a><h4>Returns</h4>
+<a name="graphene-vec3-get-z.returns"></a><h4>Returns</h4>
 <p> the value of the third component of the vector</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2369,7 +2390,7 @@ graphene_vec3_get_xy (<em class="parameter"><code>const <a class="link" href="gr
 <p>Creates a <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> that contains the first and second
 components of the given <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.50.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-get-xy.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2401,7 +2422,7 @@ graphene_vec3_get_xy0 (<em class="parameter"><code>const <a class="link" href="g
 <p>Creates a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> that contains the first two components of
 the given <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>, and the third component set to 0.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.51.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-get-xy0.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2433,7 +2454,7 @@ graphene_vec3_get_xyz0 (<em class="parameter"><code>const <a class="link" href="
 <p>Converts a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> in a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> using 0.0
 as the value for the fourth component of the resulting vector.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.52.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-get-xyz0.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2465,7 +2486,7 @@ graphene_vec3_get_xyz1 (<em class="parameter"><code>const <a class="link" href="
 <p>Converts a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> in a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> using 1.0
 as the value for the fourth component of the resulting vector.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.53.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-get-xyz1.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2499,7 +2520,7 @@ graphene_vec3_get_xyzw (<em class="parameter"><code>const <a class="link" href="
  as
 the value of the fourth component of the resulting vector.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.54.5"></a><h4>Parameters</h4>
+<a name="graphene-vec3-get-xyzw.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2535,7 +2556,7 @@ graphene_vec3_zero (<em class="parameter"><code><span class="type">void</span></
 <p>Provides a constant pointer to a vector with three components,
 all sets to 0.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.55.5"></a><h4>Returns</h4>
+<a name="graphene-vec3-zero.returns"></a><h4>Returns</h4>
 <p> a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -2549,7 +2570,7 @@ graphene_vec3_one (<em class="parameter"><code><span class="type">void</span></c
 <p>Provides a constant pointer to a vector with three components,
 all sets to 1.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.56.5"></a><h4>Returns</h4>
+<a name="graphene-vec3-one.returns"></a><h4>Returns</h4>
 <p> a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -2563,7 +2584,7 @@ graphene_vec3_x_axis (<em class="parameter"><code><span class="type">void</span>
 <p>Provides a constant pointer to a vector with three components
 with values set to (1, 0, 0).</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.57.5"></a><h4>Returns</h4>
+<a name="graphene-vec3-x-axis.returns"></a><h4>Returns</h4>
 <p> a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -2577,7 +2598,7 @@ graphene_vec3_y_axis (<em class="parameter"><code><span class="type">void</span>
 <p>Provides a constant pointer to a vector with three components
 with values set to (0, 1, 0).</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.58.5"></a><h4>Returns</h4>
+<a name="graphene-vec3-y-axis.returns"></a><h4>Returns</h4>
 <p> a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -2591,7 +2612,7 @@ graphene_vec3_z_axis (<em class="parameter"><code><span class="type">void</span>
 <p>Provides a constant pointer to a vector with three components
 with values set to (0, 0, 1).</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.59.5"></a><h4>Returns</h4>
+<a name="graphene-vec3-z-axis.returns"></a><h4>Returns</h4>
 <p> a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -2607,7 +2628,7 @@ graphene_vec4_alloc (<em class="parameter"><code><span class="type">void</span><
 <p>Use <a class="link" href="graphene-Vectors.html#graphene-vec4-init" title="graphene_vec4_init ()"><code class="function">graphene_vec4_init()</code></a> to initialize the vector.</p>
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
-<a name="id-1.2.14.6.60.8"></a><h4>Returns</h4>
+<a name="graphene-vec4-alloc.returns"></a><h4>Returns</h4>
 <p> the newly allocated <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>
 structure. Use <a class="link" href="graphene-Vectors.html#graphene-vec4-free" title="graphene_vec4_free ()"><code class="function">graphene_vec4_free()</code></a> to free the resources allocated
 by this function. </p>
@@ -2623,7 +2644,7 @@ graphene_vec4_free (<em class="parameter"><code><a class="link" href="graphene-V
 <p>Frees the resources allocated by <em class="parameter"><code>v</code></em>
 </p>
 <div class="refsect3">
-<a name="id-1.2.14.6.61.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-free.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2651,7 +2672,7 @@ graphene_vec4_init (<em class="parameter"><code><a class="link" href="graphene-V
 <p>Initializes a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> using the given values.</p>
 <p>This function can be called multiple times.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.62.6"></a><h4>Parameters</h4>
+<a name="graphene-vec4-init.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2688,7 +2709,7 @@ graphene_vec4_init (<em class="parameter"><code><a class="link" href="graphene-V
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.62.7"></a><h4>Returns</h4>
+<a name="graphene-vec4-init.returns"></a><h4>Returns</h4>
 <p> a pointer to the initialized
 vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
@@ -2704,7 +2725,7 @@ graphene_vec4_init_from_vec4 (<em class="parameter"><code><a class="link" href="
 <p>Initializes a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> using the components of
 another <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.63.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-init-from-vec4.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2726,7 +2747,7 @@ another <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="grap
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.63.6"></a><h4>Returns</h4>
+<a name="graphene-vec4-init-from-vec4.returns"></a><h4>Returns</h4>
 <p> the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -2743,7 +2764,7 @@ graphene_vec4_init_from_vec3 (<em class="parameter"><code><a class="link" href="
 <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> and the value of <em class="parameter"><code>w</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.64.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-init-from-vec3.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2771,7 +2792,7 @@ graphene_vec4_init_from_vec3 (<em class="parameter"><code><a class="link" href="
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.64.6"></a><h4>Returns</h4>
+<a name="graphene-vec4-init-from-vec3.returns"></a><h4>Returns</h4>
 <p> the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -2790,7 +2811,7 @@ graphene_vec4_init_from_vec2 (<em class="parameter"><code><a class="link" href="
  and <em class="parameter"><code>w</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.65.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-init-from-vec2.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2824,7 +2845,7 @@ graphene_vec4_init_from_vec2 (<em class="parameter"><code><a class="link" href="
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.65.6"></a><h4>Returns</h4>
+<a name="graphene-vec4-init-from-vec2.returns"></a><h4>Returns</h4>
 <p> the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -2838,7 +2859,7 @@ graphene_vec4_init_from_float (<em class="parameter"><code><a class="link" href=
                                <em class="parameter"><code>const <span class="type">float</span> *src</code></em>);</pre>
 <p>Initializes a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> with the values inside the given array.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.66.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-init-from-float.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2860,7 +2881,7 @@ graphene_vec4_init_from_float (<em class="parameter"><code><a class="link" href=
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.66.6"></a><h4>Returns</h4>
+<a name="graphene-vec4-init-from-float.returns"></a><h4>Returns</h4>
 <p> the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -2875,7 +2896,7 @@ graphene_vec4_to_float (<em class="parameter"><code>const <a class="link" href="
 <p>Stores the components of the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> into an array
 of floating point values.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.67.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-to-float.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2908,7 +2929,7 @@ graphene_vec4_add (<em class="parameter"><code>const <a class="link" href="graph
                    <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *res</code></em>);</pre>
 <p>Adds each component of the two given vectors.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.68.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-add.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2943,9 +2964,14 @@ graphene_vec4_add (<em class="parameter"><code>const <a class="link" href="graph
 graphene_vec4_subtract (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *a</code></em>,
                         <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *b</code></em>,
                         <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *res</code></em>);</pre>
-<p>Subtracts each component of the two given vectors.</p>
+<p>Subtracts from each component of the first operand <em class="parameter"><code>a</code></em>
+ the
+corresponding component of the second operand <em class="parameter"><code>b</code></em>
+ and places
+each result into the components of <em class="parameter"><code>res</code></em>
+.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.69.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-subtract.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -2982,7 +3008,7 @@ graphene_vec4_multiply (<em class="parameter"><code>const <a class="link" href="
                         <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *res</code></em>);</pre>
 <p>Multiplies each component of the two given vectors.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.70.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-multiply.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3017,9 +3043,14 @@ graphene_vec4_multiply (<em class="parameter"><code>const <a class="link" href="
 graphene_vec4_divide (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *a</code></em>,
                       <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *b</code></em>,
                       <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *res</code></em>);</pre>
-<p>Divides each component of the two given vectors.</p>
+<p>Divides each component of the first operand <em class="parameter"><code>a</code></em>
+ by the corresponding
+component of the second operand <em class="parameter"><code>b</code></em>
+, and places the results into the
+vector <em class="parameter"><code>res</code></em>
+.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.71.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-divide.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3055,7 +3086,7 @@ graphene_vec4_dot (<em class="parameter"><code>const <a class="link" href="graph
                    <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *b</code></em>);</pre>
 <p>Computes the dot product of the two given vectors.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.72.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-dot.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3077,7 +3108,7 @@ graphene_vec4_dot (<em class="parameter"><code>const <a class="link" href="graph
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.72.6"></a><h4>Returns</h4>
+<a name="graphene-vec4-dot.returns"></a><h4>Returns</h4>
 <p> the value of the dot product</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -3092,7 +3123,7 @@ graphene_vec4_scale (<em class="parameter"><code>const <a class="link" href="gra
 <p>Multiplies all components of the given vector with the given scalar <em class="parameter"><code>factor</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.73.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-scale.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3127,7 +3158,7 @@ graphene_vec4_scale (<em class="parameter"><code>const <a class="link" href="gra
 graphene_vec4_length (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v</code></em>);</pre>
 <p>Computes the length of the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.74.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-length.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3142,7 +3173,7 @@ graphene_vec4_length (<em class="parameter"><code>const <a class="link" href="gr
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.74.6"></a><h4>Returns</h4>
+<a name="graphene-vec4-length.returns"></a><h4>Returns</h4>
 <p> the length of the vector</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -3155,7 +3186,7 @@ graphene_vec4_normalize (<em class="parameter"><code>const <a class="link" href=
                          <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *res</code></em>);</pre>
 <p>Normalizes the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.75.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-normalize.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3185,9 +3216,9 @@ vector. </p></td>
 <pre class="programlisting"><span class="returnvalue">void</span>
 graphene_vec4_negate (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v</code></em>,
                       <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *res</code></em>);</pre>
-<p>Negates the give <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>.</p>
+<p>Negates the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.76.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-negate.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3218,7 +3249,7 @@ graphene_vec4_equal (<em class="parameter"><code>const <a class="link" href="gra
                      <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v2</code></em>);</pre>
 <p>Checks whether the two given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> are equal.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.77.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-equal.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3240,7 +3271,7 @@ graphene_vec4_equal (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.77.6"></a><h4>Returns</h4>
+<a name="graphene-vec4-equal.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the two vectors are equal, and false otherwise</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -3256,7 +3287,7 @@ graphene_vec4_near (<em class="parameter"><code>const <a class="link" href="grap
 whether their values are within the given <em class="parameter"><code>epsilon</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.78.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-near.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3283,7 +3314,7 @@ whether their values are within the given <em class="parameter"><code>epsilon</c
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.78.6"></a><h4>Returns</h4>
+<a name="graphene-vec4-near.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the two vectors are near each other</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -3298,7 +3329,7 @@ graphene_vec4_min (<em class="parameter"><code>const <a class="link" href="graph
 <p>Compares each component of the two given vectors and creates a
 vector that contains the minimum values.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.79.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-min.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3336,7 +3367,7 @@ graphene_vec4_max (<em class="parameter"><code>const <a class="link" href="graph
 <p>Compares each component of the two given vectors and creates a
 vector that contains the maximum values.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.80.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-max.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3371,7 +3402,7 @@ vector that contains the maximum values.</p>
 graphene_vec4_get_x (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v</code></em>);</pre>
 <p>Retrieves the value of the first component of the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.81.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-get-x.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3386,7 +3417,7 @@ graphene_vec4_get_x (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.81.6"></a><h4>Returns</h4>
+<a name="graphene-vec4-get-x.returns"></a><h4>Returns</h4>
 <p> the value of the first component</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -3398,7 +3429,7 @@ graphene_vec4_get_x (<em class="parameter"><code>const <a class="link" href="gra
 graphene_vec4_get_y (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v</code></em>);</pre>
 <p>Retrieves the value of the second component of the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.82.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-get-y.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3413,7 +3444,7 @@ graphene_vec4_get_y (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.82.6"></a><h4>Returns</h4>
+<a name="graphene-vec4-get-y.returns"></a><h4>Returns</h4>
 <p> the value of the second component</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -3425,7 +3456,7 @@ graphene_vec4_get_y (<em class="parameter"><code>const <a class="link" href="gra
 graphene_vec4_get_z (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v</code></em>);</pre>
 <p>Retrieves the value of the third component of the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.83.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-get-z.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3440,7 +3471,7 @@ graphene_vec4_get_z (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.83.6"></a><h4>Returns</h4>
+<a name="graphene-vec4-get-z.returns"></a><h4>Returns</h4>
 <p> the value of the third component</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -3452,7 +3483,7 @@ graphene_vec4_get_z (<em class="parameter"><code>const <a class="link" href="gra
 graphene_vec4_get_w (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v</code></em>);</pre>
 <p>Retrieves the value of the fourth component of the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.84.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-get-w.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3467,7 +3498,7 @@ graphene_vec4_get_w (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.14.6.84.6"></a><h4>Returns</h4>
+<a name="graphene-vec4-get-w.returns"></a><h4>Returns</h4>
 <p> the value of the fourth component</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -3481,7 +3512,7 @@ graphene_vec4_get_xy (<em class="parameter"><code>const <a class="link" href="gr
 <p>Creates a <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> that contains the first two components
 of the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.85.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-get-xy.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3513,7 +3544,7 @@ graphene_vec4_get_xyz (<em class="parameter"><code>const <a class="link" href="g
 <p>Creates a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> that contains the first three components
 of the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.86.5"></a><h4>Parameters</h4>
+<a name="graphene-vec4-get-xyz.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -3544,7 +3575,7 @@ graphene_vec4_zero (<em class="parameter"><code><span class="type">void</span></
 <p>Retrieves a pointer to a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> with all its
 components set to 0.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.87.5"></a><h4>Returns</h4>
+<a name="graphene-vec4-zero.returns"></a><h4>Returns</h4>
 <p> a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -3558,7 +3589,7 @@ graphene_vec4_one (<em class="parameter"><code><span class="type">void</span></c
 <p>Retrieves a pointer to a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> with all its
 components set to 1.</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.88.5"></a><h4>Returns</h4>
+<a name="graphene-vec4-one.returns"></a><h4>Returns</h4>
 <p> a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -3572,7 +3603,7 @@ graphene_vec4_x_axis (<em class="parameter"><code><span class="type">void</span>
 <p>Retrieves a pointer to a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> with its
 components set to (1, 0, 0, 0).</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.89.5"></a><h4>Returns</h4>
+<a name="graphene-vec4-x-axis.returns"></a><h4>Returns</h4>
 <p> a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -3586,7 +3617,7 @@ graphene_vec4_y_axis (<em class="parameter"><code><span class="type">void</span>
 <p>Retrieves a pointer to a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> with its
 components set to (0, 1, 0, 0).</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.90.5"></a><h4>Returns</h4>
+<a name="graphene-vec4-y-axis.returns"></a><h4>Returns</h4>
 <p> a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -3600,7 +3631,7 @@ graphene_vec4_z_axis (<em class="parameter"><code><span class="type">void</span>
 <p>Retrieves a pointer to a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> with its
 components set to (0, 0, 1, 0).</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.91.5"></a><h4>Returns</h4>
+<a name="graphene-vec4-z-axis.returns"></a><h4>Returns</h4>
 <p> a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -3614,7 +3645,7 @@ graphene_vec4_w_axis (<em class="parameter"><code><span class="type">void</span>
 <p>Retrieves a pointer to a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> with its
 components set to (0, 0, 0, 1).</p>
 <div class="refsect3">
-<a name="id-1.2.14.6.92.5"></a><h4>Returns</h4>
+<a name="graphene-vec4-w-axis.returns"></a><h4>Returns</h4>
 <p> a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -3679,6 +3710,6 @@ never be accessed directly.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.23.1</div>
+<hr>Generated by GTK-Doc V1.25</div>
 </body>
 </html>

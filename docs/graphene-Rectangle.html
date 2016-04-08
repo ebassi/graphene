@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Size.html" title="Size">
 <link rel="next" href="graphene-Quad.html" title="Quad">
-<meta name="generator" content="GTK-Doc V1.23.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -98,6 +98,14 @@
 <span class="returnvalue">void</span>
 </td>
 <td class="function_name">
+<a class="link" href="graphene-Rectangle.html#graphene-rect-normalize-r" title="graphene_rect_normalize_r ()">graphene_rect_normalize_r</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
 <a class="link" href="graphene-Rectangle.html#graphene-rect-get-center" title="graphene_rect_get_center ()">graphene_rect_get_center</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
@@ -170,6 +178,14 @@
 <span class="returnvalue">void</span>
 </td>
 <td class="function_name">
+<a class="link" href="graphene-Rectangle.html#graphene-rect-get-vertices" title="graphene_rect_get_vertices ()">graphene_rect_get_vertices</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
 <a class="link" href="graphene-Rectangle.html#graphene-rect-union" title="graphene_rect_union ()">graphene_rect_union</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
@@ -207,10 +223,26 @@
 </tr>
 <tr>
 <td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Rectangle.html#graphene-rect-offset-r" title="graphene_rect_offset_r ()">graphene_rect_offset_r</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
 <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="returnvalue">graphene_rect_t</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="graphene-Rectangle.html#graphene-rect-inset" title="graphene_rect_inset ()">graphene_rect_inset</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Rectangle.html#graphene-rect-inset-r" title="graphene_rect_inset_r ()">graphene_rect_inset_r</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
@@ -226,7 +258,30 @@
 <span class="returnvalue">void</span>
 </td>
 <td class="function_name">
+<a class="link" href="graphene-Rectangle.html#graphene-rect-round" title="graphene_rect_round ()">graphene_rect_round</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Rectangle.html#graphene-rect-expand" title="graphene_rect_expand ()">graphene_rect_expand</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
 <a class="link" href="graphene-Rectangle.html#graphene-rect-interpolate" title="graphene_rect_interpolate ()">graphene_rect_interpolate</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="returnvalue">graphene_rect_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Rectangle.html#graphene-rect-zero" title="graphene_rect_zero ()">graphene_rect_zero</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 </tbody>
@@ -246,9 +301,15 @@
 </table></div>
 </div>
 <div class="refsect1">
+<a name="graphene-Rectangle.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;graphene.h&gt;
+</pre>
+</div>
+<div class="refsect1">
 <a name="graphene-Rectangle.description"></a><h2>Description</h2>
 <p><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> is a type representing a rectangle through an origin
 <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> point and a <a class="link" href="graphene-Size.html#graphene-size-t" title="graphene_size_t"><span class="type">graphene_size_t</span></a> size.</p>
+<p><span class="inlinemediaobject"><img src="rectangle.png"></span></p>
 <p>Operations on a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> will normalize the rectangle, to
 ensure that the origin is always the top-left corner of the rectangle
 and that the size is always positive.</p>
@@ -260,7 +321,7 @@ and that the size is always positive.</p>
 <pre class="programlisting">#define             GRAPHENE_RECT_INIT(x,y,w,h)</pre>
 <p>Initializes a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> when declaring it.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.2.5"></a><h4>Parameters</h4>
+<a name="GRAPHENE-RECT-INIT.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -301,7 +362,7 @@ graphene_rect_alloc (<em class="parameter"><code><span class="type">void</span><
 <p>Allocates a new <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a>.</p>
 <p>The contents of the returned rectangle are undefined.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.3.6"></a><h4>Returns</h4>
+<a name="graphene-rect-alloc.returns"></a><h4>Returns</h4>
 <p> the newly allocated rectangle. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -314,7 +375,7 @@ graphene_rect_alloc (<em class="parameter"><code><span class="type">void</span><
 graphene_rect_free (<em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>);</pre>
 <p>Frees the resources allocated by <a class="link" href="graphene-Rectangle.html#graphene-rect-alloc" title="graphene_rect_alloc ()"><code class="function">graphene_rect_alloc()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.4.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-free.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -343,7 +404,7 @@ graphene_rect_init (<em class="parameter"><code><a class="link" href="graphene-R
 <p>This function will implicitly normalize the <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a>
 before returning.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.5.6"></a><h4>Parameters</h4>
+<a name="graphene-rect-init.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -384,7 +445,7 @@ before returning.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.5.7"></a><h4>Returns</h4>
+<a name="graphene-rect-init.returns"></a><h4>Returns</h4>
 <p> the initialized rectangle. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -402,7 +463,7 @@ graphene_rect_init_from_rect (<em class="parameter"><code><a class="link" href="
 <p>This function will implicitly normalize the <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a>
 before returning.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.6.6"></a><h4>Parameters</h4>
+<a name="graphene-rect-init-from-rect.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -424,7 +485,7 @@ before returning.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.6.7"></a><h4>Returns</h4>
+<a name="graphene-rect-init-from-rect.returns"></a><h4>Returns</h4>
 <p> the initialized rectangle. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -438,7 +499,7 @@ graphene_rect_equal (<em class="parameter"><code>const <a class="link" href="gra
                      <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *b</code></em>);</pre>
 <p>Checks whether the two given rectangle are equal.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.7.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-equal.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -460,7 +521,7 @@ graphene_rect_equal (<em class="parameter"><code>const <a class="link" href="gra
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.7.6"></a><h4>Returns</h4>
+<a name="graphene-rect-equal.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the rectangles are equal</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -475,7 +536,7 @@ graphene_rect_normalize (<em class="parameter"><code><a class="link" href="graph
 positive values, and that the origin is the top-left corner of
 the rectangle.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.8.6"></a><h4>Parameters</h4>
+<a name="graphene-rect-normalize.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -490,11 +551,46 @@ the rectangle.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.8.7"></a><h4>Returns</h4>
+<a name="graphene-rect-normalize.returns"></a><h4>Returns</h4>
 <p> the normalized rectangle. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-rect-normalize-r"></a><h3>graphene_rect_normalize_r ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_rect_normalize_r (<em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
+<p>Normalizes the passed rectangle.</p>
+<p>This function ensures that the size of the rectangle is made of
+positive values, and that the origin is in the top-left corner
+of the rectangle.</p>
+<div class="refsect3">
+<a name="graphene-rect-normalize-r.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> the return location for the
+normalized rectangle. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -504,7 +600,7 @@ graphene_rect_get_center (<em class="parameter"><code>const <a class="link" href
                           <em class="parameter"><code><a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p</code></em>);</pre>
 <p>Retrieves the coordinates of the center of the given rectangle.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.9.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-get-center.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -535,7 +631,7 @@ graphene_rect_get_top_left (<em class="parameter"><code>const <a class="link" hr
                             <em class="parameter"><code><a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p</code></em>);</pre>
 <p>Retrieves the coordinates of the top-left corner of the given rectangle.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.10.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-get-top-left.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -566,7 +662,7 @@ graphene_rect_get_top_right (<em class="parameter"><code>const <a class="link" h
                              <em class="parameter"><code><a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p</code></em>);</pre>
 <p>Retrieves the coordinates of the top-right corner of the given rectangle.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.11.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-get-top-right.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -597,7 +693,7 @@ graphene_rect_get_bottom_right (<em class="parameter"><code>const <a class="link
                                 <em class="parameter"><code><a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p</code></em>);</pre>
 <p>Retrieves the coordinates of the bottom-right corner of the given rectangle.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.12.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-get-bottom-right.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -628,7 +724,7 @@ graphene_rect_get_bottom_left (<em class="parameter"><code>const <a class="link"
                                <em class="parameter"><code><a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p</code></em>);</pre>
 <p>Retrieves the coordinates of the bottom-left corner of the given rectangle.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.13.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-get-bottom-left.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -659,7 +755,7 @@ graphene_rect_get_x (<em class="parameter"><code>const <a class="link" href="gra
 <p>Retrieves the normalized X coordinate of the origin of the given
 rectangle.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.14.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-get-x.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -674,7 +770,7 @@ rectangle.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.14.6"></a><h4>Returns</h4>
+<a name="graphene-rect-get-x.returns"></a><h4>Returns</h4>
 <p> the normalized X coordinate of the rectangle</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -687,7 +783,7 @@ graphene_rect_get_y (<em class="parameter"><code>const <a class="link" href="gra
 <p>Retrieves the normalized Y coordinate of the origin of the given
 rectangle.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.15.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-get-y.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -702,7 +798,7 @@ rectangle.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.15.6"></a><h4>Returns</h4>
+<a name="graphene-rect-get-y.returns"></a><h4>Returns</h4>
 <p> the normalized Y coordinate of the rectangle</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -714,7 +810,7 @@ rectangle.</p>
 graphene_rect_get_width (<em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>);</pre>
 <p>Retrieves the normalized width of the given rectangle.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.16.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-get-width.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -729,7 +825,7 @@ graphene_rect_get_width (<em class="parameter"><code>const <a class="link" href=
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.16.6"></a><h4>Returns</h4>
+<a name="graphene-rect-get-width.returns"></a><h4>Returns</h4>
 <p> the normalized width of the rectangle</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -741,7 +837,7 @@ graphene_rect_get_width (<em class="parameter"><code>const <a class="link" href=
 graphene_rect_get_height (<em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>);</pre>
 <p>Retrieves the normalized height of the given rectangle.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.17.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-get-height.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -756,10 +852,42 @@ graphene_rect_get_height (<em class="parameter"><code>const <a class="link" href
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.17.6"></a><h4>Returns</h4>
+<a name="graphene-rect-get-height.returns"></a><h4>Returns</h4>
 <p> the normalized height of the rectangle</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-rect-get-vertices"></a><h3>graphene_rect_get_vertices ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_rect_get_vertices (<em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
+                            <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> vertices[]</code></em>);</pre>
+<p>Computes the four vertices of a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a>.</p>
+<div class="refsect3">
+<a name="graphene-rect-get-vertices.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>vertices</p></td>
+<td class="parameter_description"><p> return location for an array
+of 4 <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=4]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -769,8 +897,10 @@ graphene_rect_union (<em class="parameter"><code>const <a class="link" href="gra
                      <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *b</code></em>,
                      <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
 <p>Computes the union of the two given rectangles.</p>
+<p><span class="inlinemediaobject"><img src="rectangle-union.png"></span></p>
+<p>The union in the image above is the blue outline.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.18.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-union.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -806,11 +936,13 @@ graphene_rect_intersection (<em class="parameter"><code>const <a class="link" hr
                             <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *b</code></em>,
                             <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
 <p>Computes the intersection of the two given rectangles.</p>
+<p><span class="inlinemediaobject"><img src="rectangle-intersection.png"></span></p>
+<p>The intersection in the image above is the blue outline.</p>
 <p>If the two rectangles do not intersect, <em class="parameter"><code>res</code></em>
  will contain
 a degenerate rectangle with origin in (0, 0) and a size of 0.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.19.6"></a><h4>Parameters</h4>
+<a name="graphene-rect-intersection.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -838,7 +970,7 @@ a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.19.7"></a><h4>Returns</h4>
+<a name="graphene-rect-intersection.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the two rectangles intersect</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -851,7 +983,7 @@ graphene_rect_contains_point (<em class="parameter"><code>const <a class="link" 
                               <em class="parameter"><code>const <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p</code></em>);</pre>
 <p>Checks whether a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> contains the given coordinates.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.20.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-contains-point.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -873,7 +1005,7 @@ graphene_rect_contains_point (<em class="parameter"><code>const <a class="link" 
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.20.6"></a><h4>Returns</h4>
+<a name="graphene-rect-contains-point.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the rectangle contains the point</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -887,7 +1019,7 @@ graphene_rect_contains_rect (<em class="parameter"><code>const <a class="link" h
 <p>Checks whether a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> fully contains the given
 rectangle.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.21.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-contains-rect.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -909,7 +1041,7 @@ rectangle.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.21.6"></a><h4>Returns</h4>
+<a name="graphene-rect-contains-rect.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the rectangle <em class="parameter"><code>a</code></em>
 fully contains <em class="parameter"><code>b</code></em>
 </p>
@@ -928,7 +1060,7 @@ graphene_rect_offset (<em class="parameter"><code><a class="link" href="graphene
 .</p>
 <p>The size of the rectangle is unchanged.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.22.6"></a><h4>Parameters</h4>
+<a name="graphene-rect-offset.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -955,11 +1087,58 @@ graphene_rect_offset (<em class="parameter"><code><a class="link" href="graphene
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.22.7"></a><h4>Returns</h4>
+<a name="graphene-rect-offset.returns"></a><h4>Returns</h4>
 <p> the offset rectangle. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-rect-offset-r"></a><h3>graphene_rect_offset_r ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_rect_offset_r (<em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
+                        <em class="parameter"><code><span class="type">float</span> d_x</code></em>,
+                        <em class="parameter"><code><span class="type">float</span> d_y</code></em>,
+                        <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
+<p>Offsets the origin of the given rectangle by <em class="parameter"><code>d_x</code></em>
+ and <em class="parameter"><code>d_y</code></em>
+.</p>
+<p>The size of the rectangle is left unchanged.</p>
+<div class="refsect3">
+<a name="graphene-rect-offset-r.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>d_x</p></td>
+<td class="parameter_description"><p>the horizontal offset</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>d_y</p></td>
+<td class="parameter_description"><p>the vertical offset</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the offset
+rectangle. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -980,9 +1159,7 @@ values.</p>
 <p>The origin of the rectangle is offset by <em class="parameter"><code>d_x</code></em>
  and <em class="parameter"><code>d_y</code></em>
 , while the size
-is adjusted by (2 * <em class="parameter"><code>d_x</code></em>
-, 2 * <em class="parameter"><code>d_y</code></em>
-). If <em class="parameter"><code>d_x</code></em>
+is adjusted by <code class="literal">(2 * @d_x, 2 * @d_y)</code>. If <em class="parameter"><code>d_x</code></em>
  and <em class="parameter"><code>d_y</code></em>
  are positive
 values, the size of the rectangle is decreased; if <em class="parameter"><code>d_x</code></em>
@@ -992,7 +1169,7 @@ negative values, the size of the rectangle is increased.</p>
 <p>If the size of the resulting inset rectangle has a negative width or
 height then the size will be set to zero.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.23.8"></a><h4>Parameters</h4>
+<a name="graphene-rect-inset.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1019,7 +1196,7 @@ height then the size will be set to zero.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.23.9"></a><h4>Returns</h4>
+<a name="graphene-rect-inset.returns"></a><h4>Returns</h4>
 <p> the inset rectangle. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -1027,14 +1204,81 @@ height then the size will be set to zero.</p>
 </div>
 <hr>
 <div class="refsect2">
+<a name="graphene-rect-inset-r"></a><h3>graphene_rect_inset_r ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_rect_inset_r (<em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
+                       <em class="parameter"><code><span class="type">float</span> d_x</code></em>,
+                       <em class="parameter"><code><span class="type">float</span> d_y</code></em>,
+                       <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
+<p>Changes the given rectangle to be smaller, or larger depending on the
+given inset parameters.</p>
+<p>To create an inset rectangle, use positive <em class="parameter"><code>d_x</code></em>
+ or <em class="parameter"><code>d_y</code></em>
+ values; to
+create a larger, encompassing rectangle, use negative <em class="parameter"><code>d_x</code></em>
+ or <em class="parameter"><code>d_y</code></em>
+
+values.</p>
+<p>The origin of the rectangle is offset by <em class="parameter"><code>d_x</code></em>
+ and <em class="parameter"><code>d_y</code></em>
+, while the size
+is adjusted by <code class="literal">(2 * @d_x, 2 * @d_y)</code>. If <em class="parameter"><code>d_x</code></em>
+ and <em class="parameter"><code>d_y</code></em>
+ are positive
+values, the size of the rectangle is decreased; if <em class="parameter"><code>d_x</code></em>
+ and <em class="parameter"><code>d_y</code></em>
+ are
+negative values, the size of the rectangle is increased.</p>
+<p>If the size of the resulting inset rectangle has a negative width or
+height then the size will be set to zero.</p>
+<div class="refsect3">
+<a name="graphene-rect-inset-r.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>d_x</p></td>
+<td class="parameter_description"><p>the horizontal inset</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>d_y</p></td>
+<td class="parameter_description"><p>the vertical inset</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the inset rectangle. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
 <a name="graphene-rect-round-to-pixel"></a><h3>graphene_rect_round_to_pixel ()</h3>
 <pre class="programlisting"><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="returnvalue">graphene_rect_t</span></a> *
 graphene_rect_round_to_pixel (<em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">graphene_rect_round_to_pixel</code> has been deprecated since version 1.4 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="graphene-Rectangle.html#graphene-rect-round" title="graphene_rect_round ()"><code class="function">graphene_rect_round()</code></a> instead</p>
+</div>
 <p>Rounds the origin and the size of the given rectangle to
 their nearest integer values; the rounding is guaranteed
 to be large enough to contain the original rectangle.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.24.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-round-to-pixel.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1049,11 +1293,84 @@ to be large enough to contain the original rectangle.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.6.24.6"></a><h4>Returns</h4>
+<a name="graphene-rect-round-to-pixel.returns"></a><h4>Returns</h4>
 <p> the pixel-aligned rectangle. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-rect-round"></a><h3>graphene_rect_round ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_rect_round (<em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
+                     <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
+<p>Rounds the origin and size of the given rectangle to
+their nearest integer values; the rounding is guaranteed
+to be large enough to contain the original rectangle.</p>
+<p>This function is the equivalent of calling <code class="literal">floor</code> on
+the coordinates of the origin, and <code class="literal">ceil</code> on the size.</p>
+<div class="refsect3">
+<a name="graphene-rect-round.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the
+rounded rectangle. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-rect-expand"></a><h3>graphene_rect_expand ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_rect_expand (<em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
+                      <em class="parameter"><code>const <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *p</code></em>,
+                      <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
+<p>Expands a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> to contain the given <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a>.</p>
+<div class="refsect3">
+<a name="graphene-rect-expand.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the expanded rectangle. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1066,7 +1383,7 @@ graphene_rect_interpolate (<em class="parameter"><code>const <a class="link" hre
 <p>Linearly interpolates the origin and size of the two given
 rectangles.</p>
 <div class="refsect3">
-<a name="id-1.2.6.6.25.5"></a><h4>Parameters</h4>
+<a name="graphene-rect-interpolate.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1100,6 +1417,20 @@ interpolated rectangle. </p></td>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
+<hr>
+<div class="refsect2">
+<a name="graphene-rect-zero"></a><h3>graphene_rect_zero ()</h3>
+<pre class="programlisting">const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="returnvalue">graphene_rect_t</span></a> *
+graphene_rect_zero (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Returns a degenerate rectangle with origin fixed at (0, 0) and
+a size of 0, 0.</p>
+<div class="refsect3">
+<a name="graphene-rect-zero.returns"></a><h4>Returns</h4>
+<p> a fixed rectangle. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
 </div>
 <div class="refsect1">
 <a name="graphene-Rectangle.other_details"></a><h2>Types and Values</h2>
@@ -1121,7 +1452,7 @@ positive values. All functions taking a <a class="link" href="graphene-Rectangle
 will internally operate on a normalized copy; all functions returning a
 <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> will always return a normalized rectangle.</p>
 <div class="refsect3">
-<a name="id-1.2.6.7.2.7"></a><h4>Members</h4>
+<a name="graphene-rect-t.members"></a><h4>Members</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="300px" class="struct_members_name">
@@ -1147,6 +1478,6 @@ will internally operate on a normalized copy; all functions returning a
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.23.1</div>
+<hr>Generated by GTK-Doc V1.25</div>
 </body>
 </html>

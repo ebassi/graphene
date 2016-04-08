@@ -1,0 +1,596 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ray: Graphene Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Graphene Reference Manual">
+<link rel="up" href="ch01.html" title="Graphene">
+<link rel="prev" href="graphene-Plane.html" title="Plane">
+<link rel="next" href="graphene-Versioning-information.html" title="Versioning information">
+<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#graphene-Ray.description" class="shortcut">Description</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="graphene-Plane.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="graphene-Versioning-information.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="graphene-Ray"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="graphene-Ray.top_of_page"></a>Ray</span></h2>
+<p>Ray — A ray emitted from an origin in a given direction</p>
+</td>
+<td class="gallery_image" valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="graphene-Ray.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="returnvalue">graphene_ray_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-alloc" title="graphene_ray_alloc ()">graphene_ray_alloc</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-free" title="graphene_ray_free ()">graphene_ray_free</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="returnvalue">graphene_ray_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-init" title="graphene_ray_init ()">graphene_ray_init</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="returnvalue">graphene_ray_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-init-from-ray" title="graphene_ray_init_from_ray ()">graphene_ray_init_from_ray</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="returnvalue">graphene_ray_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-init-from-vec3" title="graphene_ray_init_from_vec3 ()">graphene_ray_init_from_vec3</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-get-origin" title="graphene_ray_get_origin ()">graphene_ray_get_origin</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-get-direction" title="graphene_ray_get_direction ()">graphene_ray_get_direction</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-get-position-at" title="graphene_ray_get_position_at ()">graphene_ray_get_position_at</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-get-distance-to-point" title="graphene_ray_get_distance_to_point ()">graphene_ray_get_distance_to_point</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-get-distance-to-plane" title="graphene_ray_get_distance_to_plane ()">graphene_ray_get_distance_to_plane</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-get-closest-point-to-point" title="graphene_ray_get_closest_point_to_point ()">graphene_ray_get_closest_point_to_point</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-equal" title="graphene_ray_equal ()">graphene_ray_equal</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Ray.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t">graphene_ray_t</a></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="graphene-Ray.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;graphene.h&gt;
+</pre>
+</div>
+<div class="refsect1">
+<a name="graphene-Ray.description"></a><h2>Description</h2>
+<p><a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> is a structure representing a ray emitted by an origin,
+identified by a point in 3D space, in a given direction, identified
+by a vector with 3 components.</p>
+</div>
+<div class="refsect1">
+<a name="graphene-Ray.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="graphene-ray-alloc"></a><h3>graphene_ray_alloc ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="returnvalue">graphene_ray_t</span></a> *
+graphene_ray_alloc (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Allocates a new <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> structure.</p>
+<p>The contents of the returned structure are undefined.</p>
+<p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
+<div class="refsect3">
+<a name="graphene-ray-alloc.returns"></a><h4>Returns</h4>
+<p> the newly allocated <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a>.
+Use <a class="link" href="graphene-Ray.html#graphene-ray-free" title="graphene_ray_free ()"><code class="function">graphene_ray_free()</code></a> to free the resources allocated by
+this function. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-free"></a><h3>graphene_ray_free ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_ray_free (<em class="parameter"><code><a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>);</pre>
+<p>Frees the resources allocated by <a class="link" href="graphene-Ray.html#graphene-ray-alloc" title="graphene_ray_alloc ()"><code class="function">graphene_ray_alloc()</code></a>.</p>
+<div class="refsect3">
+<a name="graphene-ray-free.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-init"></a><h3>graphene_ray_init ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="returnvalue">graphene_ray_t</span></a> *
+graphene_ray_init (<em class="parameter"><code><a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                   <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *origin</code></em>,
+                   <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *direction</code></em>);</pre>
+<p>Initializes the given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> using the given <em class="parameter"><code>origin</code></em>
+
+and <em class="parameter"><code>direction</code></em>
+ values.</p>
+<div class="refsect3">
+<a name="graphene-ray-init.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>origin</p></td>
+<td class="parameter_description"><p> the origin of the ray. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>direction</p></td>
+<td class="parameter_description"><p> the direction vector. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-ray-init.returns"></a><h4>Returns</h4>
+<p> the initialized ray. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-init-from-ray"></a><h3>graphene_ray_init_from_ray ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="returnvalue">graphene_ray_t</span></a> *
+graphene_ray_init_from_ray (<em class="parameter"><code><a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                            <em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *src</code></em>);</pre>
+<p>Initializes the given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> using the origin and direction
+values of another <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a>.</p>
+<div class="refsect3">
+<a name="graphene-ray-init-from-ray.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>src</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-ray-init-from-ray.returns"></a><h4>Returns</h4>
+<p> the initialized ray. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-init-from-vec3"></a><h3>graphene_ray_init_from_vec3 ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="returnvalue">graphene_ray_t</span></a> *
+graphene_ray_init_from_vec3 (<em class="parameter"><code><a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                             <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *origin</code></em>,
+                             <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *direction</code></em>);</pre>
+<p>Initializes the given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> using the given vectors.</p>
+<div class="refsect3">
+<a name="graphene-ray-init-from-vec3.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>origin</p></td>
+<td class="parameter_description"><p> a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>direction</p></td>
+<td class="parameter_description"><p> a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-ray-init-from-vec3.returns"></a><h4>Returns</h4>
+<p> the initialized ray. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-get-origin"></a><h3>graphene_ray_get_origin ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_ray_get_origin (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                         <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *origin</code></em>);</pre>
+<p>Retrieves the origin of the given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a>.</p>
+<div class="refsect3">
+<a name="graphene-ray-get-origin.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>origin</p></td>
+<td class="parameter_description"><p> return location for the origin. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-get-direction"></a><h3>graphene_ray_get_direction ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_ray_get_direction (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                            <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *direction</code></em>);</pre>
+<p>Retrieves the direction of the given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a>.</p>
+<div class="refsect3">
+<a name="graphene-ray-get-direction.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>direction</p></td>
+<td class="parameter_description"><p> return location for the direction. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-get-position-at"></a><h3>graphene_ray_get_position_at ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_ray_get_position_at (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                              <em class="parameter"><code><span class="type">float</span> t</code></em>,
+                              <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *position</code></em>);</pre>
+<p>Retrieves the coordinates of a point at the distance <em class="parameter"><code>t</code></em>
+ along the
+given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a>.</p>
+<div class="refsect3">
+<a name="graphene-ray-get-position-at.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>the distance along the ray</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>position</p></td>
+<td class="parameter_description"><p> return location for the position. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-get-distance-to-point"></a><h3>graphene_ray_get_distance_to_point ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_ray_get_distance_to_point (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                                    <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *p</code></em>);</pre>
+<p>Computes the distance from the origin of the given ray to the given point.</p>
+<div class="refsect3">
+<a name="graphene-ray-get-distance-to-point.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-ray-get-distance-to-point.returns"></a><h4>Returns</h4>
+<p> the distance of the point</p>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-get-distance-to-plane"></a><h3>graphene_ray_get_distance_to_plane ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_ray_get_distance_to_plane (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                                    <em class="parameter"><code>const <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *p</code></em>);</pre>
+<p>Computes the distance of the origin of the given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> from the
+given plane.</p>
+<p>If the ray does not intersect the plane, this function returns <code class="literal">INFINITY</code>.</p>
+<div class="refsect3">
+<a name="graphene-ray-get-distance-to-plane.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-ray-get-distance-to-plane.returns"></a><h4>Returns</h4>
+<p> the distance of the origin of the ray from the plane</p>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-get-closest-point-to-point"></a><h3>graphene_ray_get_closest_point_to_point ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_ray_get_closest_point_to_point
+                               (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                                <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *p</code></em>,
+                                <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *res</code></em>);</pre>
+<p>Computes the point on the given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> that is closest to the
+given point <em class="parameter"><code>p</code></em>
+.</p>
+<div class="refsect3">
+<a name="graphene-ray-get-closest-point-to-point.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>p</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> return location for the closest point3d. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-equal"></a><h3>graphene_ray_equal ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_ray_equal (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *a</code></em>,
+                    <em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *b</code></em>);</pre>
+<p>Checks whether the two given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> are equal.</p>
+<div class="refsect3">
+<a name="graphene-ray-equal.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-ray-equal.returns"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the given rays are equal</p>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="graphene-Ray.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="graphene-ray-t"></a><h3>graphene_ray_t</h3>
+<pre class="programlisting">typedef struct {
+} graphene_ray_t;
+</pre>
+<p>A ray emitted from an origin in a given direction.</p>
+<p>The contents of the <code class="literal">graphene_ray_t</code> structure are private, and should not
+be modified directly.</p>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.25</div>
+</body>
+</html>

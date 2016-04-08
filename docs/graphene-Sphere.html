@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Box.html" title="Box">
 <link rel="next" href="graphene-Frustum.html" title="Frustum">
-<meta name="generator" content="GTK-Doc V1.23.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -160,6 +160,11 @@
 </table></div>
 </div>
 <div class="refsect1">
+<a name="graphene-Sphere.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;graphene.h&gt;
+</pre>
+</div>
+<div class="refsect1">
 <a name="graphene-Sphere.description"></a><h2>Description</h2>
 <p><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> provides a representation of a sphere using its center
 and radius.</p>
@@ -174,7 +179,7 @@ graphene_sphere_alloc (<em class="parameter"><code><span class="type">void</span
 <p>The contents of the newly allocated structure are undefined.</p>
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
-<a name="id-1.2.10.6.2.7"></a><h4>Returns</h4>
+<a name="graphene-sphere-alloc.returns"></a><h4>Returns</h4>
 <p> the newly allocated <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. Use
 <a class="link" href="graphene-Sphere.html#graphene-sphere-free" title="graphene_sphere_free ()"><code class="function">graphene_sphere_free()</code></a> to free the resources allocated by this function. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -188,7 +193,7 @@ graphene_sphere_alloc (<em class="parameter"><code><span class="type">void</span
 graphene_sphere_free (<em class="parameter"><code><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>);</pre>
 <p>Frees the resources allocated by <a class="link" href="graphene-Sphere.html#graphene-sphere-alloc" title="graphene_sphere_alloc ()"><code class="function">graphene_sphere_alloc()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.10.6.3.5"></a><h4>Parameters</h4>
+<a name="graphene-sphere-free.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -211,11 +216,11 @@ graphene_sphere_free (<em class="parameter"><code><a class="link" href="graphene
 graphene_sphere_init (<em class="parameter"><code><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>,
                       <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *center</code></em>,
                       <em class="parameter"><code><span class="type">float</span> radius</code></em>);</pre>
-<p>Initializes the given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> with the give <em class="parameter"><code>center</code></em>
+<p>Initializes the given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> with the given <em class="parameter"><code>center</code></em>
  and <em class="parameter"><code>radius</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.10.6.4.5"></a><h4>Parameters</h4>
+<a name="graphene-sphere-init.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -243,7 +248,7 @@ for a center in (0, 0, 0). </p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.10.6.4.6"></a><h4>Returns</h4>
+<a name="graphene-sphere-init.returns"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -263,7 +268,7 @@ of 3D coordinates so that the sphere includes them.</p>
 of the 3D volume that encompasses all <em class="parameter"><code>points</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.10.6.5.6"></a><h4>Parameters</h4>
+<a name="graphene-sphere-init-from-points.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -296,7 +301,7 @@ array</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.10.6.5.7"></a><h4>Returns</h4>
+<a name="graphene-sphere-init-from-points.returns"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -316,7 +321,7 @@ of 3D coordinates so that the sphere includes them.</p>
 of the 3D volume that encompasses all <em class="parameter"><code>vectors</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.10.6.6.6"></a><h4>Parameters</h4>
+<a name="graphene-sphere-init-from-vectors.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -349,7 +354,7 @@ array</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.10.6.6.7"></a><h4>Returns</h4>
+<a name="graphene-sphere-init-from-vectors.returns"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -363,7 +368,7 @@ graphene_sphere_get_center (<em class="parameter"><code>const <a class="link" hr
                             <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *center</code></em>);</pre>
 <p>Retrieves the coordinates of the center of a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.10.6.7.5"></a><h4>Parameters</h4>
+<a name="graphene-sphere-get-center.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -394,7 +399,7 @@ the center. </p></td>
 graphene_sphere_get_radius (<em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>);</pre>
 <p>Retrieves the radius of a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.10.6.8.5"></a><h4>Parameters</h4>
+<a name="graphene-sphere-get-radius.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -419,7 +424,7 @@ graphene_sphere_get_bounding_box (<em class="parameter"><code>const <a class="li
 <p>Computes the bounding box capable of containing the
 given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.10.6.9.5"></a><h4>Parameters</h4>
+<a name="graphene-sphere-get-bounding-box.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -449,7 +454,7 @@ given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graph
 graphene_sphere_is_empty (<em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>);</pre>
 <p>Checks whether the sphere has a zero radius.</p>
 <div class="refsect3">
-<a name="id-1.2.10.6.10.5"></a><h4>Parameters</h4>
+<a name="graphene-sphere-is-empty.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -464,7 +469,7 @@ graphene_sphere_is_empty (<em class="parameter"><code>const <a class="link" href
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.10.6.10.6"></a><h4>Returns</h4>
+<a name="graphene-sphere-is-empty.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the sphere is empty</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -479,7 +484,7 @@ graphene_sphere_distance (<em class="parameter"><code>const <a class="link" href
  from the surface of
 a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.10.6.11.5"></a><h4>Parameters</h4>
+<a name="graphene-sphere-distance.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -501,7 +506,7 @@ a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.10.6.11.6"></a><h4>Returns</h4>
+<a name="graphene-sphere-distance.returns"></a><h4>Returns</h4>
 <p> the distance of the point</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -516,7 +521,7 @@ graphene_sphere_contains_point (<em class="parameter"><code>const <a class="link
  is contained in the volume
 of a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.10.6.12.5"></a><h4>Parameters</h4>
+<a name="graphene-sphere-contains-point.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -538,7 +543,7 @@ of a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphe
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.10.6.12.6"></a><h4>Returns</h4>
+<a name="graphene-sphere-contains-point.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the sphere contains the point</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -550,11 +555,11 @@ of a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphe
 graphene_sphere_translate (<em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>,
                            <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *point</code></em>,
                            <em class="parameter"><code><a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *res</code></em>);</pre>
-<p>Translates the center of the given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> using the
-coordinates inside <em class="parameter"><code>point</code></em>
-.</p>
+<p>Translates the center of the given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> using the <em class="parameter"><code>point</code></em>
+
+coordinates as the delta of the translation.</p>
 <div class="refsect3">
-<a name="id-1.2.10.6.13.5"></a><h4>Parameters</h4>
+<a name="graphene-sphere-translate.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -590,7 +595,7 @@ graphene_sphere_equal (<em class="parameter"><code>const <a class="link" href="g
                        <em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *b</code></em>);</pre>
 <p>Checks whether two <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> are equal.</p>
 <div class="refsect3">
-<a name="id-1.2.10.6.14.5"></a><h4>Parameters</h4>
+<a name="graphene-sphere-equal.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -612,7 +617,7 @@ graphene_sphere_equal (<em class="parameter"><code>const <a class="link" href="g
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.10.6.14.6"></a><h4>Returns</h4>
+<a name="graphene-sphere-equal.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the spheres are equal</p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -631,6 +636,6 @@ graphene_sphere_equal (<em class="parameter"><code>const <a class="link" href="g
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.23.1</div>
+<hr>Generated by GTK-Doc V1.25</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Versioning-information.html" title="Versioning information">
 <link rel="next" href="object-tree.html" title="Object Hierarchy">
-<meta name="generator" content="GTK-Doc V1.23.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -32,11 +32,16 @@
 <td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsect1">
+<a name="graphene-GObject-integration.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;graphene-gobject.h&gt;
+</pre>
+</div>
+<div class="refsect1">
 <a name="graphene-GObject-integration.description"></a><h2>Description</h2>
 <p>Graphene optionally provides information for using its own types with
 GObject properties and signals.</p>
 <div class="refsect3">
-<a name="id-1.2.20.3.3"></a><h4>Using Graphene with GObject</h4>
+<a name="id-1.2.21.4.3"></a><h4>Using Graphene with GObject</h4>
 <p>In order to discover at compile time if Graphene exposes type information
 for the GType type system, you need to check if the <code class="literal">graphene-gobject-1.0</code>
 pkg-config file exists. In build systems using autotools, you can use
@@ -59,9 +64,65 @@ the <code class="literal">PKG_CHECK_EXISTS</code> m4 macro, for instance:</p>
 <p></p>
 <p>All the types provided by Graphene are boxed types, which means you
 will have to use the <span class="type">GBoxed</span> API when dealing with <span class="type">GValue</span>, <span class="type">GParamSpec</span>,
-and signal marshallers.</p>
-<p>Graphene type names for use in GObject are the camel case version of
-the C name, minus the <code class="literal">_t</code> suffix; for instance:</p>
+and signal marshallers. For instance, to install a property in a <span class="type">GObject</span>
+class that uses <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a>, you can use:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function">g_object_class_install_property</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object_class</span><span class="symbol">,</span><span class="normal"> PROP_BOUNDS</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="function">g_param_spec_boxed</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"bounds"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Bounds"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Bounds of an object"</span><span class="symbol">,</span>
+<span class="normal">                      GRAPHENE_TYPE_RECT</span><span class="symbol">,</span>
+<span class="normal">                      G_PARAM_READWRITE </span><span class="symbol">|</span><span class="normal"> G_PARAM_STATIC_STRINGS</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<p>You'll then need to use <code class="function">g_value_set_boxed()</code> and <code class="function">g_value_get_boxed()</code>
+in order to access the <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> pointer from the <span class="type">GValue</span> data
+structure.</p>
+<p>Whereas for creating a new signal that has a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> parameter
+you can use:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">signals</span><span class="symbol">[</span><span class="normal">HIT_TEST</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span>
+<span class="normal">  </span><span class="function">g_signal_new</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"hit-test"</span><span class="symbol">,</span>
+<span class="normal">                </span><span class="function">G_TYPE_FROM_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object_class</span><span class="symbol">),</span>
+<span class="normal">                G_SIGNAL_RUN_LAST</span><span class="symbol">,</span>
+<span class="normal">                </span><span class="number">0</span><span class="symbol">,</span>
+<span class="normal">                g_signal_accumulator_true_handled</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span>
+<span class="normal">                marshal_BOOLEAN__BOXED</span><span class="symbol">,</span>
+<span class="normal">                G_TYPE_BOOLEAN</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1</span><span class="symbol">,</span>
+<span class="normal">                GRAPHENE_TYPE_POINT</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+</div>
+<div class="refsect3">
+<a name="id-1.2.21.4.4"></a><h4>Using Graphene via GObject introspection</h4>
+<p>When using Graphene with another language than C, the GObject Introspection
+bindings change the type names to the CamelCase version of the C name, minus
+the <code class="literal">_t</code> suffix; for instance:</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p><a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> becomes <code class="literal">GraphenePoint</code></p></li>
 <li class="listitem"><p><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> becomes <code class="literal">GraphenePoint3D</code></p></li>
@@ -81,6 +142,6 @@ the C name, minus the <code class="literal">_t</code> suffix; for instance:</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.23.1</div>
+<hr>Generated by GTK-Doc V1.25</div>
 </body>
 </html>

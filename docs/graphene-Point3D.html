@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Point.html" title="Point">
 <link rel="next" href="graphene-Size.html" title="Size">
-<meta name="generator" content="GTK-Doc V1.23.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -154,6 +154,22 @@
 <span class="returnvalue">void</span>
 </td>
 <td class="function_name">
+<a class="link" href="graphene-Point3D.html#graphene-point3d-normalize-viewport" title="graphene_point3d_normalize_viewport ()">graphene_point3d_normalize_viewport</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Point3D.html#graphene-point3d-distance" title="graphene_point3d_distance ()">graphene_point3d_distance</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
 <a class="link" href="graphene-Point3D.html#graphene-point3d-interpolate" title="graphene_point3d_interpolate ()">graphene_point3d_interpolate</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
@@ -187,6 +203,11 @@
 </table></div>
 </div>
 <div class="refsect1">
+<a name="graphene-Point3D.includes"></a><h2>Includes</h2>
+<pre class="synopsis">#include &lt;graphene.h&gt;
+</pre>
+</div>
+<div class="refsect1">
 <a name="graphene-Point3D.description"></a><h2>Description</h2>
 <p><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> is a data structure capable of describing a point with
 three coordinates:</p>
@@ -207,7 +228,7 @@ three coordinates:</p>
 </pre>
 <p>Initializes a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> to the given coordinates when declaring it.</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.2.5"></a><h4>Parameters</h4>
+<a name="GRAPHENE-POINT3D-INIT.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -243,7 +264,7 @@ graphene_point3d_alloc (<em class="parameter"><code><span class="type">void</spa
 <p>Allocates a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> structure.</p>
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
-<a name="id-1.2.4.6.3.6"></a><h4>Returns</h4>
+<a name="graphene-point3d-alloc.returns"></a><h4>Returns</h4>
 <p> the newly allocated structure.
 Use <a class="link" href="graphene-Point3D.html#graphene-point3d-free" title="graphene_point3d_free ()"><code class="function">graphene_point3d_free()</code></a> to free the resources
 allocated by this function. </p>
@@ -258,7 +279,7 @@ allocated by this function. </p>
 graphene_point3d_free (<em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *p</code></em>);</pre>
 <p>Frees the resources allocated via <a class="link" href="graphene-Point3D.html#graphene-point3d-alloc" title="graphene_point3d_alloc ()"><code class="function">graphene_point3d_alloc()</code></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.4.5"></a><h4>Parameters</h4>
+<a name="graphene-point3d-free.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -284,7 +305,7 @@ graphene_point3d_init (<em class="parameter"><code><a class="link" href="graphen
                        <em class="parameter"><code><span class="type">float</span> z</code></em>);</pre>
 <p>Initializes a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> with the given coordinates.</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.5.5"></a><h4>Parameters</h4>
+<a name="graphene-point3d-init.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -316,7 +337,7 @@ graphene_point3d_init (<em class="parameter"><code><a class="link" href="graphen
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.4.6.5.6"></a><h4>Returns</h4>
+<a name="graphene-point3d-init.returns"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -331,7 +352,7 @@ graphene_point3d_init_from_point (<em class="parameter"><code><a class="link" hr
 <p>Initializes a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> using the coordinates of
 another <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.6.5"></a><h4>Parameters</h4>
+<a name="graphene-point3d-init-from-point.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -353,7 +374,7 @@ another <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="g
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.4.6.6.6"></a><h4>Returns</h4>
+<a name="graphene-point3d-init-from-point.returns"></a><h4>Returns</h4>
 <p> the initialized point. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -368,7 +389,7 @@ graphene_point3d_init_from_vec3 (<em class="parameter"><code><a class="link" hre
 <p>Initializes a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> using the components
 of a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.7.5"></a><h4>Parameters</h4>
+<a name="graphene-point3d-init-from-vec3.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -390,7 +411,7 @@ of a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphen
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.4.6.7.6"></a><h4>Returns</h4>
+<a name="graphene-point3d-init-from-vec3.returns"></a><h4>Returns</h4>
 <p> the initialized <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -405,7 +426,7 @@ graphene_point3d_to_vec3 (<em class="parameter"><code>const <a class="link" href
 <p>Stores the coordinates of a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> into a
 <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.8.5"></a><h4>Parameters</h4>
+<a name="graphene-point3d-to-vec3.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -436,7 +457,7 @@ graphene_point3d_equal (<em class="parameter"><code>const <a class="link" href="
                         <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *b</code></em>);</pre>
 <p>Checks whether two given points are equal.</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.9.5"></a><h4>Parameters</h4>
+<a name="graphene-point3d-equal.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -458,7 +479,7 @@ graphene_point3d_equal (<em class="parameter"><code>const <a class="link" href="
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.4.6.9.6"></a><h4>Returns</h4>
+<a name="graphene-point3d-equal.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the points are equal</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -474,7 +495,7 @@ graphene_point3d_near (<em class="parameter"><code>const <a class="link" href="g
 an <em class="parameter"><code>epsilon</code></em>
  factor.</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.10.5"></a><h4>Parameters</h4>
+<a name="graphene-point3d-near.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -501,7 +522,7 @@ an <em class="parameter"><code>epsilon</code></em>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.4.6.10.6"></a><h4>Returns</h4>
+<a name="graphene-point3d-near.returns"></a><h4>Returns</h4>
 <p> <code class="literal">true</code> if the points are near each other</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -517,7 +538,7 @@ graphene_point3d_scale (<em class="parameter"><code>const <a class="link" href="
 the given <em class="parameter"><code>factor</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.11.5"></a><h4>Parameters</h4>
+<a name="graphene-point3d-scale.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -554,7 +575,7 @@ graphene_point3d_cross (<em class="parameter"><code>const <a class="link" href="
                         <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *res</code></em>);</pre>
 <p>Computes the cross product of the two given <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.12.5"></a><h4>Parameters</h4>
+<a name="graphene-point3d-cross.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -591,7 +612,7 @@ graphene_point3d_dot (<em class="parameter"><code>const <a class="link" href="gr
                       <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *b</code></em>);</pre>
 <p>Computes the dot product of the two given <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.13.5"></a><h4>Parameters</h4>
+<a name="graphene-point3d-dot.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -613,7 +634,7 @@ graphene_point3d_dot (<em class="parameter"><code>const <a class="link" href="gr
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.4.6.13.6"></a><h4>Returns</h4>
+<a name="graphene-point3d-dot.returns"></a><h4>Returns</h4>
 <p> the value of the dot product</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -626,7 +647,7 @@ graphene_point3d_length (<em class="parameter"><code>const <a class="link" href=
 <p>Computes the length of the vector represented by the
 coordinates of the given <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.14.5"></a><h4>Parameters</h4>
+<a name="graphene-point3d-length.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -641,7 +662,7 @@ coordinates of the given <a class="link" href="graphene-Point3D.html#graphene-po
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.4.6.14.6"></a><h4>Returns</h4>
+<a name="graphene-point3d-length.returns"></a><h4>Returns</h4>
 <p> the length of the vector represented by the point</p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -655,7 +676,7 @@ graphene_point3d_normalize (<em class="parameter"><code>const <a class="link" hr
 <p>Computes the normalization of the vector represented by the
 coordinates of the given <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.15.5"></a><h4>Parameters</h4>
+<a name="graphene-point3d-normalize.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -681,6 +702,103 @@ coordinates of the given <a class="link" href="graphene-Point3D.html#graphene-po
 </div>
 <hr>
 <div class="refsect2">
+<a name="graphene-point3d-normalize-viewport"></a><h3>graphene_point3d_normalize_viewport ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_point3d_normalize_viewport (<em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *p</code></em>,
+                                     <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *viewport</code></em>,
+                                     <em class="parameter"><code><span class="type">float</span> z_near</code></em>,
+                                     <em class="parameter"><code><span class="type">float</span> z_far</code></em>,
+                                     <em class="parameter"><code><a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *res</code></em>);</pre>
+<p>Normalizes the coordinates of a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> using the
+given viewport and clipping planes.</p>
+<p>The coordinates of the resulting <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> will be
+in the [ -1, 1 ] range.</p>
+<div class="refsect3">
+<a name="graphene-point3d-normalize-viewport.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>p</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>viewport</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> representing a viewport</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>z_near</p></td>
+<td class="parameter_description"><p>the coordinate of the near clipping plane, or 0 for
+the default near clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>z_far</p></td>
+<td class="parameter_description"><p>the coordinate of the far clipping plane, or 1 for the
+default far clipping plane</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p> the return location for the
+normalized <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-point3d-distance"></a><h3>graphene_point3d_distance ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_point3d_distance (<em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *a</code></em>,
+                           <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *b</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *delta</code></em>);</pre>
+<p>Computes the distance between the two given <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>.</p>
+<div class="refsect3">
+<a name="graphene-point3d-distance.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>delta</p></td>
+<td class="parameter_description"><p> return location for the distance
+components on the X, Y, and Z axis. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-point3d-distance.returns"></a><h4>Returns</h4>
+<p> the distance between two points</p>
+</div>
+<p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
 <a name="graphene-point3d-interpolate"></a><h3>graphene_point3d_interpolate ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 graphene_point3d_interpolate (<em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *a</code></em>,
@@ -694,7 +812,7 @@ provided <em class="parameter"><code>factor</code></em>
 , and places the result in <em class="parameter"><code>res</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.16.5"></a><h4>Parameters</h4>
+<a name="graphene-point3d-interpolate.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -735,7 +853,7 @@ interpolated <a class="link" href="graphene-Point3D.html#graphene-point3d-t" tit
 graphene_point3d_zero (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Retrieves a constant point with all three coordinates set to 0.</p>
 <div class="refsect3">
-<a name="id-1.2.4.6.17.5"></a><h4>Returns</h4>
+<a name="graphene-point3d-zero.returns"></a><h4>Returns</h4>
 <p> a zero point. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -762,7 +880,7 @@ graphene_point3d_zero (<em class="parameter"><code><span class="type">void</span
 </pre>
 <p>A point with three components: X, Y, and Z.</p>
 <div class="refsect3">
-<a name="id-1.2.4.7.3.5"></a><h4>Members</h4>
+<a name="graphene-point3d-t.members"></a><h4>Members</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="300px" class="struct_members_name">
@@ -793,6 +911,6 @@ graphene_point3d_zero (<em class="parameter"><code><span class="type">void</span
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.23.1</div>
+<hr>Generated by GTK-Doc V1.25</div>
 </body>
 </html>
