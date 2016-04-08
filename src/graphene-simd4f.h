@@ -322,7 +322,7 @@ typedef union {
 #  else
 #   define graphene_simd4f_dot3(a,b) \
   (__extension__ ({ \
-    const unsigned int __mask_bits[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 }; \
+    GRAPHENE_ALIGN16 const unsigned int __mask_bits[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 }; \
     const graphene_simd4f_t __mask = _mm_load_ps ((const float *) __mask_bits); \
     const graphene_simd4f_t __m = _mm_mul_ps ((a), (b)); \
     const graphene_simd4f_t __s0 = _mm_and_ps (__m, __mask); \
@@ -599,7 +599,7 @@ _simd4f_dot3 (const graphene_simd4f_t a,
 #if defined(GRAPHENE_USE_SSE4_1)
   return _mm_dp_ps (a, b, 0x7f);
 #else
-  const unsigned int __mask_bits[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 };
+  GRAPHENE_ALIGN16 const unsigned int __mask_bits[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 };
   const graphene_simd4f_t __mask = _mm_load_ps ((const float *) __mask_bits);
   const graphene_simd4f_t __m = _mm_mul_ps ((a), (b));
   const graphene_simd4f_t __s0 = _mm_and_ps (__m, __mask);
