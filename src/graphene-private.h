@@ -102,10 +102,41 @@
 #endif /* __GNUC__ */
 
 static inline float
-graphene_lerp (float a, float b, float factor)
+graphene_flerpf (float a, float b, double factor)
 {
   return ((1.f - factor) * a) + (factor * b);
 }
+
+static inline double
+graphene_flerp (double a, double b, double factor)
+{
+  return ((1.0 - factor) * a) + (factor * b);
+}
+
+static inline int
+graphene_ilerp (int a, int b, double factor)
+{
+  return (int) (((1.0 - factor) * (double) a) + (factor * (double) b));
+}
+
+#if defined(__GNUC__) && \
+  ((__GNUC__ > 4) || (__GNUC__ == 4 && __GNUC_MINOR__ >= 9)) && \
+  (__STDC_VERSION__ >= 201112L || !defined(__STRICT_ANSI__)) && \
+  !defined(__cplusplus)
+# define USE_C11_GENERIC 1
+#endif
+
+#ifdef USE_C11_GENERIC
+# define graphene_lerp(a,b,f) \
+  _Generic((a), \
+    double: graphene_flerp, \
+    float: graphene_flerpf, \
+    int: graphene_ilerp, \
+    default: graphene_flerp) ((a), (b), (f))
+
+#else
+# define graphene_lerp   graphene_flerp
+#endif
 
 static inline void
 graphene_sincos (float angle, float *sin_out, float *cos_out)
