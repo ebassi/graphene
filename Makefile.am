@@ -13,7 +13,7 @@ EXTRA_DIST = \
 
 SUBDIRS = src doc
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-introspection
+AM_DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-introspection
 
 dist-hook:
 	@if test -d "$(srcdir)/.git"; then \
