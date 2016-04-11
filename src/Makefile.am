@@ -161,7 +161,7 @@ Graphene-1.0.gir: libgraphene-1.0.la $(top_srcdir)/build/identfilter.py Makefile
 Graphene_1_0_gir_SCANNERFLAGS = \
 	    --identifier-filter-cmd="$(filter_cmd)" \
 	    --accept-unprefixed \
-            --c-include="graphene-object.h" \
+            --c-include="graphene-gobject.h" \
 	    --warn-all \
 	    --pkg-export graphene-gobject-1.0
 
