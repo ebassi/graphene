@@ -1179,7 +1179,7 @@ typedef float32x2_t graphene_simd2f_t;
 
 # define graphene_simd4f_rsqrt(s) \
   (__extension__ ({ \
-    graphene_simd4f_t __estimate = vrsqrtsq_f32 ((s)); \
+    graphene_simd4f_t __estimate = vrsqrteq_f32 ((s)); \
     __estimate = _simd4f_rsqrt_iter ((s), __estimate); \
     __estimate = _simd4f_rsqrt_iter ((s), __estimate); \
     _simd4f_rsqrt_iter ((s), __estimate); \
