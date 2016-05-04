@@ -1315,7 +1315,7 @@ typedef float32x2_t graphene_simd2f_t;
     __lo = vand_u8 (__lo, __mask_and); \
     __lo = vshl_u8 (__lo, __mask_shift); \
     __hi = vand_u8 (__hi, __mask_and); \
-    __h1 = vshl_u8 (__hi, __mask_shift); \
+    __hi = vshl_u8 (__hi, __mask_shift); \
     __lo = vpadd_u8 (__lo, __lo); \
     __lo = vpadd_u8 (__lo, __lo); \
     __lo = vpadd_u8 (__lo, __lo); \
