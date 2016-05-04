@@ -1111,7 +1111,7 @@ typedef float32x2_t graphene_simd2f_t;
 # define graphene_simd4f_get(s,i) \
   (__extension__ ({ \
     (float) vgetq_lane_f32 ((s), (i)); \
-  })
+  }))
 
 # define graphene_simd4f_get_x(s)       graphene_simd4f_get (s, 0)
 # define graphene_simd4f_get_y(s)       graphene_simd4f_get (s, 1)
