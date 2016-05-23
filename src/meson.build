@@ -11,8 +11,6 @@ headers = [
   'graphene-quaternion.h',
   'graphene-ray.h',
   'graphene-rect.h',
-  'graphene-simd4f.h',
-  'graphene-simd4x4f.h',
   'graphene-size.h',
   'graphene-sphere.h',
   'graphene-triangle.h',
@@ -21,40 +19,46 @@ headers = [
   'graphene-vec3.h',
   'graphene-vec4.h',
   'graphene-version-macros.h',
-
-  'graphene.h',
 ]
 
-if build_gobject
-  headers += [ 'graphene-gobject.h' ]
-endif
+simd_headers = [
+  'graphene-simd4f.h',
+  'graphene-simd4x4f.h',
+]
+
+private_headers = [
+  'graphene-alloc-private.h',
+  'graphene-line-segment-private.h',
+  'graphene-private.h',
+  'graphene-vectors-private.h',
+]
 
 sources = [
-  'graphene-alloc-private.h',
   'graphene-alloc.c',
   'graphene-box.c',
   'graphene-euler.c',
   'graphene-frustum.c',
-  'graphene-line-segment-private.h',
   'graphene-matrix.c',
   'graphene-plane.c',
   'graphene-point.c',
   'graphene-point3d.c',
-  'graphene-private.h',
   'graphene-quad.c',
   'graphene-quaternion.c',
   'graphene-ray.c',
   'graphene-rect.c',
-  'graphene-simd4f.c',
-  'graphene-simd4x4f.c',
   'graphene-size.c',
   'graphene-sphere.c',
   'graphene-triangle.c',
-  'graphene-vectors-private.h',
   'graphene-vectors.c'
 ]
 
+simd_sources = [
+  'graphene-simd4f.c',
+  'graphene-simd4x4f.c',
+]
+
 if build_gobject
+  headers += [ 'graphene-gobject.h' ]
   sources += [ 'graphene-gobject.c' ]
 endif
 
@@ -77,7 +81,7 @@ configure_file(input: 'graphene-version.h.in',
                install: true,
                install_dir: 'include/graphene-1.0')
 
-install_headers(headers, subdir: 'graphene-1.0')
+install_headers(headers + simd_headers + [ 'graphene.h' ], subdir: 'graphene-1.0')
 
 platform_deps = []
 
@@ -86,7 +90,7 @@ if build_gobject
 endif
 
 libgraphene = shared_library('graphene-1.0',
-  sources: sources,
+  sources: sources + simd_sources + private_headers,
   version: graphene_version,
   soversion: graphene_lib_version,
   install: true,
