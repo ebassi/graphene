@@ -1,4 +1,4 @@
-project('graphene', 'c', default_options: [ 'c_std=gnu99', 'warning_level=1' ])
+project('graphene', 'c', default_options: [ 'c_std=gnu99', 'warning_level=1' ], license: 'MIT')
 
 graphene_major_version = 1
 graphene_minor_version = 4
