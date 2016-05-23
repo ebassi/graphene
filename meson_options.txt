@@ -1,0 +1,4 @@
+option('enable-gobject-types', type: 'boolean', value: true, description: 'Enable GObject types (depends on GObject)')
+option('enable-gcc-vector', type: 'boolean', value: true, description: 'Enable GCC vector fast paths')
+option('enable-sse2', type: 'boolean', value: true, description: 'Enable SSE2 fast paths')
+option('enable-arm-neon', type: 'boolean', value: true, description: 'Enable ARM NEON fast paths')

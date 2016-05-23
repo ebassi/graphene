@@ -20,3 +20,6 @@
 
 /* Define if you have the <stdbool.h> header file. */
 #mesondefine HAVE_STDBOOL_H
+
+/* Define for symbol visibility */
+#mesondefine _GRAPHENE_PUBLIC

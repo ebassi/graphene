@@ -1,0 +1,103 @@
+headers = [
+  'graphene-box.h',
+  'graphene-euler.h',
+  'graphene-frustum.h',
+  'graphene-macros.h',
+  'graphene-matrix.h',
+  'graphene-plane.h',
+  'graphene-point.h',
+  'graphene-point3d.h',
+  'graphene-quad.h',
+  'graphene-quaternion.h',
+  'graphene-ray.h',
+  'graphene-rect.h',
+  'graphene-simd4f.h',
+  'graphene-simd4x4f.h',
+  'graphene-size.h',
+  'graphene-sphere.h',
+  'graphene-triangle.h',
+  'graphene-types.h',
+  'graphene-vec2.h',
+  'graphene-vec3.h',
+  'graphene-vec4.h',
+  'graphene-version-macros.h',
+
+  'graphene.h',
+]
+
+if build_gobject
+  headers += [ 'graphene-gobject.h' ]
+endif
+
+sources = [
+  'graphene-alloc-private.h',
+  'graphene-alloc.c',
+  'graphene-box.c',
+  'graphene-euler.c',
+  'graphene-frustum.c',
+  'graphene-line-segment-private.h',
+  'graphene-matrix.c',
+  'graphene-plane.c',
+  'graphene-point.c',
+  'graphene-point3d.c',
+  'graphene-private.h',
+  'graphene-quad.c',
+  'graphene-quaternion.c',
+  'graphene-ray.c',
+  'graphene-rect.c',
+  'graphene-simd4f.c',
+  'graphene-simd4x4f.c',
+  'graphene-size.c',
+  'graphene-sphere.c',
+  'graphene-triangle.c',
+  'graphene-vectors-private.h',
+  'graphene-vectors.c'
+]
+
+if build_gobject
+  sources += [ 'graphene-gobject.c' ]
+endif
+
+# Internal configuration header
+configure_file(input: 'config.h.meson',
+               output: 'config.h',
+               configuration: conf)
+
+# External configuration header
+configure_file(input: 'graphene-config.h.meson',
+               output: 'graphene-config.h',
+               configuration: graphene_conf,
+               install: true,
+               install_dir: 'lib/graphene-1.0/include')
+
+# Version header
+configure_file(input: 'graphene-version.h.in',
+               output: 'graphene-version.h',
+               configuration: conf,
+               install: true,
+               install_dir: 'include/graphene-1.0')
+
+install_headers(headers, subdir: 'graphene-1.0')
+
+platform_deps = []
+
+if build_gobject
+  platform_deps += [ gobject ]
+endif
+
+libgraphene = shared_library('graphene-1.0',
+  sources: sources,
+  version: graphene_version,
+  soversion: graphene_lib_version,
+  install: true,
+  dependencies: [ mathlib, threadlib ] + platform_deps,
+  c_args: [ '-DGRAPHENE_COMPILATION',
+            '-DG_LOG_DOMAIN="Graphene"',
+            '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30',
+            '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32' ])
+
+configure_file(input: 'graphene.pc.in',
+               output: 'graphene-1.0.pc',
+               configuration: conf,
+               install: true,
+               install_dir: 'lib/pkgconfig')
