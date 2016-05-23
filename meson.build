@@ -14,6 +14,8 @@ graphene_libdir = graphene_prefix + '/' + get_option('libdir')
 graphene_datadir = graphene_prefix + '/share'
 graphene_includedir = graphene_prefix + '/include'
 
+graphene_simd = []
+
 cc = meson.get_compiler('c')
 host_system = host_machine.system()
 
@@ -88,31 +90,6 @@ endif
 
 graphene_conf = configuration_data()
 
-# GCC vector intrinsics
-if get_option('enable-gcc-vector')
-  gcc_vector_prog = '''
-#if defined(__GNUC__)
-# if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
-#   error "GCC vector intrinsics are disabled on GCC prior to 4.9"
-# elif defined(__arm__)
-#   error "GCC vector intrinsics are disabled on ARM"
-# endif
-#else
-# error "Need GCC for GCC vectors intrinsics"
-#endif
-typedef float simd4f __attribute__((vector_size(16)));
-typedef int simd4i __attribute__((vector_size(16)));
-int main () {
-  simd4f s = { 1.f, 2.f, 3.f, 4.f };
-  simd4i m = { 0,   1,   1,   3   };
-  simd4f r = __builtin_shuffle (s, m);
-  return 0;
-}'''
-  if cc.compiles(gcc_vector_prog, name: 'GCC vector intrinsics')
-    graphene_conf.set('GRAPHENE_HAS_GCC', 1)
-  endif
-endif
-
 # SSE intrinsics
 if get_option('enable-sse2')
   sse_prog = '''
@@ -135,9 +112,37 @@ int main () {
 }'''
   if cc.compiles(sse_prog, name: 'SSE intrinsics')
     graphene_conf.set('GRAPHENE_HAS_SSE', 1)
+    conf.set('SSE2_CFLAGS', '-mfpmath=sse -msse -msse2')
     add_global_arguments('-mfpmath=sse', language: 'c')
     add_global_arguments('-msse', language: 'c')
     add_global_arguments('-msse2', language: 'c')
+    graphene_simd += [ 'sse2' ]
+  endif
+endif
+
+# GCC vector intrinsics
+if get_option('enable-gcc-vector')
+  gcc_vector_prog = '''
+#if defined(__GNUC__)
+# if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
+#   error "GCC vector intrinsics are disabled on GCC prior to 4.9"
+# elif defined(__arm__)
+#   error "GCC vector intrinsics are disabled on ARM"
+# endif
+#else
+# error "Need GCC for GCC vectors intrinsics"
+#endif
+typedef float simd4f __attribute__((vector_size(16)));
+typedef int simd4i __attribute__((vector_size(16)));
+int main () {
+  simd4f s = { 1.f, 2.f, 3.f, 4.f };
+  simd4i m = { 0,   1,   1,   3   };
+  simd4f r = __builtin_shuffle (s, m);
+  return 0;
+}'''
+  if cc.compiles(gcc_vector_prog, name: 'GCC vector intrinsics')
+    graphene_conf.set('GRAPHENE_HAS_GCC', 1)
+    graphene_simd += [ 'gcc' ]
   endif
 endif
 
@@ -170,8 +175,22 @@ int main () {
 
     if host_system == 'android'
       add_global_arguments('-mfloat-abi=softfp', language: 'c')
+      conf.set('NEON_CFLAGS', '-mfpu=neon -mfloat-abi=softfp')
+    else
+      conf.set('NEON_CFLAGS', '-mfpu=neon')
     endif
+
+    graphene_simd += [ 'neon' ]
   endif
 endif
+
+simd = ''
+foreach s : graphene_simd
+  simd = simd + s + ' '
+endforeach
+
+simd += 'scalar'
+
+conf.set('GRAPHENE_SIMD', simd)
 
 subdir('src')
