@@ -95,10 +95,12 @@ libgraphene = shared_library('graphene-1.0',
   soversion: graphene_lib_version,
   install: true,
   dependencies: [ mathlib, threadlib ] + platform_deps,
-  c_args: [ '-DGRAPHENE_COMPILATION',
+  c_args: debug_flags + [
+            '-DGRAPHENE_COMPILATION',
             '-DG_LOG_DOMAIN="Graphene"',
             '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30',
-            '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32' ])
+            '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32' ],
+  link_args: [ '-Wl,-Bsymbolic-functions' ])
 
 configure_file(input: 'graphene.pc.in',
                output: 'graphene-1.0.pc',

@@ -44,6 +44,24 @@ conf.set('HAVE_MEMALIGN', cc.has_function('memalign'))
 conf.set('HAVE_POSIX_MEMALIGN', cc.has_function('posix_memalign', prefix: '#include <stdlib.h>'))
 conf.set('HAVE_SINCOSF', cc.has_function('sincosf'))
 
+# Debugging
+debug_flags = []
+if get_option('enable-debug') == 'yes'
+  debug_flags += [ '-DGRAPHENE_ENABLE_DEBUG' ]
+endif
+
+if get_option('enable-debug') == 'minimum'
+  debug_flags += [ '-DGRAPHENE_ENABLE_DEBUG', '-DG_DISABLE_CAST_CHECKS' ]
+endif
+
+if get_option('enable-debug') == 'no'
+  debug_flags += [
+    '-DG_DISABLE_CAST_CHECKS',
+    '-DG_DISABLE_CHECKS',
+    '-DG_DISABLE_ASSERT'
+  ]
+endif
+
 # Detect and set symbol visibility
 if get_option('default_library') != 'static'
   if host_system == 'windows'
