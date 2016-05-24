@@ -1,3 +1,4 @@
+option('enable-gtk-doc', type: 'boolean', value: false, description: 'Enable generating the API reference')
 option('enable-gobject-types', type: 'boolean', value: true, description: 'Enable GObject types (depends on GObject)')
 option('enable-debug', type: 'combo', choices: [ 'yes', 'minimum', 'no' ], value: 'yes', description: 'Enable debugging level')
 option('enable-gcc-vector', type: 'boolean', value: true, description: 'Enable GCC vector fast paths')

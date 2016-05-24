@@ -202,6 +202,7 @@ int main () {
   endif
 endif
 
+# XXX: Would be nice to have a join(CHR) method on ARRAY
 simd = ''
 foreach s : graphene_simd
   simd = simd + s + ' '
@@ -211,4 +212,10 @@ simd += 'scalar'
 
 conf.set('GRAPHENE_SIMD', simd)
 
+gnome = import('gnome')
+
 subdir('src')
+
+if get_option('enable-gtk-doc')
+  subdir('doc')
+endif
