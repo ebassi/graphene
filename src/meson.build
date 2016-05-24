@@ -113,7 +113,8 @@ graphene_dep = declare_dependency(link_with: libgraphene,
                                   include_directories: [ graphene_inc ],
                                   dependencies: [ mathlib, threadlib ] + platform_deps)
 
-# tests depend on GLib, so we only build them if GObject is enabled
+# tests and benchmarks depend on GLib, so we only build them if GObject is enabled
 if build_gobject
   subdir('tests')
+  subdir('bench')
 endif
