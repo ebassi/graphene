@@ -107,3 +107,13 @@ configure_file(input: 'graphene.pc.in',
                configuration: conf,
                install: true,
                install_dir: 'lib/pkgconfig')
+
+graphene_inc = include_directories([ meson.source_root() + '/src', meson.build_root() + '/src' ])
+graphene_dep = declare_dependency(link_with: libgraphene,
+                                  include_directories: [ graphene_inc ],
+                                  dependencies: [ mathlib, threadlib ] + platform_deps)
+
+# tests depend on GLib, so we only build them if GObject is enabled
+if build_gobject
+  subdir('tests')
+endif
