@@ -119,6 +119,29 @@ foreach p: pkgconfig_files
                  install_dir: 'lib/pkgconfig')
 endforeach
 
+if build_gir
+  gir_extra_args = [
+    '--identifier-filter-cmd=' + meson.source_root() + '/build/identfilter.py',
+    '--c-include=graphene-gobject.h',
+    '--accept-unprefixed',
+    '-DGRAPHENE_COMPILATION',
+    '--cflags-begin',
+    '-I' + meson.source_root() + '/src',
+    '-I' + meson.build_root() + '/src',
+    '--cflags-end'
+  ]
+  gnome.generate_gir(libgraphene,
+                     sources: headers + sources,
+                     namespace: 'Graphene',
+                     nsversion: graphene_api_version,
+                     identifier_prefix: 'Graphene',
+                     symbol_prefix: 'graphene',
+                     export_packages: 'graphene-gobject-@0@'.format(graphene_api_version),
+                     includes: [ 'GObject-2.0' ],
+                     install: true,
+                     extra_args: gir_extra_args)
+endif
+
 # tests and benchmarks depend on GLib, so we only build them if GObject is enabled
 if build_gobject
   subdir('tests')
