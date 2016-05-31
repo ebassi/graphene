@@ -83,13 +83,15 @@ configure_file(input: 'graphene-version.h.in',
 
 install_headers(headers + simd_headers + [ 'graphene.h' ], subdir: 'graphene-1.0')
 
+pkgconfig_files = [ 'graphene-@0@'.format(graphene_api_version) ]
 platform_deps = []
 
 if build_gobject
+  pkgconfig_files += [ 'graphene-gobject-@0@'.format(graphene_api_version) ]
   platform_deps += [ gobject ]
 endif
 
-libgraphene = shared_library('graphene-1.0',
+libgraphene = shared_library('graphene-@0@'.format(graphene_api_version),
   sources: sources + simd_sources + private_headers,
   version: graphene_version,
   soversion: graphene_lib_version,
@@ -102,16 +104,20 @@ libgraphene = shared_library('graphene-1.0',
             '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32' ],
   link_args: [ '-Wl,-Bsymbolic-functions' ])
 
-configure_file(input: 'graphene.pc.in',
-               output: 'graphene-1.0.pc',
-               configuration: conf,
-               install: true,
-               install_dir: 'lib/pkgconfig')
-
+# Internal dependency, for tests and benchmarks
 graphene_inc = include_directories([ meson.source_root() + '/src', meson.build_root() + '/src' ])
 graphene_dep = declare_dependency(link_with: libgraphene,
                                   include_directories: [ graphene_inc ],
                                   dependencies: [ mathlib, threadlib ] + platform_deps)
+
+# Generate the pkg-config files
+foreach p: pkgconfig_files
+  configure_file(input: 'graphene.pc.in',
+                 output: p + '.pc',
+                 configuration: conf,
+                 install: true,
+                 install_dir: 'lib/pkgconfig')
+endforeach
 
 # tests and benchmarks depend on GLib, so we only build them if GObject is enabled
 if build_gobject

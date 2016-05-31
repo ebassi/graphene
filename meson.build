@@ -1,10 +1,18 @@
-project('graphene', 'c', default_options: [ 'c_std=gnu99', 'warning_level=1' ], license: 'MIT')
+project('graphene', 'c',
+        version: '1.4.1',
+        default_options: [
+          'buildtype=debugoptimized',
+          'c_std=gnu99',
+          'warning_level=1'
+        ],
+        license: 'MIT')
 
-graphene_major_version = 1
-graphene_minor_version = 4
-graphene_micro_version = 1
+graphene_version = meson.project_version()
+version_array = graphene_version.split('.')
+graphene_major_version = version_array[0]
+graphene_minor_version = version_array[1]
+graphene_micro_version = version_array[2]
 
-graphene_version = '@0@.@1@.@2@'.format(graphene_major_version, graphene_minor_version, graphene_micro_version)
 graphene_api_version = '@0@.0'.format(graphene_major_version)
 graphene_interface_version = 400 # FIXME: This should be computed dynamically
 graphene_lib_version = '0.@0@.@1@'.format(graphene_interface_version, graphene_micro_version)
@@ -47,11 +55,16 @@ conf.set('HAVE_SINCOSF', cc.has_function('sincosf'))
 # Debugging
 debug_flags = []
 if get_option('enable-debug') == 'yes'
-  debug_flags += [ '-DGRAPHENE_ENABLE_DEBUG' ]
+  debug_flags += [
+    '-DGRAPHENE_ENABLE_DEBUG'
+  ]
 endif
 
 if get_option('enable-debug') == 'minimum'
-  debug_flags += [ '-DGRAPHENE_ENABLE_DEBUG', '-DG_DISABLE_CAST_CHECKS' ]
+  debug_flags += [
+    '-DGRAPHENE_ENABLE_DEBUG',
+    '-DG_DISABLE_CAST_CHECKS'
+  ]
 endif
 
 if get_option('enable-debug') == 'no'
@@ -70,17 +83,17 @@ if get_option('default_library') != 'static'
       conf.set('_GRAPHENE_PUBLIC', '__declspec(dllexport) extern')
     else
       conf.set('_GRAPHENE_PUBLIC', '__attribute__((visibility("default"))) __declspec(dllexport) extern')
-      add_global_arguments('-fvisibility=hidden', language : 'c')
+      add_global_arguments('-fvisibility=hidden', language: 'c')
     endif
   else
     conf.set('_GRAPHENE_PUBLIC', '__attribute__((visibility("default")))')
-    add_global_arguments('-fvisibility=hidden', language : 'c')
+    add_global_arguments('-fvisibility=hidden', language: 'c')
   endif
 endif
 
 # Required dependencies
 mathlib = cc.find_library('m', required: true)
-threadlib = dependency('threads')
+threadlib = dependency('threads', required: true)
 
 # Optional dependency on GObject
 build_gobject = false
@@ -90,6 +103,16 @@ if get_option('enable-gobject-types')
   conf.set('GRAPHENE_REQS', 'gobject-2.0')
 endif
 
+# Optional dependency on GObject-Introspection; if GObject is disabled
+# then we don't build introspection data either
+build_gir = build_gobject
+if build_gobject and get_option('enable-introspection')
+  # XXX: Not nice, but probably our best option
+  gir = find_program('g-ir-scanner', required: false)
+  build_gir = gir.found() and not meson.is_cross_build()
+endif
+
+# Check for InitOnce on Windows
 if host_system == 'windows'
   init_once_prog = '''
 #define _WIN32_WINNT 0x0600
@@ -106,6 +129,7 @@ int main (void) {
   endif
 endif
 
+# Configuration for our installed config header
 graphene_conf = configuration_data()
 
 # SSE intrinsics
