@@ -173,7 +173,7 @@ graphene_bench_run_test (const char *impl,
 {
   GTimer *timer = g_timer_new ();
   double *round_elapsed = malloc (sizeof (double) * num_rounds);
-  double elapsed;
+  double elapsed = 0;
   int min_idx, max_idx;
   int i;
 
@@ -326,6 +326,9 @@ graphene_bench_round_run (const char *impl)
           const char *path = key;
           GrapheneBenchFunc func = value;
           double elapsed, min, max, avg;
+
+          elapsed = 0;
+          min = max = avg = 0;
 
           bench_state = BENCH_WARM_UP;
           graphene_bench_warm_up (impl, path, func, bench_warm_up_runs);
