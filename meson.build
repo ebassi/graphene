@@ -42,13 +42,14 @@ conf.set('GRAPHENE_MICRO_VERSION', graphene_micro_version)
 conf.set('GRAPHENE_VERSION', graphene_version)
 
 # Headers
+conf.set('HAVE_STDLIB_H', cc.has_header('stdlib.h'))
 conf.set('HAVE_STDINT_H', cc.has_header('stdint.h'))
 conf.set('HAVE_STDBOOL_H', cc.has_header('stdbool.h'))
 conf.set('HAVE_MEMORY_H', cc.has_header('memory.h'))
 
 # Functions
-conf.set('HAVE_ALIGNED_ALLOC', cc.has_function('aligned_alloc'))
-conf.set('HAVE_MEMALIGN', cc.has_function('memalign'))
+conf.set('HAVE_ALIGNED_ALLOC', cc.has_function('aligned_alloc', prefix: '#include <stdlib.h>'))
+conf.set('HAVE_MEMALIGN', cc.has_function('memalign', prefix: '#include <stdlib.h>'))
 conf.set('HAVE_POSIX_MEMALIGN', cc.has_function('posix_memalign', prefix: '#include <stdlib.h>'))
 conf.set('HAVE_SINCOSF', cc.has_function('sincosf'))
 
