@@ -50,17 +50,23 @@ use with other languages through introspection-based bindings.
 In order to build and install Graphene you will need development tools and
 the headers of the dependencies.
 
-First of all, clone the Git repository:
+First of all:
+
+ 1. Install [Ninja](https://ninja-build.org/)
+ 2. Install [Meson](http://mesonbuild.com/)
+
+Then clone the Git repository:
 
     $ git clone git://github.com/ebassi/graphene
     $ cd graphene
 
 Then run:
 
-    $ ./autogen.sh
-    $ make
-    $ make check
-    # make install
+    $ mkdir build && cd build
+    $ meson
+    $ ninja build
+    $ ninja test
+    # ninja install
 
 It is possible, when building Graphene, to disable specific optimizations by
 passing options to the `configure` script:
@@ -77,31 +83,6 @@ automatically disable generating introspection data.
 You can also disable building the test suite and the benchmark suite, using
 the `--disable-tests` and `--disable-benchmarks` configuration switches
 respectively.
-
-See the output of `configure --help` for more information on the available
-configuration switches and environment variables.
-
-#### Installing on Windows
-
-In order to build on Windows, it's recommended to use the
-[MSYS2](http://sourceforge.net/projects/msys2/) environment.
-
-First,  install MSYS2
-
-Then, use `pacman` to set up the build environment, by 
-installing the necessary prerequisites:
-
-    $ pacman -Sy
-    $ pacman -S make
-    $ pacman -S automake
-    $ pacman -S autoconf
-    $ pacman -S libtool
-    $ pacman -S pkg-config
-    $ pacman -S gtk-doc		# optional
-    $ pacman -S glib2		# optional
-
-Then, clone the Graphene repository and build as usual by following the
-instructions in the section above.
 
 ### Contributing
 

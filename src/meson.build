@@ -121,7 +121,7 @@ endforeach
 
 if build_gir
   gir_extra_args = [
-    '--identifier-filter-cmd=' + meson.source_root() + '/build/identfilter.py',
+    '--identifier-filter-cmd=' + meson.source_root() + '/src/identfilter.py',
     '--c-include=graphene-gobject.h',
     '--accept-unprefixed',
     '-DGRAPHENE_COMPILATION',
