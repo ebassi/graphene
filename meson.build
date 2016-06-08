@@ -45,6 +45,44 @@ conf.set('GRAPHENE_MINOR_VERSION', graphene_minor_version)
 conf.set('GRAPHENE_MICRO_VERSION', graphene_micro_version)
 conf.set('GRAPHENE_VERSION', graphene_version)
 
+# Compiler flags
+test_cflags = [
+  '-ffast-math',
+  '-fstrict-aliasing',
+  '-Wall',
+  '-Wpointer-arith',
+  '-Wmissing-declarations',
+  '-Wformat=2',
+  '-Wstrict-prototypes',
+  '-Wmissing-prototypes',
+  '-Wnested-externs',
+  '-Wold-style-definition',
+  '-Wdeclaration-after-statement',
+  '-Wunused',
+  '-Wuninitialized',
+  '-Wshadow',
+  '-Wmissing-noreturn',
+  '-Wmissing-format-attribute',
+  '-Wredundant-decls',
+  '-Wlogical-op',
+  '-Wcast-align',
+  '-Wno-unused-local-typedefs',
+  '-Werror=implicit',
+  '-Werror=init-self',
+  '-Werror=main',
+  '-Werror=missing-braces',
+  '-Werror=return-type',
+  '-Werror=array-bounds',
+  '-Werror=write-strings'
+]
+test_cflags_prog = 'int someVariableForFun;'
+common_flags = []
+foreach cflag: test_cflags
+  if cc.compiles(test_cflags_prog, name: 'check for ' + cflag, args: [ cflag ])
+    common_flags += [ cflag ]
+  endif
+endforeach
+
 # Headers
 conf.set('HAVE_STDLIB_H', cc.has_header('stdlib.h'))
 conf.set('HAVE_STDINT_H', cc.has_header('stdint.h'))
