@@ -14,8 +14,12 @@ graphene_minor_version = version_array[1]
 graphene_micro_version = version_array[2]
 
 graphene_api_version = '@0@.0'.format(graphene_major_version)
-graphene_interface_version = 400 # FIXME: This should be computed dynamically
-graphene_lib_version = '0.@0@.@1@'.format(graphene_interface_version, graphene_micro_version)
+
+graphene_interface_age = graphene_micro_version
+soname_age = 0
+soname_revision = graphene_minor_version.to_int() * 100 + graphene_micro_version.to_int() - graphene_interface_age.to_int()
+soname_current = graphene_interface_age
+graphene_lib_version = '@0@.@1@.@2@'.format(soname_age, soname_revision, soname_current)
 
 graphene_prefix = get_option('prefix')
 graphene_libdir = graphene_prefix + '/' + get_option('libdir')
