@@ -763,7 +763,7 @@ _simd4f_neg (const graphene_simd4f_t s)
   return _mm_xor_ps (s, _mm_load_ps (__mask.f));
 }
 
-#else 
+#else
 
 #  error "Need GCC-compatible or Visual Studio compiler for SSE extensions."
 
