@@ -1196,12 +1196,12 @@ typedef float32x2_t graphene_simd2f_t;
 # define graphene_simd4f_cross3(a,b) \
   (__extension__ ({ \
     const uint32_t __mask_bits[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 }; \
-    const int32x4_t mask = vld1q_s32 ((const int32_t *) __mask_bits); \
+    const int32x4_t __mask = vld1q_s32 ((const int32_t *) __mask_bits); \
     const graphene_simd4f_t __a = (a), __b = (b); \
     const graphene_simd2f_t __a_low = vget_low_f32 (__a); \
     const graphene_simd2f_t __b_low = vget_low_f32 (__b); \
-    const graphene_simd4f_t a_yzx = vcombine_f32 (vext_f32 (__a_low, vget_high_f32 (__a), 1), __a_low); \
-    const graphene_simd4f_t b_yzx = vcombine_f32 (vext_f32 (__b_low, vget_high_f32 (__b), 1), __b_low); \
+    const graphene_simd4f_t __a_yzx = vcombine_f32 (vext_f32 (__a_low, vget_high_f32 (__a), 1), __a_low); \
+    const graphene_simd4f_t __b_yzx = vcombine_f32 (vext_f32 (__b_low, vget_high_f32 (__b), 1), __b_low); \
     graphene_simd4f_t __s3 = graphene_simd4f_sub (graphene_simd4f_mul (__b_yzx, __a), \
                                                   graphene_simd4f_mul (__a_yzx, __b)); \
     graphene_simd2f_t __s3_low = vget_low_f32 (__s3); \
