@@ -1322,7 +1322,7 @@ typedef float32x2_t graphene_simd2f_t;
     __hi = vpadd_u8 (__hi, __hi); \
     __hi = vpadd_u8 (__hi, __hi); \
     __hi = vpadd_u8 (__hi, __hi); \
-    return ((__hi[0] << 8) | (__lo[0] & 0xff)); \
+    (bool) ((__hi[0] << 8) | (__lo[0] & 0xff)); \
   }))
 
 # define graphene_simd4f_cmp_eq(a,b) \
