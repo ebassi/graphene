@@ -29,7 +29,7 @@ AC_INIT([graphene],
         [graphene],
         [https://ebassi.github.io/graphene])
 
-AC_CONFIG_HEADER([src/config.h])
+AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_SRCDIR([src/graphene.h])
 AC_CONFIG_AUX_DIR([build])
 AC_CONFIG_MACRO_DIR([build/autotools])
