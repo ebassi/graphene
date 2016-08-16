@@ -943,8 +943,8 @@ graphene_matrix_transform_bounds (const graphene_matrix_t *m,
   graphene_simd4f_t __s; \
   graphene_point_t __p; \
   graphene_rect_get_ ## corner (rect, &__p); \
-  __s = graphene_simd4f_init (__p.x, __p.y, 0.f, 0.f); \
-  graphene_simd4x4f_vec3_mul (&matrix->value, &__s, &__s); \
+  __s = graphene_simd4f_init (__p.x, __p.y, 0.f, 1.f); \
+  graphene_simd4x4f_vec4_mul (&matrix->value, &__s, &__s); \
   out_p.x = graphene_simd4f_get (__s, 0); \
   out_p.y = graphene_simd4f_get (__s, 1);           } while (0)
 
