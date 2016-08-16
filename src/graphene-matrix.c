@@ -905,8 +905,8 @@ graphene_matrix_transform_rect (const graphene_matrix_t *m,
   graphene_rect_get_ ## corner (rect, &__p); \
   __s = graphene_simd4f_init (__p.x, __p.y, 0.f, 0.f); \
   graphene_simd4x4f_vec3_mul (&matrix->value, &__s, &__s); \
-  out_p.x = graphene_simd4f_get (__s, 0); \
-  out_p.y = graphene_simd4f_get (__s, 1);           } while (0)
+  out_p.x = graphene_simd4f_get_x (__s); \
+  out_p.y = graphene_simd4f_get_y (__s);           } while (0)
 
   TRANSFORM_POINT (m, r, top_left, ret[0]);
   TRANSFORM_POINT (m, r, top_right, ret[1]);
