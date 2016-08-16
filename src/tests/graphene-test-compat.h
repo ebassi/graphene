@@ -96,6 +96,31 @@
     } \
   } G_STMT_END
 
+#define graphene_assert_fuzzy_point_equal(p1,p2,epsilon) \
+  G_STMT_START { \
+    graphene_vec2_t v1, v2; \
+    graphene_point_to_vec2 (p1, &v1); \
+    graphene_point_to_vec2 (p2, &v2); \
+    graphene_assert_fuzzy_vec2_equal (&v1, &v2, epsilon); \
+  } G_STMT_END
+
+#define graphene_assert_fuzzy_size_equal(s1,s2,epsilon) \
+  G_STMT_START { \
+    if (graphene_fuzzy_equals ((s1)->width, (s2)->width, epsilon) && \
+        graphene_fuzzy_equals ((s1)->height, (s2)->height, epsilon)) ; else { \
+      char *s = g_strdup_printf ("{ width:%.7g, height:%.7g } ==  { width:%.7g, height:%.7g }", \
+                                 (s1)->width, (s1)->height, (s2)->width, (s2)->height); \
+      g_assertion_message (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, s); \
+      g_free (s); \
+    } \
+  } G_STMT_END
+
+#define graphene_assert_fuzzy_rect_equal(r1,r2,epsilon) \
+  G_STMT_START { \
+    graphene_assert_fuzzy_point_equal (&((r1)->origin), &((r2)->origin), epsilon); \
+    graphene_assert_fuzzy_size_equal (&((r1)->size), &((r2)->size), epsilon); \
+  } G_STMT_END
+
 #define GRAPHENE_TEST_UNUSED(type,var) \
   if (0) { \
     type unused G_GNUC_UNUSED; \
