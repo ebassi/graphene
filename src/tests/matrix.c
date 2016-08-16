@@ -486,9 +486,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_transform_bound)
   graphene_rect_t r, r2, res;
 
   graphene_matrix_init_identity (&m1);
-  graphene_matrix_init_identity (&m2);
-
-  graphene_matrix_translate (&m2, &(graphene_point3d_t) { 100.f, 100.f, 0.f });
+  graphene_matrix_init_translate (&m2, &(graphene_point3d_t) { 100.f, 100.f, 0.f });
 
   graphene_rect_init (&r, 0.f, 0.f, 50.f, 50.f);
   graphene_rect_init (&r2, 100.f, 100.f, 50.f, 50.f);
