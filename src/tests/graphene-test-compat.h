@@ -98,10 +98,14 @@
 
 #define graphene_assert_fuzzy_point_equal(p1,p2,epsilon) \
   G_STMT_START { \
-    graphene_vec2_t v1, v2; \
-    graphene_point_to_vec2 (p1, &v1); \
-    graphene_point_to_vec2 (p2, &v2); \
-    graphene_assert_fuzzy_vec2_equal (&v1, &v2, epsilon); \
+    if (graphene_point_near (p1, p2, epsilon)) ; \
+    else { \
+      char *s = g_strdup_printf (#p1 " == " #p2 " (+/- " #epsilon "): " \
+                                 "{ x:%.7g, y:%.7g } == { x:%.7g, y:%.7g }", \
+                                 (p1)->x, (p1)->y, (p2)->x, (p2)->y); \
+      g_assertion_message (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, s); \
+      g_free (s); \
+    } \
   } G_STMT_END
 
 #define graphene_assert_fuzzy_size_equal(s1,s2,epsilon) \
