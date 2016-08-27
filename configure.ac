@@ -34,9 +34,6 @@ AC_CONFIG_SRCDIR([src/graphene.h])
 AC_CONFIG_AUX_DIR([build])
 AC_CONFIG_MACRO_DIR([build/autotools])
 
-# Honor aclocal flags
-ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
-
 AM_INIT_AUTOMAKE([1.11 no-define foreign -Wno-portability dist-xz no-dist-gzip tar-ustar subdir-objects])
 
 AM_SILENT_RULES([yes])
