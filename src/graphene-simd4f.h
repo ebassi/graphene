@@ -859,7 +859,7 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
       (v)[1] != 0.f ? 1.f / (v)[1] : 0.f, \
       (v)[2] != 0.f ? 1.f / (v)[2] : 0.f, \
       (v)[3] != 0.f ? 1.f / (v)[3] : 0.f, \
-    } \
+    }; \
   }))
 
 # define graphene_simd4f_sqrt(v) \
