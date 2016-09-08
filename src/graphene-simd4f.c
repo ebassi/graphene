@@ -1309,7 +1309,7 @@ graphene_simd4f_t
 graphene_simd4f_t
 (graphene_simd4f_zero_w) (const graphene_simd4f_t s)
 {
-  return graphene_simd4f_init (s.x, s.y, s.z, 0.0f); 
+  return graphene_simd4f_init (s.x, s.y, s.z, 0.0f);
 }
 
 graphene_simd4f_t
