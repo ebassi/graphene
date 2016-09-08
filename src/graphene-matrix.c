@@ -746,7 +746,25 @@ graphene_matrix_get_value (const graphene_matrix_t *m,
       return 0.f;
     }
 
-  return graphene_simd4f_get (r, col);
+  switch (col)
+    {
+    case 0:
+      return graphene_simd4f_get (r, 0);
+
+    case 1:
+      return graphene_simd4f_get (r, 1);
+
+    case 2:
+      return graphene_simd4f_get (r, 2);
+
+    case 3:
+      return graphene_simd4f_get (r, 3);
+
+    default:
+      return 0.f;
+    }
+
+  return 0.f;
 }
 
 /**
