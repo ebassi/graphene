@@ -118,6 +118,7 @@ if get_option('enable-debug') == 'no'
   ]
 endif
 
+extra_args= []
 # Detect and set symbol visibility
 if get_option('default_library') != 'static'
   if host_system == 'windows'
@@ -126,11 +127,11 @@ if get_option('default_library') != 'static'
       conf.set('_GRAPHENE_PUBLIC', '__declspec(dllexport) extern')
     else
       conf.set('_GRAPHENE_PUBLIC', '__attribute__((visibility("default"))) __declspec(dllexport) extern')
-      add_global_arguments('-fvisibility=hidden', language: 'c')
+      extra_args += ['-fvisibility=hidden']
     endif
   else
     conf.set('_GRAPHENE_PUBLIC', '__attribute__((visibility("default")))')
-    add_global_arguments('-fvisibility=hidden', language: 'c')
+    extra_args += ['-fvisibility=hidden']
   endif
 endif
 
@@ -198,9 +199,9 @@ int main () {
   if cc.compiles(sse_prog, name: 'SSE intrinsics')
     graphene_conf.set('GRAPHENE_HAS_SSE', 1)
     conf.set('SSE2_CFLAGS', '-mfpmath=sse -msse -msse2')
-    add_global_arguments('-mfpmath=sse', language: 'c')
-    add_global_arguments('-msse', language: 'c')
-    add_global_arguments('-msse2', language: 'c')
+    extra_args += ['-mfpmath=sse']
+    extra_args += ['-msse']
+    extra_args += ['-msse2']
     graphene_simd += [ 'sse2' ]
   endif
 endif
@@ -256,10 +257,10 @@ int main () {
 }'''
   if cc.compiles(neon_prog, name: 'ARM NEON intrinsics')
     graphene_conf.set('GRAPHENE_HAS_ARM_NEON', 1)
-    add_global_arguments('-mfpu=neon', language: 'c')
+    extra_args += ['-mfpu=neon']
 
     if host_system == 'android'
-      add_global_arguments('-mfloat-abi=softfp', language: 'c')
+      extra_args += ['-mfloat-abi=softfp']
       conf.set('NEON_CFLAGS', '-mfpu=neon -mfloat-abi=softfp')
     else
       conf.set('NEON_CFLAGS', '-mfpu=neon')

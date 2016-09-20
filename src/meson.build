@@ -94,10 +94,10 @@ endif
 libgraphene = shared_library('graphene-@0@'.format(graphene_api_version),
   sources: sources + simd_sources + private_headers,
   version: graphene_version,
-  soversion: graphene_lib_version,
+  soversion: graphene_lib_version0,
   install: true,
   dependencies: [ mathlib, threadlib ] + platform_deps,
-  c_args: common_flags + debug_flags + [
+  c_args: extra_args + common_flags + debug_flags + [
             '-DGRAPHENE_COMPILATION',
             '-DG_LOG_DOMAIN="Graphene"',
             '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30',
