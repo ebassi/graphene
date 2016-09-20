@@ -14,6 +14,11 @@ graphene_minor_version = version_array[1]
 graphene_micro_version = version_array[2]
 
 graphene_api_version = '@0@.0'.format(graphene_major_version)
+soversion = 0
+# maintaining compatibility with the previous libtool versioning
+# current = minor * 100 + micro
+libversion = '@0@.@1@.0'.format(soversion, graphene_minor_version.to_int() * 100 +
+  graphene_major_version.to_int())
 
 graphene_interface_age = graphene_micro_version
 soname_age = 0

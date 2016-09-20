@@ -93,8 +93,8 @@ endif
 
 libgraphene = shared_library('graphene-@0@'.format(graphene_api_version),
   sources: sources + simd_sources + private_headers,
-  version: graphene_version,
-  soversion: graphene_lib_version0,
+  version: libversion,
+  soversion: soversion,
   install: true,
   dependencies: [ mathlib, threadlib ] + platform_deps,
   c_args: extra_args + common_flags + debug_flags + [
