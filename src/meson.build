@@ -105,7 +105,7 @@ libgraphene = shared_library('graphene-@0@'.format(graphene_api_version),
   link_args: [ '-Wl,-Bsymbolic-functions' ])
 
 # Internal dependency, for tests and benchmarks
-graphene_inc = include_directories([ meson.source_root() + '/src', meson.build_root() + '/src' ])
+graphene_inc = include_directories([ meson.current_source_dir(), meson.current_build_dir() ])
 graphene_dep = declare_dependency(link_with: libgraphene,
                                   include_directories: [ graphene_inc ],
                                   dependencies: [ mathlib, threadlib ] + platform_deps)
@@ -121,13 +121,13 @@ endforeach
 
 if build_gir
   gir_extra_args = [
-    '--identifier-filter-cmd=' + meson.source_root() + '/src/identfilter.py',
+    '--identifier-filter-cmd=' + meson.current_source_dir() + '/identfilter.py',
     '--c-include=graphene-gobject.h',
     '--accept-unprefixed',
     '-DGRAPHENE_COMPILATION',
     '--cflags-begin',
-    '-I' + meson.source_root() + '/src',
-    '-I' + meson.build_root() + '/src',
+    '-I' + meson.current_source_dir(),
+    '-I' + meson.current_build_dir(),
     '--cflags-end'
   ]
   gnome.generate_gir(libgraphene,
