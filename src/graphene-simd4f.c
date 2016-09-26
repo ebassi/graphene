@@ -216,7 +216,23 @@ float
 (graphene_simd4f_get) (const graphene_simd4f_t s,
                        unsigned int            i)
 {
-  return graphene_simd4f_get (s, i);
+  switch (i)
+    {
+    case 0:
+      return graphene_simd4f_get (s, 0);
+
+    case 1:
+      return graphene_simd4f_get (s, 1);
+
+    case 2:
+      return graphene_simd4f_get (s, 2);
+
+    case 3:
+      return graphene_simd4f_get (s, 3);
+
+    default:
+      return 0.f;
+  }
 }
 
 /**
