@@ -50,23 +50,17 @@ use with other languages through introspection-based bindings.
 In order to build and install Graphene you will need development tools and
 the headers of the dependencies.
 
-First of all:
-
- 1. Install [Ninja](https://ninja-build.org/)
- 2. Install [Meson](http://mesonbuild.com/)
-
-Then clone the Git repository:
+First of all, clone the Git repository:
 
     $ git clone git://github.com/ebassi/graphene
     $ cd graphene
 
 Then run:
 
-    $ mkdir build && cd build
-    $ meson
-    $ ninja build
-    $ ninja test
-    # ninja install
+    $ ./autogen.sh
+    $ make
+    $ make check
+    # make install
 
 It is possible, when building Graphene, to disable specific optimizations by
 passing options to the `configure` script:
@@ -83,6 +77,64 @@ automatically disable generating introspection data.
 You can also disable building the test suite and the benchmark suite, using
 the `--disable-tests` and `--disable-benchmarks` configuration switches
 respectively.
+
+See the output of `configure --help` for more information on the available
+configuration switches and environment variables.
+
+#### Installing on Windows
+
+In order to build on Windows, it's recommended to use the
+[MSYS2](http://sourceforge.net/projects/msys2/) environment.
+
+First,  install MSYS2
+
+Then, use `pacman` to set up the build environment, by 
+installing the necessary prerequisites:
+
+    $ pacman -Sy
+    $ pacman -S make
+    $ pacman -S automake
+    $ pacman -S autoconf
+    $ pacman -S libtool
+    $ pacman -S pkg-config
+    $ pacman -S gtk-doc		# optional
+    $ pacman -S glib2		# optional
+
+Then, clone the Graphene repository and build as usual by following the
+instructions in the section above.
+
+### Contributing
+
+If you found a bug (which I'm sure there will be plenty), or if you want
+to add your own pet feature, then follow these steps:
+
+ 1. Fork the [ebassi/graphene](https://github.com/ebassi/graphene) repo
+ 2. Fix bugs or add new features and push them to your clone
+ 3. Open [a new issue](https://github.com/ebassi/graphene/issues/new)
+ 4. Open [a pull request](https://github.com/ebassi/graphene/pulls)
+ 5. Wait for me to give feedback on the pull request
+ 6. Celebrate when your code gets merged
+
+That's pretty much it.
+
+Please, respect the coding style when writing patches for Graphene. The
+coding style can be immediately gleaned from the existing code, but here is
+a short version:
+
+ * Indentation is made of spaces, and only spaces — **no tabs**
+ * Each indentation level is 2 spaces
+ * Curly braces for blocks go on a separate indentation level
+  * Except for functions
+ * Do not use curly braces for single-statement blocks
+ * When declaring or defining a function, arguments go on separate
+   lines
+ * When calling a function never break a line between the function
+   name and the opening parenthesis, and between the opening parenthesis
+   and the first argument
+ * Leave a space between functions and parenthesis
+
+A more comprehensive coding style document is available in the `docs`
+directory.
 
 ## Documentation
 
