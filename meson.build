@@ -5,26 +5,21 @@ project('graphene', 'c',
           'c_std=gnu99',
           'warning_level=1'
         ],
-        license: 'MIT')
+        license: 'MIT',
+        meson_version: '>= 0.34.0')
 
 graphene_version = meson.project_version()
 version_array = graphene_version.split('.')
-graphene_major_version = version_array[0]
-graphene_minor_version = version_array[1]
-graphene_micro_version = version_array[2]
+graphene_major_version = version_array[0].to_int()
+graphene_minor_version = version_array[1].to_int()
+graphene_micro_version = version_array[2].to_int()
 
 graphene_api_version = '@0@.0'.format(graphene_major_version)
+graphene_interface_age = 1
 soversion = 0
 # maintaining compatibility with the previous libtool versioning
 # current = minor * 100 + micro
-libversion = '@0@.@1@.0'.format(soversion, graphene_minor_version.to_int() * 100 +
-  graphene_major_version.to_int())
-
-graphene_interface_age = graphene_micro_version
-soname_age = 0
-soname_revision = graphene_minor_version.to_int() * 100 + graphene_micro_version.to_int() - graphene_interface_age.to_int()
-soname_current = graphene_interface_age
-graphene_lib_version = '@0@.@1@.@2@'.format(soname_age, soname_revision, soname_current)
+libversion = '@0@.@1@.0'.format(soversion, graphene_minor_version * 100 + graphene_micro_version - graphene_interface_age)
 
 graphene_prefix = get_option('prefix')
 graphene_libdir = graphene_prefix + '/' + get_option('libdir')
@@ -101,21 +96,30 @@ conf.set('HAVE_POSIX_MEMALIGN', cc.has_function('posix_memalign', prefix: '#incl
 conf.set('HAVE_SINCOSF', cc.has_function('sincosf'))
 
 # Debugging
+enable_debug = get_option('enable-debug')
+if enable_debug == 'auto'
+  if graphene_minor_version.is_odd()
+    enable_debug = 'yes'
+  else
+    enable_debug = 'minimum'
+  endif
+endif
+
 debug_flags = []
-if get_option('enable-debug') == 'yes'
+if enable_debug == 'yes'
   debug_flags += [
     '-DGRAPHENE_ENABLE_DEBUG'
   ]
 endif
 
-if get_option('enable-debug') == 'minimum'
+if enable_debug == 'minimum'
   debug_flags += [
     '-DGRAPHENE_ENABLE_DEBUG',
     '-DG_DISABLE_CAST_CHECKS'
   ]
 endif
 
-if get_option('enable-debug') == 'no'
+if enable_debug == 'no'
   debug_flags += [
     '-DG_DISABLE_CAST_CHECKS',
     '-DG_DISABLE_CHECKS',
@@ -204,9 +208,7 @@ int main () {
   if cc.compiles(sse_prog, name: 'SSE intrinsics')
     graphene_conf.set('GRAPHENE_HAS_SSE', 1)
     conf.set('SSE2_CFLAGS', '-mfpmath=sse -msse -msse2')
-    extra_args += ['-mfpmath=sse']
-    extra_args += ['-msse']
-    extra_args += ['-msse2']
+    extra_args += ['-mfpmath=sse', '-msse', '-msse2']
     graphene_simd += [ 'sse2' ]
   endif
 endif
@@ -275,15 +277,10 @@ int main () {
   endif
 endif
 
-# XXX: Would be nice to have a join(CHR) method on ARRAY
-simd = ''
-foreach s : graphene_simd
-  simd = simd + s + ' '
-endforeach
+# Scalar is always available as a fallback
+graphene_simd += [ 'scalar' ]
 
-simd += 'scalar'
-
-conf.set('GRAPHENE_SIMD', simd)
+conf.set('GRAPHENE_SIMD', ' '.join(graphene_simd))
 
 gnome = import('gnome')
 
