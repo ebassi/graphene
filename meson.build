@@ -18,8 +18,11 @@ graphene_api_version = '@0@.0'.format(graphene_major_version)
 graphene_interface_age = 1
 soversion = 0
 # maintaining compatibility with the previous libtool versioning
-# current = minor * 100 + micro
-libversion = '@0@.@1@.0'.format(soversion, graphene_minor_version * 100 + graphene_micro_version - graphene_interface_age)
+# current = minor * 100 + micro - interface
+# revision = interface
+current = graphene_minor_version * 100 + graphene_micro_version - graphene_interface_age
+revision = graphene_interface_age
+libversion = '@0@.@1@.@2@'.format(soversion, current, revision)
 
 graphene_prefix = get_option('prefix')
 graphene_libdir = graphene_prefix + '/' + get_option('libdir')
