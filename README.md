@@ -48,7 +48,12 @@ use with other languages through introspection-based bindings.
 ### Installation
 
 In order to build and install Graphene you will need development tools and
-the headers of the dependencies.
+the headers of the dependencies. You will also need:
+
+ * [meson](http://mesonbuild.com)
+ * [ninja](https://ninja-build.org/)
+
+Alternatively, you can also use Autotools.
 
 First of all, clone the Git repository:
 
@@ -57,29 +62,26 @@ First of all, clone the Git repository:
 
 Then run:
 
-    $ ./autogen.sh
-    $ make
-    $ make check
-    # make install
+    $ mkdir _build && cd _build
+    $ meson ..
+    $ ninja test
+    # ninja install
 
 It is possible, when building Graphene, to disable specific optimizations by
-passing options to the `configure` script:
+using configuration options:
 
- * `--disable-sse2` - will disable the SSE2 fast paths
- * `--disable-arm-neon` - will disable the ARM NEON fast paths
- * `--disable-gcc-vector` - will disable the GCC vector intrinsics
+ * `-Denable-sse2=false` - will disable the SSE2 fast paths
+ * `-Denable-arm-neon=false` - will disable the ARM NEON fast paths
+ * `-Denable-gcc-vector=false` - will disable the GCC vector intrinsics
 
-If you don't plan on generating introspection data, use `--disable-introspection`
+If you don't plan on generating introspection data, use `-Denable-introspection=false`
 when configuring Graphene; similarly, if you don't plan on using GObject with
-Graphene, use `--disable-gobject-types`. Disabling GObject types will also
+Graphene, use `-Denable-gobject-types=false`. Disabling GObject types will also
 automatically disable generating introspection data.
 
 You can also disable building the test suite and the benchmark suite, using
-the `--disable-tests` and `--disable-benchmarks` configuration switches
+the `-Denable-tests=false` and `-Denable-benchmarks=false` configuration switches
 respectively.
-
-See the output of `configure --help` for more information on the available
-configuration switches and environment variables.
 
 #### Installing on Windows
 
