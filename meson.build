@@ -87,10 +87,9 @@ test_cflags = [
   '-Werror=array-bounds',
   '-Werror=write-strings'
 ]
-test_cflags_prog = 'int someVariableForFun;'
 common_flags = []
 foreach cflag: test_cflags
-  if cc.compiles(test_cflags_prog, name: 'check for ' + cflag, args: [ cflag ])
+  if cc.has_argument(cflag)
     common_flags += [ cflag ]
   endif
 endforeach
