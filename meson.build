@@ -15,7 +15,16 @@ graphene_minor_version = version_array[1].to_int()
 graphene_micro_version = version_array[2].to_int()
 
 graphene_api_version = '@0@.0'.format(graphene_major_version)
-graphene_interface_age = 1
+
+# The interface age is reset every time we add new API; this
+# should only happen during development cycles, otherwise the
+# interface age is the same as the micro version
+if graphene_minor_version.is_odd()
+  graphene_interface_age = 0
+else
+  graphene_interface_age = graphene_micro_version
+endif
+
 soversion = 0
 # maintaining compatibility with the previous libtool versioning
 # current = minor * 100 + micro - interface
