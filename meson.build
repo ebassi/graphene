@@ -58,35 +58,63 @@ conf.set('GRAPHENE_MICRO_VERSION', graphene_micro_version)
 conf.set('GRAPHENE_VERSION', graphene_version)
 
 # Compiler flags
-test_cflags = [
-  '-ffast-math',
-  '-fstrict-aliasing',
-  '-Wall',
-  '-Wpointer-arith',
-  '-Wmissing-declarations',
-  '-Wformat=2',
-  '-Wstrict-prototypes',
-  '-Wmissing-prototypes',
-  '-Wnested-externs',
-  '-Wold-style-definition',
-  '-Wdeclaration-after-statement',
-  '-Wunused',
-  '-Wuninitialized',
-  '-Wshadow',
-  '-Wmissing-noreturn',
-  '-Wmissing-format-attribute',
-  '-Wredundant-decls',
-  '-Wlogical-op',
-  '-Wcast-align',
-  '-Wno-unused-local-typedefs',
-  '-Werror=implicit',
-  '-Werror=init-self',
-  '-Werror=main',
-  '-Werror=missing-braces',
-  '-Werror=return-type',
-  '-Werror=array-bounds',
-  '-Werror=write-strings'
-]
+if cc.get_id() == 'msvc'
+  # Make MSVC more pedantic, this is a recommended pragma list
+  # from _Win32_Programming_ by Rector and Newcomer.  Taken from
+  # glib's msvc_recommended_pragmas.h--please see that file for
+  # the meaning of the warning codes used here
+  test_cflags = [
+    '-W3',
+    '-we4002',
+    '-we4003',
+    '-w14010',
+    '-we4013',
+    '-w14016',
+    '-we4020',
+    '-we4021',
+    '-we4027',
+    '-we4029',
+    '-we4033',
+    '-we4035',
+    '-we4045',
+    '-we4047',
+    '-we4049',
+    '-we4053',
+    '-we4071',
+    '-we4150',
+    '-we4819'
+  ]
+else
+  test_cflags = [
+    '-ffast-math',
+    '-fstrict-aliasing',
+    '-Wall',
+    '-Wpointer-arith',
+    '-Wmissing-declarations',
+    '-Wformat=2',
+    '-Wstrict-prototypes',
+    '-Wmissing-prototypes',
+    '-Wnested-externs',
+    '-Wold-style-definition',
+    '-Wdeclaration-after-statement',
+    '-Wunused',
+    '-Wuninitialized',
+    '-Wshadow',
+    '-Wmissing-noreturn',
+    '-Wmissing-format-attribute',
+    '-Wredundant-decls',
+    '-Wlogical-op',
+    '-Wcast-align',
+    '-Wno-unused-local-typedefs',
+    '-Werror=implicit',
+    '-Werror=init-self',
+    '-Werror=main',
+    '-Werror=missing-braces',
+    '-Werror=return-type',
+    '-Werror=array-bounds',
+    '-Werror=write-strings'
+  ]
+endif
 common_flags = []
 foreach cflag: test_cflags
   if cc.has_argument(cflag)
@@ -164,6 +192,11 @@ build_gobject = false
 if get_option('enable-gobject-types')
   gobject = dependency('gobject-2.0', version: '>= 2.30.0', required: false)
   build_gobject = gobject.found()
+  if build_gobject
+    if cc.get_id() == 'msvc'
+      extra_args += ['/FImsvc_recommended_pragmas.h']
+    endif
+  endif
   conf.set('GRAPHENE_REQS', 'gobject-2.0')
 endif
 
@@ -203,8 +236,12 @@ if get_option('enable-sse2')
 # if !defined(__amd64__) && !defined(__x86_64__)
 #   error "Need GCC >= 4.2 for SSE2 intrinsics on x86"
 # endif
+#elif defined (_MSC_VER) && (_MSC_VER < 1800)
+# if !defined (_M_X64) && !defined (_M_AMD64)
+#   error "Need MSVC 2013 or later for SSE2 intrinsics on x86"
+# endif
 #endif
-#if defined(__SSE__) || (_M_IX86_FP > 0) || (_M_X64 > 0)
+#if defined(__SSE__) || (_M_IX86_FP > 0) || (_M_X64 > 0) || (_MSC_VER >= 1800)
 # include <mmintrin.h>
 # include <xmmintrin.h>
 # include <emmintrin.h>
@@ -218,8 +255,10 @@ int main () {
 }'''
   if cc.compiles(sse_prog, name: 'SSE intrinsics')
     graphene_conf.set('GRAPHENE_HAS_SSE', 1)
-    conf.set('SSE2_CFLAGS', '-mfpmath=sse -msse -msse2')
-    extra_args += ['-mfpmath=sse', '-msse', '-msse2']
+    if cc.get_id() != 'msvc'
+      conf.set('SSE2_CFLAGS', '-mfpmath=sse -msse -msse2')
+      extra_args += ['-mfpmath=sse', '-msse', '-msse2']
+    endif
     graphene_simd += [ 'sse2' ]
   endif
 endif
