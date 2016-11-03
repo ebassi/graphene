@@ -1,20 +1,43 @@
-gnome.gtkdoc('graphene',
-  main_xml: 'graphene-docs.xml',
-  src_dir: '@0@/src'.format(meson.source_root()),
-  scan_args: [
-    '--rebuild-types',
-    '--ignore-decorators=_GRAPHENE_PUBLIC',
-    '--ignore-headers=config.h graphene-config.h graphene-private.h graphene-alloc-private.h graphene-line-segment-private.h graphene-macros.h graphene-version-macros.h graphene-vectors-private.h graphene-bench-utils.h graphene-test-compat.h'
-  ],
-  install: true)
+subdir('xml')
 
+private_headers = [
+  'config.h',
 
-# XXX: Would be nice for gnome.gtkdoc() to do this for us
+  'graphene-alloc-private.h',
+  'graphene-bench-utils.h',
+  'graphene-config.h',
+  'graphene-line-segment-private.h',
+  'graphene-macros.h',
+  'graphene-private.h',
+  'graphene-test-compat.h',
+  'graphene-version-macros.h',
+  'graphene-vectors-private.h',
+]
+
 html_images = [
   'rectangle-intersection.png',
   'rectangle-union.png',
   'rectangle.png',
-  'triangle-barycentric.png'
+  'triangle-barycentric.png',
 ]
 
-install_data('images', sources: html_images, install_dir: 'share/gtk-doc/html/graphene-1.0')
+# FIXME: Use the prefix from glib
+extra_dir_arg = '--extra-dir=' + get_option('prefix') + '/share/gtk-doc/html'
+
+gnome.gtkdoc('graphene',
+             main_xml: 'graphene-docs.xml',
+             src_dir: meson.source_root() + '/src',
+             dependencies: graphene_dep,
+             gobject_typesfile: 'graphene.types',
+             scan_args: [
+               '--rebuild-types',
+               '--ignore-decorators=_GRAPHENE_PUBLIC',
+               '--ignore-headers=' + ' '.join(private_headers),
+             ],
+             fixxref_args: [
+               '--html-dir=@0@/@1@/gtk-doc/html'.format(get_option('prefix'), get_option('datadir')),
+               extra_dir_arg + '/glib',
+               extra_dir_arg + '/gobject',
+             ],
+             html_assets: html_images,
+             install: true)
