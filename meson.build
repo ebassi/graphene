@@ -184,7 +184,7 @@ if get_option('default_library') != 'static'
 endif
 
 # Required dependencies
-mathlib = cc.find_library('m', required: true)
+mathlib = cc.find_library('m', required: false)
 threadlib = dependency('threads', required: true)
 
 # Optional dependency on GObject
