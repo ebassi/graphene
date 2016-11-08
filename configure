@@ -34,6 +34,7 @@ while (($# > 0)); do
 	--sysconfdir) read_arg sysconfdir "$@" || shift;;
 	--libdir) read_arg libdir "$@" || shift;;
 	--mandir) read_arg mandir "$@" || shift;;
+        --includedir) read_arg includedir "$@" || shift;;
 	*) echo "Ignoring unknown option '$1'";;
     esac
     shift
