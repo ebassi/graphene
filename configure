@@ -57,7 +57,13 @@ if test -z ${MESON}; then
 fi
 
 exec "${MESON}" \
+        --default-library=shared \
 	--prefix=${prefix} \
 	--libdir=${libdir} \
+        --includedir=${includedir} \
+        --sysconfdir=${sysconfdir} \
+        --datadir=${datadir} \
+        --mandir=${mandir} \
+        --libexecdir=${libexecdir} \
 	-Denable-gtk-doc=false \
 	${srcdir}
