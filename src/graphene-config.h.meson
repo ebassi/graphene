@@ -12,7 +12,7 @@ extern "C" {
 
 #ifndef GRAPHENE_SIMD_BENCHMARK
 
-# if defined(__SSE__) || (_M_IX86_FP > 0) || (_M_X64 > 0)
+# if defined(__SSE__) || (_M_IX86_FP > 0) || (_M_X64 > 0) || (_MSC_VER >= 1800)
 #mesondefine GRAPHENE_HAS_SSE
 # endif
 
@@ -53,6 +53,8 @@ extern "C" {
 #   endif
 #  elif defined(__SSE4_1__)
 #   define GRAPHENE_USE_SSE4_1
+#  elif defined(_MSC_VER)
+#   define GRAPHENE_USE_SSE4_1
 #  endif
 #  if defined(GRAPHENE_USE_SSE4_1)
 #   include <smmintrin.h>
@@ -91,6 +93,12 @@ typedef struct {
 
 #ifdef __cplusplus
 }
+#endif
+
+#ifdef _MSC_VER
+# if !defined (__cplusplus) && defined (_MSC_VER) && (_MSC_VER < 1900)
+#  define inline __inline
+# endif
 #endif
 
 #endif /* __GRAPHENE_CONFIG_H__ */

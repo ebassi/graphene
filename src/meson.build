@@ -91,6 +91,12 @@ if build_gobject
   platform_deps += [ gobject ]
 endif
 
+if cc.get_id() == 'msvc'
+  graphene_link_args = []
+else
+  graphene_link_args = [ '-Wl,-Bsymbolic-functions' ]
+endif
+
 libgraphene = shared_library('graphene-@0@'.format(graphene_api_version),
   sources: sources + simd_sources + private_headers,
   version: libversion,
@@ -102,7 +108,7 @@ libgraphene = shared_library('graphene-@0@'.format(graphene_api_version),
             '-DG_LOG_DOMAIN="Graphene"',
             '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30',
             '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32' ],
-  link_args: [ '-Wl,-Bsymbolic-functions' ])
+  link_args: graphene_link_args)
 
 # Internal dependency, for tests and benchmarks
 graphene_inc = include_directories([ meson.current_source_dir(), meson.current_build_dir() ])
