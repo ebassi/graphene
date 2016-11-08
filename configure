@@ -51,6 +51,11 @@ install:
 	DESTDIR="\$(DESTDIR)" ninja install
 END
 
+MESON=`which meson`
+if test -z ${MESON}; then
+        MESON="python3 meson.py"
+fi
+
 exec meson \
 	--prefix=${prefix} \
 	--libdir=${libdir} \
