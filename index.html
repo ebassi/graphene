@@ -89,6 +89,10 @@ use with other languages through introspection-based bindings.</p>
 <p>In order to build and install Graphene you will need development tools and
 the headers of the dependencies.</p>
 
+<p>Graphene uses the <a href="http://mesonbuild.com">Meson</a> build system to
+generate <a href="https://ninja-build.org">Ninja</a> build files. You must install
+Ninja and Meson before building Graphene.</p>
+
 <p>First of all, clone the Git repository:</p>
 
 <pre><code>$ git clone git://github.com/ebassi/graphene
@@ -97,16 +101,18 @@ $ cd graphene
 
 <p>Then run:</p>
 
-<pre><code>$ ./autogen.sh
-$ make
-$ make check
-# make install
+<pre><code>
+$ mkdir _build &amp;&amp; cd _build
+$ meson
+$ ninja
+$ ninja test
+# ninja install
 </code></pre>
 
 <h3>
 <a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h3>
 
-<p>If you found a bug (which I'm sure there will be plenty), or if you want
+<p>If you find a bug (which I'm sure there will be plenty), or if you want
 to add your own pet feature, then follow these steps:</p>
 
 <ol>
