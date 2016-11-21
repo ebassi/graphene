@@ -352,11 +352,10 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_transforms)
 {
   graphene_matrix_t m1, m2;
   double xx, xy, yx, yy, x_0, y_0;
-  graphene_point3d_t tmp;
 
   graphene_matrix_init_identity (&m1);
   graphene_matrix_scale (&m1, 2.0, 2.0, 1.0);
-  graphene_matrix_translate (&m1, graphene_point3d_init (&tmp, 0.5, 0.5, 0.0));
+  graphene_matrix_translate (&m1, &GRAPHENE_POINT3D_INIT (0.5, 0.5, 0.0));
   if (g_test_verbose ())
     {
       g_test_message ("m1 -> translate(0.5, 0.5, 0.0) -> scale(2.0, 2.0)");
@@ -386,9 +385,9 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_transforms)
   graphene_assert_fuzzy_equals (y_0, 0.5, 0.0001);
 
   graphene_matrix_init_identity (&m1);
-  graphene_matrix_translate (&m1, graphene_point3d_init (&tmp, 50, 50, 0));
+  graphene_matrix_translate (&m1, &GRAPHENE_POINT3D_INIT (50, 50, 0));
   graphene_matrix_rotate_z (&m1, 45.0);
-  graphene_matrix_translate (&m1, graphene_point3d_init (&tmp, -50, -50, 0));
+  graphene_matrix_translate (&m1, &GRAPHENE_POINT3D_INIT (-50, -50, 0));
   if (g_test_verbose ())
     {
       g_test_message ("m1 -> translate(50,50) -> rotate(45deg) -> translate(-50, -50)");
@@ -441,7 +440,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_interpolate)
   graphene_matrix_init_identity (&m1);
   graphene_matrix_init_identity (&m2);
 
-  graphene_matrix_translate (&m2, &(graphene_point3d_t) { 100.f, 100.f, 100.f });
+  graphene_matrix_translate (&m2, &GRAPHENE_POINT3D_INIT (100.f, 100.f, 100.f));
   g_assert_true (!graphene_matrix_is_2d (&m2));
 
   graphene_matrix_interpolate (&m1, &m2, 0.0, &mr);
@@ -450,7 +449,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_interpolate)
   graphene_matrix_interpolate (&m1, &m2, 1.0, &mr);
   graphene_assert_fuzzy_matrix_equal (&mr, &m2, 0.1);
 
-  graphene_matrix_init_translate (&m3, &(graphene_point3d_t) { 50.f, 50.f, 50.f });
+  graphene_matrix_init_translate (&m3, &GRAPHENE_POINT3D_INIT (50.f, 50.f, 50.f));
   graphene_matrix_interpolate (&m1, &m2, 0.5, &mr);
   graphene_assert_fuzzy_matrix_equal (&mr, &m3, 0.1);
 }
@@ -463,7 +462,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_interpolate)
   graphene_matrix_init_identity (&m1);
   graphene_matrix_init_identity (&m2);
 
-  graphene_matrix_translate (&m2, &(graphene_point3d_t) { 100.f, 100.f, 0.f });
+  graphene_matrix_translate (&m2, &GRAPHENE_POINT3D_INIT (100.f, 100.f, 0.f));
 
   g_assert_true (graphene_matrix_is_2d (&m1));
   g_assert_true (graphene_matrix_is_2d (&m2));
@@ -474,7 +473,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_interpolate)
   graphene_matrix_interpolate (&m1, &m2, 1.0, &mr);
   graphene_assert_fuzzy_matrix_equal (&mr, &m2, 0.01);
 
-  graphene_matrix_init_translate (&m3, &(graphene_point3d_t) { 50.f, 50.f, 0.f });
+  graphene_matrix_init_translate (&m3, &GRAPHENE_POINT3D_INIT (50.f, 50.f, 0.f));
   graphene_matrix_interpolate (&m1, &m2, 0.5, &mr);
   graphene_assert_fuzzy_matrix_equal (&mr, &m3, 0.01);
 }
@@ -486,7 +485,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_transform_bound)
   graphene_rect_t r, r2, res;
 
   graphene_matrix_init_identity (&m1);
-  graphene_matrix_init_translate (&m2, &(graphene_point3d_t) { 100.f, 100.f, 0.f });
+  graphene_matrix_init_translate (&m2, &GRAPHENE_POINT3D_INIT (100.f, 100.f, 0.f));
 
   graphene_rect_init (&r, 0.f, 0.f, 50.f, 50.f);
   graphene_rect_init (&r2, 100.f, 100.f, 50.f, 50.f);
