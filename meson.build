@@ -34,9 +34,19 @@ revision = graphene_interface_age
 libversion = '@0@.@1@.@2@'.format(soversion, current, revision)
 
 graphene_prefix = get_option('prefix')
-graphene_libdir = graphene_prefix + '/' + get_option('libdir')
-graphene_datadir = graphene_prefix + '/share'
-graphene_includedir = graphene_prefix + '/include'
+graphene_libdir = get_option('libdir')
+
+if get_option('includedir') == 'include'
+  graphene_includedir = graphene_prefix + '/include'
+else
+  graphene_includedir = get_option('includedir')
+endif
+
+if get_option('datadir') == 'share'
+  graphene_datadir = graphene_prefix + '/share'
+else
+  graphene_datadir = get_option('datadir')
+endif
 
 graphene_simd = []
 
@@ -130,9 +140,9 @@ conf.set('HAVE_MEMORY_H', cc.has_header('memory.h'))
 
 # Functions
 conf.set('HAVE_ALIGNED_ALLOC', cc.has_function('aligned_alloc', prefix: '#include <stdlib.h>'))
-conf.set('HAVE_MEMALIGN', cc.has_function('memalign', prefix: '#include <stdlib.h>'))
+conf.set('HAVE_MEMALIGN', cc.has_function('memalign', prefix: '#include <stdlib.h>\n#include <malloc.h>'))
 conf.set('HAVE_POSIX_MEMALIGN', cc.has_function('posix_memalign', prefix: '#include <stdlib.h>'))
-conf.set('HAVE_SINCOSF', cc.has_function('sincosf'))
+conf.set('HAVE_SINCOSF', cc.has_function('sincosf', prefix: '#define _GNU_SOURCE\n#include <math.h>'))
 
 # Debugging
 enable_debug = get_option('enable-debug')
