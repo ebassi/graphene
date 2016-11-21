@@ -630,7 +630,8 @@ graphene_matrix_to_2d (const graphene_matrix_t *m,
   float res[4];
 
   graphene_simd4f_dup_4f (m->value.x, res);
-  if (res[2] != 0.f && res[3] != 0.f)
+  if (!graphene_approx_val (res[2], 0.f) &&
+      !graphene_approx_val (res[3], 0.f))
     return false;
 
   if (xx != NULL)
@@ -639,7 +640,8 @@ graphene_matrix_to_2d (const graphene_matrix_t *m,
     *yx = res[1];
 
   graphene_simd4f_dup_4f (m->value.y, res);
-  if (res[2] != 0.f && res[3] != 0.f)
+  if (!graphene_approx_val (res[2], 0.f) &&
+      !graphene_approx_val (res[3], 0.f))
     return false;
 
   if (xy != NULL)
@@ -647,11 +649,16 @@ graphene_matrix_to_2d (const graphene_matrix_t *m,
   if (yy != NULL)
     *yy = res[1];
 
-  if (graphene_simd4f_cmp_neq (m->value.z, graphene_simd4f_init (0.f, 0., 1.f, 0.f)))
+  graphene_simd4f_dup_4f (m->value.z, res);
+  if (!graphene_approx_val (res[0], 0.f) &&
+      !graphene_approx_val (res[1], 0.f) &&
+      !graphene_approx_val (res[2], 1.f) &&
+      !graphene_approx_val (res[3], 0.f))
     return false;
 
   graphene_simd4f_dup_4f (m->value.w, res);
-  if (res[2] != 0.f && res[3] != 1.f)
+  if (!graphene_approx_val (res[2], 0.f) &&
+      !graphene_approx_val (res[3], 1.f))
     return false;
 
   if (x_0 != NULL)
