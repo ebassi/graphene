@@ -22,7 +22,7 @@ unit_tests = [
 foreach unit: unit_tests
   exe = executable(unit, unit + '.c',
                    install: true,
-                   install_dir: 'share/installed-tests/graphene-1.0',
+                   install_dir: join_paths(graphene_datadir, 'installed-tests', 'graphene-1.0'),
                    dependencies: graphene_dep,
                    include_directories: graphene_inc,
                    c_args: [

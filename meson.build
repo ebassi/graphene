@@ -34,19 +34,9 @@ revision = graphene_interface_age
 libversion = '@0@.@1@.@2@'.format(soversion, current, revision)
 
 graphene_prefix = get_option('prefix')
-graphene_libdir = get_option('libdir')
-
-if get_option('includedir') == 'include'
-  graphene_includedir = graphene_prefix + '/include'
-else
-  graphene_includedir = get_option('includedir')
-endif
-
-if get_option('datadir') == 'share'
-  graphene_datadir = graphene_prefix + '/share'
-else
-  graphene_datadir = get_option('datadir')
-endif
+graphene_libdir = join_paths(graphene_prefix, get_option('libdir'))
+graphene_includedir = join_paths(graphene_prefix, get_option('includedir'))
+graphene_datadir = join_paths(graphene_prefix, get_option('datadir'))
 
 graphene_simd = []
 
