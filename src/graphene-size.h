@@ -34,8 +34,8 @@ GRAPHENE_BEGIN_DECLS
 
 /**
  * GRAPHENE_SIZE_INIT:
- * @w: the width
- * @h: the height
+ * @_w: the width
+ * @_h: the height
  *
  * Initializes a #graphene_size_t with the given sizes when
  * declaring it, e.g.:
@@ -46,7 +46,7 @@ GRAPHENE_BEGIN_DECLS
  *
  * Since: 1.0
  */
-#define GRAPHENE_SIZE_INIT(w,h)         { w, h }
+#define GRAPHENE_SIZE_INIT(_w,_h)       (graphene_size_t) { .width = (_w), .height = (_h) }
 
 /**
  * GRAPHENE_SIZE_INIT_ZERO:

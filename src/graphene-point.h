@@ -34,8 +34,8 @@ GRAPHENE_BEGIN_DECLS
 
 /**
  * GRAPHENE_POINT_INIT:
- * @x: the X coordinate
- * @y: the Y coordinate
+ * @_x: the X coordinate
+ * @_y: the Y coordinate
  *
  * Initializes a #graphene_point_t with the given coordinates
  * when declaring it, e.g:
@@ -46,7 +46,7 @@ GRAPHENE_BEGIN_DECLS
  *
  * Since: 1.0
  */
-#define GRAPHENE_POINT_INIT(x,y)        { x, y }
+#define GRAPHENE_POINT_INIT(_x,_y)      (graphene_point_t) { .x = (_x), .y = (_y) }
 
 /**
  * GRAPHENE_POINT_INIT_ZERO:

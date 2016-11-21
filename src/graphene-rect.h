@@ -37,17 +37,17 @@ GRAPHENE_BEGIN_DECLS
 
 /**
  * GRAPHENE_RECT_INIT:
- * @x: the X coordinate of the origin
- * @y: the Y coordinate of the origin
- * @w: the width
- * @h: the height
+ * @_x: the X coordinate of the origin
+ * @_y: the Y coordinate of the origin
+ * @_w: the width
+ * @_h: the height
  *
  * Initializes a #graphene_rect_t when declaring it.
  *
  * Since: 1.0
  */
-#define GRAPHENE_RECT_INIT(x,y,w,h) \
-  { { x, y }, { w, h } }
+#define GRAPHENE_RECT_INIT(_x,_y,_w,_h) \
+  (graphene_rect_t) { .origin = { .x = (_x), .y = (_y) }, .size = { .width = (_w), .height = (_h) } }
 
 /**
  * graphene_rect_t:

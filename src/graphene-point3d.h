@@ -34,15 +34,15 @@ GRAPHENE_BEGIN_DECLS
 
 /**
  * GRAPHENE_POINT3D_INIT:
- * @x: the X coordinate
- * @y: the Y coordinate
- * @z: the Z coordinate
+ * @_x: the X coordinate
+ * @_y: the Y coordinate
+ * @_z: the Z coordinate
  *
  * Initializes a #graphene_point3d_t to the given coordinates when declaring it.
  *
  * Since: 1.0
  */
-#define GRAPHENE_POINT3D_INIT(x,y,z)    { x, y, z }
+#define GRAPHENE_POINT3D_INIT(_x,_y,_z) (graphene_point3d_t) { .x = (_x), .y = (_y), .z = (_z) }
 
 /**
  * GRAPHENE_POINT3D_INIT_ZERO:
