@@ -1,5 +1,5 @@
 project('graphene', 'c',
-        version: '1.4.1',
+        version: '1.5.1',
         default_options: [
           'buildtype=debugoptimized',
           'c_std=gnu99',
