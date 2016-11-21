@@ -27,6 +27,7 @@
 #define _GNU_SOURCE
 
 #include "config.h"
+#include "graphene-macros.h"
 #include <stdlib.h>
 #include <math.h>
 #include <float.h>
@@ -100,6 +101,12 @@
   (((n1) > (n2) ? ((n1) - (n2)) : ((n2) - (n1))) < (epsilon))
 
 #endif /* __GNUC__ */
+
+static inline bool
+graphene_approx_val (float a, float b)
+{
+  return graphene_fuzzy_equals (a, b, FLT_EPSILON);
+}
 
 static inline float
 graphene_flerpf (float a, float b, double factor)
