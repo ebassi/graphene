@@ -811,7 +811,11 @@ graphene_rect_interpolate (const graphene_rect_t *a,
   res->size.height = graphene_lerp (ra.size.height, rb.size.height, factor);
 }
 
+#ifdef _MSC_VER
+static const graphene_rect_t _graphene_rect_zero = { {0.f, 0.f}, {0.f, 0.f} };
+#else
 static const graphene_rect_t _graphene_rect_zero = GRAPHENE_RECT_INIT (0, 0, 0, 0);
+#endif
 
 /**
  * graphene_rect_zero:
