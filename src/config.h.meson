@@ -23,3 +23,8 @@
 
 /* Define for symbol visibility */
 #mesondefine _GRAPHENE_PUBLIC
+
+/* Define inline as __inline for older Visual Studio (<= 2013) builds */
+#if defined (_MSC_VER) && (_MSC_VER < 1900)
+#define inline __inline
+#endif
