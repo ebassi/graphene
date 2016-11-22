@@ -72,14 +72,14 @@ configure_file(input: 'graphene-config.h.meson',
                output: 'graphene-config.h',
                configuration: graphene_conf,
                install: true,
-               install_dir: 'lib/graphene-1.0/include')
+               install_dir: join_paths(graphene_libdir, 'graphene-1.0', 'include'))
 
 # Version header
 configure_file(input: 'graphene-version.h.in',
                output: 'graphene-version.h',
                configuration: conf,
                install: true,
-               install_dir: 'include/graphene-1.0')
+               install_dir: join_paths(graphene_includedir, 'graphene-1.0'))
 
 install_headers(headers + simd_headers + [ 'graphene.h' ], subdir: 'graphene-1.0')
 
@@ -122,12 +122,12 @@ foreach p: pkgconfig_files
                  output: p + '.pc',
                  configuration: conf,
                  install: true,
-                 install_dir: 'lib/pkgconfig')
+                 install_dir: join_paths(graphene_libdir, 'pkgconfig'))
 endforeach
 
 if build_gir
   gir_extra_args = [
-    '--identifier-filter-cmd=' + meson.current_source_dir() + '/identfilter.py',
+    '--identifier-filter-cmd=' + join_paths(meson.current_source_dir(), 'identfilter.py'),
     '--c-include=graphene-gobject.h',
     '--accept-unprefixed',
     '-DGRAPHENE_COMPILATION',

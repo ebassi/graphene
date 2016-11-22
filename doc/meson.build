@@ -22,11 +22,11 @@ html_images = [
 ]
 
 # FIXME: Use the prefix from glib
-extra_dir_arg = '--extra-dir=' + get_option('prefix') + '/share/gtk-doc/html'
+docpath = join_paths(graphene_datadir, 'gtk-doc', 'html')
 
 gnome.gtkdoc('graphene',
              main_xml: 'graphene-docs.xml',
-             src_dir: meson.source_root() + '/src',
+             src_dir: join_paths(meson.source_root(), 'src'),
              dependencies: graphene_dep,
              gobject_typesfile: 'graphene.types',
              scan_args: [
@@ -35,9 +35,9 @@ gnome.gtkdoc('graphene',
                '--ignore-headers=' + ' '.join(private_headers),
              ],
              fixxref_args: [
-               '--html-dir=@0@/@1@/gtk-doc/html'.format(get_option('prefix'), get_option('datadir')),
-               extra_dir_arg + '/glib',
-               extra_dir_arg + '/gobject',
+               '--html-dir=@0@'.format(docpath),
+               '--extra-dir=@0@'.format(join_paths(docpath, 'glib')),
+               '--extra-dir=@0@'.format(join_paths(docpath, 'gobject')),
              ],
              html_assets: html_images,
              install: true)
