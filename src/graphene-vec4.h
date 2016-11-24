@@ -1,6 +1,6 @@
 /* graphene-vec4.h: 4-coords vector
  *
- * Copyright © 2014  Emmanuele Bassi
+ * Copyright 2014  Emmanuele Bassi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
