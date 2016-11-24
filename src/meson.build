@@ -131,10 +131,6 @@ if build_gir
     '--c-include=graphene-gobject.h',
     '--accept-unprefixed',
     '-DGRAPHENE_COMPILATION',
-    '--cflags-begin',
-    '-I' + meson.current_source_dir(),
-    '-I' + meson.current_build_dir(),
-    '--cflags-end'
   ]
   gnome.generate_gir(libgraphene,
                      sources: headers + sources,
