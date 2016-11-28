@@ -443,11 +443,7 @@ graphene_point3d_normalize_viewport (const graphene_point3d_t *p,
   res->z = CLAMP (res->z * 2.f - 1.f, -1.f, 1.f);
 }
 
-#ifdef _MSC_VER
-static const graphene_point3d_t _graphene_point3d_zero = {0.f, 0.f, 0.f};
-#else
-static const graphene_point3d_t _graphene_point3d_zero = GRAPHENE_POINT3D_INIT_ZERO;
-#endif
+static const graphene_point3d_t _graphene_point3d_zero;
 
 /**
  * graphene_point3d_zero:

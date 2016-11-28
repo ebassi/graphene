@@ -178,11 +178,7 @@ graphene_size_interpolate (const graphene_size_t *a,
   res->height = graphene_lerp (a->height, b->height, factor);
 }
 
-#ifdef _MSC_VER
-static const graphene_size_t _graphene_size_zero = {0.f, 0.f};
-#else
-static const graphene_size_t _graphene_size_zero = GRAPHENE_SIZE_INIT_ZERO;
-#endif
+static const graphene_size_t _graphene_size_zero;
 
 /**
  * graphene_size_zero:

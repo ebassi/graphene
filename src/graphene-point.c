@@ -295,11 +295,7 @@ graphene_point_to_vec2 (const graphene_point_t *p,
   v->value = graphene_simd4f_init (p->x, p->y, 0.f, 0.f);
 }
 
-#ifdef _MSC_VER
-static const graphene_point_t _graphene_point_zero = {0.f, 0.f};
-#else
-static const graphene_point_t _graphene_point_zero = GRAPHENE_POINT_INIT_ZERO;
-#endif
+static const graphene_point_t _graphene_point_zero;
 
 /**
  * graphene_point_zero:
