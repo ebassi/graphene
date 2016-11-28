@@ -42,6 +42,9 @@ AM_MAINTAINER_MODE([enable])
 
 AC_USE_SYSTEM_EXTENSIONS
 
+AC_PROG_CC_C_O
+AC_PROG_CC_C99
+
 dnl === Base compiler flags ===================================================
 
 AC_PROG_SED
