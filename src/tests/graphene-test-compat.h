@@ -7,14 +7,14 @@
 # define g_assert_nonnull(expr)         g_assert ((expr) != NULL)
 #endif
 
-#if defined(__GNUC__)
+#if defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 9))
 /* Use typeof on GCC */
 # define graphene_fuzzy_equals(n1,n2,epsilon) \
   G_GNUC_EXTENSION({ \
-    typeof ((n1)) __n1 = (n1); \
-    typeof ((n2)) __n2 = (n2); \
-    typeof ((epsilon)) __epsilon = (epsilon); \
-    (bool) ((__n1 > __n2 ? (__n1 - __n2) : (__n2 - __n1)) < __epsilon); \
+    __auto_type _n1 = (n1); \
+    __auto_type _n2 = (n2); \
+    __auto_type _epsilon = (epsilon); \
+    (bool) ((_n1 > _n2 ? (_n1 - _n2) : (_n2 - _n1)) < _epsilon); \
   })
 
 #else

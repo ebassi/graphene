@@ -35,11 +35,11 @@
 #define GRAPHENE_FLOAT_EPSILON  FLT_EPSILON
 
 #ifndef MIN
-# if defined(__GNUC__) && __GNUC__ > 3
+# if defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 9))
 #  define MIN(a,b) \
-  ({ \
-    typeof ((a)) _a = (a); \
-    typeof ((b)) _b = (b); \
+  __extension__({ \
+    __auto_type _a = (a); \
+    __auto_type _b = (b); \
     _a < _b ? _a : _b; \
   })
 # else
@@ -48,11 +48,11 @@
 #endif
 
 #ifndef MAX
-# if defined(__GNUC__) && __GNUC__ > 3
+# if defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 9))
 #  define MAX(a,b) \
-  ({ \
-    typeof ((a)) _a = (a); \
-    typeof ((b)) _b = (b); \
+  __extension__({ \
+    __auto_type _a = (a); \
+    __auto_type _b = (b); \
     _a > _b ? _a : _b; \
   })
 # else
@@ -61,12 +61,12 @@
 #endif
 
 #ifndef CLAMP
-# if defined(__GNUC__) && __GNUC__ > 3
+# if defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 9))
 #  define CLAMP(v,min,max) \
-  ({ \
-    typeof ((v)) _v = (v); \
-    typeof ((min)) _min = (min); \
-    typeof ((max)) _max = (max); \
+  __extension__({ \
+    __auto_type _v = (v); \
+    __auto_type _min = (min); \
+    __auto_type _max = (max); \
     _v < _min ? _min : (_v > _max ? _max : _v); \
   })
 # else
@@ -85,14 +85,14 @@
 #define GRAPHENE_DEG_TO_RAD(x)          ((x) * (GRAPHENE_PI / 180.f))
 #define GRAPHENE_RAD_TO_DEG(x)          ((x) * (180.f / GRAPHENE_PI))
 
-#if defined(__GNUC__)
+#if defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 9))
 /* Use typeof on GCC */
 # define graphene_fuzzy_equals(n1,n2,epsilon) \
   __extension__({ \
-    typeof ((n1)) __n1 = (n1); \
-    typeof ((n2)) __n2 = (n2); \
-    typeof ((epsilon)) __epsilon = (epsilon); \
-    (bool) ((__n1 > __n2 ? (__n1 - __n2) : (__n2 - __n1)) < __epsilon); \
+    __auto_type _n1 = (n1); \
+    __auto_type _n2 = (n2); \
+    __auto_type _epsilon = (epsilon); \
+    (bool) ((_n1 > _n2 ? (_n1 - _n2) : (_n2 - _n1)) < _epsilon); \
   })
 
 #else
