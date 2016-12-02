@@ -277,7 +277,7 @@ graphene_bench_print_results (const char *impl,
   switch (bench_output)
     {
     case BENCH_FORMAT_NONE:
-      g_print ("### '%s' (%ld iterations - using %s implementation) ###\n"
+      g_print ("### '%s' (%" G_GINT64_FORMAT " iterations - using %s implementation) ###\n"
                "         Total: %.6f %s (%d rounds)\n"
                "     Per round: %.6f %s (%d iterations per round)\n"
                " Per iteration: %.6f %s\n",
