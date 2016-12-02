@@ -3,6 +3,9 @@
 /* Define to 1 if you have the `aligned_alloc' function. */
 #mesondefine HAVE_ALIGNED_ALLOC
 
+/* Define to 1 if you have the `_aligned_malloc' function. */
+#mesondefine HAVE__ALIGNED_MALLOC
+
 /* Define if you have InitOnceExecuteOnce */
 #mesondefine HAVE_INIT_ONCE
 

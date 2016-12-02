@@ -130,6 +130,7 @@ conf.set('HAVE_MEMORY_H', cc.has_header('memory.h'))
 
 # Functions
 conf.set('HAVE_ALIGNED_ALLOC', cc.has_function('aligned_alloc', prefix: '#include <stdlib.h>'))
+conf.set('HAVE__ALIGNED_MALLOC', cc.has_function('_aligned_malloc', prefix: '#include <stdlib.h>'))
 conf.set('HAVE_MEMALIGN', cc.has_function('memalign', prefix: '#include <stdlib.h>\n#include <malloc.h>'))
 conf.set('HAVE_POSIX_MEMALIGN', cc.has_function('posix_memalign', prefix: '#include <stdlib.h>'))
 conf.set('HAVE_SINCOSF', cc.has_function('sincosf', prefix: '#define _GNU_SOURCE\n#include <math.h>'))
