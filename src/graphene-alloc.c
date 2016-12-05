@@ -90,7 +90,9 @@ graphene_aligned_alloc (size_t size,
   errno = 0;
 #endif
 
-#if defined(HAVE_POSIX_MEMALIGN)
+#if defined(HAVE__ALIGNED_MALLOC)
+  res = _aligned_malloc(real_size, alignment);
+#elif defined(HAVE_POSIX_MEMALIGN)
   errno = posix_memalign (&res, alignment, real_size);
 #elif defined(HAVE_ALIGNED_ALLOC) || defined (_MSC_VER)
   /* real_size must be a multiple of alignment */

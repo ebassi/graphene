@@ -50,10 +50,13 @@ alloc_align (gsize n,
   gsize real_size = size * n;
   gpointer res;
 
-#if defined(HAVE_POSIX_MEMALIGN)
+#if defined (HAVE__ALIGNED_MALLOC)
+  g_assert (real_size % alignment == 0);
+  res = _aligned_malloc (real_size, alignment);
+#elif defined(HAVE_POSIX_MEMALIGN)
   if (posix_memalign (&res, alignment, real_size) != 0)
     g_assert_not_reached ();
-#elif defined(HAVE_ALIGNED_ALLOC) || defined (HAVE__ALIGNED_MALLOC)
+#elif defined(HAVE_ALIGNED_ALLOC)
   g_assert (real_size % alignment == 0);
   res = aligned_alloc (alignment, real_size);
 #elif defined(HAVE_MEMALIGN)
