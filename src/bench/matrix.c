@@ -4,15 +4,15 @@
 #define _XOPEN_SOURCE 600
 #endif
 
-#if defined(HAVE_MEMALIGN) || defined (_MSC_VER)
+#if defined(HAVE_MEMALIGN) || (defined(HAVE__ALIGNED_MALLOC) && defined (_MSC_VER))
 /* MSVC Builds: Required for _aligned_malloc() and _aligned_free() */
 #include <malloc.h>
 #endif
 
-#ifdef _MSC_VER
-/* On Visual Studio, _aligned_malloc() takes in parameters in inverted
- * order from aligned_alloc(), but things are more or less the same there
- * otherwise
+#ifdef HAVE__ALIGNED_MALLOC
+/* On Visual Studio and MinGW, _aligned_malloc() takes in parameters in
+ * inverted order from aligned_alloc(), but things are more or less the same
+ * there otherwise
  */
 #define aligned_alloc(alignment,size) _aligned_malloc (size, alignment)
 
@@ -53,11 +53,13 @@ alloc_align (gsize n,
 #if defined(HAVE_POSIX_MEMALIGN)
   if (posix_memalign (&res, alignment, real_size) != 0)
     g_assert_not_reached ();
-#elif defined(HAVE_ALIGNED_ALLOC) || defined (_MSC_VER)
+#elif defined(HAVE_ALIGNED_ALLOC) || defined (HAVE__ALIGNED_MALLOC)
   g_assert (real_size % alignment == 0);
   res = aligned_alloc (alignment, real_size);
 #elif defined(HAVE_MEMALIGN)
   res = memalign (alignment, real_size);
+#else
+#error "Need some type of aligned allocation function"
 #endif
 
   g_assert (res != NULL);
