@@ -28,7 +28,12 @@
 # define _XOPEN_SOURCE 600
 #endif
 
-#ifdef _MSC_VER
+#if defined(HAVE_MEMALIGN) || defined(HAVE__ALIGNED_MALLOC)
+/* Required for _aligned_malloc() and _aligned_free() on Windows */
+#include <malloc.h>
+#endif
+
+#ifdef HAVE__ALIGNED_MALLOC
   /* _aligned_malloc() takes parameters of aligned_malloc() in reverse order */
 # define aligned_alloc(alignment,size) _aligned_malloc (size, alignment)
 
@@ -92,7 +97,7 @@ graphene_aligned_alloc (size_t size,
 
 #if defined(HAVE_POSIX_MEMALIGN)
   errno = posix_memalign (&res, alignment, real_size);
-#elif defined(HAVE_ALIGNED_ALLOC) || defined (_MSC_VER)
+#elif defined(HAVE_ALIGNED_ALLOC) || defined (HAVE__ALIGNED_MALLOC)
   /* real_size must be a multiple of alignment */
   if (real_size % alignment != 0)
     {

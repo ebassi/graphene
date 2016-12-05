@@ -4,13 +4,13 @@
 #define _XOPEN_SOURCE 600
 #endif
 
-#if defined(HAVE_MEMALIGN) || (defined(HAVE__ALIGNED_MALLOC) && defined (_MSC_VER))
-/* MSVC Builds: Required for _aligned_malloc() and _aligned_free() */
+#if defined(HAVE_MEMALIGN) || defined(HAVE__ALIGNED_MALLOC)
+/* Required for _aligned_malloc() and _aligned_free() on Windows */
 #include <malloc.h>
 #endif
 
 #ifdef HAVE__ALIGNED_MALLOC
-/* On Visual Studio and MinGW, _aligned_malloc() takes in parameters in
+/* On Windows, we have to use _aligned_malloc() which takes in parameters in
  * inverted order from aligned_alloc(), but things are more or less the same
  * there otherwise
  */
