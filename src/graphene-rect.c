@@ -503,7 +503,7 @@ graphene_rect_intersection (const graphene_rect_t *a,
   x_1 = MAX (ra.origin.x, rb.origin.x);
   y_1 = MAX (ra.origin.y, rb.origin.y);
   x_2 = MIN (ra.origin.x + ra.size.width, rb.origin.x + rb.size.width);
-  y_2 = MIN (ra.origin.y + ra.size.height, rb.origin.x + rb.size.height);
+  y_2 = MIN (ra.origin.y + ra.size.height, rb.origin.y + rb.size.height);
 
   if (x_1 >= x_2 || y_1 >= y_2)
     {
