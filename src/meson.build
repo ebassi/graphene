@@ -91,10 +91,10 @@ if build_gobject
   platform_deps += [ gobject ]
 endif
 
-if cc.get_id() == 'msvc'
-  graphene_link_args = []
-else
+if cc.get_id() == 'gcc'
   graphene_link_args = [ '-Wl,-Bsymbolic-functions' ]
+else
+  graphene_link_args = []
 endif
 
 libgraphene = shared_library('graphene-@0@'.format(graphene_api_version),
