@@ -6,6 +6,7 @@ addons:
     - gcc-4.8
     - libglib2.0-0
     - libglib2.0-dev
+    - python3
 
 sudo: false
 
