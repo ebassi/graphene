@@ -63,7 +63,7 @@ First of all, clone the Git repository:
 Then run:
 
     $ mkdir _build && cd _build
-    $ meson ..
+    $ meson ..    # on Windows, it's "meson.py"
     $ ninja test
     # ninja install
 
@@ -83,27 +83,43 @@ You can also disable building the test suite and the benchmark suite, using
 the `-Denable-tests=false` and `-Denable-benchmarks=false` configuration switches
 respectively.
 
-#### Installing on Windows
+#### Building on Windows
 
 In order to build on Windows, it's recommended to use the
 [MSYS2](http://sourceforge.net/projects/msys2/) environment.
 
-First,  install MSYS2
+First, [install MSYS2](https://msys2.github.io/) and update it fully
+as documented.
 
-Then, use `pacman` to set up the build environment, by 
-installing the necessary prerequisites:
+Then use `pacman` to set up the build environment by installing the
+necessary prerequisites for your target. For all build systems, you
+will need a standard development environment and the appropriate native
+toolchain. You also need a Python interpreter for introspection builds,
+which are the default.
 
-    $ pacman -Sy
-    $ pacman -S make
-    $ pacman -S automake
-    $ pacman -S autoconf
-    $ pacman -S libtool
-    $ pacman -S pkg-config
-    $ pacman -S gtk-doc		# optional
-    $ pacman -S glib2		# optional
+    $ pacman -S base-devel
+    $ pacman -S python3      # for introspection
+    $ pacman -S mingw-w64-x86_64-toolchain  # only MINGW64 target
+    $ pacman -S mingw-w64-i686-toolchain    # only MINGW32 target
 
-Then, clone the Graphene repository and build as usual by following the
-instructions in the section above.
+If you're using GNU Autotools, you don't need to do anything more.
+Autotools is part of the `base-devel` group.
+
+If you want to try Meson, install the appropriate native package:
+
+    $ pacman -S mingw-w64-x86_64-meson   # only MINGW64 target
+    $ pacman -S mingw-w64-i686-meson     # only MINGW32 target
+
+There are a number of optional dependencies too:
+
+    $ pacman -S gtk-doc                 # optional
+    $ pacman -S mingw-w64-x86_64-glib2  # optional, MINGW64 target only
+    $ pacman -S mingw-w64-i686-glib2    # optional, MINGW32 target only
+    $ pacman -S glib2 glib2-devel       # optional, MSYS target only
+
+Then clone the Graphene repository and build as usual by following the
+instructions in the section above. If you're using Meson, please note
+that the tool may be installed as "meson.py" on MSYS2.
 
 ### Contributing
 
