@@ -135,7 +135,6 @@ graphene_sphere_init_from_points (graphene_sphere_t        *s,
                                   const graphene_point3d_t *center)
 {
   float max_radius_sq = 0.f;
-  unsigned int i;
 
   if (center != NULL)
     graphene_point3d_to_vec3 (center, &s->center);
@@ -150,7 +149,7 @@ graphene_sphere_init_from_points (graphene_sphere_t        *s,
       graphene_point3d_to_vec3 (&c, &s->center);
     }
 
-  for (i = 0; i < n_points; i++)
+  for (unsigned int i = 0; i < n_points; i++)
     {
       graphene_vec3_t p;
 
@@ -188,7 +187,6 @@ graphene_sphere_init_from_vectors (graphene_sphere_t         *s,
                                    const graphene_point3d_t  *center)
 {
   float max_radius_sq = 0.f;
-  unsigned int i;
 
   if (center != NULL)
     graphene_point3d_to_vec3 (center, &s->center);
@@ -203,7 +201,7 @@ graphene_sphere_init_from_vectors (graphene_sphere_t         *s,
       graphene_point3d_to_vec3 (&c, &s->center);
     }
 
-  for (i = 0; i < n_vectors; i++)
+  for (unsigned int i = 0; i < n_vectors; i++)
     max_radius_sq = fmaxf (max_radius_sq, distance_sq (&s->center, &vectors[i]));
 
   s->radius = sqrtf (max_radius_sq);

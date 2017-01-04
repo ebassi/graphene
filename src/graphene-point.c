@@ -206,22 +206,20 @@ graphene_point_distance (const graphene_point_t *a,
                          float                  *d_x,
                          float                  *d_y)
 {
-  graphene_simd4f_t s_a, s_b, res;
-
   if (a == b)
     return 0.f;
 
-  s_a = graphene_simd4f_init (a->x, a->y, 0.f, 0.f);
-  s_b = graphene_simd4f_init (b->x, b->y, 0.f, 0.f);
-  res = graphene_simd4f_sub (s_a, s_b);
+  graphene_simd4f_t v_a = graphene_simd4f_init (a->x, a->y, 0.f, 0.f);
+  graphene_simd4f_t v_b = graphene_simd4f_init (b->x, b->y, 0.f, 0.f);
+  graphene_simd4f_t v_res = graphene_simd4f_sub (v_a, v_b);
 
   if (d_x != NULL)
-    *d_x = fabsf (graphene_simd4f_get_x (res));
+    *d_x = fabsf (graphene_simd4f_get_x (v_res));
 
   if (d_y != NULL)
-    *d_y = fabsf (graphene_simd4f_get_y (res));
+    *d_y = fabsf (graphene_simd4f_get_y (v_res));
 
-  return graphene_simd4f_get_x (graphene_simd4f_length2 (res));
+  return graphene_simd4f_get_x (graphene_simd4f_length2 (v_res));
 }
 
 /**
@@ -242,17 +240,15 @@ graphene_point_near (const graphene_point_t *a,
                      const graphene_point_t *b,
                      float                   epsilon)
 {
-  graphene_simd4f_t s_a, s_b, res;
-
   if (a == b)
     return true;
 
-  s_a = graphene_simd4f_init (a->x, a->y, 0.f, 0.f);
-  s_b = graphene_simd4f_init (b->x, b->y, 0.f, 0.f);
-  res = graphene_simd4f_sub (s_a, s_b);
+  graphene_simd4f_t v_a = graphene_simd4f_init (a->x, a->y, 0.f, 0.f);
+  graphene_simd4f_t v_b = graphene_simd4f_init (b->x, b->y, 0.f, 0.f);
+  graphene_simd4f_t v_res = graphene_simd4f_sub (v_a, v_b);
 
-  return fabsf (graphene_simd4f_get_x (res)) < epsilon &&
-         fabsf (graphene_simd4f_get_y (res)) < epsilon;
+  return fabsf (graphene_simd4f_get_x (v_res)) < epsilon &&
+         fabsf (graphene_simd4f_get_y (v_res)) < epsilon;
 }
 
 /**

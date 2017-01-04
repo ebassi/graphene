@@ -171,16 +171,14 @@ bool
 graphene_rect_equal (const graphene_rect_t *a,
                      const graphene_rect_t *b)
 {
-  graphene_rect_t r_a, r_b;
-
   if (a == b)
     return true;
 
   if (a == NULL || b == NULL)
     return false;
 
-  r_a = *a;
-  r_b = *b;
+  graphene_rect_t r_a = *a;
+  graphene_rect_t r_b = *b;
 
   graphene_rect_normalize_in_place (&r_a);
   graphene_rect_normalize_in_place (&r_b);

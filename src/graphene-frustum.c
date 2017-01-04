@@ -130,9 +130,7 @@ graphene_frustum_t *
 graphene_frustum_init_from_frustum (graphene_frustum_t       *f,
                                     const graphene_frustum_t *src)
 {
-  int i;
-
-  for (i = 0; i < N_CLIP_PLANES; i++)
+  for (int i = 0; i < N_CLIP_PLANES; i++)
     graphene_plane_init_from_plane (&f->planes[i], &src->planes[i]);
 
   return f;
@@ -205,9 +203,7 @@ void
 graphene_frustum_get_planes (const graphene_frustum_t *f,
                              graphene_plane_t          planes[])
 {
-  unsigned int i;
-
-  for (i = 0; i < N_CLIP_PLANES; i++)
+  for (int i = 0; i < N_CLIP_PLANES; i++)
     graphene_plane_init_from_plane (&planes[i], &f->planes[i]);
 }
 
@@ -227,12 +223,10 @@ bool
 graphene_frustum_contains_point (const graphene_frustum_t *f,
                                  const graphene_point3d_t *point)
 {
-  unsigned int i;
-
   if (point == NULL)
     return false;
 
-  for (i = 0; i < N_CLIP_PLANES; i++)
+  for (int i = 0; i < N_CLIP_PLANES; i++)
     {
       const graphene_plane_t *p = &f->planes[i];
 
@@ -260,11 +254,10 @@ graphene_frustum_intersects_sphere (const graphene_frustum_t *f,
                                     const graphene_sphere_t  *sphere)
 {
   graphene_point3d_t center;
-  unsigned int i;
 
   graphene_point3d_init_from_vec3 (&center, &sphere->center);
 
-  for (i = 0; i < N_CLIP_PLANES; i++)
+  for (int i = 0; i < N_CLIP_PLANES; i++)
     {
       float distance = graphene_plane_distance (&f->planes[i], &center);
 
@@ -294,13 +287,12 @@ graphene_frustum_intersects_box (const graphene_frustum_t *f,
   graphene_point3d_t min, max, normal;
   graphene_point3d_t p0, p1;
   const graphene_plane_t *plane;
-  unsigned int i;
   float d0, d1;
 
   graphene_box_get_min (box, &min);
   graphene_box_get_max (box, &max);
 
-  for (i = 0; i < N_CLIP_PLANES; i++)
+  for (int i = 0; i < N_CLIP_PLANES; i++)
     {
       plane = &f->planes[i];
 

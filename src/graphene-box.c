@@ -137,11 +137,9 @@ graphene_box_init_from_points (graphene_box_t           *box,
                                unsigned int              n_points,
                                const graphene_point3d_t *points)
 {
-  unsigned int i;
-
   graphene_box_init_from_box (box, graphene_box_empty ());
 
-  for (i = 0; i < n_points; i++)
+  for (unsigned int i = 0; i < n_points; i++)
     {
       graphene_vec3_t v;
 
@@ -173,11 +171,9 @@ graphene_box_init_from_vectors (graphene_box_t         *box,
                                 unsigned int            n_vectors,
                                 const graphene_vec3_t  *vectors)
 {
-  unsigned int i;
-
   graphene_box_init_from_box (box, graphene_box_empty ());
 
-  for (i = 0; i < n_vectors; i++)
+  for (unsigned int i = 0; i < n_vectors; i++)
     graphene_box_expand_vec3 (box, &vectors[i], box);
 
   return box;

@@ -322,18 +322,17 @@ graphene_euler_init_from_quaternion (graphene_euler_t            *e,
                                      const graphene_quaternion_t *q,
                                      graphene_euler_order_t       order)
 {
-  float sqx, sqy, sqz, sqw;
-  float x, y, z;
-
   if (q == NULL)
     return graphene_euler_init_with_order (e, 0.f, 0.f, 0.f, order);
 
-  sqx = q->x * q->x;
-  sqy = q->y * q->y;
-  sqz = q->z * q->z;
-  sqw = q->w * q->w;
+  float sqx = q->x * q->x;
+  float sqy = q->y * q->y;
+  float sqz = q->z * q->z;
+  float sqw = q->w * q->w;
 
-  x = y = z = 0.f;
+  float x = 0.f;
+  float y = 0.f;
+  float z = 0.f;
 
   e->order = order;
   switch (graphene_euler_get_order (e))

@@ -219,14 +219,12 @@ graphene_point3d_near (const graphene_point3d_t *a,
                        const graphene_point3d_t *b,
                        float                     epsilon)
 {
-  graphene_simd4f_t v_a, v_b, v_res;
-
   if (a == b)
     return true;
 
-  v_a = graphene_simd4f_init (a->x, a->y, a->z, 0.f);
-  v_b = graphene_simd4f_init (b->x, b->y, b->z, 0.f);
-  v_res = graphene_simd4f_sub (v_a, v_b);
+  graphene_simd4f_t v_a = graphene_simd4f_init (a->x, a->y, a->z, 0.f);
+  graphene_simd4f_t v_b = graphene_simd4f_init (b->x, b->y, b->z, 0.f);
+  graphene_simd4f_t v_res = graphene_simd4f_sub (v_a, v_b);
 
   return fabsf (graphene_simd4f_get_x (v_res)) < epsilon &&
          fabsf (graphene_simd4f_get_y (v_res)) < epsilon &&
@@ -273,13 +271,11 @@ graphene_point3d_cross (const graphene_point3d_t *a,
                         const graphene_point3d_t *b,
                         graphene_point3d_t       *res)
 {
-  graphene_simd4f_t av, bv, resv;
+  graphene_simd4f_t v_a = graphene_simd4f_init (a->x, a->y, a->z, 0.f);
+  graphene_simd4f_t v_b = graphene_simd4f_init (b->x, b->y, b->z, 0.f);
+  graphene_simd4f_t v_res = graphene_simd4f_cross3 (v_a, v_b);
 
-  av = graphene_simd4f_init (a->x, a->y, a->z, 0.f);
-  bv = graphene_simd4f_init (b->x, b->y, b->z, 0.f);
-  resv = graphene_simd4f_cross3 (av, bv);
-
-  graphene_point3d_init_from_simd4f (res, resv);
+  graphene_point3d_init_from_simd4f (res, v_res);
 }
 
 /**
@@ -297,12 +293,10 @@ float
 graphene_point3d_dot (const graphene_point3d_t *a,
                       const graphene_point3d_t *b)
 {
-  graphene_simd4f_t av, bv;
+  graphene_simd4f_t v_a = graphene_simd4f_init (a->x, a->y, a->z, 0.f);
+  graphene_simd4f_t v_b = graphene_simd4f_init (b->x, b->y, b->z, 0.f);
 
-  av = graphene_simd4f_init (a->x, a->y, a->z, 0.f);
-  bv = graphene_simd4f_init (b->x, b->y, b->z, 0.f);
-
-  return graphene_simd4f_dot3_scalar (av, bv);
+  return graphene_simd4f_dot3_scalar (v_a, v_b);
 }
 
 /**
@@ -319,9 +313,7 @@ graphene_point3d_dot (const graphene_point3d_t *a,
 float
 graphene_point3d_length (const graphene_point3d_t *p)
 {
-  graphene_simd4f_t res;
-
-  res = graphene_simd4f_init (p->x, p->y, p->z, 0.f);
+  graphene_simd4f_t res = graphene_simd4f_init (p->x, p->y, p->z, 0.f);
 
   return graphene_simd4f_get_x (graphene_simd4f_length3 (res));
 }

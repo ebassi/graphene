@@ -209,11 +209,9 @@ graphene_quaternion_t *
 graphene_quaternion_init_from_matrix (graphene_quaternion_t   *q,
                                       const graphene_matrix_t *m)
 {
-  float xx, yy, zz;
-
-  xx = graphene_matrix_get_value (m, 0, 0);
-  yy = graphene_matrix_get_value (m, 1, 1);
-  zz = graphene_matrix_get_value (m, 2, 2);
+  float xx = graphene_matrix_get_value (m, 0, 0);
+  float yy = graphene_matrix_get_value (m, 1, 1);
+  float zz = graphene_matrix_get_value (m, 2, 2);
 
   q->w = 0.5f * sqrtf (MAX (1 + xx + yy + zz, 0.f));
   q->x = 0.5f * sqrtf (MAX (1 + xx - yy - zz, 0.f));
@@ -281,26 +279,24 @@ graphene_quaternion_slerp (const graphene_quaternion_t *a,
                            float                        factor,
                            graphene_quaternion_t       *res)
 {
-  float theta, r_sin_theta, right_v, left_v, dot;
-  graphene_simd4f_t v_a, v_b, left, right, sum;
+  graphene_simd4f_t v_a = graphene_simd4f_init (a->x, a->y, a->z, a->w);
+  graphene_simd4f_t v_b = graphene_simd4f_init (b->x, b->y, b->z, b->w);
 
-  v_a = graphene_simd4f_init (a->x, a->y, a->z, a->w);
-  v_b = graphene_simd4f_init (b->x, b->y, b->z, b->w);
-
-  dot = CLAMP (graphene_simd4f_get_x (graphene_simd4f_dot4 (v_a, v_b)), -1.f, 1.f);
-  if (dot == 1.f)
+  float dot = CLAMP (graphene_simd4f_get_x (graphene_simd4f_dot4 (v_a, v_b)), -1.f, 1.f);
+  if (graphene_approx_val (dot, 1.f))
     {
       *res = *a;
       return;
     }
 
-  theta = acos (dot);
-  r_sin_theta = 1.f / sqrtf (1.f - dot * dot);
-  right_v = sinf (factor * theta) * r_sin_theta;
-  left_v = cosf (factor * theta) - dot * right_v;
+  float theta = acos (dot);
+  float r_sin_theta = 1.f / sqrtf (1.f - dot * dot);
+  float right_v = sinf (factor * theta) * r_sin_theta;
+  float left_v = cosf (factor * theta) - dot * right_v;
 
-  left = graphene_simd4f_init (a->x, a->y, a->z, a->w);
-  right = graphene_simd4f_init (b->x, b->y, b->z, b->w);
+  graphene_simd4f_t left = graphene_simd4f_init (a->x, a->y, a->z, a->w);
+  graphene_simd4f_t right = graphene_simd4f_init (b->x, b->y, b->z, b->w);
+  graphene_simd4f_t sum;
 
   left = graphene_simd4f_mul (left, graphene_simd4f_splat (left_v));
   right = graphene_simd4f_mul (right, graphene_simd4f_splat (right_v));
@@ -434,20 +430,19 @@ graphene_quaternion_to_radians (const graphene_quaternion_t *q,
 {
   graphene_vec4_t v;
   graphene_vec4_t sq;
-  float qx, qy, qz, qw, sqx, sqy, sqz, sqw;
 
   graphene_quaternion_to_vec4 (q, &v);
   graphene_vec4_multiply (&v, &v, &sq);
 
-  qx = graphene_vec4_get_x (&v);
-  qy = graphene_vec4_get_y (&v);
-  qz = graphene_vec4_get_z (&v);
-  qw = graphene_vec4_get_w (&v);
+  float qx = graphene_vec4_get_x (&v);
+  float qy = graphene_vec4_get_y (&v);
+  float qz = graphene_vec4_get_z (&v);
+  float qw = graphene_vec4_get_w (&v);
 
-  sqx = graphene_vec4_get_x (&sq);
-  sqy = graphene_vec4_get_y (&sq);
-  sqz = graphene_vec4_get_z (&sq);
-  sqw = graphene_vec4_get_w (&sq);
+  float sqx = graphene_vec4_get_x (&sq);
+  float sqy = graphene_vec4_get_y (&sq);
+  float sqz = graphene_vec4_get_z (&sq);
+  float sqw = graphene_vec4_get_w (&sq);
 
   if (rad_x != NULL)
     *rad_x = atan2f (2 * (qx * qw - qy * qz), (sqw - sqx - sqy + sqz));
@@ -663,10 +658,8 @@ float
 graphene_quaternion_dot (const graphene_quaternion_t *a,
                          const graphene_quaternion_t *b)
 {
-  graphene_simd4f_t v_a, v_b;
-
-  v_a = graphene_simd4f_init (a->x, a->y, a->z, a->w);
-  v_b = graphene_simd4f_init (b->x, b->y, b->z, b->w);
+  graphene_simd4f_t v_a = graphene_simd4f_init (a->x, a->y, a->z, a->w);
+  graphene_simd4f_t v_b = graphene_simd4f_init (b->x, b->y, b->z, b->w);
 
   return graphene_simd4f_get_x (graphene_simd4f_dot4 (v_a, v_b));
 }
