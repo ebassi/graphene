@@ -482,6 +482,9 @@ dnl === GObject introspection =================================================
 
 AS_IF([test "x$build_gobject" = xyes], [
   GOBJECT_INTROSPECTION_CHECK([gi_req_version])
+  # Any modern Python version will do for src/identfilter.py
+  AC_PATH_PROGS([PYTHON3_PATH], [python3 python3.5 python3.4 python3.3 python3.2 python3.1, python3.0])
+  AS_IF([test "x$PYTHON3_PATH" = "x"], [AC_MSG_ERROR([Cannot build introspection data without Python3])])
 ], [
   AM_CONDITIONAL(HAVE_INTROSPECTION, [false])
   enable_introspection=disabled
