@@ -129,10 +129,21 @@ conf.set('HAVE_STDBOOL_H', cc.has_header('stdbool.h'))
 conf.set('HAVE_MEMORY_H', cc.has_header('memory.h'))
 
 # Functions
-conf.set('HAVE_ALIGNED_ALLOC', cc.has_function('aligned_alloc', prefix: '#include <stdlib.h>'))
-conf.set('HAVE__ALIGNED_MALLOC', cc.has_function('_aligned_malloc', prefix: '#include <malloc.h>'))
-conf.set('HAVE_MEMALIGN', cc.has_function('memalign', prefix: '#include <stdlib.h>\n#include <malloc.h>'))
-conf.set('HAVE_POSIX_MEMALIGN', cc.has_function('posix_memalign', prefix: '#include <stdlib.h>'))
+if cc.has_function('memalign', prefix: '#include <stdlib.h>\n#include <malloc.h>')
+  conf.set('HAVE_MEMALIGN', 1)
+elif cc.has_function('_aligned_malloc', prefix: '#include <malloc.h>')
+  conf.set('HAVE__ALIGNED_MALLOC', 1)
+# Don't probe the ones below on Windows because when building with
+# MinGW-w64 on MSYS2, Meson<0.37.0 incorrectly detects those below as
+# being available even though they're not.
+elif cc.has_function('aligned_alloc', prefix: '#include <stdlib.h>') and not (host_system == 'windows')
+  conf.set('HAVE_ALIGNED_ALLOC', 1)
+elif cc.has_function('posix_memalign', prefix: '#include <stdlib.h>') and not (host_system == 'windows')
+  conf.set('HAVE_POSIX_MEMALIGN', 1)
+else
+  error('No aligned malloc function could be found.')
+endif
+
 conf.set('HAVE_SINCOSF', cc.has_function('sincosf', prefix: '#define _GNU_SOURCE\n#include <math.h>'))
 
 # Debugging
