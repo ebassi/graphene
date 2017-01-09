@@ -1058,11 +1058,10 @@ graphene_matrix_transform_box (const graphene_matrix_t *m,
                                graphene_box_t          *res)
 {
   graphene_vec3_t points[8];
-  unsigned int i;
 
   graphene_box_get_vertices (b, points);
 
-  for (i = 0; i < 8; i++)
+  for (int i = 0; i < 8; i++)
     graphene_simd4x4f_point3_mul (&m->value, &(points[i].value), &(points[i].value));
 
   graphene_box_init_from_vectors (res, 8, points);
@@ -1660,14 +1659,12 @@ void
 graphene_matrix_normalize (const graphene_matrix_t *m,
                            graphene_matrix_t       *res)
 {
-  graphene_simd4f_t n;
-  float ww;
 
-  ww = graphene_simd4f_get_w (m->value.w);
-  if (ww == 0.f)
+  float ww = graphene_simd4f_get_w (m->value.w);
+  if (graphene_approx_val (ww, 0.f))
     return;
 
-  n = graphene_simd4f_splat (1.f / ww);
+  graphene_simd4f_t n = graphene_simd4f_splat (1.f / ww);
 
   res->value.x = graphene_simd4f_mul (m->value.x, n);
   res->value.y = graphene_simd4f_mul (m->value.y, n);
@@ -2136,9 +2133,7 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
 void
 graphene_matrix_print (const graphene_matrix_t *m)
 {
-  int i;
-
-  for (i = 0; i < 4; i++)
+  for (int i = 0; i < 4; i++)
     {
       fprintf (stderr,
                "| %+.6f %+.6f %+.6f %+.6f |\n",
