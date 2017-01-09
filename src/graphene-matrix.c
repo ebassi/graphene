@@ -1777,13 +1777,13 @@ matrix_decompose_2d (const graphene_matrix_t *m,
         scale_r->y = -scale_r->y;
     }
 
-  if (scale_r->x != 0.f)
+  if (!graphene_approx_val (scale_r->x, 0.f))
     {
       row0x = row0x * (1.f / scale_r->x);
       row0y = row0y * (1.f / scale_r->y);
     }
 
-  if (scale_r->y != 0.f)
+  if (!graphene_approx_val (scale_r->y, 0.f))
     {
       row1x = row1x * (1.f / scale_r->x);
       row1y = row1y * (1.f / scale_r->y);
@@ -1827,7 +1827,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
   graphene_simd4f_t perspective_v;
   graphene_simd4f_t cross;
 
-  if (graphene_matrix_get_value (m, 3, 3) == 0.f)
+  if (graphene_approx_val (graphene_simd4f_get_w (m->value.w), 0.f))
     return false;
 
   local = *m;
@@ -1842,7 +1842,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
   perspective = local;
   perspective.value.w = graphene_simd4f_init (0.f, 0.f, 0.f, 1.f);
 
-  if (graphene_matrix_determinant (&perspective) == 0.f)
+  if (graphene_approx_val (graphene_matrix_determinant (&perspective), 0.f))
     return false;
 
   perspective_v = graphene_simd4f_init (graphene_simd4f_get_w (local.value.x),
@@ -2089,20 +2089,22 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
 
       /* Skew */
       shear = graphene_lerp (shear_a[YZ_SHEAR], shear_b[YZ_SHEAR], factor);
-      if (shear != 0.f)
+      if (!graphene_approx_val (shear, 0.f))
         graphene_matrix_skew_yz (res, shear);
 
       shear = graphene_lerp (shear_a[XZ_SHEAR], shear_b[XZ_SHEAR], factor);
-      if (shear != 0.f)
+      if (!graphene_approx_val (shear, 0.f))
         graphene_matrix_skew_xz (res, shear);
 
       shear = graphene_lerp (shear_a[XY_SHEAR], shear_b[XY_SHEAR], factor);
-      if (shear != 0.f)
+      if (!graphene_approx_val (shear, 0.f))
         graphene_matrix_skew_xy (res, shear);
 
       /* Scale */
       graphene_point3d_interpolate (&scale_a, &scale_b, factor, &scale_r);
-      if (scale_r.x != 1.f && scale_r.y != 1.f && scale_r.z != 1.f)
+      if (!graphene_approx_val (scale_r.x, 1.f) ||
+          !graphene_approx_val (scale_r.y, 1.f) ||
+          !graphene_approx_val (scale_r.z, 1.f))
         graphene_matrix_scale (res, scale_r.x, scale_r.y, scale_r.z);
     }
 }
