@@ -1150,9 +1150,6 @@ graphene_matrix_project_rect_bounds (const graphene_matrix_t *m,
 {
   graphene_point_t points[4];
   graphene_point_t ret[4];
-  float min_x, min_y;
-  float max_x, max_y;
-  int i;
 
   graphene_rect_get_top_left (r, &points[0]);
   graphene_rect_get_top_right (r, &points[1]);
@@ -1164,17 +1161,13 @@ graphene_matrix_project_rect_bounds (const graphene_matrix_t *m,
   graphene_matrix_project_point (m, &points[2], &ret[2]);
   graphene_matrix_project_point (m, &points[3], &ret[3]);
 
-  min_x = max_x = ret[0].x;
-  min_y = max_y = ret[0].y;
+  graphene_simd4f_t v_x = graphene_simd4f_init (ret[0].x, ret[1].x, ret[2].x, ret[3].x);
+  graphene_simd4f_t v_y = graphene_simd4f_init (ret[0].y, ret[1].y, ret[2].y, ret[3].y);
 
-  for (i = 1; i < 4; i++)
-    {
-      min_x = MIN (ret[i].x, min_x);
-      min_y = MIN (ret[i].y, min_y);
-
-      max_x = MAX (ret[i].x, max_x);
-      max_y = MAX (ret[i].y, max_y);
-    }
+  float min_x = graphene_simd4f_get_x (graphene_simd4f_min_val (v_x));
+  float max_x = graphene_simd4f_get_x (graphene_simd4f_max_val (v_x));
+  float min_y = graphene_simd4f_get_x (graphene_simd4f_min_val (v_y));
+  float max_y = graphene_simd4f_get_x (graphene_simd4f_max_val (v_y));
 
   graphene_rect_init (res, min_x, min_y, max_x - min_x, max_y - min_y);
 }
