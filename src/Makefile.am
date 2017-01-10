@@ -156,6 +156,8 @@ introspection_source_c = $(filter-out graphene-simd4f.c graphene-simd4x4f.c,$(so
 
 filter_cmd = "$(PYTHON3_PATH)" "$(top_srcdir)/src/identfilter.py"
 
+EXTRA_DIST += identfilter.py
+
 Graphene-1.0.gir: libgraphene-1.0.la $(top_srcdir)/src/identfilter.py Makefile
 
 Graphene_1_0_gir_SCANNERFLAGS = \
