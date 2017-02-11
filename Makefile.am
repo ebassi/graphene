@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I build/autotools
 
-EXTRA_DIST = \
+autotools_extra = \
 	build/autotools/ax_pthread.m4 \
 	build/autotools/glibtests.m4 \
 	build/autotools/glib-tap.mk \
@@ -8,9 +8,28 @@ EXTRA_DIST = \
 	build/autotools/introspection.m4 \
 	build/autotools/tap-driver.sh \
 	build/autotools/tap-test \
-	build/solaris-hwcap.mapfile
+	build/solaris-hwcap.mapfile \
+	$()
+
+meson_extra = \
+	meson.build \
+	meson_options.txt \
+	doc/meson.build \
+	doc/xml/meson.build \
+	doc/xml/gtkdocentities.ent.in \
+	src/config.h.meson \
+	src/graphene-config.h.meson \
+	src/meson.build \
+	src/bench/meson.build \
+	src/tests/meson.build \
+	$()
 
 SUBDIRS = src doc
+
+EXTRA_DIST = \
+	$(autotools_extra) \
+	$(meson_extra) \
+	$()
 
 AM_DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-introspection
 
