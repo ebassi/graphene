@@ -1,23 +1,27 @@
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - gcc-4.8
-    - libglib2.0-0
-    - libglib2.0-dev
-    - python3
-
 sudo: false
 
-language: c
+os:
+  - linux
+
 compiler:
   - gcc
   - clang
 
+language:
+  - c
+
+services:
+  - docker
+
+before_install:
+  - docker pull ebassi/grapheneci
+
+before_script:
+  - echo FROM ebassi/epoxyci > Dockerfile
+  - echo ADD . /root >> Dockerfile
+  - docker build -t withgit .
+
 script:
-  - if [ "$CC" = "gcc" ]; then export CC="gcc-4.8"; fi
-  - NOCONFIGURE=1 ./autogen.sh
-  - ./configure --disable-introspection --disable-benchmarks && make && make check
-  - ./configure --disable-introspection --disable-benchmarks --disable-sse2 && make && make check
-  - ./configure --disable-introspection --disable-benchmarks --disable-sse2 --disable-gcc-vector && make && make check
+  - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh"
+  - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh -Denable-sse2=false"
+  - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh -Denable-sse2=false -Denable-gcc-vector=false"
