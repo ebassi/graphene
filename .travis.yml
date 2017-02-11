@@ -5,6 +5,7 @@ os:
 
 compiler:
   - gcc
+  - clang
 
 language:
   - c
