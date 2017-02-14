@@ -111,7 +111,7 @@ graphene_approx_val (float a, float b)
 static inline float
 graphene_flerpf (float a, float b, double factor)
 {
-  return ((1.f - factor) * a) + (factor * b);
+  return (float) ((1.0 - factor) * (double) a) + (factor * (double) b);
 }
 
 static inline double
