@@ -44,7 +44,7 @@ build_script:
 
 # Copy license into install directory and create .zip file
 after_build:
-- copy COPYING graphene-shared-%pout%
+- copy LICENSE graphene-shared-%pout%
 - dir graphene-shared-%pout% /s /b
 - 7z a -tzip graphene-shared-%pout%.zip graphene-shared-%pout%
 
