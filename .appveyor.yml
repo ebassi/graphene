@@ -18,9 +18,9 @@ shallow_clone: true
 
 # Download Meson and Ninja, create install directory
 before_build:
-- mkdir build
+- mkdir _build
 - mkdir graphene-shared-%pout%
-- cd build
+- cd _build
 - curl -LsSO https://github.com/mesonbuild/meson/releases/download/0.38.0/meson-0.38.0.tar.gz
 - 7z x meson-0.38.0.tar.gz
 - move dist\meson-0.38.0.tar .
@@ -34,7 +34,7 @@ before_build:
 
 # Build and install
 build_script:
-- cd build
+- cd _build
 - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %PLATFORM%
 - C:\Python36\python.exe meson-0.38.0\meson.py .. . --backend=ninja --prefix=%APPVEYOR_BUILD_FOLDER%\graphene-shared-%pout%
 - ninja
