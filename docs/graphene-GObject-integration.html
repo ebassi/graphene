@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GObject integration: Graphene Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Versioning-information.html" title="Versioning information">
@@ -46,25 +46,15 @@ GObject properties and signals.</p>
 for the GType type system, you need to check if the <code class="literal">graphene-gobject-1.0</code>
 pkg-config file exists. In build systems using autotools, you can use
 the <code class="literal">PKG_CHECK_EXISTS</code> m4 macro, for instance:</p>
-<div class="informalexample">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1
-2
-3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function">PKG_CHECK_EXISTS</span><span class="symbol">([</span><span class="normal">graphene</span><span class="symbol">-</span><span class="normal">gobject</span><span class="symbol">-</span><span class="number">1.0</span><span class="symbol">],</span>
-<span class="normal">                 </span><span class="symbol">[</span><span class="normal">action</span><span class="symbol">-</span><span class="keyword">if</span><span class="symbol">-</span><span class="normal">found</span><span class="symbol">],</span>
-<span class="normal">                 </span><span class="symbol">[</span><span class="normal">action</span><span class="symbol">-</span><span class="keyword">if</span><span class="symbol">-</span><span class="normal">not</span><span class="symbol">-</span><span class="normal">found</span><span class="symbol">]</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+<div class="informalexample"><pre class="screen">
+  PKG_CHECK_EXISTS([graphene-gobject-1.0],
+                   [action-if-found],
+                   [action-if-not-found]
+</pre></div>
 <p></p>
 <p>All the types provided by Graphene are boxed types, which means you
-will have to use the <span class="type">GBoxed</span> API when dealing with <span class="type">GValue</span>, <span class="type">GParamSpec</span>,
-and signal marshallers. For instance, to install a property in a <span class="type">GObject</span>
+will have to use the <a href="https://developer.gnome.org/gobject/stable/gobject-Boxed-Types.html"><span class="type">GBoxed</span></a> API when dealing with <a href="https://developer.gnome.org/gobject/stable/gobject-Generic-values.html#GValue"><span class="type">GValue</span></a>, <a href="../gobject/gobject-GParamSpec.html#GParamSpec"><span class="type">GParamSpec</span></a>,
+and signal marshallers. For instance, to install a property in a <a href="https://developer.gnome.org/gobject/stable/gobject-The-Base-Object-Type.html#GObject-struct"><span class="type">GObject</span></a>
 class that uses <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a>, you can use:</p>
 <div class="informalexample">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
@@ -74,18 +64,18 @@ class that uses <a class="link" href="graphene-Rectangle.html#graphene-rect-t" t
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function">g_object_class_install_property</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object_class</span><span class="symbol">,</span><span class="normal"> PROP_BOUNDS</span><span class="symbol">,</span>
-<span class="normal">  </span><span class="function">g_param_spec_boxed</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"bounds"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Bounds"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Bounds of an object"</span><span class="symbol">,</span>
+        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="https://developer.gnome.org/gobject/stable/gobject-The-Base-Object-Type.html#g-object-class-install-property">g_object_class_install_property</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object_class</span><span class="symbol">,</span><span class="normal"> PROP_BOUNDS</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/gobject/stable/gobject-Standard-Parameter-and-Value-Types.html#g-param-spec-boxed">g_param_spec_boxed</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"bounds"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Bounds"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Bounds of an object"</span><span class="symbol">,</span>
 <span class="normal">                      GRAPHENE_TYPE_RECT</span><span class="symbol">,</span>
-<span class="normal">                      G_PARAM_READWRITE </span><span class="symbol">|</span><span class="normal"> G_PARAM_STATIC_STRINGS</span><span class="symbol">);</span></pre></td>
+<span class="normal">                      <a href="https://developer.gnome.org/gobject/stable/gobject-GParamSpec.html#G-PARAM-READWRITE:CAPS">G_PARAM_READWRITE</a> </span><span class="symbol">|</span><span class="normal"> <a href="../gobject/gobject-GParamSpec.html#G-PARAM-STATIC-STRINGS:CAPS">G_PARAM_STATIC_STRINGS</a></span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <p></p>
-<p>You'll then need to use <code class="function">g_value_set_boxed()</code> and <code class="function">g_value_get_boxed()</code>
-in order to access the <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> pointer from the <span class="type">GValue</span> data
+<p>You'll then need to use <a href="https://developer.gnome.org/gobject/stable/gobject-Standard-Parameter-and-Value-Types.html#g-value-set-boxed"><code class="function">g_value_set_boxed()</code></a> and <a href="../gobject/gobject-Standard-Parameter-and-Value-Types.html#g-value-get-boxed"><code class="function">g_value_get_boxed()</code></a>
+in order to access the <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> pointer from the <a href="https://developer.gnome.org/gobject/stable/gobject-Generic-values.html#GValue"><span class="type">GValue</span></a> data
 structure.</p>
 <p>Whereas for creating a new signal that has a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> parameter
 you can use:</p>
@@ -103,13 +93,13 @@ you can use:</p>
 8
 9</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="normal">signals</span><span class="symbol">[</span><span class="normal">HIT_TEST</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span>
-<span class="normal">  </span><span class="function">g_signal_new</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"hit-test"</span><span class="symbol">,</span>
-<span class="normal">                </span><span class="function">G_TYPE_FROM_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object_class</span><span class="symbol">),</span>
-<span class="normal">                G_SIGNAL_RUN_LAST</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/gobject/stable/gobject-Signals.html#g-signal-new">g_signal_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"hit-test"</span><span class="symbol">,</span>
+<span class="normal">                </span><span class="function"><a href="https://developer.gnome.org/gobject/stable/gobject-Type-Information.html#G-TYPE-FROM-CLASS:CAPS">G_TYPE_FROM_CLASS</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object_class</span><span class="symbol">),</span>
+<span class="normal">                <a href="https://developer.gnome.org/gobject/stable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">G_SIGNAL_RUN_LAST</a></span><span class="symbol">,</span>
 <span class="normal">                </span><span class="number">0</span><span class="symbol">,</span>
-<span class="normal">                g_signal_accumulator_true_handled</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span>
+<span class="normal">                <a href="https://developer.gnome.org/gobject/stable/gobject-Signals.html#g-signal-accumulator-true-handled">g_signal_accumulator_true_handled</a></span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/glib/stable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span>
 <span class="normal">                marshal_BOOLEAN__BOXED</span><span class="symbol">,</span>
-<span class="normal">                G_TYPE_BOOLEAN</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1</span><span class="symbol">,</span>
+<span class="normal">                <a href="https://developer.gnome.org/gobject/stable/gobject-Type-Information.html#G-TYPE-BOOLEAN:CAPS">G_TYPE_BOOLEAN</a></span><span class="symbol">,</span><span class="normal"> </span><span class="number">1</span><span class="symbol">,</span>
 <span class="normal">                GRAPHENE_TYPE_POINT</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>

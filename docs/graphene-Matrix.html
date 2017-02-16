@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Matrix: Graphene Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Vectors.html" title="Vectors">
@@ -33,7 +33,7 @@
 </tr></table></div>
 <div class="refsect1">
 <a name="graphene-Matrix.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -524,7 +524,7 @@
 </div>
 <div class="refsect1">
 <a name="graphene-Matrix.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -546,23 +546,12 @@
 representing 3D transformations.</p>
 <p>The matrix is treated as row-major, i.e. it has four vectors (x, y, z, and
 w) representing rows, and elements of each vector are a column:</p>
-<div class="informalexample">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1
-2
-3
-4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">|</span><span class="normal"> x </span><span class="symbol">|</span><span class="normal">    </span><span class="symbol">|</span><span class="normal"> x</span><span class="symbol">.</span><span class="usertype">x</span><span class="normal">   x</span><span class="symbol">.</span><span class="usertype">y</span><span class="normal">   x</span><span class="symbol">.</span><span class="usertype">z</span><span class="normal">   x</span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">|</span>
-<span class="symbol">|</span><span class="normal"> y </span><span class="symbol">|</span><span class="normal"> </span><span class="symbol">-\</span><span class="normal"> </span><span class="symbol">|</span><span class="normal"> y</span><span class="symbol">.</span><span class="usertype">x</span><span class="normal">   y</span><span class="symbol">.</span><span class="usertype">y</span><span class="normal">   y</span><span class="symbol">.</span><span class="usertype">z</span><span class="normal">   y</span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">|</span>
-<span class="symbol">|</span><span class="normal"> z </span><span class="symbol">|</span><span class="normal"> </span><span class="symbol">-/</span><span class="normal"> </span><span class="symbol">|</span><span class="normal"> z</span><span class="symbol">.</span><span class="usertype">x</span><span class="normal">   z</span><span class="symbol">.</span><span class="usertype">y</span><span class="normal">   z</span><span class="symbol">.</span><span class="usertype">z</span><span class="normal">   z</span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">|</span>
-<span class="symbol">|</span><span class="normal"> w </span><span class="symbol">|</span><span class="normal">    </span><span class="symbol">|</span><span class="normal"> w</span><span class="symbol">.</span><span class="usertype">x</span><span class="normal">   w</span><span class="symbol">.</span><span class="usertype">y</span><span class="normal">   w</span><span class="symbol">.</span><span class="usertype">z</span><span class="normal">   w</span><span class="symbol">.</span><span class="normal">w </span><span class="symbol">|</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+<div class="informalexample"><pre class="screen">
+  | x |    | x.x   x.y   x.z   x.w |
+  | y | -\ | y.x   y.y   y.z   y.w |
+  | z | -/ | z.x   z.y   z.z   z.w |
+  | w |    | w.x   w.y   w.z   w.w |
+</pre></div>
 <p></p>
 <p>It is possible to easily convert a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> to and from an array
 of floating point values that can be used with other libraries.</p>
@@ -593,7 +582,7 @@ graphene_matrix_free (<em class="parameter"><code><a class="link" href="graphene
 <p>Frees the resources allocated by <a class="link" href="graphene-Matrix.html#graphene-matrix-alloc" title="graphene_matrix_alloc ()"><code class="function">graphene_matrix_alloc()</code></a>.</p>
 <div class="refsect3">
 <a name="graphene-matrix-free.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -616,7 +605,7 @@ graphene_matrix_init_identity (<em class="parameter"><code><a class="link" href=
 <p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> with the identity matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-identity.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -646,7 +635,7 @@ graphene_matrix_init_from_float (<em class="parameter"><code><a class="link" hre
 point values.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-from-float.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -687,7 +676,7 @@ graphene_matrix_init_from_vec4 (<em class="parameter"><code><a class="link" href
 vectors.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-from-vec4.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -739,7 +728,7 @@ graphene_matrix_init_from_matrix (<em class="parameter"><code><a class="link" hr
 given matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-from-matrix.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -780,27 +769,17 @@ graphene_matrix_init_from_2d (<em class="parameter"><code><a class="link" href="
 <p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> from the values of an affine
 transformation matrix.</p>
 <p>The arguments map to the following matrix layout:</p>
-<div class="informalexample">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1
-2
-3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">|</span><span class="normal"> </span><span class="usertype">xx</span><span class="normal"> yx </span><span class="symbol">|</span><span class="normal">   </span><span class="symbol">|</span><span class="normal">  a  b  </span><span class="number">0</span><span class="normal"> </span><span class="symbol">|</span>
-<span class="symbol">|</span><span class="normal"> </span><span class="usertype">xy</span><span class="normal"> yy </span><span class="symbol">|</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">|</span><span class="normal">  c  d  </span><span class="number">0</span><span class="normal"> </span><span class="symbol">|</span>
-<span class="symbol">|</span><span class="normal"> </span><span class="usertype">x0</span><span class="normal"> y0 </span><span class="symbol">|</span><span class="normal">   </span><span class="symbol">|</span><span class="normal"> tx ty  </span><span class="number">1</span><span class="normal"> </span><span class="symbol">|</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+<div class="informalexample"><pre class="screen">
+  | xx yx |   |  a  b  0 |
+  | xy yy | = |  c  d  0 |
+  | x0 y0 |   | tx ty  1 |
+</pre></div>
 <p></p>
 <p>This function can be used to convert between a matrix type from
 other libraries and a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-from-2d.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -864,7 +843,7 @@ graphene_matrix_init_perspective (<em class="parameter"><code><a class="link" hr
 <p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> with a perspective projection.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-perspective.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -920,7 +899,7 @@ graphene_matrix_init_ortho (<em class="parameter"><code><a class="link" href="gr
 <p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> with an orthographic projection.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-ortho.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -989,7 +968,7 @@ of the <em class="parameter"><code>up</code></em>
  vector.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-look-at.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1042,7 +1021,7 @@ graphene_matrix_init_frustum (<em class="parameter"><code><a class="link" href="
 <p>See also: <a class="link" href="graphene-Frustum.html#graphene-frustum-init-from-matrix" title="graphene_frustum_init_from_matrix ()"><code class="function">graphene_frustum_init_from_matrix()</code></a></p>
 <div class="refsect3">
 <a name="graphene-matrix-init-frustum.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1105,7 +1084,7 @@ graphene_matrix_init_scale (<em class="parameter"><code><a class="link" href="gr
 <p>Initializes a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> with the given scaling factors.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-scale.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1152,7 +1131,7 @@ graphene_matrix_init_translate (<em class="parameter"><code><a class="link" href
 given coordinates.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-translate.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1193,7 +1172,7 @@ the axis represented by the <em class="parameter"><code>axis</code></em>
  vector.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-rotate.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1236,7 +1215,7 @@ graphene_matrix_init_skew (<em class="parameter"><code><a class="link" href="gra
 with the given factors.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-skew.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1276,7 +1255,7 @@ graphene_matrix_is_identity (<em class="parameter"><code>const <a class="link" h
 <p>Checks whether the given <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> is the identity matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-is-identity.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1304,7 +1283,7 @@ graphene_matrix_is_2d (<em class="parameter"><code>const <a class="link" href="g
 a 2D affine transformation matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-is-2d.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1332,7 +1311,7 @@ graphene_matrix_is_backface_visible (<em class="parameter"><code>const <a class=
 <p>Checks whether a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> has a visible back face.</p>
 <div class="refsect3">
 <a name="graphene-matrix-is-backface-visible.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1359,7 +1338,7 @@ graphene_matrix_is_singular (<em class="parameter"><code>const <a class="link" h
 <p>Checks whether a matrix is singular.</p>
 <div class="refsect3">
 <a name="graphene-matrix-is-singular.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1388,7 +1367,7 @@ graphene_matrix_to_float (<em class="parameter"><code>const <a class="link" href
 values.</p>
 <div class="refsect3">
 <a name="graphene-matrix-to-float.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1426,27 +1405,17 @@ graphene_matrix_to_2d (<em class="parameter"><code>const <a class="link" href="g
 <p>Converts a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> to an affine transformation
 matrix, if the given matrix is compatible.</p>
 <p>The returned values have the following layout:</p>
-<div class="informalexample">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1
-2
-3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">|</span><span class="normal"> </span><span class="usertype">xx</span><span class="normal"> yx </span><span class="symbol">|</span><span class="normal">   </span><span class="symbol">|</span><span class="normal">  a  b  </span><span class="number">0</span><span class="normal"> </span><span class="symbol">|</span>
-<span class="symbol">|</span><span class="normal"> </span><span class="usertype">xy</span><span class="normal"> yy </span><span class="symbol">|</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">|</span><span class="normal">  c  d  </span><span class="number">0</span><span class="normal"> </span><span class="symbol">|</span>
-<span class="symbol">|</span><span class="normal"> </span><span class="usertype">x0</span><span class="normal"> y0 </span><span class="symbol">|</span><span class="normal">   </span><span class="symbol">|</span><span class="normal"> tx ty  </span><span class="number">1</span><span class="normal"> </span><span class="symbol">|</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+<div class="informalexample"><pre class="screen">
+  | xx yx |   |  a  b  0 |
+  | xy yy | = |  c  d  0 |
+  | x0 y0 |   | tx ty  1 |
+</pre></div>
 <p></p>
 <p>This function can be used to convert between a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>
 and a matrix type from other libraries.</p>
 <div class="refsect3">
 <a name="graphene-matrix-to-2d.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1509,7 +1478,7 @@ graphene_matrix_get_row (<em class="parameter"><code>const <a class="link" href=
  inside a matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-get-row.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1549,7 +1518,7 @@ graphene_matrix_get_value (<em class="parameter"><code>const <a class="link" hre
  index.</p>
 <div class="refsect3">
 <a name="graphene-matrix-get-value.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1592,7 +1561,7 @@ graphene_matrix_multiply (<em class="parameter"><code>const <a class="link" href
 identity matrix; the product of this multiplication is (A * B).</p>
 <div class="refsect3">
 <a name="graphene-matrix-multiply.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1628,7 +1597,7 @@ graphene_matrix_determinant (<em class="parameter"><code>const <a class="link" h
 <p>Computes the determinant of the given matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-determinant.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1658,7 +1627,7 @@ graphene_matrix_transform_vec4 (<em class="parameter"><code>const <a class="link
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-vec4.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1696,7 +1665,7 @@ graphene_matrix_transform_vec3 (<em class="parameter"><code>const <a class="link
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-vec3.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1734,7 +1703,7 @@ graphene_matrix_transform_point (<em class="parameter"><code>const <a class="lin
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-point.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1775,7 +1744,7 @@ graphene_matrix_transform_point3d (<em class="parameter"><code>const <a class="l
 account the fourth row vector of the <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>.</p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-point3d.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1814,7 +1783,7 @@ graphene_matrix_transform_rect (<em class="parameter"><code>const <a class="link
 result is a coplanar quad.</p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-rect.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1854,7 +1823,7 @@ graphene_matrix_transform_bounds (<em class="parameter"><code>const <a class="li
 result is the bounding box containing the coplanar quad.</p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-bounds.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1894,7 +1863,7 @@ graphene_matrix_transform_box (<em class="parameter"><code>const <a class="link"
 result is the bounding box containing the transformed box.</p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-box.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1934,7 +1903,7 @@ graphene_matrix_transform_sphere (<em class="parameter"><code>const <a class="li
 result is the bounding sphere containing the transformed sphere.</p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-sphere.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1973,7 +1942,7 @@ graphene_matrix_transform_ray (<em class="parameter"><code>const <a class="link"
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-ray.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2012,7 +1981,7 @@ graphene_matrix_project_point (<em class="parameter"><code>const <a class="link"
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-project-point.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2052,7 +2021,7 @@ graphene_matrix_project_rect_bounds (<em class="parameter"><code>const <a class=
 fully the projected rectangle.</p>
 <div class="refsect3">
 <a name="graphene-matrix-project-rect-bounds.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2090,7 +2059,7 @@ graphene_matrix_project_rect (<em class="parameter"><code>const <a class="link" 
 <p>Projects a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the given matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-project-rect.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2131,7 +2100,7 @@ given matrix, within the given rectangular <em class="parameter"><code>bounds</c
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-untransform-point.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2181,7 +2150,7 @@ using the given matrix, within the given rectangular <em class="parameter"><code
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-untransform-bounds.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2229,7 +2198,7 @@ a <em class="parameter"><code>modelview</code></em>
  matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-unproject-point3d.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2274,7 +2243,7 @@ graphene_matrix_translate (<em class="parameter"><code><a class="link" href="gra
 of the given <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>.</p>
 <div class="refsect3">
 <a name="graphene-matrix-translate.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2310,7 +2279,7 @@ and <em class="parameter"><code>axis</code></em>
  vector.</p>
 <div class="refsect3">
 <a name="graphene-matrix-rotate.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2349,7 +2318,7 @@ the given <em class="parameter"><code>angle</code></em>
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-rotate-x.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2383,7 +2352,7 @@ the given <em class="parameter"><code>angle</code></em>
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-rotate-y.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2417,7 +2386,7 @@ the given <em class="parameter"><code>angle</code></em>
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-rotate-z.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2450,7 +2419,7 @@ graphene_matrix_rotate_quaternion (<em class="parameter"><code><a class="link" h
 <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a>.</p>
 <div class="refsect3">
 <a name="graphene-matrix-rotate-quaternion.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2483,7 +2452,7 @@ graphene_matrix_rotate_euler (<em class="parameter"><code><a class="link" href="
 <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a>.</p>
 <div class="refsect3">
 <a name="graphene-matrix-rotate-euler.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2518,7 +2487,7 @@ graphene_matrix_scale (<em class="parameter"><code><a class="link" href="graphen
 given factors.</p>
 <div class="refsect3">
 <a name="graphene-matrix-scale.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2560,7 +2529,7 @@ graphene_matrix_skew_xy (<em class="parameter"><code><a class="link" href="graph
  on the X and Y axis to the given matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-skew-xy.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2592,7 +2561,7 @@ graphene_matrix_skew_xz (<em class="parameter"><code><a class="link" href="graph
  on the X and Z axis to the given matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-skew-xz.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2624,7 +2593,7 @@ graphene_matrix_skew_yz (<em class="parameter"><code><a class="link" href="graph
  on the Y and Z axis to the given matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-skew-yz.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2655,7 +2624,7 @@ graphene_matrix_transpose (<em class="parameter"><code>const <a class="link" hre
 <p>Transposes the given matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-transpose.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2687,7 +2656,7 @@ graphene_matrix_inverse (<em class="parameter"><code>const <a class="link" href=
 <p>Inverts the given matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-inverse.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2725,7 +2694,7 @@ graphene_matrix_perspective (<em class="parameter"><code>const <a class="link" h
  to the matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-perspective.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2762,7 +2731,7 @@ graphene_matrix_normalize (<em class="parameter"><code>const <a class="link" hre
 <p>Normalizes the given <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>.</p>
 <div class="refsect3">
 <a name="graphene-matrix-normalize.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2793,7 +2762,7 @@ graphene_matrix_get_x_scale (<em class="parameter"><code>const <a class="link" h
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-get-x-scale.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2821,7 +2790,7 @@ graphene_matrix_get_y_scale (<em class="parameter"><code>const <a class="link" h
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-get-y-scale.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2849,7 +2818,7 @@ graphene_matrix_get_z_scale (<em class="parameter"><code>const <a class="link" h
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-get-z-scale.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2883,7 +2852,7 @@ then the interpolation cannot be performed, and this function
 will return an identity matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-interpolate.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -2924,7 +2893,7 @@ graphene_matrix_print (<em class="parameter"><code>const <a class="link" href="g
 <p>Prints the contents of a matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-print.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">

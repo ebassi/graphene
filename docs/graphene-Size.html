@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Size: Graphene Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Point3D.html" title="Point3D">
@@ -33,7 +33,7 @@
 </tr></table></div>
 <div class="refsect1">
 <a name="graphene-Size.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -113,7 +113,7 @@
 </div>
 <div class="refsect1">
 <a name="graphene-Size.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -146,7 +146,7 @@ by a <em class="parameter"><code>graphene_size_t.height</code></em>
 <a name="graphene-Size.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
 <a name="GRAPHENE-SIZE-INIT:CAPS"></a><h3>GRAPHENE_SIZE_INIT()</h3>
-<pre class="programlisting">#define GRAPHENE_SIZE_INIT(w,h)         { w, h }
+<pre class="programlisting">#define GRAPHENE_SIZE_INIT(_w,_h)       (graphene_size_t) { .width = (_w), .height = (_h) }
 </pre>
 <p>Initializes a <a class="link" href="graphene-Size.html#graphene-size-t" title="graphene_size_t"><span class="type">graphene_size_t</span></a> with the given sizes when
 declaring it, e.g.:</p>
@@ -164,7 +164,7 @@ declaring it, e.g.:</p>
 <p></p>
 <div class="refsect3">
 <a name="GRAPHENE-SIZE-INIT.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -172,12 +172,12 @@ declaring it, e.g.:</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="parameter_name"><p>w</p></td>
+<td class="parameter_name"><p>_w</p></td>
 <td class="parameter_description"><p>the width</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
-<td class="parameter_name"><p>h</p></td>
+<td class="parameter_name"><p>_h</p></td>
 <td class="parameter_description"><p>the height</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
@@ -209,7 +209,7 @@ graphene_size_free (<em class="parameter"><code><a class="link" href="graphene-S
 <p>Frees the resources allocated by <a class="link" href="graphene-Size.html#graphene-size-alloc" title="graphene_size_alloc ()"><code class="function">graphene_size_alloc()</code></a>.</p>
 <div class="refsect3">
 <a name="graphene-size-free.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -236,7 +236,7 @@ graphene_size_init (<em class="parameter"><code><a class="link" href="graphene-S
 .</p>
 <div class="refsect3">
 <a name="graphene-size-init.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -279,7 +279,7 @@ the given <em class="parameter"><code>src</code></em>
 .</p>
 <div class="refsect3">
 <a name="graphene-size-init-from-size.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -315,7 +315,7 @@ graphene_size_equal (<em class="parameter"><code>const <a class="link" href="gra
 <p>Checks whether the two give <a class="link" href="graphene-Size.html#graphene-size-t" title="graphene_size_t"><span class="type">graphene_size_t</span></a> are equal.</p>
 <div class="refsect3">
 <a name="graphene-size-equal.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -352,7 +352,7 @@ graphene_size_scale (<em class="parameter"><code>const <a class="link" href="gra
 .</p>
 <div class="refsect3">
 <a name="graphene-size-scale.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -392,7 +392,7 @@ interpolation <em class="parameter"><code>factor</code></em>
 .</p>
 <div class="refsect3">
 <a name="graphene-size-interpolate.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -459,7 +459,7 @@ equality checks and interpolations.</p>
 <p>A size.</p>
 <div class="refsect3">
 <a name="graphene-size-t.members"></a><h4>Members</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="300px" class="struct_members_name">
 <col class="struct_members_description">

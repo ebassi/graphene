@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Sphere: Graphene Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Box.html" title="Box">
@@ -33,7 +33,7 @@
 </tr></table></div>
 <div class="refsect1">
 <a name="graphene-Sphere.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -148,7 +148,7 @@
 </div>
 <div class="refsect1">
 <a name="graphene-Sphere.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -194,7 +194,7 @@ graphene_sphere_free (<em class="parameter"><code><a class="link" href="graphene
 <p>Frees the resources allocated by <a class="link" href="graphene-Sphere.html#graphene-sphere-alloc" title="graphene_sphere_alloc ()"><code class="function">graphene_sphere_alloc()</code></a>.</p>
 <div class="refsect3">
 <a name="graphene-sphere-free.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -221,7 +221,7 @@ graphene_sphere_init (<em class="parameter"><code><a class="link" href="graphene
 .</p>
 <div class="refsect3">
 <a name="graphene-sphere-init.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -235,7 +235,7 @@ graphene_sphere_init (<em class="parameter"><code><a class="link" href="graphene
 </tr>
 <tr>
 <td class="parameter_name"><p>center</p></td>
-<td class="parameter_description"><p> the coordinates of the center of the sphere, or <code class="literal">NULL</code>
+<td class="parameter_description"><p> the coordinates of the center of the sphere, or <a href="https://developer.gnome.org/glib/stable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
 for a center in (0, 0, 0). </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
@@ -269,7 +269,7 @@ of the 3D volume that encompasses all <em class="parameter"><code>points</code><
 .</p>
 <div class="refsect3">
 <a name="graphene-sphere-init-from-points.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -322,7 +322,7 @@ of the 3D volume that encompasses all <em class="parameter"><code>vectors</code>
 .</p>
 <div class="refsect3">
 <a name="graphene-sphere-init-from-vectors.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -369,7 +369,7 @@ graphene_sphere_get_center (<em class="parameter"><code>const <a class="link" hr
 <p>Retrieves the coordinates of the center of a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
 <div class="refsect3">
 <a name="graphene-sphere-get-center.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -400,7 +400,7 @@ graphene_sphere_get_radius (<em class="parameter"><code>const <a class="link" hr
 <p>Retrieves the radius of a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
 <div class="refsect3">
 <a name="graphene-sphere-get-radius.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -425,7 +425,7 @@ graphene_sphere_get_bounding_box (<em class="parameter"><code>const <a class="li
 given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
 <div class="refsect3">
 <a name="graphene-sphere-get-bounding-box.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -455,7 +455,7 @@ graphene_sphere_is_empty (<em class="parameter"><code>const <a class="link" href
 <p>Checks whether the sphere has a zero radius.</p>
 <div class="refsect3">
 <a name="graphene-sphere-is-empty.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -485,7 +485,7 @@ graphene_sphere_distance (<em class="parameter"><code>const <a class="link" href
 a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
 <div class="refsect3">
 <a name="graphene-sphere-distance.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -522,7 +522,7 @@ graphene_sphere_contains_point (<em class="parameter"><code>const <a class="link
 of a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>.</p>
 <div class="refsect3">
 <a name="graphene-sphere-contains-point.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -560,7 +560,7 @@ graphene_sphere_translate (<em class="parameter"><code>const <a class="link" hre
 coordinates as the delta of the translation.</p>
 <div class="refsect3">
 <a name="graphene-sphere-translate.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -596,7 +596,7 @@ graphene_sphere_equal (<em class="parameter"><code>const <a class="link" href="g
 <p>Checks whether two <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> are equal.</p>
 <div class="refsect3">
 <a name="graphene-sphere-equal.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
