@@ -3,6 +3,7 @@ subdir('xml')
 private_headers = [
   'config.h',
 
+  'graphene.h',
   'graphene-alloc-private.h',
   'graphene-bench-utils.h',
   'graphene-config.h',
