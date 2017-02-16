@@ -27,7 +27,7 @@ docpath = join_paths(graphene_datadir, 'gtk-doc', 'html')
 
 gnome.gtkdoc('graphene',
              main_xml: 'graphene-docs.xml',
-             src_dir: join_paths(meson.source_root(), 'src'),
+             src_dir: [ join_paths(meson.source_root(), 'src'), join_paths(meson.build_root(), 'src'), ],
              dependencies: graphene_dep,
              gobject_typesfile: 'graphene.types',
              scan_args: [
