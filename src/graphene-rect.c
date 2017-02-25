@@ -156,6 +156,22 @@ graphene_rect_init_from_rect (graphene_rect_t       *r,
   return r;
 }
 
+static bool
+rect_equal (const void *p1,
+            const void *p2)
+{
+  const graphene_rect_t *a = p1;
+  const graphene_rect_t *b = p2;
+
+  graphene_rect_t r_a, r_b;
+
+  graphene_rect_normalize_r (a, &r_a);
+  graphene_rect_normalize_r (b, &r_b);
+
+  return graphene_point_equal (&r_a.origin, &r_b.origin) &&
+         graphene_size_equal (&r_a.size, &r_b.size);
+}
+
 /**
  * graphene_rect_equal:
  * @a: a #graphene_rect_t
@@ -171,20 +187,7 @@ bool
 graphene_rect_equal (const graphene_rect_t *a,
                      const graphene_rect_t *b)
 {
-  if (a == b)
-    return true;
-
-  if (a == NULL || b == NULL)
-    return false;
-
-  graphene_rect_t r_a = *a;
-  graphene_rect_t r_b = *b;
-
-  graphene_rect_normalize_in_place (&r_a);
-  graphene_rect_normalize_in_place (&r_b);
-
-  return graphene_point_equal (&r_a.origin, &r_b.origin) &&
-         graphene_size_equal (&r_a.size, &r_b.size);
+  return graphene_pointer_equal (a, b, rect_equal);
 }
 
 /**

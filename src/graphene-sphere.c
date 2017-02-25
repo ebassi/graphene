@@ -347,6 +347,17 @@ graphene_sphere_translate (const graphene_sphere_t  *s,
   graphene_vec3_add (&s->center, &tmp, &res->center);
 }
 
+static bool
+sphere_equal (const void *p1,
+              const void *p2)
+{
+  const graphene_sphere_t *a = p1;
+  const graphene_sphere_t *b = p2;
+
+  return graphene_vec3_equal (&a->center, &b->center) &&
+         graphene_approx_val (a->radius, b->radius);
+}
+
 /**
  * graphene_sphere_equal:
  * @a: a #graphene_sphere_t
@@ -362,14 +373,5 @@ bool
 graphene_sphere_equal (const graphene_sphere_t *a,
                        const graphene_sphere_t *b)
 {
-  if (a == b)
-    return true;
-
-  if (a == NULL || b == NULL)
-    return false;
-
-  if (a->radius != b->radius)
-    return false;
-
-  return graphene_vec3_equal (&a->center, &b->center);
+  return graphene_pointer_equal (a, b, sphere_equal);
 }

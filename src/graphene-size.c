@@ -110,6 +110,17 @@ graphene_size_init_from_size (graphene_size_t       *s,
   return s;
 }
 
+static bool
+size_equal (const void *p1,
+            const void *p2)
+{
+  const graphene_size_t *a = p1;
+  const graphene_size_t *b = p2;
+
+  return graphene_approx_val (a->width, b->width) &&
+         graphene_approx_val (a->height, b->height);
+}
+
 /**
  * graphene_size_equal:
  * @a: a #graphene_size_t
@@ -125,14 +136,7 @@ bool
 graphene_size_equal (const graphene_size_t *a,
                      const graphene_size_t *b)
 {
-  if (a == b)
-    return true;
-
-  if (a == NULL || b == NULL)
-    return false;
-
-  return fabsf (a->width - b->width) < GRAPHENE_FLOAT_EPSILON &&
-         fabsf (a->height - b->height) < GRAPHENE_FLOAT_EPSILON;
+  return graphene_pointer_equal (a, b, size_equal);
 }
 
 /**

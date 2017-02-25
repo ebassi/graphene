@@ -433,6 +433,18 @@ graphene_triangle_contains_point (const graphene_triangle_t *t,
   return (u >= 0.f) && (v >= 0.f) && (u + v < 1.f);
 }
 
+static bool
+triangle_equal (const void *p1,
+                const void *p2)
+{
+  const graphene_triangle_t *a = p1;
+  const graphene_triangle_t *b = p2;
+
+  return graphene_vec3_equal (&a->a, &b->a) &&
+         graphene_vec3_equal (&a->b, &b->b) &&
+         graphene_vec3_equal (&a->c, &b->c);
+}
+
 /**
  * graphene_triangle_equal:
  * @a: a #graphene_triangle_t
@@ -448,13 +460,5 @@ bool
 graphene_triangle_equal (const graphene_triangle_t *a,
                          const graphene_triangle_t *b)
 {
-  if (a == b)
-    return true;
-
-  if (a == NULL || b == NULL)
-    return false;
-
-  return graphene_vec3_equal (&a->a, &b->a) &&
-         graphene_vec3_equal (&a->b, &b->b) &&
-         graphene_vec3_equal (&a->c, &b->c);
+  return graphene_pointer_equal (a, b, triangle_equal);
 }

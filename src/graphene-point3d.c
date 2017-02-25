@@ -177,6 +177,16 @@ graphene_point3d_to_vec3 (const graphene_point3d_t *p,
   v->value = graphene_simd4f_init (p->x, p->y, p->z, 0.f);
 }
 
+static bool
+point3d_equal (const void *p1,
+               const void *p2)
+{
+  const graphene_point3d_t *a = p1;
+  const graphene_point3d_t *b = p2;
+
+  return graphene_point3d_near (a, b, GRAPHENE_FLOAT_EPSILON);
+}
+
 /**
  * graphene_point3d_equal:
  * @a: a #graphene_point3d_t
@@ -192,13 +202,7 @@ bool
 graphene_point3d_equal (const graphene_point3d_t *a,
                         const graphene_point3d_t *b)
 {
-  if (a == b)
-    return true;
-
-  if (a == NULL || b == NULL)
-    return false;
-
-  return graphene_point3d_near (a, b, GRAPHENE_FLOAT_EPSILON);
+  return graphene_pointer_equal (a, b, point3d_equal);
 }
 
 /**

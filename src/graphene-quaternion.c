@@ -612,6 +612,19 @@ graphene_quaternion_init_from_euler (graphene_quaternion_t  *q,
   return q;
 }
 
+static bool
+quaternion_equal (const void *p1,
+                  const void *p2)
+{
+  const graphene_quaternion_t *a = p1;
+  const graphene_quaternion_t *b = p2;
+
+  return fabsf (a->x - b->x) < 0.00001 &&
+         fabsf (a->y - b->y) < 0.00001 &&
+         fabsf (a->z - b->z) < 0.00001 &&
+         fabsf (a->w - b->w) < 0.00001;
+}
+
 /**
  * graphene_quaternion_equal:
  * @a: a #graphene_quaternion_t
@@ -627,16 +640,7 @@ bool
 graphene_quaternion_equal (const graphene_quaternion_t *a,
                            const graphene_quaternion_t *b)
 {
-  if (a == b)
-    return true;
-
-  if (a == NULL || b == NULL)
-    return false;
-
-  return fabsf (a->x - b->x) < 0.00001 &&
-         fabsf (a->y - b->y) < 0.00001 &&
-         fabsf (a->z - b->z) < 0.00001 &&
-         fabsf (a->w - b->w) < 0.00001;
+  return graphene_pointer_equal (a, b, quaternion_equal);
 }
 
 /**

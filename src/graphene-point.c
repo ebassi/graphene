@@ -158,6 +158,16 @@ graphene_point_init_from_vec2 (graphene_point_t      *p,
   return p;
 }
 
+static bool
+point_equal (const void *p1,
+             const void *p2)
+{
+  const graphene_point_t *a = p1;
+  const graphene_point_t *b = p2;
+
+  return graphene_point_near (a, b, GRAPHENE_FLOAT_EPSILON);
+}
+
 /**
  * graphene_point_equal:
  * @a: a #graphene_point_t
@@ -178,13 +188,7 @@ bool
 graphene_point_equal (const graphene_point_t *a,
                       const graphene_point_t *b)
 {
-  if (a == b)
-    return true;
-
-  if (a == NULL || b == NULL)
-    return false;
-
-  return graphene_point_near (a, b, GRAPHENE_FLOAT_EPSILON);
+  return graphene_pointer_equal (a, b, point_equal);
 }
 
 /**

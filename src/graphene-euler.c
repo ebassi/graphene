@@ -441,6 +441,16 @@ graphene_euler_init_from_euler (graphene_euler_t       *e,
   return e;
 }
 
+static bool
+euler_equal (const void *p1,
+             const void *p2)
+{
+  const graphene_euler_t *a = p1;
+  const graphene_euler_t *b = p2;
+
+  return graphene_vec3_equal (&a->angles, &b->angles) && a->order == b->order;
+}
+
 /**
  * graphene_euler_equal:
  * @a: a #graphene_euler_t
@@ -456,13 +466,7 @@ bool
 graphene_euler_equal (const graphene_euler_t *a,
                       const graphene_euler_t *b)
 {
-  if (a == b)
-    return true;
-
-  if (a == NULL || b == NULL)
-    return false;
-
-  return graphene_vec3_equal (&a->angles, &b->angles) && a->order == b->order;
+  return graphene_pointer_equal (a, b, euler_equal);
 }
 
 /**

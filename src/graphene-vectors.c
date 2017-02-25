@@ -408,6 +408,19 @@ graphene_vec2_negate (const graphene_vec2_t *v,
   res->value = graphene_simd4f_neg (v->value);
 }
 
+static bool
+vec2_equal (const void *p1,
+            const void *p2)
+{
+  const graphene_vec2_t *v1 = p1;
+  const graphene_vec2_t *v2 = p2;
+
+  if (graphene_simd4f_cmp_eq (v1->value, v2->value))
+    return true;
+
+  return graphene_vec2_near (v1, v2, GRAPHENE_FLOAT_EPSILON);
+}
+
 /**
  * graphene_vec2_equal:
  * @v1: a #graphene_vec2_t
@@ -423,16 +436,7 @@ bool
 graphene_vec2_equal (const graphene_vec2_t *v1,
                      const graphene_vec2_t *v2)
 {
-  if (v1 == v2)
-    return true;
-
-  if (v1 == NULL || v2 == NULL)
-    return false;
-
-  if (graphene_simd4f_cmp_eq (v1->value, v2->value))
-    return true;
-
-  return graphene_vec2_near (v1, v2, GRAPHENE_FLOAT_EPSILON);
+  return graphene_pointer_equal (v1, v2, vec2_equal);
 }
 
 /**
@@ -453,16 +457,8 @@ graphene_vec2_near (const graphene_vec2_t *v1,
                     const graphene_vec2_t *v2,
                     float                  epsilon)
 {
+  graphene_simd4f_t d = graphene_simd4f_sub (v1->value, v2->value);
   float epsilon_sq = epsilon * epsilon;
-  graphene_simd4f_t d;
-
-  if (v1 == v2)
-    return true;
-
-  if (v1 == NULL || v2 == NULL)
-    return false;
-
-  d = graphene_simd4f_sub (v1->value, v2->value);
 
   return graphene_simd4f_get_x (graphene_simd4f_dot2 (d, d)) < epsilon_sq;
 }
@@ -1089,6 +1085,19 @@ graphene_vec3_negate (const graphene_vec3_t *v,
   res->value = graphene_simd4f_neg (v->value);
 }
 
+static bool
+vec3_equal (const void *p1,
+            const void *p2)
+{
+  const graphene_vec3_t *v1 = p1;
+  const graphene_vec3_t *v2 = p2;
+
+  if (graphene_simd4f_cmp_eq (v1->value, v2->value))
+    return true;
+
+  return graphene_vec3_near (v1, v2, GRAPHENE_FLOAT_EPSILON);
+}
+
 /**
  * graphene_vec3_equal:
  * @v1: a #graphene_vec3_t
@@ -1104,16 +1113,7 @@ bool
 graphene_vec3_equal (const graphene_vec3_t *v1,
                      const graphene_vec3_t *v2)
 {
-  if (v1 == v2)
-    return true;
-
-  if (v1 == NULL || v2 == NULL)
-    return false;
-
-  if (graphene_simd4f_cmp_eq (v1->value, v2->value))
-    return true;
-
-  return graphene_vec3_near (v1, v2, GRAPHENE_FLOAT_EPSILON);
+  return graphene_pointer_equal (v1, v2, vec3_equal);
 }
 
 /**
@@ -1134,16 +1134,8 @@ graphene_vec3_near (const graphene_vec3_t *v1,
                     const graphene_vec3_t *v2,
                     float                  epsilon)
 {
+  graphene_simd4f_t d = graphene_simd4f_sub (v1->value, v2->value);
   float epsilon_sq = epsilon * epsilon;
-  graphene_simd4f_t d;
-
-  if (v1 == v2)
-    return true;
-
-  if (v1 == NULL || v2 == NULL)
-    return false;
-
-  d = graphene_simd4f_sub (v1->value, v2->value);
 
   return graphene_simd4f_dot3_scalar (d, d) < epsilon_sq;
 }
@@ -1788,6 +1780,19 @@ graphene_vec4_negate (const graphene_vec4_t *v,
   res->value = graphene_simd4f_neg (v->value);
 }
 
+static bool
+vec4_equal (const void *p1,
+            const void *p2)
+{
+  const graphene_vec4_t *v1 = p1;
+  const graphene_vec4_t *v2 = p2;
+
+  if (graphene_simd4f_cmp_eq (v1->value, v2->value))
+    return true;
+
+  return graphene_vec4_near (v1, v2, GRAPHENE_FLOAT_EPSILON);
+}
+
 /**
  * graphene_vec4_equal:
  * @v1: a #graphene_vec4_t
@@ -1803,16 +1808,7 @@ bool
 graphene_vec4_equal (const graphene_vec4_t *v1,
                      const graphene_vec4_t *v2)
 {
-  if (v1 == v2)
-    return true;
-
-  if (v1 == NULL || v2 == NULL)
-    return false;
-
-  if (graphene_simd4f_cmp_eq (v1->value, v2->value))
-    return true;
-
-  return graphene_vec4_near (v1, v2, GRAPHENE_FLOAT_EPSILON);
+  return graphene_pointer_equal (v1, v2, vec4_equal);
 }
 
 /**
@@ -1833,16 +1829,8 @@ graphene_vec4_near (const graphene_vec4_t *v1,
                     const graphene_vec4_t *v2,
                     float                  epsilon)
 {
+  graphene_simd4f_t d = graphene_simd4f_sub (v1->value, v2->value);
   float epsilon_sq = epsilon * epsilon;
-  graphene_simd4f_t d;
-
-  if (v1 == v2)
-    return true;
-
-  if (v1 == NULL || v2 == NULL)
-    return false;
-
-  d = graphene_simd4f_sub (v1->value, v2->value);
 
   return graphene_simd4f_get_x (graphene_simd4f_dot4 (d, d)) < epsilon_sq;
 }

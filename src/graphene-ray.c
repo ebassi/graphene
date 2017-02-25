@@ -292,6 +292,17 @@ graphene_ray_get_distance_to_plane (const graphene_ray_t   *r,
   return INFINITY;
 }
 
+static bool
+ray_equal (const void *p1,
+           const void *p2)
+{
+  const graphene_ray_t *a = p1;
+  const graphene_ray_t *b = p2;
+
+  return graphene_vec3_equal (&a->origin, &b->origin) &&
+         graphene_vec3_equal (&a->direction, &b->direction);
+}
+
 /**
  * graphene_ray_equal:
  * @a: a #graphene_ray_t
@@ -307,14 +318,7 @@ bool
 graphene_ray_equal (const graphene_ray_t *a,
                     const graphene_ray_t *b)
 {
-  if (a == b)
-    return true;
-
-  if (a == NULL || b == NULL)
-    return false;
-
-  return graphene_vec3_equal (&a->origin, &b->origin) &&
-         graphene_vec3_equal (&a->direction, &b->direction);
+  return graphene_pointer_equal (a, b, ray_equal);
 }
 
 /**

@@ -578,6 +578,17 @@ graphene_box_contains_box (const graphene_box_t *a,
   return false;
 }
 
+static bool
+box_equal (const void *p1,
+           const void *p2)
+{
+  const graphene_box_t *a = p1;
+  const graphene_box_t *b = p2;
+
+  return graphene_vec3_equal (&a->min, &b->min) &&
+         graphene_vec3_equal (&a->max, &b->max);
+}
+
 /**
  * graphene_box_equal:
  * @a: a #graphene_box_t
@@ -593,14 +604,7 @@ bool
 graphene_box_equal (const graphene_box_t *a,
                     const graphene_box_t *b)
 {
-  if (a == b)
-    return true;
-
-  if (a == NULL || b == NULL)
-    return false;
-
-  return graphene_vec3_equal (&a->min, &b->min) &&
-         graphene_vec3_equal (&a->max, &b->max);
+  return graphene_pointer_equal (a, b, box_equal);
 }
 
 /**

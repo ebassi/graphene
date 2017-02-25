@@ -309,10 +309,21 @@ graphene_plane_get_constant (const graphene_plane_t *p)
   return p->constant;
 }
 
+static bool
+plane_equal (const void *p1,
+             const void *p2)
+{
+  const graphene_plane_t *a = p1;
+  const graphene_plane_t *b = p2;
+
+  return graphene_vec3_equal (&a->normal, &b->normal) &&
+         graphene_approx_val (a->constant, b->constant);
+}
+
 /**
  * graphene_plane_equal:
- * @p1: a #graphene_plane_t
- * @p2: a #graphene_plane_t
+ * @a: a #graphene_plane_t
+ * @b: a #graphene_plane_t
  *
  * Checks whether the two given #graphene_plane_t are equal.
  *
@@ -321,15 +332,8 @@ graphene_plane_get_constant (const graphene_plane_t *p)
  * Since: 1.2
  */
 bool
-graphene_plane_equal (const graphene_plane_t *p1,
-                      const graphene_plane_t *p2)
+graphene_plane_equal (const graphene_plane_t *a,
+                      const graphene_plane_t *b)
 {
-  if (p1 == p2)
-    return true;
-
-  if (p1 == NULL || p2 == NULL)
-    return false;
-
-  return graphene_vec3_equal (&p1->normal, &p2->normal) &&
-         fabsf (p1->constant- p2->constant) < GRAPHENE_FLOAT_EPSILON;
+  return graphene_pointer_equal (a, b, plane_equal);
 }
