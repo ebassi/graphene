@@ -429,29 +429,25 @@ graphene_quaternion_to_radians (const graphene_quaternion_t *q,
                                 float                       *rad_z)
 {
   graphene_vec4_t v;
-  graphene_vec4_t sq;
+  graphene_vec4_t sqv;
 
   graphene_quaternion_to_vec4 (q, &v);
-  graphene_vec4_multiply (&v, &v, &sq);
+  graphene_vec4_multiply (&v, &v, &sqv);
 
-  float qx = graphene_vec4_get_x (&v);
-  float qy = graphene_vec4_get_y (&v);
-  float qz = graphene_vec4_get_z (&v);
-  float qw = graphene_vec4_get_w (&v);
+  float qa[4];
+  graphene_vec4_to_float (&v, qa);
 
-  float sqx = graphene_vec4_get_x (&sq);
-  float sqy = graphene_vec4_get_y (&sq);
-  float sqz = graphene_vec4_get_z (&sq);
-  float sqw = graphene_vec4_get_w (&sq);
+  float sqa[4];
+  graphene_vec4_to_float (&sqv, sqa);
 
   if (rad_x != NULL)
-    *rad_x = atan2f (2 * (qx * qw - qy * qz), (sqw - sqx - sqy + sqz));
+    *rad_x = atan2f (2 * (qa[0] * qa[3] - qa[1] * qa[2]), (sqa[3] - sqa[0] - sqa[1] + sqa[2]));
 
   if (rad_y != NULL)
-    *rad_y = asinf (CLAMP (2 * ( qx * qz + qy * qw), -1, 1));
+    *rad_y = asinf (CLAMP (2 * (qa[0] * qa[2] + qa[1] * qa[3]), -1, 1));
 
   if (rad_z != NULL)
-    *rad_z = atan2f (2 * (qz * qw - qx * qy), (sqw + sqx - sqy - sqz));
+    *rad_z = atan2f (2 * (qa[2] * qa[3] - qa[0] * qa[1]), (sqa[3] + sqa[0] - sqa[1] - sqa[2]));
 }
 
 /**
