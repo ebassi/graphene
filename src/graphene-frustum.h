@@ -84,6 +84,10 @@ GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_frustum_get_planes             (const graphene_frustum_t *f,
                                                                  graphene_plane_t          planes[]);
 
+GRAPHENE_AVAILABLE_IN_1_6
+bool                    graphene_frustum_equal                  (const graphene_frustum_t *a,
+                                                                 const graphene_frustum_t *b);
+
 GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_FRUSTUM_H__ */

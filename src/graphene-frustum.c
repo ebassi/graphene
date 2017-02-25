@@ -316,3 +316,36 @@ graphene_frustum_intersects_box (const graphene_frustum_t *f,
 
   return true;
 }
+
+static bool
+frustum_equal (const void *p1,
+               const void *p2)
+{
+  const graphene_frustum_t *a = p1;
+  const graphene_frustum_t *b = p2;
+
+  return graphene_plane_equal (&a->planes[0], &b->planes[0]) &&
+         graphene_plane_equal (&a->planes[1], &b->planes[1]) &&
+         graphene_plane_equal (&a->planes[2], &b->planes[2]) &&
+         graphene_plane_equal (&a->planes[3], &b->planes[3]) &&
+         graphene_plane_equal (&a->planes[4], &b->planes[4]) &&
+         graphene_plane_equal (&a->planes[5], &b->planes[5]);
+}
+
+/**
+ * graphene_frustum_equal:
+ * @a: a #graphene_frustum_t
+ * @b: a #graphene_frustum_t
+ *
+ * Checks whether the two given #graphene_frustum_t are equal.
+ *
+ * Returns: `true` if the given frustums are equal
+ *
+ * Since: 1.6
+ */
+bool
+graphene_frustum_equal (const graphene_frustum_t *a,
+                        const graphene_frustum_t *b)
+{
+  return graphene_pointer_equal (a, b, frustum_equal);
+}
