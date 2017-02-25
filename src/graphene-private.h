@@ -158,4 +158,20 @@ graphene_sincos (float angle, float *sin_out, float *cos_out)
 #endif /* HAVE_SINCOSF */
 }
 
+typedef bool (* graphene_compare_func_t) (const void *p1, const void *p2);
+
+static inline bool
+graphene_pointer_equal (const void *p1,
+                        const void *p2,
+                        graphene_compare_func_t func)
+{
+  if (p1 == p2)
+    return true;
+
+  if (p1 == NULL || p2 == NULL)
+    return false;
+
+  return func (p1, p2);
+}
+
 #endif /* __GRAPHENE_PRIVATE_H__ */
