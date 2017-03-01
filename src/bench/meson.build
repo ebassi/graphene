@@ -12,7 +12,6 @@ graphene_bench = static_library('graphene-bench', graphene_bench_sources,
                                 dependencies: [ mathlib, graphene_dep ])
 graphene_bench_dep = declare_dependency(link_with: [ graphene_bench ])
 
-# XXX: Would be nicer if we could do: have_FOO = 'FOO' in ARRAY
 have_sse = graphene_simd.contains('sse2')
 have_gcc = graphene_simd.contains('gcc')
 have_neon = graphene_simd.contains('neon')
