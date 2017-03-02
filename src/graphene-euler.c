@@ -49,7 +49,7 @@
 #include "graphene-quaternion.h"
 #include "graphene-vectors-private.h"
 
-#define EULER_DEFAULT_ORDER     GRAPHENE_EULER_ORDER_XYZ
+#define EULER_DEFAULT_ORDER GRAPHENE_EULER_ORDER_XYZ
 
 /**
  * graphene_euler_alloc: (constructor)
@@ -339,7 +339,7 @@ graphene_euler_init_from_quaternion (graphene_euler_t            *e,
     {
     case GRAPHENE_EULER_ORDER_XYZ:
       x = atan2f (2.f * (q->x * q->w - q->y * q->z), (sqw - sqx - sqy + sqz));
-      y = asinf (CLAMP (2.f * (q->x * q->z + q->y * q->w ), -1.f, 1.f));
+      y = asinf (CLAMP (2.f * (q->x * q->z + q->y * q->w), -1.f, 1.f));
       z = atan2f (2.f * (q->z * q->w - q->x * q->y), (sqw + sqx - sqy - sqz));
       break;
 
@@ -364,7 +364,7 @@ graphene_euler_init_from_quaternion (graphene_euler_t            *e,
     case GRAPHENE_EULER_ORDER_YZX:
       x = atan2f (2.f * (q->x * q->w - q->z * q->y), (sqw - sqx + sqy - sqz));
       y = atan2f (2.f * (q->y * q->w - q->x * q->z), (sqw + sqx - sqy - sqz));
-      z = asinf (CLAMP (2.f * (q->x * q->y + q->z * q->w ), -1.f, 1.f));
+      z = asinf (CLAMP (2.f * (q->x * q->y + q->z * q->w), -1.f, 1.f));
       break;
 
     case GRAPHENE_EULER_ORDER_XZY:

@@ -246,8 +246,8 @@ graphene_rect_normalize_r (const graphene_rect_t *r,
  * Since: 1.0
  */
 void
-graphene_rect_get_center (const graphene_rect_t  *r,
-                          graphene_point_t       *p)
+graphene_rect_get_center (const graphene_rect_t *r,
+                          graphene_point_t      *p)
 {
   graphene_rect_t rr;
 
@@ -332,8 +332,8 @@ graphene_rect_get_bottom_left (const graphene_rect_t *r,
  * Since: 1.0
  */
 void
-graphene_rect_get_bottom_right (const graphene_rect_t  *r,
-                                graphene_point_t       *p)
+graphene_rect_get_bottom_right (const graphene_rect_t *r,
+                                graphene_point_t      *p)
 {
   graphene_rect_t rr;
 
@@ -369,17 +369,17 @@ graphene_rect_get_vertices (const graphene_rect_t *r,
   graphene_vec2_init (&vertices[3], rr.origin.x, rr.origin.y + rr.size.height);
 }
 
-#define GRAPHENE_RECT_GET(arg,part,field) \
-float \
-graphene_rect_get_##field (const graphene_rect_t *arg) \
-{ \
-  graphene_rect_t rr; \
+#define GRAPHENE_RECT_GET(arg, part, field) \
+  float \
+  graphene_rect_get_ ## field (const graphene_rect_t * arg) \
+  { \
+    graphene_rect_t rr; \
 \
-  rr = *arg; \
-  graphene_rect_normalize_in_place (&rr); \
+    rr = *arg; \
+    graphene_rect_normalize_in_place (&rr); \
 \
-  return rr.part.field; \
-}
+    return rr.part.field; \
+  }
 
 /**
  * graphene_rect_get_x:

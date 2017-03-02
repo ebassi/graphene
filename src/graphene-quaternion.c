@@ -283,6 +283,7 @@ graphene_quaternion_slerp (const graphene_quaternion_t *a,
   graphene_simd4f_t v_b = graphene_simd4f_init (b->x, b->y, b->z, b->w);
 
   float dot = CLAMP (graphene_simd4f_get_x (graphene_simd4f_dot4 (v_a, v_b)), -1.f, 1.f);
+
   if (graphene_approx_val (dot, 1.f))
     {
       *res = *a;
@@ -515,7 +516,7 @@ graphene_quaternion_to_angle_vec3 (const graphene_quaternion_t *q,
       float sin_a = sqrtf (1.f - cos_a * cos_a);
 
       if (fabsf (sin_a) < 0.00005)
-       sin_a = 1.f;
+        sin_a = 1.f;
 
       graphene_vec3_init (axis, q_n.x / sin_a, q_n.y / sin_a, q_n.z / sin_a);
     }

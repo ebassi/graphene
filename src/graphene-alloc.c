@@ -34,10 +34,10 @@
 #endif
 
 #ifdef HAVE__ALIGNED_MALLOC
-  /* _aligned_malloc() takes parameters of aligned_malloc() in reverse order */
-# define aligned_alloc(alignment,size) _aligned_malloc (size, alignment)
+/* _aligned_malloc() takes parameters of aligned_malloc() in reverse order */
+# define aligned_alloc(alignment, size) _aligned_malloc (size, alignment)
 
-  /* _aligned_malloc()'ed memory must be freed by _align_free() on MSVC */
+/* _aligned_malloc()'ed memory must be freed by _align_free() on MSVC */
 # define aligned_free(x) _aligned_free (x)
 #else
 # define aligned_free(x) free (x)
@@ -97,7 +97,7 @@ graphene_aligned_alloc (size_t size,
 
 #if defined(HAVE_POSIX_MEMALIGN)
   errno = posix_memalign (&res, alignment, real_size);
-#elif defined(HAVE_ALIGNED_ALLOC) || defined (HAVE__ALIGNED_MALLOC)
+#elif defined(HAVE_ALIGNED_ALLOC) || defined(HAVE__ALIGNED_MALLOC)
   /* real_size must be a multiple of alignment */
   if (real_size % alignment != 0)
     {

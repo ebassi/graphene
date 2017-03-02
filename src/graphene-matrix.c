@@ -1654,6 +1654,7 @@ graphene_matrix_normalize (const graphene_matrix_t *m,
 {
 
   float ww = graphene_simd4f_get_w (m->value.w);
+
   if (graphene_approx_val (ww, 0.f))
     return;
 
@@ -1735,14 +1736,14 @@ graphene_matrix_get_z_scale (const graphene_matrix_t *m)
  * http://tog.acm.org/resources/GraphicsGems/gemsii/unmatrix.c
  */
 
-#define XY_SHEAR        0
-#define XZ_SHEAR        1
-#define YZ_SHEAR        2
+#define XY_SHEAR 0
+#define XZ_SHEAR 1
+#define YZ_SHEAR 2
 
-#define M_11    0
-#define M_12    1
-#define M_21    2
-#define M_22    3
+#define M_11 0
+#define M_12 1
+#define M_21 2
+#define M_22 3
 
 static bool
 matrix_decompose_2d (const graphene_matrix_t *m,
@@ -1989,7 +1990,7 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
         return;
 
       /* Flip the scaling factor and angle so they are consistent */
-      if ((scale_a.x < 0 && scale_b.y < 0) || (scale_a.y < 0 && scale_b.x < 0 ))
+      if ((scale_a.x < 0 && scale_b.y < 0) || (scale_a.y < 0 && scale_b.x < 0))
         {
           scale_a.x = -scale_a.x;
           scale_a.y = -scale_a.y;

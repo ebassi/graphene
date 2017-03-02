@@ -92,53 +92,53 @@
 
 #include "graphene-gobject.h"
 
-#define GRAPHENE_ENUM_VALUE(EnumValue,EnumNick) { EnumValue, #EnumValue, EnumNick },
+#define GRAPHENE_ENUM_VALUE(EnumValue, EnumNick) { EnumValue, #EnumValue, EnumNick },
 
-#define GRAPHENE_DEFINE_ENUM_TYPE(TypeName,type_name,values) \
-GType \
-type_name ## _get_type (void) \
-{ \
-  static volatile gsize graphene_define_id__volatile = 0; \
-  if (g_once_init_enter (&graphene_define_id__volatile)) \
-    { \
-      static const GEnumValue v[] = { \
-        values \
-        { 0, NULL, NULL }, \
-      }; \
-      GType graphene_define_id = \
-        g_enum_register_static (g_intern_static_string (#TypeName), v); \
-      g_once_init_leave (&graphene_define_id__volatile, graphene_define_id); \
-    } \
-  return graphene_define_id__volatile; \
-}
+#define GRAPHENE_DEFINE_ENUM_TYPE(TypeName, type_name, values) \
+  GType \
+  type_name ## _get_type (void) \
+  { \
+    static volatile gsize graphene_define_id__volatile = 0; \
+    if (g_once_init_enter (&graphene_define_id__volatile)) \
+      { \
+        static const GEnumValue v[] = { \
+          values \
+          { 0, NULL, NULL }, \
+        }; \
+        GType graphene_define_id = \
+          g_enum_register_static (g_intern_static_string (#TypeName), v); \
+        g_once_init_leave (&graphene_define_id__volatile, graphene_define_id); \
+      } \
+    return graphene_define_id__volatile; \
+  }
 
-#define GRAPHENE_DEFINE_BOXED_TYPE(TypeName,type_name) \
-static type_name ## _t * \
-type_name ## _copy_internal (type_name ## _t *v) \
-{ \
-  type_name ## _t *res = NULL; \
-  if (G_LIKELY (v != NULL)) \
-    { \
-      res = type_name ## _alloc (); \
-      *res = *v; \
-    } \
-  return res; \
-} \
+#define GRAPHENE_DEFINE_BOXED_TYPE(TypeName, type_name) \
+  static type_name ## _t * \
+  type_name ## _copy_internal (type_name ## _t * v) \
+  { \
+    type_name ## _t * res = NULL; \
+    if (G_LIKELY (v != NULL)) \
+      { \
+        res = type_name ## _alloc (); \
+        *res = *v; \
+      } \
+    return res; \
+  } \
 \
-GType \
-type_name ## _get_type (void) \
-{ \
-  static volatile gsize graphene_define_id__volatile = 0; \
-  if (g_once_init_enter (&graphene_define_id__volatile)) \
-    { \
-      GType graphene_define_id = \
-        g_boxed_type_register_static (g_intern_static_string (#TypeName), \
-                                      (GBoxedCopyFunc) type_name ## _copy_internal, \
-                                      (GBoxedFreeFunc) type_name ## _free); \
-      g_once_init_leave (&graphene_define_id__volatile, graphene_define_id); \
-    } \
-  return graphene_define_id__volatile; \
-}
+  GType \
+    type_name ## _get_type (void) \
+  { \
+    static volatile gsize graphene_define_id__volatile = 0; \
+    if (g_once_init_enter (&graphene_define_id__volatile)) \
+      { \
+        GType graphene_define_id = \
+          g_boxed_type_register_static (g_intern_static_string (#TypeName), \
+                                        (GBoxedCopyFunc) type_name ## _copy_internal, \
+                                        (GBoxedFreeFunc) type_name ## _free); \
+        g_once_init_leave (&graphene_define_id__volatile, graphene_define_id); \
+      } \
+    return graphene_define_id__volatile; \
+  }
 
 GRAPHENE_DEFINE_BOXED_TYPE (GraphenePoint, graphene_point)
 

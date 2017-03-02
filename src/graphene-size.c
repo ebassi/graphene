@@ -73,7 +73,7 @@ graphene_size_free (graphene_size_t *s)
  * @height: the height
  *
  * Initializes a #graphene_size_t using the given @width and @height.
- 
+ *
  * Returns: (transfer none): the initialized #graphene_size_t
  *
  * Since: 1.0
@@ -96,7 +96,7 @@ graphene_size_init (graphene_size_t *s,
  *
  * Initializes a #graphene_size_t using the width and height of
  * the given @src.
- 
+ *
  * Returns: (transfer none): the initialized #graphene_size_t
  *
  * Since: 1.0

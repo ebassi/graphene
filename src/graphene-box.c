@@ -167,9 +167,9 @@ graphene_box_init_from_points (graphene_box_t           *box,
  * Since: 1.2
  */
 graphene_box_t *
-graphene_box_init_from_vectors (graphene_box_t         *box,
-                                unsigned int            n_vectors,
-                                const graphene_vec3_t  *vectors)
+graphene_box_init_from_vectors (graphene_box_t        *box,
+                                unsigned int           n_vectors,
+                                const graphene_vec3_t *vectors)
 {
   graphene_box_init_from_box (box, graphene_box_empty ());
 
@@ -685,9 +685,10 @@ init_static_box (void)
 #elif HAVE_INIT_ONCE
 static INIT_ONCE static_box_once = INIT_ONCE_STATIC_INIT;
 
-BOOL CALLBACK InitBoxFunc (PINIT_ONCE InitOnce,
-                           PVOID param,
-                           PVOID *ctx)
+BOOL CALLBACK
+InitBoxFunc (PINIT_ONCE InitOnce,
+             PVOID      param,
+             PVOID     *ctx)
 {
   init_static_box_once ();
   return TRUE;
@@ -700,6 +701,7 @@ init_static_box (void)
                                       InitBoxFunc,
                                       NULL,
                                       NULL);
+
   if (!bStatus)
     fprintf (stderr, "InitOnceExecuteOnce failed\n");
 }
