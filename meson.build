@@ -64,7 +64,6 @@ if cc.get_id() == 'msvc'
   # glib's msvc_recommended_pragmas.h--please see that file for
   # the meaning of the warning codes used here
   test_cflags = [
-    '-W3',
     '-we4002',
     '-we4003',
     '-w14010',
