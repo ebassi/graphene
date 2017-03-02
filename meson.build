@@ -154,35 +154,12 @@ conf.set('HAVE_SINCOSF',
                          dependencies: mathlib))
 
 # Debugging
-enable_debug = get_option('enable-debug')
-if enable_debug == 'auto'
-  if graphene_minor_version.is_odd()
-    enable_debug = 'yes'
-  else
-    enable_debug = 'minimum'
-  endif
-endif
-
 debug_flags = []
-if enable_debug == 'yes'
-  debug_flags += [
-    '-DGRAPHENE_ENABLE_DEBUG'
-  ]
-endif
-
-if enable_debug == 'minimum'
-  debug_flags += [
-    '-DGRAPHENE_ENABLE_DEBUG',
-    '-DG_DISABLE_CAST_CHECKS'
-  ]
-endif
-
-if enable_debug == 'no'
-  debug_flags += [
-    '-DG_DISABLE_CAST_CHECKS',
-    '-DG_DISABLE_CHECKS',
-    '-DG_DISABLE_ASSERT'
-  ]
+buildtype = get_option('buildtype')
+if buildtype == 'release'
+  debug_flags += [ '-DG_DISABLE_ASSERT' ]
+elif buildtype == 'debug' or buildtype == 'debugoptimized'
+  debug_flags += [ '-DGRAPHENE_ENABLE_DEBUG' ]
 endif
 
 extra_args= []
