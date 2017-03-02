@@ -171,6 +171,9 @@ graphene_pointer_equal (const void *p1,
   if (p1 == NULL || p2 == NULL)
     return false;
 
+  if (func == NULL)
+    return true;
+
   return func (p1, p2);
 }
 
