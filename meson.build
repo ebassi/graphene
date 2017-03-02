@@ -126,6 +126,10 @@ conf.set('HAVE_STDINT_H', cc.has_header('stdint.h'))
 conf.set('HAVE_STDBOOL_H', cc.has_header('stdbool.h'))
 conf.set('HAVE_MEMORY_H', cc.has_header('memory.h'))
 
+# Required dependencies
+mathlib = cc.find_library('m', required: false)
+threadlib = dependency('threads', required: true)
+
 # Functions
 if cc.has_function('memalign', prefix: '#include <stdlib.h>\n#include <malloc.h>')
   conf.set('HAVE_MEMALIGN', 1)
@@ -142,7 +146,12 @@ else
   error('No aligned malloc function could be found.')
 endif
 
-conf.set('HAVE_SINCOSF', cc.has_function('sincosf', prefix: '#define _GNU_SOURCE\n#include <math.h>'))
+# Look for sincosf(), a GNU libc extension
+conf.set('HAVE_SINCOSF',
+         cc.has_function('sincosf',
+                         prefix: '#include <math.h>',
+                         args: [ '-D_GNU_SOURCE' ],
+                         dependencies: mathlib))
 
 # Debugging
 enable_debug = get_option('enable-debug')
@@ -192,10 +201,6 @@ if get_option('default_library') != 'static'
     extra_args += ['-fvisibility=hidden']
   endif
 endif
-
-# Required dependencies
-mathlib = cc.find_library('m', required: false)
-threadlib = dependency('threads', required: true)
 
 # Optional dependency on GObject
 build_gobject = false
