@@ -197,7 +197,11 @@ build_gir = build_gobject
 if build_gobject and get_option('enable-introspection')
   # XXX: Not nice, but probably our best option
   gir = find_program('g-ir-scanner', required: false)
-  build_gir = gir.found() and not meson.is_cross_build()
+  if get_option('default_library') == 'shared'
+    build_gir = gir.found() and not meson.is_cross_build()
+  else
+    build_gir = false
+  endif
 endif
 
 # Check for InitOnce on Windows

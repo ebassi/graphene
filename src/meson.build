@@ -97,18 +97,41 @@ else
   graphene_link_args = []
 endif
 
-libgraphene = shared_library('graphene-@0@'.format(graphene_api_version),
-  sources: sources + simd_sources + private_headers,
-  version: libversion,
-  soversion: soversion,
-  install: true,
-  dependencies: [ mathlib, threadlib ] + platform_deps,
-  c_args: extra_args + common_flags + debug_flags + [
-            '-DGRAPHENE_COMPILATION',
-            '-DG_LOG_DOMAIN="Graphene"',
-            '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30',
-            '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32' ],
-  link_args: graphene_link_args)
+libtype = get_option('default_library')
+
+if libtype != 'static'
+  graphene_shared = shared_library('graphene-@0@'.format(graphene_api_version),
+                                   sources: sources + simd_sources + private_headers,
+                                   version: libversion,
+                                   soversion: soversion,
+                                   install: true,
+                                   dependencies: [ mathlib, threadlib ] + platform_deps,
+                                   c_args: extra_args + common_flags + debug_flags + [
+                                     '-DGRAPHENE_COMPILATION',
+                                     '-DG_LOG_DOMAIN="Graphene"',
+                                     '-DG_LOG_STRUCTURED=1',
+                                     '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30',
+                                     '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32',
+                                   ],
+                                   link_args: graphene_link_args)
+  libgraphene = graphene_shared
+endif
+
+if libtype != 'shared'
+  graphene_static = static_library('graphene-@0@'.format(graphene_api_version),
+                                   sources: sources + simd_sources + private_headers,
+                                   install: true,
+                                   dependencies: [ mathlib, threadlib ] + platform_deps,
+                                   c_args: extra_args + common_flags + debug_flags + [
+                                     '-DGRAPHENE_COMPILATION',
+                                     '-DG_LOG_DOMAIN="Graphene"',
+                                     '-DG_LOG_STRUCTURED=1',
+                                     '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30',
+                                     '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32',
+                                   ],
+                                   link_args: graphene_link_args)
+  libgraphene = graphene_static
+endif
 
 # Internal dependency, for tests and benchmarks
 graphene_inc = include_directories('.')
