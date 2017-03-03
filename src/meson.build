@@ -92,7 +92,7 @@ if build_gobject
 endif
 
 if cc.get_id() == 'gcc'
-  graphene_link_args = [ '-Wl,-Bsymbolic-functions' ]
+  graphene_link_args = [ '-Wl,-Bsymbolic-functions', '-Wl,-z,relro', '-Wl,-z,now', ]
 else
   graphene_link_args = []
 endif
