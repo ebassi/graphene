@@ -87,7 +87,6 @@ else
   test_cflags = [
     '-ffast-math',
     '-fstrict-aliasing',
-    '-Wall',
     '-Wpointer-arith',
     '-Wmissing-declarations',
     '-Wformat=2',
@@ -110,7 +109,7 @@ else
     '-Werror=missing-braces',
     '-Werror=return-type',
     '-Werror=array-bounds',
-    '-Werror=write-strings'
+    '-Werror=write-strings',
   ]
 endif
 common_flags = []
