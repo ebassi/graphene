@@ -28,6 +28,7 @@
     <sub name="Index of new symbols in 1.0" link="ix03.html"/>
     <sub name="Index of new symbols in 1.2" link="ix04.html"/>
     <sub name="Index of new symbols in 1.4" link="ix05.html"/>
+    <sub name="Index of new symbols in 1.6" link="ix06.html"/>
     <sub name="Annotation Glossary" link="annotation-glossary.html"/>
   </chapters>
   <functions>
@@ -186,6 +187,7 @@
     <keyword type="function" name="graphene_frustum_contains_point ()" link="graphene-Frustum.html#graphene-frustum-contains-point" since="1.2"/>
     <keyword type="function" name="graphene_frustum_intersects_sphere ()" link="graphene-Frustum.html#graphene-frustum-intersects-sphere" since="1.2"/>
     <keyword type="function" name="graphene_frustum_intersects_box ()" link="graphene-Frustum.html#graphene-frustum-intersects-box" since="1.2"/>
+    <keyword type="function" name="graphene_frustum_equal ()" link="graphene-Frustum.html#graphene-frustum-equal" since="1.6"/>
     <keyword type="struct" name="graphene_frustum_t" link="graphene-Frustum.html#graphene-frustum-t" since="1.2"/>
     <keyword type="function" name="graphene_simd4f_init ()" link="graphene-SIMD-vector.html#graphene-simd4f-init" since="1.0"/>
     <keyword type="function" name="graphene_simd4f_init_zero ()" link="graphene-SIMD-vector.html#graphene-simd4f-init-zero" since="1.0"/>
