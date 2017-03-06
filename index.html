@@ -103,11 +103,11 @@ $ cd graphene
 <p>Then run:</p>
 
 <pre><code>
-$ mkdir _build &amp;&amp; cd _build
-$ meson
-$ ninja
-$ ninja test
-# ninja install
+$ mkdir _build
+$ meson _build .
+$ ninja -C _build
+$ ninja -C _build test
+# ninja -C _build install
 </code></pre>
 
 <h3>
