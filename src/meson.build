@@ -149,7 +149,7 @@ foreach p: pkgconfig_files
 endforeach
 
 if build_gir
-  python = import('python3').find_python()
+  python = python3.find_python()
   identfilter_py = join_paths(meson.current_source_dir(), 'identfilter.py')
 
   gir_extra_args = [

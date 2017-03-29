@@ -327,6 +327,7 @@ graphene_simd += [ 'scalar' ]
 
 conf.set('GRAPHENE_SIMD', ' '.join(graphene_simd))
 
+python3 = import('python3')
 gnome = import('gnome')
 
 subdir('src')
