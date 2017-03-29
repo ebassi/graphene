@@ -1,13 +1,11 @@
-#!/usr/bin/env python
-
 import sys
 import re
 
 NUMBER_REGEX = re.compile(r'([0-9])([a-z])')
 
 def to_camel_case(text):
-    # We only care about types that end with '_t'
-    if not text.endswith('_t'):
+    # We only care about Graphene types
+    if not text.startswith('graphene_') and not text.endswith('_t'):
         return text
 
     res = []
