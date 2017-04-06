@@ -173,7 +173,7 @@ if get_option('default_library') != 'static'
       extra_args += ['-fvisibility=hidden']
     endif
   else
-    conf.set('_GRAPHENE_PUBLIC', '__attribute__((visibility("default")))')
+    conf.set('_GRAPHENE_PUBLIC', '__attribute__((visibility("default"))) extern')
     extra_args += ['-fvisibility=hidden']
   endif
 endif
