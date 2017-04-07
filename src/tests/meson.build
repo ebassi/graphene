@@ -22,8 +22,8 @@ unit_tests = [
 python = python3.find_python()
 gen_installed_test = join_paths(meson.current_source_dir(), 'gen-installed-test.py')
 
-installed_test_datadir = join_paths(get_option('prefix'), get_option('datadir'), 'installed-tests', graphene_string)
-installed_test_bindir = join_paths(get_option('prefix'), get_option('libexecdir'), 'installed-tests', graphene_string)
+installed_test_datadir = join_paths(get_option('prefix'), get_option('datadir'), 'installed-tests', graphene_api_path)
+installed_test_bindir = join_paths(get_option('prefix'), get_option('libexecdir'), 'installed-tests', graphene_api_path)
 
 foreach unit: unit_tests
   wrapper = '@0@.test'.format(unit)
