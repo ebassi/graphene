@@ -16,6 +16,8 @@ graphene_micro_version = version_array[2].to_int()
 
 graphene_api_version = '@0@.0'.format(graphene_major_version)
 
+graphene_string = '@0@-@1@'.format(meson.project_name(), graphene_api_version)
+
 # The interface age is reset every time we add new API; this
 # should only happen during development cycles, otherwise the
 # interface age is the same as the micro version
@@ -181,6 +183,7 @@ endif
 # Optional dependency on GObject
 build_gobject = false
 if get_option('enable-gobject-types')
+  graphene_gobject_string = '@0@-gobject-@1@'.format(meson.project_name(), graphene_api_version)
   gobject = dependency('gobject-2.0', version: '>= 2.30.0', required: false)
   build_gobject = gobject.found()
   if build_gobject

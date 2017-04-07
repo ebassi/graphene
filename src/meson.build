@@ -72,22 +72,22 @@ configure_file(input: 'graphene-config.h.meson',
                output: 'graphene-config.h',
                configuration: graphene_conf,
                install: true,
-               install_dir: join_paths(graphene_libdir, 'graphene-1.0', 'include'))
+               install_dir: join_paths(graphene_libdir, graphene_string, 'include'))
 
 # Version header
 configure_file(input: 'graphene-version.h.in',
                output: 'graphene-version.h',
                configuration: conf,
                install: true,
-               install_dir: join_paths(graphene_includedir, 'graphene-1.0'))
+               install_dir: join_paths(graphene_includedir, graphene_string))
 
-install_headers(headers + simd_headers + [ 'graphene.h' ], subdir: 'graphene-1.0')
+install_headers(headers + simd_headers + [ 'graphene.h' ], subdir: graphene_string)
 
-pkgconfig_files = [ 'graphene-@0@'.format(graphene_api_version) ]
+pkgconfig_files = [ graphene_string ]
 platform_deps = []
 
 if build_gobject
-  pkgconfig_files += [ 'graphene-gobject-@0@'.format(graphene_api_version) ]
+  pkgconfig_files += [ graphene_gobject_string ]
   platform_deps += [ gobject ]
 endif
 
@@ -100,7 +100,7 @@ endif
 libtype = get_option('default_library')
 
 if libtype != 'static'
-  graphene_shared = shared_library('graphene-@0@'.format(graphene_api_version),
+  graphene_shared = shared_library(graphene_string,
                                    sources: sources + simd_sources + private_headers,
                                    version: libversion,
                                    soversion: soversion,
@@ -118,7 +118,7 @@ if libtype != 'static'
 endif
 
 if libtype != 'shared'
-  graphene_static = static_library('graphene-@0@'.format(graphene_api_version),
+  graphene_static = static_library(graphene_string,
                                    sources: sources + simd_sources + private_headers,
                                    install: true,
                                    dependencies: [ mathlib, threadlib ] + platform_deps,
@@ -164,7 +164,7 @@ if build_gir
                      nsversion: graphene_api_version,
                      identifier_prefix: 'Graphene',
                      symbol_prefix: 'graphene',
-                     export_packages: 'graphene-gobject-@0@'.format(graphene_api_version),
+                     export_packages: graphene_gobject_string,
                      includes: [ 'GObject-2.0' ],
                      install: true,
                      extra_args: gir_extra_args)
