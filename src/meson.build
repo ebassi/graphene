@@ -83,11 +83,11 @@ configure_file(input: 'graphene-version.h.in',
 
 install_headers(headers + simd_headers + [ 'graphene.h' ], subdir: graphene_api_path)
 
-pkgconfig_files = [ graphene_string ]
+pkgconfig_files = [ graphene_api_path ]
 platform_deps = []
 
 if build_gobject
-  pkgconfig_files += [ graphene_gobject_string ]
+  pkgconfig_files += [ graphene_gobject_api_path ]
   platform_deps += [ gobject ]
 endif
 
@@ -100,7 +100,7 @@ endif
 libtype = get_option('default_library')
 
 if libtype != 'static'
-  graphene_shared = shared_library(graphene_string,
+  graphene_shared = shared_library(graphene_api_path,
                                    sources: sources + simd_sources + private_headers,
                                    version: libversion,
                                    soversion: soversion,
