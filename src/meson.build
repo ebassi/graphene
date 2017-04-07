@@ -72,16 +72,16 @@ configure_file(input: 'graphene-config.h.meson',
                output: 'graphene-config.h',
                configuration: graphene_conf,
                install: true,
-               install_dir: join_paths(graphene_libdir, graphene_string, 'include'))
+               install_dir: join_paths(graphene_libdir, graphene_api_path, 'include'))
 
 # Version header
 configure_file(input: 'graphene-version.h.in',
                output: 'graphene-version.h',
                configuration: conf,
                install: true,
-               install_dir: join_paths(graphene_includedir, graphene_string))
+               install_dir: join_paths(graphene_includedir, graphene_api_path))
 
-install_headers(headers + simd_headers + [ 'graphene.h' ], subdir: graphene_string)
+install_headers(headers + simd_headers + [ 'graphene.h' ], subdir: graphene_api_path)
 
 pkgconfig_files = [ graphene_string ]
 platform_deps = []
@@ -118,7 +118,7 @@ if libtype != 'static'
 endif
 
 if libtype != 'shared'
-  graphene_static = static_library(graphene_string,
+  graphene_static = static_library(graphene_api_path,
                                    sources: sources + simd_sources + private_headers,
                                    install: true,
                                    dependencies: [ mathlib, threadlib ] + platform_deps,
@@ -164,7 +164,7 @@ if build_gir
                      nsversion: graphene_api_version,
                      identifier_prefix: 'Graphene',
                      symbol_prefix: 'graphene',
-                     export_packages: graphene_gobject_string,
+                     export_packages: graphene_gobject_api_path,
                      includes: [ 'GObject-2.0' ],
                      install: true,
                      extra_args: gir_extra_args)
