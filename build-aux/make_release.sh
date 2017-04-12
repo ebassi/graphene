@@ -1,16 +1,23 @@
 #!/bin/sh
-test -n "$srcdir" || srcdir=$(dirname "$0")
+set -x
+
+test -n "$srcdir" || srcdir=$1
 test -n "$srcdir" || srcdir=.
 
-cd $srcdir
+cd "$srcdir"
 
+PROJECT=graphene
 VERSION=$(git describe --abbrev=0)
-NAME="graphene-$VERSION"
+NAME="${PROJECT}-${VERSION}"
 
 rm -f "${NAME}.tar"
 
 echo "Creating git tree archive…"
 git archive --prefix="${NAME}/" --format=tar HEAD > ${NAME}.tar
 
+rm -f "${NAME}.tar.xz"
+
 echo "Compressing archive…"
 xz -f "${NAME}.tar"
+
+set +x
