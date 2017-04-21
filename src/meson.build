@@ -91,10 +91,15 @@ if build_gobject
   platform_deps += [ gobject ]
 endif
 
-if cc.get_id() == 'gcc'
-  graphene_link_args = [ '-Wl,-Bsymbolic-functions', '-Wl,-z,relro', '-Wl,-z,now', ]
-else
-  graphene_link_args = []
+graphene_link_args = []
+
+# Add linker flags for Linux
+if host_machine.system().contains('linux')
+  foreach ldflag: [ '-Wl,-Bsymbolic-functions', '-Wl,-z,relro', '-Wl,-z,now', ]
+    if cc.has_argument(ldflag)
+      graphene_link_args += [ ldflag, ]
+    endif
+  endforeach
 endif
 
 libtype = get_option('default_library')
