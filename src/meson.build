@@ -111,7 +111,7 @@ libgraphene = shared_library('graphene-@0@'.format(graphene_api_version),
   link_args: graphene_link_args)
 
 # Internal dependency, for tests and benchmarks
-graphene_inc = include_directories([ meson.current_source_dir(), meson.current_build_dir() ])
+graphene_inc = include_directories('.')
 graphene_dep = declare_dependency(link_with: libgraphene,
                                   include_directories: [ graphene_inc ],
                                   dependencies: [ mathlib, threadlib ] + platform_deps)
