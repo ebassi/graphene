@@ -51,13 +51,33 @@ sanitycheck() {
     exit 1
 }
 
+checkoption() {
+    # $1 = arg
+    option="${1#*--}"
+    action="${option%%-*}"
+    name="${option#*-}"
+    if [ ${default_options[$name]+_} ]; then
+        case "$action" in
+            enable) meson_options[$name]=true;;
+            disable) meson_options[$name]=false;;
+            *) echo -e "\e[1;33mINFO\e[0m: Ignoring unknown action '$action'";;
+        esac
+    else
+        echo -e "\e[1;33mINFO\e[0m: Ignoring unknown option '$option'"
+    fi
+}
+
 sanitycheck MESON 'meson'
 sanitycheck MESONTEST 'mesontest'
 sanitycheck NINJA 'ninja' 'ninja-build'
 
-enable_docs='-Denable-gtk-doc=false'
-enable_man='-Denable-man=false'
-enable_introspection=''
+declare -A default_options=(
+    ['gtk-doc']=false
+    ['man']=false
+    ['introspection']=true
+)
+
+declare -A meson_options
 
 while (($# > 0)); do
     case "${1%%=*}" in
@@ -71,13 +91,7 @@ while (($# > 0)); do
 	--libdir) read_arg libdir "$@" || shift;;
 	--mandir) read_arg mandir "$@" || shift;;
 	--includedir) read_arg includedir "$@" || shift;;
-	--enable-gtk-doc) enable_docs='-Denable-gtk-doc=true';;
-	--disable-gtk-doc) enable_docs='-Denable-gtk-doc=false';;
-	--enable-man) enable_man='-Denable-man=true';;
-	--disable-man) enable_man='-Denable-man=false';;
-	--enable-introspection) enable_introspection='';;
-	--disable-introspection) enable_introspection='-Ddisable_introspection=true';;
-	*) echo -e "\e[1;33mINFO\e[0m: Ignoring unknown option '$1'";;
+	*) checkoption $1;;
     esac
     shift
 done
@@ -124,6 +138,11 @@ check:
 	${MESONTEST} ${NINJA_OPT}
 END
 
+cmd_options=""
+for key in "${!meson_options[@]}"; do
+    cmd_options="$cmd_options -Denable-$key=${meson_options[$key]}"
+done
+
 echo "Summary:"
 echo "  meson:....... ${MESON}"
 echo "  ninja:....... ${NINJA}"
@@ -138,7 +157,7 @@ echo "  libdir:...... ${libdir}"
 echo "  mandir:...... ${mandir}"
 echo "  includedir:.. ${includedir}"
 echo "  additional:.."
-echo "    - ${enable_docs} ${enable_man} ${enable_introspection}"
+echo "    -${cmd_options}"
 
 exec ${MESON} \
 	--prefix=${prefix} \
@@ -150,9 +169,7 @@ exec ${MESON} \
 	--includedir=${includedir} \
 	--mandir=${mandir} \
 	--default-library shared \
-	${enable_docs} \
-	${enable_man} \
-	${enable_introspection} \
+	${cmd_options} \
 	${builddir} \
 	${srcdir}
 
