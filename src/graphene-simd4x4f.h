@@ -29,6 +29,12 @@
 #include <math.h>
 #include <float.h>
 
+#ifdef GRAPHENE_USE_INDIRECT_M128
+#define GRAPHENE_SIMD4F_ADDR(x) &x
+#else
+#define GRAPHENE_SIMD4F_ADDR(x) x
+#endif
+
 GRAPHENE_BEGIN_DECLS
 
 /**
@@ -68,6 +74,23 @@ GRAPHENE_BEGIN_DECLS
  *
  * Since: 1.0
  */
+#ifdef GRAPHENE_USE_INDIRECT_M128
+static inline graphene_simd4x4f_t
+graphene_simd4x4f_init (graphene_simd4f_t *x,
+                        graphene_simd4f_t *y,
+                        graphene_simd4f_t *z,
+                        graphene_simd4f_t *w)
+{
+  graphene_simd4x4f_t s;
+
+  s.x = *x;
+  s.y = *y;
+  s.z = *z;
+  s.w = *w;
+
+  return s;
+}
+#else
 static inline graphene_simd4x4f_t GRAPHENE_VECTORCALL
 graphene_simd4x4f_init (graphene_simd4f_t x,
                         graphene_simd4f_t y,
@@ -83,6 +106,7 @@ graphene_simd4x4f_init (graphene_simd4f_t x,
 
   return s;
 }
+#endif
 
 /**
  * graphene_simd4x4f_init_identity:
@@ -95,10 +119,15 @@ graphene_simd4x4f_init (graphene_simd4f_t x,
 static inline void
 graphene_simd4x4f_init_identity (graphene_simd4x4f_t *m)
 {
-  *m = graphene_simd4x4f_init (graphene_simd4f_init (1.0f, 0.0f, 0.0f, 0.0f),
-                               graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f),
-                               graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f),
-                               graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f));
+  graphene_simd4f_t p_x = graphene_simd4f_init (1.0f, 0.0f, 0.0f, 0.0f);
+  graphene_simd4f_t p_y = graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f);
+  graphene_simd4f_t p_z = graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f);
+  graphene_simd4f_t p_w = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f);
+
+  *m = graphene_simd4x4f_init (GRAPHENE_SIMD4F_ADDR (p_x),
+                               GRAPHENE_SIMD4F_ADDR (p_y),
+                               GRAPHENE_SIMD4F_ADDR (p_z),
+                               GRAPHENE_SIMD4F_ADDR (p_w));
 }
 
 /**
@@ -603,10 +632,19 @@ graphene_simd4x4f_perspective (graphene_simd4x4f_t *m,
   const float p2 = graphene_simd4f_get_z (m->z) + -1.0f / depth * m_zw;
   const float p3 = graphene_simd4f_get_z (m->w) + -1.0f / depth * m_ww;
 
+#ifdef GRAPHENE_USE_INDIRECT_M128
+  graphene_simd4f_t p_x[1], p_y[1], p_z[1], p_w[1];
+
+  p_x[0] = graphene_simd4f_merge_w (m->x, m_xw + p0);
+  p_z[0] = graphene_simd4f_merge_w (m->y, m_yw + p1);
+  p_z[0] = graphene_simd4f_merge_w (m->z, m_zw + p2);
+  p_w[0] = graphene_simd4f_merge_w (m->w, m_ww + p3);
+#else
   const graphene_simd4f_t p_x = graphene_simd4f_merge_w (m->x, m_xw + p0);
   const graphene_simd4f_t p_y = graphene_simd4f_merge_w (m->y, m_yw + p1);
   const graphene_simd4f_t p_z = graphene_simd4f_merge_w (m->z, m_zw + p2);
   const graphene_simd4f_t p_w = graphene_simd4f_merge_w (m->w, m_ww + p3);
+#endif
 #else
   /* this is equivalent to the operations above, but trying to inline
    * them into SIMD registers as much as possible by transposing the
@@ -649,10 +687,15 @@ graphene_simd4x4f_translation (graphene_simd4x4f_t *m,
                                float                y,
                                float                z)
 {
-  *m = graphene_simd4x4f_init (graphene_simd4f_init (1.0f, 0.0f, 0.0f, 0.0f),
-                               graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f),
-                               graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f),
-                               graphene_simd4f_init (   x,    y,    z, 1.0f));
+  graphene_simd4f_t p_x = graphene_simd4f_init (1.0f, 0.0f, 0.0f, 0.0f);
+  graphene_simd4f_t p_y = graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f);
+  graphene_simd4f_t p_z = graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f);
+  graphene_simd4f_t p_w = graphene_simd4f_init (   x,    y,    z, 1.0f);
+
+  *m = graphene_simd4x4f_init (GRAPHENE_SIMD4F_ADDR (p_x),
+                               GRAPHENE_SIMD4F_ADDR (p_y),
+                               GRAPHENE_SIMD4F_ADDR (p_z),
+                               GRAPHENE_SIMD4F_ADDR (p_w));
 }
 
 /**
@@ -673,10 +716,15 @@ graphene_simd4x4f_scale (graphene_simd4x4f_t *m,
                          float                y,
                          float                z)
 {
-  *m = graphene_simd4x4f_init (graphene_simd4f_init (   x, 0.0f, 0.0f, 0.0f),
-                               graphene_simd4f_init (0.0f,    y, 0.0f, 0.0f),
-                               graphene_simd4f_init (0.0f, 0.0f,    z, 0.0f),
-                               graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f));
+  graphene_simd4f_t p_x = graphene_simd4f_init (   x, 0.0f, 0.0f, 0.0f);
+  graphene_simd4f_t p_y = graphene_simd4f_init (0.0f,    y, 0.0f, 0.0f);
+  graphene_simd4f_t p_z = graphene_simd4f_init (0.0f, 0.0f,    z, 0.0f);
+  graphene_simd4f_t p_w = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f);
+
+  *m = graphene_simd4x4f_init (GRAPHENE_SIMD4F_ADDR (p_x),
+                               GRAPHENE_SIMD4F_ADDR (p_y),
+                               GRAPHENE_SIMD4F_ADDR (p_z),
+                               GRAPHENE_SIMD4F_ADDR (p_w));
 
 }
 
@@ -700,7 +748,7 @@ graphene_simd4x4f_rotation (graphene_simd4x4f_t *m,
   float x, y, z;
   float ab, bc, ca;
   float tx, ty, tz;
-  graphene_simd4f_t i, j, k;
+  graphene_simd4f_t i, j, k, l;
 
   rad = -rad;
   axis = graphene_simd4f_normalize3 (axis);
@@ -726,8 +774,12 @@ graphene_simd4x4f_rotation (graphene_simd4x4f_t *m,
   i = graphene_simd4f_init (tx + cosine * (1.0f - tx), ab - z * sine, ca + y * sine, 0.f);
   j = graphene_simd4f_init (ab + z * sine, ty + cosine * (1.0f - ty), bc - x * sine, 0.f);
   k = graphene_simd4f_init (ca - y * sine, bc + x * sine, tz + cosine * (1.0f - tz), 0.f);
+  l = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f);
 
-  *m = graphene_simd4x4f_init (i, j, k, graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f));
+  *m = graphene_simd4x4f_init (GRAPHENE_SIMD4F_ADDR (i),
+                               GRAPHENE_SIMD4F_ADDR (j),
+                               GRAPHENE_SIMD4F_ADDR (k),
+                               GRAPHENE_SIMD4F_ADDR (l));
 }
 
 /**
@@ -900,13 +952,23 @@ graphene_simd4x4f_inverse (const graphene_simd4x4f_t *m,
   if (graphene_simd4f_get_x (det) != 0.f)
     {
       const graphene_simd4f_t invdet = graphene_simd4f_splat_x (graphene_simd4f_div (graphene_simd4f_splat (1.0f), det));
+      graphene_simd4x4f_t mt;
 
+#ifdef GRAPHENE_USE_INDIRECT_M128
+      graphene_simd4f_t o0[1], o1[1], o2[1], o3[1];
+
+      o0[0] = graphene_simd4f_mul (graphene_simd4f_flip_sign_0101 (r1_sum), invdet);
+      o1[0] = graphene_simd4f_mul (graphene_simd4f_flip_sign_1010 (r0_sum), invdet);
+      o2[0] = graphene_simd4f_mul (graphene_simd4f_flip_sign_0101 (r3_sum), invdet);
+      o3[0] = graphene_simd4f_mul (graphene_simd4f_flip_sign_1010 (r2_sum), invdet);
+#else
       const graphene_simd4f_t o0 = graphene_simd4f_mul (graphene_simd4f_flip_sign_0101 (r1_sum), invdet);
       const graphene_simd4f_t o1 = graphene_simd4f_mul (graphene_simd4f_flip_sign_1010 (r0_sum), invdet);
       const graphene_simd4f_t o2 = graphene_simd4f_mul (graphene_simd4f_flip_sign_0101 (r3_sum), invdet);
       const graphene_simd4f_t o3 = graphene_simd4f_mul (graphene_simd4f_flip_sign_1010 (r2_sum), invdet);
+#endif
 
-      graphene_simd4x4f_t mt = graphene_simd4x4f_init (o0, o1, o2, o3);
+      mt = graphene_simd4x4f_init (o0, o1, o2, o3);
 
       /* transpose the resulting matrix */
       graphene_simd4x4f_transpose (&mt, res);
