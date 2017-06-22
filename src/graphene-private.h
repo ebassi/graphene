@@ -24,8 +24,6 @@
 #ifndef __GRAPHENE_PRIVATE_H__
 #define __GRAPHENE_PRIVATE_H__
 
-#define _GNU_SOURCE
-
 #include "config.h"
 #include "graphene-macros.h"
 #include <stdlib.h>

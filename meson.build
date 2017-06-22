@@ -1,13 +1,19 @@
 project('graphene', 'c',
         version: '1.7.1',
+        license: 'MIT',
         default_options: [
           'buildtype=debugoptimized',
           'c_std=c99',
           'warning_level=1'
         ],
-        license: 'MIT',
         meson_version: '>= 0.38.1')
 
+cc = meson.get_compiler('c')
+host_system = host_machine.system()
+
+add_project_arguments([ '-D_GNU_SOURCE' ], language: 'c')
+
+# Version
 graphene_version = meson.project_version()
 version_array = graphene_version.split('.')
 graphene_major_version = version_array[0].to_int()
@@ -15,8 +21,6 @@ graphene_minor_version = version_array[1].to_int()
 graphene_micro_version = version_array[2].to_int()
 
 graphene_api_version = '@0@.0'.format(graphene_major_version)
-
-graphene_api_path = '@0@-@1@'.format(meson.project_name(), graphene_api_version)
 
 # The interface age is reset every time we add new API; this
 # should only happen during development cycles, otherwise the
@@ -27,23 +31,19 @@ else
   graphene_interface_age = graphene_micro_version
 endif
 
-soversion = 0
-# maintaining compatibility with the previous libtool versioning
-# current = minor * 100 + micro - interface
-# revision = interface
-current = graphene_minor_version * 100 + graphene_micro_version - graphene_interface_age
-revision = graphene_interface_age
-libversion = '@0@.@1@.@2@'.format(soversion, current, revision)
+graphene_binary_age = 100 * graphene_minor_version + graphene_micro_version
 
+# Maintain compatibility with the previous libtool versioning
+soversion = 0
+libversion = '@0@.@1@.@2@'.format(soversion, graphene_binary_age - graphene_interface_age, graphene_interface_age)
+
+# Paths
 graphene_prefix = get_option('prefix')
 graphene_libdir = join_paths(graphene_prefix, get_option('libdir'))
 graphene_includedir = join_paths(graphene_prefix, get_option('includedir'))
 graphene_datadir = join_paths(graphene_prefix, get_option('datadir'))
 
-graphene_simd = []
-
-cc = meson.get_compiler('c')
-host_system = host_machine.system()
+graphene_api_path = '@0@-@1@'.format(meson.project_name(), graphene_api_version)
 
 conf = configuration_data()
 
@@ -59,7 +59,10 @@ conf.set('GRAPHENE_MINOR_VERSION', graphene_minor_version)
 conf.set('GRAPHENE_MICRO_VERSION', graphene_micro_version)
 conf.set('GRAPHENE_VERSION', graphene_version)
 
-# Compiler flags
+# Compiler and linker flags
+common_cflags = []
+common_ldflags = []
+
 if cc.get_id() == 'msvc'
   # Make MSVC more pedantic, this is a recommended pragma list
   # from _Win32_Programming_ by Rector and Newcomer.  Taken from
@@ -114,35 +117,49 @@ else
     '-Werror=write-strings',
   ]
 endif
-common_flags = []
+
 foreach cflag: test_cflags
   if cc.has_argument(cflag)
-    common_flags += [ cflag ]
+    common_cflags += cflag
   endif
 endforeach
+
+if host_system == 'linux'
+  foreach ldflag: [ '-Wl,-Bsymbolic-functions', '-Wl,-z,relro', '-Wl,-z,now', ]
+    if cc.has_argument(ldflag)
+      common_ldflags += ldflag
+    endif
+  endforeach
+endif
+
+# Maintain compatibility with Autotools on macOS
+if host_system == 'darwin'
+  common_ldflags += [ '-compatibility_version 1', '-current_version 1.0', ]
+endif
+
+# Required dependencies
+mathlib = cc.find_library('m', required: false)
+threadlib = dependency('threads')
 
 # Headers
 conf.set('HAVE_STDLIB_H', cc.has_header('stdlib.h'))
 conf.set('HAVE_STDINT_H', cc.has_header('stdint.h'))
 conf.set('HAVE_STDBOOL_H', cc.has_header('stdbool.h'))
 conf.set('HAVE_MEMORY_H', cc.has_header('memory.h'))
-
-# Required dependencies
-mathlib = cc.find_library('m', required: false)
-threadlib = dependency('threads', required: true)
+conf.set('HAVE_PTHREAD_H', cc.has_header('pthread.h', dependencies: threadlib))
 
 # Functions
 if cc.has_function('memalign', prefix: '#include <stdlib.h>\n#include <malloc.h>')
-  conf.set('HAVE_MEMALIGN', 1)
+  conf.set10('HAVE_MEMALIGN', 1)
 elif cc.has_function('_aligned_malloc', prefix: '#include <malloc.h>')
-  conf.set('HAVE__ALIGNED_MALLOC', 1)
+  conf.set10('HAVE__ALIGNED_MALLOC', 1)
 # Don't probe the ones below on Windows because when building with
 # MinGW-w64 on MSYS2, Meson<0.37.0 incorrectly detects those below as
 # being available even though they're not.
 elif cc.has_function('aligned_alloc', prefix: '#include <stdlib.h>') and not (host_system == 'windows')
-  conf.set('HAVE_ALIGNED_ALLOC', 1)
+  conf.set10('HAVE_ALIGNED_ALLOC', 1)
 elif cc.has_function('posix_memalign', prefix: '#include <stdlib.h>') and not (host_system == 'windows')
-  conf.set('HAVE_POSIX_MEMALIGN', 1)
+  conf.set10('HAVE_POSIX_MEMALIGN', 1)
 else
   error('No aligned malloc function could be found.')
 endif
@@ -159,7 +176,7 @@ debug_flags = []
 buildtype = get_option('buildtype')
 if buildtype == 'release'
   debug_flags += [ '-DG_DISABLE_ASSERT' ]
-elif buildtype == 'debug' or buildtype == 'debugoptimized'
+elif buildtype.startswith('debug')
   debug_flags += [ '-DGRAPHENE_ENABLE_DEBUG' ]
 endif
 
@@ -168,10 +185,8 @@ extra_args= []
 if get_option('default_library') != 'static'
   if host_system == 'windows'
     conf.set('DLL_EXPORT', true)
-    if cc.get_id() == 'msvc'
-      conf.set('_GRAPHENE_PUBLIC', '__declspec(dllexport) extern')
-    else
-      conf.set('_GRAPHENE_PUBLIC', '__attribute__((visibility("default"))) __declspec(dllexport) extern')
+    conf.set('_GRAPHENE_PUBLIC', '__declspec(dllexport) extern')
+    if cc.get_id() != 'msvc'
       extra_args += ['-fvisibility=hidden']
     endif
   else
@@ -219,13 +234,14 @@ int main (void) {
   return 0;
 }
 '''
-  if cc.compiles(init_once_prog, name: 'InitOnceExecuteOnce')
-    conf.set('HAVE_INIT_ONCE', 1)
-  endif
+  conf.set10('HAVE_INIT_ONCE', cc.compiles(init_once_prog, name: 'InitOnceExecuteOnce'))
 endif
 
 # Configuration for our installed config header
 graphene_conf = configuration_data()
+
+# Enabled SIMD implementations
+graphene_simd = []
 
 # SSE intrinsics
 if get_option('enable-sse2')

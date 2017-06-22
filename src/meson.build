@@ -91,22 +91,6 @@ if build_gobject
   platform_deps += [ gobject ]
 endif
 
-graphene_link_args = []
-
-# Add linker flags for Linux
-if host_machine.system().contains('linux')
-  foreach ldflag: [ '-Wl,-Bsymbolic-functions', '-Wl,-z,relro', '-Wl,-z,now', ]
-    if cc.has_argument(ldflag)
-      graphene_link_args += [ ldflag, ]
-    endif
-  endforeach
-endif
-
-# Maintain compatibility with Autotools on macOS
-if host_machine.system().contains('darwin')
-  graphene_link_args += [ '-compatibility_version 1', '-current_version 1.0', ]
-endif
-
 libtype = get_option('default_library')
 
 if libtype != 'static'
@@ -116,14 +100,14 @@ if libtype != 'static'
                                    soversion: soversion,
                                    install: true,
                                    dependencies: [ mathlib, threadlib ] + platform_deps,
-                                   c_args: extra_args + common_flags + debug_flags + [
+                                   c_args: extra_args + common_cflags + debug_flags + [
                                      '-DGRAPHENE_COMPILATION',
                                      '-DG_LOG_DOMAIN="Graphene"',
                                      '-DG_LOG_STRUCTURED=1',
                                      '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30',
                                      '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32',
                                    ],
-                                   link_args: graphene_link_args)
+                                   link_args: common_ldflags)
   libgraphene = graphene_shared
 endif
 
@@ -132,14 +116,13 @@ if libtype != 'shared'
                                    sources: sources + simd_sources + private_headers,
                                    install: true,
                                    dependencies: [ mathlib, threadlib ] + platform_deps,
-                                   c_args: extra_args + common_flags + debug_flags + [
+                                   c_args: extra_args + common_cflags + debug_flags + [
                                      '-DGRAPHENE_COMPILATION',
                                      '-DG_LOG_DOMAIN="Graphene"',
                                      '-DG_LOG_STRUCTURED=1',
                                      '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30',
                                      '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32',
-                                   ],
-                                   link_args: graphene_link_args)
+                                   ])
   libgraphene = graphene_static
 endif
 
@@ -166,6 +149,8 @@ if build_gir
     '--identifier-filter-cmd=@0@ @1@'.format(python.path(), identfilter_py),
     '--c-include=graphene-gobject.h',
     '--accept-unprefixed',
+    '--quiet',
+    '--warn-all',
     '-DGRAPHENE_COMPILATION',
   ]
   gnome.generate_gir(libgraphene,
