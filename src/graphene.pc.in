@@ -1,0 +1,15 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+sse2_cflags=@SSE2_CFLAGS@
+neon_cflags=@NEON_CFLAGS@
+graphene_simd=@GRAPHENE_SIMD@
+
+Name: Graphene
+Description: Math classes for graphic libraries
+Version: @GRAPHENE_VERSION@
+Libs: -L${libdir} -lgraphene-1.0
+Libs.private: @PTHREAD_LIBS@
+Cflags: -I${includedir}/graphene-1.0 -I${libdir}/graphene-1.0/include
+Requires.private: @GRAPHENE_REQS@
