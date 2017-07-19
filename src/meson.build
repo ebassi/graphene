@@ -109,14 +109,33 @@ graphene_dep = declare_dependency(link_with: libgraphene,
                                   dependencies: [ mathlib, threadlib ] + platform_deps)
 
 # Generate the pkg-config files
+pkg_conf = configuration_data()
+pkg_conf.set('GRAPHENE_VERSION', graphene_version)
+pkg_conf.set('prefix', graphene_prefix)
+pkg_conf.set('exec_prefix', graphene_prefix)
+pkg_conf.set('libdir', graphene_libdir)
+pkg_conf.set('includedir', graphene_includedir)
+pkg_conf.set('SSE2_CFLAGS', sse2_cflags)
+pkg_conf.set('NEON_CFLAGS', neon_cflags)
+pkg_conf.set('GRAPHENE_SIMD', ' '.join(graphene_simd))
+
+foreach simd: [ 'sse2', 'gcc', 'neon' ]
+  pkg_conf.set('has_' + simd, graphene_simd.contains(simd) ? '1' : '0')
+endforeach
+
+if build_gobject
+  pkg_conf.set('GRAPHENE_REQS', 'gobject-2.0')
+endif
+
 foreach p: pkgconfig_files
   configure_file(input: 'graphene.pc.in',
                  output: p + '.pc',
-                 configuration: conf,
+                 configuration: pkg_conf,
                  install: true,
                  install_dir: join_paths(graphene_libdir, 'pkgconfig'))
 endforeach
 
+# Introspection
 if build_gir
   python = python3.find_python()
   identfilter_py = join_paths(meson.current_source_dir(), 'identfilter.py')
