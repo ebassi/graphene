@@ -104,7 +104,7 @@ endif
 
 # Maintain compatibility with Autotools on macOS
 if host_machine.system().contains('darwin')
-  graphene_link_args += [ '-compatibility_version=1', '-current_version=1.0', ]
+  graphene_link_args += [ '-compatibility_version 1', '-current_version 1.0', ]
 endif
 
 libtype = get_option('default_library')
