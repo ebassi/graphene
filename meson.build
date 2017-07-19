@@ -174,7 +174,7 @@ elif buildtype.startswith('debug')
   debug_flags += [ '-DGRAPHENE_ENABLE_DEBUG' ]
 endif
 
-extra_args= []
+extra_args = []
 # Detect and set symbol visibility
 if get_option('default_library') != 'static'
   if host_system == 'windows'
