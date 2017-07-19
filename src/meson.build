@@ -63,8 +63,7 @@ if build_gobject
 endif
 
 # Internal configuration header
-configure_file(input: 'config.h.meson',
-               output: 'config.h',
+configure_file(output: 'config.h',
                configuration: conf)
 
 # External configuration header
@@ -75,9 +74,15 @@ configure_file(input: 'graphene-config.h.meson',
                install_dir: join_paths(graphene_libdir, graphene_api_path, 'include'))
 
 # Version header
+version_conf = configuration_data()
+version_conf.set('GRAPHENE_MAJOR_VERSION', graphene_major_version)
+version_conf.set('GRAPHENE_MINOR_VERSION', graphene_minor_version)
+version_conf.set('GRAPHENE_MICRO_VERSION', graphene_micro_version)
+version_conf.set('GRAPHENE_VERSION', graphene_version)
+
 configure_file(input: 'graphene-version.h.in',
                output: 'graphene-version.h',
-               configuration: conf,
+               configuration: version_conf,
                install: true,
                install_dir: join_paths(graphene_includedir, graphene_api_path))
 
@@ -132,14 +137,49 @@ graphene_dep = declare_dependency(link_with: libgraphene,
                                   include_directories: [ graphene_inc ],
                                   dependencies: [ mathlib, threadlib ] + platform_deps)
 
-# Generate the pkg-config files
-foreach p: pkgconfig_files
-  configure_file(input: 'graphene.pc.in',
-                 output: p + '.pc',
-                 configuration: conf,
-                 install: true,
-                 install_dir: join_paths(graphene_libdir, 'pkgconfig'))
+
+# Feature discovery variables
+graphene_simd_vars = []
+foreach simd: [ 'sse2', 'gcc', 'neon', 'scalar', ]
+  has_simd = graphene_simd.contains(simd) ? '1' : '0'
+  graphene_simd_vars += [ 'graphene_has_@0@=@1@'.format(simd, has_simd) ]
 endforeach
+
+# Backward compatibility variables
+graphene_simd_vars += [ 'graphene_simd=@0@'.format(' '.join(graphene_simd)) ]
+if graphene_simd.contains('sse2')
+  graphene_simd_vars += [ 'sse2_cflags=@0@'.format(sse2_cflags) ]
+endif
+if graphene_simd.contains('neon')
+  graphene_simd_vars += [ 'neon_cflags=@0@'.format(neon_cflags) ]
+endif
+
+# Generate the pkg-config files
+pkg = import('pkgconfig')
+pkg.generate(libraries: libgraphene,
+             name: 'Graphene',
+             description: 'Math classes for graphic libraries',
+             version: meson.project_version(),
+             filebase: graphene_api_path,
+             subdirs: graphene_api_path,
+             extra_cflags: sse2_cflags + neon_cflags,
+             variables: graphene_simd_vars + [
+               'exec_prefix=${prefix}',
+             ])
+
+if build_gobject
+  pkg.generate(libraries: libgraphene,
+               name: 'Graphene',
+               description: 'Math classes for graphic libraries (with GObject types)',
+               version: meson.project_version(),
+               filebase: graphene_gobject_api_path,
+               subdirs: graphene_gobject_api_path,
+               requires: 'gobject-2.0',
+               extra_cflags: sse2_cflags + neon_cflags,
+               variables: graphene_simd_vars + [
+                 'exec_prefix=${prefix}',
+               ])
+endif
 
 if build_gir
   python = python3.find_python()

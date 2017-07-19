@@ -6,7 +6,7 @@ project('graphene', 'c',
           'c_std=c99',
           'warning_level=1'
         ],
-        meson_version: '>= 0.38.1')
+        meson_version: '>= 0.41.1')
 
 cc = meson.get_compiler('c')
 host_system = host_machine.system()
@@ -46,18 +46,6 @@ graphene_datadir = join_paths(graphene_prefix, get_option('datadir'))
 graphene_api_path = '@0@-@1@'.format(meson.project_name(), graphene_api_version)
 
 conf = configuration_data()
-
-# Compat variables for pkgconfig
-conf.set('prefix', graphene_prefix)
-conf.set('exec_prefix', graphene_prefix)
-conf.set('libdir', graphene_libdir)
-conf.set('includedir', graphene_includedir)
-
-# Version macros
-conf.set('GRAPHENE_MAJOR_VERSION', graphene_major_version)
-conf.set('GRAPHENE_MINOR_VERSION', graphene_minor_version)
-conf.set('GRAPHENE_MICRO_VERSION', graphene_micro_version)
-conf.set('GRAPHENE_VERSION', graphene_version)
 
 # Compiler and linker flags
 common_cflags = []
@@ -180,7 +168,7 @@ elif buildtype.startswith('debug')
   debug_flags += [ '-DGRAPHENE_ENABLE_DEBUG' ]
 endif
 
-extra_args= []
+extra_args = []
 # Detect and set symbol visibility
 if get_option('default_library') != 'static'
   if host_system == 'windows'
@@ -197,16 +185,16 @@ endif
 
 # Optional dependency on GObject
 build_gobject = false
+gobject_req_version = '>= 2.30.0'
 if get_option('enable-gobject-types')
   graphene_gobject_api_path = '@0@-gobject-@1@'.format(meson.project_name(), graphene_api_version)
-  gobject = dependency('gobject-2.0', version: '>= 2.30.0', required: false)
+  gobject = dependency('gobject-2.0', version: gobject_req_version, required: false)
   build_gobject = gobject.found()
   if build_gobject
     if cc.get_id() == 'msvc'
       extra_args += ['/FImsvc_recommended_pragmas.h']
     endif
   endif
-  conf.set('GRAPHENE_REQS', 'gobject-2.0')
 endif
 
 # Optional dependency on GObject-Introspection; if GObject is disabled
@@ -244,6 +232,7 @@ graphene_conf = configuration_data()
 graphene_simd = []
 
 # SSE intrinsics
+sse2_cflags = ''
 if get_option('enable-sse2')
   sse_prog = '''
 #if defined(__GNUC__) && (__GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 2))
@@ -270,7 +259,7 @@ int main () {
   if cc.compiles(sse_prog, name: 'SSE intrinsics')
     graphene_conf.set('GRAPHENE_HAS_SSE', 1)
     if cc.get_id() != 'msvc'
-      conf.set('SSE2_CFLAGS', '-mfpmath=sse -msse -msse2')
+      sse2_cflags = '-mfpmath=sse -msse -msse2'
       extra_args += ['-mfpmath=sse', '-msse', '-msse2']
     endif
     graphene_simd += [ 'sse2' ]
@@ -304,6 +293,7 @@ int main () {
 endif
 
 # ARM NEON intrinsics
+neon_cflags = ''
 if get_option('enable-arm-neon')
   neon_prog = '''
 #ifndef __ARM_EABI__
@@ -332,9 +322,9 @@ int main () {
 
     if host_system == 'android'
       extra_args += ['-mfloat-abi=softfp']
-      conf.set('NEON_CFLAGS', '-mfpu=neon -mfloat-abi=softfp')
+      neon_cflags = '-mfpu=neon -mfloat-abi=softfp'
     else
-      conf.set('NEON_CFLAGS', '-mfpu=neon')
+      neon_cflags = '-mfpu=neon'
     endif
 
     graphene_simd += [ 'neon' ]
