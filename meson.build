@@ -1,12 +1,12 @@
 project('graphene', 'c',
         version: '1.7.1',
         license: 'MIT',
+        meson_version: '>= 0.41.1',
         default_options: [
           'buildtype=debugoptimized',
           'c_std=c99',
           'warning_level=1'
-        ],
-        meson_version: '>= 0.38.1')
+        ])
 
 cc = meson.get_compiler('c')
 host_system = host_machine.system()
