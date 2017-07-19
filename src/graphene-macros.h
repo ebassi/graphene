@@ -57,6 +57,12 @@
 # define GRAPHENE_VECTORCALL
 #endif
 
+#ifdef _MSC_VER
+# if !defined (__cplusplus) && defined (_MSC_VER) && (_MSC_VER < 1900)
+#  define inline __inline
+# endif
+#endif
+
 #ifdef __cplusplus
 # define GRAPHENE_BEGIN_DECLS   extern "C" {
 # define GRAPHENE_END_DECLS     }

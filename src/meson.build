@@ -63,8 +63,7 @@ if build_gobject
 endif
 
 # Internal configuration header
-configure_file(input: 'config.h.meson',
-               output: 'config.h',
+configure_file(output: 'config.h',
                configuration: conf)
 
 # External configuration header
@@ -75,9 +74,15 @@ configure_file(input: 'graphene-config.h.meson',
                install_dir: join_paths(graphene_libdir, graphene_api_path, 'include'))
 
 # Version header
+version_conf = configuration_data()
+version_conf.set('GRAPHENE_VERSION', graphene_version)
+version_conf.set('GRAPHENE_MAJOR_VERSION', graphene_major_version)
+version_conf.set('GRAPHENE_MINOR_VERSION', graphene_minor_version)
+version_conf.set('GRAPHENE_MICRO_VERSION', graphene_micro_version)
+
 configure_file(input: 'graphene-version.h.in',
                output: 'graphene-version.h',
-               configuration: conf,
+               configuration: version_conf,
                install: true,
                install_dir: join_paths(graphene_includedir, graphene_api_path))
 

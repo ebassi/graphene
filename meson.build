@@ -47,12 +47,6 @@ graphene_api_path = '@0@-@1@'.format(meson.project_name(), graphene_api_version)
 
 conf = configuration_data()
 
-# Version macros
-conf.set('GRAPHENE_MAJOR_VERSION', graphene_major_version)
-conf.set('GRAPHENE_MINOR_VERSION', graphene_minor_version)
-conf.set('GRAPHENE_MICRO_VERSION', graphene_micro_version)
-conf.set('GRAPHENE_VERSION', graphene_version)
-
 # Compiler and linker flags
 common_cflags = []
 common_ldflags = []
@@ -136,24 +130,29 @@ mathlib = cc.find_library('m', required: false)
 threadlib = dependency('threads')
 
 # Headers
-conf.set('HAVE_STDLIB_H', cc.has_header('stdlib.h'))
-conf.set('HAVE_STDINT_H', cc.has_header('stdint.h'))
-conf.set('HAVE_STDBOOL_H', cc.has_header('stdbool.h'))
-conf.set('HAVE_MEMORY_H', cc.has_header('memory.h'))
-conf.set('HAVE_PTHREAD_H', cc.has_header('pthread.h', dependencies: threadlib))
+conf.set('HAVE_STDLIB_H', cc.has_header('stdlib.h'),
+         description: 'Define if stdlib.h is available')
+conf.set('HAVE_STDINT_H', cc.has_header('stdint.h'),
+         description: 'Define if stdint.h is available')
+conf.set('HAVE_STDBOOL_H', cc.has_header('stdbool.h'),
+         description: 'Define if stdbool.h is available')
+conf.set('HAVE_MEMORY_H', cc.has_header('memory.h'),
+         description: 'Define if memory.h is available')
+conf.set('HAVE_PTHREAD_H', cc.has_header('pthread.h', dependencies: threadlib),
+         description: 'Define if pthread.h is available')
 
 # Functions
 if cc.has_function('memalign', prefix: '#include <stdlib.h>\n#include <malloc.h>')
-  conf.set10('HAVE_MEMALIGN', 1)
+  conf.set10('HAVE_MEMALIGN', 1, description: 'Define if memalign() is available')
 elif cc.has_function('_aligned_malloc', prefix: '#include <malloc.h>')
-  conf.set10('HAVE__ALIGNED_MALLOC', 1)
+  conf.set10('HAVE__ALIGNED_MALLOC', 1, description: 'Define if _aligned_malloc() is available')
 # Don't probe the ones below on Windows because when building with
 # MinGW-w64 on MSYS2, Meson<0.37.0 incorrectly detects those below as
 # being available even though they're not.
 elif cc.has_function('aligned_alloc', prefix: '#include <stdlib.h>') and not (host_system == 'windows')
-  conf.set10('HAVE_ALIGNED_ALLOC', 1)
+  conf.set10('HAVE_ALIGNED_ALLOC', 1, description: 'Define if aligned_malloc() is available')
 elif cc.has_function('posix_memalign', prefix: '#include <stdlib.h>') and not (host_system == 'windows')
-  conf.set10('HAVE_POSIX_MEMALIGN', 1)
+  conf.set10('HAVE_POSIX_MEMALIGN', 1, description: 'Define if posix_memalign() is available')
 else
   error('No aligned malloc function could be found.')
 endif
@@ -163,7 +162,8 @@ conf.set('HAVE_SINCOSF',
          cc.has_function('sincosf',
                          prefix: '#include <math.h>',
                          args: [ '-D_GNU_SOURCE' ],
-                         dependencies: mathlib))
+                         dependencies: mathlib),
+         description: 'Define if sincosf() is available')
 
 # Debugging
 debug_flags = []
@@ -228,7 +228,8 @@ int main (void) {
   return 0;
 }
 '''
-  conf.set10('HAVE_INIT_ONCE', cc.compiles(init_once_prog, name: 'InitOnceExecuteOnce'))
+  conf.set10('HAVE_INIT_ONCE', cc.compiles(init_once_prog, name: 'InitOnceExecuteOnce'),
+             description: 'Define if InitOnceExecuteOnce is available')
 endif
 
 # Configuration for our installed config header
@@ -339,8 +340,6 @@ endif
 
 # Scalar is always available as a fallback
 graphene_simd += [ 'scalar' ]
-
-conf.set('GRAPHENE_SIMD', ' '.join(graphene_simd))
 
 python3 = import('python3')
 gnome = import('gnome')
