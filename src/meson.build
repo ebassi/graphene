@@ -123,10 +123,10 @@ endforeach
 
 # Backward compatibility variables
 graphene_simd_vars += [ 'graphene_simd=@0@'.format(' '.join(graphene_simd)) ]
-if graphene_simd.contains('sse2')
+if graphene_simd.contains('sse2') and sse2_cflags != ''
   graphene_simd_vars += [ 'sse2_cflags=@0@'.format(sse2_cflags) ]
 endif
-if graphene_simd.contains('neon')
+if graphene_simd.contains('neon') and neon_cflags != ''
   graphene_simd_vars += [ 'neon_cflags=@0@'.format(neon_cflags) ]
 endif
 
