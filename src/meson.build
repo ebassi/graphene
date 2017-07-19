@@ -149,7 +149,7 @@ if build_gobject
                description: 'Math classes for graphic libraries (with GObject types)',
                version: meson.project_version(),
                filebase: graphene_gobject_api_path,
-               subdirs: graphene_gobject_api_path,
+               subdirs: graphene_api_path,
                requires: 'gobject-2.0',
                extra_cflags: sse2_cflags + neon_cflags,
                variables: graphene_simd_vars + [
