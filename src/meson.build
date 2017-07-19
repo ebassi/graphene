@@ -96,40 +96,16 @@ if build_gobject
   platform_deps += [ gobject ]
 endif
 
-libtype = get_option('default_library')
-
-if libtype != 'static'
-  graphene_shared = shared_library(graphene_api_path,
-                                   sources: sources + simd_sources + private_headers,
-                                   version: libversion,
-                                   soversion: soversion,
-                                   install: true,
-                                   dependencies: [ mathlib, threadlib ] + platform_deps,
-                                   c_args: extra_args + common_cflags + debug_flags + [
-                                     '-DGRAPHENE_COMPILATION',
-                                     '-DG_LOG_DOMAIN="Graphene"',
-                                     '-DG_LOG_STRUCTURED=1',
-                                     '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30',
-                                     '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32',
-                                   ],
-                                   link_args: common_ldflags)
-  libgraphene = graphene_shared
-endif
-
-if libtype != 'shared'
-  graphene_static = static_library(graphene_api_path,
-                                   sources: sources + simd_sources + private_headers,
-                                   install: true,
-                                   dependencies: [ mathlib, threadlib ] + platform_deps,
-                                   c_args: extra_args + common_cflags + debug_flags + [
-                                     '-DGRAPHENE_COMPILATION',
-                                     '-DG_LOG_DOMAIN="Graphene"',
-                                     '-DG_LOG_STRUCTURED=1',
-                                     '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30',
-                                     '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_32',
-                                   ])
-  libgraphene = graphene_static
-endif
+libgraphene = library(graphene_api_path,
+                      sources: sources + simd_sources + private_headers,
+                      version: libversion,
+                      soversion: soversion,
+                      install: true,
+                      dependencies: [ mathlib, threadlib ] + platform_deps,
+                      c_args: extra_args + common_cflags + debug_flags + [
+                        '-DGRAPHENE_COMPILATION',
+                      ],
+                      link_args: common_ldflags)
 
 # Internal dependency, for tests and benchmarks
 graphene_inc = include_directories('.')
