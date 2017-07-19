@@ -191,9 +191,10 @@ endif
 
 # Optional dependency on GObject
 build_gobject = false
+gobject_req_version = '>= 2.30.0'
 if get_option('enable-gobject-types')
   graphene_gobject_api_path = '@0@-gobject-@1@'.format(meson.project_name(), graphene_api_version)
-  gobject = dependency('gobject-2.0', version: '>= 2.30.0', required: false)
+  gobject = dependency('gobject-2.0', version: gobject_req_version, required: false)
   build_gobject = gobject.found()
   if build_gobject
     if cc.get_id() == 'msvc'
