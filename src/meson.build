@@ -107,12 +107,6 @@ libgraphene = library(graphene_api_path,
                       ],
                       link_args: common_ldflags)
 
-# Internal dependency, for tests and benchmarks
-graphene_inc = include_directories('.')
-graphene_dep = declare_dependency(link_with: libgraphene,
-                                  include_directories: [ graphene_inc ],
-                                  dependencies: [ mathlib, threadlib ] + platform_deps)
-
 # Generate the pkg-config files
 pkg_conf = configuration_data()
 pkg_conf.set('GRAPHENE_VERSION', graphene_version)
@@ -140,6 +134,8 @@ foreach p: pkgconfig_files
                  install_dir: join_paths(graphene_libdir, 'pkgconfig'))
 endforeach
 
+graphene_dep_sources = []
+
 # Introspection
 if build_gir
   python = python3.find_python()
@@ -153,17 +149,25 @@ if build_gir
     '--warn-all',
     '-DGRAPHENE_COMPILATION',
   ]
-  gnome.generate_gir(libgraphene,
-                     sources: headers + sources,
-                     namespace: 'Graphene',
-                     nsversion: graphene_api_version,
-                     identifier_prefix: 'Graphene',
-                     symbol_prefix: 'graphene',
-                     export_packages: graphene_gobject_api_path,
-                     includes: [ 'GObject-2.0' ],
-                     install: true,
-                     extra_args: gir_extra_args)
+  graphene_gir = gnome.generate_gir(libgraphene,
+                                    sources: headers + sources,
+                                    namespace: 'Graphene',
+                                    nsversion: graphene_api_version,
+                                    identifier_prefix: 'Graphene',
+                                    symbol_prefix: 'graphene',
+                                    export_packages: graphene_gobject_api_path,
+                                    includes: [ 'GObject-2.0' ],
+                                    install: true,
+                                    extra_args: gir_extra_args)
+  graphene_dep_sources += graphene_gir
 endif
+
+# Dependency for tests and benchmarks and subproject usage
+graphene_inc = include_directories('.')
+graphene_dep = declare_dependency(sources : graphene_dep_sources,
+                                  link_with: libgraphene,
+                                  include_directories: [ graphene_inc ],
+                                  dependencies: [ mathlib, threadlib ] + platform_deps)
 
 # tests and benchmarks depend on GLib, so we only build them if GObject is enabled
 if build_gobject
