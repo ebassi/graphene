@@ -7,24 +7,6 @@
 
 # Build API variables:
 
-# Little helper function for reading args from the commandline.
-# it automatically handles -a b and -a=b variants, and returns 1 if
-# we need to shift $3.
-read_arg() {
-    # $1 = arg name
-    # $2 = arg value
-    # $3 = arg parameter
-    local rematch='^[^=]*=(.*)$'
-    if [[ $2 =~ $rematch ]]; then
-	read "$1" <<< "${BASH_REMATCH[1]}"
-    else
-	read "$1" <<< "$3"
-	# There is no way to shift our callers args, so
-	# return 1 to indicate they should do it instead.
-	return 1
-    fi
-}
-
 sanitycheck() {
     # $1 = arg name
     # $1 = arg command
@@ -51,48 +33,83 @@ sanitycheck() {
     exit 1
 }
 
+set_option() {
+    # $1 = arg name
+    # $2 = arg value
+    if [ ${dir_options[$1]+_} ]; then
+        dir_options[$1]=$2
+    elif [ ${default_options[$1]+_} ]; then
+        meson_options[$1]=$2
+    else
+        echo -e "\e[1;33mINFO\e[0m: Ignoring unknown option '$1'"
+    fi
+}
+
+set_bool_option() {
+    # $1 = arg name
+    # $2 = arg value
+    if [ ${default_options[$1]+_} ]; then
+        meson_options[$1]=$2
+    else
+        echo -e "\e[1;33mINFO\e[0m: Ignoring unknown option '$1'"
+    fi
+}
+
 sanitycheck MESON 'meson'
 sanitycheck MESONTEST 'mesontest'
 sanitycheck NINJA 'ninja' 'ninja-build'
 
-enable_docs='-Denable-gtk-doc=false'
-enable_man='-Denable-man=false'
-enable_introspection=''
+declare -A dir_options=(
+    ['prefix']=""
+    ['bindir']=""
+    ['sbindir']=""
+    ['libexecdir']=""
+    ['datarootdir']=""
+    ['datadir']=""
+    ['sysconfdir']=""
+    ['libdir']=""
+    ['mandir']=""
+    ['includedir']=""
+)
 
+declare -A default_options=(
+    ['gtk-doc']=false
+    ['man']=false
+    ['introspection']=true
+)
+
+declare -A meson_options
+
+rematch_bool='^--(enable|disable)[-](.+)'
+rematch_option='^--([[:alnum:]-]+)[=]?(.+)*'
 while (($# > 0)); do
-    case "${1%%=*}" in
-	--prefix) read_arg prefix "$@" || shift;;
-	--bindir) read_arg bindir "$@" || shift;;
-	--sbindir) read_arg sbindir "$@" || shift;;
-	--libexecdir) read_arg libexecdir "$@" || shift;;
-	--datarootdir) read_arg datarootdir "$@" || shift;;
-	--datadir) read_arg datadir "$@" || shift;;
-	--sysconfdir) read_arg sysconfdir "$@" || shift;;
-	--libdir) read_arg libdir "$@" || shift;;
-	--mandir) read_arg mandir "$@" || shift;;
-	--includedir) read_arg includedir "$@" || shift;;
-	--enable-gtk-doc) enable_docs='-Denable-gtk-doc=true';;
-	--disable-gtk-doc) enable_docs='-Denable-gtk-doc=false';;
-	--enable-man) enable_man='-Denable-man=true';;
-	--disable-man) enable_man='-Denable-man=false';;
-	--enable-introspection) enable_introspection='';;
-	--disable-introspection) enable_introspection='-Ddisable_introspection=true';;
-	*) echo -e "\e[1;33mINFO\e[0m: Ignoring unknown option '$1'";;
-    esac
+    if [[ $1 =~ $rematch_bool || $1 =~ $rematch_option ]]; then
+        var1=${BASH_REMATCH[1]}
+        var2=${BASH_REMATCH[2]:-$2}
+        test -z "${BASH_REMATCH[2]}" && shift
+
+        case "$var1" in
+            enable) set_bool_option $var2 true;;
+            disable) set_bool_option $var2 false;;
+            *) set_option $var1 $var2;;
+        esac
+    else
+        echo -e "\e[1;31mERROR\e[0m: Unknown option '$1'"
+    fi
     shift
 done
 
 # Defaults
-test -z ${prefix} && prefix="/usr/local"
-test -z ${bindir} && bindir=${prefix}/bin
-test -z ${sbindir} && sbindir=${prefix}/sbin
-test -z ${libexecdir} && libexecdir=${prefix}/bin
-test -z ${datarootdir} && datarootdir=${prefix}/share
-test -z ${datadir} && datadir=${datarootdir}
-test -z ${sysconfdir} && sysconfdir=${prefix}/etc
-test -z ${libdir} && libdir=${prefix}/lib
-test -z ${mandir} && mandir=${prefix}/share/man
-test -z ${includedir} && includedir=${prefix}/include
+test -z ${dir_options['prefix']} && dir_options['prefix']="/usr/local"
+test -z ${dir_options['bindir']} && dir_options['bindir']=${dir_options['prefix']}/bin
+test -z ${dir_options['sbindir']} && dir_options['sbindir']=${dir_options['prefix']}/sbin
+test -z ${dir_options['libexecdir']} && dir_options['libexecdir']=${dir_options['prefix']}/bin
+test -z ${dir_options['datarootdir']} && dir_options['datarootdir']=${dir_options['prefix']}/share
+test -z ${dir_options['datadir']} && dir_options['datadir']=${dir_options['datarootdir']}
+test -z ${dir_options['sysconfdir']} && dir_options['sysconfdir']=${dir_options['prefix']}/etc
+test -z ${dir_options['libdir']} && dir_options['libdir']=${dir_options['prefix']}/lib
+test -z ${dir_options['mandir']} && dir_options['mandir']=${dir_options['prefix']}/share/man
+test -z ${dir_options['includedir']} && dir_options['includedir']=${dir_options['prefix']}/include
 
 # The source directory is the location of this file
 srcdir=$(dirname $0)
@@ -124,35 +141,38 @@ check:
 	${MESONTEST} ${NINJA_OPT}
 END
 
+cmd_options=""
+for key in "${!meson_options[@]}"; do
+    cmd_options="$cmd_options -Denable-$key=${meson_options[$key]}"
+done
+
 echo "Summary:"
 echo "  meson:....... ${MESON}"
 echo "  ninja:....... ${NINJA}"
-echo "  prefix:...... ${prefix}"
-echo "  bindir:...... ${bindir}"
-echo "  sbindir:..... ${sbindir}"
-echo "  libexecdir:.. ${libexecdir}"
-echo "  datarootdir:. ${datarootdir}"
-echo "  datadir:..... ${datadir}"
-echo "  sysconfdir:.. ${sysconfdir}"
-echo "  libdir:...... ${libdir}"
-echo "  mandir:...... ${mandir}"
-echo "  includedir:.. ${includedir}"
+echo "  prefix:...... ${dir_options['prefix']}"
+echo "  bindir:...... ${dir_options['bindir']}"
+echo "  sbindir:..... ${dir_options['sbindir']}"
+echo "  libexecdir:.. ${dir_options['libexecdir']}"
+echo "  datarootdir:. ${dir_options['datarootdir']}"
+echo "  datadir:..... ${dir_options['datadir']}"
+echo "  sysconfdir:.. ${dir_options['sysconfdir']}"
+echo "  libdir:...... ${dir_options['libdir']}"
+echo "  mandir:...... ${dir_options['mandir']}"
+echo "  includedir:.. ${dir_options['includedir']}"
 echo "  additional:.."
-echo "    - ${enable_docs} ${enable_man} ${enable_introspection}"
+echo "    -${cmd_options}"
 
 exec ${MESON} \
-	--prefix=${prefix} \
-	--libdir=${libdir} \
-	--libexecdir=${libexecdir} \
-	--datadir=${datadir} \
-	--sysconfdir=${sysconfdir} \
-	--bindir=${bindir} \
-	--includedir=${includedir} \
-	--mandir=${mandir} \
+	--prefix=${dir_options['prefix']} \
+	--libdir=${dir_options['libdir']} \
+	--libexecdir=${dir_options['libexecdir']} \
+	--datadir=${dir_options['datadir']} \
+	--sysconfdir=${dir_options['sysconfdir']} \
+	--bindir=${dir_options['bindir']} \
+	--includedir=${dir_options['includedir']} \
+	--mandir=${dir_options['mandir']} \
 	--default-library shared \
-	${enable_docs} \
-	${enable_man} \
-	${enable_introspection} \
+	${cmd_options} \
 	${builddir} \
 	${srcdir}
 
