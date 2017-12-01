@@ -59,13 +59,13 @@ Alternatively, you can also use Autotools.
 
 First of all, clone the Git repository:
 
-    $ git clone git://github.com/ebassi/graphene
+    $ git clone https://github.com/ebassi/graphene
     $ cd graphene
 
 Then run:
 
-    $ mkdir _build && cd _build
-    $ meson ..    # on Windows, it's "meson.py"
+    $ meson _build    # on Windows, it's "meson.py"
+    $ cd _build
     $ ninja test
     # ninja install
 
