@@ -164,14 +164,12 @@ extra_args= []
 if get_option('default_library') != 'static'
   if host_system == 'windows'
     conf.set('DLL_EXPORT', true)
-    if cc.get_id() == 'msvc'
-      conf.set('_GRAPHENE_PUBLIC', '__declspec(dllexport) extern')
-    else
-      conf.set('_GRAPHENE_PUBLIC', '__attribute__((visibility("default"))) __declspec(dllexport) extern')
+    conf.set('_GRAPHENE_PUBLIC', '__declspec(dllexport) extern')
+    if cc.get_id() != 'msvc'
       extra_args += ['-fvisibility=hidden']
     endif
   else
-    conf.set('_GRAPHENE_PUBLIC', '__attribute__((visibility("default")))')
+    conf.set('_GRAPHENE_PUBLIC', '__attribute__((visibility("default"))) extern')
     extra_args += ['-fvisibility=hidden']
   endif
 endif
