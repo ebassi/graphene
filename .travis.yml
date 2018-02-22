@@ -25,3 +25,4 @@ script:
   - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh"
   - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh -Dsse2=false"
   - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh -Dsse2=false -Dgcc_vector=false"
+  - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh -Dgobject_types=false"
