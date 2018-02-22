@@ -106,18 +106,10 @@ else
   ]
 endif
 
-foreach cflag: test_cflags
-  if cc.has_argument(cflag)
-    common_cflags += cflag
-  endif
-endforeach
+common_cflags = cc.get_supported_arguments(test_cflags)
 
-if host_system == 'linux'
-  foreach ldflag: [ '-Wl,-Bsymbolic-functions', '-Wl,-z,relro', '-Wl,-z,now', ]
-    if cc.has_argument(ldflag)
-      common_ldflags += ldflag
-    endif
-  endforeach
+if host_system == 'linux' and cc.get_id() == 'gcc'
+  common_ldflags = [ '-Wl,-Bsymbolic-functions', '-Wl,-z,relro', '-Wl,-z,now', ]
 endif
 
 # Maintain compatibility with Autotools on macOS
@@ -130,15 +122,21 @@ mathlib = cc.find_library('m', required: false)
 threadlib = dependency('threads')
 
 # Headers
-conf.set('HAVE_STDLIB_H', cc.has_header('stdlib.h'),
-         description: 'Define if stdlib.h is available')
-conf.set('HAVE_STDINT_H', cc.has_header('stdint.h'),
-         description: 'Define if stdint.h is available')
-conf.set('HAVE_STDBOOL_H', cc.has_header('stdbool.h'),
-         description: 'Define if stdbool.h is available')
-conf.set('HAVE_MEMORY_H', cc.has_header('memory.h'),
-         description: 'Define if memory.h is available')
-conf.set('HAVE_PTHREAD_H', cc.has_header('pthread.h', dependencies: threadlib),
+test_headers = [
+  'stdlib.h',
+  'stdint.h',
+  'stdbool.h',
+  'memory.h',
+]
+
+foreach h: test_headers
+  conf.set('HAVE_' + h.underscorify().to_upper(),
+           cc.has_header(h),
+           description: 'Define if @0@ is available'.format(h))
+endforeach
+
+conf.set('HAVE_PTHREAD_H',
+         cc.has_header('pthread.h', dependencies: threadlib),
          description: 'Define if pthread.h is available')
 
 # Functions
@@ -219,8 +217,11 @@ int main (void) {
   return 0;
 }
 '''
-  conf.set10('HAVE_INIT_ONCE', cc.compiles(init_once_prog, name: 'InitOnceExecuteOnce'),
-             description: 'Define if InitOnceExecuteOnce is available')
+  conf.set10(
+    'HAVE_INIT_ONCE',
+    cc.compiles(init_once_prog, name: 'InitOnceExecuteOnce'),
+    description: 'Define if InitOnceExecuteOnce is available',
+  )
 endif
 
 # Configuration for our installed config header
