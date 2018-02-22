@@ -189,12 +189,7 @@ endif
 
 # Optional dependency on GObject-Introspection; if GObject is disabled
 # then we don't build introspection data either
-build_gir = build_gobject
-if build_gobject and get_option('enable-introspection')
-  # XXX: Not nice, but probably our best option
-  gir = find_program('g-ir-scanner', required: false)
-  build_gir = gir.found() and not meson.is_cross_build()
-endif
+build_gir = build_gobject and get_option('enable-introspection')
 
 # Check for InitOnce on Windows
 if host_system == 'windows'
