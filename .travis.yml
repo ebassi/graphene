@@ -23,5 +23,5 @@ before_script:
 
 script:
   - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh"
-  - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh -Denable-sse2=false"
-  - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh -Denable-sse2=false -Denable-gcc-vector=false"
+  - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh -Dsse2=false"
+  - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh -Dsse2=false -Dgcc_vector=false"
