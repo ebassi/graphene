@@ -132,6 +132,8 @@ endforeach
 
 if build_gobject
   pkg_conf.set('GRAPHENE_REQS', 'gobject-2.0')
+else
+  pkg_conf.set('GRAPHENE_REQS', '')
 endif
 
 foreach p: pkgconfig_files
