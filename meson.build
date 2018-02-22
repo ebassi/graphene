@@ -1,5 +1,5 @@
 project('graphene', 'c',
-        version: '1.7.1',
+        version: '1.8.0',
         license: 'MIT',
         meson_version: '>= 0.43.1',
         default_options: [
