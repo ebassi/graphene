@@ -21,7 +21,7 @@ before_build:
 - mkdir _build
 - mkdir graphene-shared-%pout%
 - cd _build
-- curl -LsSO https://github.com/mesonbuild/meson/releases/download/0.41.1/meson-0.44.1.tar.gz
+- curl -LsSO https://github.com/mesonbuild/meson/releases/download/0.44.1/meson-0.44.1.tar.gz
 - 7z x meson-0.44.1.tar.gz
 - move dist\meson-0.44.1.tar .
 - 7z x meson-0.44.1.tar
