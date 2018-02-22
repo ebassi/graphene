@@ -72,17 +72,17 @@ Then run:
 It is possible, when building Graphene, to disable specific optimizations by
 using configuration options:
 
- * `-Denable-sse2=false` - will disable the SSE2 fast paths
- * `-Denable-arm-neon=false` - will disable the ARM NEON fast paths
- * `-Denable-gcc-vector=false` - will disable the GCC vector intrinsics
+ * `-Dsse2=false` - will disable the SSE2 fast paths
+ * `-Darm_neon=false` - will disable the ARM NEON fast paths
+ * `-Dgcc_vector=false` - will disable the GCC vector intrinsics
 
-If you don't plan on generating introspection data, use `-Denable-introspection=false`
+If you don't plan on generating introspection data, use `-Dintrospection=false`
 when configuring Graphene; similarly, if you don't plan on using GObject with
-Graphene, use `-Denable-gobject-types=false`. Disabling GObject types will also
+Graphene, use `-Dgobject_types=false`. Disabling GObject types will also
 automatically disable generating introspection data.
 
-You can also disable building the test suite and the benchmark suite, using
-the `-Denable-tests=false` and `-Denable-benchmarks=false` configuration switches
+You can also disable building the test suite and the benchmark suite,
+using the `-Dtests=false` and `-Dbenchmarks=false` configuration switches
 respectively.
 
 #### Building on Windows

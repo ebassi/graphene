@@ -192,7 +192,7 @@ endif
 # Optional dependency on GObject
 build_gobject = false
 gobject_req_version = '>= 2.30.0'
-if get_option('enable-gobject-types')
+if get_option('gobject_types')
   graphene_gobject_api_path = '@0@-gobject-@1@'.format(meson.project_name(), graphene_api_version)
   gobject = dependency('gobject-2.0', version: gobject_req_version, required: false)
   build_gobject = gobject.found()
@@ -206,7 +206,7 @@ endif
 # Optional dependency on GObject-Introspection; if GObject is disabled
 # then we don't build introspection data either
 build_gir = build_gobject
-if build_gobject and get_option('enable-introspection')
+if build_gobject and get_option('introspection')
   # XXX: Not nice, but probably our best option
   gir = find_program('g-ir-scanner', required: false)
   if get_option('default_library') == 'shared'
@@ -240,7 +240,7 @@ graphene_simd = []
 
 # SSE intrinsics
 sse2_cflags = ''
-if get_option('enable-sse2')
+if get_option('sse2')
   sse_prog = '''
 #if defined(__GNUC__) && (__GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 2))
 # if !defined(__amd64__) && !defined(__x86_64__)
@@ -274,7 +274,7 @@ int main () {
 endif
 
 # GCC vector intrinsics
-if get_option('enable-gcc-vector')
+if get_option('gcc_vector')
   gcc_vector_prog = '''
 #if defined(__GNUC__)
 # if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
@@ -301,7 +301,7 @@ endif
 
 # ARM NEON intrinsics
 neon_cflags = ''
-if get_option('enable-arm-neon')
+if get_option('arm_neon')
   neon_prog = '''
 #ifndef __ARM_EABI__
 #error "EABI is required (to be sure that calling conventions are compatible)"
@@ -346,6 +346,6 @@ gnome = import('gnome')
 
 subdir('src')
 
-if get_option('enable-gtk-doc')
+if get_option('gtk_doc')
   subdir('doc')
 endif

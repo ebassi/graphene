@@ -1,6 +1,18 @@
-option('enable-gtk-doc', type: 'boolean', value: false, description: 'Enable generating the API reference (depends on GTK-Doc)')
-option('enable-gobject-types', type: 'boolean', value: true, description: 'Enable GObject types (depends on GObject)')
-option('enable-introspection', type: 'boolean', value: true, description: 'Enable GObject Introspection (depends on GObject)')
-option('enable-gcc-vector', type: 'boolean', value: true, description: 'Enable GCC vector fast paths')
-option('enable-sse2', type: 'boolean', value: true, description: 'Enable SSE2 fast paths')
-option('enable-arm-neon', type: 'boolean', value: true, description: 'Enable ARM NEON fast paths')
+option('gtk_doc', type: 'boolean',
+       value: false,
+       description: 'Enable generating the API reference (depends on GTK-Doc)')
+option('gobject_types', type: 'boolean',
+       value: true,
+       description: 'Enable GObject types (depends on GObject)')
+option('introspection', type: 'boolean',
+       value: true,
+       description: 'Enable GObject Introspection (depends on GObject)')
+option('gcc_vector', type: 'boolean',
+       value: true,
+       description: 'Enable GCC vector fast paths (requires GCC)')
+option('sse2', type: 'boolean',
+       value: true,
+       description: 'Enable SSE2 fast paths (requires SSE2 or later)')
+option('arm_neon', type: 'boolean',
+       value: true,
+       description: 'Enable ARM NEON fast paths (requires ARM)')
