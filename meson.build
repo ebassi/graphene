@@ -1,7 +1,7 @@
 project('graphene', 'c',
         version: '1.7.1',
         license: 'MIT',
-        meson_version: '>= 0.41.1',
+        meson_version: '>= 0.43.1',
         default_options: [
           'buildtype=debugoptimized',
           'c_std=c99',
