@@ -6,7 +6,7 @@ project('graphene', 'c',
           'warning_level=1'
         ],
         license: 'MIT',
-        meson_version: '>= 0.38.1')
+        meson_version: '>= 0.43.1')
 
 graphene_version = meson.project_version()
 version_array = graphene_version.split('.')
