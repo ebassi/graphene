@@ -113,27 +113,24 @@ else
     '-Werror=write-strings'
   ]
 endif
-common_flags = []
-foreach cflag: test_cflags
-  if cc.has_argument(cflag)
-    common_flags += [ cflag ]
-  endif
-endforeach
+common_flags = cc.get_supported_arguments(test_cflags)
 
 # Headers
-conf.set('HAVE_STDLIB_H', cc.has_header('stdlib.h'))
-conf.set('HAVE_STDINT_H', cc.has_header('stdint.h'))
-conf.set('HAVE_STDBOOL_H', cc.has_header('stdbool.h'))
-conf.set('HAVE_MEMORY_H', cc.has_header('memory.h'))
+foreach h: [ 'stdlib.h', 'stdint.h', 'stdbool.h', 'memory.h' ]
+  conf.set('HAVE_' + h.underscorify().to_upper(), cc.has_header(h))
+endforeach
 
 # Required dependencies
 mathlib = cc.find_library('m', required: false)
 threadlib = dependency('threads', required: true)
 
 # Functions
-if cc.has_function('memalign', prefix: '#include <stdlib.h>\n#include <malloc.h>')
+if cc.has_function('memalign',
+                   prefix: '''#include <stdlib.h>
+                              #include <malloc.h>''')
   conf.set('HAVE_MEMALIGN', 1)
-elif cc.has_function('_aligned_malloc', prefix: '#include <malloc.h>')
+elif cc.has_function('_aligned_malloc',
+                     prefix: '#include <malloc.h>')
   conf.set('HAVE__ALIGNED_MALLOC', 1)
 # Don't probe the ones below on Windows because when building with
 # MinGW-w64 on MSYS2, Meson<0.37.0 incorrectly detects those below as
@@ -158,7 +155,7 @@ debug_flags = []
 buildtype = get_option('buildtype')
 if buildtype == 'release'
   debug_flags += [ '-DG_DISABLE_ASSERT' ]
-elif buildtype == 'debug' or buildtype == 'debugoptimized'
+elif buildtype.startswith('debug')
   debug_flags += [ '-DGRAPHENE_ENABLE_DEBUG' ]
 endif
 
