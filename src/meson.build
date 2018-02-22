@@ -171,6 +171,10 @@ graphene_dep = declare_dependency(sources : graphene_dep_sources,
 
 # tests and benchmarks depend on GLib, so we only build them if GObject is enabled
 if build_gobject
-  subdir('tests')
-  subdir('bench')
+  if get_option('tests')
+    subdir('tests')
+  endif
+  if get_option('benchmarks')
+    subdir('bench')
+  endif
 endif

@@ -16,3 +16,9 @@ option('sse2', type: 'boolean',
 option('arm_neon', type: 'boolean',
        value: true,
        description: 'Enable ARM NEON fast paths (requires ARM)')
+option('tests', type: 'boolean',
+       value: true,
+       description: 'Build the test suite (requires GObject)')
+option('benchmarks', type: 'boolean',
+       value: true,
+       description: 'Build the benchmarks suite (requires GObject)')
