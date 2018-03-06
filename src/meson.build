@@ -168,7 +168,7 @@ if build_gir
                                     symbol_prefix: 'graphene',
                                     export_packages: graphene_gobject_api_path,
                                     includes: [ 'GObject-2.0' ],
-                                    header: 'graphene-object.h',
+                                    header: 'graphene-gobject.h',
                                     install: true,
                                     extra_args: gir_extra_args)
   graphene_dep_sources += graphene_gir
