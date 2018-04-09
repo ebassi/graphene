@@ -1790,7 +1790,7 @@ matrix_decompose_2d (const graphene_matrix_t *m,
       row1y = row1y * (1.f / scale_r->y);
     }
 
-  angle = atan2 (row0y, row0x);
+  angle = atan2f (row0y, row0x);
 
   if (angle != 0.f)
     {
