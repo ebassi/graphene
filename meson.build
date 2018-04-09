@@ -103,6 +103,7 @@ else
     '-Werror=return-type',
     '-Werror=array-bounds',
     '-Werror=write-strings',
+    '-Werror=undef',
   ]
 endif
 
