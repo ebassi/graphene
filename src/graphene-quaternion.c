@@ -290,7 +290,7 @@ graphene_quaternion_slerp (const graphene_quaternion_t *a,
       return;
     }
 
-  float theta = acos (dot);
+  float theta = acosf (dot);
   float r_sin_theta = 1.f / sqrtf (1.f - dot * dot);
   float right_v = sinf (factor * theta) * r_sin_theta;
   float left_v = cosf (factor * theta) - dot * right_v;
