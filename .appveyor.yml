@@ -4,16 +4,23 @@ image: Visual Studio 2015
 
 configuration: Release
 
-# Configure both 32-bit and 64-bit builds
+# Configure both 32-bit and 64-bit builds for MSVC / MSYS2
 environment:
   matrix:
-  - MSVC_PLATFORM: x86
-  - MSVC_PLATFORM: x64
+    - MSVC_PLATFORM: x86
+      DO_DEPLOY: true
+    - MSVC_PLATFORM: x64
+      DO_DEPLOY: true
+    - MSYSTEM: MINGW64
+    - MSYSTEM: MINGW32
 
 shallow_clone: true
 
 build_script:
   - IF DEFINED MSVC_PLATFORM ".appveyor/msvc.bat"
+  - IF DEFINED MSYSTEM set CHERE_INVOKING=yes
+  - IF DEFINED MSYSTEM C:\msys64\usr\bin\bash -lc "bash -x .appveyor/msys2-pre.sh"
+  - IF DEFINED MSYSTEM C:\msys64\usr\bin\bash -lc "bash -x .appveyor/msys2.sh"
 
 artifacts:
   - path: graphene-shared-%MSVC_PLATFORM%.zip
@@ -33,3 +40,4 @@ deploy:
   prerelease: false
   on:
     appveyor_repo_tag: true # deploy on tag push only
+    DO_DEPLOY: true
