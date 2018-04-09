@@ -73,6 +73,7 @@ if cc.get_id() == 'msvc'
     '-we4049',
     '-we4053',
     '-we4071',
+    '-we4244',
     '-we4150',
     '-we4819'
   ]
@@ -90,6 +91,7 @@ else
     '-Wlogical-op',
     '-Wcast-align',
     '-Wno-unused-local-typedefs',
+    '-Werror=float-conversion',
     '-Werror=redundant-decls',
     '-Werror=missing-prototypes',
     '-Werror=missing-declarations',
