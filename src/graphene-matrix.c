@@ -581,10 +581,10 @@ graphene_matrix_init_from_2d (graphene_matrix_t *m,
                               double             x_0,
                               double             y_0)
 {
-  m->value = graphene_simd4x4f_init (graphene_simd4f_init ( xx,  yx, 0.f, 0.f),
-                                     graphene_simd4f_init ( xy,  yy, 0.f, 0.f),
+  m->value = graphene_simd4x4f_init (graphene_simd4f_init ((float) xx, (float) yx, 0.f, 0.f),
+                                     graphene_simd4f_init ((float) xy, (float) yy, 0.f, 0.f),
                                      graphene_simd4f_init (0.f, 0.f, 1.f, 0.f),
-                                     graphene_simd4f_init (x_0, y_0, 0.f, 1.f));
+                                     graphene_simd4f_init ((float) x_0, (float) y_0, 0.f, 1.f));
 
   return m;
 }
@@ -1798,10 +1798,10 @@ matrix_decompose_2d (const graphene_matrix_t *m,
       double m11 = row0x, m12 = row0y;
       double m21 = row1x, m22 = row1y;
 
-      row0x = cs * m11 + sn * m21;
-      row0y = cs * m12 + sn * m22;
-      row1x = -sn * m11 + cs * m21;
-      row1y = -sn * m12 + cs * m22;
+      row0x = (float) ( cs * m11 + sn * m21);
+      row0y = (float) ( cs * m12 + sn * m22);
+      row1x = (float) (-sn * m11 + cs * m21);
+      row1y = (float) (-sn * m12 + cs * m22);
     }
 
   m_r[M_11] = row0x;
@@ -2014,13 +2014,13 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
 
       graphene_point_interpolate (&translate_a, &translate_b, factor, &translate_res);
       graphene_point_interpolate (&scale_a, &scale_b, factor, &scale_res);
-      rotate_res = graphene_lerp (rotate_a, rotate_b, factor);
+      rotate_res = graphene_flerp (rotate_a, rotate_b, factor);
 
       /* Interpolate each component of the (2,2) matrices */
       {
         graphene_simd4f_t tmp_va = graphene_simd4f_init_4f (m_a);
         graphene_simd4f_t tmp_vb = graphene_simd4f_init_4f (m_b);
-        graphene_simd4f_t tmp_vres = graphene_simd4f_interpolate (tmp_va, tmp_vb, factor);
+        graphene_simd4f_t tmp_vres = graphene_simd4f_interpolate (tmp_va, tmp_vb, (float) factor);
 
         graphene_simd4f_dup_4f (tmp_vres, m_res);
       }
@@ -2037,7 +2037,7 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
                                            1.f);
 
       /* Rotate using a (2,2) rotation matrix */
-      graphene_sincos (GRAPHENE_DEG_TO_RAD (rotate_res), &rot_sin, &rot_cos);
+      graphene_sincos (GRAPHENE_DEG_TO_RAD ((float) rotate_res), &rot_sin, &rot_cos);
       tmp_m = graphene_simd4x4f_init (graphene_simd4f_init (rot_cos, -rot_sin, 0.f, 0.f),
                                       graphene_simd4f_init (rot_sin,  rot_cos, 0.f, 0.f),
                                       graphene_simd4f_init (    0.f,      0.f, 1.f, 0.f),
@@ -2074,7 +2074,7 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
         return;
 
       /* Interpolate the perspective row */
-      tmp = graphene_simd4f_interpolate (perspective_a.value, perspective_b.value, factor);
+      tmp = graphene_simd4f_interpolate (perspective_a.value, perspective_b.value, (float) factor);
       res->value.x = graphene_simd4f_init (1.f, 0.f, 0.f, graphene_simd4f_get_x (tmp));
       res->value.y = graphene_simd4f_init (0.f, 1.f, 0.f, graphene_simd4f_get_y (tmp));
       res->value.z = graphene_simd4f_init (0.f, 0.f, 1.f, graphene_simd4f_get_z (tmp));
@@ -2085,7 +2085,7 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
       graphene_matrix_translate (res, &translate_r);
 
       /* Rotate */
-      graphene_quaternion_slerp (&rotate_a, &rotate_b, factor, &rotate_r);
+      graphene_quaternion_slerp (&rotate_a, &rotate_b, (float) factor, &rotate_r);
       graphene_matrix_rotate_quaternion (res, &rotate_r);
 
       /* Skew */
