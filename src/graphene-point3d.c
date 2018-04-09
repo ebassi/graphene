@@ -109,7 +109,7 @@ graphene_point3d_init_from_simd4f (graphene_point3d_t      *p,
    * compiler check here. Clang 3.5 and GCC are perfectly happy with it,
    * but Travis-CI still uses Clang 3.4.
    */
-#if defined(__clang__) && __clang_major__ < 3 || (__clang_major__ == 3 && __clang_minor__ < 5)
+#if defined(__clang_major__) && (__clang_major__ < 3 || (__clang_major__ == 3 && __clang_minor__ < 5))
   p->x = graphene_simd4f_get (v, 0);
   p->y = graphene_simd4f_get (v, 1);
   p->z = graphene_simd4f_get (v, 2);

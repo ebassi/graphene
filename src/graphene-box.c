@@ -42,14 +42,14 @@
 #include <math.h>
 #include <stdio.h>
 
-#if HAVE_PTHREAD
+#ifdef HAVE_PTHREAD
 #include <pthread.h>
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
 #endif
 
-#if HAVE_INIT_ONCE
+#ifdef HAVE_INIT_ONCE
 #define _WIN32_WINNT 0x0600
 #include <windows.h>
 #endif
@@ -664,7 +664,7 @@ init_static_box_once (void)
   static_box[BOX_EMPTY].max.value = graphene_simd4f_init (-INFINITY, -INFINITY, -INFINITY, 0.f);
 }
 
-#if HAVE_PTHREAD
+#ifdef HAVE_PTHREAD
 static pthread_once_t static_box_once = PTHREAD_ONCE_INIT;
 
 static inline void
@@ -682,7 +682,7 @@ init_static_box (void)
     }
 }
 
-#elif HAVE_INIT_ONCE
+#elif defined(HAVE_INIT_ONCE)
 static INIT_ONCE static_box_once = INIT_ONCE_STATIC_INIT;
 
 BOOL CALLBACK

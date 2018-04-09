@@ -27,14 +27,14 @@
 
 #include <stdio.h>
 
-#if HAVE_PTHREAD
+#ifdef HAVE_PTHREAD
 #include <pthread.h>
 #include <errno.h>
 #include <string.h>
 #include <stdio.h>
 #endif
 
-#if HAVE_INIT_ONCE
+#ifdef HAVE_INIT_ONCE
 #define _WIN32_WINNT 0x0600
 #include <windows.h>
 #endif
@@ -483,7 +483,7 @@ init_static_vec2_once (void)
   static_vec2[VEC2_Y_AXIS].value = graphene_simd4f_init (0.f, 1.f, 0.f, 0.f);
 }
 
-#if HAVE_PTHREAD
+#ifdef HAVE_PTHREAD
 static pthread_once_t static_vec2_once = PTHREAD_ONCE_INIT;
 
 static inline void
@@ -501,7 +501,7 @@ init_static_vec2 (void)
     }
 }
 
-#elif HAVE_INIT_ONCE
+#elif defined(HAVE_INIT_ONCE)
 static INIT_ONCE static_vec2_once = INIT_ONCE_STATIC_INIT;
 
 BOOL CALLBACK
@@ -1164,7 +1164,7 @@ init_static_vec3_once (void)
   static_vec3[VEC3_Z_AXIS].value = graphene_simd4f_init (0.f, 0.f, 1.f, 0.f);
 }
 
-#if HAVE_PTHREAD
+#ifdef HAVE_PTHREAD
 static pthread_once_t static_vec3_once = PTHREAD_ONCE_INIT;
 
 static inline void
@@ -1182,7 +1182,7 @@ init_static_vec3 (void)
     }
 }
 
-#elif HAVE_INIT_ONCE
+#elif defined(HAVE_INIT_ONCE)
 static INIT_ONCE static_vec3_once = INIT_ONCE_STATIC_INIT;
 
 BOOL CALLBACK
@@ -1863,7 +1863,7 @@ init_static_vec4_once (void)
   static_vec4[VEC4_W_AXIS].value = graphene_simd4f_init (0.f, 0.f, 0.f, 1.f);
 }
 
-#if HAVE_PTHREAD
+#ifdef HAVE_PTHREAD
 static pthread_once_t static_vec4_init_once = PTHREAD_ONCE_INIT;
 
 static inline void
@@ -1881,7 +1881,7 @@ init_static_vec4 (void)
     }
 }
 
-#elif HAVE_INIT_ONCE
+#elif defined(HAVE_INIT_ONCE)
 static INIT_ONCE static_vec4_once = INIT_ONCE_STATIC_INIT;
 
 BOOL CALLBACK
