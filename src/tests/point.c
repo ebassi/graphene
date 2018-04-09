@@ -48,7 +48,7 @@ GRAPHENE_TEST_UNIT_BEGIN (point_init)
   g_assert_cmpfloat (p.y, ==, 1.0f);
 
   graphene_point_init_from_point (&q, &p);
-  graphene_assert_fuzzy_point_equal (&p, &q, 0.0001);
+  graphene_assert_fuzzy_point_equal (&p, &q, 0.0001f);
 }
 GRAPHENE_TEST_UNIT_END
 
@@ -117,13 +117,13 @@ GRAPHENE_TEST_UNIT_BEGIN (point_interpolate)
   graphene_point_init (&half, .5f, .5f);
 
   graphene_point_interpolate (&p, &q, 0.0, &res);
-  graphene_assert_fuzzy_point_equal (&res, &p, 0.0001);
+  graphene_assert_fuzzy_point_equal (&res, &p, 0.0001f);
 
   graphene_point_interpolate (&p, &q, 0.5, &res);
-  graphene_assert_fuzzy_point_equal (&res, &half, 0.0001);
+  graphene_assert_fuzzy_point_equal (&res, &half, 0.0001f);
 
   graphene_point_interpolate (&p, &q, 1.0, &res);
-  graphene_assert_fuzzy_point_equal (&res, &q, 0.0001);
+  graphene_assert_fuzzy_point_equal (&res, &q, 0.0001f);
 }
 GRAPHENE_TEST_UNIT_END
 
