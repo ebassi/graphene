@@ -7,50 +7,17 @@ configuration: Release
 # Configure both 32-bit and 64-bit builds
 environment:
   matrix:
-  - platform: x86
-    config: Win32
-    pout: x86
-  - platform: x64
-    config: x64
-    pout: x64
+  - MSVC_PLATFORM: x86
+  - MSVC_PLATFORM: x64
 
 shallow_clone: true
 
-# Download Meson and Ninja, create install directory
-before_build:
-- mkdir _build
-- mkdir graphene-shared-%pout%
-- cd _build
-- curl -LsSO https://github.com/mesonbuild/meson/releases/download/0.44.1/meson-0.44.1.tar.gz
-- 7z x meson-0.44.1.tar.gz
-- move dist\meson-0.44.1.tar .
-- 7z x meson-0.44.1.tar
-- rmdir dist
-- del meson-0.44.1.tar meson-0.44.1.tar.gz
-- curl -LsSO https://github.com/ninja-build/ninja/releases/download/v1.7.2/ninja-win.zip
-- 7z x ninja-win.zip
-- del ninja-win.zip
-- cd ..
-
-# Build and install
 build_script:
-- cd _build
-- call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %PLATFORM%
-- C:\Python36\python.exe meson-0.44.1\meson.py .. . --backend=ninja --prefix=%APPVEYOR_BUILD_FOLDER%\graphene-shared-%pout%
-- ninja
-- ninja test
-- ninja install
-- cd ..
-
-# Copy license into install directory and create .zip file
-after_build:
-- copy LICENSE graphene-shared-%pout%
-- dir graphene-shared-%pout% /s /b
-- 7z a -tzip graphene-shared-%pout%.zip graphene-shared-%pout%
+  - IF DEFINED MSVC_PLATFORM ".appveyor/msvc.bat"
 
 artifacts:
-  - path: graphene-shared-%pout%.zip
-    name: graphene-shared-%pout%
+  - path: graphene-shared-%MSVC_PLATFORM%.zip
+    name: graphene-shared-%MSVC_PLATFORM%
 
 test: off
 
@@ -61,7 +28,7 @@ deploy:
   provider: GitHub
   auth_token:
     secure: X7Ro8Y2RWYo/M1AAn93f9X0dEQFvu7gPb6li2eKRtzPYLGj/JKm7MNWRw2cCcjm6
-  artifact: graphene-shared-$(pout)
+  artifact: graphene-shared-$(MSVC_PLATFORM)
   draft: false
   prerelease: false
   on:
