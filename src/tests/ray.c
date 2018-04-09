@@ -81,17 +81,17 @@ GRAPHENE_TEST_UNIT_BEGIN (ray_closest_point_to_point)
   if (g_test_verbose ())
     g_test_message ("Behind the ray...");
   graphene_ray_get_closest_point_to_point (&r, &zero3, &res);
-  g_assert_true (graphene_point3d_near (&res, &one3, 0.00001));
+  g_assert_true (graphene_point3d_near (&res, &one3, 0.00001f));
 
   if (g_test_verbose ())
     g_test_message ("Front of the ray...");
   graphene_ray_get_closest_point_to_point (&r, &tmp, &res);
-  g_assert_true (graphene_point3d_near (&res, &check, 0.00001));
+  g_assert_true (graphene_point3d_near (&res, &check, 0.00001f));
 
   if (g_test_verbose ())
     g_test_message ("On the ray...");
   graphene_ray_get_closest_point_to_point (&r, &one3, &res);
-  g_assert_true (graphene_point3d_near (&res, &one3, 0.00001));
+  g_assert_true (graphene_point3d_near (&res, &one3, 0.00001f));
 }
 GRAPHENE_TEST_UNIT_END
 

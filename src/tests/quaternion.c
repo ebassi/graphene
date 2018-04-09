@@ -151,8 +151,8 @@ GRAPHENE_TEST_UNIT_BEGIN (quaternion_angle_vec3_to_from)
   graphene_quaternion_init_from_quaternion (&q2, &q1);
 
   graphene_quaternion_to_angle_vec3 (&q2, &angle, &axis);
-  graphene_assert_fuzzy_equals (angle, 45.f, 0.0001);
-  graphene_assert_fuzzy_vec3_equal (&axis, graphene_vec3_y_axis (), 0.0001);
+  graphene_assert_fuzzy_equals (angle, 45.f, 0.0001f);
+  graphene_assert_fuzzy_vec3_equal (&axis, graphene_vec3_y_axis (), 0.0001f);
 }
 GRAPHENE_TEST_UNIT_END
 
@@ -164,10 +164,10 @@ GRAPHENE_TEST_UNIT_BEGIN (quaternion_slerp)
   graphene_quaternion_init (&q2, 0.2f, 0.3f, 0.4f, 0.5f);
   g_assert_false (graphene_quaternion_equal (&q1, &q2));
 
-  graphene_quaternion_slerp (&q1, &q2, 0.33, &q3);
+  graphene_quaternion_slerp (&q1, &q2, 0.33f, &q3);
   g_assert_false (graphene_quaternion_equal (&q1, &q3));
 
-  graphene_quaternion_slerp (&q1, &q2, 0.66, &q3);
+  graphene_quaternion_slerp (&q1, &q2, 0.66f, &q3);
   g_assert_false (graphene_quaternion_equal (&q2, &q3));
 }
 GRAPHENE_TEST_UNIT_END

@@ -468,14 +468,14 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_interpolate)
   g_assert_true (graphene_matrix_is_2d (&m2));
 
   graphene_matrix_interpolate (&m1, &m2, 0.0, &mr);
-  graphene_assert_fuzzy_matrix_equal (&mr, &m1, 0.01);
+  graphene_assert_fuzzy_matrix_equal (&mr, &m1, 0.01f);
 
   graphene_matrix_interpolate (&m1, &m2, 1.0, &mr);
-  graphene_assert_fuzzy_matrix_equal (&mr, &m2, 0.01);
+  graphene_assert_fuzzy_matrix_equal (&mr, &m2, 0.01f);
 
   graphene_matrix_init_translate (&m3, &GRAPHENE_POINT3D_INIT (50.f, 50.f, 0.f));
   graphene_matrix_interpolate (&m1, &m2, 0.5, &mr);
-  graphene_assert_fuzzy_matrix_equal (&mr, &m3, 0.01);
+  graphene_assert_fuzzy_matrix_equal (&mr, &m3, 0.01f);
 }
 GRAPHENE_TEST_UNIT_END
 
@@ -491,10 +491,10 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_transform_bound)
   graphene_rect_init (&r2, 100.f, 100.f, 50.f, 50.f);
 
   graphene_matrix_transform_bounds (&m1, &r, &res);
-  graphene_assert_fuzzy_rect_equal (&res, &r, 0.01);
+  graphene_assert_fuzzy_rect_equal (&res, &r, 0.01f);
 
   graphene_matrix_transform_bounds (&m2, &r, &res);
-  graphene_assert_fuzzy_rect_equal (&res, &r2, 0.01);
+  graphene_assert_fuzzy_rect_equal (&res, &r2, 0.01f);
 }
 GRAPHENE_TEST_UNIT_END
 
