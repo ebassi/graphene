@@ -140,7 +140,7 @@ graphene_ilerp (int a, int b, double factor)
     default: graphene_flerp) ((a), (b), (f))
 
 #else
-# define graphene_lerp   graphene_flerp
+# define graphene_lerp   graphene_flerpf
 #endif
 
 static inline void
