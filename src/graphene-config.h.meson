@@ -12,7 +12,10 @@ extern "C" {
 
 #ifndef GRAPHENE_SIMD_BENCHMARK
 
-# if defined(__SSE__) || (_M_IX86_FP > 0) || (_M_X64 > 0) || (_MSC_VER >= 1800)
+# if defined(__SSE__) || \
+   (defined(_M_IX86_FP) && (_M_IX86_FP > 0)) || \
+   (defined(_M_X64) && (_M_X64 > 0)) || \
+   (defined(_MSC_VER) && (_MSC_VER >= 1800))
 #mesondefine GRAPHENE_HAS_SSE
 # endif
 
