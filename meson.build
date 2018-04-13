@@ -232,7 +232,7 @@ graphene_conf = configuration_data()
 graphene_simd = []
 
 # SSE intrinsics
-sse2_cflags = ''
+sse2_cflags = []
 if get_option('sse2')
   sse_prog = '''
 #if defined(__GNUC__) && (__GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 2))
@@ -259,9 +259,9 @@ int main () {
   if cc.compiles(sse_prog, name: 'SSE intrinsics')
     graphene_conf.set('GRAPHENE_HAS_SSE', 1)
     if cc.get_id() != 'msvc'
-      extra_args += ['-mfpmath=sse', '-msse', '-msse2']
-      sse2_cflags = '-mfpmath=sse -msse -msse2'
+      sse2_cflags += ['-mfpmath=sse', '-msse', '-msse2']
     endif
+    common_cflags += sse2_cflags
     graphene_simd += [ 'sse2' ]
   endif
 endif
@@ -293,7 +293,7 @@ int main () {
 endif
 
 # ARM NEON intrinsics
-neon_cflags = ''
+neon_cflags = []
 if get_option('arm_neon')
   neon_prog = '''
 #ifndef __ARM_EABI__
@@ -318,15 +318,13 @@ int main () {
 }'''
   if cc.compiles(neon_prog, name: 'ARM NEON intrinsics')
     graphene_conf.set('GRAPHENE_HAS_ARM_NEON', 1)
-    extra_args += ['-mfpu=neon']
+    neon_cflags += ['-mfpu=neon']
 
     if host_system == 'android'
-      extra_args += ['-mfloat-abi=softfp']
-      neon_cflags = '-mfpu=neon -mfloat-abi=softfp'
-    else
-      neon_cflags = '-mfpu=neon'
+      neon_cflags += ['-mfloat-abi=softfp']
     endif
 
+    common_cflags += neon_cflags
     graphene_simd += [ 'neon' ]
   endif
 endif

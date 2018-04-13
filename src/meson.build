@@ -122,8 +122,8 @@ pkg_conf.set('prefix', graphene_prefix)
 pkg_conf.set('exec_prefix', graphene_prefix)
 pkg_conf.set('libdir', graphene_libdir)
 pkg_conf.set('includedir', graphene_includedir)
-pkg_conf.set('SSE2_CFLAGS', sse2_cflags)
-pkg_conf.set('NEON_CFLAGS', neon_cflags)
+pkg_conf.set('SSE2_CFLAGS', ' '.join(sse2_cflags))
+pkg_conf.set('NEON_CFLAGS', ' '.join(neon_cflags))
 pkg_conf.set('GRAPHENE_SIMD', ' '.join(graphene_simd))
 
 foreach simd: [ 'sse2', 'gcc', 'neon' ]
