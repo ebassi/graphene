@@ -25,6 +25,10 @@
 #define __GRAPHENE_PRIVATE_H__
 
 #include "config.h"
+#ifdef HAVE_INIT_ONCE
+#define _WIN32_WINNT 0x0600
+#include <windows.h>
+#endif
 #include "graphene-macros.h"
 #include <stdlib.h>
 #include <math.h>

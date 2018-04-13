@@ -49,11 +49,6 @@
 #include <errno.h>
 #endif
 
-#ifdef HAVE_INIT_ONCE
-#define _WIN32_WINNT 0x0600
-#include <windows.h>
-#endif
-
 /**
  * graphene_box_alloc: (constructor)
  *
