@@ -21,8 +21,11 @@ before_script:
   - echo ADD . /root >> Dockerfile
   - docker build -t withgit .
 
+env:
+  - BUILD_OPTS=""
+  - BUILD_OPTS="-Dsse2=false"
+  - BUILD_OPTS="-Dsse2=false -Dgcc_vector=false"
+  - BUILD_OPTS="-Dgobject_types=false"
+
 script:
-  - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh"
-  - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh -Dsse2=false"
-  - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh -Dsse2=false -Dgcc_vector=false"
-  - docker run withgit /bin/sh -c "cd /root && TRAVIS=1 CC=$CC ./graphene-run-tests.sh -Dgobject_types=false"
+  - docker run withgit /bin/sh -c "CC=$CC .travis/graphene-run-tests.sh $BUILD_OPTS"

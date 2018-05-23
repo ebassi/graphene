@@ -1,9 +1,15 @@
 #!/bin/bash
 
-mkdir _build
+builddir=$( mktemp -d build_XXXXXX )
+srcdir=$( pwd )
 
-meson --prefix /usr "$@" _build . || exit $?
-ninja -C _build || exit $?
-ninja -C _build test || exit $?
+meson --prefix /usr "$@" ${builddir} ${srcdir} || exit $?
 
-rm -rf _build
+cd ${builddir}
+
+ninja || exit $?
+meson test || exit $?
+
+cd ..
+
+rm -rf ${builddir}
