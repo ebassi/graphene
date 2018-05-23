@@ -1,7 +1,6 @@
-<INCLUDE>graphene.h</INCLUDE>
-
 <SECTION>
 <FILE>graphene-box</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 graphene_box_t
 graphene_box_alloc
 graphene_box_free
@@ -38,6 +37,7 @@ graphene_box_infinite
 
 <SECTION>
 <FILE>graphene-euler</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 graphene_euler_t
 graphene_euler_order_t
 graphene_euler_alloc
@@ -60,6 +60,7 @@ graphene_euler_reorder
 
 <SECTION>
 <FILE>graphene-frustum</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 graphene_frustum_t
 graphene_frustum_alloc
 graphene_frustum_free
@@ -115,6 +116,7 @@ graphene_vec4_get_type
 
 <SECTION>
 <FILE>graphene-matrix</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 graphene_matrix_t
 graphene_matrix_alloc
 graphene_matrix_free
@@ -180,6 +182,7 @@ graphene_matrix_print
 
 <SECTION>
 <FILE>graphene-plane</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 graphene_plane_t
 graphene_plane_alloc
 graphene_plane_free
@@ -198,6 +201,7 @@ graphene_plane_get_constant
 
 <SECTION>
 <FILE>graphene-point</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 GRAPHENE_POINT_INIT
 GRAPHENE_POINT_INIT_ZERO
 graphene_point_t
@@ -216,6 +220,7 @@ graphene_point_zero
 
 <SECTION>
 <FILE>graphene-size</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 GRAPHENE_SIZE_INIT
 GRAPHENE_SIZE_INIT_ZERO
 graphene_size_t
@@ -231,6 +236,7 @@ graphene_size_zero
 
 <SECTION>
 <FILE>graphene-point3d</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 GRAPHENE_POINT3D_INIT
 GRAPHENE_POINT3D_INIT_ZERO
 graphene_point3d_t
@@ -255,6 +261,7 @@ graphene_point3d_zero
 
 <SECTION>
 <FILE>graphene-quad</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 graphene_quad_t
 graphene_quad_alloc
 graphene_quad_free
@@ -268,6 +275,7 @@ graphene_quad_get_point
 
 <SECTION>
 <FILE>graphene-quaternion</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 graphene_quaternion_t
 graphene_quaternion_alloc
 graphene_quaternion_free
@@ -294,6 +302,7 @@ graphene_quaternion_slerp
 
 <SECTION>
 <FILE>graphene-ray</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 graphene_ray_t
 graphene_ray_alloc
 graphene_ray_free
@@ -311,6 +320,7 @@ graphene_ray_equal
 
 <SECTION>
 <FILE>graphene-rect</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 GRAPHENE_RECT_INIT
 graphene_rect_t
 graphene_rect_alloc
@@ -347,6 +357,7 @@ graphene_rect_zero
 
 <SECTION>
 <FILE>graphene-simd4f</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 graphene_simd4f_t
 graphene_simd4f_init
 graphene_simd4f_init_zero
@@ -422,6 +433,7 @@ graphene_simd2f_t
 
 <SECTION>
 <FILE>graphene-simd4x4f</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 graphene_simd4x4f_t
 graphene_simd4x4f_init
 graphene_simd4x4f_init_identity
@@ -456,6 +468,7 @@ graphene_simd4x4f_is_2d
 
 <SECTION>
 <FILE>graphene-sphere</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 graphene_sphere_t
 graphene_sphere_alloc
 graphene_sphere_free
@@ -474,6 +487,7 @@ graphene_sphere_equal
 
 <SECTION>
 <FILE>graphene-triangle</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 graphene_triangle_t
 graphene_triangle_alloc
 graphene_triangle_free
@@ -493,6 +507,7 @@ graphene_triangle_equal
 
 <SECTION>
 <FILE>graphene-vectors</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 GRAPHENE_VEC2_LEN
 graphene_vec2_t
 graphene_vec2_alloc
@@ -596,6 +611,7 @@ graphene_vec4_w_axis
 
 <SECTION>
 <FILE>graphene-version</FILE>
+<INCLUDE>graphene.h</INCLUDE>
 GRAPHENE_MAJOR_VERSION
 GRAPHENE_MINOR_VERSION
 GRAPHENE_MICRO_VERSION
