@@ -19,6 +19,7 @@ before_install:
 before_script:
   - echo FROM ebassi/grapheneci > Dockerfile
   - echo ADD . /root >> Dockerfile
+  - echo WORKDIR /root >> Dockerfile
   - docker build -t withgit .
 
 env:
