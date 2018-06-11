@@ -237,16 +237,16 @@ graphene_simd = []
 sse2_cflags = []
 if get_option('sse2')
   sse_prog = '''
-#if defined(__GNUC__) && (__GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 2))
+#if defined(__GNUC__) && (__GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9))
 # if !defined(__amd64__) && !defined(__x86_64__)
-#   error "Need GCC >= 4.2 for SSE2 intrinsics on x86"
+#   error "Need GCC >= 4.9 for SSE2 intrinsics on x86"
 # endif
 #elif defined (_MSC_VER) && (_MSC_VER < 1800)
 # if !defined (_M_X64) && !defined (_M_AMD64)
 #   error "Need MSVC 2013 or later for SSE2 intrinsics on x86"
 # endif
 #endif
-#if defined(__SSE__) || (_M_IX86_FP > 0) || (_M_X64 > 0) || (_MSC_VER >= 1800)
+#if defined(__SSE__) || (_M_X64 > 0) || (_MSC_VER >= 1800)
 # include <mmintrin.h>
 # include <xmmintrin.h>
 # include <emmintrin.h>
@@ -276,6 +276,8 @@ if get_option('gcc_vector')
 #   error "GCC vector intrinsics are disabled on GCC prior to 4.9"
 # elif defined(__arm__)
 #   error "GCC vector intrinsics are disabled on ARM"
+# elif !defined(__x86_64__)
+#   error "GCC vector intrinsics are disabled on 32bit"
 # endif
 #else
 # error "Need GCC for GCC vectors intrinsics"
