@@ -55,8 +55,6 @@ the headers of the dependencies. You will also need:
  * [meson](http://mesonbuild.com)
  * [ninja](https://ninja-build.org/)
 
-Alternatively, you can also use Autotools.
-
 First of all, clone the Git repository:
 
     $ git clone https://github.com/ebassi/graphene
@@ -96,19 +94,11 @@ as documented.
 Then use `pacman` to set up the build environment by installing the
 necessary prerequisites for your target. For all build systems, you
 will need a standard development environment and the appropriate native
-toolchain. You also need a Python interpreter for introspection builds,
-which are the default.
+toolchain. You also need a Python interpreter for Meson and introspection
+builds, which are the default.
 
     $ pacman -S base-devel
-    $ pacman -S python3      # for introspection
-    $ pacman -S mingw-w64-x86_64-toolchain  # only MINGW64 target
-    $ pacman -S mingw-w64-i686-toolchain    # only MINGW32 target
-
-If you're using GNU Autotools, you don't need to do anything more.
-Autotools is part of the `base-devel` group.
-
-If you want to try Meson, install the appropriate native package:
-
+    $ pacman -S python3
     $ pacman -S mingw-w64-x86_64-meson   # only MINGW64 target
     $ pacman -S mingw-w64-i686-meson     # only MINGW32 target
 
