@@ -186,4 +186,4 @@ The full API reference for Graphene is [available online](http://ebassi.github.i
 
 Graphene is released under the terms of the MIT/X11 license.
 
-See the `LICENSE` file for more details.
+See the [LICENSE](./LICENSE) file for more details.
