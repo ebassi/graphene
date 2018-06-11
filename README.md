@@ -142,7 +142,8 @@ a short version:
    and the first argument
  * Leave a space between functions and parenthesis
 
-A more comprehensive coding style document is available in the `docs`
+A more comprehensive coding style document is available in the [CODING
+STYLE](./docs/CODING_STYLE.md) file.
 directory.
 
 ## Documentation
