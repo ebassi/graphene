@@ -156,16 +156,17 @@ if build_gir
     '-DGRAPHENE_COMPILATION',
   ]
   graphene_gir = gnome.generate_gir(libgraphene,
-                                    sources: headers + sources,
-                                    namespace: 'Graphene',
-                                    nsversion: graphene_api_version,
-                                    identifier_prefix: 'Graphene',
-                                    symbol_prefix: 'graphene',
-                                    export_packages: graphene_gobject_api_path,
-                                    includes: [ 'GObject-2.0' ],
-                                    header: 'graphene-gobject.h',
-                                    install: true,
-                                    extra_args: gir_extra_args)
+    sources: headers + sources,
+    namespace: 'Graphene',
+    nsversion: graphene_api_version,
+    identifier_prefix: 'Graphene',
+    symbol_prefix: 'graphene',
+    export_packages: graphene_gobject_api_path,
+    includes: [ 'GObject-2.0' ],
+    header: 'graphene-gobject.h',
+    install: true,
+    extra_args: gir_extra_args,
+  )
   graphene_dep_sources += graphene_gir
 endif
 
