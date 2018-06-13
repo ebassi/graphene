@@ -134,13 +134,15 @@ test_headers = [
 
 foreach h: test_headers
   conf.set('HAVE_' + h.underscorify().to_upper(),
-           cc.has_header(h),
-           description: 'Define if @0@ is available'.format(h))
+    cc.has_header(h),
+    description: 'Define if @0@ is available'.format(h),
+  )
 endforeach
 
 conf.set('HAVE_PTHREAD_H',
-         cc.has_header('pthread.h', dependencies: threadlib),
-         description: 'Define if pthread.h is available')
+  cc.has_header('pthread.h', dependencies: threadlib),
+  description: 'Define if pthread.h is available',
+)
 
 # Functions
 if cc.has_function('memalign', prefix: '#include <stdlib.h>\n#include <malloc.h>')
@@ -160,11 +162,13 @@ endif
 
 # Look for sincosf(), a GNU libc extension
 conf.set('HAVE_SINCOSF',
-         cc.has_function('sincosf',
-                         prefix: '#include <math.h>',
-                         args: [ '-D_GNU_SOURCE' ],
-                         dependencies: mathlib),
-         description: 'Define if sincosf() is available')
+  cc.has_function('sincosf',
+    prefix: '#include <math.h>',
+    args: [ '-D_GNU_SOURCE' ],
+    dependencies: mathlib,
+  ),
+  description: 'Define if sincosf() is available',
+)
 
 # Debugging
 debug_flags = []
@@ -220,8 +224,7 @@ int main (void) {
   return 0;
 }
 '''
-  conf.set10(
-    'HAVE_INIT_ONCE',
+  conf.set10('HAVE_INIT_ONCE',
     cc.compiles(init_once_prog, name: 'InitOnceExecuteOnce'),
     description: 'Define if InitOnceExecuteOnce is available',
   )
