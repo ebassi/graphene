@@ -39,7 +39,7 @@ GRAPHENE_BEGIN_DECLS
 struct _graphene_matrix_t
 {
   /*< private >*/
-  GRAPHENE_PRIVATE_FIELD (graphene_simd4x4f_t, value);
+  GRAPHENE_ALIGN16 GRAPHENE_PRIVATE_FIELD (graphene_simd4x4f_t, value);
 };
 
 GRAPHENE_AVAILABLE_IN_1_0
