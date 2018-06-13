@@ -27,19 +27,22 @@ glib_docpath = join_paths(glib_prefix, 'share', 'gtk-doc', 'html')
 docpath = join_paths(graphene_datadir, 'gtk-doc', 'html')
 
 gnome.gtkdoc('graphene',
-             main_xml: 'graphene-docs.xml',
-             src_dir: [ join_paths(meson.source_root(), 'src'), join_paths(meson.build_root(), 'src'), ],
-             dependencies: graphene_dep,
-             gobject_typesfile: 'graphene.types',
-             scan_args: [
-               '--rebuild-types',
-               '--ignore-decorators=_GRAPHENE_PUBLIC',
-               '--ignore-headers=' + ' '.join(private_headers),
-             ],
-             fixxref_args: [
-               '--html-dir=@0@'.format(docpath),
-               '--extra-dir=@0@'.format(join_paths(glib_docpath, 'glib')),
-               '--extra-dir=@0@'.format(join_paths(glib_docpath, 'gobject')),
-             ],
-             html_assets: html_images,
-             install: true)
+  main_xml: 'graphene-docs.xml',
+  src_dir: [
+    src_inc,
+  ],
+  dependencies: graphene_dep,
+  gobject_typesfile: 'graphene.types',
+  scan_args: [
+    '--rebuild-types',
+    '--ignore-decorators=_GRAPHENE_PUBLIC|GRAPHENE_ALIGN16',
+    '--ignore-headers=' + ' '.join(private_headers),
+  ],
+  fixxref_args: [
+    '--html-dir=@0@'.format(docpath),
+    '--extra-dir=@0@'.format(join_paths(glib_docpath, 'glib')),
+    '--extra-dir=@0@'.format(join_paths(glib_docpath, 'gobject')),
+  ],
+  html_assets: html_images,
+  install: true,
+)
