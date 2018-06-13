@@ -5,10 +5,9 @@ to add your own pet feature, then follow these steps:
 
  1. Fork the [ebassi/graphene](https://github.com/ebassi/graphene) repo
  2. Fix bugs or add new features and push them to your clone
- 3. Open [a new issue](https://github.com/ebassi/graphene/issues/new)
- 4. Open [a pull request](https://github.com/ebassi/graphene/pulls)
- 5. Wait for me to give feedback on the pull request
- 6. Celebrate when your code gets merged
+ 3. Open [a pull request](https://github.com/ebassi/graphene/pulls)
+ 4. Wait for me to give feedback on the pull request
+ 5. Celebrate when your code gets merged
 
 That's pretty much it.
 
@@ -28,5 +27,5 @@ a short version:
    and the first argument
  * Leave a space between functions and parenthesis
 
-A more comprehensive coding style document is available in the `docs`
-directory.
+A more comprehensive coding style document is available in the [CODING
+STYLE](./docs/CODING_STYLE.md) file.
