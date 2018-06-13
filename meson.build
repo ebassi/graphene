@@ -348,6 +348,7 @@ graphene_simd += [ 'scalar' ]
 python3 = import('python3')
 gnome = import('gnome')
 
+src_inc = include_directories('src')
 subdir('src')
 
 if get_option('gtk_doc')
