@@ -115,34 +115,29 @@ libgraphene = library(
   link_args: common_ldflags,
 )
 
-# Generate the pkg-config files
-pkg_conf = configuration_data()
-pkg_conf.set('GRAPHENE_VERSION', graphene_version)
-pkg_conf.set('prefix', graphene_prefix)
-pkg_conf.set('exec_prefix', graphene_prefix)
-pkg_conf.set('libdir', graphene_libdir)
-pkg_conf.set('includedir', graphene_includedir)
-pkg_conf.set('SSE2_CFLAGS', ' '.join(sse2_cflags))
-pkg_conf.set('NEON_CFLAGS', ' '.join(neon_cflags))
-pkg_conf.set('GRAPHENE_SIMD', ' '.join(graphene_simd))
-
 foreach simd: [ 'sse2', 'gcc', 'neon' ]
-  pkg_conf.set('has_' + simd, graphene_simd.contains(simd) ? '1' : '0')
+  set_variable('has_' + simd, graphene_simd.contains(simd) ? '1' : '0')
 endforeach
 
-if build_gobject
-  pkg_conf.set('GRAPHENE_REQS', 'gobject-2.0')
-else
-  pkg_conf.set('GRAPHENE_REQS', '')
-endif
-
+pkgconfig = import('pkgconfig')
 foreach p: pkgconfig_files
-  configure_file(
-    input: 'graphene.pc.in',
-    output: p + '.pc',
-    configuration: pkg_conf,
-    install: true,
-    install_dir: join_paths(graphene_libdir, 'pkgconfig'),
+  pkgconfig.generate(
+    name: 'Graphene',
+    description: 'Math classes for graphic libraries',
+    url: 'https://ebassi.github.io/graphene',
+    version: meson.project_version(),
+    filebase: p,
+    variables: [
+      'graphene_has_sse2=@0@'.format(has_sse2),
+      'graphene_has_gcc=@0@'.format(has_gcc),
+      'graphene_has_neon=@0@'.format(has_neon),
+      'graphene_has_scalar=1',
+    ],
+    subdirs: graphene_api_path,
+    extra_cflags: [
+      '-I${libdir}/@0@/include'.format(graphene_api_path),
+    ] + sse2_cflags + neon_cflags,
+    libraries: libgraphene,
   )
 endforeach
 
