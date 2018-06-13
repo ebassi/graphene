@@ -14,7 +14,7 @@ extern "C" {
 
 # if defined(__SSE__) || \
    (defined(_M_X64) && (_M_X64 > 0)) || \
-   (defined(_MSC_VER) && (_MSC_VER >= 1800))
+   (defined(_MSC_VER) && (_MSC_VER >= 1910))
 #mesondefine GRAPHENE_HAS_SSE
 # endif
 
