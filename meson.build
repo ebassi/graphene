@@ -111,8 +111,14 @@ endif
 
 common_cflags = cc.get_supported_arguments(test_cflags)
 
-if host_system == 'linux' and cc.get_id() == 'gcc'
-  common_ldflags = [ '-Wl,-Bsymbolic-functions', '-Wl,-z,relro', '-Wl,-z,now', ]
+common_ldflags = []
+if host_system == 'linux'
+  ldflags = [ '-Wl,-Bsymbolic-functions', '-Wl,-z,relro', '-Wl,-z,now', ]
+  if meson.version().version_compare('>= 0.46.0')
+    common_ldflags += cc.get_supported_link_arguments(ldflags)
+  elif cc.get_id() == 'gcc'
+    common_ldflags += ldflags
+  endif
 endif
 
 # Maintain compatibility with Autotools on macOS
