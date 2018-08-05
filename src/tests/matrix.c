@@ -502,6 +502,7 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_3d_transform_point)
 {
   graphene_matrix_t m;
   graphene_point_t p;
+  graphene_point3d_t p3;
   graphene_vec3_t v;
 
   graphene_matrix_init_translate (&m, &GRAPHENE_POINT3D_INIT (50.f, 70.f, 0.f));
@@ -510,6 +511,11 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_3d_transform_point)
   graphene_point_init (&p, 0.f, 0.f);
   graphene_matrix_transform_point (&m, &p, &p);
   graphene_assert_fuzzy_point_equal (&p, &GRAPHENE_POINT_INIT (50.f, 70.f), 0.01f);
+
+  g_test_message ("mat(translation) * point3d(zero) = point3d(translation)");
+  graphene_point3d_init (&p3, 0.f, 0.f, 0.f);
+  graphene_matrix_transform_point3d (&m, &p3, &p3);
+  graphene_assert_fuzzy_point3d_equal (&p3, &GRAPHENE_POINT3D_INIT (50.f, 70.f, 0.0f), 0.01f);
 
   g_test_message ("mat(translation) * vec3(zero) = vec3(zero)");
   graphene_vec3_init (&v, 0.f, 0.f, 0.f);
