@@ -498,6 +498,26 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_transform_bound)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (matrix_3d_transform_point)
+{
+  graphene_matrix_t m;
+  graphene_point_t p;
+  graphene_vec3_t v;
+
+  graphene_matrix_init_translate (&m, &GRAPHENE_POINT3D_INIT (50.f, 70.f, 0.f));
+
+  g_test_message ("mat(translation) * point(zero) = point(translation)");
+  graphene_point_init (&p, 0.f, 0.f);
+  graphene_matrix_transform_point (&m, &p, &p);
+  graphene_assert_fuzzy_point_equal (&p, &GRAPHENE_POINT_INIT (50.f, 70.f), 0.01f);
+
+  g_test_message ("mat(translation) * vec3(zero) = vec3(zero)");
+  graphene_vec3_init (&v, 0.f, 0.f, 0.f);
+  graphene_matrix_transform_vec3 (&m, &v, &v);
+  graphene_assert_fuzzy_vec3_equal (&v, graphene_vec3_zero (), 0.01f);
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/matrix/identity", matrix_identity)
   GRAPHENE_TEST_UNIT ("/matrix/scale", matrix_scale)
@@ -513,4 +533,5 @@ GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/matrix/2d/round-trip", matrix_2d_round_trip)
   GRAPHENE_TEST_UNIT ("/matrix/2d/interpolate", matrix_2d_interpolate)
   GRAPHENE_TEST_UNIT ("/matrix/2d/transform_bound", matrix_2d_transform_bound)
+  GRAPHENE_TEST_UNIT ("/matrix/3d/transform_point", matrix_3d_transform_point)
 )
