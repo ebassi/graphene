@@ -108,6 +108,21 @@
     } \
   } G_STMT_END
 
+#define graphene_assert_fuzzy_point3d_equal(p1,p2,epsilon) \
+  G_STMT_START { \
+    graphene_point3d_t *__p1 = (p1); \
+    graphene_point3d_t *__p2 = (p2); \
+    float __epsilon = (epsilon); \
+    if (graphene_point3d_near (__p1, __p2, __epsilon)) ; \
+    else { \
+      char *s = g_strdup_printf (#p1 " == " #p2 " (+/- " #epsilon "): " \
+                                 "{ x:%.7g, y:%.7g, z:%.7g } == { x:%.7g, y:%.7g, z:%.7g }", \
+                                 __p1->x, __p1->y, __p1->z, __p2->x, __p2->y, __p2->z); \
+      g_assertion_message (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, s); \
+      g_free (s); \
+    } \
+  } G_STMT_END
+
 #define graphene_assert_fuzzy_size_equal(s1,s2,epsilon) \
   G_STMT_START { \
     if (graphene_fuzzy_equals ((s1)->width, (s2)->width, epsilon) && \
