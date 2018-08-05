@@ -248,7 +248,10 @@ graphene_simd4x4f_vec4_mul (const graphene_simd4x4f_t *a,
  *
  * Multiplies the given #graphene_simd4x4f_t with the given
  * #graphene_simd4f_t, using only the first three row vectors
- * of the matrix, and the first three components of the vector.
+ * of the matrix, and the first three components of the vector;
+ * the W components of the matrix and vector are ignored.
+ *
+ * See also: graphene_simd4x4_point3_mul()
  *
  * Since: 1.0
  */
@@ -276,7 +279,7 @@ graphene_simd4x4f_vec3_mul (const graphene_simd4x4f_t *m,
  * #graphene_simd4f_t.
  *
  * Unlike graphene_simd4x4f_vec3_mul(), this function will
- * also use the fourth row vector of the matrix.
+ * use the W components of the matrix and vector.
  *
  * Since: 1.0
  */
