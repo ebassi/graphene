@@ -1,7 +1,7 @@
 project('graphene', 'c',
         version: '1.8.3',
         license: 'MIT',
-        meson_version: '>= 0.43.1',
+        meson_version: '>= 0.47.0',
         default_options: [
           'buildtype=debugoptimized',
           'c_std=c99',
@@ -114,11 +114,7 @@ common_cflags = cc.get_supported_arguments(test_cflags)
 common_ldflags = []
 if host_system == 'linux'
   ldflags = [ '-Wl,-Bsymbolic-functions', '-Wl,-z,relro', '-Wl,-z,now', ]
-  if meson.version().version_compare('>= 0.46.0')
-    common_ldflags += cc.get_supported_link_arguments(ldflags)
-  elif cc.get_id() == 'gcc'
-    common_ldflags += ldflags
-  endif
+  common_ldflags += cc.get_supported_link_arguments(ldflags)
 endif
 
 # Maintain compatibility with Autotools on macOS
