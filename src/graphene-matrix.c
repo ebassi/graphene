@@ -861,6 +861,9 @@ graphene_matrix_transform_vec4 (const graphene_matrix_t *m,
  *
  * Transforms the given #graphene_point_t using the matrix @m.
  *
+ * Unlike graphene_matrix_transform_vec3(), this function will take into
+ * account the fourth row vector of the #graphene_matrix_t.
+ *
  * Since: 1.0
  */
 void
@@ -870,8 +873,8 @@ graphene_matrix_transform_point (const graphene_matrix_t *m,
 {
   graphene_simd4f_t vec3;
 
-  vec3 = graphene_simd4f_init (p->x, p->y, 0.0f, 0.0f);
-  graphene_simd4x4f_vec3_mul (&m->value, &vec3, &vec3);
+  vec3 = graphene_simd4f_init (p->x, p->y, 0.0f, 1.0f);
+  graphene_simd4x4f_point3_mul (&m->value, &vec3, &vec3);
 
   res->x = graphene_simd4f_get_x (vec3);
   res->y = graphene_simd4f_get_y (vec3);
@@ -897,7 +900,7 @@ graphene_matrix_transform_point3d (const graphene_matrix_t  *m,
 {
   graphene_simd4f_t vec3;
 
-  vec3 = graphene_simd4f_init (p->x, p->y, p->z, 0.f);
+  vec3 = graphene_simd4f_init (p->x, p->y, p->z, 1.f);
   graphene_simd4x4f_point3_mul (&m->value, &vec3, &vec3);
 
   res->x = graphene_simd4f_get_x (vec3);
