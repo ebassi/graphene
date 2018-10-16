@@ -86,16 +86,17 @@ matrix_setup (void)
 
   for (i = 0; i < N_ROUNDS; i++)
     {
+      float j = (float) i;
       graphene_simd4f_t p, q;
 
-      p = graphene_simd4f_init (i, i, i, i);
-      q = graphene_simd4f_init (N_ROUNDS - i, N_ROUNDS - i, N_ROUNDS - i, N_ROUNDS - i);
+      p = graphene_simd4f_init (j, j, j, j);
+      q = graphene_simd4f_init (N_ROUNDS - j, N_ROUNDS - j, N_ROUNDS - j, N_ROUNDS - j);
 
       res->a[i] = graphene_simd4x4f_init (p, p, p, p);
       res->b[i] = graphene_simd4x4f_init (q, q, q, q);
 
-      res->pa[i] = graphene_simd4f_init (i, i, 0.f, 0.f);
-      res->qa[i] = graphene_simd4f_init (N_ROUNDS - i, N_ROUNDS - 1, 1.f, 0.f);
+      res->pa[i] = graphene_simd4f_init (j, j, 0.f, 0.f);
+      res->qa[i] = graphene_simd4f_init (N_ROUNDS - j, N_ROUNDS - 1, 1.f, 0.f);
     }
 
   return res;
