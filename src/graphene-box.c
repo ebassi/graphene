@@ -677,7 +677,7 @@ init_static_box (void)
     }
 }
 
-#elif defined(HAVE_INIT_ONCE)
+#elif defined(HAVE_INIT_ONCE) && HAVE_INIT_ONCE
 static INIT_ONCE static_box_once = INIT_ONCE_STATIC_INIT;
 
 static BOOL CALLBACK

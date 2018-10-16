@@ -496,7 +496,7 @@ init_static_vec2 (void)
     }
 }
 
-#elif defined(HAVE_INIT_ONCE)
+#elif defined(HAVE_INIT_ONCE) && HAVE_INIT_ONCE
 static INIT_ONCE static_vec2_once = INIT_ONCE_STATIC_INIT;
 
 static BOOL CALLBACK
@@ -1177,7 +1177,7 @@ init_static_vec3 (void)
     }
 }
 
-#elif defined(HAVE_INIT_ONCE)
+#elif defined(HAVE_INIT_ONCE) && HAVE_INIT_ONCE
 static INIT_ONCE static_vec3_once = INIT_ONCE_STATIC_INIT;
 
 static BOOL CALLBACK
@@ -1876,7 +1876,7 @@ init_static_vec4 (void)
     }
 }
 
-#elif defined(HAVE_INIT_ONCE)
+#elif defined(HAVE_INIT_ONCE) && HAVE_INIT_ONCE
 static INIT_ONCE static_vec4_once = INIT_ONCE_STATIC_INIT;
 
 static BOOL CALLBACK
