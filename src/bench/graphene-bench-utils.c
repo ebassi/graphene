@@ -166,7 +166,7 @@ static double
 graphene_bench_run_test (const char *impl,
                          const char *path,
                          GrapheneBenchFunc func,
-                         gint64 num_rounds,
+                         int num_rounds,
                          double *round_min,
                          double *round_max,
                          double *round_avg)
@@ -224,7 +224,7 @@ graphene_bench_run_test (const char *impl,
   free (round_elapsed);
 
   if (bench_verbose)
-    g_printerr ("# '[%s]:%s': %.6f usecs/round after %" G_GINT64_FORMAT " rounds\n",
+    g_printerr ("# '[%s]:%s': %.6f usecs/round after %i rounds\n",
                 impl,
                 path,
                 elapsed,
