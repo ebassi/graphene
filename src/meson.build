@@ -94,12 +94,19 @@ configure_file(
 
 install_headers(headers + simd_headers + [ 'graphene.h' ], subdir: graphene_api_path)
 
-pkgconfig_files = [ graphene_api_path ]
+# pkg name, extra requires
+pkgconfig_files = [
+  [ graphene_api_path, [], ],
+]
+
 platform_deps = []
 
 if build_gobject
-  pkgconfig_files += [ graphene_gobject_api_path ]
-  platform_deps += [ gobject ]
+  pkgconfig_files += [
+    [ graphene_gobject_api_path, gobject ],
+  ]
+
+  platform_deps += gobject
 endif
 
 libgraphene = library(
@@ -115,29 +122,33 @@ libgraphene = library(
   link_args: common_ldflags,
 )
 
-foreach simd: [ 'sse2', 'gcc', 'neon' ]
+foreach simd: [ 'sse2', 'gcc', 'neon', 'scalar', ]
   set_variable('has_' + simd, graphene_simd.contains(simd) ? '1' : '0')
 endforeach
 
 pkgconfig = import('pkgconfig')
 foreach p: pkgconfig_files
+  pkg_name = p[0]
+  pkg_requires = p[1]
+
   pkgconfig.generate(
+    libgraphene,
     name: 'Graphene',
     description: 'Math classes for graphic libraries',
     url: 'https://ebassi.github.io/graphene',
     version: meson.project_version(),
-    filebase: p,
+    filebase: pkg_name,
     variables: [
       'graphene_has_sse2=@0@'.format(has_sse2),
       'graphene_has_gcc=@0@'.format(has_gcc),
       'graphene_has_neon=@0@'.format(has_neon),
-      'graphene_has_scalar=1',
+      'graphene_has_scalar=@0@'.format(has_scalar),
     ],
     subdirs: graphene_api_path,
+    requires: pkg_requires,
     extra_cflags: [
       '-I${libdir}/@0@/include'.format(graphene_api_path),
     ] + sse2_cflags + neon_cflags,
-    libraries: libgraphene,
   )
 endforeach
 
@@ -155,6 +166,7 @@ if build_gir
     '--warn-all',
     '-DGRAPHENE_COMPILATION',
   ]
+
   graphene_gir = gnome.generate_gir(libgraphene,
     sources: headers + sources,
     namespace: 'Graphene',
