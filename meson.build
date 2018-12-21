@@ -226,7 +226,7 @@ int main (void) {
   return 0;
 }
 '''
-  conf.set10('HAVE_INIT_ONCE',
+  conf.set('HAVE_INIT_ONCE',
     cc.compiles(init_once_prog, name: 'InitOnceExecuteOnce'),
     description: 'Define if InitOnceExecuteOnce is available',
   )
