@@ -251,7 +251,7 @@ graphene_simd4x4f_vec4_mul (const graphene_simd4x4f_t *a,
  * of the matrix, and the first three components of the vector;
  * the W components of the matrix and vector are ignored.
  *
- * See also: graphene_simd4x4_point3_mul()
+ * See also: graphene_simd4x4f_point3_mul()
  *
  * Since: 1.0
  */
