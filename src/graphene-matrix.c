@@ -386,8 +386,8 @@ graphene_matrix_init_translate (graphene_matrix_t        *m,
 /**
  * graphene_matrix_init_skew:
  * @m: a #graphene_matrix_t
- * @x_skew: skew factor on the X axis
- * @y_skew: skew factor on the Y axis
+ * @x_skew: skew factor, in radians, on the X axis
+ * @y_skew: skew factor, in radians, on the Y axis
  *
  * Initializes a #graphene_matrix_t with a skew transformation
  * with the given factors.
