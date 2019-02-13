@@ -29,7 +29,7 @@ the whole point of writing the library in the first place.
 
 ### Dependencies
 
-Graphene has little dependencies.
+Graphene has minimal dependencies.
 
 Graphene contains optimizations for speeding up vector operations; those
 optimizations are optional, and used only if both Graphene was compiled
@@ -37,6 +37,7 @@ with support for them *and* if the system you're running on has them.
 Currently, Graphene supports the following platform-specific fast paths:
 
  * Streaming SIMD Extensions (SSE) 2
+  * Optionally using SSE 4.1
  * ARM NEON
  * GCC vector extensions
 
@@ -53,6 +54,7 @@ bindings.
 In order to build and install Graphene you will need development tools and
 the headers of the dependencies. You will also need:
 
+ * [python3](https://www.python.org)
  * [meson](http://mesonbuild.com)
  * [ninja](https://ninja-build.org/)
 
@@ -63,7 +65,7 @@ First of all, clone the Git repository:
 
 Then run:
 
-    $ meson _build    # on Windows, it's "meson.py"
+    $ meson _build    # on Windows, it may be "meson.py"
     $ cd _build
     $ ninja test
     # ninja install
@@ -80,9 +82,11 @@ when configuring Graphene; similarly, if you don't plan on using GObject with
 Graphene, use `-Dgobject_types=false`. Disabling GObject types will also
 automatically disable generating introspection data.
 
-You can also disable building the test suite and the benchmark suite,
+You can explicitly disable building the test suite and the benchmark suite,
 using the `-Dtests=false` and `-Dbenchmarks=false` configuration switches
-respectively.
+respectively. The test and benchmark suites depend on [GLib][glib]; if it is
+not available at configuration time, tests and benchmarks will be disabled
+automatically.
 
 #### Building on Windows
 
@@ -100,8 +104,8 @@ builds, which are the default.
 
     $ pacman -S base-devel
     $ pacman -S python3
-    $ pacman -S mingw-w64-x86_64-meson   # only MINGW64 target
-    $ pacman -S mingw-w64-i686-meson     # only MINGW32 target
+    $ pacman -S mingw-w64-x86_64-meson	# only MINGW64 target
+    $ pacman -S mingw-w64-i686-meson	# only MINGW32 target
 
 There are a number of optional dependencies too:
 
@@ -156,4 +160,5 @@ Graphene is released under the terms of the MIT/X11 license.
 
 See the [LICENSE](./LICENSE) file for more details.
 
+[glib]: https://gitlab.gnome.org/GNOME/glib
 [gobject-api]: https://developer.gnome.org/gobject/stable/
