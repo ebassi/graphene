@@ -34,8 +34,17 @@
  *
  * In order to discover at compile time if Graphene exposes type information
  * for the GType type system, you need to check if the `graphene-gobject-1.0`
- * pkg-config file exists. In build systems using autotools, you can use
- * the `PKG_CHECK_EXISTS` m4 macro, for instance:
+ * pkg-config file exists.
+ *
+ * If you're using Meson to build your project, you can use a typical
+ * `dependency()` object, for instance:
+ *
+ * |[<!-- language="plain" -->
+ *   graphene_dep = dependency('graphene-gobject-1.0')
+ * ]|
+ *
+ * If you're using Autotools to build your project, you can use the
+ * `PKG_CHECK_EXISTS` m4 macro, for instance:
  *
  * |[<!-- language="plain" -->
  *   PKG_CHECK_EXISTS([graphene-gobject-1.0],
