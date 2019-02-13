@@ -25,6 +25,7 @@
  * SECTION:graphene-gobject
  * @Title: GObject integration
  * @short_description: Types for GObject properties and signals
+ * @Include: graphene-gobject.h
  *
  * Graphene optionally provides information for using its own types with
  * GObject properties and signals.

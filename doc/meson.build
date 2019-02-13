@@ -38,6 +38,9 @@ gnome.gtkdoc('graphene',
     '--ignore-decorators=_GRAPHENE_PUBLIC|GRAPHENE_ALIGN16',
     '--ignore-headers=' + ' '.join(private_headers),
   ],
+  mkdb_args: [
+    '--default-include=graphene.h',
+  ],
   fixxref_args: [
     '--html-dir=@0@'.format(docpath),
     '--extra-dir=@0@'.format(join_paths(glib_docpath, 'glib')),
