@@ -69,7 +69,7 @@ configure_file(
 )
 
 # External configuration header
-configure_file(
+graphene_config_h = configure_file(
   input: 'graphene-config.h.meson',
   output: 'graphene-config.h',
   configuration: graphene_conf,
@@ -168,7 +168,7 @@ if build_gir
   ]
 
   graphene_gir = gnome.generate_gir(libgraphene,
-    sources: headers + sources,
+    sources: [graphene_config_h] + headers + sources,
     namespace: 'Graphene',
     nsversion: graphene_api_version,
     identifier_prefix: 'Graphene',
