@@ -90,33 +90,32 @@ automatically.
 
 #### Building on Windows
 
-In order to build on Windows, it's recommended to use the
-[MSYS2](http://sourceforge.net/projects/msys2/) environment.
+Graphene supports the Microsoft Visual C compiler 2017 and later versions.
 
-First, [install MSYS2](https://msys2.github.io/) and update it fully
-as documented.
+Graphene also supports the [MSYS2 toolchain](http://sourceforge.net/projects/msys2/).
 
-Then use `pacman` to set up the build environment by installing the
-necessary prerequisites for your target. For all build systems, you
-will need a standard development environment and the appropriate native
-toolchain. You also need a Python interpreter for Meson and introspection
-builds, which are the default.
+When using MSYS2, it's recommended to have an up to date installation;
+in order to build Graphene you will need to use the `pacman` command
+to install the necessary build dependencies first:
 
     $ pacman -S base-devel
     $ pacman -S python3
     $ pacman -S mingw-w64-x86_64-meson	# only MINGW64 target
     $ pacman -S mingw-w64-i686-meson	# only MINGW32 target
 
-There are a number of optional dependencies too:
+For the optional support for testing, GObject introspection, and
+documentation, you will need to install additional dependencies:
 
     $ pacman -S gtk-doc                 # optional
     $ pacman -S mingw-w64-x86_64-glib2  # optional, MINGW64 target only
     $ pacman -S mingw-w64-i686-glib2    # optional, MINGW32 target only
     $ pacman -S glib2 glib2-devel       # optional, MSYS target only
 
-Then clone the Graphene repository and build as usual by following the
-instructions in the section above. If you're using Meson, please note
-that the tool may be installed as "meson.py" on MSYS2.
+After installing all dependencies, you can now clone the Graphene
+repository locally, and follow the build instructions above.
+
+Please note that on some MSYS2 installations the Meson binary may be called
+`meson.py`.
 
 ## Documentation
 
