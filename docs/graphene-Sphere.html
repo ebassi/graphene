@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Sphere: Graphene Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Box.html" title="Box">
 <link rel="next" href="graphene-Frustum.html" title="Frustum">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -180,7 +180,7 @@ graphene_sphere_alloc (<em class="parameter"><code><span class="type">void</span
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
 <a name="graphene-sphere-alloc.returns"></a><h4>Returns</h4>
-<p> the newly allocated <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. Use
+<p>the newly allocated <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. Use
 <a class="link" href="graphene-Sphere.html#graphene-sphere-free" title="graphene_sphere_free ()"><code class="function">graphene_sphere_free()</code></a> to free the resources allocated by this function. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -235,7 +235,7 @@ graphene_sphere_init (<em class="parameter"><code><a class="link" href="graphene
 </tr>
 <tr>
 <td class="parameter_name"><p>center</p></td>
-<td class="parameter_description"><p> the coordinates of the center of the sphere, or <a href="https://developer.gnome.org/glib/stable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
+<td class="parameter_description"><p>the coordinates of the center of the sphere, or <code class="literal">NULL</code>
 for a center in (0, 0, 0). </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
@@ -249,7 +249,7 @@ for a center in (0, 0, 0). </p></td>
 </div>
 <div class="refsect3">
 <a name="graphene-sphere-init.returns"></a><h4>Returns</h4>
-<p> the initialized <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. </p>
+<p>the initialized <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -289,12 +289,12 @@ array</p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>points</p></td>
-<td class="parameter_description"><p> an array of <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p></td>
+<td class="parameter_description"><p>an array of <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=n_points]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>center</p></td>
-<td class="parameter_description"><p> the center of the sphere. </p></td>
+<td class="parameter_description"><p>the center of the sphere. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -302,7 +302,7 @@ array</p></td>
 </div>
 <div class="refsect3">
 <a name="graphene-sphere-init-from-points.returns"></a><h4>Returns</h4>
-<p> the initialized <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. </p>
+<p>the initialized <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -342,12 +342,12 @@ array</p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>vectors</p></td>
-<td class="parameter_description"><p> an array of <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_description"><p>an array of <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=n_vectors]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>center</p></td>
-<td class="parameter_description"><p> the center of the sphere. </p></td>
+<td class="parameter_description"><p>the center of the sphere. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -355,7 +355,7 @@ array</p></td>
 </div>
 <div class="refsect3">
 <a name="graphene-sphere-init-from-vectors.returns"></a><h4>Returns</h4>
-<p> the initialized <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. </p>
+<p>the initialized <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -383,7 +383,7 @@ graphene_sphere_get_center (<em class="parameter"><code>const <a class="link" hr
 </tr>
 <tr>
 <td class="parameter_name"><p>center</p></td>
-<td class="parameter_description"><p> return location for the coordinates of
+<td class="parameter_description"><p>return location for the coordinates of
 the center. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
@@ -439,7 +439,7 @@ given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graph
 </tr>
 <tr>
 <td class="parameter_name"><p>box</p></td>
-<td class="parameter_description"><p> return location for the bounding box. </p></td>
+<td class="parameter_description"><p>return location for the bounding box. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -579,7 +579,7 @@ coordinates as the delta of the translation.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the translated sphere. </p></td>
+<td class="parameter_description"><p>return location for the translated sphere. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -636,6 +636,6 @@ graphene_sphere_equal (<em class="parameter"><code>const <a class="link" href="g
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.29</div>
 </body>
 </html>

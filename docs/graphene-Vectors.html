@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Vectors: Graphene Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-SIMD-matrix.html" title="SIMD matrix">
 <link rel="next" href="graphene-Matrix.html" title="Matrix">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -817,7 +817,7 @@ graphene_vec2_alloc (<em class="parameter"><code><span class="type">void</span><
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
 <a name="graphene-vec2-alloc.returns"></a><h4>Returns</h4>
-<p> the newly allocated <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a>
+<p>the newly allocated <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a>
 structure. Use <a class="link" href="graphene-Vectors.html#graphene-vec2-free" title="graphene_vec2_free ()"><code class="function">graphene_vec2_free()</code></a> to free the resources allocated
 by this function. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -886,7 +886,7 @@ graphene_vec2_init (<em class="parameter"><code><a class="link" href="graphene-V
 </div>
 <div class="refsect3">
 <a name="graphene-vec2-init.returns"></a><h4>Returns</h4>
-<p> the initialized vector. </p>
+<p>the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -924,7 +924,7 @@ graphene_vec2_init_from_vec2 (<em class="parameter"><code><a class="link" href="
 </div>
 <div class="refsect3">
 <a name="graphene-vec2-init-from-vec2.returns"></a><h4>Returns</h4>
-<p> the initialized vector. </p>
+<p>the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -953,7 +953,7 @@ graphene_vec2_init_from_float (<em class="parameter"><code><a class="link" href=
 </tr>
 <tr>
 <td class="parameter_name"><p>src</p></td>
-<td class="parameter_description"><p> an array of floating point values
+<td class="parameter_description"><p>an array of floating point values
 with at least two elements. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=2]</span></td>
 </tr>
@@ -962,7 +962,7 @@ with at least two elements. </p></td>
 </div>
 <div class="refsect3">
 <a name="graphene-vec2-init-from-float.returns"></a><h4>Returns</h4>
-<p> the initialized vector. </p>
+<p>the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -991,7 +991,7 @@ graphene_vec2_to_float (<em class="parameter"><code>const <a class="link" href="
 </tr>
 <tr>
 <td class="parameter_name"><p>dest</p></td>
-<td class="parameter_description"><p> return location
+<td class="parameter_description"><p>return location
 for an array of floating point values with at least 2 elements. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=2]</span></td>
 </tr>
@@ -1031,7 +1031,7 @@ each result into the components of <em class="parameter"><code>res</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result. </p></td>
+<td class="parameter_description"><p>return location for the result. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1073,7 +1073,7 @@ each result into the components of <em class="parameter"><code>res</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result. </p></td>
+<td class="parameter_description"><p>return location for the result. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1112,7 +1112,7 @@ each result into the components of <em class="parameter"><code>res</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result. </p></td>
+<td class="parameter_description"><p>return location for the result. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1154,7 +1154,7 @@ vector <em class="parameter"><code>res</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result. </p></td>
+<td class="parameter_description"><p>return location for the result. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1227,7 +1227,7 @@ graphene_vec2_scale (<em class="parameter"><code>const <a class="link" href="gra
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result vector. </p></td>
+<td class="parameter_description"><p>return location for the result vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1286,7 +1286,7 @@ graphene_vec2_normalize (<em class="parameter"><code>const <a class="link" href=
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the
+<td class="parameter_description"><p>return location for the
 normalized vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
@@ -1318,7 +1318,7 @@ graphene_vec2_negate (<em class="parameter"><code>const <a class="link" href="gr
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result vector. </p></td>
+<td class="parameter_description"><p>return location for the result vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1435,7 +1435,7 @@ values of each component into <em class="parameter"><code>res</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> the resulting vector. </p></td>
+<td class="parameter_description"><p>the resulting vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1474,7 +1474,7 @@ values of each component into <em class="parameter"><code>res</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> the resulting vector. </p></td>
+<td class="parameter_description"><p>the resulting vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1544,7 +1544,7 @@ graphene_vec2_zero (<em class="parameter"><code><span class="type">void</span></
 <p>Retrieves a constant vector with (0, 0) components.</p>
 <div class="refsect3">
 <a name="graphene-vec2-zero.returns"></a><h4>Returns</h4>
-<p> the zero vector. </p>
+<p>the zero vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -1557,7 +1557,7 @@ graphene_vec2_one (<em class="parameter"><code><span class="type">void</span></c
 <p>Retrieves a constant vector with (1, 1) components.</p>
 <div class="refsect3">
 <a name="graphene-vec2-one.returns"></a><h4>Returns</h4>
-<p> the one vector. </p>
+<p>the one vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -1570,7 +1570,7 @@ graphene_vec2_x_axis (<em class="parameter"><code><span class="type">void</span>
 <p>Retrieves a constant vector with (1, 0) components.</p>
 <div class="refsect3">
 <a name="graphene-vec2-x-axis.returns"></a><h4>Returns</h4>
-<p> the X axis vector. </p>
+<p>the X axis vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -1583,7 +1583,7 @@ graphene_vec2_y_axis (<em class="parameter"><code><span class="type">void</span>
 <p>Retrieves a constant vector with (0, 1) components.</p>
 <div class="refsect3">
 <a name="graphene-vec2-y-axis.returns"></a><h4>Returns</h4>
-<p> the Y axis vector. </p>
+<p>the Y axis vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -1599,7 +1599,7 @@ graphene_vec3_alloc (<em class="parameter"><code><span class="type">void</span><
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
 <a name="graphene-vec3-alloc.returns"></a><h4>Returns</h4>
-<p> the newly allocated <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>
+<p>the newly allocated <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>
 structure. Use <a class="link" href="graphene-Vectors.html#graphene-vec3-free" title="graphene_vec3_free ()"><code class="function">graphene_vec3_free()</code></a> to free the resources allocated
 by this function. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -1674,7 +1674,7 @@ graphene_vec3_init (<em class="parameter"><code><a class="link" href="graphene-V
 </div>
 <div class="refsect3">
 <a name="graphene-vec3-init.returns"></a><h4>Returns</h4>
-<p> a pointer to the initialized
+<p>a pointer to the initialized
 vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -1712,7 +1712,7 @@ graphene_vec3_init_from_vec3 (<em class="parameter"><code><a class="link" href="
 </div>
 <div class="refsect3">
 <a name="graphene-vec3-init-from-vec3.returns"></a><h4>Returns</h4>
-<p> the initialized vector. </p>
+<p>the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -1740,7 +1740,7 @@ graphene_vec3_init_from_float (<em class="parameter"><code><a class="link" href=
 </tr>
 <tr>
 <td class="parameter_name"><p>src</p></td>
-<td class="parameter_description"><p> an array of 3 floating point values. </p></td>
+<td class="parameter_description"><p>an array of 3 floating point values. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=3]</span></td>
 </tr>
 </tbody>
@@ -1748,7 +1748,7 @@ graphene_vec3_init_from_float (<em class="parameter"><code><a class="link" href=
 </div>
 <div class="refsect3">
 <a name="graphene-vec3-init-from-float.returns"></a><h4>Returns</h4>
-<p> the initialized vector. </p>
+<p>the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -1776,7 +1776,7 @@ graphene_vec3_to_float (<em class="parameter"><code>const <a class="link" href="
 </tr>
 <tr>
 <td class="parameter_name"><p>dest</p></td>
-<td class="parameter_description"><p> return location for
+<td class="parameter_description"><p>return location for
 an array of floating point values. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=3]</span></td>
 </tr>
@@ -1814,7 +1814,7 @@ graphene_vec3_add (<em class="parameter"><code>const <a class="link" href="graph
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the resulting vector. </p></td>
+<td class="parameter_description"><p>return location for the resulting vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1856,7 +1856,7 @@ each result into the components of <em class="parameter"><code>res</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the resulting vector. </p></td>
+<td class="parameter_description"><p>return location for the resulting vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1893,7 +1893,7 @@ graphene_vec3_multiply (<em class="parameter"><code>const <a class="link" href="
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the resulting vector. </p></td>
+<td class="parameter_description"><p>return location for the resulting vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1935,7 +1935,7 @@ vector <em class="parameter"><code>res</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the resulting vector. </p></td>
+<td class="parameter_description"><p>return location for the resulting vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1972,7 +1972,7 @@ graphene_vec3_cross (<em class="parameter"><code>const <a class="link" href="gra
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the resulting vector. </p></td>
+<td class="parameter_description"><p>return location for the resulting vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -2045,7 +2045,7 @@ graphene_vec3_scale (<em class="parameter"><code>const <a class="link" href="gra
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result vector. </p></td>
+<td class="parameter_description"><p>return location for the result vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -2104,7 +2104,7 @@ graphene_vec3_normalize (<em class="parameter"><code>const <a class="link" href=
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the normalized vector. </p></td>
+<td class="parameter_description"><p>return location for the normalized vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -2135,7 +2135,7 @@ graphene_vec3_negate (<em class="parameter"><code>const <a class="link" href="gr
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result vector. </p></td>
+<td class="parameter_description"><p>return location for the result vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -2251,7 +2251,7 @@ vector that contains the minimum values.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result vector. </p></td>
+<td class="parameter_description"><p>return location for the result vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -2289,7 +2289,7 @@ vector that contains the maximum values.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result vector. </p></td>
+<td class="parameter_description"><p>return location for the result vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -2405,7 +2405,7 @@ components of the given <a class="link" href="graphene-Vectors.html#graphene-vec
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for a <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a>. </p></td>
+<td class="parameter_description"><p>return location for a <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -2437,7 +2437,7 @@ the given <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="gr
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_description"><p>return location for a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -2469,7 +2469,7 @@ as the value for the fourth component of the resulting vector.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the vector. </p></td>
+<td class="parameter_description"><p>return location for the vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -2501,7 +2501,7 @@ as the value for the fourth component of the resulting vector.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the vector. </p></td>
+<td class="parameter_description"><p>return location for the vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -2540,7 +2540,7 @@ the value of the fourth component of the resulting vector.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the vector. </p></td>
+<td class="parameter_description"><p>return location for the vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -2557,7 +2557,7 @@ graphene_vec3_zero (<em class="parameter"><code><span class="type">void</span></
 all sets to 0.</p>
 <div class="refsect3">
 <a name="graphene-vec3-zero.returns"></a><h4>Returns</h4>
-<p> a constant vector. </p>
+<p>a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2571,7 +2571,7 @@ graphene_vec3_one (<em class="parameter"><code><span class="type">void</span></c
 all sets to 1.</p>
 <div class="refsect3">
 <a name="graphene-vec3-one.returns"></a><h4>Returns</h4>
-<p> a constant vector. </p>
+<p>a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2585,7 +2585,7 @@ graphene_vec3_x_axis (<em class="parameter"><code><span class="type">void</span>
 with values set to (1, 0, 0).</p>
 <div class="refsect3">
 <a name="graphene-vec3-x-axis.returns"></a><h4>Returns</h4>
-<p> a constant vector. </p>
+<p>a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2599,7 +2599,7 @@ graphene_vec3_y_axis (<em class="parameter"><code><span class="type">void</span>
 with values set to (0, 1, 0).</p>
 <div class="refsect3">
 <a name="graphene-vec3-y-axis.returns"></a><h4>Returns</h4>
-<p> a constant vector. </p>
+<p>a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2613,7 +2613,7 @@ graphene_vec3_z_axis (<em class="parameter"><code><span class="type">void</span>
 with values set to (0, 0, 1).</p>
 <div class="refsect3">
 <a name="graphene-vec3-z-axis.returns"></a><h4>Returns</h4>
-<p> a constant vector. </p>
+<p>a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2629,7 +2629,7 @@ graphene_vec4_alloc (<em class="parameter"><code><span class="type">void</span><
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
 <a name="graphene-vec4-alloc.returns"></a><h4>Returns</h4>
-<p> the newly allocated <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>
+<p>the newly allocated <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>
 structure. Use <a class="link" href="graphene-Vectors.html#graphene-vec4-free" title="graphene_vec4_free ()"><code class="function">graphene_vec4_free()</code></a> to free the resources allocated
 by this function. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -2710,7 +2710,7 @@ graphene_vec4_init (<em class="parameter"><code><a class="link" href="graphene-V
 </div>
 <div class="refsect3">
 <a name="graphene-vec4-init.returns"></a><h4>Returns</h4>
-<p> a pointer to the initialized
+<p>a pointer to the initialized
 vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -2748,7 +2748,7 @@ another <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="grap
 </div>
 <div class="refsect3">
 <a name="graphene-vec4-init-from-vec4.returns"></a><h4>Returns</h4>
-<p> the initialized vector. </p>
+<p>the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2793,7 +2793,7 @@ graphene_vec4_init_from_vec3 (<em class="parameter"><code><a class="link" href="
 </div>
 <div class="refsect3">
 <a name="graphene-vec4-init-from-vec3.returns"></a><h4>Returns</h4>
-<p> the initialized vector. </p>
+<p>the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2846,7 +2846,7 @@ graphene_vec4_init_from_vec2 (<em class="parameter"><code><a class="link" href="
 </div>
 <div class="refsect3">
 <a name="graphene-vec4-init-from-vec2.returns"></a><h4>Returns</h4>
-<p> the initialized vector. </p>
+<p>the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2874,7 +2874,7 @@ graphene_vec4_init_from_float (<em class="parameter"><code><a class="link" href=
 </tr>
 <tr>
 <td class="parameter_name"><p>src</p></td>
-<td class="parameter_description"><p> an array of four floating point values. </p></td>
+<td class="parameter_description"><p>an array of four floating point values. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=4]</span></td>
 </tr>
 </tbody>
@@ -2882,7 +2882,7 @@ graphene_vec4_init_from_float (<em class="parameter"><code><a class="link" href=
 </div>
 <div class="refsect3">
 <a name="graphene-vec4-init-from-float.returns"></a><h4>Returns</h4>
-<p> the initialized vector. </p>
+<p>the initialized vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -2911,7 +2911,7 @@ of floating point values.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>dest</p></td>
-<td class="parameter_description"><p> return location for
+<td class="parameter_description"><p>return location for
 an array of floating point values. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=4]</span></td>
 </tr>
@@ -2949,7 +2949,7 @@ graphene_vec4_add (<em class="parameter"><code>const <a class="link" href="graph
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the resulting vector. </p></td>
+<td class="parameter_description"><p>return location for the resulting vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -2991,7 +2991,7 @@ each result into the components of <em class="parameter"><code>res</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the resulting vector. </p></td>
+<td class="parameter_description"><p>return location for the resulting vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -3028,7 +3028,7 @@ graphene_vec4_multiply (<em class="parameter"><code>const <a class="link" href="
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the resulting vector. </p></td>
+<td class="parameter_description"><p>return location for the resulting vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -3070,7 +3070,7 @@ vector <em class="parameter"><code>res</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the resulting vector. </p></td>
+<td class="parameter_description"><p>return location for the resulting vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -3143,7 +3143,7 @@ graphene_vec4_scale (<em class="parameter"><code>const <a class="link" href="gra
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result vector. </p></td>
+<td class="parameter_description"><p>return location for the result vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -3201,7 +3201,7 @@ graphene_vec4_normalize (<em class="parameter"><code>const <a class="link" href=
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the normalized
+<td class="parameter_description"><p>return location for the normalized
 vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
@@ -3233,7 +3233,7 @@ graphene_vec4_negate (<em class="parameter"><code>const <a class="link" href="gr
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result vector. </p></td>
+<td class="parameter_description"><p>return location for the result vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -3349,7 +3349,7 @@ vector that contains the minimum values.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result vector. </p></td>
+<td class="parameter_description"><p>return location for the result vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -3387,7 +3387,7 @@ vector that contains the maximum values.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the result vector. </p></td>
+<td class="parameter_description"><p>return location for the result vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -3527,7 +3527,7 @@ of the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title=
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for a <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a>. </p></td>
+<td class="parameter_description"><p>return location for a <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -3559,7 +3559,7 @@ of the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title=
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for a graphene_vec3_t. </p></td>
+<td class="parameter_description"><p>return location for a graphene_vec3_t. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -3576,7 +3576,7 @@ graphene_vec4_zero (<em class="parameter"><code><span class="type">void</span></
 components set to 0.</p>
 <div class="refsect3">
 <a name="graphene-vec4-zero.returns"></a><h4>Returns</h4>
-<p> a constant vector. </p>
+<p>a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -3590,7 +3590,7 @@ graphene_vec4_one (<em class="parameter"><code><span class="type">void</span></c
 components set to 1.</p>
 <div class="refsect3">
 <a name="graphene-vec4-one.returns"></a><h4>Returns</h4>
-<p> a constant vector. </p>
+<p>a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -3604,7 +3604,7 @@ graphene_vec4_x_axis (<em class="parameter"><code><span class="type">void</span>
 components set to (1, 0, 0, 0).</p>
 <div class="refsect3">
 <a name="graphene-vec4-x-axis.returns"></a><h4>Returns</h4>
-<p> a constant vector. </p>
+<p>a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -3618,7 +3618,7 @@ graphene_vec4_y_axis (<em class="parameter"><code><span class="type">void</span>
 components set to (0, 1, 0, 0).</p>
 <div class="refsect3">
 <a name="graphene-vec4-y-axis.returns"></a><h4>Returns</h4>
-<p> a constant vector. </p>
+<p>a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -3632,7 +3632,7 @@ graphene_vec4_z_axis (<em class="parameter"><code><span class="type">void</span>
 components set to (0, 0, 1, 0).</p>
 <div class="refsect3">
 <a name="graphene-vec4-z-axis.returns"></a><h4>Returns</h4>
-<p> a constant vector. </p>
+<p>a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -3646,7 +3646,7 @@ graphene_vec4_w_axis (<em class="parameter"><code><span class="type">void</span>
 components set to (0, 0, 0, 1).</p>
 <div class="refsect3">
 <a name="graphene-vec4-w-axis.returns"></a><h4>Returns</h4>
-<p> a constant vector. </p>
+<p>a constant vector. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -3710,6 +3710,6 @@ never be accessed directly.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.29</div>
 </body>
 </html>

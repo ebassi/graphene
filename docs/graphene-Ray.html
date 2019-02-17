@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Ray: Graphene Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Plane.html" title="Plane">
 <link rel="next" href="graphene-Versioning-information.html" title="Versioning information">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -173,7 +173,7 @@ graphene_ray_alloc (<em class="parameter"><code><span class="type">void</span></
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
 <a name="graphene-ray-alloc.returns"></a><h4>Returns</h4>
-<p> the newly allocated <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a>.
+<p>the newly allocated <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a>.
 Use <a class="link" href="graphene-Ray.html#graphene-ray-free" title="graphene_ray_free ()"><code class="function">graphene_ray_free()</code></a> to free the resources allocated by
 this function. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -230,12 +230,12 @@ and <em class="parameter"><code>direction</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>origin</p></td>
-<td class="parameter_description"><p> the origin of the ray. </p></td>
+<td class="parameter_description"><p>the origin of the ray. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>direction</p></td>
-<td class="parameter_description"><p> the direction vector. </p></td>
+<td class="parameter_description"><p>the direction vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -243,7 +243,7 @@ and <em class="parameter"><code>direction</code></em>
 </div>
 <div class="refsect3">
 <a name="graphene-ray-init.returns"></a><h4>Returns</h4>
-<p> the initialized ray. </p>
+<p>the initialized ray. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
@@ -280,7 +280,7 @@ values of another <a class="link" href="graphene-Ray.html#graphene-ray-t" title=
 </div>
 <div class="refsect3">
 <a name="graphene-ray-init-from-ray.returns"></a><h4>Returns</h4>
-<p> the initialized ray. </p>
+<p>the initialized ray. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
@@ -309,12 +309,12 @@ graphene_ray_init_from_vec3 (<em class="parameter"><code><a class="link" href="g
 </tr>
 <tr>
 <td class="parameter_name"><p>origin</p></td>
-<td class="parameter_description"><p> a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>direction</p></td>
-<td class="parameter_description"><p> a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -322,7 +322,7 @@ graphene_ray_init_from_vec3 (<em class="parameter"><code><a class="link" href="g
 </div>
 <div class="refsect3">
 <a name="graphene-ray-init-from-vec3.returns"></a><h4>Returns</h4>
-<p> the initialized ray. </p>
+<p>the initialized ray. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
@@ -350,7 +350,7 @@ graphene_ray_get_origin (<em class="parameter"><code>const <a class="link" href=
 </tr>
 <tr>
 <td class="parameter_name"><p>origin</p></td>
-<td class="parameter_description"><p> return location for the origin. </p></td>
+<td class="parameter_description"><p>return location for the origin. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -381,7 +381,7 @@ graphene_ray_get_direction (<em class="parameter"><code>const <a class="link" hr
 </tr>
 <tr>
 <td class="parameter_name"><p>direction</p></td>
-<td class="parameter_description"><p> return location for the direction. </p></td>
+<td class="parameter_description"><p>return location for the direction. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -420,7 +420,7 @@ given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ra
 </tr>
 <tr>
 <td class="parameter_name"><p>position</p></td>
-<td class="parameter_description"><p> return location for the position. </p></td>
+<td class="parameter_description"><p>return location for the position. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -532,7 +532,7 @@ given point <em class="parameter"><code>p</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the closest point3d. </p></td>
+<td class="parameter_description"><p>return location for the closest point3d. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -591,6 +591,6 @@ be modified directly.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.29</div>
 </body>
 </html>

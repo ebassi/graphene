@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Quad: Graphene Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Rectangle.html" title="Rectangle">
 <link rel="next" href="graphene-Triangle.html" title="Triangle">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -138,7 +138,7 @@ graphene_quad_alloc (<em class="parameter"><code><span class="type">void</span><
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
 <a name="graphene-quad-alloc.returns"></a><h4>Returns</h4>
-<p> the newly created <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> instance. </p>
+<p>the newly created <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> instance. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -215,7 +215,7 @@ graphene_quad_init (<em class="parameter"><code><a class="link" href="graphene-Q
 </div>
 <div class="refsect3">
 <a name="graphene-quad-init.returns"></a><h4>Returns</h4>
-<p> the initialized <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a>. </p>
+<p>the initialized <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -252,7 +252,7 @@ given <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="grap
 </div>
 <div class="refsect3">
 <a name="graphene-quad-init-from-rect.returns"></a><h4>Returns</h4>
-<p> the initialized <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a>. </p>
+<p>the initialized <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -280,7 +280,7 @@ graphene_quad_init_from_points (<em class="parameter"><code><a class="link" href
 </tr>
 <tr>
 <td class="parameter_name"><p>points</p></td>
-<td class="parameter_description"><p> an array of 4 <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a>. </p></td>
+<td class="parameter_description"><p>an array of 4 <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> fixed-size=4]</span></td>
 </tr>
 </tbody>
@@ -288,7 +288,7 @@ graphene_quad_init_from_points (<em class="parameter"><code><a class="link" href
 </div>
 <div class="refsect3">
 <a name="graphene-quad-init-from-points.returns"></a><h4>Returns</h4>
-<p> the initialized <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a>. </p>
+<p>the initialized <a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -353,7 +353,7 @@ graphene_quad_bounds (<em class="parameter"><code>const <a class="link" href="gr
 </tr>
 <tr>
 <td class="parameter_name"><p>r</p></td>
-<td class="parameter_description"><p> return location for a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a>. </p></td>
+<td class="parameter_description"><p>return location for a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -392,7 +392,7 @@ graphene_quad_get_point (<em class="parameter"><code>const <a class="link" href=
 </div>
 <div class="refsect3">
 <a name="graphene-quad-get-point.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a>. </p>
+<p>a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -413,6 +413,6 @@ accessed directly.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.29</div>
 </body>
 </html>

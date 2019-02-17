@@ -22,7 +22,6 @@
       <sub name="Versioning information" link="graphene-Versioning-information.html"/>
       <sub name="GObject integration" link="graphene-GObject-integration.html"/>
     </sub>
-    <sub name="Object Hierarchy" link="object-tree.html"/>
     <sub name="API Index" link="api-index.html"/>
     <sub name="Index of deprecated API" link="deprecated-api-index.html"/>
     <sub name="Index of new symbols in 1.0" link="ix03.html"/>

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Plane: Graphene Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Quaternion.html" title="Quaternion">
 <link rel="next" href="graphene-Ray.html" title="Ray">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -166,9 +166,11 @@
 </div>
 <div class="refsect1">
 <a name="graphene-Plane.description"></a><h2>Description</h2>
-<p><a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> is a structure representing a plane in 3D space, using
-a normal vector pointing towards the origin, and a constant distance from
-the origin along the normal vector.</p>
+<p><a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> is a structure representing a plane that extends
+infinitely in 3D space, described using the <a class="ulink" href="http://mathworld.wolfram.com/HessianNormalForm.html" target="_top">Hessian normal
+form</a>
+of a unit length normal vector pointing towards the origin, and a
+constant distance from the origin along the normal vector.</p>
 </div>
 <div class="refsect1">
 <a name="graphene-Plane.functions_details"></a><h2>Functions</h2>
@@ -181,7 +183,7 @@ graphene_plane_alloc (<em class="parameter"><code><span class="type">void</span>
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
 <a name="graphene-plane-alloc.returns"></a><h4>Returns</h4>
-<p> the newly allocated <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a>.
+<p>the newly allocated <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a>.
 Use <a class="link" href="graphene-Plane.html#graphene-plane-free" title="graphene_plane_free ()"><code class="function">graphene_plane_free()</code></a> to free the resources allocated by
 this function. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -238,13 +240,15 @@ and <em class="parameter"><code>constant</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>normal</p></td>
-<td class="parameter_description"><p> a normal vector defining the plane pointing towards the origin. </p></td>
+<td class="parameter_description"><p>a unit length normal vector defining the plane
+pointing towards the origin; if unset, we use the X axis by default. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>constant</p></td>
-<td class="parameter_description"><p>the negative distance from the origin to the plane along the
-normal vector</p></td>
+<td class="parameter_description"><p>the distance from the origin to the plane along the
+normal vector; the sign determines the half-space occupied by the
+plane</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -252,7 +256,7 @@ normal vector</p></td>
 </div>
 <div class="refsect3">
 <a name="graphene-plane-init.returns"></a><h4>Returns</h4>
-<p> the initialized plane. </p>
+<p>the initialized plane. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -290,7 +294,7 @@ three components, and the distance in its fourth component</p></td>
 </div>
 <div class="refsect3">
 <a name="graphene-plane-init-from-vec4.returns"></a><h4>Returns</h4>
-<p> the initialized plane. </p>
+<p>the initialized plane. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -327,7 +331,7 @@ vector and constant of another <a class="link" href="graphene-Plane.html#graphen
 </div>
 <div class="refsect3">
 <a name="graphene-plane-init-from-plane.returns"></a><h4>Returns</h4>
-<p> the initialized plane. </p>
+<p>the initialized plane. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -370,7 +374,7 @@ and an arbitrary co-planar point.</p>
 </div>
 <div class="refsect3">
 <a name="graphene-plane-init-from-point.returns"></a><h4>Returns</h4>
-<p> the initialized plane. </p>
+<p>the initialized plane. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -421,7 +425,7 @@ the normal vector will point.</p>
 </div>
 <div class="refsect3">
 <a name="graphene-plane-init-from-points.returns"></a><h4>Returns</h4>
-<p> the initialized plane. </p>
+<p>the initialized plane. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
@@ -432,7 +436,8 @@ the normal vector will point.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 graphene_plane_normalize (<em class="parameter"><code>const <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *p</code></em>,
                           <em class="parameter"><code><a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a> *res</code></em>);</pre>
-<p>Normalizes the vector and constant of a <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a>.</p>
+<p>Normalizes the vector of the given <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphene_plane_t"><span class="type">graphene_plane_t</span></a>,
+and adjusts the constant accordingly.</p>
 <div class="refsect3">
 <a name="graphene-plane-normalize.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -449,7 +454,7 @@ graphene_plane_normalize (<em class="parameter"><code>const <a class="link" href
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the normalized plane. </p></td>
+<td class="parameter_description"><p>return location for the normalized plane. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -481,7 +486,7 @@ mirroring the plane across the origin.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the negated plane. </p></td>
+<td class="parameter_description"><p>return location for the negated plane. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -584,7 +589,7 @@ given <a class="link" href="graphene-Plane.html#graphene-plane-t" title="graphen
 </tr>
 <tr>
 <td class="parameter_name"><p>normal</p></td>
-<td class="parameter_description"><p> return location for the normal vector. </p></td>
+<td class="parameter_description"><p>return location for the normal vector. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -636,6 +641,6 @@ modified directly.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.29</div>
 </body>
 </html>

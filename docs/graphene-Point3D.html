@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Point3D: Graphene Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="Graphene Reference Manual">
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Point.html" title="Point">
 <link rel="next" href="graphene-Size.html" title="Size">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -265,7 +265,7 @@ graphene_point3d_alloc (<em class="parameter"><code><span class="type">void</spa
 <p><span class="annotation">[<acronym title="This symbol is a constructor, not a static method."><span class="acronym">constructor</span></acronym>]</span></p>
 <div class="refsect3">
 <a name="graphene-point3d-alloc.returns"></a><h4>Returns</h4>
-<p> the newly allocated structure.
+<p>the newly allocated structure.
 Use <a class="link" href="graphene-Point3D.html#graphene-point3d-free" title="graphene_point3d_free ()"><code class="function">graphene_point3d_free()</code></a> to free the resources
 allocated by this function. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -338,7 +338,7 @@ graphene_point3d_init (<em class="parameter"><code><a class="link" href="graphen
 </div>
 <div class="refsect3">
 <a name="graphene-point3d-init.returns"></a><h4>Returns</h4>
-<p> the initialized <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p>
+<p>the initialized <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -375,7 +375,7 @@ another <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="g
 </div>
 <div class="refsect3">
 <a name="graphene-point3d-init-from-point.returns"></a><h4>Returns</h4>
-<p> the initialized point. </p>
+<p>the initialized point. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -412,7 +412,7 @@ of a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphen
 </div>
 <div class="refsect3">
 <a name="graphene-point3d-init-from-vec3.returns"></a><h4>Returns</h4>
-<p> the initialized <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p>
+<p>the initialized <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -441,7 +441,7 @@ graphene_point3d_to_vec3 (<em class="parameter"><code>const <a class="link" href
 </tr>
 <tr>
 <td class="parameter_name"><p>v</p></td>
-<td class="parameter_description"><p> return location for a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
+<td class="parameter_description"><p>return location for a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -558,7 +558,7 @@ the given <em class="parameter"><code>factor</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the scaled point. </p></td>
+<td class="parameter_description"><p>return location for the scaled point. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -595,7 +595,7 @@ graphene_point3d_cross (<em class="parameter"><code>const <a class="link" href="
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the cross
+<td class="parameter_description"><p>return location for the cross
 product. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
@@ -691,7 +691,7 @@ coordinates of the given <a class="link" href="graphene-Point3D.html#graphene-po
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> return location for the normalized
+<td class="parameter_description"><p>return location for the normalized
 <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
@@ -746,7 +746,7 @@ default far clipping plane</p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> the return location for the
+<td class="parameter_description"><p>the return location for the
 normalized <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
@@ -784,7 +784,7 @@ graphene_point3d_distance (<em class="parameter"><code>const <a class="link" hre
 </tr>
 <tr>
 <td class="parameter_name"><p>delta</p></td>
-<td class="parameter_description"><p> return location for the distance
+<td class="parameter_description"><p>return location for the distance
 components on the X, Y, and Z axis. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
 </tr>
@@ -837,7 +837,7 @@ provided <em class="parameter"><code>factor</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p> the return location for the
+<td class="parameter_description"><p>the return location for the
 interpolated <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
 </tr>
@@ -854,7 +854,7 @@ graphene_point3d_zero (<em class="parameter"><code><span class="type">void</span
 <p>Retrieves a constant point with all three coordinates set to 0.</p>
 <div class="refsect3">
 <a name="graphene-point3d-zero.returns"></a><h4>Returns</h4>
-<p> a zero point. </p>
+<p>a zero point. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
@@ -911,6 +911,6 @@ graphene_point3d_zero (<em class="parameter"><code><span class="type">void</span
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.29</div>
 </body>
 </html>
