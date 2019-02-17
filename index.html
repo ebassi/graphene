@@ -64,7 +64,7 @@ the whole point of writing the library in the first place.</p>
 <h3>
 <a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h3>
 
-<p>Graphene has little dependencies.</p>
+<p>Graphene has minimal dependencies.</p>
 
 <p>Graphene contains optimizations for speeding up vector operations; those
 optimizations are optional, and used only if both Graphene was compiled
@@ -80,9 +80,10 @@ Currently, Graphene supports the following platform-specific fast paths:</p>
 <p>In the remote case in which none of these optimizations are available,
 Graphene will fall back to a naïve scalar implementation.</p>
 
-<p>Graphene can, optionally, provide types for integrating with GObject
-properties and signals, as well as introspection information for its
-use with other languages through introspection-based bindings.</p>
+<p>Graphene can, optionally, provide types for integrating with
+<a class="external" href="https://developer.gnome.org/gobject/stable/">GObject</a>
+properties and signals, as well as introspection information for its use
+with other languages through introspection-based bindings.</p>
 
 <h3>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
