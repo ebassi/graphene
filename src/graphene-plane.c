@@ -26,9 +26,11 @@
  * @Title: Plane
  * @Short_Description: A plane in 3D space
  *
- * #graphene_plane_t is a structure representing a plane in 3D space, using
- * a normal vector pointing towards the origin, and a constant distance from
- * the origin along the normal vector.
+ * #graphene_plane_t is a structure representing a plane that extends
+ * infinitely in 3D space, described using the [Hessian normal
+ * form](http://mathworld.wolfram.com/HessianNormalForm.html)
+ * of a unit length normal vector pointing towards the origin, and a
+ * constant distance from the origin along the normal vector.
  */
 
 #include "graphene-private.h"
@@ -78,9 +80,11 @@ graphene_plane_free (graphene_plane_t *p)
 /**
  * graphene_plane_init:
  * @p: the #graphene_plane_t to initialize
- * @normal: (nullable): a normal vector defining the plane pointing towards the origin
- * @constant: the negative distance from the origin to the plane along the
- *   normal vector
+ * @normal: (nullable): a unit length normal vector defining the plane
+ *   pointing towards the origin; if unset, we use the X axis by default
+ * @constant: the distance from the origin to the plane along the
+ *   normal vector; the sign determines the half-space occupied by the
+ *   plane
  *
  * Initializes the given #graphene_plane_t using the given @normal vector
  * and @constant values.
@@ -221,7 +225,8 @@ graphene_plane_init_from_points (graphene_plane_t         *p,
  * @p: a #graphene_plane_t
  * @res: (out caller-allocates): return location for the normalized plane
  *
- * Normalizes the vector and constant of a #graphene_plane_t.
+ * Normalizes the vector of the given #graphene_plane_t,
+ * and adjusts the constant accordingly.
  *
  * Since: 1.2
  */
