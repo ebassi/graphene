@@ -431,10 +431,14 @@ graphene_simd4x4f_matrix_mul (const graphene_simd4x4f_t *a,
    * the order is correct if we want to multiply A with B; remember
    * that matrix multiplication is non-commutative.
    */
-  graphene_simd4x4f_vec4_mul (b, &a->x, &res->x);
-  graphene_simd4x4f_vec4_mul (b, &a->y, &res->y);
-  graphene_simd4x4f_vec4_mul (b, &a->z, &res->z);
-  graphene_simd4x4f_vec4_mul (b, &a->w, &res->w);
+  graphene_simd4f_t x, y, z, w;
+
+  graphene_simd4x4f_vec4_mul (b, &a->x, &x);
+  graphene_simd4x4f_vec4_mul (b, &a->y, &y);
+  graphene_simd4x4f_vec4_mul (b, &a->z, &z);
+  graphene_simd4x4f_vec4_mul (b, &a->w, &w);
+
+  *res = graphene_simd4x4f_init (x, y, z, w);
 #endif
 }
 
