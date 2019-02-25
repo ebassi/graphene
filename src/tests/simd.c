@@ -1,7 +1,7 @@
+#include <string.h>
 #include <math.h>
 #include <graphene.h>
-
-#include "graphene-test-compat.h"
+#include <mutest.h>
 
 static void
 simd_dup_4f (void)
@@ -9,20 +9,21 @@ simd_dup_4f (void)
   graphene_simd4f_t s;
   float v[4];
   struct { float x, y, z, w; } p;
+  float check[4] = { 2.f, 3.f, 4.f, 5.f };
 
   s = graphene_simd4f_init (2.f, 3.f, 4.f, 5.f);
-  graphene_simd4f_dup_4f (s, v);
 
-  g_assert_cmpfloat (v[0], ==, 2.f);
-  g_assert_cmpfloat (v[1], ==, 3.f);
-  g_assert_cmpfloat (v[2], ==, 4.f);
-  g_assert_cmpfloat (v[3], ==, 5.f);
+  graphene_simd4f_dup_4f (s, v);
+  mutest_expect ("dup_4f() to work with an array",
+                 mutest_bool_value (memcmp (v, check, sizeof (float) * 4) == 0),
+                 mutest_to_be_true,
+                 NULL);
 
   graphene_simd4f_dup_4f (s, &(p.x));
-  g_assert_cmpfloat (p.x, ==, 2.f);
-  g_assert_cmpfloat (p.y, ==, 3.f);
-  g_assert_cmpfloat (p.z, ==, 4.f);
-  g_assert_cmpfloat (p.w, ==, 5.f);
+  mutest_expect ("dup_4f() to work with a structure",
+                 mutest_bool_value (memcmp (&p, check, sizeof (float) * 4) == 0),
+                 mutest_to_be_true,
+                 NULL);
 }
 
 static void
@@ -31,18 +32,21 @@ simd_dup_3f (void)
   graphene_simd4f_t s;
   float v[3];
   struct { float x, y, z; } p;
+  float check[3] = { 2.f, 3.f, 4.f };
 
   s = graphene_simd4f_init (2.f, 3.f, 4.f, 5.f);
-  graphene_simd4f_dup_3f (s, v);
 
-  g_assert_cmpfloat (v[0], ==, 2.f);
-  g_assert_cmpfloat (v[1], ==, 3.f);
-  g_assert_cmpfloat (v[2], ==, 4.f);
+  graphene_simd4f_dup_3f (s, v);
+  mutest_expect ("dup_3f() to work with an array",
+                 mutest_bool_value (memcmp (v, check, sizeof (float) * 3) == 0),
+                 mutest_to_be_true,
+                 NULL);
 
   graphene_simd4f_dup_3f (s, &(p.x));
-  g_assert_cmpfloat (p.x, ==, 2.f);
-  g_assert_cmpfloat (p.y, ==, 3.f);
-  g_assert_cmpfloat (p.z, ==, 4.f);
+  mutest_expect ("dup_3f() to work with a structure",
+                 mutest_bool_value (memcmp (&p, check, sizeof (float) * 3) == 0),
+                 mutest_to_be_true,
+                 NULL);
 }
 
 static void
@@ -51,16 +55,21 @@ simd_dup_2f (void)
   graphene_simd4f_t s;
   float v[2];
   struct { float x, y; } p;
+  float check[2] = { 2.f, 3.f };
 
   s = graphene_simd4f_init (2.f, 3.f, 4.f, 5.f);
-  graphene_simd4f_dup_2f (s, v);
 
-  g_assert_cmpfloat (v[0], ==, 2.f);
-  g_assert_cmpfloat (v[1], ==, 3.f);
+  graphene_simd4f_dup_2f (s, v);
+  mutest_expect ("dup_2f() to work with an array",
+                 mutest_bool_value (memcmp (v, check, sizeof (float) * 2) == 0),
+                 mutest_to_be_true,
+                 NULL);
 
   graphene_simd4f_dup_2f (s, &(p.x));
-  g_assert_cmpfloat (p.x, ==, 2.f);
-  g_assert_cmpfloat (p.y, ==, 3.f);
+  mutest_expect ("dup_2f() to work with a structure",
+                 mutest_bool_value (memcmp (&p, check, sizeof (float) * 2) == 0),
+                 mutest_to_be_true,
+                 NULL);
 }
 
 static void
@@ -69,218 +78,207 @@ simd_compare_eq (void)
   graphene_simd4f_t a, b, c;
 
   a = graphene_simd4f_init (1.f, 0.f, 1.f, 0.f);
-  g_assert_true (graphene_simd4f_cmp_eq (a, a));
+  mutest_expect ("to be equal to itself",
+                 mutest_bool_value (graphene_simd4f_cmp_eq (a, a)),
+                 mutest_to_be_true,
+                 NULL);
 
   b = graphene_simd4f_init (1.f, 0.f, 1.f, 0.f);
-  g_assert_true (graphene_simd4f_cmp_eq (a, b));
-  g_assert_true (graphene_simd4f_cmp_eq (b, a));
+  mutest_expect ("two vectors with the same values to be equal",
+                 mutest_bool_value (graphene_simd4f_cmp_eq (a, b) && graphene_simd4f_cmp_eq (b, a)),
+                 mutest_to_be_true,
+                 NULL);
 
   c = graphene_simd4f_splat (1.f);
-  g_assert_false (graphene_simd4f_cmp_eq (a, c));
-  g_assert_false (graphene_simd4f_cmp_eq (b, c));
-}
+  mutest_expect ("two different vectors to be different",
+                 mutest_bool_value (graphene_simd4f_cmp_eq (a, c)),
+                 mutest_to_be_false,
+                 NULL);
 
-static void
-simd_compare_neq (void)
-{
-  graphene_simd4f_t a, b, c;
-
-  a = graphene_simd4f_init (1.f, 0.f, 1.f, 0.f);
-  g_assert_false (graphene_simd4f_cmp_neq (a, a));
-
-  b = graphene_simd4f_init (1.f, 0.f, 1.f, 0.f);
-  g_assert_false (graphene_simd4f_cmp_neq (a, b));
-  g_assert_false (graphene_simd4f_cmp_neq (b, a));
-
-  c = graphene_simd4f_splat (1.f);
-  g_assert_true (graphene_simd4f_cmp_neq (a, c));
-  g_assert_true (graphene_simd4f_cmp_neq (b, c));
+  mutest_expect ("two different vectors to not be equal",
+                 mutest_bool_value (graphene_simd4f_cmp_neq (b, c)),
+                 mutest_to_be_true,
+                 NULL);
 }
 
 static void
 simd_compare_lt (void)
 {
-  graphene_simd4f_t a, b, c;
+  graphene_simd4f_t a, b;
 
   a = graphene_simd4f_init (0.f, 0.f, 0.f, 0.f);
   b = graphene_simd4f_init (1.f, 1.f, 1.f, 1.f);
-  g_assert_true (graphene_simd4f_cmp_lt (a, b));
-  g_assert_false (graphene_simd4f_cmp_lt (b, a));
+  mutest_expect ("a < b to be true if all components satisfy the order relation",
+                 mutest_bool_value (graphene_simd4f_cmp_lt (a, b)),
+                 mutest_to_be_true,
+                 NULL);
 
-  c = graphene_simd4f_init (0.f, 1.f, 0.f, 1.f);
-  g_assert_false (graphene_simd4f_cmp_lt (a, c));
+  b = graphene_simd4f_init (0.f, 1.f, 1.f, 1.f);
+  mutest_expect ("a < b to be false if any component does not satify the order relation",
+                 mutest_bool_value (graphene_simd4f_cmp_lt (a, b)),
+                 mutest_to_be_false,
+                 NULL);
 }
 
 static void
 simd_compare_le (void)
 {
-  graphene_simd4f_t a, b, c;
+  graphene_simd4f_t a, b;
 
   a = graphene_simd4f_init (0.f, 0.f, 0.f, 0.f);
-  b = graphene_simd4f_init (1.f, 1.f, 1.f, 1.f);
-  g_assert_true (graphene_simd4f_cmp_le (a, b));
-  g_assert_false (graphene_simd4f_cmp_le (b, a));
+  b = graphene_simd4f_init (1.f, 0.f, 1.f, 0.f);
+  mutest_expect ("a ≤ b to be true if all components satisfy the order relation",
+                 mutest_bool_value (graphene_simd4f_cmp_le (a, b)),
+                 mutest_to_be_true,
+                 NULL);
 
-  c = graphene_simd4f_init (0.f, 1.f, 0.f, 1.f);
-  g_assert_true (graphene_simd4f_cmp_le (a, c));
-  g_assert_false (graphene_simd4f_cmp_le (b, c));
+  a = graphene_simd4f_init (2.f, 0.f, 1.f, 0.f);
+  mutest_expect ("a ≤ b to be false if any component does not satify the order relation",
+                 mutest_bool_value (graphene_simd4f_cmp_le (a, b)),
+                 mutest_to_be_false,
+                 NULL);
 }
 
 static void
 simd_compare_ge (void)
 {
-  graphene_simd4f_t a, b, c;
+  graphene_simd4f_t a, b;
 
   a = graphene_simd4f_init (0.f, 0.f, 0.f, 0.f);
-  b = graphene_simd4f_init (1.f, 1.f, 1.f, 1.f);
-  g_assert_false (graphene_simd4f_cmp_ge (a, b));
-  g_assert_true (graphene_simd4f_cmp_ge (b, a));
+  b = graphene_simd4f_init (1.f, 0.f, 1.f, 0.f);
+  mutest_expect ("a ≤ b to be true if all components satisfy the order relation",
+                 mutest_bool_value (graphene_simd4f_cmp_ge (b, a)),
+                 mutest_to_be_true,
+                 NULL);
 
-  c = graphene_simd4f_init (0.f, 1.f, 0.f, 1.f);
-  g_assert_false (graphene_simd4f_cmp_ge (a, c));
-  g_assert_true (graphene_simd4f_cmp_ge (b, c));
+  a = graphene_simd4f_init (2.f, 0.f, 1.f, 0.f);
+  mutest_expect ("a ≤ b to be false if any component does not satify the order relation",
+                 mutest_bool_value (graphene_simd4f_cmp_ge (b, a)),
+                 mutest_to_be_false,
+                 NULL);
 }
 
 static void
 simd_compare_gt (void)
 {
-  graphene_simd4f_t a, b, c;
+  graphene_simd4f_t a, b;
 
   a = graphene_simd4f_init (0.f, 0.f, 0.f, 0.f);
   b = graphene_simd4f_init (1.f, 1.f, 1.f, 1.f);
-  g_assert_false (graphene_simd4f_cmp_gt (a, b));
-  g_assert_true (graphene_simd4f_cmp_gt (b, a));
+  mutest_expect ("a ≤ b to be true if all components satisfy the order relation",
+                 mutest_bool_value (graphene_simd4f_cmp_gt (b, a)),
+                 mutest_to_be_true,
+                 NULL);
 
-  c = graphene_simd4f_init (0.f, 1.f, 0.f, 1.f);
-  g_assert_false (graphene_simd4f_cmp_gt (c, a));
+  a = graphene_simd4f_init (2.f, 0.f, 0.f, 0.f);
+  mutest_expect ("a ≤ b to be false if any component does not satify the order relation",
+                 mutest_bool_value (graphene_simd4f_cmp_gt (b, a)),
+                 mutest_to_be_false,
+                 NULL);
 }
 
 static void
-simd_operators_dot_2 (void)
+simd_operators_dot (void)
 {
   graphene_simd4f_t a, b, c;
+  float dot;
 
   a = graphene_simd4f_init (1.f, 2.f, 0.f, 0.f);
   b = graphene_simd4f_init (3.f, 4.f, 0.f, 0.f);
   c = graphene_simd4f_dot2 (a, b);
 
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_x (c),
-                                3.f * 1.f + 2.f * 4.f,
-                                0.0001f);
-}
-
-static void
-simd_operators_dot_3 (void)
-{
-  graphene_simd4f_t a, b, c;
+  dot = 3.f * 1.f + 2.f * 4.f;
+  mutest_expect ("dot2() to compute the dot product of the first 2 components",
+                 mutest_float_value (graphene_simd4f_get_x (c)),
+                 mutest_to_be_close_to, dot, 0.0001,
+                 NULL);
 
   a = graphene_simd4f_init (1.f, 2.f, 3.f, 0.f);
   b = graphene_simd4f_init (4.f, 5.f, 6.f, 0.f);
   c = graphene_simd4f_dot3 (a, b);
 
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_x (c),
-                                1.f * 4.f + 2.f * 5.f + 3.f * 6.f,
-                                0.0001f);
-}
-
-static void
-simd_operators_dot_4 (void)
-{
-  graphene_simd4f_t a, b, c;
+  dot = 1.f * 4.f + 2.f * 5.f + 3.f * 6.f;
+  mutest_expect ("dot3() to compute the dot product of the first 3 components",
+                 mutest_float_value (graphene_simd4f_get_x (c)),
+                 mutest_to_be_close_to, dot, 0.0001,
+                 NULL);
 
   a = graphene_simd4f_init (1.f, 2.f, 3.f, 4.f);
   b = graphene_simd4f_init (5.f, 6.f, 7.f, 8.f);
   c = graphene_simd4f_dot4 (a, b);
 
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_x (c),
-                                1.f * 5.f + 2.f * 6.f + 3.f * 7.f + 4.f * 8.f,
-                                0.0001f);
+  dot = 1.f * 5.f + 2.f * 6.f + 3.f * 7.f + 4.f * 8.f;
+  mutest_expect ("dot4() to compute the dot product of all four components",
+                 mutest_float_value (graphene_simd4f_get_x (c)),
+                 mutest_to_be_close_to, dot, 0.0001,
+                 NULL);
 }
 
 static void
 simd_operators_min (void)
 {
-  graphene_simd4f_t a, b, c;
+  graphene_simd4f_t a, b, c, check;
 
   a = graphene_simd4f_init (1.f, 6.f, 3.f, 8.f);
   b = graphene_simd4f_init (5.f, 2.f, 7.f, 4.f);
 
   c = graphene_simd4f_min (a, b);
+  check = graphene_simd4f_init (1.f, 2.f, 3.f, 4.f);
+  mutest_expect ("min() to return the minimum of each component",
+                 mutest_bool_value (graphene_simd4f_cmp_eq (c, check)),
+                 mutest_to_be_true,
+                 NULL);
 
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_x (c), 1.f, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_y (c), 2.f, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_z (c), 3.f, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_w (c), 4.f, 0.0001f);
+  a = graphene_simd4f_init (1.f, 2.f, 3.f, 4.f);
+  check = graphene_simd4f_min_val (a);
+  mutest_expect ("min_val() to put the minimum value in the X component",
+                 mutest_float_value (graphene_simd4f_get_x (check)),
+                 mutest_to_be_close_to, 1.0, 0.0001,
+                 NULL);
 }
 
 static void
 simd_operators_max (void)
 {
-  graphene_simd4f_t a, b, c;
+  graphene_simd4f_t a, b, c, check;
 
   a = graphene_simd4f_init (1.f, 6.f, 3.f, 8.f);
   b = graphene_simd4f_init (5.f, 2.f, 7.f, 4.f);
 
   c = graphene_simd4f_max (a, b);
+  check = graphene_simd4f_init (5.f, 6.f, 7.f, 8.f);
+  mutest_expect ("max() to return the maximum of each component",
+                 mutest_bool_value (graphene_simd4f_cmp_eq (c, check)),
+                 mutest_to_be_true,
+                 NULL);
 
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_x (c), 5.f, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_y (c), 6.f, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_z (c), 7.f, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_w (c), 8.f, 0.0001f);
+  a = graphene_simd4f_init (1.f, 2.f, 3.f, 4.f);
+  check = graphene_simd4f_max_val (a);
+  mutest_expect ("max_val() to put the maximum value in the X component",
+                 mutest_float_value (graphene_simd4f_get_x (check)),
+                 mutest_to_be_close_to, 4.0, 0.0001,
+                 NULL);
 }
 
 static void
-simd_operators_min_val (void)
+simd_suite (void)
 {
-  graphene_simd4f_t a, b;
+  mutest_it ("can copy 4 components", simd_dup_4f);
+  mutest_it ("can copy 3 components", simd_dup_3f);
+  mutest_it ("can copy 2 components", simd_dup_2f);
 
-  a = graphene_simd4f_init (1.f, 2.f, 3.f, 4.f);
-  b = graphene_simd4f_min_val (a);
+  mutest_it ("can compare for equality", simd_compare_eq);
+  mutest_it ("has less than ordering", simd_compare_lt);
+  mutest_it ("has less than or equal ordering", simd_compare_le);
+  mutest_it ("has greater than or equal ordering", simd_compare_ge);
+  mutest_it ("has greater than ordering", simd_compare_gt);
 
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_x (b), 1.f, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_y (b), 1.f, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_z (b), 1.f, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_w (b), 1.f, 0.0001f);
+  mutest_it ("can compute the dot product", simd_operators_dot);
+
+  mutest_it ("can compute the minimum vector and scalar", simd_operators_min);
+  mutest_it ("can compute the maximum vector and scalar", simd_operators_max);
 }
 
-static void
-simd_operators_max_val (void)
-{
-  graphene_simd4f_t a, b;
-
-  a = graphene_simd4f_init (1.f, 2.f, 3.f, 4.f);
-  b = graphene_simd4f_max_val (a);
-
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_x (b), 4.f, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_y (b), 4.f, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_z (b), 4.f, 0.0001f);
-  graphene_assert_fuzzy_equals (graphene_simd4f_get_w (b), 4.f, 0.0001f);
-}
-
-int
-main (int argc, char *argv[])
-{
-  g_test_init (&argc, &argv, NULL);
-
-  g_test_add_func ("/simd/dup/4f", simd_dup_4f);
-  g_test_add_func ("/simd/dup/3f", simd_dup_3f);
-  g_test_add_func ("/simd/dup/2f", simd_dup_2f);
-
-  g_test_add_func ("/simd/compare/eq", simd_compare_eq);
-  g_test_add_func ("/simd/compare/neq", simd_compare_neq);
-  g_test_add_func ("/simd/compare/lt", simd_compare_lt);
-  g_test_add_func ("/simd/compare/le", simd_compare_le);
-  g_test_add_func ("/simd/compare/ge", simd_compare_ge);
-  g_test_add_func ("/simd/compare/gt", simd_compare_gt);
-
-  g_test_add_func ("/simd/operators/dot/2", simd_operators_dot_2);
-  g_test_add_func ("/simd/operators/dot/3", simd_operators_dot_3);
-  g_test_add_func ("/simd/operators/dot/4", simd_operators_dot_4);
-
-  g_test_add_func ("/simd/operators/min", simd_operators_min);
-  g_test_add_func ("/simd/operators/min-val", simd_operators_min_val);
-  g_test_add_func ("/simd/operators/max", simd_operators_max);
-  g_test_add_func ("/simd/operators/max-val", simd_operators_max_val);
-
-  return g_test_run ();
-}
+MUTEST_MAIN (
+  mutest_describe ("graphene_simd4f_t", simd_suite);
+)

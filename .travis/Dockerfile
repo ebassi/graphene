@@ -7,6 +7,7 @@ RUN apt-get update -qq \
         gcc \
         gobject-introspection \
         gir1.2-glib-2.0 \
+        git-core \
         libgirepository1.0-dev \
         libglib2.0-dev \
         locales \

@@ -189,12 +189,11 @@ graphene_dep = declare_dependency(
   dependencies: [ mathlib, threadlib ] + platform_deps,
 )
 
-# tests and benchmarks depend on GLib, so we only build them if GObject is enabled
-if build_gobject
-  if get_option('tests')
-    subdir('tests')
-  endif
-  if get_option('benchmarks')
-    subdir('bench')
-  endif
+if get_option('tests')
+  subdir('tests')
+endif
+
+# benchmarks depend on GLib, so we only build them if GObject is enabled
+if build_gobject and get_option('benchmarks')
+  subdir('bench')
 endif

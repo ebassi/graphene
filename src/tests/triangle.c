@@ -1,37 +1,60 @@
-#include <glib.h>
+#include <stdio.h>
 #include <graphene.h>
+#include <mutest.h>
 
-#include "graphene-test-compat.h"
-
-GRAPHENE_TEST_UNIT_BEGIN (triangle_init_from_point3d)
+static void
+triangle_init_from_point3d (mutest_spec_t *spec)
 {
   graphene_point3d_t a = GRAPHENE_POINT3D_INIT ( 0.f,  1.f, 0.f);
   graphene_point3d_t b = GRAPHENE_POINT3D_INIT ( 1.f, -1.f, 0.f);
   graphene_point3d_t c = GRAPHENE_POINT3D_INIT (-1.f, -1.f, 0.f);
+  graphene_point3d_t zero = GRAPHENE_POINT3D_INIT_ZERO;
   graphene_point3d_t check_a, check_b, check_c;
   graphene_triangle_t *t;
 
   t = graphene_triangle_init_from_point3d (graphene_triangle_alloc (), &a, &b, &c);
   graphene_triangle_get_points (t, &check_a, &check_b, &check_c);
-
-  graphene_assert_fuzzy_equals (graphene_triangle_get_area (t), 2.f, 0.0001f);
-  g_assert_true (graphene_point3d_equal (&check_a, &a));
-  g_assert_true (graphene_point3d_equal (&check_b, &b));
-  g_assert_true (graphene_point3d_equal (&check_c, &c));
+  mutest_expect ("triangle.a to match first point",
+                 mutest_bool_value (graphene_point3d_equal (&check_a, &a)),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("triangle.b to match second point",
+                 mutest_bool_value (graphene_point3d_equal (&check_b, &b)),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("triangle.c to match third point",
+                 mutest_bool_value (graphene_point3d_equal (&check_c, &c)),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("a unit triangle to have an area of 2",
+                 mutest_float_value (graphene_triangle_get_area (t)),
+                 mutest_to_be_close_to, 2.0, 0.0001,
+                 NULL);
 
   graphene_triangle_init_from_point3d (t, NULL, NULL, NULL);
   graphene_triangle_get_points (t, &check_a, &check_b, &check_c);
-
-  g_assert_cmpfloat (graphene_triangle_get_area (t), ==, 0.f);
-  g_assert_true (graphene_point3d_equal (&check_a, &zero3));
-  g_assert_true (graphene_point3d_equal (&check_b, &zero3));
-  g_assert_true (graphene_point3d_equal (&check_c, &zero3));
+  mutest_expect ("triangle.a to be 0 when initialized to NULL",
+                 mutest_bool_value (graphene_point3d_equal (&check_a, &zero)),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("triangle.b to be 0 when initialized to NULL",
+                 mutest_bool_value (graphene_point3d_equal (&check_b, &zero)),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("triangle.c to be 0 when initialized to NULL",
+                 mutest_bool_value (graphene_point3d_equal (&check_c, &zero)),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("degenerate triangle to have an area of zero",
+                 mutest_float_value (graphene_triangle_get_area (t)),
+                 mutest_to_be_close_to, 0.0, 0.00001,
+                 NULL);
 
   graphene_triangle_free (t);
 }
-GRAPHENE_TEST_UNIT_END
 
-GRAPHENE_TEST_UNIT_BEGIN (triangle_init_from_vec3)
+static void
+triangle_init_from_vec3 (mutest_spec_t *spec)
 {
   graphene_vec3_t a, b, c;
   graphene_vec3_t check_a, check_b, check_c;
@@ -43,45 +66,77 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_init_from_vec3)
 
   t = graphene_triangle_init_from_vec3 (graphene_triangle_alloc (), &a, &b, &c);
   graphene_triangle_get_vertices (t, &check_a, &check_b, &check_c);
-
-  graphene_assert_fuzzy_equals (graphene_triangle_get_area (t), 2.f, 0.0001f);
-  g_assert_true (graphene_vec3_equal (&check_a, &a));
-  g_assert_true (graphene_vec3_equal (&check_b, &b));
-  g_assert_true (graphene_vec3_equal (&check_c, &c));
+  mutest_expect ("triangle.a to match first vector",
+                 mutest_bool_value (graphene_vec3_equal (&check_a, &a)),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("triangle.b to match second vector",
+                 mutest_bool_value (graphene_vec3_equal (&check_b, &b)),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("triangle.c to match third vector",
+                 mutest_bool_value (graphene_vec3_equal (&check_c, &c)),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("a unit triangle to have an area of 2",
+                 mutest_float_value (graphene_triangle_get_area (t)),
+                 mutest_to_be_close_to, 2.0, 0.0001,
+                 NULL);
 
   graphene_triangle_init_from_vec3 (t, NULL, NULL, NULL);
   graphene_triangle_get_vertices (t, &check_a, &check_b, &check_c);
-
-  g_assert_cmpfloat (graphene_triangle_get_area (t), ==, 0.f);
-  g_assert_true (graphene_vec3_equal (&check_a, graphene_vec3_zero ()));
-  g_assert_true (graphene_vec3_equal (&check_b, graphene_vec3_zero ()));
-  g_assert_true (graphene_vec3_equal (&check_c, graphene_vec3_zero ()));
+  mutest_expect ("triangle.a to be 0 when initialized to NULL",
+                 mutest_bool_value (graphene_vec3_equal (&check_a, graphene_vec3_zero ())),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("triangle.b to be 0 when initialized to NULL",
+                 mutest_bool_value (graphene_vec3_equal (&check_b, graphene_vec3_zero ())),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("triangle.c to be 0 when initialized to NULL",
+                 mutest_bool_value (graphene_vec3_equal (&check_c, graphene_vec3_zero ())),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("degenerate triangle to have an area of zero",
+                 mutest_float_value (graphene_triangle_get_area (t)),
+                 mutest_to_be_close_to, 0.0, 0.00001,
+                 NULL);
 
   graphene_triangle_free (t);
 }
-GRAPHENE_TEST_UNIT_END
 
-GRAPHENE_TEST_UNIT_BEGIN (triangle_contains_point)
+static void
+triangle_contains_point (mutest_spec_t *spec)
 {
   graphene_point3d_t a = GRAPHENE_POINT3D_INIT ( 0.f,  1.f, 0.f);
   graphene_point3d_t b = GRAPHENE_POINT3D_INIT ( 1.f, -1.f, 0.f);
   graphene_point3d_t c = GRAPHENE_POINT3D_INIT (-1.f, -1.f, 0.f);
   graphene_triangle_t *t;
+  graphene_point3d_t zero = GRAPHENE_POINT3D_INIT_ZERO;
+  graphene_point3d_t one = GRAPHENE_POINT3D_INIT (1.f, 1.f, 1.f);
   graphene_point3d_t midpoint;
 
   t = graphene_triangle_init_from_point3d (graphene_triangle_alloc (), &a, &b, &c);
   graphene_triangle_get_midpoint (t, &midpoint);
 
-  g_assert_true (graphene_triangle_contains_point (t, &zero3));
-  g_assert_false (graphene_triangle_contains_point (t, &one3));
-
-  g_assert_true (graphene_triangle_contains_point (t, &midpoint));
+  mutest_expect ("triangle contains (0, 0, 0)",
+                 mutest_bool_value (graphene_triangle_contains_point (t, &zero)),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("triangle does not contain (1, 1, 1)",
+                 mutest_bool_value (graphene_triangle_contains_point (t, &one)),
+                 mutest_to_be_false,
+                 NULL);
+  mutest_expect ("triangle contains its midpoint",
+                 mutest_bool_value (graphene_triangle_contains_point (t, &midpoint)),
+                 mutest_to_be_true,
+                 NULL);
 
   graphene_triangle_free (t);
 }
-GRAPHENE_TEST_UNIT_END
 
-GRAPHENE_TEST_UNIT_BEGIN (triangle_plane)
+static void
+triangle_plane (mutest_spec_t *spec)
 {
   graphene_triangle_t t;
   graphene_plane_t p;
@@ -92,16 +147,30 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_plane)
   graphene_triangle_get_plane (&t, &p);
   graphene_triangle_get_points (&t, &a, &b, &c);
 
-  g_assert_cmpfloat (graphene_plane_distance (&p, &a), ==, 0.f);
-  g_assert_cmpfloat (graphene_plane_distance (&p, &b), ==, 0.f);
-  g_assert_cmpfloat (graphene_plane_distance (&p, &c), ==, 0.f);
+  mutest_expect ("degenerate triangle point A sits on the triangle's plane",
+                 mutest_float_value (graphene_plane_distance (&p, &a)),
+                 mutest_to_be_close_to, 0.0, 0.0001,
+                 NULL);
+  mutest_expect ("degenerate triangle point B sits on the triangle's plane",
+                 mutest_float_value (graphene_plane_distance (&p, &b)),
+                 mutest_to_be_close_to, 0.0, 0.0001,
+                 NULL);
+  mutest_expect ("degenerate triangle point C sits on the triangle's plane",
+                 mutest_float_value (graphene_plane_distance (&p, &c)),
+                 mutest_to_be_close_to, 0.0, 0.0001,
+                 NULL);
 
   graphene_triangle_get_normal (&t, &t_norm);
   graphene_plane_get_normal (&p, &p_norm);
 
-  /* we create an artificial normal for the a:0, b:0, c:0 degenerate triangle */
-  g_assert_true (graphene_vec3_equal (&t_norm, graphene_vec3_zero ()));
-  g_assert_true (graphene_vec3_equal (&t_norm, &p_norm));
+  mutest_expect ("degenerate triangle normal is zero vector",
+                 mutest_bool_value (graphene_vec3_equal (&t_norm, graphene_vec3_zero ())),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("degenerate triangle normal is equal to the plane normal",
+                 mutest_bool_value (graphene_vec3_equal (&t_norm, &p_norm)),
+                 mutest_to_be_true,
+                 NULL);
 
   graphene_point3d_init (&a, 0.f, 0.f, 0.f);
   graphene_point3d_init (&b, 1.f, 0.f, 0.f);
@@ -109,13 +178,25 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_plane)
   graphene_triangle_init_from_point3d (&t, &a, &b, &c);
   graphene_triangle_get_plane (&t, &p);
 
-  g_assert_cmpfloat (graphene_plane_distance (&p, &a), ==, 0.f);
-  g_assert_cmpfloat (graphene_plane_distance (&p, &b), ==, 0.f);
-  g_assert_cmpfloat (graphene_plane_distance (&p, &c), ==, 0.f);
+  mutest_expect ("unit triangle point A sits on the triangle's plane",
+                 mutest_float_value (graphene_plane_distance (&p, &a)),
+                 mutest_to_be_close_to, 0.0, 0.0001,
+                 NULL);
+  mutest_expect ("unit triangle point B sits on the triangle's plane",
+                 mutest_float_value (graphene_plane_distance (&p, &b)),
+                 mutest_to_be_close_to, 0.0, 0.0001,
+                 NULL);
+  mutest_expect ("unit triangle point C sits on the triangle's plane",
+                 mutest_float_value (graphene_plane_distance (&p, &c)),
+                 mutest_to_be_close_to, 0.0, 0.0001,
+                 NULL);
 
   graphene_triangle_get_normal (&t, &t_norm);
   graphene_plane_get_normal (&p, &p_norm);
-  graphene_assert_fuzzy_vec3_equal (&t_norm, &p_norm, 0.0001f);
+  mutest_expect ("unit triangle normal is equal to the plane normal",
+                 mutest_bool_value (graphene_vec3_near (&t_norm, &p_norm, 0.0001f)),
+                 mutest_to_be_true,
+                 NULL);
 
   graphene_point3d_init (&a, 2.f, 0.f, 0.f);
   graphene_point3d_init (&b, 0.f, 0.f, 0.f);
@@ -123,18 +204,30 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_plane)
   graphene_triangle_init_from_point3d (&t, &a, &b, &c);
   graphene_triangle_get_plane (&t, &p);
 
-  g_assert_cmpfloat (graphene_plane_distance (&p, &a), ==, 0.f);
-  g_assert_cmpfloat (graphene_plane_distance (&p, &b), ==, 0.f);
-  g_assert_cmpfloat (graphene_plane_distance (&p, &c), ==, 0.f);
+  mutest_expect ("triangle point A sits on the triangle's plane",
+                 mutest_float_value (graphene_plane_distance (&p, &a)),
+                 mutest_to_be_close_to, 0.0, 0.0001,
+                 NULL);
+  mutest_expect ("triangle point B sits on the triangle's plane",
+                 mutest_float_value (graphene_plane_distance (&p, &b)),
+                 mutest_to_be_close_to, 0.0, 0.0001,
+                 NULL);
+  mutest_expect ("triangle point C sits on the triangle's plane",
+                 mutest_float_value (graphene_plane_distance (&p, &c)),
+                 mutest_to_be_close_to, 0.0, 0.0001,
+                 NULL);
 
   graphene_triangle_get_normal (&t, &t_norm);
   graphene_vec3_normalize (&t_norm, &t_norm);
   graphene_plane_get_normal (&p, &p_norm);
-  graphene_assert_fuzzy_vec3_equal (&t_norm, &p_norm, 0.0001f);
+  mutest_expect ("triangle normal is equal to the plane normal",
+                 mutest_bool_value (graphene_vec3_near (&t_norm, &p_norm, 0.0001f)),
+                 mutest_to_be_true,
+                 NULL);
 }
-GRAPHENE_TEST_UNIT_END
 
-GRAPHENE_TEST_UNIT_BEGIN (triangle_barycoords)
+static void
+triangle_barycoords (mutest_spec_t *spec)
 {
   graphene_triangle_t t;
   graphene_point3d_t a, b, c, p;
@@ -146,59 +239,138 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_barycoords)
   graphene_point3d_init (&c, 1.f, 1.f, 0.f);
   graphene_triangle_init_from_point3d (&t, &a, &b, &c);
 
-  /* Inside or on the border of the triangle */
-  g_assert_true (graphene_triangle_get_barycoords (&t, &a, &barycoords));
-  graphene_vec2_init (&check, 0.f, 0.f);
-  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+  struct {
+    const char *description;
+    graphene_point3d_t point;
+    float uv[2];
+  } border_points[] = {
+    { "unit triangle point A",
+      GRAPHENE_POINT3D_INIT (0.f, 0.f, 0.f),
+      { 0.f, 0.f },
+    },
+    { "unit triangle point B",
+      GRAPHENE_POINT3D_INIT (1.f, 0.f, 0.f),
+      { 0.f, 1.f },
+    },
+    { "unit triangle point C",
+      GRAPHENE_POINT3D_INIT (1.f, 1.f, 0.f),
+      { 1.f, 0.f },
+    },
+  };
 
-  g_assert_true (graphene_triangle_get_barycoords (&t, &b, &barycoords));
-  graphene_vec2_init (&check, 0.f, 1.f);
-  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+  /* Border */
+  for (int i = 0; i < (sizeof (border_points) / sizeof (border_points[0])); i++)
+    {
+      char desc[128];
 
-  g_assert_true (graphene_triangle_get_barycoords (&t, &c, &barycoords));
-  graphene_vec2_init (&check, 1.f, 0.f);
-  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+      snprintf (desc, 128, "barycoords for %s to exist", border_points[i].description);
 
-  graphene_point3d_init (&p, 0.5f, 0.f, 0.f);
-  g_assert_true (graphene_triangle_get_barycoords (&t, &p, &barycoords));
-  graphene_vec2_init (&check, 0.f, 0.5f);
-  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+      mutest_expect (desc,
+                     mutest_bool_value (graphene_triangle_get_barycoords (&t, &(border_points[i].point), &barycoords)),
+                     mutest_to_be_true,
+                     NULL);
 
-  graphene_point3d_init (&p, 0.5f, 0.5f, 0.f);
-  g_assert_true (graphene_triangle_get_barycoords (&t, &p, &barycoords));
-  graphene_vec2_init (&check, 0.5f, 0.f);
-  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+      snprintf (desc, 128, "barycoords for %s to be (%g, %g)",
+                border_points[i].description,
+                border_points[i].uv[0],
+                border_points[i].uv[1]);
+      graphene_vec2_init_from_float (&check, border_points[i].uv);
+      mutest_expect (desc,
+                     mutest_bool_value (graphene_vec2_near (&barycoords, &check, 0.0001f)),
+                     mutest_to_be_true,
+                     NULL);
+    }
 
-  graphene_point3d_init (&p, 1.f, 0.5f, 0.f);
-  g_assert_true (graphene_triangle_get_barycoords (&t, &p, &barycoords));
-  graphene_vec2_init (&check, 0.5f, 0.5f);
-  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+  /* Inside */
+  struct {
+    graphene_point3d_t point;
+    float uv[2];
+  } inside_points[] = {
+    { GRAPHENE_POINT3D_INIT (0.5f, 0.0f, 0.0f), { 0.0f, 0.5f } },
+    { GRAPHENE_POINT3D_INIT (0.5f, 0.5f, 0.0f), { 0.5f, 0.0f } },
+    { GRAPHENE_POINT3D_INIT (1.0f, 0.5f, 0.0f), { 0.5f, 0.5f } },
+  };
+
+  for (int i = 0; i < (sizeof (inside_points) / sizeof (inside_points[0])); i++)
+    {
+      char desc[128];
+
+      snprintf (desc, 128, "barycoords for inside point (%g, %g, %g) to exists",
+                inside_points[i].point.x,
+                inside_points[i].point.y,
+                inside_points[i].point.z);
+      mutest_expect (desc,
+                     mutest_bool_value (graphene_triangle_get_barycoords (&t, &(inside_points[i].point), &barycoords)),
+                     mutest_to_be_true,
+                     NULL);
+
+      snprintf (desc, 128, "barycoords for inside point (%g, %g, %g) to be (%g, %g)",
+                inside_points[i].point.x,
+                inside_points[i].point.y,
+                inside_points[i].point.z,
+                inside_points[i].uv[0],
+                inside_points[i].uv[1]);
+      graphene_vec2_init_from_float (&check, inside_points[i].uv);
+      mutest_expect (desc,
+                     mutest_bool_value (graphene_vec2_near (&barycoords, &check, 0.0001f)),
+                     mutest_to_be_true,
+                     NULL);
+    }
 
   /* Outside the triangle, same plane */
-  graphene_point3d_init (&p, 2.f, 1.f, 0.f);
-  g_assert_true (graphene_triangle_get_barycoords (&t, &p, &barycoords));
-  graphene_vec2_init (&check, 1.f, 1.f);
-  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+  struct {
+    graphene_point3d_t point;
+    float uv[2];
+  } outside_points[] = {
+    { GRAPHENE_POINT3D_INIT (2.0f, 1.0f, 0.0f), { 1.0f, 1.0f } },
+    { GRAPHENE_POINT3D_INIT (-1.0f, 0.0f, 0.0f), { 0.0f, -1.0f } },
+  };
 
-  graphene_point3d_init (&p, -1.f, 0.f, 0.f);
-  g_assert_true (graphene_triangle_get_barycoords (&t, &p, &barycoords));
-  graphene_vec2_init (&check, 0.f, -1.f);
-  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+  for (int i = 0; i < (sizeof (outside_points) / sizeof (outside_points[0])); i++)
+    {
+      char desc[128];
+
+      snprintf (desc, 128, "barycoords for outside point (%g, %g, %g) to exists",
+                outside_points[i].point.x,
+                outside_points[i].point.y,
+                outside_points[i].point.z);
+      mutest_expect (desc,
+                     mutest_bool_value (graphene_triangle_get_barycoords (&t, &(outside_points[i].point), &barycoords)),
+                     mutest_to_be_true,
+                     NULL);
+
+      snprintf (desc, 128, "barycoords for outside point (%g, %g, %g) to be (%g, %g)",
+                outside_points[i].point.x,
+                outside_points[i].point.y,
+                outside_points[i].point.z,
+                outside_points[i].uv[0],
+                outside_points[i].uv[1]);
+      graphene_vec2_init_from_float (&check, outside_points[i].uv);
+      mutest_expect (desc,
+                     mutest_bool_value (graphene_vec2_near (&barycoords, &check, 0.0001f)),
+                     mutest_to_be_true,
+                     NULL);
+    }
 
   /* Outside the triangle plane */
   /* FIXME is that normal? */
   graphene_point3d_init (&p, 0.f, 0.f, 1.f);
-  g_assert_true (graphene_triangle_get_barycoords (&t, &p, &barycoords));
+  mutest_expect ("barycoords for point outside triangle plane to exist",
+                 mutest_bool_value (graphene_triangle_get_barycoords (&t, &p, &barycoords)),
+                 mutest_to_be_true,
+                 NULL);
   graphene_vec2_init (&check, 0.f, 0.f);
-  graphene_assert_fuzzy_vec2_equal (&barycoords, &check, 0.0001f);
+  mutest_expect ("barycoords for point outside triangle plane to be (0, 0)",
+                 mutest_bool_value (graphene_vec2_near (&barycoords, &check, 0.0001f)),
+                 mutest_to_be_true,
+                 NULL);
 }
-GRAPHENE_TEST_UNIT_END
 
-GRAPHENE_TEST_UNIT_BEGIN (triangle_area)
+static void
+triangle_area (mutest_spec_t *spec)
 {
   graphene_triangle_t t;
   graphene_point3d_t a, b, c;
-  float area;
 
   /* Counterclockwise */
   graphene_point3d_init (&a, 0.f, 0.f, 0.f);
@@ -206,21 +378,30 @@ GRAPHENE_TEST_UNIT_BEGIN (triangle_area)
   graphene_point3d_init (&c, 1.f, 1.f, 0.f);
 
   graphene_triangle_init_from_point3d (&t, &a, &b, &c);
-  area = graphene_triangle_get_area (&t);
-  graphene_assert_fuzzy_equals (area, 0.5f, 0.0001f);
+  mutest_expect ("area of unit triangle constructed counterclockwise to be 0.5",
+                 mutest_float_value (graphene_triangle_get_area (&t)),
+                 mutest_to_be_close_to, 0.5, 0.0001,
+                 NULL);
 
   /* Clockwise (positive too) */
   graphene_triangle_init_from_point3d (&t, &a, &c, &b);
-  area = graphene_triangle_get_area (&t);
-  graphene_assert_fuzzy_equals (area, 0.5f, 0.0001f);
+  mutest_expect ("area of unit triangle constructed clockwise to be 0.5",
+                 mutest_float_value (graphene_triangle_get_area (&t)),
+                 mutest_to_be_close_to, 0.5, 0.0001,
+                 NULL);
 }
-GRAPHENE_TEST_UNIT_END
 
-GRAPHENE_TEST_SUITE (
-  GRAPHENE_TEST_UNIT ("/triangle/init/from-point3", triangle_init_from_point3d)
-  GRAPHENE_TEST_UNIT ("/triangle/init/from-vec3", triangle_init_from_vec3)
-  GRAPHENE_TEST_UNIT ("/triangle/contains-point", triangle_contains_point);
-  GRAPHENE_TEST_UNIT ("/triangle/plane", triangle_plane);
-  GRAPHENE_TEST_UNIT ("/triangle/barycoords", triangle_barycoords);
-  GRAPHENE_TEST_UNIT ("/triangle/area", triangle_area);
+static void
+triangle_suite (mutest_suite_t *suite)
+{
+  mutest_it ("initializes from points", triangle_init_from_point3d);
+  mutest_it ("initializes from vectors", triangle_init_from_vec3);
+  mutest_it ("contains points", triangle_contains_point);
+  mutest_it ("defines planes", triangle_plane);
+  mutest_it ("defines barycoords", triangle_barycoords);
+  mutest_it ("defines areas", triangle_area);
+}
+
+MUTEST_MAIN (
+  mutest_describe ("graphene_triangle_t", triangle_suite);
 )
