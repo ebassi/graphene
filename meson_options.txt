@@ -22,3 +22,6 @@ option('tests', type: 'boolean',
 option('benchmarks', type: 'boolean',
        value: true,
        description: 'Build the benchmarks suite (requires GObject)')
+option('installed_tests', type: 'boolean',
+       value: true,
+       description: 'Install tests')
