@@ -466,7 +466,6 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_multiply_self)
   graphene_matrix_init_from_float (&a, floats);
   graphene_matrix_init_from_float (&b, floats);
   graphene_matrix_multiply (&a, &b, &res);
-  graphene_matrix_print (&res);
 
   graphene_matrix_init_from_float (&test, floats);
   graphene_matrix_multiply (&test, &b, &test);
