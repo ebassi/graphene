@@ -481,6 +481,30 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_multiply_self)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (matrix_to_2d)
+{
+  graphene_matrix_t matrix;
+  float f[16];
+  guint i;
+  bool valid[16] = {
+    true,  true,  false, false,
+    true,  true,  false, false,
+    false, false, false, false,
+    true,  true,  false, false };
+
+  for (i = 0; i < 16; i++)
+    {
+      /* Take the identity matrix and change one member to a different value */
+      graphene_matrix_init_identity (&matrix);
+      graphene_matrix_to_float (&matrix, f);
+      f[i] = 0.5f;
+      graphene_matrix_init_from_float (&matrix, f);
+
+      g_assert_cmpint (graphene_matrix_to_2d (&matrix, NULL, NULL, NULL, NULL, NULL, NULL), ==, valid[i]);
+    }
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_UNIT_BEGIN (matrix_2d_interpolate)
 {
   graphene_matrix_t m1, m2, m3, mr;
@@ -561,6 +585,7 @@ GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/matrix/invert", matrix_invert)
   GRAPHENE_TEST_UNIT ("/matrix/interpolate", matrix_interpolate)
   GRAPHENE_TEST_UNIT ("/matrix/multiply_self", matrix_multiply_self)
+  GRAPHENE_TEST_UNIT ("/matrix/to-2d", matrix_to_2d)
   GRAPHENE_TEST_UNIT ("/matrix/2d/identity", matrix_2d_identity)
   GRAPHENE_TEST_UNIT ("/matrix/2d/transforms", matrix_2d_transforms)
   GRAPHENE_TEST_UNIT ("/matrix/2d/round-trip", matrix_2d_round_trip)
