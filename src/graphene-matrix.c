@@ -33,10 +33,10 @@
  * w) representing rows, and elements of each vector are a column:
  *
  * |[<!-- language="plain" -->
- *   | x |    | x.x   x.y   x.z   x.w |
- *   | y | -\ | y.x   y.y   y.z   y.w |
- *   | z | -/ | z.x   z.y   z.z   z.w |
- *   | w |    | w.x   w.y   w.z   w.w |
+ *   ⎡ m.x ⎤    ⎛ x.x  x.y  x.z  x.w ⎞
+ *   ⎜ m.y ⎟ -\ ⎜ y.x  y.y  y.z  y.w ⎟
+ *   ⎜ m.z ⎟ -/ ⎜ z.x  z.y  z.z  z.w ⎟
+ *   ⎣ m.w ⎦    ⎝ w.x  w.y  w.z  w.w ⎠
  * ]|
  *
  * It is possible to easily convert a #graphene_matrix_t to and from an array
@@ -768,7 +768,7 @@ graphene_matrix_get_value (const graphene_matrix_t *m,
  * Multiplies two #graphene_matrix_t.
  *
  * Remember: matrix multiplication is not commutative, except for the
- * identity matrix; the product of this multiplication is (A * B).
+ * identity matrix; the product of this multiplication is (@a × @b).
  *
  * Since: 1.0
  */
@@ -808,6 +808,12 @@ graphene_matrix_determinant (const graphene_matrix_t *m)
  *
  * Transforms the given #graphene_vec3_t using the matrix @m.
  *
+ * This function will multiply the X, Y, and Z row vectors of the matrix @m
+ * with the corresponding components of the vector @v. The W row vector will
+ * be ignored.
+ *
+ * See also: graphene_simd4x4f_vec3_mul()
+ *
  * Since: 1.0
  */
 void
@@ -825,6 +831,8 @@ graphene_matrix_transform_vec3 (const graphene_matrix_t *m,
  * @res: (out caller-allocates): return location for a #graphene_vec4_t
  *
  * Transforms the given #graphene_vec4_t using the matrix @m.
+ *
+ * See also: graphene_simd4x4f_vec4_mul()
  *
  * Since: 1.0
  */
@@ -846,7 +854,10 @@ graphene_matrix_transform_vec4 (const graphene_matrix_t *m,
  * Transforms the given #graphene_point_t using the matrix @m.
  *
  * Unlike graphene_matrix_transform_vec3(), this function will take into
- * account the fourth row vector of the #graphene_matrix_t.
+ * account the fourth row vector of the #graphene_matrix_t when computing
+ * the dot product of each row vector of the matrix.
+ *
+ * See also: graphene_simd4x4f_point3_mul()
  *
  * Since: 1.0
  */
@@ -873,7 +884,8 @@ graphene_matrix_transform_point (const graphene_matrix_t *m,
  * Transforms the given #graphene_point3d_t using the matrix @m.
  *
  * Unlike graphene_matrix_transform_vec3(), this function will take into
- * account the fourth row vector of the #graphene_matrix_t.
+ * account the fourth row vector of the #graphene_matrix_t when computing
+ * the dot product of each row vector of the matrix.
  *
  * Since: 1.2
  */
@@ -899,8 +911,9 @@ graphene_matrix_transform_point3d (const graphene_matrix_t  *m,
  * @res: (out caller-allocates): return location for the
  *   transformed quad
  *
- * Transforms a #graphene_rect_t using the given matrix @m. The
- * result is a coplanar quad.
+ * Transforms each corner of a #graphene_rect_t using the given matrix @m.
+ *
+ * The result is a coplanar quadrilateral.
  *
  * Since: 1.0
  */
@@ -937,8 +950,10 @@ graphene_matrix_transform_rect (const graphene_matrix_t *m,
  * @res: (out caller-allocates): return location for the bounds
  *   of the transformed rectangle
  *
- * Transforms a #graphene_rect_t using the given matrix @m. The
- * result is the bounding box containing the coplanar quad.
+ * Transforms each corner of a #graphene_rect_t using the given matrix @m.
+ *
+ * The result is the axis aligned bounding rectangle containing the coplanar
+ * quadrilateral.
  *
  * Since: 1.0
  */
@@ -1034,8 +1049,10 @@ graphene_matrix_transform_sphere (const graphene_matrix_t *m,
  * @res: (out caller-allocates): return location for the bounds
  *   of the transformed box
  *
- * Transforms a #graphene_box_t using the given matrix @m. The
- * result is the bounding box containing the transformed box.
+ * Transforms the vertices of a #graphene_box_t using the given matrix @m.
+ *
+ * The result is the axis aligned bounding box containing the transformed
+ * vertices.
  *
  * Since: 1.2
  */
@@ -1125,8 +1142,8 @@ graphene_matrix_project_point (const graphene_matrix_t *m,
  *
  * Projects a #graphene_rect_t using the given matrix.
  *
- * The resulting rectangle is the bounding box capable of containing
- * fully the projected rectangle.
+ * The resulting rectangle is the axis aligned bounding rectangle capable
+ * of containing fully the projected rectangle.
  *
  * Since: 1.0
  */
@@ -1201,7 +1218,7 @@ graphene_matrix_project_rect (const graphene_matrix_t *m,
  *   untransformed point
  *
  * Undoes the transformation of a #graphene_point_t using the
- * given matrix, within the given rectangular @bounds.
+ * given matrix, within the given axis aligned rectangular @bounds.
  *
  * Returns: `true` if the point was successfully untransformed
  *
@@ -1245,8 +1262,8 @@ graphene_matrix_untransform_point (const graphene_matrix_t *m,
  * @res: (out caller-allocates): return location for the
  *   untransformed rectangle
  *
- * Undoes the transformation on the points of a #graphene_rect_t
- * using the given matrix, within the given rectangular @bounds.
+ * Undoes the transformation on the corners of a #graphene_rect_t using the
+ * given matrix, within the given axis aligned rectangular @bounds.
  *
  * Since: 1.0
  */
@@ -1330,6 +1347,9 @@ graphene_matrix_unproject_point3d (const graphene_matrix_t  *projection,
  * Adds a translation transformation to @m using the coordinates
  * of the given #graphene_point3d_t.
  *
+ * This is the equivalent of calling graphene_matrix_init_translate() and
+ * then multiplying @m with the translation matrix.
+ *
  * Since: 1.0
  */
 void
@@ -1349,6 +1369,9 @@ graphene_matrix_translate (graphene_matrix_t        *m,
  *
  * Adds a rotation transformation to @m, using the given
  * #graphene_quaternion_t.
+ *
+ * This is the equivalent of calling graphene_quaternion_to_matrix() and
+ * then multiplying @m with the rotation matrix.
  *
  * Since: 1.2
  */
@@ -1402,6 +1425,9 @@ graphene_matrix_rotate_internal (graphene_simd4x4f_t     *m,
  * Adds a rotation transformation to @m, using the given @angle
  * and @axis vector.
  *
+ * This is the equivalent of calling graphene_matrix_init_rotate() and
+ * then multiplying the matrix @m with the rotation matrix.
+ *
  * Since: 1.0
  */
 void
@@ -1419,6 +1445,8 @@ graphene_matrix_rotate (graphene_matrix_t     *m,
  *
  * Adds a rotation transformation around the X axis to @m, using
  * the given @angle.
+ *
+ * See also: graphene_matrix_rotate()
  *
  * Since: 1.0
  */
@@ -1438,6 +1466,8 @@ graphene_matrix_rotate_x (graphene_matrix_t *m,
  * Adds a rotation transformation around the Y axis to @m, using
  * the given @angle.
  *
+ * See also: graphene_matrix_rotate()
+ *
  * Since: 1.0
  */
 void
@@ -1455,6 +1485,8 @@ graphene_matrix_rotate_y (graphene_matrix_t *m,
  *
  * Adds a rotation transformation around the Z axis to @m, using
  * the given @angle.
+ *
+ * See also: graphene_matrix_rotate()
  *
  * Since: 1.0
  */
@@ -1475,6 +1507,9 @@ graphene_matrix_rotate_z (graphene_matrix_t *m,
  *
  * Adds a scaling transformation to @m, using the three
  * given factors.
+ *
+ * This is the equivalent of calling graphene_matrix_init_scale() and then
+ * multiplying the matrix @m with the scale matrix.
  *
  * Since: 1.0
  */

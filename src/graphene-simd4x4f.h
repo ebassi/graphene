@@ -219,7 +219,28 @@ graphene_simd4x4f_sum (const graphene_simd4x4f_t *a,
  * @res: (out): return location for a #graphene_simd4f_t
  *
  * Multiplies the given #graphene_simd4x4f_t with the given
- * #graphene_simd4f_t using a dot product.
+ * #graphene_simd4f_t using a dot product between the row
+ * vectors:
+ *
+ * |[<!-- language="plain" -->
+ *   ⎛ x.x  x.y  x.z  x.w ⎞ [ x y z w ]
+ *   ⎜ y.x  y.y  y.z  y.w ⎟
+ *   ⎜ z.x  z.y  z.z  z.w ⎟
+ *   ⎝ w.x  w.y  w.z  w.w ⎠
+ *
+ * = [ x.x × x   x.y × x   x.z × x   x.w × x ]
+ *        +         +         +         +
+ *   [ y.x × y   y.y × y   y.z × y   y.w × y ]
+ *        +         +         +         +
+ *   [ z.x × z   z.y × z   z.z × z   z.w × z ]
+ *        +         +         +         +
+ *   [ w.x × w   w.y × w   w.z × w   w.w × w ]
+ *
+ * = ⎡ x.x × x + y.x × y + z.x × z + w.x × w ⎤
+ *   ⎜ x.y × x + y.y × y + z.y × z + w.y × w ⎟
+ *   ⎜ x.z × x + y.z × y + z.z × z + w.z × w ⎟
+ *   ⎣ x.w × x + y.w × y + z.w × z + w.w × w ⎦
+ * ]|
  *
  * Since: 1.0
  */
@@ -249,9 +270,27 @@ graphene_simd4x4f_vec4_mul (const graphene_simd4x4f_t *a,
  * Multiplies the given #graphene_simd4x4f_t with the given
  * #graphene_simd4f_t, using only the first three row vectors
  * of the matrix, and the first three components of the vector;
- * the W components of the matrix and vector are ignored.
+ * the W components of the matrix and vector are ignored:
  *
- * See also: graphene_simd4x4f_point3_mul()
+ * |[<!-- language="plain" -->
+ *   ⎛ x.x  x.y  x.z  x.w ⎞ [ x y z ]
+ *   ⎜ y.x  y.y  y.z  y.w ⎟
+ *   ⎜ z.x  z.y  z.z  z.w ⎟
+ *   ⎝ w.x  w.y  w.z  w.w ⎠
+ *
+ * = [ x.x × x   x.y × x   x.z × x ]
+ *        +         +         +
+ *   [ y.x × y   y.y × y   y.z × y ]
+ *        +         +         +
+ *   [ z.x × z   z.y × z   z.z × z ]
+ *
+ * = ⎡ x.x × x + y.x × y + z.x × z ⎤
+ *   ⎜ x.y × x + y.y × y + z.y × z ⎟
+ *   ⎜ x.z × x + y.z × y + z.z × z ⎟
+ *   ⎣               0             ⎦
+ * ]|
+ *
+ * See also: graphene_simd4x4f_vec4_mul(), graphene_simd4x4f_point3_mul()
  *
  * Since: 1.0
  */
@@ -263,10 +302,12 @@ graphene_simd4x4f_vec3_mul (const graphene_simd4x4f_t *m,
   const graphene_simd4f_t v_x = graphene_simd4f_splat_x (*v);
   const graphene_simd4f_t v_y = graphene_simd4f_splat_y (*v);
   const graphene_simd4f_t v_z = graphene_simd4f_splat_z (*v);
+  graphene_simd4f_t r;
 
-  *res = graphene_simd4f_add (graphene_simd4f_add (graphene_simd4f_mul (m->x, v_x),
-                                                   graphene_simd4f_mul (m->y, v_y)),
-                              graphene_simd4f_mul (m->z, v_z));
+  r = graphene_simd4f_add (graphene_simd4f_add (graphene_simd4f_mul (m->x, v_x),
+                                                graphene_simd4f_mul (m->y, v_y)),
+                           graphene_simd4f_mul (m->z, v_z));
+  *res = graphene_simd4f_zero_w (r);
 }
 
 /**
@@ -279,7 +320,27 @@ graphene_simd4x4f_vec3_mul (const graphene_simd4x4f_t *m,
  * #graphene_simd4f_t.
  *
  * Unlike graphene_simd4x4f_vec3_mul(), this function will
- * use the W components of the matrix and vector.
+ * use the W components of the matrix:
+ *
+ * |[<!-- language="plain" -->
+ *   ⎛ x.x  x.y  x.z  x.w ⎞ [ x y z w ]
+ *   ⎜ y.x  y.y  y.z  y.w ⎟
+ *   ⎜ z.x  z.y  z.z  z.w ⎟
+ *   ⎝ w.x  w.y  w.z  w.w ⎠
+ *
+ * = [ x.x × x   x.y × x   x.z × x   x.w × x ]
+ *        +         +         +         +
+ *   [ y.x × y   y.y × y   y.z × y   y.w × y ]
+ *        +         +         +         +
+ *   [ z.x × z   z.y × z   z.z × z   z.w × z ]
+ *        +         +         +         +
+ *   [   w.x       w.y       w.z       w.w   ]
+ *
+ * = ⎡ x.x × x + y.x × y + z.x × z + w.x ⎤
+ *   ⎜ x.y × x + y.y × y + z.y × z + w.y ⎟
+ *   ⎜ x.z × x + y.z × y + z.z × z + w.z ⎟
+ *   ⎣ x.w × x + y.w × y + z.w × z + w.w ⎦
+ * ]|
  *
  * Since: 1.0
  */
