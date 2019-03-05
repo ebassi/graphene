@@ -758,9 +758,13 @@ graphene_rect_round_to_pixel (graphene_rect_t *r)
  * their nearest integer values; the rounding is guaranteed
  * to be large enough to have an area bigger or equal to the
  * original rectangle, but might not fully contain its extents.
+ * Use graphene_rect_round_extents() in case you need to round
+ * to a rectangle that covers fully the original one.
  *
  * This function is the equivalent of calling `floor` on
  * the coordinates of the origin, and `ceil` on the size.
+ *
+ * See also: graphene_rect_round_extents()
  *
  * Since: 1.4
  */
@@ -775,6 +779,56 @@ graphene_rect_round (const graphene_rect_t *r,
 
   res->size.width = ceilf (res->size.width);
   res->size.height = ceilf (res->size.height);
+}
+
+/**
+ * graphene_rect_round_extents:
+ * @r: a #graphene_rect_t
+ * @res: (out caller-allocates): return location for the
+ *   rectangle with rounded extents
+ *
+ * Rounds the origin of the given rectangle to its nearest
+ * integer value and and recompute the size so that the
+ * rectangle is large enough to contain all the conrners
+ * of the original rectangle.
+ *
+ * This function is the equivalent of calling `floor` on
+ * the coordinates of the origin, and recomputing the size
+ * calling `ceil` on the bottom-right coordinates.
+ *
+ * If you want to be sure that the rounded rectangle
+ * completely covers the area that was covered by the
+ * original rectangle — i.e. you want to cover the area
+ * including all its corners — this function will make sure
+ * that the size is recomputed taking into account the ceiling
+ * of the coordinates of the bottom-right corner.
+ * If the difference between the original coordinates and the
+ * coordinates of the rounded rectangle is greater than the
+ * difference between the original size and and the rounded
+ * size, then the move of the origin would not be compensated
+ * by a move in the anti-origin, leaving the corners of the
+ * original rectangle outside the rounded one.
+ *
+ * See also: graphene_rect_round()
+ *
+ * Since: 1.10
+ */
+void
+graphene_rect_round_extents (const graphene_rect_t *r,
+                             graphene_rect_t       *res)
+{
+  float x2, y2;
+
+  graphene_rect_normalize_r (r, res);
+
+  x2 = res->origin.x + res->size.width;
+  y2 = res->origin.y + res->size.height;
+
+  res->origin.x = floorf (res->origin.x);
+  res->origin.y = floorf (res->origin.y);
+
+  res->size.width = ceilf (x2) - res->origin.x;
+  res->size.height = ceilf (y2) - res->origin.y;
 }
 
 /**

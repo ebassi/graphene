@@ -222,6 +222,32 @@ GRAPHENE_TEST_UNIT_BEGIN (rect_round_to_pixel)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (rect_round_extents)
+{
+  graphene_rect_t r = GRAPHENE_RECT_INIT (2.5f, 1.9f,  9.3f, 8.7f);
+  graphene_rect_t s = GRAPHENE_RECT_INIT (2.0f, 1.0f, 10.0f, 10.0f);
+  graphene_rect_t rounded;
+  graphene_point_t p;
+
+  graphene_rect_round_extents (&r, &rounded);
+
+  graphene_rect_get_top_left (&r, &p);
+  g_assert_true (graphene_rect_contains_point (&rounded, &p));
+
+  graphene_rect_get_top_right (&r, &p);
+  g_assert_true (graphene_rect_contains_point (&rounded, &p));
+
+  graphene_rect_get_bottom_left (&r, &p);
+  g_assert_true (graphene_rect_contains_point (&rounded, &p));
+
+  graphene_rect_get_bottom_right (&r, &p);
+  g_assert_true (graphene_rect_contains_point (&rounded, &p));
+
+  g_assert_true (graphene_rect_contains_rect (&rounded, &r));
+  g_assert_true (graphene_rect_equal (&rounded, &s));
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_UNIT_BEGIN (rect_expand)
 {
   graphene_rect_t r = GRAPHENE_RECT_INIT (0.f, 0.f, 100.f, 100.f);
@@ -330,6 +356,7 @@ GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/rect/area", rect_area)
   GRAPHENE_TEST_UNIT ("/rect/round", rect_round)
   GRAPHENE_TEST_UNIT ("/rect/round-to-pixel", rect_round_to_pixel)
+  GRAPHENE_TEST_UNIT ("/rect/round-extents", rect_round_extents)
   GRAPHENE_TEST_UNIT ("/rect/expand", rect_expand)
   GRAPHENE_TEST_UNIT ("/rect/interpolate", rect_interpolate)
   GRAPHENE_TEST_UNIT ("/rect/scale", rect_scale)
