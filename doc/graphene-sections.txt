@@ -348,6 +348,7 @@ graphene_rect_inset
 graphene_rect_inset_r
 graphene_rect_round_to_pixel
 graphene_rect_round
+graphene_rect_round_extents
 graphene_rect_expand
 graphene_rect_interpolate
 graphene_rect_zero
