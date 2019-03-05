@@ -434,6 +434,26 @@ GRAPHENE_RECT_GET (r, size, height)
 #undef GRAPHENE_RECT_GET
 
 /**
+ * graphene_rect_get_area:
+ * @r: a #graphene_rect_t
+ *
+ * Compute the area of given normalized rectangle.
+ *
+ * Returns: the area of the normalized rectangle
+ *
+ * Since: 1.10
+ */
+float
+graphene_rect_get_area (const graphene_rect_t *r)
+{
+  graphene_rect_t rr;
+
+  graphene_rect_normalize_r (r, &rr);
+
+  return rr.size.width * rr.size.height;
+}
+
+/**
  * graphene_rect_union:
  * @a: a #graphene_rect_t
  * @b: a #graphene_rect_t

@@ -185,6 +185,17 @@ GRAPHENE_TEST_UNIT_BEGIN (rect_inset)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (rect_area)
+{
+  graphene_rect_t r = GRAPHENE_RECT_INIT (0.5f, 1.9f,  9.3f, 8.7f);
+  graphene_rect_t n;
+
+  graphene_rect_normalize_r (&r, &n);
+
+  g_assert_cmpfloat (graphene_rect_get_area (&r), ==, n.size.width * n.size.height);
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_UNIT_BEGIN (rect_round)
 {
   graphene_rect_t r = GRAPHENE_RECT_INIT (0.5f, 1.9f,  9.3f, 8.7f);
@@ -192,11 +203,11 @@ GRAPHENE_TEST_UNIT_BEGIN (rect_round)
   graphene_rect_t rounded;
 
   graphene_rect_round (&r, &rounded);
-  g_assert_cmpfloat (rounded.size.width * rounded.size.height,
+  g_assert_cmpfloat (graphene_rect_get_area (&rounded),
                      >=,
-                     r.size.width * r.size.height);
+                     graphene_rect_get_area (&r));
   g_assert_false (graphene_rect_contains_rect (&rounded, &r));
-  g_assert_true (graphene_rect_equal (&rounded, &e));
+  graphene_assert_fuzzy_rect_equal (&rounded, &e, 0.01f);
 }
 GRAPHENE_TEST_UNIT_END
 
@@ -316,6 +327,7 @@ GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/rect/union", rect_union)
   GRAPHENE_TEST_UNIT ("/rect/offset", rect_offset)
   GRAPHENE_TEST_UNIT ("/rect/inset", rect_inset)
+  GRAPHENE_TEST_UNIT ("/rect/area", rect_area)
   GRAPHENE_TEST_UNIT ("/rect/round", rect_round)
   GRAPHENE_TEST_UNIT ("/rect/round-to-pixel", rect_round_to_pixel)
   GRAPHENE_TEST_UNIT ("/rect/expand", rect_expand)
