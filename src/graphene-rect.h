@@ -133,6 +133,8 @@ GRAPHENE_AVAILABLE_IN_1_0
 float                   graphene_rect_get_width         (const graphene_rect_t *r);
 GRAPHENE_AVAILABLE_IN_1_0
 float                   graphene_rect_get_height        (const graphene_rect_t *r);
+GRAPHENE_AVAILABLE_IN_1_10
+float                   graphene_rect_get_area          (const graphene_rect_t *r);
 
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_rect_union             (const graphene_rect_t *a,

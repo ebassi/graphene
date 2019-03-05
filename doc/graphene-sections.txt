@@ -336,6 +336,7 @@ graphene_rect_get_x
 graphene_rect_get_y
 graphene_rect_get_width
 graphene_rect_get_height
+graphene_rect_get_area
 graphene_rect_get_vertices
 graphene_rect_union
 graphene_rect_intersection
