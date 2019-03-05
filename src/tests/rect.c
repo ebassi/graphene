@@ -195,6 +195,7 @@ GRAPHENE_TEST_UNIT_BEGIN (rect_round)
   g_assert_cmpfloat (rounded.size.width * rounded.size.height,
                      >=,
                      r.size.width * r.size.height);
+  g_assert_false (graphene_rect_contains_rect (&rounded, &r));
   g_assert_true (graphene_rect_equal (&rounded, &e));
 }
 GRAPHENE_TEST_UNIT_END
