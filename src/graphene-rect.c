@@ -736,7 +736,8 @@ graphene_rect_round_to_pixel (graphene_rect_t *r)
  *
  * Rounds the origin and size of the given rectangle to
  * their nearest integer values; the rounding is guaranteed
- * to be large enough to contain the original rectangle.
+ * to be large enough to have an area bigger or equal to the
+ * original rectangle, but might not fully contain its extents.
  *
  * This function is the equivalent of calling `floor` on
  * the coordinates of the origin, and `ceil` on the size.
