@@ -560,13 +560,13 @@ graphene_matrix_is_singular (const graphene_matrix_t *m)
  * The arguments map to the following matrix layout:
  *
  * |[<!-- language="plain" -->
- *   | xx yx |   |  a  b  0 |
- *   | xy yy | = |  c  d  0 |
- *   | x0 y0 |   | tx ty  1 |
+ *   ⎛ xx  yx ⎞   ⎛  a   b  0 ⎞
+ *   ⎜ xy  yy ⎟ = ⎜  c   d  0 ⎟
+ *   ⎝ x0  y0 ⎠   ⎝ tx  ty  1 ⎠
  * ]|
  *
- * This function can be used to convert between a matrix type from
- * other libraries and a #graphene_matrix_t.
+ * This function can be used to convert between an affine matrix type
+ * from other libraries and a #graphene_matrix_t.
  *
  * Returns: (transfer none): the initialized matrix
  *
@@ -605,13 +605,13 @@ graphene_matrix_init_from_2d (graphene_matrix_t *m,
  * The returned values have the following layout:
  *
  * |[<!-- language="plain" -->
- *   | xx yx |   |  a  b  0 |
- *   | xy yy | = |  c  d  0 |
- *   | x0 y0 |   | tx ty  1 |
+ *   ⎛ xx  yx ⎞   ⎛  a   b  0 ⎞
+ *   ⎜ xy  yy ⎟ = ⎜  c   d  0 ⎟
+ *   ⎝ x0  y0 ⎠   ⎝ tx  ty  1 ⎠
  * ]|
  *
  * This function can be used to convert between a #graphene_matrix_t
- * and a matrix type from other libraries.
+ * and an affine matrix type from other libraries.
  *
  * Returns: `true` if the matrix is compatible with an affine
  *   transformation matrix
