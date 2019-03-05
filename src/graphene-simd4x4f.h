@@ -218,28 +218,29 @@ graphene_simd4x4f_sum (const graphene_simd4x4f_t *a,
  * @b: a #graphene_simd4f_t
  * @res: (out): return location for a #graphene_simd4f_t
  *
- * Multiplies the given #graphene_simd4x4f_t with the given
- * #graphene_simd4f_t using a dot product between the row
- * vectors:
+ * Left multiplies the given #graphene_simd4x4f_t with the given
+ * #graphene_simd4f_t row vector using a dot product:
  *
  * |[<!-- language="plain" -->
- *   ⎛ x.x  x.y  x.z  x.w ⎞ [ x y z w ]
- *   ⎜ y.x  y.y  y.z  y.w ⎟
- *   ⎜ z.x  z.y  z.z  z.w ⎟
- *   ⎝ w.x  w.y  w.z  w.w ⎠
+ * res = b × A
  *
- * = [ x.x × x   x.y × x   x.z × x   x.w × x ]
- *        +         +         +         +
- *   [ y.x × y   y.y × y   y.z × y   y.w × y ]
- *        +         +         +         +
- *   [ z.x × z   z.y × z   z.z × z   z.w × z ]
- *        +         +         +         +
- *   [ w.x × w   w.y × w   w.z × w   w.w × w ]
+ *     = ⎡x⎤ ⎛ x.x  x.y  x.z  x.w ⎞
+ *       ⎜y⎟ ⎜ y.x  y.y  y.z  y.w ⎟
+ *       ⎜z⎟ ⎜ z.x  z.y  z.z  z.w ⎟
+ *       ⎣w⎦ ⎝ w.x  w.y  w.z  w.w ⎠
  *
- * = ⎡ x.x × x + y.x × y + z.x × z + w.x × w ⎤
- *   ⎜ x.y × x + y.y × y + z.y × z + w.y × w ⎟
- *   ⎜ x.z × x + y.z × y + z.z × z + w.z × w ⎟
- *   ⎣ x.w × x + y.w × y + z.w × z + w.w × w ⎦
+ *     = [ x.x × x   x.y × x   x.z × x   x.w × x ]
+ *            +         +         +         +
+ *       [ y.x × y   y.y × y   y.z × y   y.w × y ]
+ *            +         +         +         +
+ *       [ z.x × z   z.y × z   z.z × z   z.w × z ]
+ *            +         +         +         +
+ *       [ w.x × w   w.y × w   w.z × w   w.w × w ]
+ *
+ *     = ⎡ x.x × x + y.x × y + z.x × z + w.x × w ⎤
+ *       ⎜ x.y × x + y.y × y + z.y × z + w.y × w ⎟
+ *       ⎜ x.z × x + y.z × y + z.z × z + w.z × w ⎟
+ *       ⎣ x.w × x + y.w × y + z.w × z + w.w × w ⎦
  * ]|
  *
  * Since: 1.0
@@ -267,27 +268,28 @@ graphene_simd4x4f_vec4_mul (const graphene_simd4x4f_t *a,
  * @v: a #graphene_simd4f_t
  * @res: (out): return location for a #graphene_simd4f_t
  *
- * Multiplies the given #graphene_simd4x4f_t with the given
+ * Left multiplies the given #graphene_simd4x4f_t with the given
  * #graphene_simd4f_t, using only the first three row vectors
  * of the matrix, and the first three components of the vector;
  * the W components of the matrix and vector are ignored:
  *
  * |[<!-- language="plain" -->
- *   ⎛ x.x  x.y  x.z  x.w ⎞ [ x y z ]
- *   ⎜ y.x  y.y  y.z  y.w ⎟
- *   ⎜ z.x  z.y  z.z  z.w ⎟
- *   ⎝ w.x  w.y  w.z  w.w ⎠
+ * res = b × A
  *
- * = [ x.x × x   x.y × x   x.z × x ]
- *        +         +         +
- *   [ y.x × y   y.y × y   y.z × y ]
- *        +         +         +
- *   [ z.x × z   z.y × z   z.z × z ]
+ *     = ⎡x⎤ ⎛ x.x  x.y  x.z ⎞
+ *       ⎜y⎟ ⎜ y.x  y.y  y.z ⎟
+ *       ⎣z⎦ ⎝ z.x  z.y  z.z ⎠
  *
- * = ⎡ x.x × x + y.x × y + z.x × z ⎤
- *   ⎜ x.y × x + y.y × y + z.y × z ⎟
- *   ⎜ x.z × x + y.z × y + z.z × z ⎟
- *   ⎣               0             ⎦
+ *     = [ x.x × x   x.y × x   x.z × x ]
+ *            +         +         +
+ *       [ y.x × y   y.y × y   y.z × y ]
+ *            +         +         +
+ *       [ z.x × z   z.y × z   z.z × z ]
+ *
+ *     = ⎡ x.x × x + y.x × y + z.x × z ⎤
+ *       ⎜ x.y × x + y.y × y + z.y × z ⎟
+ *       ⎜ x.z × x + y.z × y + z.z × z ⎟
+ *       ⎣               0             ⎦
  * ]|
  *
  * See also: graphene_simd4x4f_vec4_mul(), graphene_simd4x4f_point3_mul()
@@ -323,23 +325,25 @@ graphene_simd4x4f_vec3_mul (const graphene_simd4x4f_t *m,
  * use the W components of the matrix:
  *
  * |[<!-- language="plain" -->
- *   ⎛ x.x  x.y  x.z  x.w ⎞ [ x y z w ]
- *   ⎜ y.x  y.y  y.z  y.w ⎟
- *   ⎜ z.x  z.y  z.z  z.w ⎟
- *   ⎝ w.x  w.y  w.z  w.w ⎠
+ * res = b × A
  *
- * = [ x.x × x   x.y × x   x.z × x   x.w × x ]
- *        +         +         +         +
- *   [ y.x × y   y.y × y   y.z × y   y.w × y ]
- *        +         +         +         +
- *   [ z.x × z   z.y × z   z.z × z   z.w × z ]
- *        +         +         +         +
- *   [   w.x       w.y       w.z       w.w   ]
+ *     = ⎡x⎤ ⎛ x.x  x.y  x.z  x.w ⎞
+ *       ⎜y⎟ ⎜ y.x  y.y  y.z  y.w ⎟
+ *       ⎜z⎟ ⎜ z.x  z.y  z.z  z.w ⎟
+ *       ⎣w⎦ ⎝ w.x  w.y  w.z  w.w ⎠
  *
- * = ⎡ x.x × x + y.x × y + z.x × z + w.x ⎤
- *   ⎜ x.y × x + y.y × y + z.y × z + w.y ⎟
- *   ⎜ x.z × x + y.z × y + z.z × z + w.z ⎟
- *   ⎣ x.w × x + y.w × y + z.w × z + w.w ⎦
+ *     = [ x.x × x   x.y × x   x.z × x   x.w × x ]
+ *            +         +         +         +
+ *       [ y.x × y   y.y × y   y.z × y   y.w × y ]
+ *            +         +         +         +
+ *       [ z.x × z   z.y × z   z.z × z   z.w × z ]
+ *            +         +         +         +
+ *       [   w.x       w.y       w.z       w.w   ]
+ *
+ *     = ⎡ x.x × x + y.x × y + z.x × z + w.x ⎤
+ *       ⎜ x.y × x + y.y × y + z.y × z + w.y ⎟
+ *       ⎜ x.z × x + y.z × y + z.z × z + w.z ⎟
+ *       ⎣ x.w × x + y.w × y + z.w × z + w.w ⎦
  * ]|
  *
  * Since: 1.0
