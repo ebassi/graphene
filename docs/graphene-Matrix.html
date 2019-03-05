@@ -547,10 +547,10 @@ representing 3D transformations.</p>
 <p>The matrix is treated as row-major, i.e. it has four vectors (x, y, z, and
 w) representing rows, and elements of each vector are a column:</p>
 <div class="informalexample"><pre class="screen">
-  | x |    | x.x   x.y   x.z   x.w |
-  | y | -\ | y.x   y.y   y.z   y.w |
-  | z | -/ | z.x   z.y   z.z   z.w |
-  | w |    | w.x   w.y   w.z   w.w |
+  ⎡ m.x ⎤    ⎛ x.x  x.y  x.z  x.w ⎞
+  ⎜ m.y ⎟ -\ ⎜ y.x  y.y  y.z  y.w ⎟
+  ⎜ m.z ⎟ -/ ⎜ z.x  z.y  z.z  z.w ⎟
+  ⎣ m.w ⎦    ⎝ w.x  w.y  w.z  w.w ⎠
 </pre></div>
 <p></p>
 <p>It is possible to easily convert a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> to and from an array
@@ -770,13 +770,13 @@ graphene_matrix_init_from_2d (<em class="parameter"><code><a class="link" href="
 transformation matrix.</p>
 <p>The arguments map to the following matrix layout:</p>
 <div class="informalexample"><pre class="screen">
-  | xx yx |   |  a  b  0 |
-  | xy yy | = |  c  d  0 |
-  | x0 y0 |   | tx ty  1 |
+  ⎛ xx  yx ⎞   ⎛  a   b  0 ⎞
+  ⎜ xy  yy ⎟ = ⎜  c   d  0 ⎟
+  ⎝ x0  y0 ⎠   ⎝ tx  ty  1 ⎠
 </pre></div>
 <p></p>
-<p>This function can be used to convert between a matrix type from
-other libraries and a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>.</p>
+<p>This function can be used to convert between an affine matrix type
+from other libraries and a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-from-2d.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1406,13 +1406,13 @@ graphene_matrix_to_2d (<em class="parameter"><code>const <a class="link" href="g
 matrix, if the given matrix is compatible.</p>
 <p>The returned values have the following layout:</p>
 <div class="informalexample"><pre class="screen">
-  | xx yx |   |  a  b  0 |
-  | xy yy | = |  c  d  0 |
-  | x0 y0 |   | tx ty  1 |
+  ⎛ xx  yx ⎞   ⎛  a   b  0 ⎞
+  ⎜ xy  yy ⎟ = ⎜  c   d  0 ⎟
+  ⎝ x0  y0 ⎠   ⎝ tx  ty  1 ⎠
 </pre></div>
 <p></p>
 <p>This function can be used to convert between a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>
-and a matrix type from other libraries.</p>
+and an affine matrix type from other libraries.</p>
 <div class="refsect3">
 <a name="graphene-matrix-to-2d.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1557,8 +1557,10 @@ graphene_matrix_multiply (<em class="parameter"><code>const <a class="link" href
                           <em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *b</code></em>,
                           <em class="parameter"><code><a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *res</code></em>);</pre>
 <p>Multiplies two <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>.</p>
-<p>Remember: matrix multiplication is not commutative, except for the
-identity matrix; the product of this multiplication is (A * B).</p>
+<p>Matrix multiplication is not commutative in general; the order of the factors matters.
+The product of this multiplication is (<em class="parameter"><code>a</code></em>
+ × <em class="parameter"><code>b</code></em>
+)</p>
 <div class="refsect3">
 <a name="graphene-matrix-multiply.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1625,6 +1627,7 @@ graphene_matrix_transform_vec4 (<em class="parameter"><code>const <a class="link
                                 <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *res</code></em>);</pre>
 <p>Transforms the given <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> using the matrix <em class="parameter"><code>m</code></em>
 .</p>
+<p>See also: <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-vec4-mul" title="graphene_simd4x4f_vec4_mul ()"><code class="function">graphene_simd4x4f_vec4_mul()</code></a></p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-vec4.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1663,6 +1666,12 @@ graphene_matrix_transform_vec3 (<em class="parameter"><code>const <a class="link
                                 <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *res</code></em>);</pre>
 <p>Transforms the given <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> using the matrix <em class="parameter"><code>m</code></em>
 .</p>
+<p>This function will multiply the X, Y, and Z row vectors of the matrix <em class="parameter"><code>m</code></em>
+
+with the corresponding components of the vector <em class="parameter"><code>v</code></em>
+. The W row vector will
+be ignored.</p>
+<p>See also: <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-vec3-mul" title="graphene_simd4x4f_vec3_mul ()"><code class="function">graphene_simd4x4f_vec3_mul()</code></a></p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-vec3.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1702,7 +1711,9 @@ graphene_matrix_transform_point (<em class="parameter"><code>const <a class="lin
 <p>Transforms the given <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> using the matrix <em class="parameter"><code>m</code></em>
 .</p>
 <p>Unlike <a class="link" href="graphene-Matrix.html#graphene-matrix-transform-vec3" title="graphene_matrix_transform_vec3 ()"><code class="function">graphene_matrix_transform_vec3()</code></a>, this function will take into
-account the fourth row vector of the <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>.</p>
+account the fourth row vector of the <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> when computing
+the dot product of each row vector of the matrix.</p>
+<p>See also: <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-point3-mul" title="graphene_simd4x4f_point3_mul ()"><code class="function">graphene_simd4x4f_point3_mul()</code></a></p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-point.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1743,7 +1754,8 @@ graphene_matrix_transform_point3d (<em class="parameter"><code>const <a class="l
 <p>Transforms the given <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> using the matrix <em class="parameter"><code>m</code></em>
 .</p>
 <p>Unlike <a class="link" href="graphene-Matrix.html#graphene-matrix-transform-vec3" title="graphene_matrix_transform_vec3 ()"><code class="function">graphene_matrix_transform_vec3()</code></a>, this function will take into
-account the fourth row vector of the <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>.</p>
+account the fourth row vector of the <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> when computing
+the dot product of each row vector of the matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-point3d.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1780,9 +1792,9 @@ account the fourth row vector of the <a class="link" href="graphene-Matrix.html#
 graphene_matrix_transform_rect (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
                                 <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
                                 <em class="parameter"><code><a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> *res</code></em>);</pre>
-<p>Transforms a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the given matrix <em class="parameter"><code>m</code></em>
-. The
-result is a coplanar quad.</p>
+<p>Transforms each corner of a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the given matrix <em class="parameter"><code>m</code></em>
+.</p>
+<p>The result is a coplanar quadrilateral.</p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-rect.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1820,9 +1832,10 @@ transformed quad. </p></td>
 graphene_matrix_transform_bounds (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
                                   <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
                                   <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
-<p>Transforms a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the given matrix <em class="parameter"><code>m</code></em>
-. The
-result is the bounding box containing the coplanar quad.</p>
+<p>Transforms each corner of a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the given matrix <em class="parameter"><code>m</code></em>
+.</p>
+<p>The result is the axis aligned bounding rectangle containing the coplanar
+quadrilateral.</p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-bounds.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1860,9 +1873,10 @@ of the transformed rectangle. </p></td>
 graphene_matrix_transform_box (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
                                <em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *b</code></em>,
                                <em class="parameter"><code><a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *res</code></em>);</pre>
-<p>Transforms a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> using the given matrix <em class="parameter"><code>m</code></em>
-. The
-result is the bounding box containing the transformed box.</p>
+<p>Transforms the vertices of a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> using the given matrix <em class="parameter"><code>m</code></em>
+.</p>
+<p>The result is the axis aligned bounding box containing the transformed
+vertices.</p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-box.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -2019,8 +2033,8 @@ graphene_matrix_project_rect_bounds (<em class="parameter"><code>const <a class=
                                      <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
                                      <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
 <p>Projects a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the given matrix.</p>
-<p>The resulting rectangle is the bounding box capable of containing
-fully the projected rectangle.</p>
+<p>The resulting rectangle is the axis aligned bounding rectangle capable
+of containing fully the projected rectangle.</p>
 <div class="refsect3">
 <a name="graphene-matrix-project-rect-bounds.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -2098,7 +2112,7 @@ graphene_matrix_untransform_point (<em class="parameter"><code>const <a class="l
                                    <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *bounds</code></em>,
                                    <em class="parameter"><code><a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> *res</code></em>);</pre>
 <p>Undoes the transformation of a <a class="link" href="graphene-Point.html#graphene-point-t" title="graphene_point_t"><span class="type">graphene_point_t</span></a> using the
-given matrix, within the given rectangular <em class="parameter"><code>bounds</code></em>
+given matrix, within the given axis aligned rectangular <em class="parameter"><code>bounds</code></em>
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-untransform-point.parameters"></a><h4>Parameters</h4>
@@ -2147,8 +2161,8 @@ graphene_matrix_untransform_bounds (<em class="parameter"><code>const <a class="
                                     <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
                                     <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *bounds</code></em>,
                                     <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
-<p>Undoes the transformation on the points of a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a>
-using the given matrix, within the given rectangular <em class="parameter"><code>bounds</code></em>
+<p>Undoes the transformation on the corners of a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the
+given matrix, within the given axis aligned rectangular <em class="parameter"><code>bounds</code></em>
 .</p>
 <div class="refsect3">
 <a name="graphene-matrix-untransform-bounds.parameters"></a><h4>Parameters</h4>
@@ -2243,6 +2257,9 @@ graphene_matrix_translate (<em class="parameter"><code><a class="link" href="gra
 <p>Adds a translation transformation to <em class="parameter"><code>m</code></em>
  using the coordinates
 of the given <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a>.</p>
+<p>This is the equivalent of calling <a class="link" href="graphene-Matrix.html#graphene-matrix-init-translate" title="graphene_matrix_init_translate ()"><code class="function">graphene_matrix_init_translate()</code></a> and
+then multiplying <em class="parameter"><code>m</code></em>
+ with the translation matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-translate.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -2279,6 +2296,9 @@ graphene_matrix_rotate (<em class="parameter"><code><a class="link" href="graphe
 
 and <em class="parameter"><code>axis</code></em>
  vector.</p>
+<p>This is the equivalent of calling <a class="link" href="graphene-Matrix.html#graphene-matrix-init-rotate" title="graphene_matrix_init_rotate ()"><code class="function">graphene_matrix_init_rotate()</code></a> and
+then multiplying the matrix <em class="parameter"><code>m</code></em>
+ with the rotation matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-rotate.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -2318,6 +2338,7 @@ graphene_matrix_rotate_x (<em class="parameter"><code><a class="link" href="grap
 , using
 the given <em class="parameter"><code>angle</code></em>
 .</p>
+<p>See also: <a class="link" href="graphene-Matrix.html#graphene-matrix-rotate" title="graphene_matrix_rotate ()"><code class="function">graphene_matrix_rotate()</code></a></p>
 <div class="refsect3">
 <a name="graphene-matrix-rotate-x.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -2352,6 +2373,7 @@ graphene_matrix_rotate_y (<em class="parameter"><code><a class="link" href="grap
 , using
 the given <em class="parameter"><code>angle</code></em>
 .</p>
+<p>See also: <a class="link" href="graphene-Matrix.html#graphene-matrix-rotate" title="graphene_matrix_rotate ()"><code class="function">graphene_matrix_rotate()</code></a></p>
 <div class="refsect3">
 <a name="graphene-matrix-rotate-y.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -2386,6 +2408,7 @@ graphene_matrix_rotate_z (<em class="parameter"><code><a class="link" href="grap
 , using
 the given <em class="parameter"><code>angle</code></em>
 .</p>
+<p>See also: <a class="link" href="graphene-Matrix.html#graphene-matrix-rotate" title="graphene_matrix_rotate ()"><code class="function">graphene_matrix_rotate()</code></a></p>
 <div class="refsect3">
 <a name="graphene-matrix-rotate-z.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -2419,6 +2442,9 @@ graphene_matrix_rotate_quaternion (<em class="parameter"><code><a class="link" h
 <p>Adds a rotation transformation to <em class="parameter"><code>m</code></em>
 , using the given
 <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a>.</p>
+<p>This is the equivalent of calling <a class="link" href="graphene-Quaternion.html#graphene-quaternion-to-matrix" title="graphene_quaternion_to_matrix ()"><code class="function">graphene_quaternion_to_matrix()</code></a> and
+then multiplying <em class="parameter"><code>m</code></em>
+ with the rotation matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-rotate-quaternion.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -2487,6 +2513,9 @@ graphene_matrix_scale (<em class="parameter"><code><a class="link" href="graphen
 <p>Adds a scaling transformation to <em class="parameter"><code>m</code></em>
 , using the three
 given factors.</p>
+<p>This is the equivalent of calling <a class="link" href="graphene-Matrix.html#graphene-matrix-init-scale" title="graphene_matrix_init_scale ()"><code class="function">graphene_matrix_init_scale()</code></a> and then
+multiplying the matrix <em class="parameter"><code>m</code></em>
+ with the scale matrix.</p>
 <div class="refsect3">
 <a name="graphene-matrix-scale.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">

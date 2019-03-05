@@ -502,8 +502,30 @@ graphene_simd4x4f_sum (<em class="parameter"><code>const <a class="link" href="g
 graphene_simd4x4f_vec4_mul (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> *a</code></em>,
                             <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> *b</code></em>,
                             <em class="parameter"><code><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> *res</code></em>);</pre>
-<p>Multiplies the given <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> with the given
-<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> using a dot product.</p>
+<p>Left multiplies the given <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> with the given
+<a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> row vector using a dot product:</p>
+<div class="informalexample"><pre class="screen">
+res = b × A
+
+    = ⎡x⎤ ⎛ x.x  x.y  x.z  x.w ⎞
+      ⎜y⎟ ⎜ y.x  y.y  y.z  y.w ⎟
+      ⎜z⎟ ⎜ z.x  z.y  z.z  z.w ⎟
+      ⎣w⎦ ⎝ w.x  w.y  w.z  w.w ⎠
+
+    = [ x.x × x   x.y × x   x.z × x   x.w × x ]
+           +         +         +         +
+      [ y.x × y   y.y × y   y.z × y   y.w × y ]
+           +         +         +         +
+      [ z.x × z   z.y × z   z.z × z   z.w × z ]
+           +         +         +         +
+      [ w.x × w   w.y × w   w.z × w   w.w × w ]
+
+    = ⎡ x.x × x + y.x × y + z.x × z + w.x × w ⎤
+      ⎜ x.y × x + y.y × y + z.y × z + w.y × w ⎟
+      ⎜ x.z × x + y.z × y + z.z × z + w.z × w ⎟
+      ⎣ x.w × x + y.w × y + z.w × z + w.w × w ⎦
+</pre></div>
+<p></p>
 <div class="refsect3">
 <a name="graphene-simd4x4f-vec4-mul.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -540,11 +562,30 @@ graphene_simd4x4f_vec4_mul (<em class="parameter"><code>const <a class="link" hr
 graphene_simd4x4f_vec3_mul (<em class="parameter"><code>const <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> *m</code></em>,
                             <em class="parameter"><code>const <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> *v</code></em>,
                             <em class="parameter"><code><a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a> *res</code></em>);</pre>
-<p>Multiplies the given <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> with the given
+<p>Left multiplies the given <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> with the given
 <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a>, using only the first three row vectors
 of the matrix, and the first three components of the vector;
-the W components of the matrix and vector are ignored.</p>
-<p>See also: <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-point3-mul" title="graphene_simd4x4f_point3_mul ()"><code class="function">graphene_simd4x4f_point3_mul()</code></a></p>
+the W components of the matrix and vector are ignored:</p>
+<div class="informalexample"><pre class="screen">
+res = b × A
+
+    = ⎡x⎤ ⎛ x.x  x.y  x.z ⎞
+      ⎜y⎟ ⎜ y.x  y.y  y.z ⎟
+      ⎣z⎦ ⎝ z.x  z.y  z.z ⎠
+
+    = [ x.x × x   x.y × x   x.z × x ]
+           +         +         +
+      [ y.x × y   y.y × y   y.z × y ]
+           +         +         +
+      [ z.x × z   z.y × z   z.z × z ]
+
+    = ⎡ x.x × x + y.x × y + z.x × z ⎤
+      ⎜ x.y × x + y.y × y + z.y × z ⎟
+      ⎜ x.z × x + y.z × y + z.z × z ⎟
+      ⎣               0             ⎦
+</pre></div>
+<p></p>
+<p>See also: <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-vec4-mul" title="graphene_simd4x4f_vec4_mul ()"><code class="function">graphene_simd4x4f_vec4_mul()</code></a>, <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-point3-mul" title="graphene_simd4x4f_point3_mul ()"><code class="function">graphene_simd4x4f_point3_mul()</code></a></p>
 <div class="refsect3">
 <a name="graphene-simd4x4f-vec3-mul.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -584,7 +625,29 @@ graphene_simd4x4f_point3_mul (<em class="parameter"><code>const <a class="link" 
 <p>Multiplies the given <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a> with the given
 <a class="link" href="graphene-SIMD-vector.html#graphene-simd4f-t" title="graphene_simd4f_t"><span class="type">graphene_simd4f_t</span></a>.</p>
 <p>Unlike <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-vec3-mul" title="graphene_simd4x4f_vec3_mul ()"><code class="function">graphene_simd4x4f_vec3_mul()</code></a>, this function will
-use the W components of the matrix and vector.</p>
+use the W components of the matrix:</p>
+<div class="informalexample"><pre class="screen">
+res = b × A
+
+    = ⎡x⎤ ⎛ x.x  x.y  x.z  x.w ⎞
+      ⎜y⎟ ⎜ y.x  y.y  y.z  y.w ⎟
+      ⎜z⎟ ⎜ z.x  z.y  z.z  z.w ⎟
+      ⎣w⎦ ⎝ w.x  w.y  w.z  w.w ⎠
+
+    = [ x.x × x   x.y × x   x.z × x   x.w × x ]
+           +         +         +         +
+      [ y.x × y   y.y × y   y.z × y   y.w × y ]
+           +         +         +         +
+      [ z.x × z   z.y × z   z.z × z   z.w × z ]
+           +         +         +         +
+      [   w.x       w.y       w.z       w.w   ]
+
+    = ⎡ x.x × x + y.x × y + z.x × z + w.x ⎤
+      ⎜ x.y × x + y.y × y + z.y × z + w.y ⎟
+      ⎜ x.z × x + y.z × y + z.z × z + w.z ⎟
+      ⎣ x.w × x + y.w × y + z.w × z + w.w ⎦
+</pre></div>
+<p></p>
 <div class="refsect3">
 <a name="graphene-simd4x4f-point3-mul.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
