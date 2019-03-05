@@ -1844,7 +1844,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
                      graphene_point3d_t      *translate_r,
                      graphene_vec4_t         *perspective_r)
 {
-  graphene_matrix_t local, perspective;
+  graphene_matrix_t local;
   float shear_xy, shear_xz, shear_yz;
   float scale_x, scale_y, scale_z;
   graphene_simd4f_t perspective_v;
@@ -1862,16 +1862,19 @@ matrix_decompose_3d (const graphene_matrix_t *m,
    * but it also provides an easy way to test for singularity of
    * the upper 3x3 component
    */
-  perspective = local;
-  perspective.value.w = graphene_simd4f_init (0.f, 0.f, 0.f, 1.f);
-
-  if (graphene_approx_val (graphene_matrix_determinant (&perspective), 0.f))
-    return false;
-
   perspective_v = graphene_simd4f_init (graphene_simd4f_get_w (local.value.x),
                                         graphene_simd4f_get_w (local.value.y),
                                         graphene_simd4f_get_w (local.value.z),
                                         graphene_simd4f_get_w (local.value.w));
+
+  /* Clear the perspective component */
+  local.value.x = graphene_simd4f_merge_w (local.value.x, 0.f);
+  local.value.y = graphene_simd4f_merge_w (local.value.y, 0.f);
+  local.value.z = graphene_simd4f_merge_w (local.value.z, 0.f);
+  local.value.w = graphene_simd4f_merge_w (local.value.w, 1.f);
+
+  if (graphene_approx_val (graphene_matrix_determinant (&local), 0.f))
+    return false;
 
   /* isolate the perspective */
   if (!graphene_simd4f_is_zero3 (perspective_v))
@@ -1886,14 +1889,8 @@ matrix_decompose_3d (const graphene_matrix_t *m,
        * check if the matrix is invertible here because we just checked
        * whether the determinant is not zero.
        */
-      graphene_matrix_inverse (&perspective, &tmp);
-      graphene_matrix_transpose_transform_vec4 (&tmp, perspective_r, perspective_r);
-
-      /* Clear the perspective component */
-      local.value.x = graphene_simd4f_merge_w (local.value.x, 0.f);
-      local.value.y = graphene_simd4f_merge_w (local.value.y, 0.f);
-      local.value.z = graphene_simd4f_merge_w (local.value.z, 0.f);
-      local.value.w = graphene_simd4f_merge_w (local.value.w, 1.f);
+      graphene_matrix_inverse (&local, &tmp);
+      graphene_matrix_transform_vec4 (&tmp, perspective_r, perspective_r);
     }
   else
     graphene_vec4_init (perspective_r, 0.f, 0.f, 0.f, 1.f);
