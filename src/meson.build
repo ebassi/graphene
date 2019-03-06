@@ -180,6 +180,13 @@ if build_gir
     extra_args: gir_extra_args,
   )
   graphene_dep_sources += graphene_gir
+
+  gnome.generate_vapi(
+    graphene_gobject_api_path,
+    packages: 'gobject-2.0',
+    sources: graphene_gir[0],
+    install: true,
+  )
 endif
 
 # Dependency for tests and benchmarks and subproject usage
