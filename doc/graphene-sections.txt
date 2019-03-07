@@ -340,6 +340,7 @@ graphene_rect_round
 graphene_rect_expand
 graphene_rect_interpolate
 graphene_rect_zero
+graphene_rect_scale
 </SECTION>
 
 <SECTION>
