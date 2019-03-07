@@ -246,6 +246,47 @@ GRAPHENE_TEST_UNIT_BEGIN (rect_interpolate)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (rect_scale)
+{
+  graphene_rect_t unscaled[] = {
+    GRAPHENE_RECT_INIT (  0.f,  0.f, 10.f, 10.f),
+    GRAPHENE_RECT_INIT ( -2.f, -2.f, -2.f, -2.f),
+    GRAPHENE_RECT_INIT ( -4.f,  2.f, 10.f, 10.f),
+    GRAPHENE_RECT_INIT (  1.f,  0.f, 10.f, -1.f),
+  };
+
+  graphene_rect_t scaled[] = {
+    GRAPHENE_RECT_INIT (  0.f,   0.f, 10.f, 10.f),
+    GRAPHENE_RECT_INIT ( -8.f, -20.f,  4.f, 10.f),
+    GRAPHENE_RECT_INIT ( -1.f,   1.f, 2.5f,  5.f),
+    GRAPHENE_RECT_INIT (  0.f,   0.f,  0.f, 10.f),
+  };
+
+  /* (horizontal scale, vertical scale) */
+  float scales[] = {
+    1.f, 1.f,
+    2.f, 5.f,
+    0.25f, 0.5f,
+    0.f, -10.f,
+  };
+
+  g_assert_cmpint (G_N_ELEMENTS (unscaled), ==, G_N_ELEMENTS (scaled));
+
+  for (int i = 0; i < G_N_ELEMENTS (unscaled); i++)
+    {
+      graphene_rect_t res;
+      float h_scale;
+      float v_scale;
+
+      h_scale = scales[2 * i];
+      v_scale = scales[2 * i + 1];
+
+      graphene_rect_scale (&unscaled[i], h_scale, v_scale, &res);
+      g_assert_true (graphene_rect_equal (&res, &scaled[i]));
+    }
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/rect/init", rect_init)
   GRAPHENE_TEST_UNIT ("/rect/normalize", rect_normalize)
@@ -259,4 +300,5 @@ GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/rect/round-to-pixel", rect_round_to_pixel)
   GRAPHENE_TEST_UNIT ("/rect/expand", rect_expand)
   GRAPHENE_TEST_UNIT ("/rect/interpolate", rect_interpolate)
+  GRAPHENE_TEST_UNIT ("/rect/scale", rect_scale)
 )

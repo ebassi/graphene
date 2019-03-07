@@ -829,3 +829,31 @@ graphene_rect_zero (void)
 {
   return &_graphene_rect_zero;
 }
+
+/**
+ * graphene_rect_scale:
+ * @s_h: horizontal scale factor
+ * @s_v: vertical scale factor
+ * @res: (out caller-allocates): return location for the
+ *   scaled rectangle
+ *
+ * Scales the size and origin of a rectangle horizontaly by @s_h,
+ * and vertically by @s_v. The result @res is normalized.
+ *
+ * Since: 1.10
+ */
+void
+graphene_rect_scale (const graphene_rect_t *r,
+                     float                  s_h,
+                     float                  s_v,
+                     graphene_rect_t       *res)
+{
+  graphene_rect_normalize_r (r, res);
+
+  res->origin.x *= s_h;
+  res->origin.y *= s_v;
+  res->size.width *= s_h;
+  res->size.height *= s_v;
+
+  graphene_rect_normalize_r (res, res);
+}

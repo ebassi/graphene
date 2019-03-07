@@ -175,6 +175,12 @@ void                    graphene_rect_expand            (const graphene_rect_t  
 GRAPHENE_AVAILABLE_IN_1_4
 const graphene_rect_t * graphene_rect_zero              (void);
 
+GRAPHENE_AVAILABLE_IN_1_10
+void                    graphene_rect_scale             (const graphene_rect_t  *r,
+                                                         float                   s_h,
+                                                         float                   s_v,
+                                                         graphene_rect_t        *res);
+
 GRAPHENE_END_DECLS
 
 #endif /* __GRAPHENE_RECT_H__ */
