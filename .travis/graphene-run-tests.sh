@@ -3,7 +3,7 @@
 builddir=$( mktemp -d build_XXXXXX )
 srcdir=$( pwd )
 
-meson --prefix /usr "$@" ${builddir} ${srcdir} || exit $?
+meson --prefix /usr --wrap-mode=nodownload "$@" ${builddir} ${srcdir} || exit $?
 
 cd ${builddir}
 
