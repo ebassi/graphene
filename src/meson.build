@@ -134,7 +134,6 @@ foreach p: pkgconfig_files
     name: 'Graphene',
     description: 'Math classes for graphic libraries',
     url: 'https://ebassi.github.io/graphene',
-    version: meson.project_version(),
     filebase: pkg_name,
     variables: [
       'graphene_has_sse2=@0@'.format(has_sse2),
