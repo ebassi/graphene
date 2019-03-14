@@ -1,0 +1,3 @@
+[submodule "subprojects/mutest"]
+	path = subprojects/mutest
+	url = https://github.com/ebassi/mutest.git
