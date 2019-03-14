@@ -14,8 +14,6 @@ environment:
     - MSYSTEM: MINGW64
     - MSYSTEM: MINGW32
 
-shallow_clone: true
-
 # AppVeyor doesn't do this automatically like Travis does
 install:
   - cd %APPVEYOR_BUILD_FOLDER%
