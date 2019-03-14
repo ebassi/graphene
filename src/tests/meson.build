@@ -27,19 +27,12 @@ installed_test_bindir = join_paths(get_option('prefix'), get_option('libexecdir'
 
 # Make tests conditional on having mutest-1 installed system-wide, or
 # available as a subproject
-mutest_dep = dependency('mutest-1', required: false)
-if not mutest_dep.found()
-  mutest = subproject('mutest',
-    default_options: [ 'static=true', ],
-    required: false,
-  )
-
-  if mutest.found()
-    mutest_dep = mutest.get_variable('mutest_dep')
-  else
-    mutest_dep = disabler()
-  endif
-endif
+mutest_dep = dependency('mutest-1',
+  fallback: ['mutest', 'mutest_dep'],
+  default_options: ['static=true'],
+  required: false,
+  disabler: true,
+)
 
 if mutest_dep.found()
   foreach unit: unit_tests
