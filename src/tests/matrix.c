@@ -18,7 +18,7 @@ graphene_test_matrix_near (mutest_expect_t *e,
       graphene_matrix_get_row (m, i, &m_row);
       graphene_matrix_get_row (check, i, &check_row);
 
-      if (!graphene_vec4_near (&m_row, &check_row, 0.01f))
+      if (!graphene_vec4_near (&m_row, &check_row, 0.1f))
         return false;
     }
 
