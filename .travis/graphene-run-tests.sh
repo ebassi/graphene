@@ -1,6 +1,6 @@
 #!/bin/bash
 
-builddir=$( mktemp -d build_XXXXXX )
+builddir=_build
 srcdir=$( pwd )
 
 meson --prefix /usr --wrap-mode=nodownload "$@" ${builddir} ${srcdir} || exit $?
@@ -8,8 +8,10 @@ meson --prefix /usr --wrap-mode=nodownload "$@" ${builddir} ${srcdir} || exit $?
 cd ${builddir}
 
 ninja || exit $?
-meson test || exit $?
+meson test || {
+  res=$?
+  cat meson-logs/testlog.txt
+  exit $res
+}
 
 cd ..
-
-rm -rf ${builddir}
