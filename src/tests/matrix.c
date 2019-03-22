@@ -45,6 +45,27 @@ GRAPHENE_TEST_UNIT_BEGIN (matrix_identity)
 }
 GRAPHENE_TEST_UNIT_END
 
+GRAPHENE_TEST_UNIT_BEGIN (matrix_equal)
+{
+  graphene_matrix_t m1, m2;
+
+  graphene_matrix_init_identity (&m1);
+  graphene_matrix_init_identity (&m2);
+
+  g_assert_true (graphene_matrix_equal (&m1, &m1));
+  g_assert_false (graphene_matrix_equal (&m1, NULL));
+  g_assert_false (graphene_matrix_equal (NULL, &m1));
+
+  g_assert_true (graphene_matrix_equal_fast (&m1, &m2));
+  g_assert_true (graphene_matrix_equal (&m1, &m2));
+
+  graphene_matrix_scale (&m1, 0.002f, 0.002f, 0.002f);
+  graphene_matrix_scale (&m2, 0.001f, 0.001f, 0.001f);
+  g_assert_false (graphene_matrix_equal (&m1, &m2));
+  g_assert_true (graphene_matrix_near (&m1, &m2, 0.01f));
+}
+GRAPHENE_TEST_UNIT_END
+
 GRAPHENE_TEST_UNIT_BEGIN (matrix_rotation)
 {
   graphene_matrix_t m;
@@ -598,6 +619,7 @@ GRAPHENE_TEST_UNIT_END
 
 GRAPHENE_TEST_SUITE (
   GRAPHENE_TEST_UNIT ("/matrix/identity", matrix_identity)
+  GRAPHENE_TEST_UNIT ("/matrix/equal", matrix_equal)
   GRAPHENE_TEST_UNIT ("/matrix/scale", matrix_scale)
   GRAPHENE_TEST_UNIT ("/matrix/rotation", matrix_rotation)
   GRAPHENE_TEST_UNIT ("/matrix/rotation/euler-quaternion", matrix_rotation_euler_quaternion)

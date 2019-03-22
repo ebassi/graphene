@@ -172,6 +172,9 @@ graphene_matrix_get_x_scale
 graphene_matrix_get_y_scale
 graphene_matrix_get_z_scale
 graphene_matrix_interpolate
+graphene_matrix_equal
+graphene_matrix_equal_fast
+graphene_matrix_near
 graphene_matrix_print
 </SECTION>
 
