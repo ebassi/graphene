@@ -2158,3 +2158,100 @@ graphene_matrix_print (const graphene_matrix_t *m)
                graphene_matrix_get_value (m, i, 3));
     }
 }
+
+/**
+ * graphene_matrix_near:
+ * @a: a #graphene_matrix_t
+ * @b: a #graphene_matrix_t
+ *
+ * Compares the two given #graphene_matrix_t matrices and check
+ * whether their values are within the given @epsilon of each
+ * other.
+ *
+ * Returns: `true` if the two matrices are near each other, and
+ *   `false` otherwise
+ *
+ * Since: 1.10
+ */
+bool
+graphene_matrix_near (const graphene_matrix_t *a,
+                      const graphene_matrix_t *b,
+                      float                    epsilon)
+{
+  if (a == b)
+    return true;
+
+  if (a == NULL || b == NULL)
+    return false;
+
+  for (unsigned i = 0; i < 4; i++)
+    {
+      graphene_vec4_t row_a, row_b;
+
+      graphene_matrix_get_row (a, i, &row_a);
+      graphene_matrix_get_row (b, i, &row_b);
+
+      if (!graphene_vec4_near (&row_a, &row_b, epsilon))
+        return false;
+    }
+
+  return true;
+}
+
+/**
+ * graphene_matrix_equal:
+ * @a: a #graphene_matrix_t
+ * @b: a #graphene_matrix_t
+ *
+ * Checks whether the two given #graphene_matrix_t matrices are equal.
+ *
+ * Returns: `true` if the two matrices are equal, and `false` otherwise
+ *
+ * Since: 1.10
+ */
+bool
+graphene_matrix_equal (const graphene_matrix_t *a,
+                       const graphene_matrix_t *b)
+{
+  return graphene_matrix_near (a, b, FLT_EPSILON);
+}
+
+/**
+ * graphene_matrix_equal_fast:
+ * @a: a #graphene_matrix_t
+ * @b: a #graphene_matrix_t
+ *
+ * Checks whether the two given #graphene_matrix_t matrices are
+ * byte-by-byte equal.
+ *
+ * While this function is faster than graphene_matrix_equal(), it
+ * can also return false negatives, so it should be used in
+ * conjuction with either graphene_matrix_equal() or
+ * graphene_matrix_near(). For instance:
+ *
+ * |[<!-- language="C" -->
+ *   if (graphene_matrix_equal_fast (a, b))
+ *     {
+ *       // matrices are definitely the same
+ *     }
+ *   else
+ *     {
+ *       if (graphene_matrix_equal (a, b))
+ *         // matrices contain the same values within an epsilon of FLT_EPSILON
+ *       else if (graphene_matrix_near (a, b, 0.0001))
+ *         // matrices contain the same values within an epsilon of 0.0001
+ *       else
+ *         // matrices are not equal
+ *     }
+ * ]|
+ *
+ * Returns: `true` if the matrices are equal. and `false` otherwise
+ *
+ * Since: 1.10
+ */
+bool
+graphene_matrix_equal_fast (const graphene_matrix_t *a,
+                            const graphene_matrix_t *b)
+{
+  return memcmp (a, b, sizeof (graphene_matrix_t)) == 0;
+}
