@@ -1689,6 +1689,54 @@ graphene_matrix_normalize (const graphene_matrix_t *m,
 }
 
 /**
+ * graphene_matrix_get_x_translation:
+ * @m: a #graphene_matrix_t
+ *
+ * Retrieves the translation component on the X axis from @m.
+ *
+ * Returns: the translation component
+ *
+ * Since: 1.10
+ */
+float
+graphene_matrix_get_x_translation (const graphene_matrix_t *m)
+{
+  return graphene_simd4f_get_x (m->value.w);
+}
+
+/**
+ * graphene_matrix_get_y_translation:
+ * @m: a #graphene_matrix_t
+ *
+ * Retrieves the translation component on the Y axis from @m.
+ *
+ * Returns: the translation component
+ *
+ * Since: 1.10
+ */
+float
+graphene_matrix_get_y_translation (const graphene_matrix_t *m)
+{
+  return graphene_simd4f_get_y (m->value.w);
+}
+
+/**
+ * graphene_matrix_get_z_translation:
+ * @m: a #graphene_matrix_t
+ *
+ * Retrieves the translation component on the Z axis from @m.
+ *
+ * Returns: the translation component
+ *
+ * Since: 1.10
+ */
+float
+graphene_matrix_get_z_translation (const graphene_matrix_t *m)
+{
+  return graphene_simd4f_get_z (m->value.w);
+}
+
+/**
  * graphene_matrix_get_x_scale:
  * @m: a #graphene_matrix_t
  *

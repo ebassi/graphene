@@ -267,6 +267,13 @@ GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_normalize               (const graphene_matrix_t  *m,
                                                                  graphene_matrix_t        *res);
 
+GRAPHENE_AVAILABLE_IN_1_10
+float                   graphene_matrix_get_x_translation       (const graphene_matrix_t  *m);
+GRAPHENE_AVAILABLE_IN_1_10
+float                   graphene_matrix_get_y_translation       (const graphene_matrix_t  *m);
+GRAPHENE_AVAILABLE_IN_1_10
+float                   graphene_matrix_get_z_translation       (const graphene_matrix_t  *m);
+
 GRAPHENE_AVAILABLE_IN_1_0
 float                   graphene_matrix_get_x_scale             (const graphene_matrix_t  *m);
 GRAPHENE_AVAILABLE_IN_1_0
