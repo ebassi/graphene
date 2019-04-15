@@ -35,7 +35,11 @@ graphene_binary_age = 100 * graphene_minor_version + graphene_micro_version
 
 # Maintain compatibility with the previous libtool versioning
 soversion = 0
-libversion = '@0@.@1@.@2@'.format(soversion, graphene_binary_age - graphene_interface_age, graphene_interface_age)
+current = graphene_binary_age - graphene_interface_age
+revision = graphene_interface_age
+libversion = '@0@.@1@.@2@'.format(soversion, current, revision)
+
+darwin_versions = [current + 1, '@0@.@1@'.format(current + 1, revision)]
 
 # Paths
 graphene_prefix = get_option('prefix')
@@ -115,11 +119,6 @@ common_ldflags = []
 if host_system == 'linux'
   ldflags = [ '-Wl,-Bsymbolic-functions', '-Wl,-z,relro', '-Wl,-z,now', ]
   common_ldflags += cc.get_supported_link_arguments(ldflags)
-endif
-
-# Maintain compatibility with Autotools on macOS
-if host_system == 'darwin'
-  common_ldflags += [ '-compatibility_version 1', '-current_version 1.0', ]
 endif
 
 # Required dependencies
