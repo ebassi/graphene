@@ -5,6 +5,7 @@
 
 GRAPHENE_TEST_UNIT_BEGIN (rect_init)
 {
+  graphene_rect_t zero;
   graphene_rect_t *r;
   graphene_rect_t r2;
 
@@ -16,6 +17,9 @@ GRAPHENE_TEST_UNIT_BEGIN (rect_init)
 
   graphene_rect_init_from_rect (&r2, r);
   g_assert_true (graphene_rect_equal (&r2, r));
+
+  zero = GRAPHENE_RECT_INIT_ZERO;
+  graphene_assert_fuzzy_rect_equal (&zero, graphene_rect_zero (), 0.0001f);
 
   graphene_rect_free (r);
 }
