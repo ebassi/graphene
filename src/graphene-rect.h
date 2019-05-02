@@ -50,6 +50,16 @@ GRAPHENE_BEGIN_DECLS
   (graphene_rect_t) { .origin = { .x = (_x), .y = (_y) }, .size = { .width = (_w), .height = (_h) } }
 
 /**
+ * GRAPHENE_RECT_INIT_ZERO:
+ *
+ * Initializes a #graphene_rect_t to a degenerate rectangle with an origin
+ * in (0, 0) and a size of 0.
+ *
+ * Since: 1.10
+ */
+#define GRAPHENE_RECT_INIT_ZERO         GRAPHENE_RECT_INIT (0.f, 0.f, 0.f, 0.f)
+
+/**
  * graphene_rect_t:
  * @origin: the coordinates of the origin of the rectangle
  * @size: the size of the rectangle
