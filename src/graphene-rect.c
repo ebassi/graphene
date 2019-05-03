@@ -764,9 +764,9 @@ graphene_rect_round_to_pixel (graphene_rect_t *r)
  * This function is the equivalent of calling `floor` on
  * the coordinates of the origin, and `ceil` on the size.
  *
- * See also: graphene_rect_round_extents()
- *
  * Since: 1.4
+ *
+ * Deprecated: 1.10: Use graphene_rect_round_extents() instead
  */
 void
 graphene_rect_round (const graphene_rect_t *r,
@@ -808,8 +808,6 @@ graphene_rect_round (const graphene_rect_t *r,
  * size, then the move of the origin would not be compensated
  * by a move in the anti-origin, leaving the corners of the
  * original rectangle outside the rounded one.
- *
- * See also: graphene_rect_round()
  *
  * Since: 1.10
  */
