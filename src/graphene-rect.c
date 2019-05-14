@@ -832,6 +832,7 @@ graphene_rect_zero (void)
 
 /**
  * graphene_rect_scale:
+ * @r: a #graphene_rect_t
  * @s_h: horizontal scale factor
  * @s_v: vertical scale factor
  * @res: (out caller-allocates): return location for the
