@@ -315,6 +315,7 @@ graphene_ray_equal
 <SECTION>
 <FILE>graphene-rect</FILE>
 GRAPHENE_RECT_INIT
+GRAPHENE_RECT_INIT_ZERO
 graphene_rect_t
 graphene_rect_alloc
 graphene_rect_free
