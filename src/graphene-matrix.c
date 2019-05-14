@@ -2211,8 +2211,9 @@ graphene_matrix_print (const graphene_matrix_t *m)
  * graphene_matrix_near:
  * @a: a #graphene_matrix_t
  * @b: a #graphene_matrix_t
+ * @epsilon: the threshold between the two matrices 
  *
- * Compares the two given #graphene_matrix_t matrices and check
+ * Compares the two given #graphene_matrix_t matrices and checks
  * whether their values are within the given @epsilon of each
  * other.
  *
