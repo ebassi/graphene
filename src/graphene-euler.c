@@ -737,7 +737,20 @@ graphene_euler_to_vec3 (const graphene_euler_t *e,
   graphene_vec3_scale (res, (180.f / GRAPHENE_PI), res);
 }
 
-static float
+/**
+ * graphene_euler_get_alpha:
+ * @e: a #graphene_euler_t
+ *
+ * Retrieves the first component of the Euler angle vector,
+ * depending on the order of rotation.
+ *
+ * See also: graphene_euler_get_x()
+ *
+ * Returns: the first component of the Euler angle vector, in radians
+ *
+ * Since: 1.10
+ */
+float
 graphene_euler_get_alpha (const graphene_euler_t *e)
 {
   graphene_euler_order_t order = graphene_euler_get_real_order (e->order);
@@ -781,7 +794,20 @@ graphene_euler_get_alpha (const graphene_euler_t *e)
   return 0.f;
 }
 
-static float
+/**
+ * graphene_euler_get_beta:
+ * @e: a #graphene_euler_t
+ *
+ * Retrieves the second component of the Euler angle vector,
+ * depending on the order of rotation.
+ *
+ * See also: graphene_euler_get_y()
+ *
+ * Returns: the second component of the Euler angle vector, in radians
+ *
+ * Since: 1.10
+ */
+float
 graphene_euler_get_beta (const graphene_euler_t *e)
 {
   graphene_euler_order_t order = graphene_euler_get_real_order (e->order);
@@ -825,7 +851,20 @@ graphene_euler_get_beta (const graphene_euler_t *e)
   return 0.f;
 }
 
-static float
+/**
+ * graphene_euler_get_gamma:
+ * @e: a #graphene_euler_t
+ *
+ * Retrieves the third component of the Euler angle vector,
+ * depending on the order of rotation.
+ *
+ * See also: graphene_euler_get_z()
+ *
+ * Returns: the third component of the Euler angle vector, in radians
+ *
+ * Since: 1.10
+ */
+float
 graphene_euler_get_gamma (const graphene_euler_t *e)
 {
   graphene_euler_order_t order = graphene_euler_get_real_order (e->order);
