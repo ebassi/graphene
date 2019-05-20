@@ -943,7 +943,7 @@ graphene_euler_get_gamma (const graphene_euler_t *e)
  *  * the third rotation moves the body around the Z axis with
  *    an angle of ψ
  *
- * The rotation sign convention is left-handed, to preserve compatibility
+ * The rotation sign convention is right-handed, to preserve compatibility
  * between Euler-based, quaternion-based, and angle-axis-based rotations.
  *
  * Since: 1.2
