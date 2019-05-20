@@ -187,10 +187,10 @@ static const struct axis_param order_parameters[] = {
 /* Axis sequences for Euler angles */
 static const int next_axis[4] = { 1, 2, 0, 1 };
 
-/* Original code to convert Euler angles to a 4x4 matrix is taken from
- * "Graphics Gems IV", edited by Paul Heckbert, Academic Press, 1994.
+/* Original code to convert Euler angles to and from a 4x4 matrix is taken
+ * from "Graphics Gems IV", edited by Paul Heckbert, Academic Press, 1994.
  *
- * Ken Shoemake, 1993
+ * Original author: Ken Shoemake, 1993
  *
  * https://github.com/erich666/GraphicsGems/blob/master/gemsiv/euler_angle/EulerAngles.c
  */
@@ -288,6 +288,7 @@ matrix_to_euler (const graphene_matrix_t *matrix,
   float m[16];
   graphene_matrix_to_float (matrix, m);
 
+/* Our matrices are row major */
 #define M(m,r,c) (m)[((r) << 2) + (c)]
 
   float ax, ay, az;
@@ -551,61 +552,11 @@ graphene_euler_init_from_quaternion (graphene_euler_t            *e,
   if (q == NULL)
     return graphene_euler_init_with_order (e, 0.f, 0.f, 0.f, order);
 
-  float sqx = q->x * q->x;
-  float sqy = q->y * q->y;
-  float sqz = q->z * q->z;
-  float sqw = q->w * q->w;
+  graphene_matrix_t m;
 
-  float x = 0.f;
-  float y = 0.f;
-  float z = 0.f;
+  graphene_quaternion_to_matrix (q, &m);
 
-  e->order = order;
-  switch (graphene_euler_get_order (e))
-    {
-    case GRAPHENE_EULER_ORDER_XYZ:
-      x = atan2f (2.f * (q->x * q->w - q->y * q->z), (sqw - sqx - sqy + sqz));
-      y = asinf (CLAMP (2.f * (q->x * q->z + q->y * q->w), -1.f, 1.f));
-      z = atan2f (2.f * (q->z * q->w - q->x * q->y), (sqw + sqx - sqy - sqz));
-      break;
-
-    case GRAPHENE_EULER_ORDER_YXZ:
-      x = asinf (CLAMP (2.f * (q->x * q->w - q->y * q->z), -1.f, 1.f));
-      y = atan2f (2.f * (q->x * q->z + q->y * q->w), (sqw - sqx - sqy + sqz));
-      z = atan2f (2.f * (q->x * q->y + q->z * q->w), (sqw - sqx + sqy - sqz));
-      break;
-
-    case GRAPHENE_EULER_ORDER_ZXY:
-      x = asinf (CLAMP (2.f * (q->x * q->w + q->y * q->z), -1.f, 1.f));
-      y = atan2f (2.f * (q->y * q->w - q->z * q->x), (sqw - sqx - sqy + sqz));
-      z = atan2f (2.f * (q->z * q->w - q->x * q->y), (sqw - sqx + sqy - sqz));
-      break;
-
-    case GRAPHENE_EULER_ORDER_ZYX:
-      x = atan2f (2.f * (q->x * q->w + q->z * q->y), (sqw - sqx - sqy + sqz));
-      y = asinf (CLAMP (2.f * (q->y * q->w - q->x * q->z), -1.f, 1.f));
-      z = atan2f (2.f * (q->x * q->y + q->z * q->w), (sqw + sqx - sqy - sqz));
-      break;
-
-    case GRAPHENE_EULER_ORDER_YZX:
-      x = atan2f (2.f * (q->x * q->w - q->z * q->y), (sqw - sqx + sqy - sqz));
-      y = atan2f (2.f * (q->y * q->w - q->x * q->z), (sqw + sqx - sqy - sqz));
-      z = asinf (CLAMP (2.f * (q->x * q->y + q->z * q->w), -1.f, 1.f));
-      break;
-
-    case GRAPHENE_EULER_ORDER_XZY:
-      x = atan2f (2.f * (q->x * q->w + q->y * q->z), (sqw - sqx + sqy - sqz));
-      y = atan2f (2.f * (q->x * q->z + q->y * q->w), (sqw + sqx - sqy - sqz));
-      z = asinf (CLAMP (2.f * (q->z * q->w - q->x * q->y), -1.f, 1.f));
-      break;
-
-    case GRAPHENE_EULER_ORDER_DEFAULT:
-      break;
-    }
-
-  graphene_vec3_init (&e->angles, x, y, z);
-
-  return e;
+  return graphene_euler_init_from_matrix (e, &m, order);
 }
 
 /**
