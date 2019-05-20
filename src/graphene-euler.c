@@ -104,6 +104,7 @@
 
 #define ORDER_OFFSET(o) ((o) - LAST_DEPRECATED)
 
+/* The orders of rotation we support, minus the deprecated aliases */
 enum {
   SXYZ,
   SXYX,
@@ -233,6 +234,7 @@ euler_to_matrix (float                    ai,
 
   float m[16];
 
+/* Our matrices are row major */
 #define M(m,r,c) (m)[((r) << 2) + (c)]
 
   /* We need to construct the matrix from float values instead
@@ -285,6 +287,11 @@ matrix_to_euler (const graphene_matrix_t *matrix,
   int j = next_axis[i + (params->parity ? 1 : 0)];
   int k = next_axis[i - (params->parity ? 1 : 0) + 1];
 
+  /* The cell access to the matrix is parametrised on the axes
+   * of the transformation, so we cannot use SIMD vectors to
+   * avoid a combinatorial explosion of branches, or slow single
+   * lane access.
+   */
   float m[16];
   graphene_matrix_to_float (matrix, m);
 
@@ -383,6 +390,15 @@ graphene_euler_free (graphene_euler_t *e)
   graphene_aligned_free (e);
 }
 
+/*< private >
+ * graphene_euler_get_real_order:
+ * @order: a #graphene_euler_order_t
+ *
+ * Normalizes the given enumeration value to remove aliases and
+ * deprecated values.
+ *
+ * Returns: the real order
+ */
 static graphene_euler_order_t
 graphene_euler_get_real_order (graphene_euler_order_t order)
 {
