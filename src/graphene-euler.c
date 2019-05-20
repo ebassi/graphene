@@ -98,7 +98,7 @@
 #include "graphene-quaternion.h"
 #include "graphene-vectors-private.h"
 
-#define EULER_DEFAULT_ORDER GRAPHENE_EULER_ORDER_XYZ
+#define EULER_DEFAULT_ORDER GRAPHENE_EULER_ORDER_SXYZ
 
 #define LAST_DEPRECATED GRAPHENE_EULER_ORDER_ZYX + 1
 
@@ -382,6 +382,39 @@ graphene_euler_free (graphene_euler_t *e)
   graphene_aligned_free (e);
 }
 
+static graphene_euler_order_t
+graphene_euler_get_real_order (graphene_euler_order_t order)
+{
+  switch (order)
+    {
+    case GRAPHENE_EULER_ORDER_XYZ:
+      return GRAPHENE_EULER_ORDER_SXYZ;
+
+    case GRAPHENE_EULER_ORDER_YXZ:
+      return GRAPHENE_EULER_ORDER_SYXZ;
+
+    case GRAPHENE_EULER_ORDER_ZXY:
+      return GRAPHENE_EULER_ORDER_SZXY;
+
+    case GRAPHENE_EULER_ORDER_ZYX:
+      return GRAPHENE_EULER_ORDER_SZYX;
+
+    case GRAPHENE_EULER_ORDER_YZX:
+      return GRAPHENE_EULER_ORDER_SYZX;
+
+    case GRAPHENE_EULER_ORDER_XZY:
+      return GRAPHENE_EULER_ORDER_SXZY;
+
+    case GRAPHENE_EULER_ORDER_DEFAULT:
+      return GRAPHENE_EULER_ORDER_SXYZ;
+
+    default:
+      break;
+    }
+
+  return order;
+}
+
 /*< private >
  * graphene_euler_init_internal:
  * @e: the #graphene_euler_t to initialize
@@ -403,7 +436,7 @@ graphene_euler_init_internal (graphene_euler_t       *e,
                               graphene_euler_order_t  order)
 {
   graphene_vec3_init (&e->angles, rad_x, rad_y, rad_z);
-  e->order = order;
+  e->order = graphene_euler_get_real_order (order);
 
   return e;
 }
@@ -753,45 +786,10 @@ graphene_euler_to_vec3 (const graphene_euler_t *e,
   graphene_vec3_scale (res, (180.f / GRAPHENE_PI), res);
 }
 
-static graphene_euler_order_t
-graphene_euler_get_real_order (const graphene_euler_t *e)
-{
-  graphene_euler_order_t order = graphene_euler_get_order (e);
-
-  switch (order)
-    {
-    case GRAPHENE_EULER_ORDER_XYZ:
-      return GRAPHENE_EULER_ORDER_SXYZ;
-
-    case GRAPHENE_EULER_ORDER_YXZ:
-      return GRAPHENE_EULER_ORDER_SYXZ;
-
-    case GRAPHENE_EULER_ORDER_ZXY:
-      return GRAPHENE_EULER_ORDER_SZXY;
-
-    case GRAPHENE_EULER_ORDER_ZYX:
-      return GRAPHENE_EULER_ORDER_SZYX;
-
-    case GRAPHENE_EULER_ORDER_YZX:
-      return GRAPHENE_EULER_ORDER_SYZX;
-
-    case GRAPHENE_EULER_ORDER_XZY:
-      return GRAPHENE_EULER_ORDER_SXZY;
-
-    case GRAPHENE_EULER_ORDER_DEFAULT:
-      return GRAPHENE_EULER_ORDER_SXYZ;
-
-    default:
-      break;
-    }
-
-  return order;
-}
-
 static float
 graphene_euler_get_alpha (const graphene_euler_t *e)
 {
-  graphene_euler_order_t order = graphene_euler_get_real_order (e);
+  graphene_euler_order_t order = graphene_euler_get_real_order (e->order);
 
   switch (order)
     {
@@ -835,7 +833,7 @@ graphene_euler_get_alpha (const graphene_euler_t *e)
 static float
 graphene_euler_get_beta (const graphene_euler_t *e)
 {
-  graphene_euler_order_t order = graphene_euler_get_real_order (e);
+  graphene_euler_order_t order = graphene_euler_get_real_order (e->order);
 
   switch (order)
     {
@@ -879,7 +877,7 @@ graphene_euler_get_beta (const graphene_euler_t *e)
 static float
 graphene_euler_get_gamma (const graphene_euler_t *e)
 {
-  graphene_euler_order_t order = graphene_euler_get_real_order (e);
+  graphene_euler_order_t order = graphene_euler_get_real_order (e->order);
 
   switch (order)
     {
@@ -948,7 +946,7 @@ void
 graphene_euler_to_matrix (const graphene_euler_t *e,
                           graphene_matrix_t      *res)
 {
-  graphene_euler_order_t order = graphene_euler_get_real_order (e);
+  graphene_euler_order_t order = graphene_euler_get_real_order (e->order);
   float ai = graphene_euler_get_alpha (e);
   float aj = graphene_euler_get_beta (e);
   float ak = graphene_euler_get_gamma (e);
@@ -982,7 +980,7 @@ graphene_euler_to_quaternion (const graphene_euler_t *e,
   float sc = si * ck;
   float ss = si * sk;
 
-  graphene_euler_order_t order = graphene_euler_get_real_order (e);
+  graphene_euler_order_t order = graphene_euler_get_real_order (e->order);
   const struct axis_param *params = &order_parameters[ORDER_OFFSET (order)];
 
   if (params->repetition)
