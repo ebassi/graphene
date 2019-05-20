@@ -26,16 +26,65 @@
  * @Title: Euler
  * @Short_description: Euler angles
  *
- * The #graphene_euler_t structure defines a rotation along three axis using
+ * The #graphene_euler_t structure defines a rotation along three axes using
  * three angles. It also optionally can describe the order of the rotations.
  *
- * Rotations described Euler angles are immediately understandable, compared
- * to rotations expressed using quaternions, but they are susceptible of
- * ["Gimbal lock"](http://en.wikipedia.org/wiki/Gimbal_lock) — the loss of
+ * [Euler's rotation theorem](https://en.wikipedia.org/wiki/Euler%27s_rotation_theorem)
+ * states that, in three-dimensional space, any displacement of a rigid body
+ * such that a point on the rigid body remains fixed, is equivalent to a single
+ * rotation about some axis that runs through the fixed point. The angles on
+ * each axis can be placed in a vector of three components—α, β, and γ—called
+ * the *Euler angle vector*. Each rotation described by these components results
+ * in a rotation matrix:
+ *
+ * |[
+ *   rot(α) = A
+ *   rot(β) = B
+ *   rot(γ) = G
+ * ]|
+ *
+ * The resulting rotation matrix expressed by the Euler angle vector is
+ * given by the product of each rotation matrix:
+ *
+ * |[
+ *   G × B × A = R
+ * ]|
+ *
+ * In order to specify the meaning of an Euler angle vector, we need to
+ * assign each axis of rotation to the corresponding α, β, and γ components,
+ * for instance X, Y, and Z.
+ *
+ * Additionally, we need to specify whether the rotations move the axes
+ * as they are applied, also known as intrinsic, or relative rotations;
+ * or if the axes stay fixed and the vectors move within the axis frame,
+ * also known as extrinsic, or static rotations. For instance, a static
+ * rotation alongside the ZYX axes will be interpreted as relative to
+ * extrinsic coordinate axes, and be performed, in order, about the Z,
+ * Y, and finally X axis. A relative rotation alongside the ZXZ axes will
+ * be interpreted as relative to intrinsic coordinate axes, and be
+ * performed, in order, about the Z axis, about the rotated X axis, and
+ * finally about the rotated Z axis.
+ *
+ * Finally, we need to define the direction of the rotation, or the handedness
+ * of the coordinate system. In the case of Graphene, the direction is given
+ * by the right-hand rule, which means all rotations are counterclockwise.
+ *
+ * Rotations described Euler angles are typically immediately understandable,
+ * compared to rotations expressed using quaternions, but they are susceptible
+ * of ["Gimbal lock"](http://en.wikipedia.org/wiki/Gimbal_lock) — the loss of
  * one degree of freedom caused by two axis on the same plane. You typically
  * should use #graphene_euler_t to expose rotation angles in your API, or to
  * store them, but use #graphene_quaternion_t to apply rotations to modelview
  * matrices, or interpolate between initial and final rotation transformations.
+ *
+ * For more information, see:
+ *
+ *   - http://en.wikipedia.org/wiki/Rotation_matrix
+ *   - http://en.wikipedia.org/wiki/Euler_angles
+ *   - http://mathworld.wolfram.com/EulerAngles.html
+ *   - "Representing Attitude with Euler Angles and Quaternions: A
+ *     Reference" by James Diebel, 2006
+ *   - "Graphics Gems IV", edited by Paul Heckbert, Academic Press, 1994.
  *
  * See also: #graphene_quaternion_t.
  */
@@ -50,6 +99,257 @@
 #include "graphene-vectors-private.h"
 
 #define EULER_DEFAULT_ORDER GRAPHENE_EULER_ORDER_XYZ
+
+#define LAST_DEPRECATED GRAPHENE_EULER_ORDER_ZYX + 1
+
+#define ORDER_OFFSET(o) ((o) - LAST_DEPRECATED)
+
+enum {
+  SXYZ,
+  SXYX,
+  SXZY,
+
+  SXZX,
+  SYZX,
+  SYZY,
+
+  SYXZ,
+  SYXY,
+  SZXY,
+
+  SZXZ,
+  SZYX,
+  SZYZ,
+
+  RZYX,
+  RXYX,
+  RYZX,
+
+  RXZX,
+  RXZY,
+  RYZY,
+
+  RZXY,
+  RYXY,
+  RYXZ,
+
+  RZXZ,
+  RXYZ,
+  RZYZ
+};
+
+struct axis_param {
+  /* The initial axis in the permutation */
+  int first_axis;
+  /* Parity of the axis permutation (false for even, true for odd) */
+  bool parity;
+  /* Repetition of first_axis as the last */
+  bool repetition;
+  /* Frame from which the axes are taken (false for static, true for relative) */
+  bool frame;
+};
+
+/* Map each order to the corresponding parameters of the rotation */
+static const struct axis_param order_parameters[] = {
+  [SXYZ] = { 0, false, false, false },
+  [SXYX] = { 0, false, true,  false },
+  [SXZY] = { 0, true,  false, false },
+
+  [SXZX] = { 0, true,  true,  false },
+  [SYZX] = { 1, false, false, false },
+  [SYZY] = { 1, false, true,  false },
+
+  [SYXZ] = { 1, true,  false, false },
+  [SYXY] = { 1, true,  true,  false },
+  [SZXY] = { 2, false, false, false },
+
+  [SZXZ] = { 2, false, true,  false },
+  [SZYX] = { 2, true,  false, false },
+  [SZYZ] = { 2, true,  true,  false },
+
+  [RZYX] = { 0, false, false, true  },
+  [RXYX] = { 0, false, true,  true  },
+  [RYZX] = { 0, true,  false, true  },
+
+  [RXZX] = { 0, true,  true,  true  },
+  [RXZY] = { 1, false, false, true  },
+  [RYZY] = { 1, false, true,  true  },
+
+  [RZXY] = { 1, true,  false, true  },
+  [RYXY] = { 1, true,  true,  true  },
+  [RYXZ] = { 2, false, false, true  },
+
+  [RZXZ] = { 2, false, true,  true  },
+  [RXYZ] = { 2, true,  false, true  },
+  [RZYZ] = { 2, true,  true,  true  },
+};
+
+/* Axis sequences for Euler angles */
+static const int next_axis[4] = { 1, 2, 0, 1 };
+
+/* Original code to convert Euler angles to a 4x4 matrix is taken from
+ * "Graphics Gems IV", edited by Paul Heckbert, Academic Press, 1994.
+ *
+ * Ken Shoemake, 1993
+ *
+ * https://github.com/erich666/GraphicsGems/blob/master/gemsiv/euler_angle/EulerAngles.c
+ */
+static inline void
+euler_to_matrix (float                    ai,
+                 float                    aj,
+                 float                    ak,
+                 const struct axis_param *params,
+                 graphene_matrix_t       *matrix)
+{
+  int i = params->first_axis;
+  int j = next_axis[i + (params->parity ? 1 : 0)];
+  int k = next_axis[i - (params->parity ? 1 : 0) + 1];
+
+  if (params->frame)
+    {
+      float tmp = ai;
+      ai = ak;
+      ak = tmp;
+    }
+
+  if (params->parity)
+    {
+      ai *= -1.f;
+      aj *= -1.f;
+      ak *= -1.f;
+    }
+
+  float si, sj, sk;
+  float ci, cj, ck;
+
+  graphene_sincos (ai, &si, &ci);
+  graphene_sincos (aj, &sj, &cj);
+  graphene_sincos (ak, &sk, &ck);
+
+  float cc = ci * ck;
+  float cs = ci * sk;
+  float sc = si * ck;
+  float ss = si * sk;
+
+  float m[16];
+
+#define M(m,r,c) (m)[((r) << 2) + (c)]
+
+  /* We need to construct the matrix from float values instead
+   * of SIMD vectors because the access is parametrised on the
+   * axes of the transformation, and it would lead to a
+   * combinatorial explosion of branches
+   */
+  if (params->repetition)
+    {
+      M (m, i, i) = cj;
+      M (m, i, j) = sj * si;
+      M (m, i, k) = sj * ci;
+      M (m, j, i) = sj * sk;
+      M (m, j, j) = -cj * ss + cc;
+      M (m, j, k) = -cj * cs - sc;
+      M (m, k, i) = -sj * ck;
+      M (m, k, j) = cj * sc + cs;
+      M (m, k, k) = cj * cc - ss;
+    }
+  else
+    {
+      M (m, i, i) = cj * ck;
+      M (m, i, j) = sj * sc - cs;
+      M (m, i, k) = sj * cc + ss;
+      M (m, j, i) = cj * sk;
+      M (m, j, j) = sj * ss + cc;
+      M (m, j, k) = sj * cs - sc;
+      M (m, k, i) = -sj;
+      M (m, k, j) = cj * si;
+      M (m, k, k) = cj * ci;
+    }
+
+  M (m, 3, 0) = M (m, 3, 1) = M (m, 3, 2) = 0.f;
+  M (m, 0, 3) = M (m, 1, 3) = M (m, 2, 3) = 0.f;
+  M (m, 3, 3) = 1.f;
+
+#undef M
+
+  graphene_matrix_init_from_float (matrix, m);
+}
+
+static inline void
+matrix_to_euler (const graphene_matrix_t *matrix,
+                 const struct axis_param *params,
+                 float                   *ai,
+                 float                   *aj,
+                 float                   *ak)
+{
+  int i = params->first_axis;
+  int j = next_axis[i + (params->parity ? 1 : 0)];
+  int k = next_axis[i - (params->parity ? 1 : 0) + 1];
+
+  float m[16];
+  graphene_matrix_to_float (matrix, m);
+
+#define M(m,r,c) (m)[((r) << 2) + (c)]
+
+  float ax, ay, az;
+  if (params->repetition)
+    {
+      float sy = sqrtf (M (m, i, j) * M (m, i, j) + M (m, i, k) * M (m, i, j));
+
+      if (sy >= 16 * FLT_EPSILON)
+        {
+          ax = atan2f (M (m, i, j), M (m, i, k));
+          ay = atan2f (sy, M (m, i, i));
+          az = atan2f (M (m, j, i), M (m, k, i) * -1.f);
+        }
+      else
+        {
+          ax = atan2f (M (m, j, k) * -1.f, M (m, j, j));
+          ay = atan2f (sy, M (m, i, i));
+          az = 0.f;
+        }
+    }
+  else
+    {
+      float cy = sqrtf (M (m, i, i) * M (m, i, i) + M (m, j, i) * M (m, j, i));
+
+      if (cy >= 16 * FLT_EPSILON)
+        {
+          ax = atan2f (M (m, k, j), M (m, k, k));
+          ay = atan2f (M (m, k, i) * -1.f, cy);
+          az = atan2f (M (m, j, i), M (m, i, i));
+        }
+      else
+        {
+          ax = atan2f (M (m, j, k) * -1.f, M (m, j, j));
+          ay = atan2f (M (m, k, i) * -1.f, cy);
+          az = 0.f;
+        }
+    }
+
+#undef M
+
+  if (params->parity)
+    {
+      ax *= -1.f;
+      ay *= -1.f;
+      az *= -1.f;
+    }
+
+  if (params->frame)
+    {
+      float tmp = ax;
+
+      ax = az;
+      az = tmp;
+    }
+
+  if (ai != NULL)
+    *ai = ax;
+  if (aj != NULL)
+    *aj = ay;
+  if (ak != NULL)
+    *ak = az;
+}
 
 /**
  * graphene_euler_alloc: (constructor)
@@ -184,120 +484,13 @@ graphene_euler_init_from_matrix (graphene_euler_t        *e,
                                  const graphene_matrix_t *m,
                                  graphene_euler_order_t   order)
 {
-  float me[16];
-  float m11, m12, m13;
-  float m21, m22, m23;
-  float m31, m32, m33;
   float x, y, z;
 
-  if (m == NULL)
+  if (m == NULL || graphene_matrix_is_identity (m))
     return graphene_euler_init_with_order (e, 0.f, 0.f, 0.f, order);
 
-  graphene_matrix_to_float (m, me);
-
-  /* isolate the rotation components */
-  m11 = me[0]; m21 = me[4]; m31 = me[8];
-  m12 = me[1]; m22 = me[5]; m32 = me[9];
-  m13 = me[2]; m23 = me[6]; m33 = me[10];
-
-  x = y = z = 0.f;
-
-  e->order = order;
-  switch (graphene_euler_get_order (e))
-    {
-    case GRAPHENE_EULER_ORDER_XYZ:
-      y = asinf (CLAMP (m13, -1.f, 1.f));
-      if (fabsf (m13) < 1.f)
-        {
-          x = atan2f (-1.f * m23, m33);
-          z = atan2f (-1.f * m12, m11);
-        }
-      else
-        {
-          x = atan2f (m32, m22);
-          z = 0.f;
-        }
-      break;
-
-    case GRAPHENE_EULER_ORDER_YXZ:
-      x = asinf (-1.f * CLAMP (m23, -1, 1));
-      if (fabsf (m23) < 1.f)
-        {
-          y = atan2f (m13, m33);
-          z = atan2f (m21, m22);
-        }
-      else
-        {
-          y = atan2f (-1.f * m31, m11);
-          z = 0.f;
-        }
-      break;
-
-    case GRAPHENE_EULER_ORDER_ZXY:
-      x = asinf (CLAMP (m32, -1.f, 1.f));
-
-      if (fabsf (m32) < 1.f)
-        {
-          y = atan2f (-1.f * m31, m33);
-          z = atan2f (-1.f * m12, m22);
-        }
-      else
-        {
-          y = 0.f;
-          z = atan2f (m21, m11);
-        }
-      break;
-
-    case GRAPHENE_EULER_ORDER_ZYX:
-      y = asinf (-1.f * CLAMP (m31, -1.f, 1.f));
-
-      if (fabsf (m31) < 1.f)
-        {
-          x = atan2f (m32, m33);
-          z = atan2f (m21, m11);
-        }
-      else
-        {
-          x = 0.f;
-          z = atan2f (-1.f * m12, m22);
-        }
-      break;
-
-    case GRAPHENE_EULER_ORDER_YZX:
-      z = asinf (CLAMP (m21, -1.f, 1.f));
-
-      if (fabsf (m21) < 1.f)
-        {
-          x = atan2f (-1.f * m23, m22);
-          y = atan2f (-1.f * m31, m11);
-        }
-      else
-        {
-          x = 0.f;
-          y = atan2f (m13, m33);
-        }
-      break;
-
-    case GRAPHENE_EULER_ORDER_XZY:
-      z = asinf (-1.f * CLAMP (m12, -1.f, 1.f));
-
-      if (fabsf (m12) < 1.f)
-        {
-          x = atan2f (m32, m22);
-          y = atan2f (m13, m11);
-        }
-      else
-        {
-          x = atan2f (-1.f * m23, m33);
-          y = 0.f;
-        }
-      break;
-
-    case GRAPHENE_EULER_ORDER_DEFAULT:
-      break;
-    }
-
-  graphene_vec3_init (&e->angles, x, y, z);
+  matrix_to_euler (m, &order_parameters[ORDER_OFFSET (order)], &x, &y, &z);
+  graphene_euler_init_internal (e, x, y, z, order);
 
   return e;
 }
@@ -560,6 +753,173 @@ graphene_euler_to_vec3 (const graphene_euler_t *e,
   graphene_vec3_scale (res, (180.f / GRAPHENE_PI), res);
 }
 
+static graphene_euler_order_t
+graphene_euler_get_real_order (const graphene_euler_t *e)
+{
+  graphene_euler_order_t order = graphene_euler_get_order (e);
+
+  switch (order)
+    {
+    case GRAPHENE_EULER_ORDER_XYZ:
+      return GRAPHENE_EULER_ORDER_SXYZ;
+
+    case GRAPHENE_EULER_ORDER_YXZ:
+      return GRAPHENE_EULER_ORDER_SYXZ;
+
+    case GRAPHENE_EULER_ORDER_ZXY:
+      return GRAPHENE_EULER_ORDER_SZXY;
+
+    case GRAPHENE_EULER_ORDER_ZYX:
+      return GRAPHENE_EULER_ORDER_SZYX;
+
+    case GRAPHENE_EULER_ORDER_YZX:
+      return GRAPHENE_EULER_ORDER_SYZX;
+
+    case GRAPHENE_EULER_ORDER_XZY:
+      return GRAPHENE_EULER_ORDER_SXZY;
+
+    case GRAPHENE_EULER_ORDER_DEFAULT:
+      return GRAPHENE_EULER_ORDER_SXYZ;
+
+    default:
+      break;
+    }
+
+  return order;
+}
+
+static float
+graphene_euler_get_alpha (const graphene_euler_t *e)
+{
+  graphene_euler_order_t order = graphene_euler_get_real_order (e);
+
+  switch (order)
+    {
+    case GRAPHENE_EULER_ORDER_SXYZ:
+    case GRAPHENE_EULER_ORDER_SXYX:
+    case GRAPHENE_EULER_ORDER_SXZY:
+    case GRAPHENE_EULER_ORDER_SXZX:
+    case GRAPHENE_EULER_ORDER_RXYX:
+    case GRAPHENE_EULER_ORDER_RXZX:
+    case GRAPHENE_EULER_ORDER_RXZY:
+    case GRAPHENE_EULER_ORDER_RXYZ:
+      return graphene_vec3_get_x (&e->angles);
+
+    case GRAPHENE_EULER_ORDER_SYZX:
+    case GRAPHENE_EULER_ORDER_SYZY:
+    case GRAPHENE_EULER_ORDER_SYXZ:
+    case GRAPHENE_EULER_ORDER_SYXY:
+    case GRAPHENE_EULER_ORDER_RYZX:
+    case GRAPHENE_EULER_ORDER_RYZY:
+    case GRAPHENE_EULER_ORDER_RYXY:
+    case GRAPHENE_EULER_ORDER_RYXZ:
+      return graphene_vec3_get_y (&e->angles);
+
+    case GRAPHENE_EULER_ORDER_SZXY:
+    case GRAPHENE_EULER_ORDER_SZXZ:
+    case GRAPHENE_EULER_ORDER_SZYX:
+    case GRAPHENE_EULER_ORDER_SZYZ:
+    case GRAPHENE_EULER_ORDER_RZYX:
+    case GRAPHENE_EULER_ORDER_RZXY:
+    case GRAPHENE_EULER_ORDER_RZXZ:
+    case GRAPHENE_EULER_ORDER_RZYZ:
+      return graphene_vec3_get_z (&e->angles);
+
+    default:
+      break;
+    }
+
+  return 0.f;
+}
+
+static float
+graphene_euler_get_beta (const graphene_euler_t *e)
+{
+  graphene_euler_order_t order = graphene_euler_get_real_order (e);
+
+  switch (order)
+    {
+    case GRAPHENE_EULER_ORDER_SYXZ:
+    case GRAPHENE_EULER_ORDER_SYXY:
+    case GRAPHENE_EULER_ORDER_SZXY:
+    case GRAPHENE_EULER_ORDER_SZXZ:
+    case GRAPHENE_EULER_ORDER_RZXY:
+    case GRAPHENE_EULER_ORDER_RYXY:
+    case GRAPHENE_EULER_ORDER_RYXZ:
+    case GRAPHENE_EULER_ORDER_RZXZ:
+      return graphene_vec3_get_x (&e->angles);
+
+    case GRAPHENE_EULER_ORDER_SXYZ:
+    case GRAPHENE_EULER_ORDER_SXYX:
+    case GRAPHENE_EULER_ORDER_SZYX:
+    case GRAPHENE_EULER_ORDER_SZYZ:
+    case GRAPHENE_EULER_ORDER_RZYX:
+    case GRAPHENE_EULER_ORDER_RXYX:
+    case GRAPHENE_EULER_ORDER_RXYZ:
+    case GRAPHENE_EULER_ORDER_RZYZ:
+      return graphene_vec3_get_y (&e->angles);
+
+    case GRAPHENE_EULER_ORDER_SYZX:
+    case GRAPHENE_EULER_ORDER_SYZY:
+    case GRAPHENE_EULER_ORDER_SXZY:
+    case GRAPHENE_EULER_ORDER_SXZX:
+    case GRAPHENE_EULER_ORDER_RYZX:
+    case GRAPHENE_EULER_ORDER_RXZX:
+    case GRAPHENE_EULER_ORDER_RXZY:
+    case GRAPHENE_EULER_ORDER_RYZY:
+      return graphene_vec3_get_z (&e->angles);
+
+    default:
+      break;
+    }
+
+  return 0.f;
+}
+
+static float
+graphene_euler_get_gamma (const graphene_euler_t *e)
+{
+  graphene_euler_order_t order = graphene_euler_get_real_order (e);
+
+  switch (order)
+    {
+    case GRAPHENE_EULER_ORDER_SXYX:
+    case GRAPHENE_EULER_ORDER_SZYX:
+    case GRAPHENE_EULER_ORDER_SYZX:
+    case GRAPHENE_EULER_ORDER_SXZX:
+    case GRAPHENE_EULER_ORDER_RZYX:
+    case GRAPHENE_EULER_ORDER_RXYX:
+    case GRAPHENE_EULER_ORDER_RYZX:
+    case GRAPHENE_EULER_ORDER_RXZX:
+      return graphene_vec3_get_x (&e->angles);
+
+    case GRAPHENE_EULER_ORDER_SYZY:
+    case GRAPHENE_EULER_ORDER_SXZY:
+    case GRAPHENE_EULER_ORDER_SYXY:
+    case GRAPHENE_EULER_ORDER_SZXY:
+    case GRAPHENE_EULER_ORDER_RXZY:
+    case GRAPHENE_EULER_ORDER_RYZY:
+    case GRAPHENE_EULER_ORDER_RZXY:
+    case GRAPHENE_EULER_ORDER_RYXY:
+      return graphene_vec3_get_y (&e->angles);
+
+    case GRAPHENE_EULER_ORDER_SZYZ:
+    case GRAPHENE_EULER_ORDER_SYXZ:
+    case GRAPHENE_EULER_ORDER_SXYZ:
+    case GRAPHENE_EULER_ORDER_SZXZ:
+    case GRAPHENE_EULER_ORDER_RYXZ:
+    case GRAPHENE_EULER_ORDER_RZXZ:
+    case GRAPHENE_EULER_ORDER_RXYZ:
+    case GRAPHENE_EULER_ORDER_RZYZ:
+      return graphene_vec3_get_z (&e->angles);
+
+    default:
+      break;
+    }
+
+  return 0.f;
+}
+
 /**
  * graphene_euler_to_matrix:
  * @e: a #graphene_euler_t
@@ -588,118 +948,60 @@ void
 graphene_euler_to_matrix (const graphene_euler_t *e,
                           graphene_matrix_t      *res)
 {
-  graphene_euler_order_t order = graphene_euler_get_order (e);
+  graphene_euler_order_t order = graphene_euler_get_real_order (e);
+  float ai = graphene_euler_get_alpha (e);
+  float aj = graphene_euler_get_beta (e);
+  float ak = graphene_euler_get_gamma (e);
 
-  const float x = graphene_vec3_get_x (&e->angles);
-  const float y = graphene_vec3_get_y (&e->angles);
-  const float z = graphene_vec3_get_z (&e->angles);
+  euler_to_matrix (ai, aj, ak, &order_parameters[ORDER_OFFSET (order)], res);
+}
 
-  float c1, s1, c2, s2, c3, s3;
-  float c3c2, s3c1, c3s2s1, s3s1;
-  float c3s2c1, s3c2, c3c1, s3s2s1;
-  float c3s1, s3s2c1, c2s1, c2c1;
+/**
+ * graphene_euler_to_quaternion:
+ * @e: a #graphene_euler_t
+ * @res: (out caller-allocates): return location for a #graphene_quaternion_t
+ *
+ * Converts a #graphene_euler_t into a #graphene_quaternion_t.
+ */
+void
+graphene_euler_to_quaternion (const graphene_euler_t *e,
+                              graphene_quaternion_t  *res)
+{
+  float ti = graphene_vec3_get_x (&e->angles) * 0.5f;
+  float tj = graphene_vec3_get_y (&e->angles) * 0.5f;
+  float tk = graphene_vec3_get_z (&e->angles) * 0.5f;
 
-  graphene_sincos (x, &c1, &s1);
-  graphene_sincos (y, &c2, &s2);
-  graphene_sincos (z, &c3, &s3);
+  float ci, cj, ck;
+  float si, sj, sk;
+  graphene_sincos (ti, &si, &ci);
+  graphene_sincos (tj, &sj, &cj);
+  graphene_sincos (tk, &sk, &ck);
 
-  c3c2 = c3 * c2;
-  s3c1 = s3 * c1;
-  c3s2s1 = c3 * s2 * s1;
-  s3s1 = s3 * s1;
-  c3s2c1 = c3 * s2 * c1;
-  s3c2 = s3 * c2;
-  c3c1 = c3 * c1;
-  s3s2s1 = s3 * s2 * s1;
-  c3s1 = c3 * s1;
-  s3s2c1 = s3 * s2 * c1;
-  c2s1 = c2 * s1;
-  c2c1 = c2 * c1;
+  float cc = ci * ck;
+  float cs = ci * sk;
+  float sc = si * ck;
+  float ss = si * sk;
 
-  switch (order)
+  graphene_euler_order_t order = graphene_euler_get_real_order (e);
+  const struct axis_param *params = &order_parameters[ORDER_OFFSET (order)];
+
+  if (params->repetition)
     {
-    case GRAPHENE_EULER_ORDER_XYZ:
-      {
-        /* ⎡  c3 s3 0 ⎤ ⎡ c2  0 -s2 ⎤ ⎡ 1   0  0 ⎤
-         * ⎢ -s3 c3 0 ⎥ ⎢  0  1   0 ⎥ ⎢ 0  c1 s1 ⎥
-         * ⎣   0  0 1 ⎦ ⎣ s2  0  c2 ⎦ ⎣ 0 -s1 c1 ⎦
-         */
-        res->value.x = graphene_simd4f_init ( c3c2, s3c1 + c3s2s1, s3s1 - c3s2c1, 0.f);
-        res->value.y = graphene_simd4f_init (-s3c2, c3c1 - s3s2s1, c3s1 + s3s2c1, 0.f);
-        res->value.z = graphene_simd4f_init (   s2,         -c2s1,          c2c1, 0.f);
-        res->value.w = graphene_simd4f_init (  0.f,           0.f,           0.f, 1.f);
-      }
-      break;
-
-    case GRAPHENE_EULER_ORDER_YXZ:
-      {
-        /* ⎡  c3 s3 0 ⎤ ⎡ 1   0  0 ⎤ ⎡ c1 0 -s1 ⎤
-         * ⎢ -s2 c3 0 ⎥ ⎢ 0  c2 s2 ⎥ ⎢  0 1   0 ⎥
-         * ⎣   0  0 1 ⎦ ⎣ 0 -s2 c2 ⎦ ⎣ s1 0  c1 ⎦
-         */
-        res->value.x = graphene_simd4f_init ( c3c1 + s3s2s1, s3c2, -c3s1 + s3s2c1, 0.f);
-        res->value.y = graphene_simd4f_init (-s3c1 + c3s2s1, c3c2,  s3s1 + c3s2c1, 0.f);
-        res->value.z = graphene_simd4f_init (          c2s1,  -s2,           c2c1, 0.f);
-        res->value.w = graphene_simd4f_init (           0.f,  0.f,            0.f, 1.f);
-      }
-      break;
-
-    case GRAPHENE_EULER_ORDER_ZXY:
-      {
-        /* ⎡ 1   0  0 ⎤ ⎡ c2  0 -s2 ⎤ ⎡  c1 s1 0 ⎤
-         * ⎢ 0  c3 s3 ⎥ ⎢  0  1   0 ⎥ ⎢ -s1 c1 0 ⎥
-         * ⎣ 0 -s3 c3 ⎦ ⎣ s2  0  c2 ⎦ ⎣   0  0 1 ⎦
-         */
-        res->value.x = graphene_simd4f_init (c3c1 - s3s2s1, c3s1 + s3s2c1, -s3c2, 0.f);
-        res->value.y = graphene_simd4f_init (        -c2s1,          c2c1,    s2, 0.f);
-        res->value.z = graphene_simd4f_init (s3c1 + c3s2s1, s3s1 - c3s2c1,  c3c2, 0.f);
-        res->value.w = graphene_simd4f_init (          0.f,           0.f,   0.f, 1.f);
-      }
-      break;
-
-    case GRAPHENE_EULER_ORDER_ZYX:
-      {
-        /* ⎡ 1   0  0 ⎤ ⎡ c2  0 -s2 ⎤ ⎡  c1 s1 0 ⎤
-         * ⎢ 0  c3 s3 ⎥ ⎢  0  1   0 ⎥ ⎢ -s1 c1 0 ⎥
-         * ⎣ 0 -s3 c3 ⎦ ⎣ s2  0  c2 ⎦ ⎣   0  0 1 ⎦
-         */
-        res->value.x = graphene_simd4f_init (         c2c1,          c2s1,  -s2, 0.f);
-        res->value.y = graphene_simd4f_init (s3s2c1 - c3s1, s3s2s1 + c3c1, s3c2, 0.f);
-        res->value.z = graphene_simd4f_init (c3s2c1 + s3s1, c3s2s1 - s3c1, c3c2, 0.f);
-        res->value.w = graphene_simd4f_init (          0.f,           0.f,  0.f, 1.f);
-      }
-      break;
-
-    case GRAPHENE_EULER_ORDER_YZX:
-      {
-        /* ⎡ 1   0  0 ⎤ ⎡  c2 s2 0 ⎤ ⎡ c1 0 -s1 ⎤
-         * ⎢ 0  c3 s3 ⎥ ⎢ -s2 c2 0 ⎥ ⎢  0 1   0 ⎥
-         * ⎣ 0 -s3 c3 ⎦ ⎣   0  0 1 ⎦ ⎣ s1 0  c1 ⎦
-         */
-        res->value.x = graphene_simd4f_init (          c2c1,    s2,          -c2s1, 0.f);
-        res->value.y = graphene_simd4f_init (-c3s2c1 + s3s1,  c3c2,  c3s2s1 + s3c1, 0.f);
-        res->value.z = graphene_simd4f_init ( s3s2c1 + c3s1, -s3c2, -s3s2s1 + c3c1, 0.f);
-        res->value.w = graphene_simd4f_init (           0.f,   0.f,            0.f, 1.f);
-      }
-      break;
-
-    case GRAPHENE_EULER_ORDER_XZY:
-      {
-        /* ⎡ c3 0 -s3 ⎤ ⎡  c2 s2 0 ⎤ ⎡ 1   0  0 ⎤
-         * ⎢  0 1   0 ⎥ ⎢ -s2 c2 0 ⎥ ⎢ 0  c1 s1 ⎥
-         * ⎣ s3 0  c3 ⎦ ⎣   0  0 1 ⎦ ⎣ 0 -s1 c1 ⎦
-         */
-        res->value.x = graphene_simd4f_init (c3c2, c3s2c1 + s3s1, c3s2s1 - s3c1, 0.f);
-        res->value.y = graphene_simd4f_init ( -s2,          c2c1,          c2s1, 0.f);
-        res->value.z = graphene_simd4f_init (s3c2, s3s2c1 - c3s1, s3s2s1 + c3c1, 0.f);
-        res->value.w = graphene_simd4f_init ( 0.f,           0.f,           0.f, 1.f);
-      }
-      break;
-
-    default:
-      graphene_matrix_init_identity (res);
-      break;
+      res->x = cj * (cs + cc);
+      res->y = sj * (cc + ss);
+      res->z = sj * (cs - sc);
+      res->w = cj * (cc - ss);
     }
+  else
+    {
+      res->x = cj * sc - sj * cs;
+      res->y = cj * ss + sj * cc;
+      res->z = cj * cs - sj * sc;
+      res->w = cj * cc + sj * ss;
+    }
+
+  if (params->parity)
+    res->y *= -1.f;
 }
 
 /**

@@ -53,12 +53,42 @@ GRAPHENE_BEGIN_DECLS
  */
 typedef enum {
   GRAPHENE_EULER_ORDER_DEFAULT = -1,
+
+  /* Deprecated */
   GRAPHENE_EULER_ORDER_XYZ = 0,
   GRAPHENE_EULER_ORDER_YZX,
   GRAPHENE_EULER_ORDER_ZXY,
   GRAPHENE_EULER_ORDER_XZY,
   GRAPHENE_EULER_ORDER_YXZ,
-  GRAPHENE_EULER_ORDER_ZYX
+  GRAPHENE_EULER_ORDER_ZYX,
+
+  /* Static (extrinsic) coordinate axes */
+  GRAPHENE_EULER_ORDER_SXYZ,
+  GRAPHENE_EULER_ORDER_SXYX,
+  GRAPHENE_EULER_ORDER_SXZY,
+  GRAPHENE_EULER_ORDER_SXZX,
+  GRAPHENE_EULER_ORDER_SYZX,
+  GRAPHENE_EULER_ORDER_SYZY,
+  GRAPHENE_EULER_ORDER_SYXZ,
+  GRAPHENE_EULER_ORDER_SYXY,
+  GRAPHENE_EULER_ORDER_SZXY,
+  GRAPHENE_EULER_ORDER_SZXZ,
+  GRAPHENE_EULER_ORDER_SZYX,
+  GRAPHENE_EULER_ORDER_SZYZ,
+
+  /* Relative (intrinsic) coordinate axes */
+  GRAPHENE_EULER_ORDER_RZYX,
+  GRAPHENE_EULER_ORDER_RXYX,
+  GRAPHENE_EULER_ORDER_RYZX,
+  GRAPHENE_EULER_ORDER_RXZX,
+  GRAPHENE_EULER_ORDER_RXZY,
+  GRAPHENE_EULER_ORDER_RYZY,
+  GRAPHENE_EULER_ORDER_RZXY,
+  GRAPHENE_EULER_ORDER_RYXY,
+  GRAPHENE_EULER_ORDER_RYXZ,
+  GRAPHENE_EULER_ORDER_RZXZ,
+  GRAPHENE_EULER_ORDER_RXYZ,
+  GRAPHENE_EULER_ORDER_RZYZ
 } graphene_euler_order_t;
 
 /**
@@ -129,6 +159,9 @@ void                    graphene_euler_to_vec3                  (const graphene_
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_euler_to_matrix                (const graphene_euler_t      *e,
                                                                  graphene_matrix_t           *res);
+GRAPHENE_AVAILABLE_IN_1_10
+void                    graphene_euler_to_quaternion            (const graphene_euler_t      *e,
+                                                                 graphene_quaternion_t       *res);
 
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_euler_reorder                  (const graphene_euler_t      *e,
