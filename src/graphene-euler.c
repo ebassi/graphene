@@ -911,6 +911,8 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
  * @res: (out caller-allocates): return location for a #graphene_quaternion_t
  *
  * Converts a #graphene_euler_t into a #graphene_quaternion_t.
+ *
+ * Since: 1.10
  */
 void
 graphene_euler_to_quaternion (const graphene_euler_t *e,
