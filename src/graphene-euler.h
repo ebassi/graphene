@@ -37,12 +37,42 @@ GRAPHENE_BEGIN_DECLS
  * graphene_euler_order_t:
  * @GRAPHENE_EULER_ORDER_DEFAULT: Rotate in the default order; the
  *   default order is one of the following enumeration values
- * @GRAPHENE_EULER_ORDER_XYZ: Rotate in the X, Y, and Z order
- * @GRAPHENE_EULER_ORDER_YZX: Rotate in the Y, Z, and X order
- * @GRAPHENE_EULER_ORDER_ZXY: Rotate in the Z, X, and Y order
- * @GRAPHENE_EULER_ORDER_XZY: Rotate in the X, Z, and Y order
- * @GRAPHENE_EULER_ORDER_YXZ: Rotate in the Y, X, and Z order
- * @GRAPHENE_EULER_ORDER_ZYX: Rotate in the Z, Y, and X order
+ * @GRAPHENE_EULER_ORDER_XYZ: Rotate in the X, Y, and Z order. Deprecated in
+ *   Graphene 1.10, it's an alias for %GRAPHENE_EULER_ORDER_SXYZ
+ * @GRAPHENE_EULER_ORDER_YZX: Rotate in the Y, Z, and X order. Deprecated in
+ *   Graphene 1.10, it's an alias for %GRAPHENE_EULER_ORDER_SYZX
+ * @GRAPHENE_EULER_ORDER_ZXY: Rotate in the Z, X, and Y order. Deprecated in
+ *   Graphene 1.10, it's an alias for %GRAPHENE_EULER_ORDER_SZXY
+ * @GRAPHENE_EULER_ORDER_XZY: Rotate in the X, Z, and Y order. Deprecated in
+ *   Graphene 1.10, it's an alias for %GRAPHENE_EULER_ORDER_SXZY
+ * @GRAPHENE_EULER_ORDER_YXZ: Rotate in the Y, X, and Z order. Deprecated in
+ *   Graphene 1.10, it's an alias for %GRAPHENE_EULER_ORDER_SYXZ
+ * @GRAPHENE_EULER_ORDER_ZYX: Rotate in the Z, Y, and X order. Deprecated in
+ *   Graphene 1.10, it's an alias for %GRAPHENE_EULER_ORDER_SZYX
+ * @GRAPHENE_EULER_ORDER_SXYZ: Defines a static rotation along the X, Y, and Z axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_SXYX: Defines a static rotation along the X, Y, and X axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_SXZY: Defines a static rotation along the X, Z, and Y axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_SXZX: Defines a static rotation along the X, Z, and X axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_SYZX: Defines a static rotation along the Y, Z, and X axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_SYZY: Defines a static rotation along the Y, Z, and Y axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_SYXZ: Defines a static rotation along the Y, X, and Z axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_SYXY: Defines a static rotation along the Y, X, and Y axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_SZXY: Defines a static rotation along the Z, X, and Y axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_SZXZ: Defines a static rotation along the Z, X, and Z axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_SZYX: Defines a static rotation along the Z, Y, and X axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_SZYZ: Defines a static rotation along the Z, Y, and Z axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_RZYX: Defines a relative rotation along the Z, Y, and X axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_RXYX: Defines a relative rotation along the X, Y, and X axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_RYZX: Defines a relative rotation along the Y, Z, and X axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_RXZX: Defines a relative rotation along the X, Z, and X axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_RXZY: Defines a relative rotation along the X, Z, and Y axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_RYZY: Defines a relative rotation along the Y, Z, and Y axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_RZXY: Defines a relative rotation along the Z, X, and Y axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_RYXY: Defines a relative rotation along the Y, X, and Y axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_RYXZ: Defines a relative rotation along the Y, X, and Z axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_RZXZ: Defines a relative rotation along the Z, X, and Z axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_RXYZ: Defines a relative rotation along the X, Y, and Z axes (Since: 1.10)
+ * @GRAPHENE_EULER_ORDER_RZYZ: Defines a relative rotation along the Z, Y, and Z axes (Since: 1.10)
  *
  * Specify the order of the rotations on each axis.
  *
