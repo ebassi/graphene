@@ -620,10 +620,21 @@ quaternion_equal (const void *p1,
   const graphene_quaternion_t *a = p1;
   const graphene_quaternion_t *b = p2;
 
-  return fabsf (a->x - b->x) < 0.00001 &&
-         fabsf (a->y - b->y) < 0.00001 &&
-         fabsf (a->z - b->z) < 0.00001 &&
-         fabsf (a->w - b->w) < 0.00001;
+  if (graphene_fuzzy_equals (a->x, b->x, 0.00001) &&
+      graphene_fuzzy_equals (a->y, b->y, 0.00001) &&
+      graphene_fuzzy_equals (a->z, b->z, 0.00001) &&
+      graphene_fuzzy_equals (a->w, b->w, 0.00001))
+    return true;
+
+  graphene_quaternion_t i;
+  graphene_quaternion_invert (a, &i);
+  if (graphene_fuzzy_equals (i.x, b->x, 0.00001) &&
+      graphene_fuzzy_equals (i.y, b->y, 0.00001) &&
+      graphene_fuzzy_equals (i.z, b->z, 0.00001) &&
+      graphene_fuzzy_equals (i.w, b->w, 0.00001))
+    return true;
+
+  return false;
 }
 
 /**

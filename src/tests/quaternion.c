@@ -48,15 +48,17 @@ GRAPHENE_TEST_UNIT_END
 
 GRAPHENE_TEST_UNIT_BEGIN (quaternion_operators_equal)
 {
-  graphene_quaternion_t q1, q2;
+  graphene_quaternion_t q1, q2, q3;
 
   graphene_quaternion_init (&q1, 1.f, 1.f, 1.f, 1.f);
-  graphene_quaternion_invert (&q1, &q2);
+  graphene_quaternion_init (&q2, 1.f, 2.f, 3.f, 1.f);
+  graphene_quaternion_invert (&q1, &q3);
 
   g_assert_true (graphene_quaternion_equal (&q1, &q1));
   g_assert_false (graphene_quaternion_equal (&q1, NULL));
   g_assert_false (graphene_quaternion_equal (NULL, &q1));
   g_assert_false (graphene_quaternion_equal (&q1, &q2));
+  g_assert_true (graphene_quaternion_equal (&q1, &q3));
 }
 GRAPHENE_TEST_UNIT_END
 
