@@ -22,7 +22,7 @@ RUN locale-gen C.UTF-8 && /usr/sbin/update-locale LANG=C.UTF-8
 
 ENV LANG=C.UTF-8 LANGUAGE=C.UTF-8 LC_ALL=C.UTF-8
 
-RUN pip3 install meson
+RUN pip3 install meson==0.50.1
 
 COPY graphene-run-tests.sh /root
 RUN chmod +x /root/graphene-run-tests.sh
