@@ -537,78 +537,7 @@ graphene_quaternion_t *
 graphene_quaternion_init_from_euler (graphene_quaternion_t  *q,
                                      const graphene_euler_t *e)
 {
-  graphene_euler_order_t order = graphene_euler_get_order (e);
-  const float ex = GRAPHENE_DEG_TO_RAD (graphene_euler_get_x (e)) / 2.f;
-  const float ey = GRAPHENE_DEG_TO_RAD (graphene_euler_get_y (e)) / 2.f;
-  const float ez = GRAPHENE_DEG_TO_RAD (graphene_euler_get_z (e)) / 2.f;
-  float c1, c2, c3, s1, s2, s3;
-  float s1c2c3, c1s2s3, c1s2c3, s1c2s3;
-  float c1c2s3, s1s2c3, c1c2c3, s1s2s3;
-
-  graphene_sincos (ex, &s1, &c1);
-  graphene_sincos (ey, &s2, &c2);
-  graphene_sincos (ez, &s3, &c3);
-
-  s1c2c3 = s1 * c2 * c3;
-  c1s2s3 = c1 * s2 * s3;
-  c1s2c3 = c1 * s2 * c3;
-  s1c2s3 = s1 * c2 * s3;
-  c1c2s3 = c1 * c2 * s3;
-  s1s2c3 = s1 * s2 * c3;
-  c1c2c3 = c1 * c2 * c3;
-  s1s2s3 = s1 * s2 * s3;
-
-  switch (order)
-    {
-    case GRAPHENE_EULER_ORDER_XYZ:
-      q->x = s1c2c3 + c1s2s3;
-      q->y = c1s2c3 - s1c2s3;
-      q->z = c1c2s3 + s1s2c3;
-      q->w = c1c2c3 - s1s2s3;
-      break;
-
-    case GRAPHENE_EULER_ORDER_YXZ:
-      q->x = s1c2c3 + c1s2s3;
-      q->y = c1s2c3 - s1c2s3;
-      q->z = c1c2s3 - s1s2c3;
-      q->w = c1c2c3 + s1s2s3;
-      break;
-
-    case GRAPHENE_EULER_ORDER_ZXY:
-      q->x = s1c2c3 - c1s2s3;
-      q->y = c1s2c3 + s1c2s3;
-      q->z = c1c2s3 + s1s2c3;
-      q->w = c1c2c3 - s1s2s3;
-      break;
-
-    case GRAPHENE_EULER_ORDER_ZYX:
-      q->x = s1c2c3 - c1s2s3;
-      q->y = c1s2c3 + s1c2s3;
-      q->z = c1c2s3 - s1s2c3;
-      q->w = c1c2c3 + s1s2s3;
-      break;
-
-    case GRAPHENE_EULER_ORDER_YZX:
-      q->x = s1c2c3 + c1s2s3;
-      q->y = c1s2c3 + s1c2s3;
-      q->z = c1c2s3 - s1s2c3;
-      q->w = c1c2c3 - s1s2s3;
-      break;
-
-    case GRAPHENE_EULER_ORDER_XZY:
-      q->x = s1c2c3 - c1s2s3;
-      q->y = c1s2c3 - s1c2s3;
-      q->z = c1c2s3 + s1s2c3;
-      q->w = c1c2c3 + s1s2s3;
-      break;
-
-    case GRAPHENE_EULER_ORDER_DEFAULT:
-      q->x = 0.f;
-      q->y = 0.f;
-      q->z = 0.f;
-      q->w = 1.f;
-      break;
-    }
+  graphene_euler_to_quaternion (e, q);
 
   return q;
 }
