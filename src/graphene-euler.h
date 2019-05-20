@@ -183,6 +183,13 @@ float                   graphene_euler_get_z                    (const graphene_
 GRAPHENE_AVAILABLE_IN_1_2
 graphene_euler_order_t  graphene_euler_get_order                (const graphene_euler_t      *e);
 
+GRAPHENE_AVAILABLE_IN_1_10
+float                   graphene_euler_get_alpha                (const graphene_euler_t      *e);
+GRAPHENE_AVAILABLE_IN_1_10
+float                   graphene_euler_get_beta                 (const graphene_euler_t      *e);
+GRAPHENE_AVAILABLE_IN_1_10
+float                   graphene_euler_get_gamma                (const graphene_euler_t      *e);
+
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_euler_to_vec3                  (const graphene_euler_t      *e,
                                                                  graphene_vec3_t             *res);

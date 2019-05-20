@@ -51,6 +51,9 @@ graphene_euler_get_x
 graphene_euler_get_y
 graphene_euler_get_z
 graphene_euler_get_order
+graphene_euler_get_alpha
+graphene_euler_get_beta
+graphene_euler_get_gamma
 graphene_euler_to_vec3
 graphene_euler_to_matrix
 graphene_euler_reorder
