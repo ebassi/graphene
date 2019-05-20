@@ -52,5 +52,5 @@ foreach unit: unit_tests
                    install: true,
                    install_dir: installed_test_bindir)
 
-  test(unit, exe, args: [ '--tap', '-k' ])
+  test(unit, exe, args: [ '--tap', '-k' ], protocol: 'tap')
 endforeach
