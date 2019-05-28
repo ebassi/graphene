@@ -180,7 +180,7 @@ if build_gir
   graphene_dep_sources += graphene_gir
 endif
 
-# Dependency for tests and benchmarks and subproject usage
+# Dependency for tests and subproject usage
 graphene_inc = include_directories('.')
 graphene_dep = declare_dependency(
   sources: graphene_dep_sources,
@@ -191,9 +191,4 @@ graphene_dep = declare_dependency(
 
 if get_option('tests')
   subdir('tests')
-endif
-
-# benchmarks depend on GLib, so we only build them if GObject is enabled
-if build_gobject and get_option('benchmarks')
-  subdir('bench')
 endif

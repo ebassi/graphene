@@ -5,12 +5,10 @@ private_headers = [
 
   'graphene.h',
   'graphene-alloc-private.h',
-  'graphene-bench-utils.h',
   'graphene-config.h',
   'graphene-line-segment-private.h',
   'graphene-macros.h',
   'graphene-private.h',
-  'graphene-test-compat.h',
   'graphene-version-macros.h',
   'graphene-vectors-private.h',
 ]
