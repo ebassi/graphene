@@ -84,9 +84,8 @@ automatically disable generating introspection data.
 
 You can explicitly disable building the test suite and the benchmark suite,
 using the `-Dtests=false` and `-Dbenchmarks=false` configuration switches
-respectively. The test and benchmark suites depend on [GLib][glib]; if it is
-not available at configuration time, tests and benchmarks will be disabled
-automatically.
+respectively. The tests suite depends on [µTest][mutest]; if it is not available
+at configuration time, tests will be disabled automatically.
 
 #### Building on Windows
 
@@ -103,7 +102,7 @@ to install the necessary build dependencies first:
     $ pacman -S mingw-w64-x86_64-meson	# only MINGW64 target
     $ pacman -S mingw-w64-i686-meson	# only MINGW32 target
 
-For the optional support for testing, GObject introspection, and
+For the optional support for GObject types, introspection, and
 documentation, you will need to install additional dependencies:
 
     $ pacman -S gtk-doc                 # optional
@@ -159,5 +158,5 @@ Graphene is released under the terms of the MIT/X11 license.
 
 See the [LICENSE](./LICENSE) file for more details.
 
-[glib]: https://gitlab.gnome.org/GNOME/glib
+[mutest]: https://github.com/ebassi/mutest
 [gobject-api]: https://developer.gnome.org/gobject/stable/
