@@ -82,8 +82,9 @@ tools appropriate for your operating system, including:
  - [Ninja](https://ninja-build.org/)
  - a C99 compatible compiler
 
-In order to build the tests and benchmark suites, you will also need to install
-the development files of [GLib](https://gitlab.gnome.org/GNOME/glib).
+In order to build the tests you will need [µTest](https://github.com/ebassi/mutest);
+Graphene can automatically download and build µTest as a sub-project, so you
+don't need a system installation for it.
 
 If you want to build the documentation of Graphene, you will need to install
 [GTK-Doc](https://gitlab.gnome.org/GNOME/gtk-doc).
