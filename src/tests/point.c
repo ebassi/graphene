@@ -15,7 +15,7 @@ point_zero (mutest_spec_t *spec)
                  NULL);
   mutest_expect ("graphene_point_zero() to return the same pointer",
                  mutest_pointer ((void *) graphene_point_zero ()),
-                 mutest_to_be_pointer, p,
+                 mutest_to_be, p,
                  NULL);
   mutest_expect ("graphene_point_zero() to return (0, 0)",
                  mutest_bool_value (graphene_point_equal (p, &zero)),
