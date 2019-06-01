@@ -31,6 +31,7 @@
 /* needed for memcpy() */
 #include <string.h>
 #include <math.h>
+#include <float.h>
 
 #include "graphene-config.h"
 #include "graphene-macros.h"
@@ -1727,9 +1728,9 @@ graphene_simd4f_is_zero4 (const graphene_simd4f_t v)
 static inline bool
 graphene_simd4f_is_zero3 (const graphene_simd4f_t v)
 {
-  return graphene_simd4f_get_x (v) == 0.f &&
-         graphene_simd4f_get_y (v) == 0.f &&
-         graphene_simd4f_get_z (v) == 0.f;
+  return fabsf (graphene_simd4f_get_x (v)) <= FLT_EPSILON &&
+         fabsf (graphene_simd4f_get_y (v)) <= FLT_EPSILON &&
+         fabsf (graphene_simd4f_get_z (v)) <= FLT_EPSILON;
 }
 
 /**
@@ -1746,8 +1747,8 @@ graphene_simd4f_is_zero3 (const graphene_simd4f_t v)
 static inline bool
 graphene_simd4f_is_zero2 (const graphene_simd4f_t v)
 {
-  return graphene_simd4f_get_x (v) == 0.f &&
-         graphene_simd4f_get_y (v) == 0.f;
+  return fabsf (graphene_simd4f_get_x (v)) <= FLT_EPSILON &&
+         fabsf (graphene_simd4f_get_y (v)) <= FLT_EPSILON;
 }
 
 /**

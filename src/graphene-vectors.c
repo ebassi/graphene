@@ -325,7 +325,7 @@ void
 graphene_vec2_normalize (const graphene_vec2_t *v,
                          graphene_vec2_t       *res)
 {
-  if (graphene_vec2_length (v) != 0.f)
+  if (fabsf (graphene_vec2_length (v)) > FLT_EPSILON)
     res->value = graphene_simd4f_normalize2 (v->value);
   else
     res->value = graphene_simd4f_init_zero ();
@@ -915,7 +915,7 @@ void
 graphene_vec3_normalize (const graphene_vec3_t *v,
                          graphene_vec3_t       *res)
 {
-  if (graphene_vec3_length (v) != 0.f)
+  if (fabsf (graphene_vec3_length (v)) > FLT_EPSILON)
     res->value = graphene_simd4f_normalize3 (v->value);
   else
     res->value = graphene_simd4f_init_zero ();
@@ -1667,7 +1667,7 @@ void
 graphene_vec4_normalize (const graphene_vec4_t *v,
                          graphene_vec4_t       *res)
 {
-  if (graphene_vec4_length (v) != 0.f)
+  if (fabsf (graphene_vec4_length (v)) > FLT_EPSILON)
     res->value = graphene_simd4f_normalize4 (v->value);
   else
     res->value = graphene_simd4f_init_zero ();

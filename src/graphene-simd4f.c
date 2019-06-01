@@ -1176,10 +1176,10 @@ graphene_simd4f_t
 (graphene_simd4f_reciprocal) (graphene_simd4f_t v)
 {
   graphene_simd4f_t s = {
-    v.x != 0.f ? 1.0f / v.x : 0.f,
-    v.y != 0.f ? 1.0f / v.y : 0.f,
-    v.z != 0.f ? 1.0f / v.z : 0.f,
-    v.w != 0.f ? 1.0f / v.w : 0.f
+    fabsf (v.x) > FLT_EPSILON ? 1.0f / v.x : 0.f,
+    fabsf (v.y) > FLT_EPSILON ? 1.0f / v.y : 0.f,
+    fabsf (v.z) > FLT_EPSILON ? 1.0f / v.z : 0.f,
+    fabsf (v.w) > FLT_EPSILON ? 1.0f / v.w : 0.f
   };
   return s;
 }
@@ -1200,10 +1200,10 @@ graphene_simd4f_t
 (graphene_simd4f_rsqrt) (graphene_simd4f_t v)
 {
   graphene_simd4f_t s = {
-    v.x != 0.f ? 1.0f / sqrtf (v.x) : 0.f,
-    v.y != 0.f ? 1.0f / sqrtf (v.y) : 0.f,
-    v.z != 0.f ? 1.0f / sqrtf (v.z) : 0.f,
-    v.w != 0.f ? 1.0f / sqrtf (v.w) : 0.f
+    fabsf (v.x) > FLT_EPSILON ? 1.0f / sqrtf (v.x) : 0.f,
+    fabsf (v.y) > FLT_EPSILON ? 1.0f / sqrtf (v.y) : 0.f,
+    fabsf (v.z) > FLT_EPSILON ? 1.0f / sqrtf (v.z) : 0.f,
+    fabsf (v.w) > FLT_EPSILON ? 1.0f / sqrtf (v.w) : 0.f
   };
   return s;
 }
@@ -1252,10 +1252,10 @@ graphene_simd4f_t
                        const graphene_simd4f_t b)
 {
   graphene_simd4f_t s = {
-    b.x != 0.f ? a.x / b.x : 0.f,
-    b.y != 0.f ? a.y / b.y : 0.f,
-    b.z != 0.f ? a.z / b.z : 0.f,
-    b.w != 0.f ? a.w / b.w : 0.f
+    fabsf (b.x) > FLT_EPSILON ? a.x / b.x : 0.f,
+    fabsf (b.y) > FLT_EPSILON ? a.y / b.y : 0.f,
+    fabsf (b.z) > FLT_EPSILON ? a.z / b.z : 0.f,
+    fabsf (b.w) > FLT_EPSILON ? a.w / b.w : 0.f
   };
   return s;
 }
@@ -1367,24 +1367,52 @@ graphene_simd4f_t
   return graphene_simd4f_init (-s.x, s.y, -s.z, s.w);
 }
 
+static inline bool
+approx_equal (float a,
+              float b,
+              float epsilon)
+{
+#ifdef HAVE_ISINFF
+  if (isinff (a) && isinff (b))
+    return true;
+#else
+  if (fpclassify (a) == FP_INFINITE && fpclassify (b) == FP_INFINITE)
+    return true;
+#endif
+
+  float diff = fabsf (a - b);
+  if (isnan (diff))
+    return true;
+
+  if (diff <= epsilon)
+    return true;
+
+  float abs_a = fabsf (a);
+  float abs_b = fabsf (b);
+
+  float largest = abs_b > abs_a ? abs_b : abs_a;
+
+  return diff <= largest * epsilon;
+}
+
 bool
 (graphene_simd4f_cmp_eq) (const graphene_simd4f_t a,
                           const graphene_simd4f_t b)
 {
-  return a.x == b.x &&
-         a.y == b.y &&
-         a.z == b.z &&
-         a.w == b.w;
+  return approx_equal (a.x, b.x, FLT_EPSILON) &&
+         approx_equal (a.y, b.y, FLT_EPSILON) &&
+         approx_equal (a.z, b.z, FLT_EPSILON) &&
+         approx_equal (a.w, b.w, FLT_EPSILON);
 }
 
 bool
 (graphene_simd4f_cmp_neq) (const graphene_simd4f_t a,
                            const graphene_simd4f_t b)
 {
-  return a.x != b.x ||
-         a.y != b.y ||
-         a.z != b.z ||
-         a.w != b.w;
+  return !approx_equal (a.x, b.x, FLT_EPSILON) ||
+         !approx_equal (a.y, b.y, FLT_EPSILON) ||
+         !approx_equal (a.z, b.z, FLT_EPSILON) ||
+         !approx_equal (a.w, b.w, FLT_EPSILON);
 }
 
 bool

@@ -343,7 +343,7 @@ graphene_triangle_get_uv (const graphene_triangle_t *t,
   dot12 = graphene_vec3_dot (&v1, &v2);
 
   denom = dot00 * dot11 - dot01 * dot01;
-  if (denom == 0.f)
+  if (fabsf (denom) <= FLT_EPSILON)
     return false;
 
   inv_denom = 1.f / denom;

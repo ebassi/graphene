@@ -969,7 +969,7 @@ graphene_simd4x4f_inverse (const graphene_simd4x4f_t *m,
   const graphene_simd4f_t d0 = graphene_simd4f_mul (r1_sum, r0);
   const graphene_simd4f_t d1 = graphene_simd4f_add (d0, graphene_simd4f_merge_high (d0, d0));
   const graphene_simd4f_t det = graphene_simd4f_sub (d1, graphene_simd4f_splat_y (d1));
-  if (graphene_simd4f_get_x (det) != 0.f)
+  if (fabsf (graphene_simd4f_get_x (det)) >= FLT_EPSILON)
     {
       const graphene_simd4f_t invdet = graphene_simd4f_splat_x (graphene_simd4f_div (graphene_simd4f_splat (1.0f), det));
 
