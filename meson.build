@@ -96,6 +96,7 @@ else
     '-Wcast-align',
     '-Wno-unused-local-typedefs',
     '-Werror=float-conversion',
+    '-Werror=float-equal',
     '-Werror=redundant-decls',
     '-Werror=missing-prototypes',
     '-Werror=missing-declarations',
