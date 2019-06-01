@@ -1862,7 +1862,7 @@ matrix_decompose_2d (const graphene_matrix_t *m,
 
   angle = atan2f (row0y, row0x);
 
-  if (angle != 0.f)
+  if (fabsf (angle) > FLT_EPSILON)
     {
       double sn = -row0y, cs = row0x;
       double m11 = row0x, m12 = row0y;
@@ -2066,9 +2066,9 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
         }
 
       /* Do not rotate "the long way around" */
-      if (rotate_a == 0.f)
+      if (fabs (rotate_a) <= DBL_EPSILON)
         rotate_a = 360;
-      if (rotate_b == 0.f)
+      if (fabs (rotate_b) <= DBL_EPSILON)
         rotate_b = 360;
 
       if (fabs (rotate_a - rotate_b) > 180)
