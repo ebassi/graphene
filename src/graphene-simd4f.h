@@ -1328,37 +1328,56 @@ typedef float32x2_t graphene_simd2f_t;
 
 # define graphene_simd4f_cmp_eq(a,b) \
   (__extension__ ({ \
-    const uint8x16_t __mask = vreinterpretq_u8_u32 (vceqq_f32 ((a), (b))); \
-    (bool) (_graphene_movemask (__mask) != 0); \
+    const uint32x4_t __mask = vceqq_f32 ((a), (b)); \
+    (bool) (vgetq_lane_u32 (__mask, 0) != 0 && \
+            vgetq_lane_u32 (__mask, 1) != 0 && \
+            vgetq_lane_u32 (__mask, 2) != 0 && \
+            vgetq_lane_u32 (__mask, 3) != 0); \
   }))
 
 # define graphene_simd4f_cmp_neq(a,b) \
   (__extension__ ({ \
-    !graphene_simd4f_cmp_eq (a, b); \
+    const uint32x4_t __mask = vceqq_f32 ((a), (b)); \
+    (bool) (vgetq_lane_u32 (__mask, 0) == 0 || \
+            vgetq_lane_u32 (__mask, 1) == 0 || \
+            vgetq_lane_u32 (__mask, 2) == 0 || \
+            vgetq_lane_u32 (__mask, 3) == 0); \
   }))
 
 # define graphene_simd4f_cmp_lt(a,b) \
   (__extension__ ({ \
-    const uint8x16_t __mask = vreinterpretq_u8_u32 (vcltq_f32 ((a), (b))); \
-    (bool) (_graphene_movemask (__mask) != 0); \
+    const uint32x4_t __mask = vcltq_f32 ((a), (b)); \
+    (bool) (vgetq_lane_u32 (__mask, 0) != 0 && \
+            vgetq_lane_u32 (__mask, 1) != 0 && \
+            vgetq_lane_u32 (__mask, 2) != 0 && \
+            vgetq_lane_u32 (__mask, 3) != 0); \
   }))
 
 # define graphene_simd4f_cmp_le(a,b) \
   (__extension__ ({ \
-    const uint8x16_t __mask = vreinterpretq_u8_u32 (vcleq_f32 ((a), (b))); \
-    (bool) (_graphene_movemask (__mask) != 0); \
+    const uint32x4_t __mask = vcleq_f32 ((a), (b)); \
+    (bool) (vgetq_lane_u32 (__mask, 0) != 0 && \
+            vgetq_lane_u32 (__mask, 1) != 0 && \
+            vgetq_lane_u32 (__mask, 2) != 0 && \
+            vgetq_lane_u32 (__mask, 3) != 0); \
   }))
 
 # define graphene_simd4f_cmp_ge(a,b) \
   (__extension__ ({ \
-    const uint8x16_t __mask = vreinterpretq_u8_u32 (vcgeq_f32 ((a), (b))); \
-    (bool) (_graphene_movemask (__mask) != 0); \
+    const uint32x4_t __mask = vcgeq_f32 ((a), (b)); \
+    (bool) (vgetq_lane_u32 (__mask, 0) != 0 && \
+            vgetq_lane_u32 (__mask, 1) != 0 && \
+            vgetq_lane_u32 (__mask, 2) != 0 && \
+            vgetq_lane_u32 (__mask, 3) != 0); \
   }))
 
 # define graphene_simd4f_cmp_gt(a,b) \
   (__extension__ ({ \
-    const uint8x16_t __mask = vreinterpretq_u8_u32 (vcgtq_f32 ((a), (b))); \
-    (bool) (_graphene_movemask (__mask) != 0); \
+    const uint32x4_t __mask = vcgtq_f32 ((a), (b)); \
+    (bool) (vgetq_lane_u32 (__mask, 0) != 0 && \
+            vgetq_lane_u32 (__mask, 1) != 0 && \
+            vgetq_lane_u32 (__mask, 2) != 0 && \
+            vgetq_lane_u32 (__mask, 3) != 0); \
   }))
 
 # define graphene_simd4f_neg(s) \
