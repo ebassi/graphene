@@ -1328,22 +1328,13 @@ typedef float32x2_t graphene_simd2f_t;
 
 # define graphene_simd4f_cmp_eq(a,b) \
   (__extension__ ({ \
-    const graphene_simd4f_union_t __u_a = { (a) }; \
-    const graphene_simd4f_union_t __u_b = { (b) }; \
-    (bool) (__u_a.f[0] == __u_b.f[0] && \
-            __u_a.f[1] == __u_b.f[1] && \
-            __u_a.f[2] == __u_b.f[2] && \
-            __u_a.f[3] == __u_b.f[3]); \
+    const uint8x16_t __mask = vreinterpretq_u8_u32 (vceqq_f32 ((a), (b))); \
+    (bool) (_graphene_movemask (__mask) != 0); \
   }))
 
 # define graphene_simd4f_cmp_neq(a,b) \
   (__extension__ ({ \
-    const graphene_simd4f_union_t __u_a = { (a) }; \
-    const graphene_simd4f_union_t __u_b = { (b) }; \
-    (bool) (__u_a.f[0] != __u_b.f[0] && \
-            __u_a.f[1] != __u_b.f[1] && \
-            __u_a.f[2] != __u_b.f[2] && \
-            __u_a.f[3] != __u_b.f[3]); \
+    !graphene_simd4f_cmp_eq (a, b); \
   }))
 
 # define graphene_simd4f_cmp_lt(a,b) \
