@@ -1047,7 +1047,6 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
 #elif !defined(__GI_SCANNER__) && defined(GRAPHENE_USE_ARM_NEON)
 
 /* ARM Neon implementation of SIMD4f */
-# warning "The ARM Neon implementation of graphene_simd4f_t is experimental."
 
 /* Union type used for single lane reading without memcpy */
 typedef union {
