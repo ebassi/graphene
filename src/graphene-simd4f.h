@@ -1356,7 +1356,7 @@ typedef float32x2_t graphene_simd2f_t;
 
 # define graphene_simd4f_cmp_gt(a,b) \
   (__extension__ ({ \
-    const uint8x16_t __mask = vreinterpretq_u8_u32 (vcgeq_f32 ((a), (b))); \
+    const uint8x16_t __mask = vreinterpretq_u8_u32 (vcgtq_f32 ((a), (b))); \
     (bool) (_graphene_movemask (__mask) != 0); \
   }))
 
