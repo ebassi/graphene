@@ -272,12 +272,16 @@ int main () {
     c = _mm_xor_si128 (a, b);
     return 0;
 }'''
-  if cc.compiles(sse_prog, name: 'SSE intrinsics')
+  if cc.get_id() != 'msvc'
+    test_sse2_cflags = ['-mfpmath=sse', '-msse', '-msse2']
+  else
+    test_sse2_cflags = []
+  endif
+
+  if cc.compiles(sse_prog, args: test_sse2_cflags, name: 'SSE intrinsics')
     graphene_conf.set('GRAPHENE_HAS_SSE', 1)
-    if cc.get_id() != 'msvc'
-      sse2_cflags += ['-mfpmath=sse', '-msse', '-msse2']
-    endif
-    common_cflags += sse2_cflags
+    sse2_cflags = test_sse2_cflags
+    common_cflags += test_sse2_cflags
     graphene_simd += [ 'sse2' ]
   endif
 endif
