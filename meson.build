@@ -324,15 +324,17 @@ int main () {
     float32x4_t c = vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 (s), __mask)); \
     return 0;
 }'''
-  if cc.compiles(neon_prog, name: 'ARM NEON intrinsics')
+  test_neon_cflags = ['-mfpu=neon']
+
+  if host_system == 'android'
+    test_neon_cflags += ['-mfloat-abi=softfp']
+  endif
+
+  if cc.compiles(neon_prog, args: test_neon_cflags, name: 'ARM NEON intrinsics')
     graphene_conf.set('GRAPHENE_HAS_ARM_NEON', 1)
-    neon_cflags += ['-mfpu=neon']
 
-    if host_system == 'android'
-      neon_cflags += ['-mfloat-abi=softfp']
-    endif
-
-    common_cflags += neon_cflags
+    neon_cflags = test_neon_cflags
+    common_cflags += test_neon_cflags
     graphene_simd += [ 'neon' ]
   endif
 endif
