@@ -1305,26 +1305,6 @@ typedef float32x2_t graphene_simd2f_t;
     (graphene_simd4f_t) vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 ((s)), __npnp)); \
   }))
 
-# define _graphene_movemask(a) \
-  (__extension__ ({ \
-    const int8_t __attribute__ ((aligned (16))) __xr[8] = { -7,-6,-5,-4,-3,-2,-1,0 }; \
-    const uint8x8_t __mask_and = vdup_n_u8 (0x80); \
-    const int8x8_t __mask_shift = vld1_s8 (__xr); \
-    uint8x8_t __lo = vget_low_u8 ((a)); \
-    uint8x8_t __hi = vget_high_u8 ((a)); \
-    __lo = vand_u8 (__lo, __mask_and); \
-    __lo = vshl_u8 (__lo, __mask_shift); \
-    __hi = vand_u8 (__hi, __mask_and); \
-    __hi = vshl_u8 (__hi, __mask_shift); \
-    __lo = vpadd_u8 (__lo, __lo); \
-    __lo = vpadd_u8 (__lo, __lo); \
-    __lo = vpadd_u8 (__lo, __lo); \
-    __hi = vpadd_u8 (__hi, __hi); \
-    __hi = vpadd_u8 (__hi, __hi); \
-    __hi = vpadd_u8 (__hi, __hi); \
-    (bool) ((__hi[0] << 8) | (__lo[0] & 0xff)); \
-  }))
-
 # define graphene_simd4f_cmp_eq(a,b) \
   (__extension__ ({ \
     const uint32x4_t __mask = vceqq_f32 ((a), (b)); \
