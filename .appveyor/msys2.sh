@@ -28,7 +28,12 @@ export PATH="$HOME/.local/bin:$PATH"
 # Build
 meson --buildtype=debug _build
 cd _build
-ninja
+
+ninja || exit $?
 
 # Test
-meson test
+meson test || {
+        exitcode=$?
+        cat meson-logs/testlog.txt
+        exit $exitcode
+}

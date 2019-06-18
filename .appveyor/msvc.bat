@@ -29,7 +29,7 @@ call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %MSV
 C:\Python36\python.exe meson-%MESON_VERSION%\meson.py .. . --backend=ninja --prefix=%APPVEYOR_BUILD_FOLDER%\graphene-shared-%MSVC_PLATFORM% || goto :error
 ninja || goto :error
 ninja test || goto :error
-ninja install || goto :error
+ninja install || goto :print_log_and_error
 cd ..
 
 :: Copy license into install directory and create .zip file
@@ -38,6 +38,9 @@ dir graphene-shared-%MSVC_PLATFORM% /s /b || goto :error
 7z a -tzip graphene-shared-%MSVC_PLATFORM%.zip graphene-shared-%MSVC_PLATFORM% || goto :error
 
 goto :EOF
+
+:print_log_and_error
+type meson-logs\testlog.txt
 
 :error
 exit /b 1
