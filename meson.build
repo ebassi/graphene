@@ -171,6 +171,15 @@ conf.set('HAVE_SINCOSF',
   description: 'Define if sincosf() is available',
 )
 
+conf.set('HAVE_ISINFF',
+  cc.has_function('isinff',
+    prefix: '#include <math.h>',
+    args: [ '-D_GNU_SOURCE' ],
+    dependencies: mathlib,
+  ),
+  description: 'Define is isinff() is available',
+)
+
 # Debugging
 debug_flags = []
 buildtype = get_option('buildtype')
