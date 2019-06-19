@@ -281,8 +281,16 @@ graphene_quaternion_slerp (const graphene_quaternion_t *a,
 {
   graphene_simd4f_t v_a = graphene_simd4f_init (a->x, a->y, a->z, a->w);
   graphene_simd4f_t v_b = graphene_simd4f_init (b->x, b->y, b->z, b->w);
+  float left_sign = 1;
 
   float dot = CLAMP (graphene_simd4f_get_x (graphene_simd4f_dot4 (v_a, v_b)), -1.f, 1.f);
+
+  /* Ensure we use the shortest path to the new angle */
+  if (dot < 0)
+    {
+      left_sign = -1;
+      dot = -dot;
+    }
 
   if (graphene_approx_val (dot, 1.f))
     {
@@ -299,7 +307,7 @@ graphene_quaternion_slerp (const graphene_quaternion_t *a,
   graphene_simd4f_t right = graphene_simd4f_init (b->x, b->y, b->z, b->w);
   graphene_simd4f_t sum;
 
-  left = graphene_simd4f_mul (left, graphene_simd4f_splat (left_v));
+  left = graphene_simd4f_mul (left, graphene_simd4f_splat (left_v * left_sign));
   right = graphene_simd4f_mul (right, graphene_simd4f_splat (right_v));
   sum = graphene_simd4f_add (left, right);
 
