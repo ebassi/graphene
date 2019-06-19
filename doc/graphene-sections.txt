@@ -56,6 +56,7 @@ graphene_euler_get_beta
 graphene_euler_get_gamma
 graphene_euler_to_vec3
 graphene_euler_to_matrix
+graphene_euler_to_quaternion
 graphene_euler_reorder
 </SECTION>
 
