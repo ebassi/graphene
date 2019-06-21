@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: MIT */
+
 #include <math.h>
 #include <string.h>
 #include <graphene.h>

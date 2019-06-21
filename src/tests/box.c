@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: MIT */
+
 #include <graphene.h>
 #include <mutest.h>
 #include <stdio.h>
