@@ -1,4 +1,6 @@
-/* graphene-box.h: A box
+/* graphene-box.h: An axis aligned bounding box
+ *
+ * SPDX-License-Identifier: MIT
  *
  * Copyright 2014  Emmanuele Bassi
  *

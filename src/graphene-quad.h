@@ -1,5 +1,7 @@
 /* graphene-quad.h: Quad
  *
+ * SPDX-License-Identifier: MIT
+ *
  * Copyright 2014  Emmanuele Bassi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy

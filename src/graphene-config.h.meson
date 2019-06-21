@@ -1,6 +1,8 @@
 /* graphene-config.h
  *
  * This is a generated file, DO NOT EDIT.
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #ifndef __GRAPHENE_CONFIG_H__

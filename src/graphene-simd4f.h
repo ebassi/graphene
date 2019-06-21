@@ -1,5 +1,7 @@
 /* graphene-simd4f.h: SIMD wrappers and operations
  *
+ * SPDX-License-Identifier: MIT
+ *
  * Copyright 2014  Emmanuele Bassi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy

@@ -1,5 +1,7 @@
 /* graphene-simd4x4f.h: 4x4 float vector operations
  *
+ * SPDX-License-Identifier: MIT
+ *
  * Copyright 2014  Emmanuele Bassi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy

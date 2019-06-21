@@ -1,5 +1,7 @@
 /* graphene-plane.c: A plane in 3D space
  *
+ * SPDX-License-Identifier: MIT
+ *
  * Copyright 2014  Emmanuele Bassi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
