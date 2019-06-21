@@ -634,6 +634,31 @@ graphene_euler_init_from_euler (graphene_euler_t       *e,
   return e;
 }
 
+/**
+ * graphene_euler_init_from_radians:
+ * @e: the #graphene_euler_t to initialize
+ * @x: rotation angle on the X axis, in radians
+ * @y: rotation angle on the Y axis, in radians
+ * @z: rotation angle on the Z axis, in radians
+ * @order: order of rotations
+ *
+ * Initializes a #graphene_euler_t using the given angles
+ * and order of rotation.
+ *
+ * Returns: (transfer none): the initialized #graphene_euler_t
+ *
+ * Since: 1.10
+ */
+graphene_euler_t *
+graphene_euler_init_from_radians (graphene_euler_t       *e,
+                                  float                   x,
+                                  float                   y,
+                                  float                   z,
+                                  graphene_euler_order_t  order)
+{
+  return graphene_euler_init_internal (e, x, y, z, order);
+}
+
 static bool
 euler_equal (const void *p1,
              const void *p2)
@@ -953,6 +978,10 @@ graphene_euler_to_matrix (const graphene_euler_t *e,
                           graphene_matrix_t      *res)
 {
   graphene_euler_order_t order = graphene_euler_get_real_order (e->order);
+
+  /* We need to use the alpha/beta/gamma accessor to account for
+   * rotations that replicate the first axis on the last
+   */
   float ai = graphene_euler_get_alpha (e);
   float aj = graphene_euler_get_beta (e);
   float ak = graphene_euler_get_gamma (e);
