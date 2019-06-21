@@ -46,6 +46,7 @@ graphene_euler_init_from_matrix
 graphene_euler_init_from_quaternion
 graphene_euler_init_from_vec3
 graphene_euler_init_from_euler
+graphene_euler_init_from_radians
 graphene_euler_equal
 graphene_euler_get_x
 graphene_euler_get_y

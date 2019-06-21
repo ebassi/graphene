@@ -169,6 +169,12 @@ graphene_euler_t *      graphene_euler_init_from_vec3           (graphene_euler_
 GRAPHENE_AVAILABLE_IN_1_2
 graphene_euler_t *      graphene_euler_init_from_euler          (graphene_euler_t            *e,
                                                                  const graphene_euler_t      *src);
+GRAPHENE_AVAILABLE_IN_1_10
+graphene_euler_t *      graphene_euler_init_from_radians        (graphene_euler_t            *e,
+                                                                 float                        x,
+                                                                 float                        y,
+                                                                 float                        z,
+                                                                 graphene_euler_order_t       order);
 
 GRAPHENE_AVAILABLE_IN_1_2
 bool                    graphene_euler_equal                    (const graphene_euler_t      *a,
