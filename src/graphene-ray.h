@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_RAY_H__
-#define __GRAPHENE_RAY_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -96,5 +95,3 @@ void                            graphene_ray_get_closest_point_to_point   (const
                                                                            graphene_point3d_t       *res);
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_RAY_H__ */

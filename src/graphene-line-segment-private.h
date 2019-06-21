@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_LINE_SEGMENT_PRIVATE_H__
-#define __GRAPHENE_LINE_SEGMENT_PRIVATE_H__
+#pragma once
 
 #include "graphene-point.h"
 
@@ -60,5 +59,3 @@ graphene_line_segment_points_on_same_side (graphene_line_segment_t  s,
 
   return false;
 }
-
-#endif /* __GRAPHENE_LINE_SEGMENT_PRIVATE_H__ */

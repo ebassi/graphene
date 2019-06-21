@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_PRIVATE_H__
-#define __GRAPHENE_PRIVATE_H__
+#pragma once
 
 #include "config.h"
 #ifdef HAVE_INIT_ONCE
@@ -180,5 +179,3 @@ graphene_pointer_equal (const void *p1,
 
   return func (p1, p2);
 }
-
-#endif /* __GRAPHENE_PRIVATE_H__ */

@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_GOBJECT_H__
-#define __GRAPHENE_GOBJECT_H__
+#pragma once
 
 #include <glib-object.h>
 #include <graphene.h>
@@ -117,5 +116,3 @@ GRAPHENE_AVAILABLE_IN_1_4
 GType graphene_ray_get_type (void);
 
 G_END_DECLS
-
-#endif /* __GRAPHENE_GOBJECT_H__ */

@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_TRIANGLE_H__
-#define __GRAPHENE_TRIANGLE_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -103,5 +102,3 @@ bool                    graphene_triangle_equal                 (const graphene_
                                                                  const graphene_triangle_t *b);
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_TRIANGLE_H__ */

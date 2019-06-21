@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_PLANE_H__
-#define __GRAPHENE_PLANE_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -97,5 +96,3 @@ GRAPHENE_AVAILABLE_IN_1_2
 float                           graphene_plane_get_constant     (const graphene_plane_t   *p);
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_PLANE_H__ */

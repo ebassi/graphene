@@ -5,8 +5,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef __GRAPHENE_CONFIG_H__
-#define __GRAPHENE_CONFIG_H__
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -98,5 +97,3 @@ typedef struct {
 #ifdef __cplusplus
 }
 #endif
-
-#endif /* __GRAPHENE_CONFIG_H__ */

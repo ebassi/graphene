@@ -32,8 +32,7 @@
  * time.
  */
 
-#ifndef __GRAPHENE_VERSION_H__
-#define __GRAPHENE_VERSION_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -68,5 +67,3 @@
  * Since: 1.0
  */
 #define GRAPHENE_MICRO_VERSION          (@GRAPHENE_MICRO_VERSION@)
-
-#endif /* __GRAPHENE_VERSION_H__ */

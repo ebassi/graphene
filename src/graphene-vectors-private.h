@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_VECTORS_PRIVATE_H__
-#define __GRAPHENE_VECTORS_PRIVATE_H__
+#pragma once
 
 #include "graphene-types.h"
 
@@ -33,5 +32,3 @@
 #include "graphene-vec4.h"
 
 #include "graphene-simd4f.h"
-
-#endif /* __GRAPHENE_VECTORS_PRIVATE_H__ */

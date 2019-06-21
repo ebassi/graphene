@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_VEC2_H__
-#define __GRAPHENE_VEC2_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -128,5 +127,3 @@ GRAPHENE_AVAILABLE_IN_1_0
 const graphene_vec2_t * graphene_vec2_y_axis            (void);
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_VECTORS_H__ */

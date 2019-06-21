@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_QUATERNION_H__
-#define __GRAPHENE_QUATERNION_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -134,5 +133,3 @@ void                    graphene_quaternion_slerp                       (const g
                                                                          graphene_quaternion_t       *res);
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_QUATERNION_H__ */

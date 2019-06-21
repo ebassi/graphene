@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_VERSION_MACROS_H__
-#define __GRAPHENE_VERSION_MACROS_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -215,5 +214,3 @@
 #else
 # define GRAPHENE_AVAILABLE_IN_1_10             _GRAPHENE_PUBLIC
 #endif
-
-#endif /* __GRAPHENE_VERSION_MACROS_H__ */

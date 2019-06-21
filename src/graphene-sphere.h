@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_SPHERE_H__
-#define __GRAPHENE_SPHERE_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -95,5 +94,3 @@ void                    graphene_sphere_translate               (const graphene_
                                                                  graphene_sphere_t        *res);
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_SPHERE_H__ */

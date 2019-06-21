@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_SIMD4X4F_H__
-#define __GRAPHENE_SIMD4X4F_H__
+#pragma once
 
 #include "graphene-simd4f.h"
 
@@ -1115,5 +1114,3 @@ graphene_simd4x4f_is_2d (const graphene_simd4x4f_t *m)
 }
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_SIMD4X4F_H__ */

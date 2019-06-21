@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_ALLOC_PRIVATE_H__
-#define __GRAPHENE_ALLOC_PRIVATE_H__
+#pragma once
 
 #include "graphene-types.h"
 
@@ -42,5 +41,3 @@ void *          graphene_aligned_alloc0 (size_t size,
 void            graphene_aligned_free   (void  *mem);
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_ALLOC_PRIVATE_H__ */

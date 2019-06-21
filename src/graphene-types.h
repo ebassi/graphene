@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_TYPES_H__
-#define __GRAPHENE_TYPES_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -86,5 +85,3 @@ typedef struct _graphene_triangle_t     graphene_triangle_t;
 typedef struct _graphene_ray_t          graphene_ray_t;
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_TYPES_H__ */

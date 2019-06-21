@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_EULER_H__
-#define __GRAPHENE_EULER_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -214,5 +213,3 @@ void                    graphene_euler_reorder                  (const graphene_
                                                                  graphene_euler_t            *res);
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_EULER_H__ */

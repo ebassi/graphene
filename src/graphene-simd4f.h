@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_SIMD4F_H__
-#define __GRAPHENE_SIMD4F_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -1858,5 +1857,3 @@ graphene_simd4f_max_val (const graphene_simd4f_t v)
 }
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_SIMD4F_H__ */

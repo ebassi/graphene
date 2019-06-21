@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_POINT3D_H__
-#define __GRAPHENE_POINT3D_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -138,5 +137,3 @@ GRAPHENE_AVAILABLE_IN_1_0
 const graphene_point3d_t *      graphene_point3d_zero                   (void);
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_POINT3D_H__ */

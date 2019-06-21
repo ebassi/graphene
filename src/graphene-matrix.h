@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_MATRIX_H__
-#define __GRAPHENE_MATRIX_H__
+#pragma once
 
 #include "graphene-types.h"
 
@@ -304,5 +303,3 @@ GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_print                   (const graphene_matrix_t  *m);
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_MATRIX_H__ */

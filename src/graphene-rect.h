@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_RECT_H__
-#define __GRAPHENE_RECT_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -199,5 +198,3 @@ void                    graphene_rect_scale             (const graphene_rect_t  
                                                          graphene_rect_t        *res);
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_RECT_H__ */

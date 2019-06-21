@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_MACROS_H__
-#define __GRAPHENE_MACROS_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -107,5 +106,3 @@ typedef int bool;
 
 #define GRAPHENE_PI             3.1415926535897932384626434f
 #define GRAPHENE_PI_2           1.5707963267948966192313217f
-
-#endif /* __GRAPHENE_MACROS_H__ */

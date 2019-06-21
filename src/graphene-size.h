@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_SIZE_H__
-#define __GRAPHENE_SIZE_H__
+#pragma once
 
 #if !defined(GRAPHENE_H_INSIDE) && !defined(GRAPHENE_COMPILATION)
 #error "Only graphene.h can be included directly."
@@ -103,5 +102,3 @@ GRAPHENE_AVAILABLE_IN_1_0
 const graphene_size_t *         graphene_size_zero              (void);
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_SIZE_H__ */

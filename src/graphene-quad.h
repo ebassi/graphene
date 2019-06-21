@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 
-#ifndef __GRAPHENE_QUAD_H__
-#define __GRAPHENE_QUAD_H__
+#pragma once
 
 #include "graphene-types.h"
 #include "graphene-point.h"
@@ -78,5 +77,3 @@ const graphene_point_t *graphene_quad_get_point         (const graphene_quad_t  
                                                          unsigned int            index_);
 
 GRAPHENE_END_DECLS
-
-#endif /* __GRAPHENE_QUAD_H__ */
