@@ -1590,21 +1590,6 @@ graphene_matrix_skew_yz (graphene_matrix_t *m,
   m->value.z = graphene_simd4f_madd (m_y, graphene_simd4f_splat (factor), m_z);
 }
 
-static inline void
-graphene_matrix_transpose_transform_vec4 (const graphene_matrix_t *m,
-                                          const graphene_vec4_t   *v,
-                                          graphene_vec4_t         *res)
-{
-  float x, y, z, w;
-
-  x = graphene_simd4f_get_x (graphene_simd4f_dot4 (m->value.x, v->value));
-  y = graphene_simd4f_get_x (graphene_simd4f_dot4 (m->value.y, v->value));
-  z = graphene_simd4f_get_x (graphene_simd4f_dot4 (m->value.z, v->value));
-  w = graphene_simd4f_get_x (graphene_simd4f_dot4 (m->value.w, v->value));
-
-  graphene_vec4_init (res, x, y, z, w);
-}
-
 /**
  * graphene_matrix_transpose:
  * @m: a #graphene_matrix_t
