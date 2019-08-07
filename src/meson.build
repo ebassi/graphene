@@ -188,7 +188,3 @@ graphene_dep = declare_dependency(
   include_directories: [ graphene_inc ],
   dependencies: [ mathlib, threadlib ] + platform_deps,
 )
-
-if get_option('tests')
-  subdir('tests')
-endif
