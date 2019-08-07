@@ -120,6 +120,11 @@ GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_vec4_max               (const graphene_vec4_t *a,
                                                          const graphene_vec4_t *b,
                                                          graphene_vec4_t       *res);
+GRAPHENE_AVAILABLE_IN_1_10
+void                    graphene_vec4_interpolate       (const graphene_vec4_t *v1,
+                                                         const graphene_vec4_t *v2,
+                                                         double                 factor,
+                                                         graphene_vec4_t       *res);
 
 GRAPHENE_AVAILABLE_IN_1_0
 float                   graphene_vec4_get_x             (const graphene_vec4_t *v);
