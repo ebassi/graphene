@@ -508,6 +508,7 @@ graphene_triangle_equal
 
 <SECTION>
 <FILE>graphene-vectors</FILE>
+<SUBSECTION 2-components vector>
 GRAPHENE_VEC2_LEN
 graphene_vec2_t
 graphene_vec2_alloc
@@ -529,13 +530,14 @@ graphene_vec2_equal
 graphene_vec2_near
 graphene_vec2_min
 graphene_vec2_max
+graphene_vec2_interpolate
 graphene_vec2_get_x
 graphene_vec2_get_y
 graphene_vec2_zero
 graphene_vec2_one
 graphene_vec2_x_axis
 graphene_vec2_y_axis
-<SUBSECTION>
+<SUBSECTION 3-components vector>
 GRAPHENE_VEC3_LEN
 graphene_vec3_t
 graphene_vec3_alloc
@@ -558,6 +560,7 @@ graphene_vec3_equal
 graphene_vec3_near
 graphene_vec3_min
 graphene_vec3_max
+graphene_vec3_interpolate
 graphene_vec3_get_x
 graphene_vec3_get_y
 graphene_vec3_get_z
@@ -571,7 +574,7 @@ graphene_vec3_one
 graphene_vec3_x_axis
 graphene_vec3_y_axis
 graphene_vec3_z_axis
-<SUBSECTION>
+<SUBSECTION 4-components vector>
 GRAPHENE_VEC4_LEN
 graphene_vec4_t
 graphene_vec4_alloc
@@ -595,6 +598,7 @@ graphene_vec4_equal
 graphene_vec4_near
 graphene_vec4_min
 graphene_vec4_max
+graphene_vec4_interpolate
 graphene_vec4_get_x
 graphene_vec4_get_y
 graphene_vec4_get_z

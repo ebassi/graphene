@@ -460,6 +460,26 @@ graphene_vec2_near (const graphene_vec2_t *v1,
   return graphene_simd4f_get_x (graphene_simd4f_dot2 (d, d)) < epsilon_sq;
 }
 
+/**
+ * graphene_vec2_interpolate:
+ * @v1: a #graphene_vec2_t
+ * @v2: a #graphene_vec2_t
+ * @factor: the interpolation factor
+ * @res: (out caller-allocates): the interpolated vector
+ *
+ * Linearly interpolates @v1 and @v2 using the given @factor.
+ *
+ * Since: 1.10
+ */
+void
+graphene_vec2_interpolate (const graphene_vec2_t *v1,
+                           const graphene_vec2_t *v2,
+                           double                 factor,
+                           graphene_vec2_t       *res)
+{
+  res->value = graphene_simd4f_interpolate (v1->value, v2->value, (float) factor);
+}
+
 enum {
   VEC2_ZERO,
   VEC2_ONE,
@@ -1137,6 +1157,26 @@ graphene_vec3_near (const graphene_vec3_t *v1,
   float epsilon_sq = epsilon * epsilon;
 
   return graphene_simd4f_dot3_scalar (d, d) < epsilon_sq;
+}
+
+/**
+ * graphene_vec3_interpolate:
+ * @v1: a #graphene_vec3_t
+ * @v2: a #graphene_vec3_t
+ * @factor: the interpolation factor
+ * @res: (out caller-allocates): the interpolated vector
+ *
+ * Linearly interpolates @v1 and @v2 using the given @factor.
+ *
+ * Since: 1.10
+ */
+void
+graphene_vec3_interpolate (const graphene_vec3_t *v1,
+                           const graphene_vec3_t *v2,
+                           double                 factor,
+                           graphene_vec3_t       *res)
+{
+  res->value = graphene_simd4f_interpolate (v1->value, v2->value, (float) factor);
 }
 
 enum {
@@ -1834,6 +1874,26 @@ graphene_vec4_near (const graphene_vec4_t *v1,
   float epsilon_sq = epsilon * epsilon;
 
   return graphene_simd4f_get_x (graphene_simd4f_dot4 (d, d)) < epsilon_sq;
+}
+
+/**
+ * graphene_vec4_interpolate:
+ * @v1: a #graphene_vec4_t
+ * @v2: a #graphene_vec4_t
+ * @factor: the interpolation factor
+ * @res: (out caller-allocates): the interpolated vector
+ *
+ * Linearly interpolates @v1 and @v2 using the given @factor.
+ *
+ * Since: 1.10
+ */
+void
+graphene_vec4_interpolate (const graphene_vec4_t *v1,
+                           const graphene_vec4_t *v2,
+                           double                 factor,
+                           graphene_vec4_t       *res)
+{
+  res->value = graphene_simd4f_interpolate (v1->value, v2->value, (float) factor);
 }
 
 enum {
