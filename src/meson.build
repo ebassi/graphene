@@ -1,38 +1,3 @@
-headers = [
-  'graphene-box.h',
-  'graphene-euler.h',
-  'graphene-frustum.h',
-  'graphene-macros.h',
-  'graphene-matrix.h',
-  'graphene-plane.h',
-  'graphene-point.h',
-  'graphene-point3d.h',
-  'graphene-quad.h',
-  'graphene-quaternion.h',
-  'graphene-ray.h',
-  'graphene-rect.h',
-  'graphene-size.h',
-  'graphene-sphere.h',
-  'graphene-triangle.h',
-  'graphene-types.h',
-  'graphene-vec2.h',
-  'graphene-vec3.h',
-  'graphene-vec4.h',
-  'graphene-version-macros.h',
-]
-
-simd_headers = [
-  'graphene-simd4f.h',
-  'graphene-simd4x4f.h',
-]
-
-private_headers = [
-  'graphene-alloc-private.h',
-  'graphene-line-segment-private.h',
-  'graphene-private.h',
-  'graphene-vectors-private.h',
-]
-
 sources = [
   'graphene-alloc.c',
   'graphene-box.c',
@@ -58,7 +23,6 @@ simd_sources = [
 ]
 
 if build_gobject
-  headers += [ 'graphene-gobject.h' ]
   sources += [ 'graphene-gobject.c' ]
 endif
 
@@ -67,30 +31,6 @@ configure_file(
   output: 'config.h',
   configuration: conf,
 )
-
-# External configuration header
-graphene_config_h = configure_file(
-  input: 'graphene-config.h.meson',
-  output: 'graphene-config.h',
-  configuration: graphene_conf,
-  install_dir: join_paths(graphene_libdir, graphene_api_path, 'include'),
-)
-
-# Version header
-version_conf = configuration_data()
-version_conf.set('GRAPHENE_VERSION', graphene_version)
-version_conf.set('GRAPHENE_MAJOR_VERSION', graphene_major_version)
-version_conf.set('GRAPHENE_MINOR_VERSION', graphene_minor_version)
-version_conf.set('GRAPHENE_MICRO_VERSION', graphene_micro_version)
-
-configure_file(
-  input: 'graphene-version.h.in',
-  output: 'graphene-version.h',
-  configuration: version_conf,
-  install_dir: join_paths(graphene_includedir, graphene_api_path),
-)
-
-install_headers(headers + simd_headers + [ 'graphene.h' ], subdir: graphene_api_path)
 
 # pkg name, extra requires
 pkgconfig_files = [
@@ -109,7 +49,8 @@ endif
 
 libgraphene = library(
   graphene_api_path,
-  sources: sources + simd_sources + private_headers,
+  include_directories: graphene_inc,
+  sources: sources + simd_sources,
   version: libversion,
   soversion: soversion,
   darwin_versions: darwin_versions,
@@ -166,7 +107,8 @@ if build_gir
   ]
 
   graphene_gir = gnome.generate_gir(libgraphene,
-    sources: [graphene_config_h] + headers + sources,
+    include_directories: graphene_inc,
+    sources: [graphene_config_h] + sources + graphene_public_headers,
     namespace: 'Graphene',
     nsversion: graphene_api_version,
     identifier_prefix: 'Graphene',
@@ -181,7 +123,6 @@ if build_gir
 endif
 
 # Dependency for tests and subproject usage
-graphene_inc = include_directories('.')
 graphene_dep = declare_dependency(
   sources: graphene_dep_sources,
   link_with: libgraphene,

@@ -359,6 +359,8 @@ graphene_simd += [ 'scalar' ]
 python3 = import('python3')
 gnome = import('gnome')
 
+subdir('include')
+
 src_inc = include_directories('src')
 subdir('src')
 
