@@ -222,7 +222,12 @@ graphene_ray_get_position_at (const graphene_ray_t *r,
  * @r: a #graphene_ray_t
  * @p: a #graphene_point3d_t
  *
- * Computes the distance from the origin of the given ray to the given point.
+ * Computes the distance of the closest approach between the
+ * given #graphene_ray_t @r and the point @p.
+ *
+ * The closest approach to a ray from a point is the distance
+ * between the point and the projection of the point on the
+ * ray itself.
  *
  * Returns: the distance of the point
  *
@@ -252,8 +257,8 @@ graphene_ray_get_distance_to_point (const graphene_ray_t     *r,
   graphene_vec3_scale (&r->direction, distance, &tmp);
   graphene_vec3_add (&tmp, &r->origin, &tmp);
 
+  /* distance */
   graphene_vec3_subtract (&tmp, &point, &tmp);
-
   return graphene_vec3_length (&tmp);
 }
 
