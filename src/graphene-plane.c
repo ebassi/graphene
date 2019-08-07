@@ -40,6 +40,7 @@
 #include "graphene-plane.h"
 
 #include "graphene-alloc-private.h"
+#include "graphene-matrix.h"
 #include "graphene-point3d.h"
 #include "graphene-vec3.h"
 #include "graphene-vec4.h"
@@ -343,4 +344,63 @@ graphene_plane_equal (const graphene_plane_t *a,
                       const graphene_plane_t *b)
 {
   return graphene_pointer_equal (a, b, plane_equal);
+}
+
+/**
+ * graphene_plane_transform:
+ * @p: a #graphene_plane_t
+ * @matrix: a #graphene_matrix_t
+ * @normal_matrix: (nullable): a #graphene_matrix_t
+ * @res: (out caller-allocates): the transformed plane
+ *
+ * Transforms a #graphene_plane_t @p using the given @matrix
+ * and @normal_matrix.
+ *
+ * If @normal_matrix is %NULL, a transformation matrix for the plane
+ * normal will be computed from @matrix. If you are transforming
+ * multiple planes using the same @matrix it's recommended to compute
+ * the normal matrix beforehand to avoid incurring in the cost of
+ * recomputing it every time.
+ *
+ * Since: 1.10
+ */
+void
+graphene_plane_transform (const graphene_plane_t  *p,
+                          const graphene_matrix_t *matrix,
+                          const graphene_matrix_t *normal_matrix,
+                          graphene_plane_t        *res)
+{
+  float constant = graphene_plane_get_constant (p);
+
+  /* Get other point on plane */
+  graphene_vec3_t coplanar_point;
+  graphene_vec3_scale (&p->normal, -constant, &coplanar_point);
+
+  graphene_vec4_t coplanar_point_v4;
+  graphene_vec4_init_from_vec3 (&coplanar_point_v4, &coplanar_point, 1.0);
+
+  /* Transform other point (including translations, so vec4) */
+  graphene_vec4_t reference_point_v4;
+  graphene_matrix_transform_vec4 (matrix, &coplanar_point_v4, &reference_point_v4);
+
+  graphene_vec3_t reference_point;
+  graphene_vec4_get_xyz (&reference_point_v4, &reference_point);
+
+  /* Transform normal */
+  graphene_matrix_t normal_m;
+  if (normal_matrix == NULL)
+    {
+      graphene_matrix_inverse (matrix, &normal_m);
+      graphene_matrix_transpose (&normal_m, &normal_m);
+    }
+  else
+    normal_m = *normal_matrix;
+
+  graphene_vec3_t normal;
+  graphene_matrix_transform_vec3 (&normal_m, &p->normal, &normal);
+  graphene_vec3_normalize (&normal, &normal);
+
+  constant = -graphene_vec3_dot (&normal, &reference_point);
+
+  graphene_plane_init (res, &normal, constant);
 }
