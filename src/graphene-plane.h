@@ -95,4 +95,10 @@ void                            graphene_plane_get_normal       (const graphene_
 GRAPHENE_AVAILABLE_IN_1_2
 float                           graphene_plane_get_constant     (const graphene_plane_t   *p);
 
+GRAPHENE_AVAILABLE_IN_1_10
+void                            graphene_plane_transform        (const graphene_plane_t   *p,
+                                                                 const graphene_matrix_t  *matrix,
+                                                                 const graphene_matrix_t  *normal_matrix,
+                                                                 graphene_plane_t         *res);
+
 GRAPHENE_END_DECLS

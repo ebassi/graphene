@@ -200,6 +200,7 @@ graphene_plane_normalize
 graphene_plane_negate
 graphene_plane_equal
 graphene_plane_distance
+graphene_plane_transform
 graphene_plane_get_normal
 graphene_plane_get_constant
 </SECTION>
