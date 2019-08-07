@@ -297,6 +297,7 @@ graphene_quaternion_equal
 graphene_quaternion_dot
 graphene_quaternion_invert
 graphene_quaternion_normalize
+graphene_quaternion_add
 graphene_quaternion_multiply
 graphene_quaternion_scale
 graphene_quaternion_slerp

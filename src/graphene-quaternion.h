@@ -139,5 +139,9 @@ GRAPHENE_AVAILABLE_IN_1_10
 void                    graphene_quaternion_scale                       (const graphene_quaternion_t *q,
                                                                          float                        factor,
                                                                          graphene_quaternion_t       *res);
+GRAPHENE_AVAILABLE_IN_1_10
+void                    graphene_quaternion_add                         (const graphene_quaternion_t *a,
+                                                                         const graphene_quaternion_t *b,
+                                                                         graphene_quaternion_t       *res);
 
 GRAPHENE_END_DECLS

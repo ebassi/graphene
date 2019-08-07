@@ -621,7 +621,8 @@ graphene_quaternion_dot (const graphene_quaternion_t *a,
  * @res: (out caller-allocates): return location for the inverted
  *   quaternion
  *
- * Inverts a #graphene_quaternion_t.
+ * Inverts a #graphene_quaternion_t, and returns the conjugate
+ * quaternion of @q.
  *
  * Since: 1.0
  */
@@ -704,4 +705,26 @@ graphene_quaternion_scale (const graphene_quaternion_t *q,
     graphene_simd4f_mul (graphene_simd4f_init (q->x, q->y, q->z, q->w),
                          graphene_simd4f_splat (factor));
   graphene_quaternion_init_from_simd4f (res, s);
+}
+
+/**
+ * graphene_quaternion_add:
+ * @a: a #graphene_quaternion_t
+ * @b: a #graphene_quaternion_t
+ * @res: (out caller-allocates): the result of the operation
+ *
+ * Adds two #graphene_quaternion_t @a and @b.
+ *
+ * Since: 1.10
+ */
+void
+graphene_quaternion_add (const graphene_quaternion_t *a,
+                         const graphene_quaternion_t *b,
+                         graphene_quaternion_t       *res)
+{
+  graphene_simd4f_t sa = graphene_simd4f_init (a->x, a->y, a->z, a->w);
+  graphene_simd4f_t sb = graphene_simd4f_init (b->x, b->y, b->z, b->w);
+  graphene_simd4f_t sr = graphene_simd4f_add (sa, sb);
+
+  graphene_quaternion_init_from_simd4f (res, sr);
 }
