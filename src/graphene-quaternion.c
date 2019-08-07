@@ -656,3 +656,52 @@ graphene_quaternion_normalize (const graphene_quaternion_t *q,
 
   graphene_quaternion_init_from_simd4f (res, v_q);
 }
+
+/**
+ * graphene_quaternion_multiply:
+ * @a: a #graphene_quaternion_t
+ * @b: a #graphene_quaternion_t
+ * @res: (out caller-allocates): the result of the operation
+ *
+ * Multiplies two #graphene_quaternion_t @a and @b.
+ *
+ * Since: 1.10
+ */
+void
+graphene_quaternion_multiply (const graphene_quaternion_t *a,
+                              const graphene_quaternion_t *b,
+                              graphene_quaternion_t       *res)
+{
+  /* See:
+   *
+   * http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
+   */
+  float x = a->x * b->w + a->w * b->x + a->y * b->z - a->z * b->y;
+  float y = a->y * b->w + a->w * b->y + a->z * b->x - a->x * b->z;
+  float z = a->z * b->w + a->w * b->z + a->x * b->y - a->y * b->x;
+  float w = a->w * b->w - a->x * b->x - a->y * b->y - a->z * b->z;
+
+  graphene_quaternion_init (res, x, y, z, w);
+}
+
+/**
+ * graphene_quaternion_scale:
+ * @q: a #graphene_quaternion_t
+ * @factor: a scaling factor
+ * @res: (out caller-allocates): the result of the operation
+ *
+ * Scales all the elements of a #graphene_quaternion_t @q using
+ * the given scalar factor.
+ *
+ * Since: 1.10
+ */
+void
+graphene_quaternion_scale (const graphene_quaternion_t *q,
+                           float                        factor,
+                           graphene_quaternion_t       *res)
+{
+  graphene_simd4f_t s =
+    graphene_simd4f_mul (graphene_simd4f_init (q->x, q->y, q->z, q->w),
+                         graphene_simd4f_splat (factor));
+  graphene_quaternion_init_from_simd4f (res, s);
+}
