@@ -32,18 +32,9 @@ configure_file(
   configuration: conf,
 )
 
-# pkg name, extra requires
-pkgconfig_files = [
-  [ graphene_api_path, [], ],
-]
-
 platform_deps = []
 
 if build_gobject
-  pkgconfig_files += [
-    [ graphene_gobject_api_path, gobject ],
-  ]
-
   platform_deps += gobject
 endif
 
@@ -67,16 +58,29 @@ foreach simd: [ 'sse2', 'gcc', 'neon', 'scalar', ]
 endforeach
 
 pkgconfig = import('pkgconfig')
-foreach p: pkgconfig_files
-  pkg_name = p[0]
-  pkg_requires = p[1]
+pkgconfig.generate(
+  libgraphene,
+  name: 'Graphene',
+  description: 'Math classes for graphic libraries',
+  url: 'https://ebassi.github.io/graphene',
+  filebase: graphene_api_path,
+  variables: [
+    'graphene_has_sse2=@0@'.format(has_sse2),
+    'graphene_has_gcc=@0@'.format(has_gcc),
+    'graphene_has_neon=@0@'.format(has_neon),
+    'graphene_has_scalar=@0@'.format(has_scalar),
+  ],
+  subdirs: graphene_api_path,
+  extra_cflags: [
+    '-I${libdir}/@0@/include'.format(graphene_api_path),
+  ] + sse2_cflags + neon_cflags,
+)
 
+if build_gobject
   pkgconfig.generate(
-    libgraphene,
-    name: 'Graphene',
-    description: 'Math classes for graphic libraries',
-    url: 'https://ebassi.github.io/graphene',
-    filebase: pkg_name,
+    name: 'Graphene-GObject',
+    description: 'GObject types for Graphene',
+    filebase: graphene_gobject_api_path,
     variables: [
       'graphene_has_sse2=@0@'.format(has_sse2),
       'graphene_has_gcc=@0@'.format(has_gcc),
@@ -84,12 +88,10 @@ foreach p: pkgconfig_files
       'graphene_has_scalar=@0@'.format(has_scalar),
     ],
     subdirs: graphene_api_path,
-    requires: pkg_requires,
-    extra_cflags: [
-      '-I${libdir}/@0@/include'.format(graphene_api_path),
-    ] + sse2_cflags + neon_cflags,
+    requires: [graphene_api_path, 'gobject-2.0'],
   )
-endforeach
+endif
+
 
 graphene_dep_sources = []
 
