@@ -362,6 +362,10 @@ gnome = import('gnome')
 src_inc = include_directories('src')
 subdir('src')
 
+if get_option('tests')
+  subdir('tests')
+endif
+
 if get_option('gtk_doc')
   subdir('doc')
 endif

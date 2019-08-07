@@ -19,6 +19,6 @@ meson test -C $builddir || {
 cpp-coveralls \
         -r . -b $builddir \
         -i src -i ../src \
-        -e src/tests -e ../src/tests \
+        -e tests -e ../tests \
         -e subprojects -e ../subprojects \
         --gcov-options='\-lp'
