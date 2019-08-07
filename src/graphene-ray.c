@@ -31,6 +31,9 @@
  * #graphene_ray_t is a structure representing a ray emitted by an origin,
  * identified by a point in 3D space, in a given direction, identified
  * by a vector with 3 components.
+ *
+ * A common use of #graphene_ray_t is ray-casting to find which objects in
+ * a 3D scene are under the coordinates of the pointer.
  */
 
 #include "graphene-private.h"
