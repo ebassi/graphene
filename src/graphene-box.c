@@ -704,12 +704,15 @@ void
 graphene_box_get_bounding_sphere (const graphene_box_t *box,
                                   graphene_sphere_t    *sphere)
 {
+  graphene_point3d_t center;
   graphene_vec3_t size;
 
-  graphene_vec3_subtract (&box->max, &box->min, &size);
+  graphene_box_get_center (box, &center);
 
-  graphene_vec3_scale (&size, 0.5f, &sphere->center);
-  sphere->radius = graphene_vec3_length (&size) * 0.5f;
+  graphene_box_get_size (box, &size);
+  float radius = graphene_vec3_length (&size) * 0.5f;
+
+  graphene_sphere_init (sphere, &center, radius);
 }
 
 enum {
