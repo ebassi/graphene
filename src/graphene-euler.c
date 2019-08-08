@@ -141,7 +141,8 @@ enum {
   RZYZ
 };
 
-struct axis_param {
+struct axis_param
+{
   /* The initial axis in the permutation */
   int first_axis;
   /* Parity of the axis permutation (false for even, true for odd) */
@@ -237,7 +238,7 @@ euler_to_matrix (float                    ai,
   float m[16];
 
 /* Our matrices are row major */
-#define M(m,r,c) (m)[((r) << 2) + (c)]
+#define M(m, r, c) (m)[((r) << 2) + (c)]
 
   /* We need to construct the matrix from float values instead
    * of SIMD vectors because the access is parametrised on the
@@ -295,10 +296,11 @@ matrix_to_euler (const graphene_matrix_t *matrix,
    * lane access.
    */
   float m[16];
+
   graphene_matrix_to_float (matrix, m);
 
 /* Our matrices are row major */
-#define M(m,r,c) (m)[((r) << 2) + (c)]
+#define M(m, r, c) (m)[((r) << 2) + (c)]
 
   float ax, ay, az;
   if (params->repetition)
@@ -1010,6 +1012,7 @@ graphene_euler_to_quaternion (const graphene_euler_t *e,
 
   float ci, cj, ck;
   float si, sj, sk;
+
   graphene_sincos (ti, &si, &ci);
   graphene_sincos (tj, &sj, &cj);
   graphene_sincos (tk, &sk, &ck);

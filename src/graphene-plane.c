@@ -374,6 +374,7 @@ graphene_plane_transform (const graphene_plane_t  *p,
 
   /* Get other point on plane */
   graphene_vec3_t coplanar_point;
+
   graphene_vec3_scale (&p->normal, -constant, &coplanar_point);
 
   graphene_vec4_t coplanar_point_v4;
