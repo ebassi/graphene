@@ -192,20 +192,42 @@ box_center (mutest_spec_t *spec)
 {
   graphene_point3d_t zero = GRAPHENE_POINT3D_INIT (0.0f, 0.0f, 0.0f);
   graphene_point3d_t half = GRAPHENE_POINT3D_INIT (0.5f, 0.5f, 0.5f);
+  graphene_point3d_t minus_half = GRAPHENE_POINT3D_INIT (-0.5f, -0.5f, -0.5f);
   graphene_point3d_t center;
   graphene_box_t b;
 
   graphene_box_init_from_box (&b, graphene_box_zero ());
   graphene_box_get_center (&b, &center);
-  mutest_expect ("box(zero).center() is (0, 0, 0)",
+  mutest_expect ("box(zero).center() to be in (0, 0, 0)",
                  mutest_bool_value (graphene_point3d_equal (&center, &zero)),
                  mutest_to_be_true,
                  NULL);
 
   graphene_box_init_from_box (&b, graphene_box_one ());
   graphene_box_get_center (&b, &center);
-  mutest_expect ("box(1).center() is (0.5, 0.5, 0.5)",
-                 mutest_bool_value (graphene_point3d_equal (&center, &half)),
+  mutest_expect ("box(1).center() to be in (0.5, 0.5, 0.5)",
+                 mutest_bool_value (graphene_point3d_near (&center, &half, 0.0001f)),
+                 mutest_to_be_true,
+                 NULL);
+
+  graphene_box_init_from_box (&b, graphene_box_one_minus_one ());
+  graphene_box_get_center (&b, &center);
+  mutest_expect ("box(1, -1).center() to be in (0, 0, 0)",
+                 mutest_bool_value (graphene_point3d_near (&center, &zero, 0.0001f)),
+                 mutest_to_be_true,
+                 NULL);
+
+  graphene_box_init_from_box (&b, graphene_box_minus_one ());
+  graphene_box_get_center (&b, &center);
+  mutest_expect ("box(-1).center() to be in (-0.5, -0.5, -0.5)",
+                 mutest_bool_value (graphene_point3d_near (&center, &minus_half, 0.0001f)),
+                 mutest_to_be_true,
+                 NULL);
+
+  graphene_box_init_from_box (&b, graphene_box_empty ());
+  graphene_box_get_center (&b, &center);
+  mutest_expect ("box(empty).center() to be in (0, 0, 0)",
+                 mutest_bool_value (graphene_point3d_equal (&center, &zero)),
                  mutest_to_be_true,
                  NULL);
 }
