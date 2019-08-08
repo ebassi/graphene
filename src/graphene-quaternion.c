@@ -247,15 +247,15 @@ graphene_quaternion_to_matrix (const graphene_quaternion_t *q,
                                graphene_matrix_t           *m)
 {
   m->value.x = graphene_simd4f_init (1.f - 2.f * (q->y * q->y + q->z * q->z),
-                                           2.f * (q->x * q->y + q->w * q->z),
-                                           2.f * (q->x * q->z - q->w * q->y),
+                                     2.f * (q->x * q->y + q->w * q->z),
+                                     2.f * (q->x * q->z - q->w * q->y),
                                      0.f);
-  m->value.y = graphene_simd4f_init (      2.f * (q->x * q->y - q->w * q->z),
+  m->value.y = graphene_simd4f_init (2.f * (q->x * q->y - q->w * q->z),
                                      1.f - 2.f * (q->x * q->x + q->z * q->z),
-                                           2.f * (q->y * q->z + q->w * q->x),
+                                     2.f * (q->y * q->z + q->w * q->x),
                                      0.f);
-  m->value.z = graphene_simd4f_init (      2.f * (q->x * q->z + q->w * q->y),
-                                           2.f * (q->y * q->z - q->w * q->x),
+  m->value.z = graphene_simd4f_init (2.f * (q->x * q->z + q->w * q->y),
+                                     2.f * (q->y * q->z - q->w * q->x),
                                      1.f - 2.f * (q->x * q->x + q->y * q->y),
                                      0.f);
   m->value.w = graphene_simd4f_init (0.f, 0.f, 0.f, 1.f);
@@ -704,6 +704,7 @@ graphene_quaternion_scale (const graphene_quaternion_t *q,
   graphene_simd4f_t s =
     graphene_simd4f_mul (graphene_simd4f_init (q->x, q->y, q->z, q->w),
                          graphene_simd4f_splat (factor));
+
   graphene_quaternion_init_from_simd4f (res, s);
 }
 

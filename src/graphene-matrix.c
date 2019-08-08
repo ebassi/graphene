@@ -926,7 +926,7 @@ graphene_matrix_transform_rect (const graphene_matrix_t *m,
 {
   graphene_point_t ret[4];
 
-#define TRANSFORM_POINT(matrix,rect,corner,out_p)   do { \
+#define TRANSFORM_POINT(matrix, rect, corner, out_p)   do {\
   graphene_simd4f_t __s; \
   graphene_point_t __p; \
   graphene_rect_get_ ## corner (rect, &__p); \
@@ -968,7 +968,7 @@ graphene_matrix_transform_bounds (const graphene_matrix_t *m,
   float min_x, min_y;
   float max_x, max_y;
 
-#define TRANSFORM_POINT(matrix,rect,corner,out_p)   do { \
+#define TRANSFORM_POINT(matrix, rect, corner, out_p)   do {\
   graphene_simd4f_t __s; \
   graphene_point_t __p; \
   graphene_rect_get_ ## corner (rect, &__p); \
@@ -1855,8 +1855,8 @@ matrix_decompose_2d (const graphene_matrix_t *m,
       double m11 = row0x, m12 = row0y;
       double m21 = row1x, m22 = row1y;
 
-      row0x = (float) ( cs * m11 + sn * m21);
-      row0y = (float) ( cs * m12 + sn * m22);
+      row0x = (float) (cs * m11 + sn * m21);
+      row0y = (float) (cs * m12 + sn * m22);
       row1x = (float) (-sn * m11 + cs * m21);
       row1y = (float) (-sn * m12 + cs * m22);
     }
@@ -2198,7 +2198,7 @@ graphene_matrix_print (const graphene_matrix_t *m)
  * graphene_matrix_near:
  * @a: a #graphene_matrix_t
  * @b: a #graphene_matrix_t
- * @epsilon: the threshold between the two matrices 
+ * @epsilon: the threshold between the two matrices
  *
  * Compares the two given #graphene_matrix_t matrices and checks
  * whether their values are within the given @epsilon of each
