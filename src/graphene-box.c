@@ -492,7 +492,12 @@ void
 graphene_box_get_size (const graphene_box_t *box,
                        graphene_vec3_t      *size)
 {
-  size->value = graphene_simd4f_sub (box->max.value, box->min.value);
+  if (graphene_box_is_empty (box))
+    size->value = graphene_simd4f_init_zero ();
+  else if (graphene_box_is_infinity (box))
+    size->value = graphene_simd4f_init (INFINITY, INFINITY, INFINITY, 0.f);
+  else
+    size->value = graphene_simd4f_sub (box->max.value, box->min.value);
 }
 
 /**
@@ -510,6 +515,12 @@ graphene_box_get_center (const graphene_box_t *box,
                          graphene_point3d_t   *center)
 {
   graphene_vec3_t res;
+
+  if (graphene_box_is_empty (box) || graphene_box_is_infinity (box))
+    {
+      graphene_point3d_init (center, 0.f, 0.f, 0.f);
+      return;
+    }
 
   graphene_vec3_subtract (&box->max, &box->min, &res);
   graphene_vec3_scale (&res, 0.5f, &res);
@@ -595,6 +606,12 @@ bool
 graphene_box_contains_point (const graphene_box_t     *box,
                              const graphene_point3d_t *point)
 {
+  if (graphene_box_is_empty (box))
+    return false;
+
+  if (graphene_box_is_infinity (box))
+    return true;
+
   graphene_simd4f_t p = graphene_simd4f_init (point->x, point->y, point->z, 0.f);
 
   if (graphene_simd4f_cmp_ge (p, box->min.value) &&
@@ -620,6 +637,12 @@ bool
 graphene_box_contains_box (const graphene_box_t *a,
                            const graphene_box_t *b)
 {
+  if (graphene_box_is_empty (a) || graphene_box_is_infinity (b))
+    return false;
+
+  if (graphene_box_is_infinity (a) || graphene_box_is_empty (b))
+    return true;
+
   /* we cheat a bit and access the SIMD directly */
   if (graphene_simd4f_cmp_ge (b->min.value, a->min.value) &&
       graphene_simd4f_cmp_le (b->max.value, a->max.value))
