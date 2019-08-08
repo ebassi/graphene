@@ -193,6 +193,14 @@
 </tr>
 <tr>
 <td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Vectors.html#graphene-vec2-interpolate" title="graphene_vec2_interpolate ()">graphene_vec2_interpolate</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
 <span class="returnvalue">float</span>
 </td>
 <td class="function_name">
@@ -393,6 +401,14 @@
 </td>
 <td class="function_name">
 <a class="link" href="graphene-Vectors.html#graphene-vec3-max" title="graphene_vec3_max ()">graphene_vec3_max</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Vectors.html#graphene-vec3-interpolate" title="graphene_vec3_interpolate ()">graphene_vec3_interpolate</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
@@ -660,6 +676,14 @@
 </td>
 <td class="function_name">
 <a class="link" href="graphene-Vectors.html#graphene-vec4-max" title="graphene_vec4_max ()">graphene_vec4_max</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Vectors.html#graphene-vec4-interpolate" title="graphene_vec4_interpolate ()">graphene_vec4_interpolate</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
@@ -1484,6 +1508,52 @@ values of each component into <em class="parameter"><code>res</code></em>
 </div>
 <hr>
 <div class="refsect2">
+<a name="graphene-vec2-interpolate"></a><h3>graphene_vec2_interpolate ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_vec2_interpolate (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *v1</code></em>,
+                           <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *v2</code></em>,
+                           <em class="parameter"><code><span class="type">double</span> factor</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *res</code></em>);</pre>
+<p>Linearly interpolates <em class="parameter"><code>v1</code></em>
+ and <em class="parameter"><code>v2</code></em>
+ using the given <em class="parameter"><code>factor</code></em>
+.</p>
+<div class="refsect3">
+<a name="graphene-vec2-interpolate.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>v1</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v2</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>factor</p></td>
+<td class="parameter_description"><p>the interpolation factor</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p>the interpolated vector. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
 <a name="graphene-vec2-get-x"></a><h3>graphene_vec2_get_x ()</h3>
 <pre class="programlisting"><span class="returnvalue">float</span>
 graphene_vec2_get_x (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a> *v</code></em>);</pre>
@@ -2296,6 +2366,52 @@ vector that contains the maximum values.</p>
 </table></div>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-vec3-interpolate"></a><h3>graphene_vec3_interpolate ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_vec3_interpolate (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *v1</code></em>,
+                           <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *v2</code></em>,
+                           <em class="parameter"><code><span class="type">double</span> factor</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *res</code></em>);</pre>
+<p>Linearly interpolates <em class="parameter"><code>v1</code></em>
+ and <em class="parameter"><code>v2</code></em>
+ using the given <em class="parameter"><code>factor</code></em>
+.</p>
+<div class="refsect3">
+<a name="graphene-vec3-interpolate.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>v1</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v2</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>factor</p></td>
+<td class="parameter_description"><p>the interpolation factor</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p>the interpolated vector. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3397,6 +3513,52 @@ vector that contains the maximum values.</p>
 </div>
 <hr>
 <div class="refsect2">
+<a name="graphene-vec4-interpolate"></a><h3>graphene_vec4_interpolate ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_vec4_interpolate (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v1</code></em>,
+                           <em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v2</code></em>,
+                           <em class="parameter"><code><span class="type">double</span> factor</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *res</code></em>);</pre>
+<p>Linearly interpolates <em class="parameter"><code>v1</code></em>
+ and <em class="parameter"><code>v2</code></em>
+ using the given <em class="parameter"><code>factor</code></em>
+.</p>
+<div class="refsect3">
+<a name="graphene-vec4-interpolate.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>v1</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>v2</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>factor</p></td>
+<td class="parameter_description"><p>the interpolation factor</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p>the interpolated vector. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
 <a name="graphene-vec4-get-x"></a><h3>graphene_vec4_get_x ()</h3>
 <pre class="programlisting"><span class="returnvalue">float</span>
 graphene_vec4_get_x (<em class="parameter"><code>const <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *v</code></em>);</pre>
@@ -3659,6 +3821,33 @@ components set to (0, 0, 0, 1).</p>
 <pre class="programlisting">#define GRAPHENE_VEC2_LEN       2
 </pre>
 <p>Evaluates to the number of components of a <a class="link" href="graphene-Vectors.html#graphene-vec2-t" title="graphene_vec2_t"><span class="type">graphene_vec2_t</span></a>.</p>
+<p>This symbol is useful when declaring a C array of floating
+point values to be used with <a class="link" href="graphene-Vectors.html#graphene-vec2-init-from-float" title="graphene_vec2_init_from_float ()"><code class="function">graphene_vec2_init_from_float()</code></a> and
+<a class="link" href="graphene-Vectors.html#graphene-vec2-to-float" title="graphene_vec2_to_float ()"><code class="function">graphene_vec2_to_float()</code></a>, e.g.</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="type">float</span><span class="normal"> v</span><span class="symbol">[</span><span class="normal"><a href="graphene-Vectors.html#GRAPHENE-VEC2-LEN:CAPS">GRAPHENE_VEC2_LEN</a></span><span class="symbol">];</span>
+
+<span class="comment">// vec is defined elsewhere</span>
+<span class="function"><a href="graphene-Vectors.html#graphene-vec2-to-float">graphene_vec2_to_float</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">vec</span><span class="symbol">,</span><span class="normal"> v</span><span class="symbol">);</span>
+
+<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> <a href="graphene-Vectors.html#GRAPHENE-VEC2-LEN:CAPS">GRAPHENE_VEC2_LEN</a></span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span>
+<span class="normal">  </span><span class="function">fprintf</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">stdout</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"component %d: %g</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> i</span><span class="symbol">,</span><span class="normal"> v</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">]);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
@@ -3677,6 +3866,33 @@ never be accessed directly.</p>
 <pre class="programlisting">#define GRAPHENE_VEC3_LEN       3
 </pre>
 <p>Evaluates to the number of components of a <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>.</p>
+<p>This symbol is useful when declaring a C array of floating
+point values to be used with <a class="link" href="graphene-Vectors.html#graphene-vec3-init-from-float" title="graphene_vec3_init_from_float ()"><code class="function">graphene_vec3_init_from_float()</code></a> and
+<a class="link" href="graphene-Vectors.html#graphene-vec3-to-float" title="graphene_vec3_to_float ()"><code class="function">graphene_vec3_to_float()</code></a>, e.g.</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="type">float</span><span class="normal"> v</span><span class="symbol">[</span><span class="normal"><a href="graphene-Vectors.html#GRAPHENE-VEC3-LEN:CAPS">GRAPHENE_VEC3_LEN</a></span><span class="symbol">];</span>
+
+<span class="comment">// vec is defined elsewhere</span>
+<span class="function"><a href="graphene-Vectors.html#graphene-vec3-to-float">graphene_vec3_to_float</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">vec</span><span class="symbol">,</span><span class="normal"> v</span><span class="symbol">);</span>
+
+<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> <a href="graphene-Vectors.html#GRAPHENE-VEC2-LEN:CAPS">GRAPHENE_VEC2_LEN</a></span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span>
+<span class="normal">  </span><span class="function">fprintf</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">stdout</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"component %d: %g</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> i</span><span class="symbol">,</span><span class="normal"> v</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">]);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
@@ -3695,6 +3911,33 @@ never be accessed directly.</p>
 <pre class="programlisting">#define GRAPHENE_VEC4_LEN       4
 </pre>
 <p>Evaluates to the number of components of a <a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a>.</p>
+<p>This symbol is useful when declaring a C array of floating
+point values to be used with <a class="link" href="graphene-Vectors.html#graphene-vec4-init-from-float" title="graphene_vec4_init_from_float ()"><code class="function">graphene_vec4_init_from_float()</code></a> and
+<a class="link" href="graphene-Vectors.html#graphene-vec4-to-float" title="graphene_vec4_to_float ()"><code class="function">graphene_vec4_to_float()</code></a>, e.g.</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="type">float</span><span class="normal"> v</span><span class="symbol">[</span><span class="normal"><a href="graphene-Vectors.html#GRAPHENE-VEC4-LEN:CAPS">GRAPHENE_VEC4_LEN</a></span><span class="symbol">];</span>
+
+<span class="comment">// vec is defined elsewhere</span>
+<span class="function"><a href="graphene-Vectors.html#graphene-vec4-to-float">graphene_vec4_to_float</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">vec</span><span class="symbol">,</span><span class="normal"> v</span><span class="symbol">);</span>
+
+<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> <a href="graphene-Vectors.html#GRAPHENE-VEC4-LEN:CAPS">GRAPHENE_VEC4_LEN</a></span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span>
+<span class="normal">  </span><span class="function">fprintf</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">stdout</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"component %d: %g</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> i</span><span class="symbol">,</span><span class="normal"> v</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">]);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>

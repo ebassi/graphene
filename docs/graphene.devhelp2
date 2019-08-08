@@ -28,6 +28,7 @@
     <sub name="Index of new symbols in 1.2" link="ix04.html"/>
     <sub name="Index of new symbols in 1.4" link="ix05.html"/>
     <sub name="Index of new symbols in 1.6" link="ix06.html"/>
+    <sub name="Index of new symbols in 1.10" link="ix07.html"/>
     <sub name="Annotation Glossary" link="annotation-glossary.html"/>
   </chapters>
   <functions>
@@ -93,6 +94,7 @@
     <keyword type="function" name="graphene_rect_get_y ()" link="graphene-Rectangle.html#graphene-rect-get-y" since="1.0"/>
     <keyword type="function" name="graphene_rect_get_width ()" link="graphene-Rectangle.html#graphene-rect-get-width" since="1.0"/>
     <keyword type="function" name="graphene_rect_get_height ()" link="graphene-Rectangle.html#graphene-rect-get-height" since="1.0"/>
+    <keyword type="function" name="graphene_rect_get_area ()" link="graphene-Rectangle.html#graphene-rect-get-area" since="1.10"/>
     <keyword type="function" name="graphene_rect_get_vertices ()" link="graphene-Rectangle.html#graphene-rect-get-vertices" since="1.4"/>
     <keyword type="function" name="graphene_rect_union ()" link="graphene-Rectangle.html#graphene-rect-union" since="1.0"/>
     <keyword type="function" name="graphene_rect_intersection ()" link="graphene-Rectangle.html#graphene-rect-intersection" since="1.0"/>
@@ -103,10 +105,13 @@
     <keyword type="function" name="graphene_rect_inset ()" link="graphene-Rectangle.html#graphene-rect-inset" since="1.0"/>
     <keyword type="function" name="graphene_rect_inset_r ()" link="graphene-Rectangle.html#graphene-rect-inset-r" since="1.4"/>
     <keyword type="function" name="graphene_rect_round_to_pixel ()" link="graphene-Rectangle.html#graphene-rect-round-to-pixel" deprecated="1.4: Use graphene_rect_round() instead" since="1.0"/>
-    <keyword type="function" name="graphene_rect_round ()" link="graphene-Rectangle.html#graphene-rect-round" since="1.4"/>
+    <keyword type="function" name="graphene_rect_round ()" link="graphene-Rectangle.html#graphene-rect-round" deprecated="1.10: Use graphene_rect_round_extents() instead" since="1.4"/>
+    <keyword type="function" name="graphene_rect_round_extents ()" link="graphene-Rectangle.html#graphene-rect-round-extents" since="1.10"/>
     <keyword type="function" name="graphene_rect_expand ()" link="graphene-Rectangle.html#graphene-rect-expand" since="1.4"/>
     <keyword type="function" name="graphene_rect_interpolate ()" link="graphene-Rectangle.html#graphene-rect-interpolate" since="1.0"/>
     <keyword type="function" name="graphene_rect_zero ()" link="graphene-Rectangle.html#graphene-rect-zero" since="1.4"/>
+    <keyword type="function" name="graphene_rect_scale ()" link="graphene-Rectangle.html#graphene-rect-scale" since="1.10"/>
+    <keyword type="macro" name="GRAPHENE_RECT_INIT_ZERO" link="graphene-Rectangle.html#GRAPHENE-RECT-INIT-ZERO:CAPS" since="1.10"/>
     <keyword type="struct" name="graphene_rect_t" link="graphene-Rectangle.html#graphene-rect-t" since="1.0"/>
     <keyword type="function" name="graphene_quad_alloc ()" link="graphene-Quad.html#graphene-quad-alloc" since="1.0"/>
     <keyword type="function" name="graphene_quad_free ()" link="graphene-Quad.html#graphene-quad-free" since="1.0"/>
@@ -304,6 +309,7 @@
     <keyword type="function" name="graphene_vec2_near ()" link="graphene-Vectors.html#graphene-vec2-near" since="1.2"/>
     <keyword type="function" name="graphene_vec2_min ()" link="graphene-Vectors.html#graphene-vec2-min" since="1.0"/>
     <keyword type="function" name="graphene_vec2_max ()" link="graphene-Vectors.html#graphene-vec2-max" since="1.0"/>
+    <keyword type="function" name="graphene_vec2_interpolate ()" link="graphene-Vectors.html#graphene-vec2-interpolate" since="1.10"/>
     <keyword type="function" name="graphene_vec2_get_x ()" link="graphene-Vectors.html#graphene-vec2-get-x" since="1.0"/>
     <keyword type="function" name="graphene_vec2_get_y ()" link="graphene-Vectors.html#graphene-vec2-get-y" since="1.0"/>
     <keyword type="function" name="graphene_vec2_zero ()" link="graphene-Vectors.html#graphene-vec2-zero" since="1.0"/>
@@ -330,6 +336,7 @@
     <keyword type="function" name="graphene_vec3_near ()" link="graphene-Vectors.html#graphene-vec3-near" since="1.2"/>
     <keyword type="function" name="graphene_vec3_min ()" link="graphene-Vectors.html#graphene-vec3-min" since="1.0"/>
     <keyword type="function" name="graphene_vec3_max ()" link="graphene-Vectors.html#graphene-vec3-max" since="1.0"/>
+    <keyword type="function" name="graphene_vec3_interpolate ()" link="graphene-Vectors.html#graphene-vec3-interpolate" since="1.10"/>
     <keyword type="function" name="graphene_vec3_get_x ()" link="graphene-Vectors.html#graphene-vec3-get-x" since="1.0"/>
     <keyword type="function" name="graphene_vec3_get_y ()" link="graphene-Vectors.html#graphene-vec3-get-y" since="1.0"/>
     <keyword type="function" name="graphene_vec3_get_z ()" link="graphene-Vectors.html#graphene-vec3-get-z" since="1.0"/>
@@ -364,6 +371,7 @@
     <keyword type="function" name="graphene_vec4_near ()" link="graphene-Vectors.html#graphene-vec4-near" since="1.2"/>
     <keyword type="function" name="graphene_vec4_min ()" link="graphene-Vectors.html#graphene-vec4-min" since="1.0"/>
     <keyword type="function" name="graphene_vec4_max ()" link="graphene-Vectors.html#graphene-vec4-max" since="1.0"/>
+    <keyword type="function" name="graphene_vec4_interpolate ()" link="graphene-Vectors.html#graphene-vec4-interpolate" since="1.10"/>
     <keyword type="function" name="graphene_vec4_get_x ()" link="graphene-Vectors.html#graphene-vec4-get-x" since="1.0"/>
     <keyword type="function" name="graphene_vec4_get_y ()" link="graphene-Vectors.html#graphene-vec4-get-y" since="1.0"/>
     <keyword type="function" name="graphene_vec4_get_z ()" link="graphene-Vectors.html#graphene-vec4-get-z" since="1.0"/>
@@ -437,10 +445,16 @@
     <keyword type="function" name="graphene_matrix_inverse ()" link="graphene-Matrix.html#graphene-matrix-inverse" since="1.0"/>
     <keyword type="function" name="graphene_matrix_perspective ()" link="graphene-Matrix.html#graphene-matrix-perspective" since="1.0"/>
     <keyword type="function" name="graphene_matrix_normalize ()" link="graphene-Matrix.html#graphene-matrix-normalize" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_get_x_translation ()" link="graphene-Matrix.html#graphene-matrix-get-x-translation" since="1.10"/>
+    <keyword type="function" name="graphene_matrix_get_y_translation ()" link="graphene-Matrix.html#graphene-matrix-get-y-translation" since="1.10"/>
+    <keyword type="function" name="graphene_matrix_get_z_translation ()" link="graphene-Matrix.html#graphene-matrix-get-z-translation" since="1.10"/>
     <keyword type="function" name="graphene_matrix_get_x_scale ()" link="graphene-Matrix.html#graphene-matrix-get-x-scale" since="1.0"/>
     <keyword type="function" name="graphene_matrix_get_y_scale ()" link="graphene-Matrix.html#graphene-matrix-get-y-scale" since="1.0"/>
     <keyword type="function" name="graphene_matrix_get_z_scale ()" link="graphene-Matrix.html#graphene-matrix-get-z-scale" since="1.0"/>
     <keyword type="function" name="graphene_matrix_interpolate ()" link="graphene-Matrix.html#graphene-matrix-interpolate" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_equal ()" link="graphene-Matrix.html#graphene-matrix-equal" since="1.10"/>
+    <keyword type="function" name="graphene_matrix_equal_fast ()" link="graphene-Matrix.html#graphene-matrix-equal-fast" since="1.10"/>
+    <keyword type="function" name="graphene_matrix_near ()" link="graphene-Matrix.html#graphene-matrix-near" since="1.10"/>
     <keyword type="function" name="graphene_matrix_print ()" link="graphene-Matrix.html#graphene-matrix-print" since="1.0"/>
     <keyword type="struct" name="graphene_matrix_t" link="graphene-Matrix.html#graphene-matrix-t"/>
     <keyword type="function" name="graphene_euler_alloc ()" link="graphene-Euler.html#graphene-euler-alloc" since="1.2"/>
@@ -451,13 +465,18 @@
     <keyword type="function" name="graphene_euler_init_from_quaternion ()" link="graphene-Euler.html#graphene-euler-init-from-quaternion" since="1.2"/>
     <keyword type="function" name="graphene_euler_init_from_vec3 ()" link="graphene-Euler.html#graphene-euler-init-from-vec3" since="1.2"/>
     <keyword type="function" name="graphene_euler_init_from_euler ()" link="graphene-Euler.html#graphene-euler-init-from-euler" since="1.2"/>
+    <keyword type="function" name="graphene_euler_init_from_radians ()" link="graphene-Euler.html#graphene-euler-init-from-radians" since="1.10"/>
     <keyword type="function" name="graphene_euler_equal ()" link="graphene-Euler.html#graphene-euler-equal" since="1.2"/>
     <keyword type="function" name="graphene_euler_get_x ()" link="graphene-Euler.html#graphene-euler-get-x" since="1.2"/>
     <keyword type="function" name="graphene_euler_get_y ()" link="graphene-Euler.html#graphene-euler-get-y" since="1.2"/>
     <keyword type="function" name="graphene_euler_get_z ()" link="graphene-Euler.html#graphene-euler-get-z" since="1.2"/>
     <keyword type="function" name="graphene_euler_get_order ()" link="graphene-Euler.html#graphene-euler-get-order" since="1.2"/>
+    <keyword type="function" name="graphene_euler_get_alpha ()" link="graphene-Euler.html#graphene-euler-get-alpha" since="1.10"/>
+    <keyword type="function" name="graphene_euler_get_beta ()" link="graphene-Euler.html#graphene-euler-get-beta" since="1.10"/>
+    <keyword type="function" name="graphene_euler_get_gamma ()" link="graphene-Euler.html#graphene-euler-get-gamma" since="1.10"/>
     <keyword type="function" name="graphene_euler_to_vec3 ()" link="graphene-Euler.html#graphene-euler-to-vec3" since="1.2"/>
     <keyword type="function" name="graphene_euler_to_matrix ()" link="graphene-Euler.html#graphene-euler-to-matrix" since="1.2"/>
+    <keyword type="function" name="graphene_euler_to_quaternion ()" link="graphene-Euler.html#graphene-euler-to-quaternion" since="1.10"/>
     <keyword type="function" name="graphene_euler_reorder ()" link="graphene-Euler.html#graphene-euler-reorder" since="1.2"/>
     <keyword type="struct" name="graphene_euler_t" link="graphene-Euler.html#graphene-euler-t" since="1.2"/>
     <keyword type="enum" name="enum graphene_euler_order_t" link="graphene-Euler.html#graphene-euler-order-t" since="1.2"/>
@@ -481,6 +500,9 @@
     <keyword type="function" name="graphene_quaternion_dot ()" link="graphene-Quaternion.html#graphene-quaternion-dot" since="1.0"/>
     <keyword type="function" name="graphene_quaternion_invert ()" link="graphene-Quaternion.html#graphene-quaternion-invert" since="1.0"/>
     <keyword type="function" name="graphene_quaternion_normalize ()" link="graphene-Quaternion.html#graphene-quaternion-normalize" since="1.0"/>
+    <keyword type="function" name="graphene_quaternion_add ()" link="graphene-Quaternion.html#graphene-quaternion-add" since="1.10"/>
+    <keyword type="function" name="graphene_quaternion_multiply ()" link="graphene-Quaternion.html#graphene-quaternion-multiply" since="1.10"/>
+    <keyword type="function" name="graphene_quaternion_scale ()" link="graphene-Quaternion.html#graphene-quaternion-scale" since="1.10"/>
     <keyword type="function" name="graphene_quaternion_slerp ()" link="graphene-Quaternion.html#graphene-quaternion-slerp" since="1.0"/>
     <keyword type="struct" name="graphene_quaternion_t" link="graphene-Quaternion.html#graphene-quaternion-t" since="1.0"/>
     <keyword type="function" name="graphene_plane_alloc ()" link="graphene-Plane.html#graphene-plane-alloc" since="1.2"/>
@@ -494,6 +516,7 @@
     <keyword type="function" name="graphene_plane_negate ()" link="graphene-Plane.html#graphene-plane-negate" since="1.2"/>
     <keyword type="function" name="graphene_plane_equal ()" link="graphene-Plane.html#graphene-plane-equal" since="1.2"/>
     <keyword type="function" name="graphene_plane_distance ()" link="graphene-Plane.html#graphene-plane-distance" since="1.2"/>
+    <keyword type="function" name="graphene_plane_transform ()" link="graphene-Plane.html#graphene-plane-transform" since="1.10"/>
     <keyword type="function" name="graphene_plane_get_normal ()" link="graphene-Plane.html#graphene-plane-get-normal" since="1.2"/>
     <keyword type="function" name="graphene_plane_get_constant ()" link="graphene-Plane.html#graphene-plane-get-constant" since="1.2"/>
     <keyword type="struct" name="graphene_plane_t" link="graphene-Plane.html#graphene-plane-t" since="1.2"/>
@@ -520,6 +543,30 @@
     <keyword type="constant" name="GRAPHENE_EULER_ORDER_XZY" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-XZY:CAPS"/>
     <keyword type="constant" name="GRAPHENE_EULER_ORDER_YXZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-YXZ:CAPS"/>
     <keyword type="constant" name="GRAPHENE_EULER_ORDER_ZYX" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-ZYX:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_SXYZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-SXYZ:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_SXYX" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-SXYX:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_SXZY" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-SXZY:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_SXZX" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-SXZX:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_SYZX" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-SYZX:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_SYZY" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-SYZY:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_SYXZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-SYXZ:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_SYXY" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-SYXY:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_SZXY" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-SZXY:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_SZXZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-SZXZ:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_SZYX" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-SZYX:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_SZYZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-SZYZ:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_RZYX" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RZYX:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_RXYX" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RXYX:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_RYZX" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RYZX:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_RXZX" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RXZX:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_RXZY" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RXZY:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_RYZY" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RYZY:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_RZXY" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RZXY:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_RYXY" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RYXY:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_RYXZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RYXZ:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_RZXZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RZXZ:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_RXYZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RXYZ:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_EULER_ORDER_RZYZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RZYZ:CAPS"/>
     <keyword type="member" name="graphene-point-t.x" link="graphene-Point.html#graphene-point-t.x"/>
     <keyword type="member" name="graphene-point-t.y" link="graphene-Point.html#graphene-point-t.y"/>
     <keyword type="member" name="graphene-point3d-t.x" link="graphene-Point3D.html#graphene-point3d-t.x"/>

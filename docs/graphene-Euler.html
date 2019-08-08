@@ -105,6 +105,14 @@
 </tr>
 <tr>
 <td class="function_type">
+<a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="returnvalue">graphene_euler_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Euler.html#graphene-euler-init-from-radians" title="graphene_euler_init_from_radians ()">graphene_euler_init_from_radians</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
 <span class="returnvalue">bool</span>
 </td>
 <td class="function_name">
@@ -145,6 +153,30 @@
 </tr>
 <tr>
 <td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Euler.html#graphene-euler-get-alpha" title="graphene_euler_get_alpha ()">graphene_euler_get_alpha</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Euler.html#graphene-euler-get-beta" title="graphene_euler_get_beta ()">graphene_euler_get_beta</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Euler.html#graphene-euler-get-gamma" title="graphene_euler_get_gamma ()">graphene_euler_get_gamma</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
 <span class="returnvalue">void</span>
 </td>
 <td class="function_name">
@@ -157,6 +189,14 @@
 </td>
 <td class="function_name">
 <a class="link" href="graphene-Euler.html#graphene-euler-to-matrix" title="graphene_euler_to_matrix ()">graphene_euler_to_matrix</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Euler.html#graphene-euler-to-quaternion" title="graphene_euler_to_quaternion ()">graphene_euler_to_quaternion</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
@@ -196,15 +236,77 @@
 </div>
 <div class="refsect1">
 <a name="graphene-Euler.description"></a><h2>Description</h2>
-<p>The <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> structure defines a rotation along three axis using
+<p>The <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> structure defines a rotation along three axes using
 three angles. It also optionally can describe the order of the rotations.</p>
-<p>Rotations described Euler angles are immediately understandable, compared
-to rotations expressed using quaternions, but they are susceptible of
-<a class="ulink" href="http://en.wikipedia.org/wiki/Gimbal_lock" target="_top">"Gimbal lock"</a> — the loss of
+<p><a class="ulink" href="https://en.wikipedia.org/wiki/Euler%27s_rotation_theorem" target="_top">Euler's rotation theorem</a>
+states that, in three-dimensional space, any displacement of a rigid body
+such that a point on the rigid body remains fixed, is equivalent to a single
+rotation about some axis that runs through the fixed point. The angles on
+each axis can be placed in a vector of three components—α, β, and γ—called
+the *Euler angle vector*. Each rotation described by these components results
+in a rotation matrix:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function">rot</span><span class="symbol">(</span><span class="normal">α</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> A</span>
+<span class="function">rot</span><span class="symbol">(</span><span class="normal">β</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> B</span>
+<span class="function">rot</span><span class="symbol">(</span><span class="normal">γ</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> G</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<p>The resulting rotation matrix expressed by the Euler angle vector is
+given by the product of each rotation matrix:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">G × B × A </span><span class="symbol">=</span><span class="normal"> R</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<p>In order to specify the meaning of an Euler angle vector, we need to
+assign each axis of rotation to the corresponding α, β, and γ components,
+for instance X, Y, and Z.</p>
+<p>Additionally, we need to specify whether the rotations move the axes
+as they are applied, also known as intrinsic, or relative rotations;
+or if the axes stay fixed and the vectors move within the axis frame,
+also known as extrinsic, or static rotations. For instance, a static
+rotation alongside the ZYX axes will be interpreted as relative to
+extrinsic coordinate axes, and be performed, in order, about the Z,
+Y, and finally X axis. A relative rotation alongside the ZXZ axes will
+be interpreted as relative to intrinsic coordinate axes, and be
+performed, in order, about the Z axis, about the rotated X axis, and
+finally about the rotated Z axis.</p>
+<p>Finally, we need to define the direction of the rotation, or the handedness
+of the coordinate system. In the case of Graphene, the direction is given
+by the right-hand rule, which means all rotations are counterclockwise.</p>
+<p>Rotations described Euler angles are typically immediately understandable,
+compared to rotations expressed using quaternions, but they are susceptible
+of <a class="ulink" href="http://en.wikipedia.org/wiki/Gimbal_lock" target="_top">"Gimbal lock"</a> — the loss of
 one degree of freedom caused by two axis on the same plane. You typically
 should use <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> to expose rotation angles in your API, or to
 store them, but use <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> to apply rotations to modelview
 matrices, or interpolate between initial and final rotation transformations.</p>
+<p>For more information, see:</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p>http://en.wikipedia.org/wiki/Rotation_matrix</p></li>
+<li class="listitem"><p>http://en.wikipedia.org/wiki/Euler_angles</p></li>
+<li class="listitem"><p>http://mathworld.wolfram.com/EulerAngles.html</p></li>
+<li class="listitem"><p>"Representing Attitude with Euler Angles and Quaternions: A
+Reference" by James Diebel, 2006</p></li>
+<li class="listitem"><p>"Graphics Gems IV", edited by Paul Heckbert, Academic Press, 1994.</p></li>
+</ul></div>
 <p>See also: <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a>.</p>
 </div>
 <div class="refsect1">
@@ -529,6 +631,61 @@ to calling <a class="link" href="graphene-Euler.html#graphene-euler-init" title=
 </div>
 <hr>
 <div class="refsect2">
+<a name="graphene-euler-init-from-radians"></a><h3>graphene_euler_init_from_radians ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="returnvalue">graphene_euler_t</span></a> *
+graphene_euler_init_from_radians (<em class="parameter"><code><a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> *e</code></em>,
+                                  <em class="parameter"><code><span class="type">float</span> x</code></em>,
+                                  <em class="parameter"><code><span class="type">float</span> y</code></em>,
+                                  <em class="parameter"><code><span class="type">float</span> z</code></em>,
+                                  <em class="parameter"><code><a class="link" href="graphene-Euler.html#graphene-euler-order-t" title="enum graphene_euler_order_t"><span class="type">graphene_euler_order_t</span></a> order</code></em>);</pre>
+<p>Initializes a <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> using the given angles
+and order of rotation.</p>
+<div class="refsect3">
+<a name="graphene-euler-init-from-radians.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>e</p></td>
+<td class="parameter_description"><p>the <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> to initialize</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>x</p></td>
+<td class="parameter_description"><p>rotation angle on the X axis, in radians</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>y</p></td>
+<td class="parameter_description"><p>rotation angle on the Y axis, in radians</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>z</p></td>
+<td class="parameter_description"><p>rotation angle on the Z axis, in radians</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>order</p></td>
+<td class="parameter_description"><p>order of rotations</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-euler-init-from-radians.returns"></a><h4>Returns</h4>
+<p>the initialized <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
 <a name="graphene-euler-equal"></a><h3>graphene_euler_equal ()</h3>
 <pre class="programlisting"><span class="returnvalue">bool</span>
 graphene_euler_equal (<em class="parameter"><code>const <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> *a</code></em>,
@@ -677,6 +834,93 @@ instead.</p>
 </div>
 <hr>
 <div class="refsect2">
+<a name="graphene-euler-get-alpha"></a><h3>graphene_euler_get_alpha ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_euler_get_alpha (<em class="parameter"><code>const <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> *e</code></em>);</pre>
+<p>Retrieves the first component of the Euler angle vector,
+depending on the order of rotation.</p>
+<p>See also: <a class="link" href="graphene-Euler.html#graphene-euler-get-x" title="graphene_euler_get_x ()"><code class="function">graphene_euler_get_x()</code></a></p>
+<div class="refsect3">
+<a name="graphene-euler-get-alpha.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>e</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-euler-get-alpha.returns"></a><h4>Returns</h4>
+<p> the first component of the Euler angle vector, in radians</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-euler-get-beta"></a><h3>graphene_euler_get_beta ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_euler_get_beta (<em class="parameter"><code>const <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> *e</code></em>);</pre>
+<p>Retrieves the second component of the Euler angle vector,
+depending on the order of rotation.</p>
+<p>See also: <a class="link" href="graphene-Euler.html#graphene-euler-get-y" title="graphene_euler_get_y ()"><code class="function">graphene_euler_get_y()</code></a></p>
+<div class="refsect3">
+<a name="graphene-euler-get-beta.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>e</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-euler-get-beta.returns"></a><h4>Returns</h4>
+<p> the second component of the Euler angle vector, in radians</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-euler-get-gamma"></a><h3>graphene_euler_get_gamma ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_euler_get_gamma (<em class="parameter"><code>const <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> *e</code></em>);</pre>
+<p>Retrieves the third component of the Euler angle vector,
+depending on the order of rotation.</p>
+<p>See also: <a class="link" href="graphene-Euler.html#graphene-euler-get-z" title="graphene_euler_get_z ()"><code class="function">graphene_euler_get_z()</code></a></p>
+<div class="refsect3">
+<a name="graphene-euler-get-gamma.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>e</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-euler-get-gamma.returns"></a><h4>Returns</h4>
+<p> the third component of the Euler angle vector, in radians</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
 <a name="graphene-euler-to-vec3"></a><h3>graphene_euler_to_vec3 ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 graphene_euler_to_vec3 (<em class="parameter"><code>const <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> *e</code></em>,
@@ -727,7 +971,7 @@ an angle of ϑ</p></li>
 <li class="listitem"><p>the third rotation moves the body around the Z axis with
 an angle of ψ</p></li>
 </ul></div>
-<p>The rotation sign convention is left-handed, to preserve compatibility
+<p>The rotation sign convention is right-handed, to preserve compatibility
 between Euler-based, quaternion-based, and angle-axis-based rotations.</p>
 <div class="refsect3">
 <a name="graphene-euler-to-matrix.parameters"></a><h4>Parameters</h4>
@@ -752,6 +996,37 @@ between Euler-based, quaternion-based, and angle-axis-based rotations.</p>
 </table></div>
 </div>
 <p class="since">Since: <a class="link" href="ix04.html#api-index-1.2">1.2</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-euler-to-quaternion"></a><h3>graphene_euler_to_quaternion ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+graphene_euler_to_quaternion (<em class="parameter"><code>const <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> *e</code></em>,
+                              <em class="parameter"><code><a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> *res</code></em>);</pre>
+<p>Converts a <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> into a <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a>.</p>
+<div class="refsect3">
+<a name="graphene-euler-to-quaternion.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>e</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>res</p></td>
+<td class="parameter_description"><p>return location for a <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a>. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -834,42 +1109,216 @@ as an alias for one of the other orders.</p>
 <tr>
 <td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-XYZ:CAPS"></a>GRAPHENE_EULER_ORDER_XYZ</p></td>
 <td class="enum_member_description">
-<p>Rotate in the X, Y, and Z order</p>
+<p>Rotate in the X, Y, and Z order. Deprecated in
+  Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SXYZ:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SXYZ</code></a></p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-YZX:CAPS"></a>GRAPHENE_EULER_ORDER_YZX</p></td>
 <td class="enum_member_description">
-<p>Rotate in the Y, Z, and X order</p>
+<p>Rotate in the Y, Z, and X order. Deprecated in
+  Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SYZX:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SYZX</code></a></p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-ZXY:CAPS"></a>GRAPHENE_EULER_ORDER_ZXY</p></td>
 <td class="enum_member_description">
-<p>Rotate in the Z, X, and Y order</p>
+<p>Rotate in the Z, X, and Y order. Deprecated in
+  Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SZXY:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SZXY</code></a></p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-XZY:CAPS"></a>GRAPHENE_EULER_ORDER_XZY</p></td>
 <td class="enum_member_description">
-<p>Rotate in the X, Z, and Y order</p>
+<p>Rotate in the X, Z, and Y order. Deprecated in
+  Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SXZY:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SXZY</code></a></p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-YXZ:CAPS"></a>GRAPHENE_EULER_ORDER_YXZ</p></td>
 <td class="enum_member_description">
-<p>Rotate in the Y, X, and Z order</p>
+<p>Rotate in the Y, X, and Z order. Deprecated in
+  Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SYXZ:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SYXZ</code></a></p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-ZYX:CAPS"></a>GRAPHENE_EULER_ORDER_ZYX</p></td>
 <td class="enum_member_description">
-<p>Rotate in the Z, Y, and X order</p>
+<p>Rotate in the Z, Y, and X order. Deprecated in
+  Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SZYX:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SZYX</code></a></p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-SXYZ:CAPS"></a>GRAPHENE_EULER_ORDER_SXYZ</p></td>
+<td class="enum_member_description">
+<p>Defines a static rotation along the X, Y, and Z axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-SXYX:CAPS"></a>GRAPHENE_EULER_ORDER_SXYX</p></td>
+<td class="enum_member_description">
+<p>Defines a static rotation along the X, Y, and X axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-SXZY:CAPS"></a>GRAPHENE_EULER_ORDER_SXZY</p></td>
+<td class="enum_member_description">
+<p>Defines a static rotation along the X, Z, and Y axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-SXZX:CAPS"></a>GRAPHENE_EULER_ORDER_SXZX</p></td>
+<td class="enum_member_description">
+<p>Defines a static rotation along the X, Z, and X axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-SYZX:CAPS"></a>GRAPHENE_EULER_ORDER_SYZX</p></td>
+<td class="enum_member_description">
+<p>Defines a static rotation along the Y, Z, and X axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-SYZY:CAPS"></a>GRAPHENE_EULER_ORDER_SYZY</p></td>
+<td class="enum_member_description">
+<p>Defines a static rotation along the Y, Z, and Y axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-SYXZ:CAPS"></a>GRAPHENE_EULER_ORDER_SYXZ</p></td>
+<td class="enum_member_description">
+<p>Defines a static rotation along the Y, X, and Z axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-SYXY:CAPS"></a>GRAPHENE_EULER_ORDER_SYXY</p></td>
+<td class="enum_member_description">
+<p>Defines a static rotation along the Y, X, and Y axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-SZXY:CAPS"></a>GRAPHENE_EULER_ORDER_SZXY</p></td>
+<td class="enum_member_description">
+<p>Defines a static rotation along the Z, X, and Y axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-SZXZ:CAPS"></a>GRAPHENE_EULER_ORDER_SZXZ</p></td>
+<td class="enum_member_description">
+<p>Defines a static rotation along the Z, X, and Z axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-SZYX:CAPS"></a>GRAPHENE_EULER_ORDER_SZYX</p></td>
+<td class="enum_member_description">
+<p>Defines a static rotation along the Z, Y, and X axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-SZYZ:CAPS"></a>GRAPHENE_EULER_ORDER_SZYZ</p></td>
+<td class="enum_member_description">
+<p>Defines a static rotation along the Z, Y, and Z axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-RZYX:CAPS"></a>GRAPHENE_EULER_ORDER_RZYX</p></td>
+<td class="enum_member_description">
+<p>Defines a relative rotation along the Z, Y, and X axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-RXYX:CAPS"></a>GRAPHENE_EULER_ORDER_RXYX</p></td>
+<td class="enum_member_description">
+<p>Defines a relative rotation along the X, Y, and X axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-RYZX:CAPS"></a>GRAPHENE_EULER_ORDER_RYZX</p></td>
+<td class="enum_member_description">
+<p>Defines a relative rotation along the Y, Z, and X axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-RXZX:CAPS"></a>GRAPHENE_EULER_ORDER_RXZX</p></td>
+<td class="enum_member_description">
+<p>Defines a relative rotation along the X, Z, and X axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-RXZY:CAPS"></a>GRAPHENE_EULER_ORDER_RXZY</p></td>
+<td class="enum_member_description">
+<p>Defines a relative rotation along the X, Z, and Y axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-RYZY:CAPS"></a>GRAPHENE_EULER_ORDER_RYZY</p></td>
+<td class="enum_member_description">
+<p>Defines a relative rotation along the Y, Z, and Y axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-RZXY:CAPS"></a>GRAPHENE_EULER_ORDER_RZXY</p></td>
+<td class="enum_member_description">
+<p>Defines a relative rotation along the Z, X, and Y axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-RYXY:CAPS"></a>GRAPHENE_EULER_ORDER_RYXY</p></td>
+<td class="enum_member_description">
+<p>Defines a relative rotation along the Y, X, and Y axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-RYXZ:CAPS"></a>GRAPHENE_EULER_ORDER_RYXZ</p></td>
+<td class="enum_member_description">
+<p>Defines a relative rotation along the Y, X, and Z axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-RZXZ:CAPS"></a>GRAPHENE_EULER_ORDER_RZXZ</p></td>
+<td class="enum_member_description">
+<p>Defines a relative rotation along the Z, X, and Z axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-RXYZ:CAPS"></a>GRAPHENE_EULER_ORDER_RXYZ</p></td>
+<td class="enum_member_description">
+<p>Defines a relative rotation along the X, Y, and Z axes (Since: 1.10)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-RZYZ:CAPS"></a>GRAPHENE_EULER_ORDER_RZYZ</p></td>
+<td class="enum_member_description">
+<p>Defines a relative rotation along the Z, Y, and Z axes (Since: 1.10)</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>

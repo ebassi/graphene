@@ -161,6 +161,8 @@
 <p><a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> is a structure representing a ray emitted by an origin,
 identified by a point in 3D space, in a given direction, identified
 by a vector with 3 components.</p>
+<p>A common use of <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> is ray-casting to find which objects in
+a 3D scene are under the coordinates of the pointer.</p>
 </div>
 <div class="refsect1">
 <a name="graphene-Ray.functions_details"></a><h2>Functions</h2>
@@ -434,7 +436,13 @@ given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ra
 <pre class="programlisting"><span class="returnvalue">float</span>
 graphene_ray_get_distance_to_point (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
                                     <em class="parameter"><code>const <a class="link" href="graphene-Point3D.html#graphene-point3d-t" title="graphene_point3d_t"><span class="type">graphene_point3d_t</span></a> *p</code></em>);</pre>
-<p>Computes the distance from the origin of the given ray to the given point.</p>
+<p>Computes the distance of the closest approach between the
+given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> <em class="parameter"><code>r</code></em>
+ and the point <em class="parameter"><code>p</code></em>
+.</p>
+<p>The closest approach to a ray from a point is the distance
+between the point and the projection of the point on the
+ray itself.</p>
 <div class="refsect3">
 <a name="graphene-ray-get-distance-to-point.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">

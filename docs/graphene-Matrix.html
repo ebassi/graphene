@@ -484,6 +484,30 @@
 <span class="returnvalue">float</span>
 </td>
 <td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-get-x-translation" title="graphene_matrix_get_x_translation ()">graphene_matrix_get_x_translation</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-get-y-translation" title="graphene_matrix_get_y_translation ()">graphene_matrix_get_y_translation</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-get-z-translation" title="graphene_matrix_get_z_translation ()">graphene_matrix_get_z_translation</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">float</span>
+</td>
+<td class="function_name">
 <a class="link" href="graphene-Matrix.html#graphene-matrix-get-x-scale" title="graphene_matrix_get_x_scale ()">graphene_matrix_get_x_scale</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
@@ -509,6 +533,30 @@
 </td>
 <td class="function_name">
 <a class="link" href="graphene-Matrix.html#graphene-matrix-interpolate" title="graphene_matrix_interpolate ()">graphene_matrix_interpolate</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-equal" title="graphene_matrix_equal ()">graphene_matrix_equal</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-equal-fast" title="graphene_matrix_equal_fast ()">graphene_matrix_equal_fast</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-near" title="graphene_matrix_near ()">graphene_matrix_near</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
@@ -2786,6 +2834,90 @@ graphene_matrix_normalize (<em class="parameter"><code>const <a class="link" hre
 </div>
 <hr>
 <div class="refsect2">
+<a name="graphene-matrix-get-x-translation"></a><h3>graphene_matrix_get_x_translation ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_matrix_get_x_translation (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Retrieves the translation component on the X axis from <em class="parameter"><code>m</code></em>
+.</p>
+<div class="refsect3">
+<a name="graphene-matrix-get-x-translation.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-matrix-get-x-translation.returns"></a><h4>Returns</h4>
+<p> the translation component</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-get-y-translation"></a><h3>graphene_matrix_get_y_translation ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_matrix_get_y_translation (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Retrieves the translation component on the Y axis from <em class="parameter"><code>m</code></em>
+.</p>
+<div class="refsect3">
+<a name="graphene-matrix-get-y-translation.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-matrix-get-y-translation.returns"></a><h4>Returns</h4>
+<p> the translation component</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-get-z-translation"></a><h3>graphene_matrix_get_z_translation ()</h3>
+<pre class="programlisting"><span class="returnvalue">float</span>
+graphene_matrix_get_z_translation (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
+<p>Retrieves the translation component on the Z axis from <em class="parameter"><code>m</code></em>
+.</p>
+<div class="refsect3">
+<a name="graphene-matrix-get-z-translation.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-matrix-get-z-translation.returns"></a><h4>Returns</h4>
+<p> the translation component</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
 <a name="graphene-matrix-get-x-scale"></a><h3>graphene_matrix_get_x_scale ()</h3>
 <pre class="programlisting"><span class="returnvalue">float</span>
 graphene_matrix_get_x_scale (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
@@ -2915,6 +3047,162 @@ interpolated matrix. </p></td>
 </table></div>
 </div>
 <p class="since">Since: <a class="link" href="ix03.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-equal"></a><h3>graphene_matrix_equal ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_matrix_equal (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *a</code></em>,
+                       <em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *b</code></em>);</pre>
+<p>Checks whether the two given <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> matrices are equal.</p>
+<div class="refsect3">
+<a name="graphene-matrix-equal.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-matrix-equal.returns"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the two matrices are equal, and <code class="literal">false</code> otherwise</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-equal-fast"></a><h3>graphene_matrix_equal_fast ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_matrix_equal_fast (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *a</code></em>,
+                            <em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *b</code></em>);</pre>
+<p>Checks whether the two given <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> matrices are
+byte-by-byte equal.</p>
+<p>While this function is faster than <a class="link" href="graphene-Matrix.html#graphene-matrix-equal" title="graphene_matrix_equal ()"><code class="function">graphene_matrix_equal()</code></a>, it
+can also return false negatives, so it should be used in
+conjuction with either <a class="link" href="graphene-Matrix.html#graphene-matrix-equal" title="graphene_matrix_equal ()"><code class="function">graphene_matrix_equal()</code></a> or
+<a class="link" href="graphene-Matrix.html#graphene-matrix-near" title="graphene_matrix_near ()"><code class="function">graphene_matrix_near()</code></a>. For instance:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="graphene-Matrix.html#graphene-matrix-equal-fast">graphene_matrix_equal_fast</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">,</span><span class="normal"> b</span><span class="symbol">))</span>
+<span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="comment">// matrices are definitely the same</span>
+<span class="normal">  </span><span class="cbracket">}</span>
+<span class="keyword">else</span>
+<span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="graphene-Matrix.html#graphene-matrix-equal">graphene_matrix_equal</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">,</span><span class="normal"> b</span><span class="symbol">))</span>
+<span class="normal">      </span><span class="comment">// matrices contain the same values within an epsilon of FLT_EPSILON</span>
+<span class="normal">    </span><span class="keyword">else</span><span class="normal"> </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="graphene-Matrix.html#graphene-matrix-near">graphene_matrix_near</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">,</span><span class="normal"> b</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.0001</span><span class="symbol">))</span>
+<span class="normal">      </span><span class="comment">// matrices contain the same values within an epsilon of 0.0001</span>
+<span class="normal">    </span><span class="keyword">else</span>
+<span class="normal">      </span><span class="comment">// matrices are not equal</span>
+<span class="normal">  </span><span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<div class="refsect3">
+<a name="graphene-matrix-equal-fast.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-matrix-equal-fast.returns"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the matrices are equal. and <code class="literal">false</code> otherwise</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-matrix-near"></a><h3>graphene_matrix_near ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_matrix_near (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *a</code></em>,
+                      <em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *b</code></em>,
+                      <em class="parameter"><code><span class="type">float</span> epsilon</code></em>);</pre>
+<p>Compares the two given <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> matrices and checks
+whether their values are within the given <em class="parameter"><code>epsilon</code></em>
+ of each
+other.</p>
+<div class="refsect3">
+<a name="graphene-matrix-near.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>a</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>epsilon</p></td>
+<td class="parameter_description"><p>the threshold between the two matrices</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-matrix-near.returns"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the two matrices are near each other, and
+<code class="literal">false</code> otherwise</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
 </div>
 <hr>
 <div class="refsect2">
