@@ -19,6 +19,12 @@ one.
 
 When in doubt, check the surrounding code and try to imitate it.
 
+You're strongly encouraged to use the [uncrustify](http://uncrustify.sourceforge.net/)
+source code beautifier tool to check and fix the coding style of your
+contributions. Graphene provides a list of options that implement the
+coding style below, as well as a list of files where the coding style
+applies.
+
 ### Line width
 
 The maximum line width for source files is 100 characters, whenever possible.
