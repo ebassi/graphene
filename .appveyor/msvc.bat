@@ -33,7 +33,7 @@ ninja install || goto :print_log_and_error
 cd ..
 
 :: Copy license into install directory and create .zip file
-copy LICENSE graphene-shared-%MSVC_PLATFORM% || goto :error
+copy LICENSE.txt graphene-shared-%MSVC_PLATFORM% || goto :error
 dir graphene-shared-%MSVC_PLATFORM% /s /b || goto :error
 7z a -tzip graphene-shared-%MSVC_PLATFORM%.zip graphene-shared-%MSVC_PLATFORM% || goto :error
 
