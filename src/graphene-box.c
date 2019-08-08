@@ -522,7 +522,7 @@ graphene_box_get_center (const graphene_box_t *box,
       return;
     }
 
-  graphene_vec3_subtract (&box->max, &box->min, &res);
+  graphene_vec3_add (&box->min, &box->max, &res);
   graphene_vec3_scale (&res, 0.5f, &res);
 
   graphene_point3d_init_from_vec3 (center, &res);
