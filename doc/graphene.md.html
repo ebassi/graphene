@@ -1,0 +1,157 @@
+<meta charset="utf-8"><link rel="stylesheet" href="apidoc.css"/>
+
+**Graphene**
+
+## What is Graphene?
+
+When creating graphic libraries you most likely end up dealing with points
+and rectangles. If you're particularly unlucky, you may end up dealing
+with affine matrices and 2D transformations. If you're writing a graphic
+library with 3D transformations, though, you are going to hit the jackpot:
+4x4 matrices, projections, transformations, vectors, and quaternions.
+
+Most of this stuff exists, in various forms, in other libraries, but it
+has the major drawback of coming along with the rest of those libraries,
+which may or may not be what you want. Those libraries are also available
+in various languages, as long as those languages are C++; again, it may or
+may not be something you want.
+
+For this reason, I decided to write the thinnest, smallest possible layer
+needed to write a canvas library; given its relative size, and the
+propensity for graphics libraries to have a pun in their name, I decided
+to call it Graphene.
+
+This library provides types and their relative API; it does not deal with
+windowing system surfaces, drawing, scene graphs, or input. You're
+supposed to do that yourself, in your own canvas implementation, which is
+the whole point of writing the library in the first place.
+
+## Dependencies
+
+Graphene has minimal dependencies.
+
+Graphene contains optimizations for speeding up vector operations; those
+optimizations are optional, and used only if both Graphene was compiled
+with support for them *and* if the system you're running on has them.
+Currently, Graphene supports the following platform-specific fast paths:
+
+ - Streaming SIMD Extensions (SSE) 2
+  - Optionally using SSE 4.1
+ - ARM NEON
+ - GCC vector extensions
+
+In the remote case in which none of these optimizations are available,
+Graphene will fall back to a naive scalar implementation.
+
+Graphene can, optionally, provide types for integrating with
+[GObject][gobject-api] properties and signals, as well as introspection
+information for its use with other languages through introspection-based
+bindings.
+
+## Installation
+
+In order to build and install Graphene you will need development tools and
+the headers of the dependencies. You will also need:
+
+ - [python3](https://www.python.org)
+ - [meson](http://mesonbuild.com)
+ - [ninja](https://ninja-build.org/)
+
+First of all, clone the Git repository:
+
+```
+$ git clone https://github.com/ebassi/graphene
+$ cd graphene
+```
+
+Then run:
+
+```
+$ meson _build    # on Windows, it may be "meson.py"
+$ cd _build
+$ ninja test
+$ ninja install
+```
+
+It is possible, when building Graphene, to disable specific optimizations by
+using configuration options:
+
+ - `-Dsse2=false` - will disable the SSE2 fast paths
+ - `-Darm_neon=false` - will disable the ARM NEON fast paths
+ - `-Dgcc_vector=false` - will disable the GCC vector intrinsics
+
+If you don't plan on generating introspection data, use `-Dintrospection=false`
+when configuring Graphene; similarly, if you don't plan on using GObject with
+Graphene, use `-Dgobject_types=false`. Disabling GObject types will also
+automatically disable generating introspection data.
+
+You can explicitly disable building the test suite and the benchmark suite,
+using the `-Dtests=false` and `-Dbenchmarks=false` configuration switches
+respectively. The tests suite depends on [µTest][mutest]; if it is not available
+at configuration time, tests will be disabled automatically.
+
+Graphene supports the Microsoft Visual C compiler 2017 and later versions.
+
+Graphene also supports the [MSYS2 toolchain](http://sourceforge.net/projects/msys2/).
+
+[mutest]: https://github.com/ebassi/mutest
+[gobject-api]: https://developer.gnome.org/gobject/stable/
+
+## Documentation
+
+### API Reference
+
+ - [2D points](./graphene-point.md.html)
+ - [3D points](./graphene-point3d.md.html)
+ - [Triangles](./graphene-triangle.md.html)
+ - [Rectangles](./graphene-rect.md.html)
+ - [Quadrilaterals](./graphene-quad.md.html)
+ - [Quaternions](./graphene-quaternion.md.html)
+ - [Euler angles](./graphene-euler.md.html)
+ - [2-, 3-, and 4-sized vectors](./graphene-vectors.md.html) (2, 3, or 4-sized)
+ - [4x4 matrices](./graphene-matrix.md.html)
+ - [Planes](./graphene-plane.md.html)
+ - [Axis aligned bounding boxes](./graphene-box.md.html)
+ - [Spheres](./graphene-sphere.md.html)
+ - [Frustums](./graphene-frustum.md.html)
+ - [Rays](./graphene-ray.md.html)
+
+Graphene also provides its low-level SIMD types:
+
+ - [4 float vector](./graphene-simd4f.md.html)
+ - [4x4 float matrix](./docs/graphene-simd4x4f.md.html)
+
+All types can be placed on the stack, but provide allocation/free functions
+for working on the heap as well. The contents of all structure types, unless
+noted otherwise, should be considered private, and should never be accessed
+directly.
+
+The full API reference for Graphene is [available online](http://ebassi.github.io/graphene/docs/).
+
+## Copyright and license
+
+Copyright 2014 Emmanuele Bassi. All rights reserved.
+
+Graphene and its documentation are released under the terms of the
+[MIT](https://opensource.org/licenses/MIT) license.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+<style class="fallback">body{visibility:hidden}</style><script>markdeepOptions={tocStyle:'medium'};</script>
+<!-- Markdeep: --><script src="markdeep.min.js" charset="utf-8"></script>
