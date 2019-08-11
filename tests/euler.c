@@ -10,21 +10,21 @@ euler_init (mutest_spec_t *spec)
   graphene_vec3_t v;
 
   e = graphene_euler_init (graphene_euler_alloc (), 0.f, 0.f, 0.f);
-  mutest_expect ("graphene_euler_init() sets the x component",
+  mutest_expect ("graphene_euler_init() to set the x component",
                  mutest_float_value (graphene_euler_get_x (e)),
                  mutest_to_be_close_to, 0.0, 0.0001,
                  NULL);
-  mutest_expect ("graphene_euler_init() sets the y component",
+  mutest_expect ("graphene_euler_init() to set the y component",
                  mutest_float_value (graphene_euler_get_y (e)),
                  mutest_to_be_close_to, 0.0, 0.0001,
                  NULL);
-  mutest_expect ("graphene_euler_init() sets the z component",
+  mutest_expect ("graphene_euler_init() to set the z component",
                  mutest_float_value (graphene_euler_get_z (e)),
                  mutest_to_be_close_to, 0.0, 0.0001,
                  NULL);
 
   graphene_euler_to_vec3 (e, &v);
-  mutest_expect ("graphene_euler_to_vec3() returns a zero vector",
+  mutest_expect ("graphene_euler_to_vec3() to return a zero vector",
                  mutest_bool_value (graphene_vec3_equal (&v, graphene_vec3_zero ())),
                  mutest_to_be_true,
                  NULL);
@@ -52,7 +52,7 @@ euler_quaternion_roundtrip (mutest_spec_t *spec)
       graphene_euler_init_from_quaternion (&e, &q, graphene_euler_get_order (&values[i]));
       graphene_quaternion_init_from_euler (&check, &e);
 
-      mutest_expect ("quaternion → euler → quaternion",
+      mutest_expect ("roundtrip: quaternion → euler → quaternion",
                      mutest_bool_value (graphene_quaternion_equal (&q, &check)),
                      mutest_to_be_true,
                      NULL);
@@ -79,7 +79,7 @@ euler_matrix_roundtrip (mutest_spec_t *spec)
 
       graphene_euler_to_matrix (&e, &check);
 
-      mutest_expect ("matrix → euler → matrix",
+      mutest_expect ("roundtrip: matrix → euler → matrix",
                      mutest_bool_value (graphene_matrix_near (&m, &check, 0.01f)),
                      mutest_to_be_true,
                      NULL);
