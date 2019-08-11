@@ -46,7 +46,7 @@ version_conf.set('GRAPHENE_MINOR_VERSION', graphene_minor_version)
 version_conf.set('GRAPHENE_MICRO_VERSION', graphene_micro_version)
 
 configure_file(
-  input: 'graphene-version.h.in',
+  input: 'graphene-version.h.meson',
   output: 'graphene-version.h',
   configuration: version_conf,
   install_dir: join_paths(graphene_includedir, graphene_api_path),
