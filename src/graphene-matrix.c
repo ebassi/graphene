@@ -1090,13 +1090,13 @@ graphene_matrix_transform_ray (const graphene_matrix_t *m,
                                graphene_ray_t          *res)
 {
   graphene_vec3_t origin, direction;
+  graphene_vec4_t origin4;
 
-  graphene_vec3_add (&r->direction, &r->origin, &direction);
-  graphene_matrix_transform_vec3 (m, &direction, &direction);
+  graphene_vec4_init_from_vec3 (&origin4, &r->origin, 1);
+  graphene_matrix_transform_vec4 (m, &origin4, &origin4);
+  graphene_vec4_get_xyz (&origin4, &origin);
 
-  graphene_matrix_transform_vec3 (m, &r->origin, &origin);
-
-  graphene_vec3_subtract (&direction, &origin, &direction);
+  graphene_matrix_transform_vec3 (m, &r->direction, &direction);
 
   graphene_ray_init_from_vec3 (res, &origin, &direction);
 }
