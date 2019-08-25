@@ -2176,7 +2176,10 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
  * graphene_matrix_print:
  * @m: The matrix to print
  *
- * Prints the contents of a matrix.
+ * Prints the contents of a matrix to the standard error stream.
+ *
+ * This function is only useful for debugging; there are no guarantees
+ * made on the format of the output.
  *
  * Since: 1.0
  */
