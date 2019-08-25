@@ -179,6 +179,7 @@ graphene_matrix_get_z_translation
 graphene_matrix_get_x_scale
 graphene_matrix_get_y_scale
 graphene_matrix_get_z_scale
+graphene_matrix_decompose
 graphene_matrix_interpolate
 graphene_matrix_equal
 graphene_matrix_equal_fast
