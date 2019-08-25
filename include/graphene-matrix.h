@@ -302,4 +302,12 @@ bool                    graphene_matrix_equal_fast              (const graphene_
 GRAPHENE_AVAILABLE_IN_1_0
 void                    graphene_matrix_print                   (const graphene_matrix_t  *m);
 
+GRAPHENE_AVAILABLE_IN_1_10
+bool                    graphene_matrix_decompose               (const graphene_matrix_t  *m,
+                                                                 graphene_vec3_t          *translate,
+                                                                 graphene_vec3_t          *scale,
+                                                                 graphene_quaternion_t    *rotate,
+                                                                 graphene_vec3_t          *shear,
+                                                                 graphene_vec4_t          *perspective);
+
 GRAPHENE_END_DECLS

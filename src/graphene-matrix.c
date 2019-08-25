@@ -1771,28 +1771,6 @@ graphene_matrix_get_z_scale (const graphene_matrix_t *m)
   return graphene_simd4f_get_z (m->value.z);
 }
 
-/* the algorithm for decomposing two matrices and interpolating
- * between their components in order to reassemble a matrix that
- * is equivalent to a linear interpolation of the original two
- * matrices is taken from the CSS3 Transforms specification:
- *
- * http://dev.w3.org/csswg/css-transforms/
- *
- * specifically, the 2D matrix decomposition is taken from:
- *
- * http://dev.w3.org/csswg/css-transforms/#decomposing-a-2d-matrix
- *
- * while the 3D matrix decomposition is taken from:
- *
- * http://dev.w3.org/csswg/css-transforms/#decomposing-a-3d-matrix
- *
- * both, in turn, refer to the `unmatrix` program published in
- * the book "Graphics Gems II" edited by Jim Arvo; the code is
- * available at:
- *
- * http://tog.acm.org/resources/GraphicsGems/gemsii/unmatrix.c
- */
-
 #define XY_SHEAR 0
 #define XZ_SHEAR 1
 #define YZ_SHEAR 2
@@ -1804,8 +1782,8 @@ graphene_matrix_get_z_scale (const graphene_matrix_t *m)
 
 static bool
 matrix_decompose_2d (const graphene_matrix_t *m,
-                     graphene_point_t        *translate_r,
-                     graphene_point_t        *scale_r,
+                     graphene_vec2_t         *translate_r,
+                     graphene_vec2_t         *scale_r,
                      double                  *angle_r,
                      float                    m_r[4])
 {
@@ -1813,39 +1791,42 @@ matrix_decompose_2d (const graphene_matrix_t *m,
   float row0y = graphene_matrix_get_value (m, 1, 0);
   float row1x = graphene_matrix_get_value (m, 0, 1);
   float row1y = graphene_matrix_get_value (m, 1, 1);
+  float scale_x, scale_y;
   float angle;
   float det;
 
   if (fabsf (row0x * row1y - row0y * row1x) < FLT_EPSILON)
     return false;
 
-  graphene_point_init (translate_r,
-                       graphene_matrix_get_value (m, 3, 0),
-                       graphene_matrix_get_value (m, 3, 1));
+  graphene_vec2_init (translate_r,
+                      graphene_matrix_get_value (m, 3, 0),
+                      graphene_matrix_get_value (m, 3, 1));
 
-  scale_r->x = sqrtf (row0x * row0x + row0y * row0y);
-  scale_r->y = sqrtf (row1x * row1x + row1y * row1y);
+  scale_x = sqrtf (row0x * row0x + row0y * row0y);
+  scale_y = sqrtf (row1x * row1x + row1y * row1y);
 
   det = row0x * row1y - row0y * row1x;
   if (det < 0)
     {
       if (row0x < row1y)
-        scale_r->x = -scale_r->x;
+        scale_x = -scale_x;
       else
-        scale_r->y = -scale_r->y;
+        scale_y = -scale_y;
     }
 
-  if (!graphene_approx_val (scale_r->x, 0.f))
+  if (!graphene_approx_val (scale_x, 0.f))
     {
-      row0x = row0x * (1.f / scale_r->x);
-      row0y = row0y * (1.f / scale_r->y);
+      row0x = row0x * (1.f / scale_x);
+      row0y = row0y * (1.f / scale_y);
     }
 
-  if (!graphene_approx_val (scale_r->y, 0.f))
+  if (!graphene_approx_val (scale_y, 0.f))
     {
-      row1x = row1x * (1.f / scale_r->x);
-      row1y = row1y * (1.f / scale_r->y);
+      row1x = row1x * (1.f / scale_x);
+      row1y = row1y * (1.f / scale_y);
     }
+
+  graphene_vec2_init (scale_r, scale_x, scale_y);
 
   angle = atan2f (row0y, row0x);
 
@@ -1873,10 +1854,10 @@ matrix_decompose_2d (const graphene_matrix_t *m,
 
 static bool
 matrix_decompose_3d (const graphene_matrix_t *m,
-                     graphene_point3d_t      *scale_r,
-                     float                    shear_r[3],
+                     graphene_vec3_t         *scale_r,
+                     graphene_vec3_t         *shear_r,
                      graphene_quaternion_t   *rotate_r,
-                     graphene_point3d_t      *translate_r,
+                     graphene_vec3_t         *translate_r,
                      graphene_vec4_t         *perspective_r)
 {
   graphene_matrix_t local;
@@ -1931,9 +1912,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
     graphene_vec4_init (perspective_r, 0.f, 0.f, 0.f, 1.f);
 
   /* next, take care of the translation partition */
-  translate_r->x = graphene_simd4f_get_x (local.value.w);
-  translate_r->y = graphene_simd4f_get_y (local.value.w);
-  translate_r->z = graphene_simd4f_get_z (local.value.w);
+  translate_r->value = graphene_simd4f_merge_w (local.value.w, 0.f);
   local.value.w = graphene_simd4f_init (0.f, 0.f, 0.f, graphene_simd4f_get_w (local.value.w));
 
   /* now get scale and shear */
@@ -1964,9 +1943,7 @@ matrix_decompose_3d (const graphene_matrix_t *m,
   shear_xz /= scale_z;
   shear_yz /= scale_z;
 
-  shear_r[XY_SHEAR] = shear_xy;
-  shear_r[XZ_SHEAR] = shear_xz;
-  shear_r[YZ_SHEAR] = shear_yz;
+  graphene_vec3_init (shear_r, shear_xy, shear_xz, shear_yz);
 
   /* at this point, the matrix is orthonormal. we check for a
    * coordinate system flip. if the determinant is -1, then
@@ -1984,10 +1961,62 @@ matrix_decompose_3d (const graphene_matrix_t *m,
       local.value.z = graphene_simd4f_neg (local.value.z);
     }
 
-  graphene_point3d_init (scale_r, scale_x, scale_y, scale_z);
+  graphene_vec3_init (scale_r, scale_x, scale_y, scale_z);
 
   /* get the rotations out */
   graphene_quaternion_init_from_matrix (rotate_r, &local);
+
+  return true;
+}
+
+/**
+ * graphene_matrix_decompose:
+ * @m: a #graphene_matrix_t
+ * @translate: (out caller-allocates): the translation vector
+ * @scale: (out caller-allocates): the scale vector
+ * @rotate: (out caller-allocates): the rotation quaternion
+ * @shear: (out caller-allocates): the shear vector
+ * @perspective: (out caller-allocates): the perspective vector
+ *
+ * Decomposes a transformation matrix into its component transformations.
+ *
+ * The algorithm for decomposing a matrix is taken from the
+ * [CSS3 Transforms specification](http://dev.w3.org/csswg/css-transforms/);
+ * specifically, the decomposition code is based on the equivalent code
+ * published in "Graphics Gems II", edited by Jim Arvo, and
+ * [available online](http://tog.acm.org/resources/GraphicsGems/gemsii/unmatrix.c).
+ *
+ * Returns: `true` if the matrix could be decomposed
+ */
+bool
+graphene_matrix_decompose (const graphene_matrix_t *m,
+                           graphene_vec3_t         *translate,
+                           graphene_vec3_t         *scale,
+                           graphene_quaternion_t   *rotate,
+                           graphene_vec3_t         *shear,
+                           graphene_vec4_t         *perspective)
+{
+  if (graphene_matrix_is_2d (m))
+    {
+      graphene_vec2_t translate_res;
+      graphene_vec2_t scale_res;
+      double rotate_res;
+      float m_res[4];
+
+      if (!matrix_decompose_2d (m, &translate_res, &scale_res, &rotate_res, m_res))
+        return false;
+
+      translate->value = translate_res.value;
+      scale->value = scale_res.value;
+      graphene_quaternion_init_from_angles (rotate, 0.f, 0.f, (float) rotate_res);
+      graphene_vec3_init_from_vec3 (shear, graphene_vec3_zero ());
+      graphene_vec4_init_from_vec4 (perspective, graphene_vec4_zero ());
+    }
+  else
+    {
+      if (!matrix_decompose_3d (m, scale, shear, rotate, translate, perspective))
+        return false;
+    }
 
   return true;
 }
@@ -2017,6 +2046,9 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
 {
   bool success = false;
 
+  /* Always provide a valid fallback in case we can't decompose either
+   * or both matrices
+   */
   graphene_matrix_init_identity (res);
 
   /* Special case the decomposition if we're interpolating between two
@@ -2025,16 +2057,10 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
   if (graphene_matrix_is_2d (a) &&
       graphene_matrix_is_2d (b))
     {
-      graphene_point_t translate_a = GRAPHENE_POINT_INIT (0.f, 0.f);
-      graphene_point_t translate_b = GRAPHENE_POINT_INIT (0.f, 0.f);
-      graphene_point_t translate_res;
-      graphene_point_t scale_a = GRAPHENE_POINT_INIT (1.f, 1.f);
-      graphene_point_t scale_b = GRAPHENE_POINT_INIT (1.f, 1.f);
-      graphene_point_t scale_res;
+      graphene_vec2_t translate_a, translate_b, translate_res;
+      graphene_vec2_t scale_a, scale_b, scale_res;
       double rotate_a, rotate_b, rotate_res;
       float m_a[4], m_b[4], m_res[4];
-      float rot_sin, rot_cos;
-      graphene_simd4x4f_t tmp_m;
 
       success |= matrix_decompose_2d (a, &translate_a, &scale_a, &rotate_a, m_a);
       success |= matrix_decompose_2d (b, &translate_b, &scale_b, &rotate_b, m_b);
@@ -2044,10 +2070,13 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
         return;
 
       /* Flip the scaling factor and angle so they are consistent */
-      if ((scale_a.x < 0 && scale_b.y < 0) || (scale_a.y < 0 && scale_b.x < 0))
+      float scale_ax = graphene_vec2_get_x (&scale_a);
+      float scale_ay = graphene_vec2_get_y (&scale_a);
+      float scale_bx = graphene_vec2_get_x (&scale_b);
+      float scale_by = graphene_vec2_get_y (&scale_b);
+      if ((scale_ax < 0 && scale_by < 0) || (scale_ay < 0 && scale_bx < 0))
         {
-          scale_a.x = -scale_a.x;
-          scale_a.y = -scale_a.y;
+          graphene_vec2_negate (&scale_a, &scale_a);
 
           rotate_a += (rotate_a < 0) ? 180 : -180;
         }
@@ -2066,18 +2095,16 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
             rotate_b -= 360;
         }
 
-      graphene_point_interpolate (&translate_a, &translate_b, factor, &translate_res);
-      graphene_point_interpolate (&scale_a, &scale_b, factor, &scale_res);
+      graphene_vec2_interpolate (&translate_a, &translate_b, factor, &translate_res);
+      graphene_vec2_interpolate (&scale_a, &scale_b, factor, &scale_res);
       rotate_res = graphene_flerp (rotate_a, rotate_b, factor);
 
       /* Interpolate each component of the (2,2) matrices */
-      {
-        graphene_simd4f_t tmp_va = graphene_simd4f_init_4f (m_a);
-        graphene_simd4f_t tmp_vb = graphene_simd4f_init_4f (m_b);
-        graphene_simd4f_t tmp_vres = graphene_simd4f_interpolate (tmp_va, tmp_vb, (float) factor);
+      graphene_simd4f_t tmp_va = graphene_simd4f_init_4f (m_a);
+      graphene_simd4f_t tmp_vb = graphene_simd4f_init_4f (m_b);
+      graphene_simd4f_t tmp_vres = graphene_simd4f_interpolate (tmp_va, tmp_vb, (float) factor);
 
-        graphene_simd4f_dup_4f (tmp_vres, m_res);
-      }
+      graphene_simd4f_dup_4f (tmp_vres, m_res);
 
       /* Initialize using the transposed (2,2) matrix */
       res->value.x = graphene_simd4f_init (m_res[M_11], m_res[M_21], 0.f, 0.f);
@@ -2085,13 +2112,18 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
       res->value.z = graphene_simd4f_init (        0.f,         0.f, 1.f, 0.f);
 
       /* Translate */
-      res->value.w = graphene_simd4f_init (translate_res.x * m_res[M_11] + translate_res.y * m_res[M_21],
-                                           translate_res.x * m_res[M_12] + translate_res.y * m_res[M_22],
+      float translate_x = graphene_vec2_get_x (&translate_res);
+      float translate_y = graphene_vec2_get_y (&translate_res);
+      res->value.w = graphene_simd4f_init (translate_x * m_res[M_11] + translate_y * m_res[M_21],
+                                           translate_x * m_res[M_12] + translate_y * m_res[M_22],
                                            0.f,
                                            1.f);
 
       /* Rotate using a (2,2) rotation matrix */
+      float rot_sin, rot_cos;
       graphene_sincos (GRAPHENE_DEG_TO_RAD ((float) rotate_res), &rot_sin, &rot_cos);
+
+      graphene_simd4x4f_t tmp_m;
       tmp_m = graphene_simd4x4f_init (graphene_simd4f_init (rot_cos, -rot_sin, 0.f, 0.f),
                                       graphene_simd4f_init (rot_sin,  rot_cos, 0.f, 0.f),
                                       graphene_simd4f_init (    0.f,      0.f, 1.f, 0.f),
@@ -2099,29 +2131,31 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
       graphene_simd4x4f_matrix_mul (&res->value, &tmp_m, &res->value);
 
       /* Scale */
-      graphene_simd4x4f_scale (&tmp_m, scale_res.x, scale_res.y, 1.f);
+      float scale_x = graphene_vec2_get_x (&scale_res);
+      float scale_y = graphene_vec2_get_y (&scale_res);
+      graphene_simd4x4f_scale (&tmp_m, scale_x, scale_y, 1.f);
       graphene_simd4x4f_matrix_mul (&res->value, &tmp_m, &res->value);
     }
   else
     {
-      graphene_point3d_t scale_a = { 1.f, 1.f, 1.f }, translate_a;
+      graphene_vec3_t scale_a, translate_a;
       graphene_quaternion_t rotate_a;
-      float shear_a[3] = { 0.f, 0.f, 0.f };
-
-      graphene_point3d_t scale_b = { 1.f, 1.f, 1.f }, translate_b;
-      graphene_quaternion_t rotate_b;
-      float shear_b[3] = { 0.f, 0.f, 0.f };
-
-      graphene_point3d_t scale_r = { 1.f, 1.f, 1.f }, translate_r;
-      graphene_quaternion_t rotate_r;
-      float shear;
-
+      graphene_vec3_t shear_a;
       graphene_vec4_t perspective_a;
+
+      graphene_vec3_t scale_b, translate_b;
+      graphene_quaternion_t rotate_b;
+      graphene_vec3_t shear_b;
       graphene_vec4_t perspective_b;
+
+      graphene_vec3_t scale_r, translate_r;
+      graphene_quaternion_t rotate_r;
+      graphene_vec3_t shear_r;
+
       graphene_simd4f_t tmp;
 
-      success |= matrix_decompose_3d (a, &scale_a, shear_a, &rotate_a, &translate_a, &perspective_a);
-      success |= matrix_decompose_3d (b, &scale_b, shear_b, &rotate_b, &translate_b, &perspective_b);
+      success |= matrix_decompose_3d (a, &scale_a, &shear_a, &rotate_a, &translate_a, &perspective_a);
+      success |= matrix_decompose_3d (b, &scale_b, &shear_b, &rotate_b, &translate_b, &perspective_b);
 
       /* If we cannot decompose either matrix we bail out with an identity */
       if (!success)
@@ -2135,32 +2169,38 @@ graphene_matrix_interpolate (const graphene_matrix_t *a,
       res->value.w = graphene_simd4f_init (0.f, 0.f, 0.f, graphene_simd4f_get_w (tmp));
 
       /* Translate */
-      graphene_point3d_interpolate (&translate_a, &translate_b, factor, &translate_r);
-      graphene_matrix_translate (res, &translate_r);
+      graphene_point3d_t t;
+      graphene_vec3_interpolate (&translate_a, &translate_b, factor, &translate_r);
+      graphene_point3d_init_from_vec3 (&t, &translate_r);
+      graphene_matrix_translate (res, &t);
 
       /* Rotate */
       graphene_quaternion_slerp (&rotate_a, &rotate_b, (float) factor, &rotate_r);
       graphene_matrix_rotate_quaternion (res, &rotate_r);
 
       /* Skew */
-      shear = graphene_lerp (shear_a[YZ_SHEAR], shear_b[YZ_SHEAR], factor);
+      float shear;
+      graphene_vec3_interpolate (&shear_a, &shear_b, factor, &shear_r);
+      shear = graphene_simd4f_get (shear_r.value, YZ_SHEAR);
       if (!graphene_approx_val (shear, 0.f))
         graphene_matrix_skew_yz (res, shear);
 
-      shear = graphene_lerp (shear_a[XZ_SHEAR], shear_b[XZ_SHEAR], factor);
+      shear = graphene_simd4f_get (shear_r.value, XZ_SHEAR);
       if (!graphene_approx_val (shear, 0.f))
         graphene_matrix_skew_xz (res, shear);
 
-      shear = graphene_lerp (shear_a[XY_SHEAR], shear_b[XY_SHEAR], factor);
+      shear = graphene_simd4f_get (shear_r.value, XY_SHEAR);
       if (!graphene_approx_val (shear, 0.f))
         graphene_matrix_skew_xy (res, shear);
 
       /* Scale */
-      graphene_point3d_interpolate (&scale_a, &scale_b, factor, &scale_r);
-      if (!graphene_approx_val (scale_r.x, 1.f) ||
-          !graphene_approx_val (scale_r.y, 1.f) ||
-          !graphene_approx_val (scale_r.z, 1.f))
-        graphene_matrix_scale (res, scale_r.x, scale_r.y, scale_r.z);
+      graphene_point3d_t s;
+      graphene_vec3_interpolate (&scale_a, &scale_b, factor, &scale_r);
+      graphene_point3d_init_from_vec3 (&s, &scale_r);
+      if (!graphene_approx_val (s.x, 1.f) ||
+          !graphene_approx_val (s.y, 1.f) ||
+          !graphene_approx_val (s.z, 1.f))
+        graphene_matrix_scale (res, s.x, s.y, s.z);
     }
 }
 
