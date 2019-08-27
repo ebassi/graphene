@@ -496,6 +496,7 @@ graphene_triangle_alloc
 graphene_triangle_free
 graphene_triangle_init_from_point3d
 graphene_triangle_init_from_vec3
+graphene_triangle_init_from_float
 graphene_triangle_get_points
 graphene_triangle_get_vertices
 graphene_triangle_get_area
