@@ -152,6 +152,35 @@ graphene_triangle_init_from_vec3 (graphene_triangle_t   *t,
 }
 
 /**
+ * graphene_triangle_init_from_float:
+ * @t: the #graphene_triangle_t to initialize
+ * @a: (not nullable) (array fixed-size=3): an array of 3 floating point values
+ * @b: (not nullable) (array fixed-size=3): an array of 3 floating point values
+ * @c: (not nullable) (array fixed-size=3): an array of 3 floating point values
+ *
+ * Initializes a #graphene_triangle_t using the three given arrays
+ * of floating point values, each representing the coordinates of
+ * a point in 3D space.
+ *
+ * Returns: (transfer none): the initialized #graphene_triangle_t
+ *
+ * Since: 1.10
+ */
+graphene_triangle_t *
+graphene_triangle_init_from_float (graphene_triangle_t *t,
+                                   const float         *a,
+                                   const float         *b,
+                                   const float         *c)
+{
+  graphene_vec3_t va, vb, vc;
+
+  return graphene_triangle_init_from_vec3 (t,
+                                           graphene_vec3_init_from_float (&va, a),
+                                           graphene_vec3_init_from_float (&vb, b),
+                                           graphene_vec3_init_from_float (&vc, c));
+}
+
+/**
  * graphene_triangle_get_points:
  * @t: a #graphene_triangle_t
  * @a: (out caller-allocates) (optional): return location for the coordinates

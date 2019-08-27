@@ -108,6 +108,40 @@ triangle_init_from_vec3 (mutest_spec_t *spec)
 }
 
 static void
+triangle_init_from_float (mutest_spec_t *spec)
+{
+  graphene_vec3_t a, b, c;
+  graphene_vec3_t check_a, check_b, check_c;
+  graphene_triangle_t *t;
+  float v[9] = { 0.f, 1.f, 0.f, 1.f, -1.f, 0.f, -1.f, -1.f, 0.f };
+
+  graphene_vec3_init_from_float (&a, v);
+  graphene_vec3_init_from_float (&b, v + 3);
+  graphene_vec3_init_from_float (&c, v + 6);
+
+  t = graphene_triangle_init_from_float (graphene_triangle_alloc (), v, v + 3, v + 6);
+  graphene_triangle_get_vertices (t, &check_a, &check_b, &check_c);
+  mutest_expect ("triangle.a to match first vector",
+                 mutest_bool_value (graphene_vec3_equal (&check_a, &a)),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("triangle.b to match second vector",
+                 mutest_bool_value (graphene_vec3_equal (&check_b, &b)),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("triangle.c to match third vector",
+                 mutest_bool_value (graphene_vec3_equal (&check_c, &c)),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("a unit triangle to have an area of 2",
+                 mutest_float_value (graphene_triangle_get_area (t)),
+                 mutest_to_be_close_to, 2.0, 0.0001,
+                 NULL);
+
+  graphene_triangle_free (t);
+}
+
+static void
 triangle_contains_point (mutest_spec_t *spec)
 {
   graphene_point3d_t a = GRAPHENE_POINT3D_INIT ( 0.f,  1.f, 0.f);
@@ -398,6 +432,7 @@ triangle_suite (mutest_suite_t *suite)
 {
   mutest_it ("initializes from points", triangle_init_from_point3d);
   mutest_it ("initializes from vectors", triangle_init_from_vec3);
+  mutest_it ("initialized from float arrays", triangle_init_from_float);
   mutest_it ("contains points", triangle_contains_point);
   mutest_it ("defines planes", triangle_plane);
   mutest_it ("defines barycoords", triangle_barycoords);

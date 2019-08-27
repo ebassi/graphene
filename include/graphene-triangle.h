@@ -64,7 +64,11 @@ graphene_triangle_t *   graphene_triangle_init_from_vec3        (graphene_triang
                                                                  const graphene_vec3_t     *a,
                                                                  const graphene_vec3_t     *b,
                                                                  const graphene_vec3_t     *c);
-
+GRAPHENE_AVAILABLE_IN_1_10
+graphene_triangle_t *   graphene_triangle_init_from_float       (graphene_triangle_t       *t,
+                                                                 const float               *a,
+                                                                 const float               *b,
+                                                                 const float               *c);
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_triangle_get_points            (const graphene_triangle_t *t,
                                                                  graphene_point3d_t        *a,
