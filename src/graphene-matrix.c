@@ -2012,11 +2012,8 @@ graphene_matrix_decompose (const graphene_matrix_t *m,
       graphene_vec3_init_from_vec3 (shear, graphene_vec3_zero ());
       graphene_vec4_init_from_vec4 (perspective, graphene_vec4_zero ());
     }
-  else
-    {
-      if (!matrix_decompose_3d (m, scale, shear, rotate, translate, perspective))
-        return false;
-    }
+  else if (!matrix_decompose_3d (m, scale, shear, rotate, translate, perspective))
+    return false;
 
   return true;
 }
