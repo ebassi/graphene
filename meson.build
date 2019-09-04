@@ -162,24 +162,22 @@ else
   error('No aligned malloc function could be found.')
 endif
 
-# Look for sincosf(), a GNU libc extension
-conf.set('HAVE_SINCOSF',
-  cc.has_function('sincosf',
-    prefix: '#include <math.h>',
-    args: [ '-D_GNU_SOURCE' ],
-    dependencies: mathlib,
-  ),
-  description: 'Define if sincosf() is available',
-)
+math_exts = [
+  'sincosf',
+  'isinff',
+  'isnanf',
+]
 
-conf.set('HAVE_ISINFF',
-  cc.has_function('isinff',
-    prefix: '#include <math.h>',
-    args: [ '-D_GNU_SOURCE' ],
-    dependencies: mathlib,
-  ),
-  description: 'Define is isinff() is available',
-)
+foreach mfunc: math_exts
+  conf.set('HAVE_' + mfunc.underscorify().to_upper(),
+    cc.has_function(mfunc,
+      prefix: '#include <math.h>',
+      args: [ '-D_GNU_SOURCE' ],
+      dependencies: mathlib,
+    ),
+    description: 'Define if @0@ is available'.format(mfunc),
+  )
+endforeach
 
 # Debugging
 debug_flags = []
