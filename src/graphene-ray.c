@@ -41,9 +41,13 @@
 #include "graphene-ray.h"
 
 #include "graphene-alloc-private.h"
+#include "graphene-box.h"
 #include "graphene-plane.h"
 #include "graphene-point3d.h"
+#include "graphene-simd4f.h"
+#include "graphene-sphere.h"
 #include "graphene-vec3.h"
+#include "graphene-triangle.h"
 
 #include <math.h>
 #include <float.h>
@@ -363,4 +367,360 @@ graphene_ray_get_closest_point_to_point (const graphene_ray_t     *r,
     }
 
   graphene_point3d_init_from_vec3 (res, &result);
+}
+
+/**
+ * graphene_ray_intersect_sphere:
+ * @r: a #graphene_ray_t
+ * @s: a #graphene_sphere_t
+ * @t_out: (out): the distance of the point on the ray that intersects the sphere
+ *
+ * Intersects the given #graphene_ray_t @r with the given
+ * #graphene_sphere_t @s.
+ *
+ * Returns: the type of intersection
+ *
+ * Since: 1.10
+ */
+graphene_ray_intersection_kind_t
+graphene_ray_intersect_sphere (const graphene_ray_t    *r,
+                               const graphene_sphere_t *s,
+                               float                   *t_out)
+{
+  graphene_vec3_t v1;
+
+  graphene_vec3_subtract (&s->center, &r->origin, &v1);
+
+  /* initialize t_out, if set, so we don't have to do that every
+   * time we bail out with no intersection
+   */
+  if (t_out != NULL)
+    *t_out = 0.f;
+
+  /* (signed) distance along ray to point nearest sphere center */
+  float tca = graphene_vec3_dot (&v1, &r->direction);
+
+  /* square of distance from ray line to sphere center */
+  float d2 = graphene_vec3_dot (&v1, &v1) - tca * tca;
+
+  float radius2 = s->radius * s->radius;
+  if (d2 > radius2)
+    return GRAPHENE_RAY_INTERSECTION_KIND_NONE;
+
+  /* Distance to entry/exit point */
+  float thc = sqrtf (radius2 - d2);
+
+  /* t0 = first intersect point - entrance on front of sphere */
+  float t0 = tca - thc;
+
+  /* t1 = second intersect point - exit point on back of sphere */
+  float t1 = tca + thc;
+
+  // test to see if both t0 and t1 are behind the ray - if so, no intersection
+  if (t0 < 0 && t1 < 0)
+    return GRAPHENE_RAY_INTERSECTION_KIND_NONE;
+
+  /* test to see if t0 is behind the ray.
+   *
+   * 1) if it is, the ray is inside the sphere, so return t1,
+   * in order to always return an intersect point that is
+   * in front of the ray.
+   */
+  if (t0 < 0)
+    {
+      if (t_out)
+        *t_out = t1;
+
+      return GRAPHENE_RAY_INTERSECTION_KIND_LEAVE;
+    }
+
+  /* 2) t0 is in front of the ray, so return t0 */
+  if (t_out)
+    *t_out = t0;
+
+  return GRAPHENE_RAY_INTERSECTION_KIND_ENTER;
+}
+
+/**
+ * graphene_ray_intersects_sphere:
+ * @r: a #graphene_ray_t
+ * @s: a #graphene_sphere_t
+ *
+ * Checks if the given #graphene_ray_t @r intersects the
+ * given #graphene_sphere_t @s.
+ *
+ * See also: graphene_ray_intersect_sphere()
+ *
+ * Returns: `true` if the ray intersects the sphere
+ *
+ * Since: 1.10
+ */
+bool
+graphene_ray_intersects_sphere (const graphene_ray_t    *r,
+                                const graphene_sphere_t *s)
+{
+  return graphene_ray_intersect_sphere (r, s, NULL) != GRAPHENE_RAY_INTERSECTION_KIND_NONE;
+}
+
+/**
+ * graphene_ray_intersect_box:
+ * @r: a #graphene_ray_t
+ * @b: a #graphene_box_t
+ * @t_out: (out): the distance of the point on the ray that intersects the box
+ *
+ * Intersects the given #graphene_ray_t @r with the given
+ * #graphene_box_t @b.
+ *
+ * Returns: the type of intersection
+ *
+ * Since: 1.10
+ */
+graphene_ray_intersection_kind_t
+graphene_ray_intersect_box (const graphene_ray_t *r,
+                            const graphene_box_t *b,
+                            float                *t_out)
+{
+  graphene_vec3_t inv_dir;
+
+  /* FIXME: Needs a graphene_vec3_reciprocal() */
+  inv_dir.value = graphene_simd4f_reciprocal (r->direction.value);
+
+  graphene_vec3_t inv_min;
+  graphene_vec3_subtract (&(b->min), &r->origin, &inv_min);
+  graphene_vec3_multiply (&inv_min, &inv_dir, &inv_min);
+
+  graphene_vec3_t inv_max;
+  graphene_vec3_subtract (&(b->max), &r->origin, &inv_max);
+  graphene_vec3_multiply (&inv_max, &inv_dir, &inv_max);
+
+  float tx_min, tx_max;
+  if (graphene_vec3_get_x (&inv_dir) >= 0.f)
+    {
+      tx_min = graphene_vec3_get_x (&inv_min);
+      tx_max = graphene_vec3_get_x (&inv_max);
+    }
+  else
+    {
+      tx_min = graphene_vec3_get_x (&inv_max);
+      tx_max = graphene_vec3_get_x (&inv_min);
+    }
+
+  float ty_min, ty_max;
+  if (graphene_vec3_get_y (&inv_dir) >= 0.f)
+    {
+      ty_min = graphene_vec3_get_y (&inv_min);
+      ty_max = graphene_vec3_get_y (&inv_max);
+    }
+  else
+    {
+      ty_min = graphene_vec3_get_y (&inv_max);
+      ty_max = graphene_vec3_get_y (&inv_min);
+    }
+
+  if (t_out != NULL)
+    *t_out = 0.f;
+
+  if ((tx_min > ty_max) || (ty_min > tx_max))
+    return GRAPHENE_RAY_INTERSECTION_KIND_NONE;
+
+  /* These lines also handle the case where tx_min or tx_max is NaN
+   * (result of 0 * INFINITY): NaN != NaN
+   */
+#ifdef HAVE_ISNANF
+  if (ty_min > tx_min || isnanf (tx_min))
+    tx_min = ty_min;
+  if (ty_max < tx_max || isnanf (tx_max))
+    tx_max = ty_max;
+#else
+  if (ty_min > tx_min || fpclassify (tx_min) == FP_NAN)
+    tx_min = ty_min;
+  if (ty_max > tx_max || fpclassify (tx_max) == FP_NAN)
+    tx_max = ty_max;
+#endif
+
+  float tz_min, tz_max;
+  if (graphene_vec3_get_z (&inv_dir) >= 0.f)
+    {
+      tz_min = graphene_vec3_get_z (&inv_min);
+      tz_max = graphene_vec3_get_z (&inv_max);
+    }
+  else
+    {
+      tz_min = graphene_vec3_get_z (&inv_max);
+      tz_max = graphene_vec3_get_z (&inv_min);
+    }
+
+  if ((tx_min > tz_max) || (tz_min > tx_max))
+    return GRAPHENE_RAY_INTERSECTION_KIND_NONE;
+
+#ifdef HAVE_ISNANF
+  if (tz_min > tx_min || isnanf (tx_min))
+    tx_min = tz_min;
+  if (tz_max < tx_max || isnanf (tx_max))
+    tx_max = tz_max;
+#else
+  if (tz_min > tx_min || fpclassify (tx_min) == FP_NAN)
+    tx_min = tz_min;
+  if (tz_max < tx_max || fpclassify (tx_max) == FP_NAN)
+    tx_max = tz_max;
+#endif
+
+  /* return the point closest to the ray (positive side) */
+  if (tx_max < 0)
+    return GRAPHENE_RAY_INTERSECTION_KIND_NONE;
+
+  if (tx_min >= 0)
+    {
+      if (t_out)
+        *t_out = tx_min;
+
+      return GRAPHENE_RAY_INTERSECTION_KIND_ENTER;
+    }
+
+  if (t_out)
+    *t_out = tx_max;
+
+  return GRAPHENE_RAY_INTERSECTION_KIND_LEAVE;
+}
+
+/**
+ * graphene_ray_intersects_box:
+ * @r: a #graphene_ray_t
+ * @b: a #graphene_box_t
+ *
+ * Checks whether the given #graphene_ray_t @r intersects the
+ * given #graphene_box_t @b.
+ *
+ * See also: graphene_ray_intersect_box()
+ *
+ * Returns: `true` if the ray intersects the box
+ *
+ * Since: 1.10
+ */
+bool
+graphene_ray_intersects_box (const graphene_ray_t *r,
+                             const graphene_box_t *b)
+{
+  return graphene_ray_intersect_box (r, b, NULL) != GRAPHENE_RAY_INTERSECTION_KIND_NONE;
+}
+
+/**
+ * graphene_ray_intersect_triangle:
+ * @r: a #graphene_ray_t
+ * @t: a #graphene_triangle_t
+ * @t_out: (out): the distance of the point on the ray that intersects the triangle
+ *
+ * Intersects the given #graphene_ray_t @r with the given
+ * #graphene_triangle_t @t.
+ *
+ * Returns: the type of intersection
+ *
+ * Since: 1.10
+ */
+graphene_ray_intersection_kind_t
+graphene_ray_intersect_triangle (const graphene_ray_t      *r,
+                                 const graphene_triangle_t *t,
+                                 float                     *t_out)
+{
+  graphene_vec3_t diff, edge1, edge2, normal;
+  graphene_ray_intersection_kind_t kind;
+
+  /* from http://www.geometrictools.com/GTEngine/Include/Mathematics/GteIntrRay3Triangle3.h */
+
+  /* Compute the offset origin, edges, and normal */
+  graphene_vec3_subtract (&t->b, &t->a, &edge1);
+  graphene_vec3_subtract (&t->c, &t->a, &edge2);
+  graphene_vec3_cross (&edge1, &edge2, &normal);
+
+  /* Solve:
+   *
+   *   Q + t * D = b1 * E1 + b2 * E2
+   *
+   * Where:
+   *  * Q = kDiff
+   *  * D = ray direction
+   *  * E1 = kEdge1
+   *  * E2 = kEdge2
+   *  * N = Cross(E1,E2)
+   *
+   * by:
+   *
+   *  |Dot(D,N)| * b1 = sign(Dot(D,N)) * Dot(D,Cross(Q,E2))
+   *  |Dot(D,N)| * b2 = sign(Dot(D,N)) * Dot(D,Cross(E1,Q))
+   *  |Dot(D,N)| * t = -sign(Dot(D,N)) * Dot(Q,N)
+   */
+  float DdN = graphene_vec3_dot (&r->direction, &normal);
+  float sign;
+
+  /* Ray and triangle are parallel, call it a "no intersection"
+   * even if the ray does intersect
+   */
+  if (graphene_approx_val (DdN, 0.f))
+    return GRAPHENE_RAY_INTERSECTION_KIND_NONE;
+  else if (DdN > 0)
+    {
+      kind = GRAPHENE_RAY_INTERSECTION_KIND_LEAVE;
+      sign = 1.f;
+
+    }
+  else
+    {
+      kind = GRAPHENE_RAY_INTERSECTION_KIND_ENTER;
+      sign = -1.f;
+      DdN = -DdN;
+    }
+
+  graphene_vec3_subtract (&r->origin, &t->a, &diff);
+  graphene_vec3_cross (&diff, &edge2, &edge2);
+  float DdQxE2 = sign * graphene_vec3_dot (&r->direction, &edge2);
+
+  /* b1 < 0, no intersection */
+  if (DdQxE2 < 0)
+    return GRAPHENE_RAY_INTERSECTION_KIND_NONE;
+
+  graphene_vec3_cross (&edge1, &diff, &edge1);
+
+  float DdE1xQ = sign * graphene_vec3_dot (&r->direction, &edge1);
+
+  /* b2 < 0, no intersection */
+  if (DdE1xQ < 0)
+    return GRAPHENE_RAY_INTERSECTION_KIND_NONE;
+
+  /* b1 + b2 > 1, no intersection */
+  if (DdQxE2 + DdE1xQ > DdN)
+    return GRAPHENE_RAY_INTERSECTION_KIND_NONE;
+
+  /* Line intersects triangle, check if ray does */
+  float QdN = -sign * graphene_vec3_dot (&diff,
+                                         &normal);
+
+  /* t < 0, no intersection */
+  if ( QdN < 0 )
+    return GRAPHENE_RAY_INTERSECTION_KIND_NONE;
+
+  if (t_out != NULL)
+    *t_out = QdN / DdN;
+
+  return kind;
+}
+
+/**
+ * graphene_ray_intersects_triangle:
+ * @r: a #graphene_ray_t
+ * @t: a #graphene_triangle_t
+ *
+ * Checks whether the given #graphene_ray_t @r intersects the
+ * given #graphene_triangle_t @b.
+ *
+ * See also: graphene_ray_intersect_triangle()
+ *
+ * Returns: `true` if the ray intersects the triangle
+ *
+ * Since: 1.10
+ */
+bool
+graphene_ray_intersects_triangle (const graphene_ray_t      *r,
+                                  const graphene_triangle_t *t)
+{
+  return graphene_ray_intersect_triangle (r, t, NULL) != GRAPHENE_RAY_INTERSECTION_KIND_NONE;
 }

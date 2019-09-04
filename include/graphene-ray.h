@@ -51,6 +51,24 @@ struct _graphene_ray_t
   GRAPHENE_PRIVATE_FIELD (graphene_vec3_t, direction);
 };
 
+/**
+ * graphene_ray_intersection_kind_t:
+ * @GRAPHENE_RAY_INTERSECTION_KIND_NONE: No intersection
+ * @GRAPHENE_RAY_INTERSECTION_KIND_ENTER: The ray is entering the intersected
+ *   object
+ * @GRAPHENE_RAY_INTERSECTION_KIND_LEAVE: The ray is leaving the intersected
+ *   object
+ *
+ * The type of intersection.
+ *
+ * Since: 1.10
+ */
+typedef enum {
+  GRAPHENE_RAY_INTERSECTION_KIND_NONE,
+  GRAPHENE_RAY_INTERSECTION_KIND_ENTER,
+  GRAPHENE_RAY_INTERSECTION_KIND_LEAVE,
+} graphene_ray_intersection_kind_t;
+
 GRAPHENE_AVAILABLE_IN_1_4
 graphene_ray_t *                graphene_ray_alloc                  (void);
 GRAPHENE_AVAILABLE_IN_1_4
@@ -90,8 +108,30 @@ bool                            graphene_ray_equal                  (const graph
                                                                      const graphene_ray_t     *b);
 
 GRAPHENE_AVAILABLE_IN_1_4
-void                            graphene_ray_get_closest_point_to_point   (const graphene_ray_t     *r,
-                                                                           const graphene_point3d_t *p,
-                                                                           graphene_point3d_t       *res);
+void                            graphene_ray_get_closest_point_to_point (const graphene_ray_t     *r,
+                                                                         const graphene_point3d_t *p,
+                                                                         graphene_point3d_t       *res);
+
+GRAPHENE_AVAILABLE_IN_1_10
+graphene_ray_intersection_kind_t graphene_ray_intersect_sphere          (const graphene_ray_t    *r,
+                                                                         const graphene_sphere_t *s,
+                                                                         float                   *t_out);
+GRAPHENE_AVAILABLE_IN_1_10
+bool                            graphene_ray_intersects_sphere          (const graphene_ray_t    *r,
+                                                                         const graphene_sphere_t *s);
+GRAPHENE_AVAILABLE_IN_1_10
+graphene_ray_intersection_kind_t graphene_ray_intersect_box             (const graphene_ray_t    *r,
+                                                                         const graphene_box_t    *b,
+                                                                         float                   *t_out);
+GRAPHENE_AVAILABLE_IN_1_10
+bool                            graphene_ray_intersects_box             (const graphene_ray_t    *r,
+                                                                         const graphene_box_t    *b);
+GRAPHENE_AVAILABLE_IN_1_10
+graphene_ray_intersection_kind_t graphene_ray_intersect_triangle        (const graphene_ray_t      *r,
+                                                                         const graphene_triangle_t *t,
+                                                                         float                     *t_out);
+GRAPHENE_AVAILABLE_IN_1_10
+bool                            graphene_ray_intersects_triangle        (const graphene_ray_t      *r,
+                                                                         const graphene_triangle_t *t);
 
 GRAPHENE_END_DECLS

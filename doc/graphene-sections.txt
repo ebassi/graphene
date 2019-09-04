@@ -320,6 +320,13 @@ graphene_ray_get_distance_to_point
 graphene_ray_get_distance_to_plane
 graphene_ray_get_closest_point_to_point
 graphene_ray_equal
+graphene_ray_intersection_kind_t
+graphene_ray_intersect_sphere
+graphene_ray_intersects_sphere
+graphene_ray_intersect_box
+graphene_ray_intersects_box
+graphene_ray_intersect_triangle
+graphene_ray_intersects_triangle
 </SECTION>
 
 <SECTION>
