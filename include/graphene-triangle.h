@@ -97,6 +97,13 @@ GRAPHENE_AVAILABLE_IN_1_2
 bool                    graphene_triangle_get_barycoords        (const graphene_triangle_t *t,
                                                                  const graphene_point3d_t  *p,
                                                                  graphene_vec2_t           *res);
+GRAPHENE_AVAILABLE_IN_1_10
+bool                    graphene_triangle_get_uv                (const graphene_triangle_t *t,
+                                                                 const graphene_point3d_t  *p,
+                                                                 const graphene_vec2_t     *uv_a,
+                                                                 const graphene_vec2_t     *uv_b,
+                                                                 const graphene_vec2_t     *uv_c,
+                                                                 graphene_vec2_t           *res);
 
 GRAPHENE_AVAILABLE_IN_1_2
 bool                    graphene_triangle_contains_point        (const graphene_triangle_t *t,
