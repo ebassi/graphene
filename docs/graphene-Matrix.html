@@ -529,6 +529,14 @@
 </tr>
 <tr>
 <td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Matrix.html#graphene-matrix-decompose" title="graphene_matrix_decompose ()">graphene_matrix_decompose</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
 <span class="returnvalue">void</span>
 </td>
 <td class="function_name">
@@ -3002,6 +3010,69 @@ graphene_matrix_get_z_scale (<em class="parameter"><code>const <a class="link" h
 </div>
 <hr>
 <div class="refsect2">
+<a name="graphene-matrix-decompose"></a><h3>graphene_matrix_decompose ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_matrix_decompose (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *translate</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *scale</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> *rotate</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> *shear</code></em>,
+                           <em class="parameter"><code><a class="link" href="graphene-Vectors.html#graphene-vec4-t" title="graphene_vec4_t"><span class="type">graphene_vec4_t</span></a> *perspective</code></em>);</pre>
+<p>Decomposes a transformation matrix into its component transformations.</p>
+<p>The algorithm for decomposing a matrix is taken from the
+<a class="ulink" href="http://dev.w3.org/csswg/css-transforms/" target="_top">CSS3 Transforms specification</a>;
+specifically, the decomposition code is based on the equivalent code
+published in "Graphics Gems II", edited by Jim Arvo, and
+<a class="ulink" href="http://tog.acm.org/resources/GraphicsGems/gemsii/unmatrix.c" target="_top">available online</a>.</p>
+<div class="refsect3">
+<a name="graphene-matrix-decompose.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>m</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>translate</p></td>
+<td class="parameter_description"><p>the translation vector. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>scale</p></td>
+<td class="parameter_description"><p>the scale vector. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>rotate</p></td>
+<td class="parameter_description"><p>the rotation quaternion. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>shear</p></td>
+<td class="parameter_description"><p>the shear vector. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>perspective</p></td>
+<td class="parameter_description"><p>the perspective vector. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Out parameter, where caller must allocate storage."><span class="acronym">out caller-allocates</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-matrix-decompose.returns"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the matrix could be decomposed</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
 <a name="graphene-matrix-interpolate"></a><h3>graphene_matrix_interpolate ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 graphene_matrix_interpolate (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *a</code></em>,
@@ -3209,7 +3280,9 @@ other.</p>
 <a name="graphene-matrix-print"></a><h3>graphene_matrix_print ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 graphene_matrix_print (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>);</pre>
-<p>Prints the contents of a matrix.</p>
+<p>Prints the contents of a matrix to the standard error stream.</p>
+<p>This function is only useful for debugging; there are no guarantees
+made on the format of the output.</p>
 <div class="refsect3">
 <a name="graphene-matrix-print.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">

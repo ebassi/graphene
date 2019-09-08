@@ -135,6 +135,54 @@
 <a class="link" href="graphene-Ray.html#graphene-ray-equal" title="graphene_ray_equal ()">graphene_ray_equal</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Ray.html#graphene-ray-intersection-kind-t" title="enum graphene_ray_intersection_kind_t"><span class="returnvalue">graphene_ray_intersection_kind_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-intersect-sphere" title="graphene_ray_intersect_sphere ()">graphene_ray_intersect_sphere</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-intersects-sphere" title="graphene_ray_intersects_sphere ()">graphene_ray_intersects_sphere</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Ray.html#graphene-ray-intersection-kind-t" title="enum graphene_ray_intersection_kind_t"><span class="returnvalue">graphene_ray_intersection_kind_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-intersect-box" title="graphene_ray_intersect_box ()">graphene_ray_intersect_box</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-intersects-box" title="graphene_ray_intersects_box ()">graphene_ray_intersects_box</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="graphene-Ray.html#graphene-ray-intersection-kind-t" title="enum graphene_ray_intersection_kind_t"><span class="returnvalue">graphene_ray_intersection_kind_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-intersect-triangle" title="graphene_ray_intersect_triangle ()">graphene_ray_intersect_triangle</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">bool</span>
+</td>
+<td class="function_name">
+<a class="link" href="graphene-Ray.html#graphene-ray-intersects-triangle" title="graphene_ray_intersects_triangle ()">graphene_ray_intersects_triangle</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
 </tbody>
 </table></div>
 </div>
@@ -145,10 +193,16 @@
 <col width="150px" class="name">
 <col class="description">
 </colgroup>
-<tbody><tr>
+<tbody>
+<tr>
 <td class="datatype_keyword"> </td>
 <td class="function_name"><a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t">graphene_ray_t</a></td>
-</tr></tbody>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="graphene-Ray.html#graphene-ray-intersection-kind-t" title="enum graphene_ray_intersection_kind_t">graphene_ray_intersection_kind_t</a></td>
+</tr>
+</tbody>
 </table></div>
 </div>
 <div class="refsect1">
@@ -583,6 +637,255 @@ graphene_ray_equal (<em class="parameter"><code>const <a class="link" href="grap
 </div>
 <p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
 </div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-intersect-sphere"></a><h3>graphene_ray_intersect_sphere ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Ray.html#graphene-ray-intersection-kind-t" title="enum graphene_ray_intersection_kind_t"><span class="returnvalue">graphene_ray_intersection_kind_t</span></a>
+graphene_ray_intersect_sphere (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                               <em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>,
+                               <em class="parameter"><code><span class="type">float</span> *t_out</code></em>);</pre>
+<p>Intersects the given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> <em class="parameter"><code>r</code></em>
+ with the given
+<a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> <em class="parameter"><code>s</code></em>
+.</p>
+<div class="refsect3">
+<a name="graphene-ray-intersect-sphere.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>t_out</p></td>
+<td class="parameter_description"><p>the distance of the point on the ray that intersects the sphere. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-ray-intersect-sphere.returns"></a><h4>Returns</h4>
+<p> the type of intersection</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-intersects-sphere"></a><h3>graphene_ray_intersects_sphere ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_ray_intersects_sphere (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                                <em class="parameter"><code>const <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> *s</code></em>);</pre>
+<p>Checks if the given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> <em class="parameter"><code>r</code></em>
+ intersects the
+given <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a> <em class="parameter"><code>s</code></em>
+.</p>
+<p>See also: <a class="link" href="graphene-Ray.html#graphene-ray-intersect-sphere" title="graphene_ray_intersect_sphere ()"><code class="function">graphene_ray_intersect_sphere()</code></a></p>
+<div class="refsect3">
+<a name="graphene-ray-intersects-sphere.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>s</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Sphere.html#graphene-sphere-t" title="graphene_sphere_t"><span class="type">graphene_sphere_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-ray-intersects-sphere.returns"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the ray intersects the sphere</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-intersect-box"></a><h3>graphene_ray_intersect_box ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Ray.html#graphene-ray-intersection-kind-t" title="enum graphene_ray_intersection_kind_t"><span class="returnvalue">graphene_ray_intersection_kind_t</span></a>
+graphene_ray_intersect_box (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                            <em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *b</code></em>,
+                            <em class="parameter"><code><span class="type">float</span> *t_out</code></em>);</pre>
+<p>Intersects the given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> <em class="parameter"><code>r</code></em>
+ with the given
+<a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> <em class="parameter"><code>b</code></em>
+.</p>
+<div class="refsect3">
+<a name="graphene-ray-intersect-box.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>t_out</p></td>
+<td class="parameter_description"><p>the distance of the point on the ray that intersects the box. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-ray-intersect-box.returns"></a><h4>Returns</h4>
+<p> the type of intersection</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-intersects-box"></a><h3>graphene_ray_intersects_box ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_ray_intersects_box (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                             <em class="parameter"><code>const <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> *b</code></em>);</pre>
+<p>Checks whether the given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> <em class="parameter"><code>r</code></em>
+ intersects the
+given <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a> <em class="parameter"><code>b</code></em>
+.</p>
+<p>See also: <a class="link" href="graphene-Ray.html#graphene-ray-intersect-box" title="graphene_ray_intersect_box ()"><code class="function">graphene_ray_intersect_box()</code></a></p>
+<div class="refsect3">
+<a name="graphene-ray-intersects-box.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>b</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Box.html#graphene-box-t" title="graphene_box_t"><span class="type">graphene_box_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-ray-intersects-box.returns"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the ray intersects the box</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-intersect-triangle"></a><h3>graphene_ray_intersect_triangle ()</h3>
+<pre class="programlisting"><a class="link" href="graphene-Ray.html#graphene-ray-intersection-kind-t" title="enum graphene_ray_intersection_kind_t"><span class="returnvalue">graphene_ray_intersection_kind_t</span></a>
+graphene_ray_intersect_triangle (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                                 <em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>,
+                                 <em class="parameter"><code><span class="type">float</span> *t_out</code></em>);</pre>
+<p>Intersects the given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> <em class="parameter"><code>r</code></em>
+ with the given
+<a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> <em class="parameter"><code>t</code></em>
+.</p>
+<div class="refsect3">
+<a name="graphene-ray-intersect-triangle.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>t_out</p></td>
+<td class="parameter_description"><p>the distance of the point on the ray that intersects the triangle. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-ray-intersect-triangle.returns"></a><h4>Returns</h4>
+<p> the type of intersection</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-intersects-triangle"></a><h3>graphene_ray_intersects_triangle ()</h3>
+<pre class="programlisting"><span class="returnvalue">bool</span>
+graphene_ray_intersects_triangle (<em class="parameter"><code>const <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> *r</code></em>,
+                                  <em class="parameter"><code>const <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> *t</code></em>);</pre>
+<p>Checks whether the given <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a> <em class="parameter"><code>r</code></em>
+ intersects the
+given <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a> <em class="parameter"><code>b</code></em>
+.</p>
+<p>See also: <a class="link" href="graphene-Ray.html#graphene-ray-intersect-triangle" title="graphene_ray_intersect_triangle ()"><code class="function">graphene_ray_intersect_triangle()</code></a></p>
+<div class="refsect3">
+<a name="graphene-ray-intersects-triangle.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>r</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Ray.html#graphene-ray-t" title="graphene_ray_t"><span class="type">graphene_ray_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>t</p></td>
+<td class="parameter_description"><p>a <a class="link" href="graphene-Triangle.html#graphene-triangle-t" title="graphene_triangle_t"><span class="type">graphene_triangle_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="graphene-ray-intersects-triangle.returns"></a><h4>Returns</h4>
+<p> <code class="literal">true</code> if the ray intersects the triangle</p>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
+</div>
 </div>
 <div class="refsect1">
 <a name="graphene-Ray.other_details"></a><h2>Types and Values</h2>
@@ -595,6 +898,47 @@ graphene_ray_equal (<em class="parameter"><code>const <a class="link" href="grap
 <p>The contents of the <code class="literal">graphene_ray_t</code> structure are private, and should not
 be modified directly.</p>
 <p class="since">Since: <a class="link" href="ix05.html#api-index-1.4">1.4</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="graphene-ray-intersection-kind-t"></a><h3>enum graphene_ray_intersection_kind_t</h3>
+<p>The type of intersection.</p>
+<div class="refsect3">
+<a name="graphene-ray-intersection-kind-t.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-RAY-INTERSECTION-KIND-NONE:CAPS"></a>GRAPHENE_RAY_INTERSECTION_KIND_NONE</p></td>
+<td class="enum_member_description">
+<p>No intersection</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-RAY-INTERSECTION-KIND-ENTER:CAPS"></a>GRAPHENE_RAY_INTERSECTION_KIND_ENTER</p></td>
+<td class="enum_member_description">
+<p>The ray is entering the intersected
+  object</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GRAPHENE-RAY-INTERSECTION-KIND-LEAVE:CAPS"></a>GRAPHENE_RAY_INTERSECTION_KIND_LEAVE</p></td>
+<td class="enum_member_description">
+<p>The ray is leaving the intersected
+  object</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="ix07.html#api-index-1.10">1.10</a></p>
 </div>
 </div>
 </div>

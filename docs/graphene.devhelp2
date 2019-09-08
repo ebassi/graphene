@@ -126,6 +126,7 @@
     <keyword type="function" name="graphene_triangle_free ()" link="graphene-Triangle.html#graphene-triangle-free" since="1.2"/>
     <keyword type="function" name="graphene_triangle_init_from_point3d ()" link="graphene-Triangle.html#graphene-triangle-init-from-point3d" since="1.2"/>
     <keyword type="function" name="graphene_triangle_init_from_vec3 ()" link="graphene-Triangle.html#graphene-triangle-init-from-vec3" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_init_from_float ()" link="graphene-Triangle.html#graphene-triangle-init-from-float" since="1.10"/>
     <keyword type="function" name="graphene_triangle_get_points ()" link="graphene-Triangle.html#graphene-triangle-get-points" since="1.2"/>
     <keyword type="function" name="graphene_triangle_get_vertices ()" link="graphene-Triangle.html#graphene-triangle-get-vertices" since="1.2"/>
     <keyword type="function" name="graphene_triangle_get_area ()" link="graphene-Triangle.html#graphene-triangle-get-area" since="1.2"/>
@@ -134,6 +135,7 @@
     <keyword type="function" name="graphene_triangle_get_plane ()" link="graphene-Triangle.html#graphene-triangle-get-plane" since="1.2"/>
     <keyword type="function" name="graphene_triangle_get_bounding_box ()" link="graphene-Triangle.html#graphene-triangle-get-bounding-box" since="1.2"/>
     <keyword type="function" name="graphene_triangle_get_barycoords ()" link="graphene-Triangle.html#graphene-triangle-get-barycoords" since="1.2"/>
+    <keyword type="function" name="graphene_triangle_get_uv ()" link="graphene-Triangle.html#graphene-triangle-get-uv" since="1.10"/>
     <keyword type="function" name="graphene_triangle_contains_point ()" link="graphene-Triangle.html#graphene-triangle-contains-point" since="1.2"/>
     <keyword type="function" name="graphene_triangle_equal ()" link="graphene-Triangle.html#graphene-triangle-equal" since="1.2"/>
     <keyword type="struct" name="graphene_triangle_t" link="graphene-Triangle.html#graphene-triangle-t" since="1.2"/>
@@ -451,6 +453,7 @@
     <keyword type="function" name="graphene_matrix_get_x_scale ()" link="graphene-Matrix.html#graphene-matrix-get-x-scale" since="1.0"/>
     <keyword type="function" name="graphene_matrix_get_y_scale ()" link="graphene-Matrix.html#graphene-matrix-get-y-scale" since="1.0"/>
     <keyword type="function" name="graphene_matrix_get_z_scale ()" link="graphene-Matrix.html#graphene-matrix-get-z-scale" since="1.0"/>
+    <keyword type="function" name="graphene_matrix_decompose ()" link="graphene-Matrix.html#graphene-matrix-decompose"/>
     <keyword type="function" name="graphene_matrix_interpolate ()" link="graphene-Matrix.html#graphene-matrix-interpolate" since="1.0"/>
     <keyword type="function" name="graphene_matrix_equal ()" link="graphene-Matrix.html#graphene-matrix-equal" since="1.10"/>
     <keyword type="function" name="graphene_matrix_equal_fast ()" link="graphene-Matrix.html#graphene-matrix-equal-fast" since="1.10"/>
@@ -532,7 +535,14 @@
     <keyword type="function" name="graphene_ray_get_distance_to_plane ()" link="graphene-Ray.html#graphene-ray-get-distance-to-plane" since="1.4"/>
     <keyword type="function" name="graphene_ray_get_closest_point_to_point ()" link="graphene-Ray.html#graphene-ray-get-closest-point-to-point" since="1.4"/>
     <keyword type="function" name="graphene_ray_equal ()" link="graphene-Ray.html#graphene-ray-equal" since="1.4"/>
+    <keyword type="function" name="graphene_ray_intersect_sphere ()" link="graphene-Ray.html#graphene-ray-intersect-sphere" since="1.10"/>
+    <keyword type="function" name="graphene_ray_intersects_sphere ()" link="graphene-Ray.html#graphene-ray-intersects-sphere" since="1.10"/>
+    <keyword type="function" name="graphene_ray_intersect_box ()" link="graphene-Ray.html#graphene-ray-intersect-box" since="1.10"/>
+    <keyword type="function" name="graphene_ray_intersects_box ()" link="graphene-Ray.html#graphene-ray-intersects-box" since="1.10"/>
+    <keyword type="function" name="graphene_ray_intersect_triangle ()" link="graphene-Ray.html#graphene-ray-intersect-triangle" since="1.10"/>
+    <keyword type="function" name="graphene_ray_intersects_triangle ()" link="graphene-Ray.html#graphene-ray-intersects-triangle" since="1.10"/>
     <keyword type="struct" name="graphene_ray_t" link="graphene-Ray.html#graphene-ray-t" since="1.4"/>
+    <keyword type="enum" name="enum graphene_ray_intersection_kind_t" link="graphene-Ray.html#graphene-ray-intersection-kind-t" since="1.10"/>
     <keyword type="macro" name="GRAPHENE_MAJOR_VERSION" link="graphene-Versioning-information.html#GRAPHENE-MAJOR-VERSION:CAPS" since="1.0"/>
     <keyword type="macro" name="GRAPHENE_MINOR_VERSION" link="graphene-Versioning-information.html#GRAPHENE-MINOR-VERSION:CAPS" since="1.0"/>
     <keyword type="macro" name="GRAPHENE_MICRO_VERSION" link="graphene-Versioning-information.html#GRAPHENE-MICRO-VERSION:CAPS" since="1.0"/>
@@ -567,6 +577,9 @@
     <keyword type="constant" name="GRAPHENE_EULER_ORDER_RZXZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RZXZ:CAPS"/>
     <keyword type="constant" name="GRAPHENE_EULER_ORDER_RXYZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RXYZ:CAPS"/>
     <keyword type="constant" name="GRAPHENE_EULER_ORDER_RZYZ" link="graphene-Euler.html#GRAPHENE-EULER-ORDER-RZYZ:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_RAY_INTERSECTION_KIND_NONE" link="graphene-Ray.html#GRAPHENE-RAY-INTERSECTION-KIND-NONE:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_RAY_INTERSECTION_KIND_ENTER" link="graphene-Ray.html#GRAPHENE-RAY-INTERSECTION-KIND-ENTER:CAPS"/>
+    <keyword type="constant" name="GRAPHENE_RAY_INTERSECTION_KIND_LEAVE" link="graphene-Ray.html#GRAPHENE-RAY-INTERSECTION-KIND-LEAVE:CAPS"/>
     <keyword type="member" name="graphene-point-t.x" link="graphene-Point.html#graphene-point-t.x"/>
     <keyword type="member" name="graphene-point-t.y" link="graphene-Point.html#graphene-point-t.y"/>
     <keyword type="member" name="graphene-point3d-t.x" link="graphene-Point3D.html#graphene-point3d-t.x"/>
