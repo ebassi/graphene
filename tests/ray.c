@@ -129,6 +129,44 @@ ray_matrix_transform (void)
 }
 
 static void
+ray_intersect_triangle (void)
+{
+  graphene_vec3_t one3;
+  graphene_vec3_init (&one3, 1, 1, 1);
+
+  graphene_ray_t r;
+
+  graphene_triangle_t t;
+  graphene_triangle_init_from_point3d (&t,
+                                       &GRAPHENE_POINT3D_INIT (1, 1, 0),
+                                       &GRAPHENE_POINT3D_INIT (0, 1, 1),
+                                       &GRAPHENE_POINT3D_INIT (1, 0, 1));
+
+  graphene_ray_init (&r, NULL, graphene_vec3_zero ());
+  mutest_expect ("no intersection if ray's direction is zero",
+                 mutest_int_value (graphene_ray_intersect_triangle (&r, &t, NULL)),
+                 mutest_to_be, GRAPHENE_RAY_INTERSECTION_KIND_NONE,
+                 NULL);
+
+  graphene_ray_init (&r, NULL, &one3);
+  mutest_expect ("intersection with backside faces",
+                 mutest_int_value (graphene_ray_intersect_triangle (&r, &t, NULL)),
+                 mutest_to_be, GRAPHENE_RAY_INTERSECTION_KIND_LEAVE,
+                 NULL);
+
+  float d;
+  graphene_ray_init (&r, NULL, &one3);
+  mutest_expect ("intersection without backside faces",
+                 mutest_int_value (graphene_ray_intersect_triangle (&r, &t, &d)),
+                 mutest_not, mutest_to_be, GRAPHENE_RAY_INTERSECTION_KIND_NONE,
+                 NULL);
+  mutest_expect ("intersection distance to be valid",
+                 mutest_float_value (d),
+                 mutest_to_be_close_to, d - 1 / 3, 0.001,
+                 NULL);
+}
+
+static void
 ray_suite (void)
 {
   mutest_it ("can be initialized", ray_init);
@@ -136,6 +174,7 @@ ray_suite (void)
   mutest_it ("can compute the closest approach of a point from the ray", ray_get_distance_to_point);
   mutest_it ("can compute the closest point to a point on the ray", ray_closest_point_to_point);
   mutest_it ("can be transformed", ray_matrix_transform);
+  mutest_it ("can intersect triangles", ray_intersect_triangle);
 }
 
 MUTEST_MAIN (
