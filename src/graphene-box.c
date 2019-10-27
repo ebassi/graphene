@@ -427,14 +427,18 @@ graphene_box_get_depth (const graphene_box_t *box)
 static inline bool
 graphene_box_is_empty (const graphene_box_t *box)
 {
-#ifdef HAVE_ISINFF
+#if defined(isinf) && defined(signbit)
   float vmin[3], vmax[3];
 
   graphene_simd4f_dup_3f (box->min.value, vmin);
   graphene_simd4f_dup_3f (box->max.value, vmax);
 
-  return (isinff (vmin[0]) == 1 && isinff (vmin[1]) == 1 && isinff (vmin[2]) == 1) &&
-         (isinff (vmax[0]) == -1 && isinff (vmax[1]) == -1 && isinff (vmax[2]) == -1);
+  return ((isinf (vmin[0]) && !signbit (vmin[0])) &&
+          (isinf (vmin[1]) && !signbit (vmin[1])) &&
+          (isinf (vmin[2]) && !signbit (vmin[2]))) &&
+         ((isinf (vmax[0]) && signbit (vmax[0])) &&
+          (isinf (vmax[1]) && signbit (vmax[1])) &&
+          (isinf (vmax[2]) && signbit (vmax[2])));
 #else
   graphene_simd4f_t neg_inf = graphene_simd4f_init (-INFINITY, -INFINITY, -INFINITY, 0.f);
   graphene_simd4f_t pos_inf = graphene_simd4f_init (INFINITY, INFINITY, INFINITY, 0.f);
@@ -454,14 +458,18 @@ graphene_box_is_empty (const graphene_box_t *box)
 static inline bool
 graphene_box_is_infinity (const graphene_box_t *box)
 {
-#ifdef HAVE_ISINFF
+#if defined(isinf) && defined(signbit)
   float vmin[3], vmax[3];
 
   graphene_simd4f_dup_3f (box->min.value, vmin);
   graphene_simd4f_dup_3f (box->max.value, vmax);
 
-  return (isinff (vmin[0]) == -1 && isinff (vmin[1]) == -1 && isinff (vmin[2]) == -1) &&
-         (isinff (vmax[0]) == 1 && isinff (vmax[1]) == 1 && isinff (vmax[2]) == 1);
+  return ((isinf (vmin[0]) && signbit (vmin[0])) &&
+          (isinf (vmin[1]) && signbit (vmin[1])) &&
+          (isinf (vmin[2]) && signbit (vmin[2]))) &&
+         ((isinf (vmax[0]) && !signbit (vmax[0])) &&
+          (isinf (vmax[1]) && !signbit (vmax[1])) &&
+          (isinf (vmax[2]) && !signbit (vmax[2])));
 #else
   graphene_simd4f_t neg_inf = graphene_simd4f_init (-INFINITY, -INFINITY, -INFINITY, 0.f);
   graphene_simd4f_t pos_inf = graphene_simd4f_init (INFINITY, INFINITY, INFINITY, 0.f);
