@@ -79,7 +79,7 @@ if cc.get_id() == 'msvc'
     '-we4071',
     '-we4244',
     '-we4150',
-    '-we4819'
+    '/utf-8'
   ]
 else
   test_cflags = [
