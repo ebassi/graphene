@@ -79,7 +79,7 @@ if cc.get_id() == 'msvc'
     '-we4071',
     '-we4244',
     '-we4150',
-    '/utf-8'
+    '-utf-8'
   ]
 else
   test_cflags = [
@@ -115,6 +115,13 @@ else
 endif
 
 common_cflags = cc.get_supported_arguments(test_cflags)
+
+# MSVC: Let C4819 error out if we do not have the -utf-8 compiler flag
+if cc.get_id() == 'msvc'
+  if not common_cflags.contains('-utf-8')
+    common_cflags += cc.get_supported_arguments('-we4819')
+  endif
+endif
 
 common_ldflags = []
 if host_system == 'linux'
