@@ -253,12 +253,10 @@ if get_option('sse2')
 # if !defined(__amd64__) && !defined(__x86_64__)
 #   error "Need GCC >= 4.9 for SSE2 intrinsics on x86"
 # endif
-#elif defined (_MSC_VER) && (_MSC_VER < 1910)
-# if !defined (_M_X64) && !defined (_M_AMD64)
-#   error "Need MSVC 2017 or later for SSE2 intrinsics on x86"
-# endif
+#elif defined (_MSC_VER) && !defined (_M_X64) && !defined (_M_AMD64)
+# error "SSE2 intrinsics not supported on x86 MSVC builds"
 #endif
-#if defined(__SSE__) || (_M_X64 > 0) || (_MSC_VER >= 1910)
+#if defined(__SSE__) || (_M_X64 > 0)
 # include <mmintrin.h>
 # include <xmmintrin.h>
 # include <emmintrin.h>
