@@ -368,6 +368,10 @@ src_inc = include_directories('src')
 subdir('src')
 
 if get_option('tests')
+  if cc.get_id() == 'msvc' and cc.version().version_compare('<19')
+    warning('Tests, specifically the mutest library, cannot be built for pre-2015 Visual Studio builds.')
+    warning('Use \'meson configure -Dtests=false\' if you are sure you want to proceed.')
+  endif
   subdir('tests')
 endif
 
