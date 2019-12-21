@@ -925,6 +925,9 @@ graphene_matrix_transform_rect (const graphene_matrix_t *m,
                                 graphene_quad_t         *res)
 {
   graphene_point_t ret[4];
+  graphene_rect_t rr;
+
+  graphene_rect_normalize_r (r, &rr);
 
 #define TRANSFORM_POINT(matrix, rect, corner, out_p)   do {\
   graphene_simd4f_t __s; \
@@ -935,10 +938,10 @@ graphene_matrix_transform_rect (const graphene_matrix_t *m,
   out_p.x = graphene_simd4f_get_x (__s); \
   out_p.y = graphene_simd4f_get_y (__s);           } while (0)
 
-  TRANSFORM_POINT (m, r, top_left, ret[0]);
-  TRANSFORM_POINT (m, r, top_right, ret[1]);
-  TRANSFORM_POINT (m, r, bottom_right, ret[2]);
-  TRANSFORM_POINT (m, r, bottom_left, ret[3]);
+  TRANSFORM_POINT (m, &rr, top_left, ret[0]);
+  TRANSFORM_POINT (m, &rr, top_right, ret[1]);
+  TRANSFORM_POINT (m, &rr, bottom_right, ret[2]);
+  TRANSFORM_POINT (m, &rr, bottom_left, ret[3]);
 
 #undef TRANSFORM_POINT
 
@@ -968,6 +971,10 @@ graphene_matrix_transform_bounds (const graphene_matrix_t *m,
   float min_x, min_y;
   float max_x, max_y;
 
+  graphene_rect_t rr;
+
+  graphene_rect_normalize_r (r, &rr);
+
 #define TRANSFORM_POINT(matrix, rect, corner, out_p)   do {\
   graphene_simd4f_t __s; \
   graphene_point_t __p; \
@@ -977,10 +984,10 @@ graphene_matrix_transform_bounds (const graphene_matrix_t *m,
   out_p.x = graphene_simd4f_get_x (__s); \
   out_p.y = graphene_simd4f_get_y (__s);           } while (0)
 
-  TRANSFORM_POINT (m, r, top_left, ret[0]);
-  TRANSFORM_POINT (m, r, top_right, ret[1]);
-  TRANSFORM_POINT (m, r, bottom_right, ret[2]);
-  TRANSFORM_POINT (m, r, bottom_left, ret[3]);
+  TRANSFORM_POINT (m, &rr, top_left, ret[0]);
+  TRANSFORM_POINT (m, &rr, top_right, ret[1]);
+  TRANSFORM_POINT (m, &rr, bottom_right, ret[2]);
+  TRANSFORM_POINT (m, &rr, bottom_left, ret[3]);
 
 #undef TRANSFORM_POINT
 
@@ -1156,11 +1163,14 @@ graphene_matrix_project_rect_bounds (const graphene_matrix_t *m,
 {
   graphene_point_t points[4];
   graphene_point_t ret[4];
+  graphene_rect_t rr;
 
-  graphene_rect_get_top_left (r, &points[0]);
-  graphene_rect_get_top_right (r, &points[1]);
-  graphene_rect_get_bottom_left (r, &points[2]);
-  graphene_rect_get_bottom_right (r, &points[3]);
+  graphene_rect_normalize_r (r, &rr);
+
+  graphene_rect_get_top_left (&rr, &points[0]);
+  graphene_rect_get_top_right (&rr, &points[1]);
+  graphene_rect_get_bottom_left (&rr, &points[2]);
+  graphene_rect_get_bottom_right (&rr, &points[3]);
 
   graphene_matrix_project_point (m, &points[0], &ret[0]);
   graphene_matrix_project_point (m, &points[1], &ret[1]);
@@ -1195,17 +1205,20 @@ graphene_matrix_project_rect (const graphene_matrix_t *m,
                               graphene_quad_t         *res)
 {
   graphene_point_t p[4];
+  graphene_rect_t rr;
 
-  graphene_rect_get_top_left (r, &p[0]);
+  graphene_rect_normalize_r (r, &rr);
+
+  graphene_rect_get_top_left (&rr, &p[0]);
   graphene_matrix_project_point (m, &p[0], &p[0]);
 
-  graphene_rect_get_top_right (r, &p[1]);
+  graphene_rect_get_top_right (&rr, &p[1]);
   graphene_matrix_project_point (m, &p[1], &p[1]);
 
-  graphene_rect_get_bottom_left (r, &p[2]);
+  graphene_rect_get_bottom_left (&rr, &p[2]);
   graphene_matrix_project_point (m, &p[2], &p[2]);
 
-  graphene_rect_get_bottom_right (r, &p[3]);
+  graphene_rect_get_bottom_right (&rr, &p[3]);
   graphene_matrix_project_point (m, &p[3], &p[3]);
 
   graphene_quad_init_from_points (res, p);
