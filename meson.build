@@ -226,7 +226,7 @@ endif
 
 # Optional dependency on GObject-Introspection; if GObject is disabled
 # then we don't build introspection data either
-build_gir = build_gobject and get_option('introspection') and get_option('default_library') == 'shared'
+build_gir = build_gobject and get_option('introspection') and get_option('default_library') == 'shared' and find_program('g-ir-scanner', required: false).found()
 
 # Check for InitOnce on Windows
 if host_system == 'windows'
