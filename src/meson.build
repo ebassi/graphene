@@ -131,3 +131,14 @@ graphene_dep = declare_dependency(
   include_directories: [ graphene_inc ],
   dependencies: [ mathlib, threadlib ] + platform_deps,
 )
+
+# In case of subproject usage expose a separate variable for graphene-gobject
+# support, so the superproject and sibling subprojects can check for this
+# directly as part of the dependency() fallback logic instead of having to
+# poke at the build_gobject subproject variable. This mirrors the pkg-config
+# lookup logic where we have a dedicated .pc file for graphene-gobject as well.
+if build_gobject
+  graphene_gobject_dep = graphene_dep
+else
+  graphene_gobject_dep = dependency('', required: false)
+endif
