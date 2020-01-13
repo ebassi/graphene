@@ -73,9 +73,11 @@
 #endif
 
 #if defined(_MSC_VER) && !defined(__bool_true_false_are_defined) && (_MSC_VER < 1800)
+# ifndef __GI_SCANNER__
 typedef int bool;
-# define false 0
-# define true 1
+#  define false 0
+#  define true 1
+# endif
 #else
 # include <stdbool.h>
 #endif
