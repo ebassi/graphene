@@ -188,11 +188,12 @@ endforeach
 
 # Debugging
 debug_flags = []
-buildtype = get_option('buildtype')
-if buildtype == 'release'
-  debug_flags += [ '-DG_DISABLE_ASSERT' ]
-elif buildtype.startswith('debug')
+if get_option('debug')
   debug_flags += [ '-DGRAPHENE_ENABLE_DEBUG' ]
+  message('Enabling various debug infrastructure')
+elif get_option('optimization') in ['2', '3', 's']
+  debug_flags += [ '-DG_DISABLE_ASSERT' ]
+  message('Disabling assertions')
 endif
 
 extra_args = []
