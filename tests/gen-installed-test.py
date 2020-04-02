@@ -29,7 +29,11 @@ def write_template(filename, data):
         f.write(data)
 
 def build_template(testdir, testname):
-    return "[Test]\nType=session\nExec={}\n".format(os.path.join(testdir, testname))
+    return """[Test]
+Type=session
+Exec={}
+TestEnvironment=MUTEST_OUTPUT=tap;
+""".format(os.path.join(testdir, testname))
 
 argparser = argparse.ArgumentParser(description='Generate installed-test data.')
 argparser.add_argument('--testdir', metavar='dir', required=True, help='Installed test directory')
