@@ -601,10 +601,37 @@ graphene_simd4x4f_init_look_at (graphene_simd4x4f_t *m,
                                 graphene_simd4f_t    center,
                                 graphene_simd4f_t    up)
 {
-  const graphene_simd4f_t z_axis = graphene_simd4f_normalize3 (graphene_simd4f_sub (center, eye));
-  const graphene_simd4f_t x_axis = graphene_simd4f_normalize3 (graphene_simd4f_cross3 (z_axis, up));
-  const graphene_simd4f_t y_axis = graphene_simd4f_cross3 (x_axis, z_axis);
+  const graphene_simd4f_t direction = graphene_simd4f_sub (center, eye);
+  graphene_simd4f_t cross;
+  graphene_simd4f_t z_axis;
+  graphene_simd4f_t x_axis;
+  graphene_simd4f_t y_axis;
   float eye_v[4];
+
+  if (graphene_simd4f_get_x (graphene_simd4f_dot3 (direction, direction)) < FLT_EPSILON)
+    /* eye and center are in the same position */
+    z_axis = graphene_simd4f_init (0, 0, 1, 0);
+  else
+    z_axis = graphene_simd4f_normalize3 (direction);
+
+  cross = graphene_simd4f_cross3 (z_axis, up);
+  if (graphene_simd4f_get_x (graphene_simd4f_dot3 (cross, cross)) < FLT_EPSILON)
+    {
+      graphene_simd4f_t tweak_z;
+
+      /* up and z_axis are parallel */
+      if (fabs (graphene_simd4f_get_z (up) - 1.0) < FLT_EPSILON)
+        tweak_z = graphene_simd4f_init (0.0001f, 0, 0, 0);
+      else
+        tweak_z = graphene_simd4f_init (0, 0, 0.0001f, 0);
+
+      z_axis = graphene_simd4f_add (z_axis, tweak_z);
+      z_axis = graphene_simd4f_normalize3 (z_axis);
+      cross = graphene_simd4f_cross3 (z_axis, up);
+    }
+
+  x_axis = graphene_simd4f_normalize3 (cross);
+  y_axis = graphene_simd4f_cross3 (x_axis, z_axis);
 
   graphene_simd4f_dup_4f (eye, eye_v);
 
