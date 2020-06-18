@@ -47,6 +47,36 @@
  * The contents of a #graphene_matrix_t are private, and direct access is not
  * possible. You can modify and read the contents of a #graphene_matrix_t
  * only through the provided API.
+ *
+ * # Conventions # {#conventions}
+ *
+ * Graphene uses left-multiplication for all its operations on vectors and
+ * matrices; in other words, given a matrix `A` and a vector `b`, the result
+ * of a multiplication is going to be:
+ *
+ * |[
+ *   res = b × A
+ * ]|
+ *
+ * Multiplying two matrices, on the other hand, will use right-multiplication;
+ * given two matrices `A` and `B`, the result of the multiplication is going
+ * to be
+ *
+ * |[
+ *   res = A × B
+ * ]|
+ *
+ * as the implementation will multiply each row vector of matrix `A` with the
+ * matrix `B` to obtain the new row vectors of the result matrix:
+ *
+ * |[
+ *   res = ⎡ A.x × B ⎤
+ *         ⎜ A.y × B ⎟
+ *         ⎜ A.z × B ⎟
+ *         ⎣ A.w × B ⎦
+ * ]|
+ *
+ * For more information, see the documentation for #graphene_simd4x4f_t.
  */
 
 #include "graphene-private.h"
