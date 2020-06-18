@@ -443,7 +443,23 @@ graphene_simd4x4f_inv_ortho_point3_mul (const graphene_simd4x4f_t *a,
  * @b: a #graphene_simd4x4f_t
  * @res: (out): return location for the result
  *
- * Multiplies the two matrices.
+ * Multiplies the two matrices, following the convention:
+ *
+ * |[<!-- language="plain" -->
+ *   res = A × B
+ *
+ *       = ⎡ A.x × B ⎤
+ *         ⎜ A.y × B ⎟
+ *         ⎜ A.z × B ⎟
+ *         ⎣ A.w × B ⎦
+ *
+ *       = ⎡ res.x ⎤
+ *         ⎜ res.y ⎟
+ *         ⎜ res.z ⎟
+ *         ⎣ res.w ⎦
+ * ]|
+ *
+ * See also: graphene_simd4x4f_vec4_mul()
  *
  * Since: 1.0
  */
