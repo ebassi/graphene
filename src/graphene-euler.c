@@ -543,6 +543,7 @@ graphene_euler_init_from_matrix (graphene_euler_t        *e,
   if (m == NULL || graphene_matrix_is_identity (m))
     return graphene_euler_init_with_order (e, 0.f, 0.f, 0.f, order);
 
+  order = graphene_euler_get_real_order (order);
   matrix_to_euler (m, &order_parameters[ORDER_OFFSET (order)], &x, &y, &z);
   graphene_euler_init_internal (e, x, y, z, order);
 
@@ -576,7 +577,7 @@ graphene_euler_init_from_quaternion (graphene_euler_t            *e,
 
   graphene_quaternion_to_matrix (q, &m);
 
-  return graphene_euler_init_from_matrix (e, &m, order);
+  return graphene_euler_init_from_matrix (e, &m, graphene_euler_get_real_order (order));
 }
 
 /**
@@ -606,7 +607,7 @@ graphene_euler_init_from_vec3 (graphene_euler_t       *e,
   else
     graphene_vec3_init_from_vec3 (&e->angles, graphene_vec3_zero ());
 
-  e->order = order;
+  e->order = graphene_euler_get_real_order (order);
 
   return e;
 }
@@ -1067,5 +1068,5 @@ graphene_euler_reorder (const graphene_euler_t *e,
   graphene_quaternion_t q;
 
   graphene_quaternion_init_from_euler (&q, e);
-  graphene_euler_init_from_quaternion (res, &q, order);
+  graphene_euler_init_from_quaternion (res, &q, graphene_euler_get_real_order (order));
 }
