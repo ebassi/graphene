@@ -52,6 +52,11 @@
 #include <math.h>
 #include <float.h>
 
+#if defined(_WIN32) && ! defined(isnanf)
+# define isnanf(x) _isnanf(x)
+# define HAVE_ISNANF
+#endif
+
 /**
  * graphene_ray_alloc: (constructor)
  *
