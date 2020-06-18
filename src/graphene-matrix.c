@@ -76,7 +76,13 @@
  *         ⎣ A.w × B ⎦
  * ]|
  *
- * For more information, see the documentation for #graphene_simd4x4f_t.
+ * For more information, see the documentation for #graphene_simd4x4f_t,
+ * especially the following functions:
+ *
+ *   - graphene_simd4x4f_vec4_mul()
+ *   - graphene_simd4x4f_vec3_mul()
+ *   - graphene_simd4x4f_point3_mul()
+ *   - graphene_simd4x4f_matrix_mul()
  */
 
 #include "graphene-private.h"
@@ -919,6 +925,8 @@ graphene_matrix_transform_point (const graphene_matrix_t *m,
  * account the fourth row vector of the #graphene_matrix_t when computing
  * the dot product of each row vector of the matrix.
  *
+ * See also: graphene_simd4x4f_point3_mul()
+ *
  * Since: 1.2
  */
 void
@@ -946,6 +954,8 @@ graphene_matrix_transform_point3d (const graphene_matrix_t  *m,
  * Transforms each corner of a #graphene_rect_t using the given matrix @m.
  *
  * The result is a coplanar quadrilateral.
+ *
+ * See also: graphene_matrix_transform_point()
  *
  * Since: 1.0
  */
@@ -989,6 +999,8 @@ graphene_matrix_transform_rect (const graphene_matrix_t *m,
  *
  * The result is the axis aligned bounding rectangle containing the coplanar
  * quadrilateral.
+ *
+ * See also: graphene_matrix_transform_point()
  *
  * Since: 1.0
  */
@@ -1182,7 +1194,7 @@ graphene_matrix_project_point (const graphene_matrix_t *m,
  * Projects a #graphene_rect_t using the given matrix.
  *
  * The resulting rectangle is the axis aligned bounding rectangle capable
- * of containing fully the projected rectangle.
+ * of fully containing the projected rectangle.
  *
  * Since: 1.0
  */
@@ -1225,7 +1237,9 @@ graphene_matrix_project_rect_bounds (const graphene_matrix_t *m,
  * @res: (out caller-allocates): return location for the projected
  *   rectangle
  *
- * Projects a #graphene_rect_t using the given matrix.
+ * Projects all corners of a #graphene_rect_t using the given matrix.
+ *
+ * See also: graphene_matrix_project_point()
  *
  * Since: 1.2
  */
