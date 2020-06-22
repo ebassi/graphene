@@ -237,8 +237,10 @@ euler_to_matrix (float                    ai,
 
   float m[16];
 
-/* Our matrices are row major */
-#define M(m, r, c) (m)[((r) << 2) + (c)]
+/* Our matrices are row major, however the code below is based on code
+   that assumes matrixes apply from the left, and we apply on the
+   right, so need to flip row/column. */
+#define M(m, r, c) (m)[((c) << 2) + (r)]
 
   /* We need to construct the matrix from float values instead
    * of SIMD vectors because the access is parametrised on the
@@ -299,8 +301,10 @@ matrix_to_euler (const graphene_matrix_t *matrix,
 
   graphene_matrix_to_float (matrix, m);
 
-/* Our matrices are row major */
-#define M(m, r, c) (m)[((r) << 2) + (c)]
+/* Our matrices are row major, however the code below is based on code
+   that assumes matrixes apply from the left, and we apply on the
+   right, so need to flip row/column. */
+#define M(m, r, c) (m)[((c) << 2) + (r)]
 
   float ax, ay, az;
   if (params->repetition)
