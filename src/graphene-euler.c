@@ -102,9 +102,9 @@
 
 #define EULER_DEFAULT_ORDER GRAPHENE_EULER_ORDER_SXYZ
 
-#define LAST_DEPRECATED GRAPHENE_EULER_ORDER_ZYX + 1
+#define LAST_DEPRECATED GRAPHENE_EULER_ORDER_ZYX
 
-#define ORDER_OFFSET(o) ((o) - LAST_DEPRECATED)
+#define ORDER_OFFSET(o) ((o) - (LAST_DEPRECATED + 1))
 
 /* The orders of rotation we support, minus the deprecated aliases */
 enum {
