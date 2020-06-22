@@ -321,6 +321,18 @@ graphene_matrix_init_ortho (graphene_matrix_t *m,
  * coordinates. The top of the camera is aligned to the direction
  * of the @up vector.
  *
+ * Before the transform, the camera is assumed to be placed at the
+ * origin, looking towards the negative Z axis, with the top side of
+ * the camera facing in the direction of the Y axis and the right
+ * side in the direction of the X axis.
+ *
+ * In theory, one could use @m to transform a model of such a camera
+ * into world-space. However, it is more common to use the inverse of
+ * @m to transform another object from world coordinates to the view
+ * coordinates of the camera. Typically you would then apply the
+ * camera projection transform to get from view to screen
+ * coordinates.
+ *
  * Returns: (transfer none): the initialized matrix
  *
  * Since: 1.0
