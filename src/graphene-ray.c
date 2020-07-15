@@ -52,7 +52,7 @@
 #include <math.h>
 #include <float.h>
 
-#if defined(_WIN64) && ! defined(isnanf)
+#if defined(_M_X64) && ! defined(isnanf)
 # define isnanf(x) _isnanf(x)
 # define HAVE_ISNANF
 #endif
