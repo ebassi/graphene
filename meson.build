@@ -329,11 +329,13 @@ endif
 neon_cflags = []
 if get_option('arm_neon')
   neon_prog = '''
-#ifndef __ARM_EABI__
-#error "EABI is required (to be sure that calling conventions are compatible)"
-#endif
-#ifndef __ARM_NEON__
-#error "No ARM NEON instructions available"
+#if !defined (_MSC_VER) || defined (__clang__)
+# ifndef __ARM_EABI__
+#  error "EABI is required (to be sure that calling conventions are compatible)"
+# endif
+# ifndef __ARM_NEON__
+#  error "No ARM NEON instructions available"
+# endif
 #endif
 #include <arm_neon.h>
 int main () {
@@ -349,7 +351,12 @@ int main () {
     float32x4_t c = vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 (s), __mask)); \
     return 0;
 }'''
-  test_neon_cflags = ['-mfpu=neon']
+
+  test_neon_cflags = []
+
+  if cc.get_id() != 'msvc'
+    test_neon_cflags += ['-mfpu=neon']
+  endif
 
   if host_system == 'android'
     test_neon_cflags += ['-mfloat-abi=softfp']

@@ -18,7 +18,7 @@ extern "C" {
 #mesondefine GRAPHENE_HAS_SSE
 # endif
 
-# if defined(__ARM_NEON__)
+# if defined(__ARM_NEON__) || defined (_M_ARM64)
 #mesondefine GRAPHENE_HAS_ARM_NEON
 # endif
 
