@@ -173,6 +173,8 @@ void    graphene_simd4x4f_transpose_in_place    (graphene_simd4x4f_t *s);
 
 #elif defined(GRAPHENE_USE_ARM_NEON)
 
+# ifdef __GNUC__
+
 #define graphene_simd4x4f_transpose_in_place(s) \
   (__extension__ ({ \
     const graphene_simd4f_union_t sx = { (s)->x }; \
@@ -184,6 +186,24 @@ void    graphene_simd4x4f_transpose_in_place    (graphene_simd4x4f_t *s);
     (s)->z = graphene_simd4f_init (sx.f[2], sy.f[2], sz.f[2], sw.f[2]); \
     (s)->w = graphene_simd4f_init (sx.f[3], sy.f[3], sz.f[3], sw.f[3]); \
   }))
+
+# elif defined (_MSC_VER)
+
+#define graphene_simd4x4f_transpose_in_place(s) _simd4x4f_transpose_in_place(s)
+static inline void
+_simd4x4f_transpose_in_place (graphene_simd4x4f_t *s)
+{
+  const graphene_simd4f_union_t sx = { (s)->x };
+  const graphene_simd4f_union_t sy = { (s)->y };
+  const graphene_simd4f_union_t sz = { (s)->z };
+  const graphene_simd4f_union_t sw = { (s)->w };
+  (s)->x = graphene_simd4f_init (sx.f[0], sy.f[0], sz.f[0], sw.f[0]);
+  (s)->y = graphene_simd4f_init (sx.f[1], sy.f[1], sz.f[1], sw.f[1]);
+  (s)->z = graphene_simd4f_init (sx.f[2], sy.f[2], sz.f[2], sw.f[2]);
+  (s)->w = graphene_simd4f_init (sx.f[3], sy.f[3], sz.f[3], sw.f[3]);
+}
+
+# endif
 
 #elif defined(GRAPHENE_USE_SCALAR)
 
