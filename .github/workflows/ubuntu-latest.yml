@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: set up
+      run: sudo apt-get install meson ninja-build
     - name: configure
       run: meson configure _build .
     - name: build
