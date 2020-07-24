@@ -16,7 +16,7 @@ jobs:
     - name: set up environment
       run: |
         sudo apt-get install gcc gir1.2-glib-2.0 gobject-introspection libgirepository1.0-dev libglib2.0-dev ninja-build python3-setuptools python3-wheel
-        sudo pip3 install meson==0.50.1
+        sudo pip3 install meson==0.54.3
     - name: configure the build
       run: meson _build .
     - name: build
