@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Copyright 2017  Emmanuele Bassi
 #
 # SPDX-License-Identifier: MIT

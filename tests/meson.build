@@ -19,8 +19,7 @@ unit_tests = [
   'vec4'
 ]
 
-python = python3.find_python()
-gen_installed_test = join_paths(meson.current_source_dir(), 'gen-installed-test.py')
+gen_installed_test = find_program('gen-installed-test.py')
 
 installed_test_datadir = join_paths(get_option('prefix'), get_option('datadir'), 'installed-tests', graphene_api_path)
 installed_test_bindir = join_paths(get_option('prefix'), get_option('libexecdir'), 'installed-tests', graphene_api_path)
@@ -40,7 +39,6 @@ if mutest_dep.found()
     custom_target(wrapper,
       output: wrapper,
       command: [
-        python,
         gen_installed_test,
         '--testdir=@0@'.format(installed_test_bindir),
         '--testname=@0@'.format(unit),
