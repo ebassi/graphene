@@ -1,0 +1,23 @@
+name: Ubuntu/latest CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: configure
+      run: meson configure _build .
+    - name: build
+      run: meson build -C _build
+    - name: check
+      run: meson test -C _build
+    - name: dist
+      run: meson dist -C _build
