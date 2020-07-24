@@ -374,7 +374,7 @@ endif
 # Scalar is always available as a fallback
 graphene_simd += [ 'scalar' ]
 
-python3 = import('python3')
+python = import('python')
 gnome = import('gnome')
 
 subdir('include')
