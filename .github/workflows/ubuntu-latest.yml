@@ -13,9 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: set up
-      run: sudo apt-get install ninja-build && pip3 install --user meson==0.50.1
-    - name: configure
+    - name: set up environment
+      run: sudo apt-get install ninja-build python3-setuptools python3-wheel && pip3 install --user meson==0.50.1
+    - name: configure the build
       run: meson configure _build .
     - name: build
       run: meson build -C _build
