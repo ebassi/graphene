@@ -12,8 +12,6 @@ jobs:
     defaults:
       run:
         shell: msys2 {0}
-    env:
-      PYTHONIOENCODING: "utf-8"
     steps:
     - uses: actions/checkout@master
     - uses: msys2/setup-msys2@v2
