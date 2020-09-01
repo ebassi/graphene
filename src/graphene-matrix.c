@@ -953,7 +953,7 @@ graphene_matrix_transform_point3d (const graphene_matrix_t  *m,
 
   res->x = graphene_simd4f_get_x (vec3) / graphene_simd4f_get_w (vec3);
   res->y = graphene_simd4f_get_y (vec3) / graphene_simd4f_get_w (vec3);
-  res->z = graphene_simd4f_get_y (vec3) / graphene_simd4f_get_w (vec3);
+  res->z = graphene_simd4f_get_z (vec3) / graphene_simd4f_get_w (vec3);
 }
 
 /**
