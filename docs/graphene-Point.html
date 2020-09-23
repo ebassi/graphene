@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="ch01.html" title="Graphene">
 <link rel="next" href="graphene-Point3D.html" title="Point3D">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,8 +35,8 @@
 <a name="graphene-Point.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -139,8 +139,8 @@
 <a name="graphene-Point.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -183,7 +183,7 @@ when declaring it, e.g:</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">graphene_point_t</span><span class="normal"> p </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="graphene-Point.html#GRAPHENE-POINT-INIT:CAPS">GRAPHENE_POINT_INIT</a></span><span class="normal"> </span><span class="symbol">(</span><span class="number">10</span><span class="symbol">.</span><span class="normal">f</span><span class="symbol">,</span><span class="normal"> </span><span class="number">10</span><span class="symbol">.</span><span class="normal">f</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">graphene_point_t</span> <span class="n">p</span> <span class="o">=</span> <span class="n">GRAPHENE_POINT_INIT</span> <span class="p">(</span><span class="mf">10.f</span><span class="p">,</span> <span class="mf">10.f</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -238,17 +238,17 @@ or <a class="link" href="graphene-Point.html#graphene-point-init-from-point" tit
 9
 10
 11</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal"><a href="graphene-Point.html#graphene-point-t">graphene_point_t</a> </span><span class="symbol">*</span>
-<span class="function">point_new</span><span class="normal"> </span><span class="symbol">(</span><span class="type">float</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> </span><span class="type">float</span><span class="normal"> y</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function"><a href="graphene-Point.html#graphene-point-init">graphene_point_init</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="graphene-Point.html#graphene-point-alloc">graphene_point_alloc</a></span><span class="normal"> </span><span class="symbol">(),</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> y</span><span class="symbol">);</span>
-<span class="cbracket">}</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">graphene_point_t</span> <span class="o">*</span>
+<span class="nf">point_new</span> <span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">graphene_point_init</span> <span class="p">(</span><span class="n">graphene_point_alloc</span> <span class="p">(),</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="normal"><a href="graphene-Point.html#graphene-point-t">graphene_point_t</a> </span><span class="symbol">*</span>
-<span class="function">point_copy</span><span class="normal"> </span><span class="symbol">(</span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">graphene_point_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">p</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function"><a href="graphene-Point.html#graphene-point-init-from-point">graphene_point_init_from_point</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="graphene-Point.html#graphene-point-alloc">graphene_point_alloc</a></span><span class="normal"> </span><span class="symbol">(),</span><span class="normal"> p</span><span class="symbol">);</span>
-<span class="cbracket">}</span></pre></td>
+<span class="n">graphene_point_t</span> <span class="o">*</span>
+<span class="nf">point_copy</span> <span class="p">(</span><span class="k">const</span> <span class="n">graphene_point_t</span> <span class="o">*</span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">graphene_point_init_from_point</span> <span class="p">(</span><span class="n">graphene_point_alloc</span> <span class="p">(),</span> <span class="n">p</span><span class="p">);</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -684,6 +684,6 @@ graphene_point_zero (<em class="parameter"><code><span class="type">void</span><
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-SIMD-matrix.html" title="SIMD matrix">
 <link rel="next" href="graphene-Matrix.html" title="Matrix">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,8 +35,8 @@
 <a name="graphene-Vectors.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -783,8 +783,8 @@
 <a name="graphene-Vectors.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -3835,13 +3835,13 @@ point values to be used with <a class="link" href="graphene-Vectors.html#graphen
 5
 6
 7</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="type">float</span><span class="normal"> v</span><span class="symbol">[</span><span class="normal"><a href="graphene-Vectors.html#GRAPHENE-VEC2-LEN:CAPS">GRAPHENE_VEC2_LEN</a></span><span class="symbol">];</span>
+        <td class="listing_code"><pre class="programlisting"><span class="kt">float</span> <span class="n">v</span><span class="p">[</span><span class="n">GRAPHENE_VEC2_LEN</span><span class="p">];</span>
 
-<span class="comment">// vec is defined elsewhere</span>
-<span class="function"><a href="graphene-Vectors.html#graphene-vec2-to-float">graphene_vec2_to_float</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">vec</span><span class="symbol">,</span><span class="normal"> v</span><span class="symbol">);</span>
+<span class="c1">// vec is defined elsewhere</span>
+<span class="n">graphene_vec2_to_float</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">vec</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
 
-<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> <a href="graphene-Vectors.html#GRAPHENE-VEC2-LEN:CAPS">GRAPHENE_VEC2_LEN</a></span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span>
-<span class="normal">  </span><span class="function">fprintf</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">stdout</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"component %d: %g</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> i</span><span class="symbol">,</span><span class="normal"> v</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">]);</span></pre></td>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">GRAPHENE_VEC2_LEN</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="n">fprintf</span> <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="s">&quot;component %d: %g</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -3880,13 +3880,13 @@ point values to be used with <a class="link" href="graphene-Vectors.html#graphen
 5
 6
 7</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="type">float</span><span class="normal"> v</span><span class="symbol">[</span><span class="normal"><a href="graphene-Vectors.html#GRAPHENE-VEC3-LEN:CAPS">GRAPHENE_VEC3_LEN</a></span><span class="symbol">];</span>
+        <td class="listing_code"><pre class="programlisting"><span class="kt">float</span> <span class="n">v</span><span class="p">[</span><span class="n">GRAPHENE_VEC3_LEN</span><span class="p">];</span>
 
-<span class="comment">// vec is defined elsewhere</span>
-<span class="function"><a href="graphene-Vectors.html#graphene-vec3-to-float">graphene_vec3_to_float</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">vec</span><span class="symbol">,</span><span class="normal"> v</span><span class="symbol">);</span>
+<span class="c1">// vec is defined elsewhere</span>
+<span class="n">graphene_vec3_to_float</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">vec</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
 
-<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> <a href="graphene-Vectors.html#GRAPHENE-VEC2-LEN:CAPS">GRAPHENE_VEC2_LEN</a></span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span>
-<span class="normal">  </span><span class="function">fprintf</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">stdout</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"component %d: %g</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> i</span><span class="symbol">,</span><span class="normal"> v</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">]);</span></pre></td>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">GRAPHENE_VEC2_LEN</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="n">fprintf</span> <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="s">&quot;component %d: %g</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -3925,13 +3925,13 @@ point values to be used with <a class="link" href="graphene-Vectors.html#graphen
 5
 6
 7</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="type">float</span><span class="normal"> v</span><span class="symbol">[</span><span class="normal"><a href="graphene-Vectors.html#GRAPHENE-VEC4-LEN:CAPS">GRAPHENE_VEC4_LEN</a></span><span class="symbol">];</span>
+        <td class="listing_code"><pre class="programlisting"><span class="kt">float</span> <span class="n">v</span><span class="p">[</span><span class="n">GRAPHENE_VEC4_LEN</span><span class="p">];</span>
 
-<span class="comment">// vec is defined elsewhere</span>
-<span class="function"><a href="graphene-Vectors.html#graphene-vec4-to-float">graphene_vec4_to_float</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">vec</span><span class="symbol">,</span><span class="normal"> v</span><span class="symbol">);</span>
+<span class="c1">// vec is defined elsewhere</span>
+<span class="n">graphene_vec4_to_float</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">vec</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
 
-<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> <a href="graphene-Vectors.html#GRAPHENE-VEC4-LEN:CAPS">GRAPHENE_VEC4_LEN</a></span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span>
-<span class="normal">  </span><span class="function">fprintf</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">stdout</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"component %d: %g</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> i</span><span class="symbol">,</span><span class="normal"> v</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">]);</span></pre></td>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">GRAPHENE_VEC4_LEN</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="n">fprintf</span> <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="s">&quot;component %d: %g</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -3953,6 +3953,6 @@ never be accessed directly.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32</div>
 </body>
 </html>

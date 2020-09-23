@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Matrix.html" title="Matrix">
 <link rel="next" href="graphene-Quaternion.html" title="Quaternion">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,8 +35,8 @@
 <a name="graphene-Euler.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -214,8 +214,8 @@
 <a name="graphene-Euler.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -252,9 +252,9 @@ in a rotation matrix:</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function">rot</span><span class="symbol">(</span><span class="normal">α</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> A</span>
-<span class="function">rot</span><span class="symbol">(</span><span class="normal">β</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> B</span>
-<span class="function">rot</span><span class="symbol">(</span><span class="normal">γ</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> G</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">rot</span><span class="p">(</span><span class="err">α</span><span class="p">)</span> <span class="o">=</span> <span class="n">A</span>
+<span class="n">rot</span><span class="p">(</span><span class="err">β</span><span class="p">)</span> <span class="o">=</span> <span class="n">B</span>
+<span class="n">rot</span><span class="p">(</span><span class="err">γ</span><span class="p">)</span> <span class="o">=</span> <span class="n">G</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -268,7 +268,7 @@ given by the product of each rotation matrix:</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">G × B × A </span><span class="symbol">=</span><span class="normal"> R</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">G</span> <span class="err">×</span> <span class="n">B</span> <span class="err">×</span> <span class="n">A</span> <span class="o">=</span> <span class="n">R</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -461,7 +461,7 @@ graphene_euler_init_from_matrix (<em class="parameter"><code><a class="link" hre
                                  <em class="parameter"><code><a class="link" href="graphene-Euler.html#graphene-euler-order-t" title="enum graphene_euler_order_t"><span class="type">graphene_euler_order_t</span></a> order</code></em>);</pre>
 <p>Initializes a <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> using the given rotation matrix.</p>
 <p>If the <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> <em class="parameter"><code>m</code></em>
- is <a href="https://developer.gnome.org/glib/stable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> will
+ is <code class="literal">NULL</code>, the <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> will
 be initialized with all angles set to 0.</p>
 <div class="refsect3">
 <a name="graphene-euler-init-from-matrix.parameters"></a><h4>Parameters</h4>
@@ -506,7 +506,7 @@ graphene_euler_init_from_quaternion (<em class="parameter"><code><a class="link"
                                      <em class="parameter"><code><a class="link" href="graphene-Euler.html#graphene-euler-order-t" title="enum graphene_euler_order_t"><span class="type">graphene_euler_order_t</span></a> order</code></em>);</pre>
 <p>Initializes a <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> using the given normalized quaternion.</p>
 <p>If the <a class="link" href="graphene-Quaternion.html#graphene-quaternion-t" title="graphene_quaternion_t"><span class="type">graphene_quaternion_t</span></a> <em class="parameter"><code>q</code></em>
- is <a href="https://developer.gnome.org/glib/stable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> will
+ is <code class="literal">NULL</code>, the <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> will
 be initialized with all angles set to 0.</p>
 <div class="refsect3">
 <a name="graphene-euler-init-from-quaternion.parameters"></a><h4>Parameters</h4>
@@ -552,7 +552,7 @@ graphene_euler_init_from_vec3 (<em class="parameter"><code><a class="link" href=
 <p>Initializes a <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> using the angles contained in a
 <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a>.</p>
 <p>If the <a class="link" href="graphene-Vectors.html#graphene-vec3-t" title="graphene_vec3_t"><span class="type">graphene_vec3_t</span></a> <em class="parameter"><code>v</code></em>
- is <a href="https://developer.gnome.org/glib/stable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> will be
+ is <code class="literal">NULL</code>, the <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> will be
 initialized with all angles set to 0.</p>
 <div class="refsect3">
 <a name="graphene-euler-init-from-vec3.parameters"></a><h4>Parameters</h4>
@@ -598,7 +598,7 @@ graphene_euler_init_from_euler (<em class="parameter"><code><a class="link" href
 <p>Initializes a <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> using the angles and order of
 another <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a>.</p>
 <p>If the <a class="link" href="graphene-Euler.html#graphene-euler-t" title="graphene_euler_t"><span class="type">graphene_euler_t</span></a> <em class="parameter"><code>src</code></em>
- is <a href="https://developer.gnome.org/glib/stable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, this function is equivalent
+ is <code class="literal">NULL</code>, this function is equivalent
 to calling <a class="link" href="graphene-Euler.html#graphene-euler-init" title="graphene_euler_init ()"><code class="function">graphene_euler_init()</code></a> with all angles set to 0.</p>
 <div class="refsect3">
 <a name="graphene-euler-init-from-euler.parameters"></a><h4>Parameters</h4>
@@ -1102,7 +1102,7 @@ as an alias for one of the other orders.</p>
 <td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-DEFAULT:CAPS"></a>GRAPHENE_EULER_ORDER_DEFAULT</p></td>
 <td class="enum_member_description">
 <p>Rotate in the default order; the
-  default order is one of the following enumeration values</p>
+default order is one of the following enumeration values</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1110,7 +1110,7 @@ as an alias for one of the other orders.</p>
 <td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-XYZ:CAPS"></a>GRAPHENE_EULER_ORDER_XYZ</p></td>
 <td class="enum_member_description">
 <p>Rotate in the X, Y, and Z order. Deprecated in
-  Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SXYZ:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SXYZ</code></a></p>
+Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SXYZ:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SXYZ</code></a></p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1118,7 +1118,7 @@ as an alias for one of the other orders.</p>
 <td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-YZX:CAPS"></a>GRAPHENE_EULER_ORDER_YZX</p></td>
 <td class="enum_member_description">
 <p>Rotate in the Y, Z, and X order. Deprecated in
-  Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SYZX:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SYZX</code></a></p>
+Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SYZX:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SYZX</code></a></p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1126,7 +1126,7 @@ as an alias for one of the other orders.</p>
 <td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-ZXY:CAPS"></a>GRAPHENE_EULER_ORDER_ZXY</p></td>
 <td class="enum_member_description">
 <p>Rotate in the Z, X, and Y order. Deprecated in
-  Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SZXY:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SZXY</code></a></p>
+Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SZXY:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SZXY</code></a></p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1134,7 +1134,7 @@ as an alias for one of the other orders.</p>
 <td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-XZY:CAPS"></a>GRAPHENE_EULER_ORDER_XZY</p></td>
 <td class="enum_member_description">
 <p>Rotate in the X, Z, and Y order. Deprecated in
-  Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SXZY:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SXZY</code></a></p>
+Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SXZY:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SXZY</code></a></p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1142,7 +1142,7 @@ as an alias for one of the other orders.</p>
 <td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-YXZ:CAPS"></a>GRAPHENE_EULER_ORDER_YXZ</p></td>
 <td class="enum_member_description">
 <p>Rotate in the Y, X, and Z order. Deprecated in
-  Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SYXZ:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SYXZ</code></a></p>
+Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SYXZ:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SYXZ</code></a></p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1150,7 +1150,7 @@ as an alias for one of the other orders.</p>
 <td class="enum_member_name"><p><a name="GRAPHENE-EULER-ORDER-ZYX:CAPS"></a>GRAPHENE_EULER_ORDER_ZYX</p></td>
 <td class="enum_member_description">
 <p>Rotate in the Z, Y, and X order. Deprecated in
-  Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SZYX:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SZYX</code></a></p>
+Graphene 1.10, it's an alias for <a class="link" href="graphene-Euler.html#GRAPHENE-EULER-ORDER-SZYX:CAPS"><code class="literal">GRAPHENE_EULER_ORDER_SZYX</code></a></p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1330,6 +1330,6 @@ as an alias for one of the other orders.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32</div>
 </body>
 </html>

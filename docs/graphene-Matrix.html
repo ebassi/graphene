@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Graphene">
 <link rel="prev" href="graphene-Vectors.html" title="Vectors">
 <link rel="next" href="graphene-Euler.html" title="Euler">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,8 +35,8 @@
 <a name="graphene-Matrix.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -582,8 +582,8 @@
 <a name="graphene-Matrix.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword"> </td>
@@ -614,6 +614,67 @@ of floating point values that can be used with other libraries.</p>
 <p>The contents of a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> are private, and direct access is not
 possible. You can modify and read the contents of a <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a>
 only through the provided API.</p>
+<div class="refsect2">
+<a name="conventions"></a><h3>Conventions</h3>
+<p>Graphene uses left-multiplication for all its operations on vectors and
+matrices; in other words, given a matrix <code class="literal">A</code> and a vector <code class="literal">b</code>, the result
+of a multiplication is going to be:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">res</span> <span class="o">=</span> <span class="n">b</span> <span class="err">×</span> <span class="n">A</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<p>Multiplying two matrices, on the other hand, will use right-multiplication;
+given two matrices <code class="literal">A</code> and <code class="literal">B</code>, the result of the multiplication is going
+to be</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">res</span> <span class="o">=</span> <span class="n">A</span> <span class="err">×</span> <span class="n">B</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<p>as the implementation will multiply each row vector of matrix <code class="literal">A</code> with the
+matrix <code class="literal">B</code> to obtain the new row vectors of the result matrix:</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">res</span> <span class="o">=</span> <span class="err">⎡</span> <span class="n">A</span><span class="p">.</span><span class="n">x</span> <span class="err">×</span> <span class="n">B</span> <span class="err">⎤</span>
+      <span class="err">⎜</span> <span class="n">A</span><span class="p">.</span><span class="n">y</span> <span class="err">×</span> <span class="n">B</span> <span class="err">⎟</span>
+      <span class="err">⎜</span> <span class="n">A</span><span class="p">.</span><span class="n">z</span> <span class="err">×</span> <span class="n">B</span> <span class="err">⎟</span>
+      <span class="err">⎣</span> <span class="n">A</span><span class="p">.</span><span class="n">w</span> <span class="err">×</span> <span class="n">B</span> <span class="err">⎦</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p></p>
+<p>For more information, see the documentation for <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-t" title="graphene_simd4x4f_t"><span class="type">graphene_simd4x4f_t</span></a>,
+especially the following functions:</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p>graphene_simd4x4f_vec4_mul()</p></li>
+<li class="listitem"><p>graphene_simd4x4f_vec3_mul()</p></li>
+<li class="listitem"><p>graphene_simd4x4f_point3_mul()</p></li>
+<li class="listitem"><p>graphene_simd4x4f_matrix_mul()</p></li>
+</ul></div>
+</div>
 </div>
 <div class="refsect1">
 <a name="graphene-Matrix.functions_details"></a><h2>Functions</h2>
@@ -1022,6 +1083,18 @@ at the given <em class="parameter"><code>eye</code></em>
 coordinates. The top of the camera is aligned to the direction
 of the <em class="parameter"><code>up</code></em>
  vector.</p>
+<p>Before the transform, the camera is assumed to be placed at the
+origin, looking towards the negative Z axis, with the top side of
+the camera facing in the direction of the Y axis and the right
+side in the direction of the X axis.</p>
+<p>In theory, one could use <em class="parameter"><code>m</code></em>
+ to transform a model of such a camera
+into world-space. However, it is more common to use the inverse of
+<em class="parameter"><code>m</code></em>
+ to transform another object from world coordinates to the view
+coordinates of the camera. Typically you would then apply the
+camera projection transform to get from view to screen
+coordinates.</p>
 <div class="refsect3">
 <a name="graphene-matrix-init-look-at.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1812,6 +1885,7 @@ graphene_matrix_transform_point3d (<em class="parameter"><code>const <a class="l
 <p>Unlike <a class="link" href="graphene-Matrix.html#graphene-matrix-transform-vec3" title="graphene_matrix_transform_vec3 ()"><code class="function">graphene_matrix_transform_vec3()</code></a>, this function will take into
 account the fourth row vector of the <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> when computing
 the dot product of each row vector of the matrix.</p>
+<p>See also: <a class="link" href="graphene-SIMD-matrix.html#graphene-simd4x4f-point3-mul" title="graphene_simd4x4f_point3_mul ()"><code class="function">graphene_simd4x4f_point3_mul()</code></a></p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-point3d.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1851,6 +1925,7 @@ graphene_matrix_transform_rect (<em class="parameter"><code>const <a class="link
 <p>Transforms each corner of a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the given matrix <em class="parameter"><code>m</code></em>
 .</p>
 <p>The result is a coplanar quadrilateral.</p>
+<p>See also: <a class="link" href="graphene-Matrix.html#graphene-matrix-transform-point" title="graphene_matrix_transform_point ()"><code class="function">graphene_matrix_transform_point()</code></a></p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-rect.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1892,6 +1967,7 @@ graphene_matrix_transform_bounds (<em class="parameter"><code>const <a class="li
 .</p>
 <p>The result is the axis aligned bounding rectangle containing the coplanar
 quadrilateral.</p>
+<p>See also: <a class="link" href="graphene-Matrix.html#graphene-matrix-transform-point" title="graphene_matrix_transform_point ()"><code class="function">graphene_matrix_transform_point()</code></a></p>
 <div class="refsect3">
 <a name="graphene-matrix-transform-bounds.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -2090,7 +2166,7 @@ graphene_matrix_project_rect_bounds (<em class="parameter"><code>const <a class=
                                      <em class="parameter"><code><a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *res</code></em>);</pre>
 <p>Projects a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the given matrix.</p>
 <p>The resulting rectangle is the axis aligned bounding rectangle capable
-of containing fully the projected rectangle.</p>
+of fully containing the projected rectangle.</p>
 <div class="refsect3">
 <a name="graphene-matrix-project-rect-bounds.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -2128,7 +2204,8 @@ rectangle. </p></td>
 graphene_matrix_project_rect (<em class="parameter"><code>const <a class="link" href="graphene-Matrix.html#graphene-matrix-t" title="graphene_matrix_t"><span class="type">graphene_matrix_t</span></a> *m</code></em>,
                               <em class="parameter"><code>const <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> *r</code></em>,
                               <em class="parameter"><code><a class="link" href="graphene-Quad.html#graphene-quad-t" title="graphene_quad_t"><span class="type">graphene_quad_t</span></a> *res</code></em>);</pre>
-<p>Projects a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the given matrix.</p>
+<p>Projects all corners of a <a class="link" href="graphene-Rectangle.html#graphene-rect-t" title="graphene_rect_t"><span class="type">graphene_rect_t</span></a> using the given matrix.</p>
+<p>See also: <a class="link" href="graphene-Matrix.html#graphene-matrix-project-point" title="graphene_matrix_project_point ()"><code class="function">graphene_matrix_project_point()</code></a></p>
 <div class="refsect3">
 <a name="graphene-matrix-project-rect.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -3183,19 +3260,19 @@ conjuction with either <a class="link" href="graphene-Matrix.html#graphene-matri
 11
 12
 13</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="graphene-Matrix.html#graphene-matrix-equal-fast">graphene_matrix_equal_fast</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">,</span><span class="normal"> b</span><span class="symbol">))</span>
-<span class="normal">  </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="comment">// matrices are definitely the same</span>
-<span class="normal">  </span><span class="cbracket">}</span>
-<span class="keyword">else</span>
-<span class="normal">  </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="graphene-Matrix.html#graphene-matrix-equal">graphene_matrix_equal</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">,</span><span class="normal"> b</span><span class="symbol">))</span>
-<span class="normal">      </span><span class="comment">// matrices contain the same values within an epsilon of FLT_EPSILON</span>
-<span class="normal">    </span><span class="keyword">else</span><span class="normal"> </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="graphene-Matrix.html#graphene-matrix-near">graphene_matrix_near</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">,</span><span class="normal"> b</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.0001</span><span class="symbol">))</span>
-<span class="normal">      </span><span class="comment">// matrices contain the same values within an epsilon of 0.0001</span>
-<span class="normal">    </span><span class="keyword">else</span>
-<span class="normal">      </span><span class="comment">// matrices are not equal</span>
-<span class="normal">  </span><span class="cbracket">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="k">if</span> <span class="p">(</span><span class="n">graphene_matrix_equal_fast</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+  <span class="p">{</span>
+    <span class="c1">// matrices are definitely the same</span>
+  <span class="p">}</span>
+<span class="k">else</span>
+  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">graphene_matrix_equal</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+      <span class="c1">// matrices contain the same values within an epsilon of FLT_EPSILON</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">graphene_matrix_near</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">))</span>
+      <span class="c1">// matrices contain the same values within an epsilon of 0.0001</span>
+    <span class="k">else</span>
+      <span class="c1">// matrices are not equal</span>
+  <span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -3315,6 +3392,6 @@ should never be accessed directly.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32</div>
 </body>
 </html>
