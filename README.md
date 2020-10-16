@@ -79,7 +79,7 @@ using configuration options:
  * `-Darm_neon=false` - will disable the ARM NEON fast paths
  * `-Dgcc_vector=false` - will disable the GCC vector intrinsics
 
-If you don't plan on generating introspection data, use `-Dintrospection=false`
+If you don't plan on generating introspection data, use `-Dintrospection=disabled`
 when configuring Graphene; similarly, if you don't plan on using GObject with
 Graphene, use `-Dgobject_types=false`. Disabling GObject types will also
 automatically disable generating introspection data.
