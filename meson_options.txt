@@ -4,8 +4,9 @@ option('gtk_doc', type: 'boolean',
 option('gobject_types', type: 'boolean',
        value: true,
        description: 'Enable GObject types (depends on GObject)')
-option('introspection', type: 'boolean',
-       value: true,
+option('introspection', type: 'feature',
+       value: 'auto',
+       yield: true,
        description: 'Enable GObject Introspection (depends on GObject)')
 option('gcc_vector', type: 'boolean',
        value: true,
