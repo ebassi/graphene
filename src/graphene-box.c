@@ -356,7 +356,7 @@ graphene_box_intersection (const graphene_box_t *a,
   min = graphene_simd4f_max (a->min.value, b->min.value);
   max = graphene_simd4f_min (a->max.value, b->max.value);
 
-  if (graphene_simd4f_cmp_ge (min, max))
+  if (!graphene_simd4f_cmp_le (min, max))
     {
       if (res != NULL)
         graphene_box_init_from_box (res, graphene_box_empty ());
