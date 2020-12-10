@@ -1,8 +1,9 @@
 # Graphene
 ###  A thin layer of types for graphic libraries
 
-[![Build Status](https://travis-ci.org/ebassi/graphene.svg?branch=master)](https://travis-ci.org/ebassi/graphene)
-[![Build status](https://ci.appveyor.com/api/projects/status/pw7o5grgko1l06hd/branch/master?svg=true)](https://ci.appveyor.com/project/ebassi/graphene/branch/master)
+![Linux Build](https://github.com/ebassi/graphene/workflows/Ubuntu%20Build/badge.svg)
+![MSVC Build](https://github.com/ebassi/graphene/workflows/MSVC%20Build/badge.svg)
+![MSYS2 Build](https://github.com/ebassi/graphene/workflows/MSYS2%20Build/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/ebassi/graphene/badge.svg?branch=master)](https://coveralls.io/github/ebassi/graphene?branch=master)
 [![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
