@@ -284,6 +284,9 @@ static void
 box_intersection (mutest_spec_t *spec)
 {
   graphene_box_t res;
+  graphene_box_t left, right;
+  graphene_box_t top, bottom;
+  graphene_box_t front, back;
 
   graphene_box_intersection (graphene_box_empty (), graphene_box_zero (), &res);
   mutest_expect ("intersection(empty, zero) to be empty",
@@ -301,6 +304,39 @@ box_intersection (mutest_spec_t *spec)
   mutest_expect ("intersection(inf, (1, 1)) to be (1, 1)",
                  mutest_bool_value (graphene_box_equal (&res, graphene_box_one ())),
                  mutest_to_be_true,
+                 NULL);
+
+  graphene_box_init (&left,
+                     &GRAPHENE_POINT3D_INIT (5.f, 0.f, 0.f),
+                     &GRAPHENE_POINT3D_INIT (6.f, 1.f, 1.f));
+  graphene_box_init (&right,
+                     &GRAPHENE_POINT3D_INIT (7.f, 0.f, 0.f),
+                     &GRAPHENE_POINT3D_INIT (8.f, 1.f, 1.f));
+  mutest_expect ("horizontally separated boxes don't intersect",
+                 mutest_bool_value (graphene_box_intersection (&left, &right, NULL)),
+                 mutest_to_be_false,
+                 NULL);
+
+  graphene_box_init (&top,
+                     &GRAPHENE_POINT3D_INIT (0.f, 5.f, 0.f),
+                     &GRAPHENE_POINT3D_INIT (1.f, 6.f, 1.f));
+  graphene_box_init (&bottom,
+                     &GRAPHENE_POINT3D_INIT (0.f, 7.f, 0.f),
+                     &GRAPHENE_POINT3D_INIT (1.f, 8.f, 1.f));
+  mutest_expect ("vertically separated boxes don't intersect",
+                 mutest_bool_value (graphene_box_intersection (&top, &bottom, NULL)),
+                 mutest_to_be_false,
+                 NULL);
+
+  graphene_box_init (&front,
+                     &GRAPHENE_POINT3D_INIT (0.f, 0.f, 5.f),
+                     &GRAPHENE_POINT3D_INIT (1.f, 1.f, 6.f));
+  graphene_box_init (&back,
+                     &GRAPHENE_POINT3D_INIT (0.f, 0.f, 7.f),
+                     &GRAPHENE_POINT3D_INIT (1.f, 1.f, 8.f));
+  mutest_expect ("depth separated boxes don't intersect",
+                 mutest_bool_value (graphene_box_intersection (&front, &back, NULL)),
+                 mutest_to_be_false,
                  NULL);
 }
 
