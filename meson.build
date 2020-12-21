@@ -264,9 +264,9 @@ graphene_simd = []
 sse2_cflags = []
 if get_option('sse2')
   sse_prog = '''
-#if defined(__GNUC__) && (__GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9))
+#if defined(__GNUC__)
 # if !defined(__amd64__) && !defined(__x86_64__)
-#   error "Need GCC >= 4.9 for SSE2 intrinsics on x86"
+#   error "SSE2 intrinsics are only available on x86_64"
 # endif
 #elif defined (_MSC_VER) && !defined (_M_X64) && !defined (_M_AMD64)
 # error "SSE2 intrinsics not supported on x86 MSVC builds"
