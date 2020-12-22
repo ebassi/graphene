@@ -1,0 +1,34 @@
+name: Ubuntu Clang Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: set up environment
+      run: |
+        sudo apt-get install clang gir1.2-glib-2.0 gobject-introspection gtk-doc-tools libgirepository1.0-dev libglib2.0-dev ninja-build python3-setuptools python3-wheel
+        sudo pip3 install meson==0.54.3
+
+    - name: configure the build
+      run: meson setup -Dgtk_doc=true --werror --fatal-meson-warnings _build
+
+    - name: build
+      run: meson compile -C _build
+
+    - name: check
+      run: meson test -C _build
+
+    - name: docs
+      run: ninja -C _build graphene-doc
+
+    - name: dist
+      run: meson dist -C _build
