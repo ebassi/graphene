@@ -18,17 +18,32 @@ jobs:
         sudo apt-get install gcc gir1.2-glib-2.0 gobject-introspection gtk-doc-tools libgirepository1.0-dev libglib2.0-dev ninja-build python3-setuptools python3-wheel
         sudo pip3 install meson==0.54.3
 
-    - name: configure the build
-      run: meson setup -Dgtk_doc=true --werror --fatal-meson-warnings _build
+    - name: default build
+      run: |
+        meson setup --werror --fatal-meson-warnings _build_default
+        meson compile -C _build_default
+        meson test -C _build_default
 
-    - name: build
-      run: meson compile -C _build
+    - name: gcc-vector build
+      run: |
+        meson setup -Dsse2=false -Darm_neon=false -Dgcc_vector=true --werror --fatal-meson-warnings _build_gcc
+        meson compile -C _build_gcc
+        meson test -C _build_gcc
 
-    - name: check
-      run: meson test -C _build
+    - name: scalar build
+      run: |
+        meson setup -Dsse2=false -Darm_neon=false -Dgcc_vector=false --werror --fatal-meson-warnings _build_scalar
+        meson compile -C _build_scalar
+        meson test -C _build_scalar
 
-    - name: docs
-      run: ninja -C _build graphene-doc
+    - name: docs build
+      run: |
+        meson setup -Dgtk_doc=true --werror --fatal-meson-warnings _build_docs
+        meson compile -C _build_docs
+        ninja -C _build_docs graphene-doc
 
     - name: dist
-      run: meson dist -C _build
+      run: |
+        meson setup -Dgtk_doc=true --werror --fatal-meson-warnings _build_dist
+        meson compile -C _build_dist
+        meson dist -C _build_dist
