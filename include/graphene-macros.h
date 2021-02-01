@@ -41,10 +41,13 @@
 
 #if defined(__GNUC__)
 # define GRAPHENE_ALIGN16  __attribute__((aligned(16)))
+# define GRAPHENE_ALIGNED_DECL(x,val)   x __attribute__((aligned(val)))
 #elif defined(_MSC_VER)
 # define GRAPHENE_ALIGN16  __declspec(align(16))
+# define GRAPHENE_ALIGNED_DECL(x,val)   __declspec(align(val)) x
 #else
 # define GRAPHENE_ALIGN16
+# define GRAPHENE_ALIGNED_DECL(x,val)   x
 #endif
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1910)
