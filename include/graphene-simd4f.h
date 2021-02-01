@@ -324,7 +324,7 @@ typedef union {
 #  else
 #   define graphene_simd4f_dot3(a,b) \
   (__extension__ ({ \
-    GRAPHENE_ALIGN16 const unsigned int __mask_bits[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 }; \
+    const unsigned int __mask_bits[] GRAPHENE_ALIGN16 = { 0xffffffff, 0xffffffff, 0xffffffff, 0 }; \
     const graphene_simd4f_t __mask = _mm_load_ps ((const float *) __mask_bits); \
     const graphene_simd4f_t __m = _mm_mul_ps ((a), (b)); \
     const graphene_simd4f_t __s0 = _mm_and_ps (__m, __mask); \
