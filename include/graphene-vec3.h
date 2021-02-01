@@ -44,7 +44,7 @@ GRAPHENE_BEGIN_DECLS
 struct _graphene_vec3_t
 {
   /*< private >*/
-  GRAPHENE_ALIGN16 GRAPHENE_PRIVATE_FIELD (graphene_simd4f_t, value);
+  GRAPHENE_ALIGNED_DECL (GRAPHENE_PRIVATE_FIELD (graphene_simd4f_t, value), 16);
 };
 
 GRAPHENE_AVAILABLE_IN_1_0
