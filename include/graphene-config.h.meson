@@ -11,41 +11,41 @@
 extern "C" {
 #endif
 
-#ifndef GRAPHENE_SIMD_BENCHMARK
+#ifndef __GI_SCANNER__
+# ifndef GRAPHENE_SIMD_BENCHMARK
 
-# if defined(__SSE__) || \
+#  if defined(__SSE__) || \
    (defined(_M_X64) && (_M_X64 > 0))
 #mesondefine GRAPHENE_HAS_SSE
 # endif
 
-# if defined(__ARM_NEON__) || defined (_M_ARM64)
+#  if defined(__ARM_NEON__) || defined (_M_ARM64)
 #mesondefine GRAPHENE_HAS_ARM_NEON
-# endif
+#  endif
 
-# if defined(__GNUC__) && (__GNUC__ >= 4 && __GNUC_MINOR__ >= 9) && !defined(__arm__)
+#  if defined(__GNUC__) && (__GNUC__ >= 4 && __GNUC_MINOR__ >= 9) && !defined(__arm__)
 #mesondefine GRAPHENE_HAS_GCC
+#  endif
+
+#  define GRAPHENE_HAS_SCALAR 1
+# endif /* GRAPHENE_SIMD_BENCHMARK */
+
+# if defined(GRAPHENE_HAS_SSE)
+#  define GRAPHENE_USE_SSE
+#  define GRAPHENE_SIMD_S "sse"
+# elif defined(GRAPHENE_HAS_ARM_NEON)
+#  define GRAPHENE_USE_ARM_NEON
+#  define GRAPHENE_SIMD_S "neon"
+# elif defined(GRAPHENE_HAS_GCC)
+#  define GRAPHENE_USE_GCC
+#  define GRAPHENE_SIMD_S "gcc"
+# elif defined(GRAPHENE_HAS_SCALAR)
+#  define GRAPHENE_USE_SCALAR
+#  define GRAPHENE_SIMD_S "scalar"
+# else
+#  error "Unsupported platform."
 # endif
 
-# define GRAPHENE_HAS_SCALAR 1
-#endif /* GRAPHENE_SIMD_BENCHMARK */
-
-#if defined(GRAPHENE_HAS_SSE)
-# define GRAPHENE_USE_SSE
-# define GRAPHENE_SIMD_S "sse"
-#elif defined(GRAPHENE_HAS_ARM_NEON)
-# define GRAPHENE_USE_ARM_NEON
-# define GRAPHENE_SIMD_S "neon"
-#elif defined(GRAPHENE_HAS_GCC)
-# define GRAPHENE_USE_GCC
-# define GRAPHENE_SIMD_S "gcc"
-#elif defined(GRAPHENE_HAS_SCALAR)
-# define GRAPHENE_USE_SCALAR
-# define GRAPHENE_SIMD_S "scalar"
-#else
-# error "Unsupported platform."
-#endif
-
-#ifndef __GI_SCANNER__
 # if defined(GRAPHENE_USE_SSE)
 #  include <xmmintrin.h>
 #  include <emmintrin.h>
@@ -82,6 +82,8 @@ typedef struct {
  * our public API, and introspection cannot use the SIMD API
  * directly anyway.
  */
+# define GRAPHENE_USE_SCALAR
+
 typedef struct {
   /*< private >*/
   float x, y, z, w;
