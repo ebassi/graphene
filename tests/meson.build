@@ -62,3 +62,31 @@ if mutest_dep.found()
     )
   endforeach
 endif
+
+if build_gir and host_system == 'linux' and not meson.is_cross_build()
+  foreach unit: ['introspection.py']
+    wrapper = '@0@.test'.format(unit)
+    custom_target(wrapper,
+      output: wrapper,
+      command: [
+        gen_installed_test,
+        '--testdir=@0@'.format(installed_test_bindir),
+        '--testname=@0@'.format(unit),
+        '--outdir=@OUTDIR@',
+        '--outfile=@0@'.format(wrapper),
+      ],
+      install: get_option('installed_tests'),
+      install_dir: installed_test_datadir,
+    )
+
+    test(unit,
+      python,
+      args: [files(unit)],
+      env: [
+        'GI_TYPELIB_PATH=' + join_paths(meson.current_build_dir(), '..', 'src'),
+        'LD_LIBRARY_PATH=' + join_paths(meson.current_build_dir(), '..', 'src'),
+      ],
+      protocol: 'tap',
+    )
+  endforeach
+endif
