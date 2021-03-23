@@ -167,6 +167,72 @@ ray_intersect_triangle (void)
 }
 
 static void
+ray_intersects_box (void)
+{
+  graphene_point3d_t min;
+  graphene_point3d_t max;
+  graphene_point3d_t origin;
+  graphene_vec3_t direction;
+  graphene_box_t box;
+  graphene_ray_t ray;
+
+  /* Off center box */
+
+  graphene_point3d_init (&min, 41.843132f, 27.356903f, -50.368336f);
+  graphene_point3d_init (&max, 51.698078f, 29.080172f, -50.368336f);
+  graphene_box_init (&box, &min, &max);
+
+  /* Ray from (0, 0, 0) along an axis *NOT* hitting the above box
+   */
+
+  graphene_point3d_init (&origin, 0, 0, 0);
+  graphene_vec3_init (&direction, 0, 0.495176f, -0.868793f);
+  graphene_ray_init (&ray, &origin, &direction);
+
+  mutest_expect ("intersection kind should be NONE",
+                 mutest_int_value (graphene_ray_intersects_box (&ray, &box)),
+                 mutest_to_be_false,
+                 NULL);
+
+  /* Nudged variant of the above ray */
+
+  graphene_vec3_init (&direction, 0 + 0.0001f, 0.495176f, -0.868793f);
+  graphene_ray_init (&ray, &origin, &direction);
+
+  mutest_expect ("intersection kind should still be NONE",
+                 mutest_int_value (graphene_ray_intersects_box (&ray, &box)),
+                 mutest_to_be_false,
+                 NULL);
+
+  /* Centered box */
+
+  graphene_point3d_init (&min, -5.654480f, 27.356903f, -50.368336f);
+  graphene_point3d_init (&max, 5.654475f, 29.080172f, -50.368336f);
+  graphene_box_init (&box, &min, &max);
+
+  /* Ray from (0, 0, 0) along the axis hitting the above box */
+
+  graphene_point3d_init (&origin, 0, 0, 0);
+  graphene_vec3_init (&direction, 0, 0.495176f, -0.868793f);
+  graphene_ray_init (&ray, &origin, &direction);
+
+  mutest_expect ("intersection kind should be ENTER",
+                 mutest_int_value (graphene_ray_intersects_box (&ray, &box)),
+                 mutest_to_be_true,
+                 NULL);
+
+  /* Nudged variant of the above ray */
+
+  graphene_vec3_init (&direction, 2 * FLT_EPSILON, 0.495176f, -0.868793f);
+  graphene_ray_init (&ray, &origin, &direction);
+
+  mutest_expect ("intersection kind should still be ENTER",
+                 mutest_int_value (graphene_ray_intersects_box (&ray, &box)),
+                 mutest_to_be_true,
+                 NULL);
+}
+
+static void
 ray_suite (void)
 {
   mutest_it ("can be initialized", ray_init);
@@ -175,6 +241,7 @@ ray_suite (void)
   mutest_it ("can compute the closest point to a point on the ray", ray_closest_point_to_point);
   mutest_it ("can be transformed", ray_matrix_transform);
   mutest_it ("can intersect triangles", ray_intersect_triangle);
+  mutest_it ("can intersect on axis", ray_intersects_box);
 }
 
 MUTEST_MAIN (
