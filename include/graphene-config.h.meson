@@ -23,7 +23,7 @@ extern "C" {
 #mesondefine GRAPHENE_HAS_ARM_NEON
 #  endif
 
-#  if defined(__GNUC__) && (__GNUC__ >= 4 && __GNUC_MINOR__ >= 9) && !defined(__arm__)
+#  if defined(__GNUC__) && (__GNUC__ >= 5 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 9)) && !defined(__arm__)
 #mesondefine GRAPHENE_HAS_GCC
 #  endif
 
