@@ -856,12 +856,15 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
 
 # define graphene_simd4f_reciprocal(v) \
   (__extension__ ({ \
+    _Pragma ("GCC diagnostic push") \
+    _Pragma ("GCC diagnostic ignored \"-Wfloat-equal\"") \
     (graphene_simd4f_t) { \
       (v)[0] != 0.f ? 1.f / (v)[0] : 0.f, \
       (v)[1] != 0.f ? 1.f / (v)[1] : 0.f, \
       (v)[2] != 0.f ? 1.f / (v)[2] : 0.f, \
       (v)[3] != 0.f ? 1.f / (v)[3] : 0.f, \
     }; \
+    _Pragma ("GCC diagnostic pop") \
   }))
 
 # define graphene_simd4f_sqrt(v) \
@@ -876,12 +879,15 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
 
 # define graphene_simd4f_rsqrt(v) \
   (__extension__ ({ \
+    _Pragma ("GCC diagnostic push") \
+    _Pragma ("GCC diagnostic ignored \"-Wfloat-equal\"") \
     (graphene_simd4f_t) { \
       (v)[0] != 0.f ? 1.f / sqrtf ((v)[0]) : 0.f, \
       (v)[1] != 0.f ? 1.f / sqrtf ((v)[1]) : 0.f, \
       (v)[2] != 0.f ? 1.f / sqrtf ((v)[2]) : 0.f, \
       (v)[3] != 0.f ? 1.f / sqrtf ((v)[3]) : 0.f, \
     }; \
+    _Pragma ("GCC diagnostic pop") \
   }))
 
 # define graphene_simd4f_add(a,b)       (__extension__ ({ (graphene_simd4f_t) ((a) + (b)); }))
@@ -994,49 +1000,64 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
 
 # define graphene_simd4f_cmp_eq(a,b) \
   (__extension__ ({ \
+    _Pragma ("GCC diagnostic push") \
+    _Pragma ("GCC diagnostic ignored \"-Wfloat-equal\"") \
     const graphene_simd4i_t __res = (a) == (b); \
     (bool) (__res[0] != 0 && \
             __res[1] != 0 && \
             __res[2] != 0 && \
             __res[3] != 0); \
+    _Pragma ("GCC diagnostic pop") \
   }))
 
 # define graphene_simd4f_cmp_neq(a,b) (!graphene_simd4f_cmp_eq (a,b))
 
 # define graphene_simd4f_cmp_lt(a,b) \
   (__extension__ ({ \
+    _Pragma ("GCC diagnostic push") \
+    _Pragma ("GCC diagnostic ignored \"-Wfloat-equal\"") \
     const graphene_simd4i_t __res = (a) < (b); \
     (bool) (__res[0] != 0 && \
             __res[1] != 0 && \
             __res[2] != 0 && \
             __res[3] != 0); \
+    _Pragma ("GCC diagnostic pop") \
   }))
 
 # define graphene_simd4f_cmp_le(a,b) \
   (__extension__ ({ \
+    _Pragma ("GCC diagnostic push") \
+    _Pragma ("GCC diagnostic ignored \"-Wfloat-equal\"") \
     const graphene_simd4i_t __res = (a) <= (b); \
     (bool) (__res[0] != 0 && \
             __res[1] != 0 && \
             __res[2] != 0 && \
             __res[3] != 0); \
+    _Pragma ("GCC diagnostic pop") \
   }))
 
 # define graphene_simd4f_cmp_ge(a,b) \
   (__extension__ ({ \
+    _Pragma ("GCC diagnostic push") \
+    _Pragma ("GCC diagnostic ignored \"-Wfloat-equal\"") \
     const graphene_simd4i_t __res = (a) >= (b); \
     (bool) (__res[0] != 0 && \
             __res[1] != 0 && \
             __res[2] != 0 && \
             __res[3] != 0); \
+    _Pragma ("GCC diagnostic pop") \
   }))
 
 # define graphene_simd4f_cmp_gt(a,b) \
   (__extension__ ({ \
+    _Pragma ("GCC diagnostic push") \
+    _Pragma ("GCC diagnostic ignored \"-Wfloat-equal\"") \
     const graphene_simd4i_t __res = (a) > (b); \
     (bool) (__res[0] != 0 && \
             __res[1] != 0 && \
             __res[2] != 0 && \
             __res[3] != 0); \
+    _Pragma ("GCC diagnostic pop") \
   }))
 
 # define graphene_simd4f_neg(s) \
