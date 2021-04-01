@@ -467,22 +467,6 @@ graphene_ray_intersects_sphere (const graphene_ray_t    *r,
   return graphene_ray_intersect_sphere (r, s, NULL) != GRAPHENE_RAY_INTERSECTION_KIND_NONE;
 }
 
-static inline float
-nudge_off_axis (float v)
-{
-  if (graphene_approx_val (v, 0.f))
-    {
-      if (v < 0.f)
-        return -2 * FLT_EPSILON;
-      else
-        return 2 * FLT_EPSILON;
-    }
-  else
-    {
-      return v;
-    }
-}
-
 /**
  * graphene_ray_intersect_box:
  * @r: a #graphene_ray_t
@@ -501,18 +485,10 @@ graphene_ray_intersect_box (const graphene_ray_t *r,
                             const graphene_box_t *b,
                             float                *t_out)
 {
-  graphene_vec3_t safe_direction;
   graphene_vec3_t inv_dir;
-  float d[3];
-
-  graphene_vec3_to_float (&r->direction, d);
-  graphene_vec3_init (&safe_direction,
-                      nudge_off_axis (d[0]),
-                      nudge_off_axis (d[1]),
-                      nudge_off_axis (d[2]));
 
   /* FIXME: Needs a graphene_vec3_reciprocal() */
-  inv_dir.value = graphene_simd4f_reciprocal (safe_direction.value);
+  inv_dir.value = graphene_simd4f_reciprocal (r->direction.value);
 
   graphene_vec3_t inv_min;
   graphene_vec3_subtract (&(b->min), &r->origin, &inv_min);
