@@ -292,9 +292,13 @@ typedef union {
 
 #  define graphene_simd4f_reciprocal(v) \
   (__extension__ ({ \
+    const graphene_simd4f_t __zero = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 0.0f); \
     const graphene_simd4f_t __two = graphene_simd4f_init (2.0f, 2.0f, 2.0f, 2.0f); \
-    graphene_simd4f_t __s = _mm_rcp_ps ((v)); \
-    graphene_simd4f_mul (__s, graphene_simd4f_sub (__two, graphene_simd4f_mul ((v), __s))); \
+    const graphene_simd4f_t __s = _mm_rcp_ps ((v)); \
+    const graphene_simd4f_t __m = graphene_simd4f_mul ((v), \
+                                                       _mm_andnot_ps (_mm_cmpeq_ps ((v), __zero), \
+                                                                      __s)); \
+    graphene_simd4f_mul (__s, graphene_simd4f_sub (__two, __m)); \
   }))
 
 #  define graphene_simd4f_rsqrt(v) \
@@ -556,11 +560,13 @@ _simd4f_get_xyzw (graphene_simd4f_t s, int mode)
 static inline graphene_simd4f_t
 _simd4f_reciprocal(const graphene_simd4f_t v)
 {
+  const graphene_simd4f_t __zero = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 0.0f);
   const graphene_simd4f_t __two = graphene_simd4f_init (2.0f, 2.0f, 2.0f, 2.0f);
-  graphene_simd4f_t __s = _mm_rcp_ps (v);
-  return graphene_simd4f_mul (__s,
-                              graphene_simd4f_sub (__two,
-                                                   graphene_simd4f_mul (v, __s)));
+  const graphene_simd4f_t __s = _mm_rcp_ps (v);
+  const graphene_simd4f_t __m = graphene_simd4f_mul (v,
+                                                     _mm_andnot_ps (_mm_cmpeq_ps (v, __zero),
+                                                                    __s));
+  return graphene_simd4f_mul (__s, graphene_simd4f_sub (__two, __m));
 }
 
 #define graphene_simd4f_rsqrt(v) _simd4f_rsqrt(v)
@@ -856,15 +862,12 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
 
 # define graphene_simd4f_reciprocal(v) \
   (__extension__ ({ \
-    _Pragma ("GCC diagnostic push") \
-    _Pragma ("GCC diagnostic ignored \"-Wfloat-equal\"") \
     (graphene_simd4f_t) { \
-      (v)[0] != 0.f ? 1.f / (v)[0] : 0.f, \
-      (v)[1] != 0.f ? 1.f / (v)[1] : 0.f, \
-      (v)[2] != 0.f ? 1.f / (v)[2] : 0.f, \
-      (v)[3] != 0.f ? 1.f / (v)[3] : 0.f, \
+      fabsf ((v)[0]) > FLT_EPSILON ? 1.f / (v)[0] : copysignf (INFINITY, (v)[0]), \
+      fabsf ((v)[1]) > FLT_EPSILON ? 1.f / (v)[1] : copysignf (INFINITY, (v)[1]), \
+      fabsf ((v)[2]) > FLT_EPSILON ? 1.f / (v)[2] : copysignf (INFINITY, (v)[2]), \
+      fabsf ((v)[3]) > FLT_EPSILON ? 1.f / (v)[3] : copysignf (INFINITY, (v)[3]), \
     }; \
-    _Pragma ("GCC diagnostic pop") \
   }))
 
 # define graphene_simd4f_sqrt(v) \

@@ -436,6 +436,8 @@ graphene_simd4f_t
  * @s: a #graphene_simd4f_t
  *
  * Computes the reciprocal of every component of @s.
+ * The reciprocals of positive and negative 0 are defined
+ * as positive and negative infinity, respectively.
  *
  * |[<!-- language="plain" -->
  *   {
@@ -1178,10 +1180,10 @@ graphene_simd4f_t
 (graphene_simd4f_reciprocal) (graphene_simd4f_t v)
 {
   graphene_simd4f_t s = {
-    fabsf (v.x) > FLT_EPSILON ? 1.0f / v.x : 0.f,
-    fabsf (v.y) > FLT_EPSILON ? 1.0f / v.y : 0.f,
-    fabsf (v.z) > FLT_EPSILON ? 1.0f / v.z : 0.f,
-    fabsf (v.w) > FLT_EPSILON ? 1.0f / v.w : 0.f
+    fabsf (v.x) > FLT_EPSILON ? 1.0f / v.x : copysignf (INFINITY, v.x),
+    fabsf (v.y) > FLT_EPSILON ? 1.0f / v.y : copysignf (INFINITY, v.y),
+    fabsf (v.z) > FLT_EPSILON ? 1.0f / v.z : copysignf (INFINITY, v.z),
+    fabsf (v.w) > FLT_EPSILON ? 1.0f / v.w : copysignf (INFINITY, v.w)
   };
   return s;
 }
