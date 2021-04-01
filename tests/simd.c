@@ -263,6 +263,64 @@ simd_operators_max (void)
 }
 
 static void
+simd_operators_reciprocal (void)
+{
+  graphene_simd4f_t a, b;
+
+  a = graphene_simd4f_init (1.f, -1.f, -8.f, 0.5f);
+
+  b = graphene_simd4f_reciprocal (a);
+  mutest_expect ("reciprocal() to return the reciprocal of the X component",
+                 mutest_float_value (graphene_simd4f_get_x (b)),
+                 mutest_to_be_close_to, 1.f, FLT_EPSILON,
+                 NULL);
+  mutest_expect ("reciprocal() to return the reciprocal of the Y component",
+                 mutest_float_value (graphene_simd4f_get_y (b)),
+                 mutest_to_be_close_to, -1.f, FLT_EPSILON,
+                 NULL);
+  mutest_expect ("reciprocal() to return the reciprocal of the Z component",
+                 mutest_float_value (graphene_simd4f_get_z (b)),
+                 mutest_to_be_close_to, -0.125f, FLT_EPSILON,
+                 NULL);
+  mutest_expect ("reciprocal() to return the reciprocal of the W component",
+                 mutest_float_value (graphene_simd4f_get_w (b)),
+                 mutest_to_be_close_to, 2.f, FLT_EPSILON,
+                 NULL);
+
+  a = graphene_simd4f_init (.1234f, -1234.f, -0.4321f, 4321.f);
+
+  b = graphene_simd4f_reciprocal (a);
+  mutest_expect ("reciprocal() to return the approximate reciprocal of the X component",
+                 mutest_float_value (graphene_simd4f_get_x (b)),
+                 mutest_to_be_close_to, 8.103727714749, 0.000001,
+                 NULL);
+  mutest_expect ("reciprocal() to return the approximate reciprocal of the Y component",
+                 mutest_float_value (graphene_simd4f_get_y (b)),
+                 mutest_to_be_close_to, -0.000810372771, 0.000001,
+                 NULL);
+  mutest_expect ("reciprocal() to return the approximate reciprocal of the Z component",
+                 mutest_float_value (graphene_simd4f_get_z (b)),
+                 mutest_to_be_close_to, -2.31427910206, 0.000001,
+                 NULL);
+  mutest_expect ("reciprocal() to return the approximate reciprocal of the W component",
+                 mutest_float_value (graphene_simd4f_get_w (b)),
+                 mutest_to_be_close_to, 0.00023142791, 0.000001,
+                 NULL);
+
+  a = graphene_simd4f_init (0.f, -0.f, 5.f, -10.f);
+
+  b = graphene_simd4f_reciprocal (a);
+  mutest_expect ("reciprocal() to return positive infinity in the X component",
+                 mutest_float_value (graphene_simd4f_get_x (b)),
+                 mutest_to_be_positive_infinity,
+                 NULL);
+  mutest_expect ("reciprocal() to return negative infinity in the Y component",
+                 mutest_float_value (graphene_simd4f_get_y (b)),
+                 mutest_to_be_negative_infinity,
+                 NULL);
+}
+
+static void
 simd_suite (void)
 {
   mutest_it ("can copy 4 components", simd_dup_4f);
@@ -279,6 +337,8 @@ simd_suite (void)
 
   mutest_it ("can compute the minimum vector and scalar", simd_operators_min);
   mutest_it ("can compute the maximum vector and scalar", simd_operators_max);
+
+  mutest_it ("can compute the reciprocal of vector", simd_operators_reciprocal);
 }
 
 MUTEST_MAIN (
