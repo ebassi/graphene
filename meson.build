@@ -10,6 +10,7 @@ project('graphene', 'c',
 
 cc = meson.get_compiler('c')
 host_system = host_machine.system()
+host_cpu_family = host_machine.cpu_family()
 
 add_project_arguments([ '-D_GNU_SOURCE' ], language: 'c')
 
@@ -336,11 +337,13 @@ neon_cflags = []
 if get_option('arm_neon')
   neon_prog = '''
 #if !defined (_MSC_VER) || defined (__clang__)
-# ifndef __ARM_EABI__
-#  error "EABI is required (to be sure that calling conventions are compatible)"
-# endif
-# ifndef __ARM_NEON__
-#  error "No ARM NEON instructions available"
+# if !defined (_M_ARM64) && !defined (__aarch64__)
+#  ifndef __ARM_EABI__
+#   error "EABI is required (to be sure that calling conventions are compatible)"
+#  endif
+#   ifndef __ARM_NEON__
+#    error "No ARM NEON instructions available"
+#   endif
 # endif
 #endif
 #include <arm_neon.h>
@@ -360,7 +363,7 @@ int main () {
 
   test_neon_cflags = []
 
-  if cc.get_id() != 'msvc'
+  if cc.get_id() != 'msvc' and host_cpu_family != 'aarch64'
     test_neon_cflags += ['-mfpu=neon']
   endif
 
