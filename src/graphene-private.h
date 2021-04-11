@@ -105,6 +105,14 @@
 
 #endif /* __GNUC__ */
 
+#if defined(_M_X64) && ! defined(isnanf)
+# define graphene_isnan(x) _isnanf(x)
+#elif defined(HAVE_ISNANF)
+# define graphene_isnan(x) isnanf(x)
+#else
+# define graphene_isnan(x) isnan(x)
+#endif
+
 static inline bool
 graphene_approx_val (float a, float b)
 {
