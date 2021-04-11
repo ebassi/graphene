@@ -52,11 +52,6 @@
 #include <math.h>
 #include <float.h>
 
-#if defined(_M_X64) && ! defined(isnanf)
-# define isnanf(x) _isnanf(x)
-# define HAVE_ISNANF
-#endif
-
 /**
  * graphene_ray_alloc: (constructor)
  *
@@ -555,17 +550,10 @@ graphene_ray_intersect_box (const graphene_ray_t *r,
   /* These lines also handle the case where tx_min or tx_max is NaN
    * (result of 0 * INFINITY): NaN != NaN
    */
-#ifdef HAVE_ISNANF
-  if (ty_min > tx_min || isnanf (tx_min))
+  if (ty_min > tx_min || graphene_isnan (tx_min))
     tx_min = ty_min;
-  if (ty_max < tx_max || isnanf (tx_max))
+  if (ty_max < tx_max || graphene_isnan (tx_max))
     tx_max = ty_max;
-#else
-  if (ty_min > tx_min || fpclassify (tx_min) == FP_NAN)
-    tx_min = ty_min;
-  if (ty_max > tx_max || fpclassify (tx_max) == FP_NAN)
-    tx_max = ty_max;
-#endif
 
   float tz_min, tz_max;
   if (graphene_vec3_get_z (&inv_dir) >= 0.f)
@@ -582,17 +570,10 @@ graphene_ray_intersect_box (const graphene_ray_t *r,
   if ((tx_min > tz_max) || (tz_min > tx_max))
     return GRAPHENE_RAY_INTERSECTION_KIND_NONE;
 
-#ifdef HAVE_ISNANF
-  if (tz_min > tx_min || isnanf (tx_min))
+  if (tz_min > tx_min || graphene_isnan (tx_min))
     tx_min = tz_min;
-  if (tz_max < tx_max || isnanf (tx_max))
+  if (tz_max < tx_max || graphene_isnan (tx_max))
     tx_max = tz_max;
-#else
-  if (tz_min > tx_min || fpclassify (tx_min) == FP_NAN)
-    tx_min = tz_min;
-  if (tz_max < tx_max || fpclassify (tx_max) == FP_NAN)
-    tx_max = tz_max;
-#endif
 
   /* return the point closest to the ray (positive side) */
   if (tx_max < 0)
