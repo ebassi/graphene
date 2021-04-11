@@ -232,6 +232,110 @@ ray_intersects_box (void)
                  NULL);
 }
 
+/* Adapted from Mutter/Clutter */
+static void
+setup_ray_for_coordinates (graphene_matrix_t  *view,
+                           float               x,
+                           float               y,
+                           graphene_ray_t     *ray)
+{
+  graphene_point3d_t camera_position;
+  graphene_point3d_t p;
+  graphene_vec3_t direction;
+  graphene_vec3_t cv;
+  graphene_vec3_t v;
+
+  camera_position = GRAPHENE_POINT3D_INIT_ZERO;
+  graphene_vec3_init (&cv,
+                      camera_position.x,
+                      camera_position.y,
+                      camera_position.z);
+
+  p = GRAPHENE_POINT3D_INIT (x, y, 0.f);
+  graphene_matrix_transform_point3d (view, &p, &p);
+
+  graphene_vec3_init (&v, p.x, p.y, p.z);
+  graphene_vec3_subtract (&v, &cv, &direction);
+  graphene_vec3_normalize (&direction, &direction);
+
+  graphene_ray_init (ray, &camera_position, &direction);
+}
+
+static void
+ray_picking (void)
+{
+  graphene_matrix_t view;
+  graphene_point3d_t box_min;
+  graphene_point3d_t box_max;
+  graphene_box_t box;
+  graphene_box_t transformed_box;
+  graphene_ray_t ray;
+  float x;
+  float y;
+  const float view_array[] = { 0.053852f, 0, 0, 0,
+                               0, 0.053852f, 0, 0,
+                               0, 0.053852f, 0, 0,
+                               -51.698082f, 29.080172f, -50.368336f, 1 };
+
+  graphene_matrix_init_from_float (&view, view_array);
+
+  graphene_point3d_init (&box_min, 700, 400, 0);
+  graphene_point3d_init (&box_max, 1200, 800, 0);
+  graphene_box_init (&box, &box_min, &box_max);
+  graphene_matrix_transform_box (&view, &box, &transformed_box);
+
+  /* Left of the box */
+
+  x = box_min.x - 50.0f;
+  y = box_min.y + 50.0f;
+  setup_ray_for_coordinates (&view, x, y, &ray);
+  mutest_expect ("picking left of the box should not be in the box",
+                 mutest_int_value (graphene_ray_intersects_box (&ray, &transformed_box)),
+                 mutest_to_be_false,
+                 NULL);
+
+  /* Right of the box */
+
+  x = box_max.x + 50.0f;
+  y = box_min.y + 50.0f;
+  setup_ray_for_coordinates (&view, x, y, &ray);
+  mutest_expect ("picking right of the box should not be in the box",
+                 mutest_int_value (graphene_ray_intersects_box (&ray, &transformed_box)),
+                 mutest_to_be_false,
+                 NULL);
+
+
+  /* Above the box */
+
+  x = box_min.x + 50.0f;
+  y = box_min.y - 50.0f;
+  setup_ray_for_coordinates (&view, x, y, &ray);
+  mutest_expect ("picking above the box should not be in the box",
+                 mutest_int_value (graphene_ray_intersects_box (&ray, &transformed_box)),
+                 mutest_to_be_false,
+                 NULL);
+
+  /* Below the box */
+
+  x = box_min.x + 50.0f;
+  y = box_max.y + 50.0f;
+  setup_ray_for_coordinates (&view, x, y, &ray);
+  mutest_expect ("picking below the box should not be in the box",
+                 mutest_int_value (graphene_ray_intersects_box (&ray, &transformed_box)),
+                 mutest_to_be_false,
+                 NULL);
+
+  /* In the box */
+
+  x = box_min.x + 50.0f;
+  y = box_min.y + 50.0f;
+  setup_ray_for_coordinates (&view, x, y, &ray);
+  mutest_expect ("picking in the box should be a hit",
+                 mutest_int_value (graphene_ray_intersects_box (&ray, &transformed_box)),
+                 mutest_to_be_true,
+                 NULL);
+}
+
 static void
 ray_suite (void)
 {
@@ -242,6 +346,7 @@ ray_suite (void)
   mutest_it ("can be transformed", ray_matrix_transform);
   mutest_it ("can intersect triangles", ray_intersect_triangle);
   mutest_it ("can intersect on axis", ray_intersects_box);
+  mutest_it ("can be used for picking", ray_picking);
 }
 
 MUTEST_MAIN (
