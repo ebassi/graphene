@@ -1,0 +1,38 @@
+name: Alpine GCC Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    container:
+      image: alpine:latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: set up environment
+      run: |
+        apk add gcc musl-dev gobject-introspection gtk-doc glib py3-wheel py3-setuptools ninja py3-pip
+        pip install meson==0.54.3
+
+    - name: default build
+      run: |
+        meson setup --werror --fatal-meson-warnings _build_default
+        meson compile -C _build_default
+        meson test -C _build_default -v
+
+    - name: gcc-vector build
+      run: |
+        meson setup -Dsse2=false -Darm_neon=false -Dgcc_vector=true --werror --fatal-meson-warnings _build_gcc
+        meson compile -C _build_gcc
+        meson test -C _build_gcc -v
+
+    - name: scalar build
+      run: |
+        meson setup -Dsse2=false -Darm_neon=false -Dgcc_vector=false --werror --fatal-meson-warnings _build_scalar
+        meson compile -C _build_scalar
