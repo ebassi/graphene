@@ -171,8 +171,6 @@ endif
 
 math_exts = [
   'sincosf',
-  'isinff',
-  'isnanf',
 ]
 
 foreach mfunc: math_exts

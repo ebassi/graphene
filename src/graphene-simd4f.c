@@ -1374,8 +1374,8 @@ approx_equal (float a,
               float b,
               float epsilon)
 {
-#ifdef HAVE_ISINFF
-  if (isinff (a) && isinff (b))
+#ifdef isinf
+  if (isinf (a) && isinf (b))
     return true;
 #else
   if (fpclassify (a) == FP_INFINITE && fpclassify (b) == FP_INFINITE)
