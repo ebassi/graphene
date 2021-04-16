@@ -1180,10 +1180,17 @@ graphene_simd4f_t
 (graphene_simd4f_reciprocal) (graphene_simd4f_t v)
 {
   graphene_simd4f_t s = {
+#if defined (HAVE_IEEE_754_FLOAT_DIVISION)
+    1.0f / v.x,
+    1.0f / v.y,
+    1.0f / v.z,
+    1.0f / v.w
+#else
     fabsf (v.x) > FLT_EPSILON ? 1.0f / v.x : copysignf (INFINITY, v.x),
     fabsf (v.y) > FLT_EPSILON ? 1.0f / v.y : copysignf (INFINITY, v.y),
     fabsf (v.z) > FLT_EPSILON ? 1.0f / v.z : copysignf (INFINITY, v.z),
     fabsf (v.w) > FLT_EPSILON ? 1.0f / v.w : copysignf (INFINITY, v.w)
+#endif
   };
   return s;
 }

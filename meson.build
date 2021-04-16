@@ -260,6 +260,22 @@ int main (void) {
   )
 endif
 
+# Check for IEEE 754 floating-point division compilance
+float_division_prog = '''
+#include <math.h>
+int main() {
+ if (isinf(1.f / 0.f) != 1)
+   return 1;
+ if (isinf(1.f / -0.f) != -1)
+   return 2;
+ return 0;
+}
+'''
+conf.set('HAVE_IEEE_754_FLOAT_DIVISION',
+  cc.run(float_division_prog, name: 'IEEE 754 floating-point division').returncode() == 0,
+  description: 'Define if floating-point division is compliant with IEEE 754',
+)
+
 # Configuration for our installed config header
 graphene_conf = configuration_data()
 
