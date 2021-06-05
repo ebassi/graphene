@@ -362,7 +362,11 @@ if get_option('arm_neon')
 #   endif
 # endif
 #endif
+#if defined (_MSC_VER) && (_MSC_VER < 1920) && defined (_M_ARM64)
+#include <arm64_neon.h>
+#else
 #include <arm_neon.h>
+#endif
 int main () {
     const float32_t __v[4] = { 1, 2, 3, 4 }; \
     const unsigned int __umask[4] = { \
