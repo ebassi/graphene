@@ -65,6 +65,8 @@ endif
 
 if build_gir and host_system == 'linux' and not meson.is_cross_build()
   foreach unit: ['introspection.py']
+    install_data(unit, install_dir: installed_test_bindir)
+
     wrapper = '@0@.test'.format(unit)
     custom_target(wrapper,
       output: wrapper,
