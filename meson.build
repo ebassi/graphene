@@ -418,3 +418,38 @@ endif
 if get_option('gtk_doc')
   subdir('doc')
 endif
+
+summary({
+    'prefix': get_option('prefix'),
+    'libdir': get_option('libdir'),
+    'includedir': get_option('includedir'),
+  },
+  section: 'Directories',
+)
+
+summary({
+    'SSE': graphene_simd.contains('sse2'),
+    'GCC vector': graphene_simd.contains('gcc'),
+    'ARM NEON': graphene_simd.contains('neon'),
+  },
+  section: 'SIMD',
+  bool_yn: true,
+)
+
+summary({
+    'GObject types': build_gobject,
+    'Introspection': build_gir,
+  },
+  section: 'Features',
+  bool_yn: true,
+)
+
+summary({
+    'Documentation': get_option('gtk_doc'),
+    'Tests': get_option('tests'),
+    'Installed tests': get_option('installed_tests'),
+  },
+  section: 'Build',
+  bool_yn: true,
+)
+
