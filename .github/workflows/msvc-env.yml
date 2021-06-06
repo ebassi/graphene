@@ -20,4 +20,4 @@ jobs:
         action: test
         directory: _build
         options: --verbose --fatal-meson-warnings
-        meson-version: 0.54.3
+        meson-version: 0.55.3
