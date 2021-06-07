@@ -21,11 +21,6 @@ extern "C" {
 
 #  if defined(__ARM_NEON__) || defined (_M_ARM64) || defined (__aarch64__)
 #mesondefine GRAPHENE_HAS_ARM_NEON
-#   if defined (_MSC_VER) && (_MSC_VER < 1920) && defined (_M_ARM64)
-#    define GRAPHENE_ARM_NEON_HEADER <arm64_neon.h>
-#   else
-#    define GRAPHENE_ARM_NEON_HEADER <arm_neon.h>
-#   endif
 #  endif
 
 #  if defined(__GNUC__) && (__GNUC__ >= 5 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 9)) && !defined(__arm__)
@@ -68,7 +63,11 @@ extern "C" {
 #  endif
 typedef __m128 graphene_simd4f_t;
 # elif defined(GRAPHENE_USE_ARM_NEON)
-#  include GRAPHENE_ARM_NEON_HEADER
+#  if defined (_MSC_VER) && (_MSC_VER < 1920) && defined (_M_ARM64)
+#   include <arm64_neon.h>
+#  else
+#   include <arm_neon.h>
+#  endif
 typedef float32x4_t graphene_simd4f_t;
 # elif defined(GRAPHENE_USE_GCC)
 typedef float graphene_simd4f_t __attribute__((vector_size(16)));
