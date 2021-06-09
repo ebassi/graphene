@@ -328,7 +328,7 @@ if get_option('gcc_vector')
 #   error "GCC vector intrinsics are disabled on GCC prior to 4.9"
 # elif defined(__arm__)
 #   error "GCC vector intrinsics are disabled on ARM"
-# elif !defined(__x86_64__)
+# elif (__SIZEOF_POINTER__ < 8)
 #   error "GCC vector intrinsics are disabled on 32bit"
 # endif
 #else
