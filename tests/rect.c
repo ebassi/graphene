@@ -134,6 +134,38 @@ rect_contains_point (mutest_spec_t *spec)
                  mutest_bool_value (graphene_rect_contains_point (&r, &p)),
                  mutest_to_be_false,
                  NULL);
+
+  const struct {
+    graphene_point_t point;
+    const char *label;
+  } points[] = {
+    {
+      .point = GRAPHENE_POINT_INIT (250, 150),
+      .label = "a rectangle to not contain a point outside its boundaries (right)",
+    },
+    {
+      .point = GRAPHENE_POINT_INIT (150, 50),
+      .label = "a rectangle to not contain a point outside its boundaries (below)",
+    },
+    {
+      .point = GRAPHENE_POINT_INIT (50, 150),
+      .label = "a rectangle to not contain a point outside its boundaries (left)",
+    },
+    {
+      .point = GRAPHENE_POINT_INIT (150, 250),
+      .label = "a rectangle to not contain a point outside its boundaries (above)",
+    },
+  };
+  const unsigned n_points = sizeof (points) / sizeof (points[0]);
+
+  graphene_rect_init (&r, 100, 100, 100, 100);
+  for (unsigned i = 0; i < n_points; i++)
+    {
+      mutest_expect (points[i].label,
+                     mutest_bool_value (graphene_rect_contains_point (&r, &(points[i].point))),
+                     mutest_to_be, false,
+                     NULL);
+    }
 }
 
 static void
