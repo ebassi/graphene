@@ -157,7 +157,7 @@ void    graphene_simd4x4f_transpose_in_place    (graphene_simd4x4f_t *s);
   _MM_TRANSPOSE4_PS ((s)->x, (s)->y, (s)->z, (s)->w)
 #endif
 
-#elif defined(GRAPHENE_USE_GCC)
+#elif defined(GRAPHENE_USE_INTRINSICS)
 
 #define graphene_simd4x4f_transpose_in_place(s) \
   (__extension__ ({ \

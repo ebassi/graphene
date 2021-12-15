@@ -43,7 +43,7 @@
 #include <string.h>
 #include <math.h>
 
-#if defined(GRAPHENE_USE_SSE) || defined(GRAPHENE_USE_GCC) || defined(GRAPHENE_USE_ARM_NEON)
+#if defined(GRAPHENE_USE_SSE) || defined(GRAPHENE_USE_INTRINSICS) || defined(GRAPHENE_USE_ARM_NEON)
 
 /**
  * graphene_simd4x4f_transpose_in_place:
