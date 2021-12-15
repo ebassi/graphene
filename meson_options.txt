@@ -10,7 +10,7 @@ option('introspection', type: 'feature',
        description: 'Enable GObject Introspection (depends on GObject)')
 option('gcc_vector', type: 'boolean',
        value: true,
-       description: 'Enable GCC vector fast paths (requires GCC)')
+       description: 'Enable compiler vector intrinsics (requires GCC or Clang)')
 option('sse2', type: 'boolean',
        value: true,
        description: 'Enable SSE2 fast paths (requires SSE2 or later)')

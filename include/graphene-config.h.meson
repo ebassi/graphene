@@ -25,6 +25,11 @@ extern "C" {
 
 #  if defined(__GNUC__) && (__GNUC__ >= 5 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 9)) && !defined(__arm__)
 #mesondefine GRAPHENE_HAS_GCC
+#mesondefine GRAPHENE_HAS_INTRINSICS
+#  endif
+
+#  if defined(__clang__) && !defined(__arm__)
+#mesondefine GRAPHENE_HAS_INTRINSICS
 #  endif
 
 #  define GRAPHENE_HAS_SCALAR 1
@@ -36,9 +41,12 @@ extern "C" {
 # elif defined(GRAPHENE_HAS_ARM_NEON)
 #  define GRAPHENE_USE_ARM_NEON
 #  define GRAPHENE_SIMD_S "neon"
-# elif defined(GRAPHENE_HAS_GCC)
-#  define GRAPHENE_USE_GCC
-#  define GRAPHENE_SIMD_S "gcc"
+# elif defined(GRAPHENE_HAS_INTRINSICS)
+#  if defined(GRAPHENE_HAS_GCC)
+#    define GRAPHENE_USE_GCC
+#  endif
+#  define GRAPHENE_USE_INTRINSICS
+#  define GRAPHENE_SIMD_S "intrinsics"
 # elif defined(GRAPHENE_HAS_SCALAR)
 #  define GRAPHENE_USE_SCALAR
 #  define GRAPHENE_SIMD_S "scalar"
@@ -69,7 +77,7 @@ typedef __m128 graphene_simd4f_t;
 #   include <arm_neon.h>
 #  endif
 typedef float32x4_t graphene_simd4f_t;
-# elif defined(GRAPHENE_USE_GCC)
+# elif defined(GRAPHENE_USE_INTRINSICS)
 typedef float graphene_simd4f_t __attribute__((vector_size(16)));
 # elif defined(GRAPHENE_USE_SCALAR)
 typedef struct {

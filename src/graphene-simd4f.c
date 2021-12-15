@@ -58,7 +58,7 @@
  */
 
 /* fast paths are all defined in the graphene-simd4f.h header */
-#if defined(GRAPHENE_USE_SSE) || defined(GRAPHENE_USE_GCC) || defined(GRAPHENE_USE_ARM_NEON)
+#if defined(GRAPHENE_USE_SSE) || defined(GRAPHENE_USE_INTRINSICS) || defined(GRAPHENE_USE_ARM_NEON)
 
 /**
  * graphene_simd4f_init:

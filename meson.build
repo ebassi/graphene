@@ -326,31 +326,38 @@ int main () {
   endif
 endif
 
-# GCC vector intrinsics
+# GCC/Clang vector intrinsics
 if get_option('gcc_vector')
-  gcc_vector_prog = '''
-#if defined(__GNUC__)
-# if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
-#   error "GCC vector intrinsics are disabled on GCC prior to 4.9"
+  vector_intrin_prog = '''
+#if defined(__GNUC__) // Clang advertises __GNUC__ too
+# if __GNUC__ < 4 || ((__GNUC__ == 4 && __GNUC_MINOR__ < 9) && !defined(__clang__))
+#   error "GCC/Clang vector intrinsics are disabled on GCC prior to 4.9"
 # elif defined(__arm__)
-#   error "GCC vector intrinsics are disabled on ARM"
+#   error "GCC/Clang vector intrinsics are disabled on ARM"
 # elif (__SIZEOF_POINTER__ < 8)
-#   error "GCC vector intrinsics are disabled on 32bit"
+#   error "GCC/Clang vector intrinsics are disabled on 32bit"
 # endif
 #else
-# error "Need GCC for GCC vectors intrinsics"
+# error "Need GCC or Clang for vector intrinsics"
 #endif
 typedef float simd4f __attribute__((vector_size(16)));
 typedef int simd4i __attribute__((vector_size(16)));
 int main () {
   simd4f s = { 1.f, 2.f, 3.f, 4.f };
+#ifdef __clang__
+  simd4f r = __builtin_shufflevector (s, s, 0, 1, 1, 3);
+#else
   simd4i m = { 0,   1,   1,   3   };
   simd4f r = __builtin_shuffle (s, m);
+#endif
   return 0;
 }'''
-  if cc.compiles(gcc_vector_prog, name: 'GCC vector intrinsics')
-    graphene_conf.set('GRAPHENE_HAS_GCC', 1)
-    graphene_simd += [ 'gcc' ]
+  if cc.compiles(vector_intrin_prog, name: 'Vector intrinsics')
+    if cc.get_id() == 'gcc'
+      graphene_conf.set('GRAPHENE_HAS_GCC', 1)
+    endif
+    graphene_conf.set('GRAPHENE_HAS_INTRINSICS', 1)
+    graphene_simd += [ 'intrinsics' ]
   endif
 endif
 
@@ -439,7 +446,7 @@ summary({
 
 summary({
     'SSE': graphene_simd.contains('sse2'),
-    'GCC vector': graphene_simd.contains('gcc'),
+    'GCC/Clang vector': graphene_simd.contains('intrinsics'),
     'ARM NEON': graphene_simd.contains('neon'),
   },
   section: 'SIMD',

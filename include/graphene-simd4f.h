@@ -779,11 +779,19 @@ _simd4f_neg (const graphene_simd4f_t s)
 
 # endif /* !__GNUC__ && !_MSC_VER */
 
-#elif !defined(__GI_SCANNER__) && defined(GRAPHENE_USE_GCC)
+#elif !defined(__GI_SCANNER__) && defined(GRAPHENE_USE_INTRINSICS)
 
-/* GCC vector intrinsic implementation of SIMD 4f */
+/* GCC/Clang vector intrinsic implementation of SIMD 4f */
 
 typedef int graphene_simd4i_t __attribute__((vector_size (16)));
+
+#if defined(__clang__)
+#define __graphene_simd_shuffle1(a, m1, m2, m3, m4) __builtin_shufflevector(a, a, m1, m2, m3, m4)
+#define __graphene_simd_shuffle2(a, b, m1, m2, m3, m4) __builtin_shufflevector(a, b, m1, m2, m3, m4)
+#else
+#define __graphene_simd_shuffle1(a, m1, m2, m3, m4) __builtin_shuffle(a, (const graphene_simd4i_t){m1, m2, m3, m4})
+#define __graphene_simd_shuffle2(a, b, m1, m2, m3, m4) __builtin_shuffle(a, b, (const graphene_simd4i_t){m1, m2, m3, m4})
+#endif
 
 # define graphene_simd4f_init(x,y,z,w) \
   (__extension__ ({ \
@@ -944,50 +952,42 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
 
 # define graphene_simd4f_shuffle_wxyz(v) \
   (__extension__ ({ \
-    const graphene_simd4i_t __mask = { 3, 0, 1, 2 }; \
-    (graphene_simd4f_t) __builtin_shuffle ((v), __mask); \
+    (graphene_simd4f_t) __graphene_simd_shuffle1((v), 3, 0, 1, 2); \
   }))
 
 # define graphene_simd4f_shuffle_zwxy(v) \
   (__extension__ ({ \
-    const graphene_simd4i_t __mask = { 2, 3, 0, 1 }; \
-    (graphene_simd4f_t) __builtin_shuffle ((v), __mask); \
+    (graphene_simd4f_t) __graphene_simd_shuffle1((v), 2, 3, 0, 1); \
   }))
 
 # define graphene_simd4f_shuffle_yzwx(v) \
   (__extension__ ({ \
-    const graphene_simd4i_t __mask = { 1, 2, 3, 0 }; \
-    (graphene_simd4f_t) __builtin_shuffle ((v), __mask); \
+    (graphene_simd4f_t) __graphene_simd_shuffle1((v), 1, 2, 3, 0); \
   }))
 
 # define graphene_simd4f_zero_w(v) \
   (__extension__ ({ \
-    const graphene_simd4i_t __mask = { 0, 1, 2, 4 }; \
-    (graphene_simd4f_t) __builtin_shuffle ((v), graphene_simd4f_init_zero (), __mask); \
+    (graphene_simd4f_t) __graphene_simd_shuffle2((v), graphene_simd4f_init_zero (), 0, 1, 2, 4); \
   }))
 
 # define graphene_simd4f_zero_zw(v) \
   (__extension__ ({ \
-    const graphene_simd4i_t __mask = { 0, 1, 4, 4 }; \
-    (graphene_simd4f_t) __builtin_shuffle ((v), graphene_simd4f_init_zero (), __mask); \
+    (graphene_simd4f_t) __graphene_simd_shuffle2((v), graphene_simd4f_init_zero (), 0, 1, 4, 4); \
   }))
 
 # define graphene_simd4f_merge_w(s,v) \
   (__extension__ ({ \
-    const graphene_simd4i_t __mask = { 0, 1, 2, 4 }; \
-    (graphene_simd4f_t) __builtin_shuffle ((s), graphene_simd4f_splat ((v)), __mask); \
+    (graphene_simd4f_t) __graphene_simd_shuffle2((s), graphene_simd4f_splat ((v)), 0, 1, 2, 4); \
   }))
 
 # define graphene_simd4f_merge_high(a,b) \
   (__extension__ ({ \
-    const graphene_simd4i_t __mask = { 2, 3, 6, 7 }; \
-    (graphene_simd4f_t) __builtin_shuffle ((a), (b), __mask); \
+    (graphene_simd4f_t) __graphene_simd_shuffle2((a), (b), 2, 3, 6, 7); \
   }))
 
 # define graphene_simd4f_merge_low(a,b) \
   (__extension__ ({ \
-    const graphene_simd4i_t __mask = { 0, 1, 4, 5 }; \
-    (graphene_simd4f_t) __builtin_shuffle ((a), (b), __mask); \
+    (graphene_simd4f_t) __graphene_simd_shuffle2((a), (b), 0, 1, 4, 5); \
   }))
 
 # define graphene_simd4f_flip_sign_0101(v) \
