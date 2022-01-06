@@ -272,8 +272,14 @@ int main() {
  return 0;
 }
 '''
+if meson.is_cross_build()
+  ieee754_float_div = meson.get_external_property('ieee754_float_div', cc.get_id() in ['gcc', 'clang'])
+  message('Cross-building, assuming IEEE 754 division:', ieee754_float_div)
+else
+  ieee754_float_div = cc.run(float_division_prog, name: 'IEEE 754 floating-point division').returncode() == 0
+endif
 conf.set('HAVE_IEEE_754_FLOAT_DIVISION',
-  cc.run(float_division_prog, name: 'IEEE 754 floating-point division').returncode() == 0,
+  ieee754_float_div,
   description: 'Define if floating-point division is compliant with IEEE 754',
 )
 
