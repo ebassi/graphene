@@ -110,7 +110,7 @@
   GType \
   type_name ## _get_type (void) \
   { \
-    static volatile gsize graphene_define_id__volatile = 0; \
+    static gsize graphene_define_id__volatile = 0; \
     if (g_once_init_enter (&graphene_define_id__volatile)) \
       { \
         static const GEnumValue v[] = { \
@@ -140,7 +140,7 @@
   GType \
     type_name ## _get_type (void) \
   { \
-    static volatile gsize graphene_define_id__volatile = 0; \
+    static gsize graphene_define_id__volatile = 0; \
     if (g_once_init_enter (&graphene_define_id__volatile)) \
       { \
         GType graphene_define_id = \
