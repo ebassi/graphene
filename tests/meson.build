@@ -21,8 +21,8 @@ unit_tests = [
 
 gen_installed_test = find_program('gen-installed-test.py')
 
-installed_test_datadir = join_paths(get_option('prefix'), get_option('datadir'), 'installed-tests', graphene_api_path)
-installed_test_bindir = join_paths(get_option('prefix'), get_option('libexecdir'), 'installed-tests', graphene_api_path)
+installed_test_datadir = get_option('prefix') / get_option('datadir') / 'installed-tests' / graphene_api_path
+installed_test_bindir = get_option('prefix') / get_option('libexecdir') / 'installed-tests' / graphene_api_path
 
 # Make tests conditional on having mutest-1 installed system-wide, or
 # available as a subproject
@@ -63,6 +63,8 @@ if mutest_dep.found()
   endforeach
 endif
 
+src_build_path = meson.current_build_dir() / '../src'
+
 if build_gir and host_system == 'linux' and not meson.is_cross_build()
   foreach unit: ['introspection.py']
     install_data(unit, install_dir: installed_test_bindir)
@@ -85,8 +87,8 @@ if build_gir and host_system == 'linux' and not meson.is_cross_build()
       python,
       args: [files(unit)],
       env: [
-        'GI_TYPELIB_PATH=' + join_paths(meson.current_build_dir(), '..', 'src'),
-        'LD_LIBRARY_PATH=' + join_paths(meson.current_build_dir(), '..', 'src'),
+        'GI_TYPELIB_PATH=@0@'.format(src_build_path),
+        'LD_LIBRARY_PATH=@0@'.format(src_build_path),
       ],
       protocol: 'tap',
     )
