@@ -93,7 +93,6 @@ else
     '-Wunused',
     '-Wmissing-noreturn',
     '-Wmissing-format-attribute',
-    '-Wlogical-op',
     '-Wcast-align',
     '-Wno-unused-local-typedefs',
     '-Werror=float-conversion',
@@ -113,6 +112,10 @@ else
     '-Werror=write-strings',
     '-Werror=undef',
   ]
+  if cc.get_id() != 'clang-cl'
+    # This returns a false positive on clang-cl
+    test_cflags += '-Wlogical-op'
+  endif
 endif
 
 common_cflags = cc.get_supported_arguments(test_cflags)
@@ -203,7 +206,7 @@ if get_option('default_library') != 'static'
   if host_system == 'windows'
     conf.set('DLL_EXPORT', true)
     conf.set('_GRAPHENE_PUBLIC', '__declspec(dllexport) extern')
-    if cc.get_id() != 'msvc'
+    if cc.get_argument_syntax() != 'msvc'
       extra_args += ['-fvisibility=hidden']
     endif
   else
@@ -312,10 +315,14 @@ int main () {
     c = _mm_xor_si128 (a, b);
     return 0;
 }'''
+  test_sse2_cflags = []
   if cc.get_id() != 'msvc'
     test_sse2_cflags = ['-mfpmath=sse', '-msse', '-msse2']
-  else
-    test_sse2_cflags = []
+    if cc.get_id() == 'clang-cl'
+      # clang-cl uses the Visual Studio headers, so we always get SSE 4.1, and it is required
+      test_sse2_cflags += ['-msse4.1']
+    endif
+    test_sse2_cflags = cc.get_supported_arguments(test_sse2_cflags)
   endif
 
   if cc.compiles(sse_prog, args: test_sse2_cflags, name: 'SSE intrinsics')
