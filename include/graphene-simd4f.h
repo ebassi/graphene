@@ -184,6 +184,86 @@ typedef union {
   float f[4];
 } graphene_simd4f_union_t;
 
+# define graphene_simd4f_init_zero() \
+  GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_setzero_ps())
+
+# define graphene_simd4f_init_4f(v) \
+  GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_loadu_ps (v))
+
+# define graphene_simd4f_dup_4f(s,v) \
+  GRAPHENE_ONELINER (_mm_storeu_ps ((v), (s)))
+
+# define graphene_simd4f_dup_3f(s,v) \
+  GRAPHENE_ONELINER (memcpy ((v), &(s), sizeof (float) * 3))
+
+# define graphene_simd4f_dup_2f(s,v) \
+  GRAPHENE_ONELINER (memcpy ((v), &(s), sizeof (float) * 2))
+
+# define graphene_simd4f_splat(v) \
+  GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_set1_ps ((v)))
+
+# define graphene_simd4f_splat_x(v) \
+  GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (0, 0, 0, 0)))
+
+# define graphene_simd4f_splat_y(v) \
+  GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (1, 1, 1, 1)))
+
+# define graphene_simd4f_splat_z(v) \
+  GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (2, 2, 2, 2)))
+
+# define graphene_simd4f_splat_w(v) \
+  GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (3, 3, 3, 3)))
+
+# define graphene_simd4f_add(a,b) \
+  GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_add_ps ((a), (b)))
+
+# define graphene_simd4f_sub(a,b) \
+  GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_sub_ps ((a), (b)))
+
+# define graphene_simd4f_mul(a,b) \
+  GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_mul_ps ((a), (b)))
+
+# define graphene_simd4f_div(a,b) \
+  GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_div_ps ((a), (b)))
+
+# define graphene_simd4f_sqrt(v) \
+  GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_sqrt_ps ((v)))
+
+# if defined(GRAPHENE_USE_SSE4_1)
+#  define graphene_simd4f_dot3(a,b) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_dp_ps ((a), (b), 0x7f))
+# endif
+
+# define graphene_simd4f_min(a,b) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_min_ps (a, b))
+
+# define graphene_simd4f_max(a,b) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_max_ps (a, b))
+
+# define graphene_simd4f_shuffle_wxyz(v) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_shuffle_ps (v, v, _MM_SHUFFLE (2, 1, 0, 3)))
+
+# define graphene_simd4f_shuffle_zwxy(v) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_shuffle_ps (v, v, _MM_SHUFFLE (1, 0, 3, 2)))
+
+# define graphene_simd4f_shuffle_yzwx(v) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_shuffle_ps (v, v, _MM_SHUFFLE (0, 3, 2, 1)))
+
+# define graphene_simd4f_zero_w(v) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_movelh_ps (v, _mm_unpackhi_ps (v, _mm_setzero_ps ())))
+
+# define graphene_simd4f_zero_zw(v) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_movelh_ps (v, _mm_setzero_ps ()))
+
+# define graphene_simd4f_merge_w(s,v) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_movelh_ps (s, _mm_unpackhi_ps (s, _mm_set1_ps (v))))
+
+# define graphene_simd4f_merge_high(a,b) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_movehl_ps (b, a))
+
+# define graphene_simd4f_merge_low(a,b) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_movelh_ps (a, b))
+
 /* On GCC, we use __extension__ macros to avoid a static inline */
 # if defined(__GNUC__)
 
@@ -192,16 +272,6 @@ typedef union {
 #  define graphene_simd4f_init(x,y,z,w) \
   (__extension__ ({ \
     (graphene_simd4f_t) { (x), (y), (z), (w) }; \
-  }))
-
-#  define graphene_simd4f_init_zero() \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_setzero_ps(); \
-  }))
-
-#  define graphene_simd4f_init_4f(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_loadu_ps (v); \
   }))
 
 #  define graphene_simd4f_init_3f(v) \
@@ -214,21 +284,6 @@ typedef union {
     (graphene_simd4f_t) { (v)[0], (v)[1], 0.f, 0.f }; \
   }))
 
-#  define graphene_simd4f_dup_4f(s,v) \
-  (__extension__ ({ \
-    _mm_storeu_ps ((v), (s)); \
-  }))
-
-#  define graphene_simd4f_dup_3f(s,v) \
-  (__extension__ ({ \
-    memcpy ((v), &(s), sizeof (float) * 3); \
-  }))
-
-#  define graphene_simd4f_dup_2f(s,v) \
-  (__extension__ ({ \
-    memcpy ((v), &(s), sizeof (float) * 2); \
-  }))
-
 #  define graphene_simd4f_get(s,i) \
   (__extension__ ({ \
     graphene_simd4f_union_t __u = { (s) }; \
@@ -239,56 +294,6 @@ typedef union {
 #  define graphene_simd4f_get_y(s)      graphene_simd4f_get (s, 1)
 #  define graphene_simd4f_get_z(s)      graphene_simd4f_get (s, 2)
 #  define graphene_simd4f_get_w(s)      graphene_simd4f_get (s, 3)
-
-#  define graphene_simd4f_splat(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_set1_ps ((v)); \
-  }))
-
-#  define graphene_simd4f_splat_x(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (0, 0, 0, 0)); \
-  }))
-
-#  define graphene_simd4f_splat_y(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (1, 1, 1, 1)); \
-  }))
-
-#  define graphene_simd4f_splat_z(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (2, 2, 2, 2)); \
-  }))
-
-#  define graphene_simd4f_splat_w(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (3, 3, 3, 3)); \
-  }))
-
-#  define graphene_simd4f_add(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_add_ps ((a), (b)); \
-  }))
-
-#  define graphene_simd4f_sub(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_sub_ps ((a), (b)); \
-  }))
-
-#  define graphene_simd4f_mul(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_mul_ps ((a), (b)); \
-  }))
-
-#  define graphene_simd4f_div(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_div_ps ((a), (b)); \
-  }))
-
-#  define graphene_simd4f_sqrt(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_sqrt_ps ((v)); \
-  }))
 
 #  define graphene_simd4f_reciprocal(v) \
   (__extension__ ({ \
@@ -320,12 +325,7 @@ typedef union {
     (graphene_simd4f_t) _mm_sub_ps (_mm_mul_ps (__a_yzx, __b_zxy), _mm_mul_ps (__a_zxy, __b_yzx)); \
   }))
 
-#  if defined(GRAPHENE_USE_SSE4_1)
-#   define graphene_simd4f_dot3(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_dp_ps ((a), (b), 0x7f); \
-  }))
-#  else
+#  if !defined(GRAPHENE_USE_SSE4_1)
 #   define graphene_simd4f_dot3(a,b) \
   (__extension__ ({ \
     const unsigned int __mask_bits[] GRAPHENE_ALIGN16 = { 0xffffffff, 0xffffffff, 0xffffffff, 0 }; \
@@ -343,58 +343,6 @@ typedef union {
     float __res; \
     _mm_store_ss (&__res, graphene_simd4f_dot3 (a, b)); \
     __res; \
-  }))
-
-#  define graphene_simd4f_min(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_min_ps ((a), (b)); \
-  }))
-
-#  define graphene_simd4f_max(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_max_ps ((a), (b)); \
-  }))
-
-#  define graphene_simd4f_shuffle_wxyz(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (2, 1, 0, 3)); \
-  }))
-
-#  define graphene_simd4f_shuffle_zwxy(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (1, 0, 3, 2)); \
-  }))
-
-#  define graphene_simd4f_shuffle_yzwx(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_shuffle_ps ((v), (v), _MM_SHUFFLE (0, 3, 2, 1)); \
-  }))
-
-#  define graphene_simd4f_zero_w(v) \
-  (__extension__ ({ \
-    graphene_simd4f_t __s = _mm_unpackhi_ps ((v), _mm_setzero_ps ()); \
-    (graphene_simd4f_t) _mm_movelh_ps ((v), __s); \
-  }))
-
-#  define graphene_simd4f_zero_zw(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_movelh_ps ((v), _mm_setzero_ps ()); \
-  }))
-
-#  define graphene_simd4f_merge_w(s,v) \
-  (__extension__ ({ \
-    graphene_simd4f_t __s = _mm_unpackhi_ps ((s), _mm_set1_ps ((v))); \
-    (graphene_simd4f_t) _mm_movelh_ps ((s), __s); \
-  }))
-
-#  define graphene_simd4f_merge_high(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_movehl_ps ((b), (a)); \
-  }))
-
-#  define graphene_simd4f_merge_low(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) _mm_movelh_ps ((a), (b)); \
   }))
 
 typedef GRAPHENE_ALIGN16 union {
@@ -485,26 +433,11 @@ _simd4f_init (float x, float y, float z, float w)
   return __s;
 }
 
-#define graphene_simd4f_init_zero() \
-  _mm_setzero_ps()
-
-#define graphene_simd4f_init_4f(v) \
-  _mm_loadu_ps(v)
-
 #define graphene_simd4f_init_3f(v) \
   graphene_simd4f_init (v[0], v[1], v[2], 0.f)
 
 #define graphene_simd4f_init_2f(v) \
   graphene_simd4f_init (v[0], v[1], 0.f, 0.f)
-
-#define graphene_simd4f_dup_4f(s,v) \
-  _mm_storeu_ps (v, s)
-
-#define graphene_simd4f_dup_3f(s,v) \
-  memcpy (v, &s, sizeof (float) * 3)
-
-#define graphene_simd4f_dup_2f(s,v) \
-  memcpy (v, &s, sizeof (float) * 2)
 
 #define graphene_simd4f_get(s,i) _simd4f_get_xyzw(s, i)
 #define graphene_simd4f_get_x(s) _simd4f_get_xyzw(s, 0)
@@ -524,36 +457,6 @@ _simd4f_get_xyzw (graphene_simd4f_t s, int mode)
   u.s = s;
   return u.f[mode];
 }
-
-#define graphene_simd4f_splat(v) \
-  _mm_set1_ps (v)
-
-#define graphene_simd4f_splat_x(v) \
-  _mm_shuffle_ps (v, v, _MM_SHUFFLE (0, 0, 0, 0))
-
-#define graphene_simd4f_splat_y(v) \
-  _mm_shuffle_ps (v, v, _MM_SHUFFLE (1, 1, 1, 1))
-
-#define graphene_simd4f_splat_z(v) \
-  _mm_shuffle_ps (v, v, _MM_SHUFFLE (2, 2, 2, 2))
-
-#define graphene_simd4f_splat_w(v) \
-  _mm_shuffle_ps (v, v, _MM_SHUFFLE (3, 3, 3, 3))
-
-#define graphene_simd4f_add(a,b) \
-  _mm_add_ps (a, b)
-
-#define graphene_simd4f_sub(a,b) \
-  _mm_sub_ps (a, b)
-
-#define graphene_simd4f_mul(a,b) \
-  _mm_mul_ps (a, b)
-
-#define graphene_simd4f_div(a,b) \
-  _mm_div_ps (a, b)
-
-#define graphene_simd4f_sqrt(v) \
-  _mm_sqrt_ps (v)
 
 #define graphene_simd4f_reciprocal(v) _simd4f_reciprocal(v)
 
@@ -597,6 +500,7 @@ _simd4f_cross3 (const graphene_simd4f_t a,
   return _mm_sub_ps (_mm_mul_ps (__a_yzx, __b_zxy), _mm_mul_ps (__a_zxy, __b_yzx));
 }
 
+#if !defined(GRAPHENE_USE_SSE4_1)
 #define graphene_simd4f_dot3(a,b) \
   _simd4f_dot3(a,b)
 
@@ -604,9 +508,6 @@ static inline graphene_simd4f_t
 _simd4f_dot3 (const graphene_simd4f_t a,
               const graphene_simd4f_t b)
 {
-#if defined(GRAPHENE_USE_SSE4_1)
-  return _mm_dp_ps (a, b, 0x7f);
-#else
   GRAPHENE_ALIGN16 const unsigned int __mask_bits[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 };
   const graphene_simd4f_t __mask = _mm_load_ps ((const float *) __mask_bits);
   const graphene_simd4f_t __m = _mm_mul_ps ((a), (b));
@@ -615,8 +516,8 @@ _simd4f_dot3 (const graphene_simd4f_t a,
   const graphene_simd4f_t __s2 = _mm_add_ss (__s1, _mm_shuffle_ps (__s1, __s1, 1));
 
   return _mm_shuffle_ps (__s2, __s2, 0);
-#endif
 }
+#endif
 
 #define graphene_simd4f_dot3_scalar(a,b) \
   _simd4f_dot3_scalar(a,b)
@@ -629,37 +530,6 @@ _simd4f_dot3_scalar (const graphene_simd4f_t a,
   _mm_store_ss (&__res, graphene_simd4f_dot3 (a, b));
   return __res;
 }
-
-#define graphene_simd4f_min(a,b) \
-  _mm_min_ps (a, b)
-
-#define graphene_simd4f_max(a,b) \
-  _mm_max_ps (a, b)
-
-
-#define graphene_simd4f_shuffle_wxyz(v) \
-  _mm_shuffle_ps (v, v, _MM_SHUFFLE (2, 1, 0, 3))
-
-#define graphene_simd4f_shuffle_zwxy(v) \
-  _mm_shuffle_ps (v, v, _MM_SHUFFLE (1, 0, 3, 2))
-
-#define graphene_simd4f_shuffle_yzwx(v) \
-  _mm_shuffle_ps (v, v, _MM_SHUFFLE (0, 3, 2, 1))
-
-#define graphene_simd4f_zero_w(v) \
-  _mm_movelh_ps (v, _mm_unpackhi_ps (v, _mm_setzero_ps ()))
-
-#define graphene_simd4f_zero_zw(v) \
-  _mm_movelh_ps (v, _mm_setzero_ps ())
-
-#define graphene_simd4f_merge_w(s,v) \
-  _mm_movelh_ps (s, _mm_unpackhi_ps (s, _mm_set1_ps (v)))
-
-#define graphene_simd4f_merge_high(a,b) \
-  _mm_movehl_ps (b, a)
-
-#define graphene_simd4f_merge_low(a,b) \
-  _mm_movelh_ps (a, b)
 
 typedef GRAPHENE_ALIGN16 union {
   unsigned int ui[4];
