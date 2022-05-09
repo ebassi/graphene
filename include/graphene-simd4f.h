@@ -959,22 +959,62 @@ typedef union {
 /* NEON has optimised 2-lanes vectors we can use */
 typedef float32x2_t graphene_simd2f_t;
 
+# define graphene_simd4f_init_zero() \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, vdupq_n_f32 (0.f))
+
+# define graphene_simd4f_dup_4f(s,v) \
+   GRAPHENE_ONELINER (vst1q_f32 ((float32_t *) (v), (s)))
+
+# define graphene_simd4f_init_4f(v) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, vld1q_f32 ((const float32_t *) (v)))
+
+# define graphene_simd4f_dup_2f(s,v) \
+   GRAPHENE_ONELINER (vst1_f32 ((float32_t *) (v), vget_low_f32 ((s))))
+
+# define graphene_simd4f_get(s,i) \
+  GRAPHENE_ONELINER_WITH_RTYPE (float,vgetq_lane_f32 ((s), (i)))
+
+# define graphene_simd4f_splat(v) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, vdupq_n_f32 ((v)))
+
+# define graphene_simd4f_splat_x(s) \
+   GRAPHENE_ONELINER (graphene_simd4f_splat (graphene_simd4f_get_x ((s))))
+
+# define graphene_simd4f_splat_y(s) \
+   GRAPHENE_ONELINER (graphene_simd4f_splat (graphene_simd4f_get_y ((s))))
+
+# define graphene_simd4f_splat_z(s) \
+   GRAPHENE_ONELINER (graphene_simd4f_splat (graphene_simd4f_get_z ((s))))
+
+# define graphene_simd4f_splat_w(s) \
+   GRAPHENE_ONELINER (graphene_simd4f_splat (graphene_simd4f_get_w ((s))))
+
+# define graphene_simd4f_add(a,b) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, vaddq_f32 ((a), (b)))
+
+# define graphene_simd4f_sub(a,b) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, vsubq_f32 ((a), (b)))
+
+# define graphene_simd4f_mul(a,b) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, vmulq_f32 ((a), (b)))
+
+# define graphene_simd4f_div(a,b) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, vmulq_f32 ((a), graphene_simd4f_reciprocal ((b))))
+
+# define graphene_simd4f_dot3(a,b) \
+   GRAPHENE_ONELINER (graphene_simd4f_splat (graphene_simd4f_dot3_scalar (a, b)))
+
+# define graphene_simd4f_min(a,b) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, vminq_f32 ((a), (b)))
+
+# define graphene_simd4f_max(a,b) \
+   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, vmaxq_f32 (a, b))
+
 #ifdef __GNUC__
 # define graphene_simd4f_init(x,y,z,w) \
   (__extension__ ({ \
     const float32_t __v[4] = { (x), (y), (z), (w) }; \
     (graphene_simd4f_t) vld1q_f32 (__v); \
-  }))
-
-# define graphene_simd4f_init_zero() \
-  (__extension__ ({ \
-    (graphene_simd4f_t) vdupq_n_f32 (0.f); \
-  }))
-
-# define graphene_simd4f_init_4f(v) \
-  (__extension__ ({ \
-    const float32_t *__v32 = (const float32_t *) (v); \
-    (graphene_simd4f_t) vld1q_f32 (__v32); \
   }))
 
 # define graphene_simd4f_init_3f(v) \
@@ -991,11 +1031,6 @@ typedef float32x2_t graphene_simd2f_t;
     (graphene_simd4f_t) vcombine_f32 (__low, __high); \
   }))
 
-# define graphene_simd4f_dup_4f(s,v) \
-  (__extension__ ({ \
-    vst1q_f32 ((float32_t *) (v), (s)); \
-  }))
-
 # define graphene_simd4f_dup_3f(s,v) \
   (__extension__ ({ \
     float *__v = (v); \
@@ -1004,68 +1039,11 @@ typedef float32x2_t graphene_simd2f_t;
     vst1q_lane_f32 (__v, (s), 2); \
   }))
 
-# define graphene_simd4f_dup_2f(s,v) \
-  (__extension__ ({ \
-    const graphene_simd2f_t __low = vget_low_f32 ((s)); \
-    vst1_f32 ((float32_t *) (v), __low); \
-  }))
-
-# define graphene_simd4f_get(s,i) \
-  (__extension__ ({ \
-    (float) vgetq_lane_f32 ((s), (i)); \
-  }))
-
-# define graphene_simd4f_splat(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) vdupq_n_f32 ((v)); \
-  }))
-
-# define graphene_simd4f_splat_x(s) \
-  (__extension__ ({ \
-    graphene_simd4f_splat (graphene_simd4f_get_x ((s))); \
-  }))
-
-# define graphene_simd4f_splat_y(s) \
-  (__extension__ ({ \
-    graphene_simd4f_splat (graphene_simd4f_get_y ((s))); \
-  }))
-
-# define graphene_simd4f_splat_z(s) \
-  (__extension__ ({ \
-    graphene_simd4f_splat (graphene_simd4f_get_z ((s))); \
-  }))
-
-# define graphene_simd4f_splat_w(s) \
-  (__extension__ ({ \
-    graphene_simd4f_splat (graphene_simd4f_get_w ((s))); \
-  }))
-
 # define graphene_simd4f_reciprocal(s) \
   (__extension__ ({ \
     graphene_simd4f_t __est = vrecpeq_f32 ((s)); \
     __est = vmulq_f32 (vrecpsq_f32 (__est, (s)), __est); \
     (graphene_simd4f_t) vmulq_f32 (vrecpsq_f32 (__est, (s)), __est); \
-  }))
-
-# define graphene_simd4f_add(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) vaddq_f32 ((a), (b)); \
-  }))
-
-# define graphene_simd4f_sub(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) vsubq_f32 ((a), (b)); \
-  }))
-
-# define graphene_simd4f_mul(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) vmulq_f32 ((a), (b)); \
-  }))
-
-# define graphene_simd4f_div(a,b) \
-  (__extension__ ({ \
-    graphene_simd4f_t __rec = graphene_simd4f_reciprocal ((b)); \
-    (graphene_simd4f_t) vmulq_f32 ((a), __rec); \
   }))
 
 # define _simd4f_rsqrt_iter(v,estimate) \
@@ -1106,26 +1084,11 @@ typedef float32x2_t graphene_simd2f_t;
     (graphene_simd4f_t) vandq_s32 ((int32x4_t) __s3, __mask); \
   }))
 
-# define graphene_simd4f_dot3(a,b) \
-  (__extension__ ({ \
-    graphene_simd4f_splat (graphene_simd4f_dot3_scalar (a, b)); \
-  }))
-
 # define graphene_simd4f_dot3_scalar(a,b) \
   (__extension__ ({ \
     const graphene_simd4f_t __m = graphene_simd4f_mul (a, b); \
     const graphene_simd2f_t __s1 = vpadd_f32 (vget_low_f32 (__m), vget_low_f32 (__m)); \
     (float) vget_lane_f32 (vadd_f32 (__s1, vget_high_f32 (__m)), 0); \
-  }))
-
-# define graphene_simd4f_min(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) vminq_f32 ((a), (b)); \
-  }))
-
-# define graphene_simd4f_max(a,b) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) vmaxq_f32 (a, b); \
   }))
 
 # define graphene_simd4f_shuffle_wxyz(v) \
@@ -1278,10 +1241,6 @@ _simd4f_init (float x, float y, float z, float w)
   return vld1q_f32 (__v);
 }
 
-# define graphene_simd4f_init_zero() vdupq_n_f32 (0.f)
-
-# define graphene_simd4f_init_4f(v) vld1q_f32 (v)
-
 # define graphene_simd4f_init_3f(v) graphene_simd4f_init (v[0], v[1], v[2], 0.f)
 
 # define graphene_simd4f_init_2f(v) _simd4f_init_2f(v)
@@ -1295,8 +1254,6 @@ _simd4f_init_2f (const float *v)
   return vcombine_f32 (__low, __high);
 }
 
-# define graphene_simd4f_dup_4f(s,v) vst1q_f32 ((float32_t *) (v), (s))
-
 # define graphene_simd4f_dup_3f(s,v) _simd4f_dup_3f(s,v)
 static inline
 void _simd4f_dup_3f (const graphene_simd4f_t s,
@@ -1308,20 +1265,6 @@ void _simd4f_dup_3f (const graphene_simd4f_t s,
   vst1q_lane_f32 (__v, (s), 2);
 }
 
-# define graphene_simd4f_dup_2f(s,v) vst1_f32 (v, vget_low_f32 (s))
-
-# define graphene_simd4f_get(s,i) vgetq_lane_f32 ((s), (i))
-
-# define graphene_simd4f_splat(v) vdupq_n_f32 ((v))
-
-# define graphene_simd4f_splat_x(s) graphene_simd4f_splat (graphene_simd4f_get_x ((s)))
-
-# define graphene_simd4f_splat_y(s) graphene_simd4f_splat (graphene_simd4f_get_y ((s)))
-
-# define graphene_simd4f_splat_z(s) graphene_simd4f_splat (graphene_simd4f_get_z ((s)))
-
-# define graphene_simd4f_splat_w(s) graphene_simd4f_splat (graphene_simd4f_get_w ((s)))
-
 # define graphene_simd4f_reciprocal(s) _simd4f_reciprocal(s)
 static inline graphene_simd4f_t
 _simd4f_reciprocal (const graphene_simd4f_t s)
@@ -1330,14 +1273,6 @@ _simd4f_reciprocal (const graphene_simd4f_t s)
   __est = vmulq_f32 (vrecpsq_f32 (__est, (s)), __est);
   return vmulq_f32 (vrecpsq_f32 (__est, (s)), __est);
 }
-
-# define graphene_simd4f_add(a,b) vaddq_f32 ((a), (b))
-
-# define graphene_simd4f_sub(a,b) vsubq_f32 ((a), (b))
-
-# define graphene_simd4f_mul(a,b) vmulq_f32 ((a), (b))
-
-# define graphene_simd4f_div(a,b) vmulq_f32 (a, graphene_simd4f_reciprocal (b))
 
 static inline graphene_simd4f_t
 _simd4f_rsqrt_iter (const graphene_simd4f_t v,
@@ -1386,8 +1321,6 @@ _simd4f_cross3 (const graphene_simd4f_t a,
   return vandq_s32 (__s3, __mask);
 }
 
-# define graphene_simd4f_dot3(a,b) graphene_simd4f_splat (graphene_simd4f_dot3_scalar (a, b))
-
 # define graphene_simd4f_dot3_scalar(a,b) _simd4f_dot3_scalar(a,b)
 static inline float
 _simd4f_dot3_scalar (const graphene_simd4f_t a,
@@ -1397,10 +1330,6 @@ _simd4f_dot3_scalar (const graphene_simd4f_t a,
   const graphene_simd2f_t __s1 = vpadd_f32 (vget_low_f32 (__m), vget_low_f32 (__m));
   return vget_lane_f32 (vadd_f32 (__s1, vget_high_f32 (__m)), 0);
 }
-
-# define graphene_simd4f_min(a,b) vminq_f32 ((a), (b))
-
-# define graphene_simd4f_max(a,b) vmaxq_f32 (a, b)
 
 # define graphene_simd4f_shuffle_wxyz(v) _simd4f_shuffle_wxyz(v)
 static inline graphene_simd4f_t
