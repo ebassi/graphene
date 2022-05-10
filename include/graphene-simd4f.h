@@ -184,11 +184,20 @@ typedef union {
   float f[4];
 } graphene_simd4f_union_t;
 
+#define graphene_simd4f_init(x,y,z,w)	\
+  GRAPHENE_ONELINER_4ARG_ARRAY_WITH_RTYPE(graphene_simd4f_t, x, y, z, w)
+
 # define graphene_simd4f_init_zero() \
   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_setzero_ps())
 
 # define graphene_simd4f_init_4f(v) \
   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_loadu_ps (v))
+
+#define graphene_simd4f_init_3f(v) \
+  GRAPHENE_ONELINER_4ARG_ARRAY_WITH_RTYPE(graphene_simd4f_t, v[0], v[1], v[2], 0.f)
+
+#define graphene_simd4f_init_2f(v) \
+  GRAPHENE_ONELINER_4ARG_ARRAY_WITH_RTYPE(graphene_simd4f_t, v[0], v[1], 0.f, 0.f)
 
 # define graphene_simd4f_dup_4f(s,v) \
   GRAPHENE_ONELINER (_mm_storeu_ps ((v), (s)))
@@ -268,22 +277,6 @@ typedef union {
 # if defined(__GNUC__)
 
 /* Use GCC statement __extension__ to inline all these functions */
-
-#  define graphene_simd4f_init(x,y,z,w) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) { (x), (y), (z), (w) }; \
-  }))
-
-#  define graphene_simd4f_init_3f(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) { (v)[0], (v)[1], (v)[2], 0.f }; \
-  }))
-
-#  define graphene_simd4f_init_2f(v) \
-  (__extension__ ({ \
-    (graphene_simd4f_t) { (v)[0], (v)[1], 0.f, 0.f }; \
-  }))
-
 #  define graphene_simd4f_get(s,i) \
   (__extension__ ({ \
     graphene_simd4f_union_t __u = { (s) }; \
@@ -423,21 +416,6 @@ typedef GRAPHENE_ALIGN16 union {
 # elif defined (_MSC_VER) /* Visual Studio SSE intrinsics */
 
 /* Use static inline to inline all these functions */
-
-#define graphene_simd4f_init(x,y,z,w) _simd4f_init(x,y,z,w)
-
-static inline graphene_simd4f_t
-_simd4f_init (float x, float y, float z, float w)
-{
-  graphene_simd4f_t __s = { x, y, z, w };
-  return __s;
-}
-
-#define graphene_simd4f_init_3f(v) \
-  graphene_simd4f_init (v[0], v[1], v[2], 0.f)
-
-#define graphene_simd4f_init_2f(v) \
-  graphene_simd4f_init (v[0], v[1], 0.f, 0.f)
 
 #define graphene_simd4f_get(s,i) _simd4f_get_xyzw(s, i)
 #define graphene_simd4f_get_x(s) _simd4f_get_xyzw(s, 0)
