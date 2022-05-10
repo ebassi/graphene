@@ -115,9 +115,11 @@ typedef int bool;
 #if defined (__GNUC__) || defined (__clang__)
 #define GRAPHENE_ONELINER(expr) (__extension__ ({expr;}))
 #define GRAPHENE_ONELINER_WITH_RTYPE(rtype,expr) (__extension__ ({(rtype) expr;}))
+#define GRAPHENE_ONELINER_4ARG_ARRAY_WITH_RTYPE(rtype,v0,v1,v2,v3) (__extension__ ({(rtype){v0, v1, v2, v3};}))
 #elif defined (_MSC_VER)
 #define GRAPHENE_ONELINER(expr) expr
 #define GRAPHENE_ONELINER_WITH_RTYPE(rtype,expr) GRAPHENE_ONELINER (expr)
+#define GRAPHENE_ONELINER_4ARG_ARRAY_WITH_RTYPE(rtype,v0,v1,v2,v3) (rtype){v0, v1, v2, v3}
 #else
 # error Please define macros suitable for your compiler
 #endif
