@@ -213,6 +213,12 @@ typedef GRAPHENE_ALIGN16 union {
 # define graphene_simd4f_dup_2f(s,v) \
   GRAPHENE_ONELINER (memcpy ((v), &(s), sizeof (float) * 2))
 
+
+# define graphene_simd4f_get_x(s)      graphene_simd4f_get (s, 0)
+# define graphene_simd4f_get_y(s)      graphene_simd4f_get (s, 1)
+# define graphene_simd4f_get_z(s)      graphene_simd4f_get (s, 2)
+# define graphene_simd4f_get_w(s)      graphene_simd4f_get (s, 3)
+
 # define graphene_simd4f_splat(v) \
   GRAPHENE_ONELINER_WITH_RTYPE (graphene_simd4f_t, _mm_set1_ps ((v)))
 
@@ -287,11 +293,6 @@ typedef GRAPHENE_ALIGN16 union {
     graphene_simd4f_union_t __u = { (s) }; \
     (float) __u.f[(i)]; \
   }))
-
-#  define graphene_simd4f_get_x(s)      graphene_simd4f_get (s, 0)
-#  define graphene_simd4f_get_y(s)      graphene_simd4f_get (s, 1)
-#  define graphene_simd4f_get_z(s)      graphene_simd4f_get (s, 2)
-#  define graphene_simd4f_get_w(s)      graphene_simd4f_get (s, 3)
 
 #  define graphene_simd4f_reciprocal(v) \
   (__extension__ ({ \
@@ -418,10 +419,6 @@ typedef GRAPHENE_ALIGN16 union {
 /* Use static inline to inline all these functions */
 
 #define graphene_simd4f_get(s,i) _simd4f_get_xyzw(s, i)
-#define graphene_simd4f_get_x(s) _simd4f_get_xyzw(s, 0)
-#define graphene_simd4f_get_y(s) _simd4f_get_xyzw(s, 1)
-#define graphene_simd4f_get_z(s) _simd4f_get_xyzw(s, 2)
-#define graphene_simd4f_get_w(s) _simd4f_get_xyzw(s, 3)
 
 static inline float
 _simd4f_get_xyzw (graphene_simd4f_t s, int mode)
