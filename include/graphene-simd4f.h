@@ -184,6 +184,11 @@ typedef union {
   float f[4];
 } graphene_simd4f_union_t;
 
+typedef GRAPHENE_ALIGN16 union {
+  unsigned int ui[4];
+  float f[4];
+} graphene_simd4f_uif_t;
+
 #define graphene_simd4f_init(x,y,z,w)	\
   GRAPHENE_ONELINER_4ARG_ARRAY_WITH_RTYPE(graphene_simd4f_t, x, y, z, w)
 
@@ -337,11 +342,6 @@ typedef union {
     _mm_store_ss (&__res, graphene_simd4f_dot3 (a, b)); \
     __res; \
   }))
-
-typedef GRAPHENE_ALIGN16 union {
-  unsigned int ui[4];
-  float f[4];
-} graphene_simd4f_uif_t;
 
 #  define graphene_simd4f_flip_sign_0101(v) \
   (__extension__ ({ \
@@ -508,11 +508,6 @@ _simd4f_dot3_scalar (const graphene_simd4f_t a,
   _mm_store_ss (&__res, graphene_simd4f_dot3 (a, b));
   return __res;
 }
-
-typedef GRAPHENE_ALIGN16 union {
-  unsigned int ui[4];
-  float f[4];
-} graphene_simd4f_uif_t;
 
 #define graphene_simd4f_flip_sign_0101(v) _simd4f_flip_sign_0101(v)
 
