@@ -112,7 +112,10 @@ else
     '-Werror=write-strings',
     '-Werror=undef',
   ]
-  if cc.get_id() != 'clang-cl'
+  if cc.get_id() == 'clang-cl'
+    # We don't want the CRT deprecation warnings from the Visual Studio headers
+    test_cflags += ['-D_CRT_SECURE_NO_WARNINGS', '-D_CRT_NONSTDC_NO_WARNINGS']
+  else
     # This returns a false positive on clang-cl
     test_cflags += '-Wlogical-op'
   endif
