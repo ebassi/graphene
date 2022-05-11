@@ -418,10 +418,10 @@ typedef GRAPHENE_ALIGN16 union {
 
 /* Use static inline to inline all these functions */
 
-#define graphene_simd4f_get(s,i) _simd4f_get_xyzw(s, i)
+#define graphene_simd4f_get(s,i) graphene_msvc_simd4f_get_xyzw(s, i)
 
 static inline float
-_simd4f_get_xyzw (graphene_simd4f_t s, int mode)
+graphene_msvc_simd4f_get_xyzw (graphene_simd4f_t s, int mode)
 {
   /* mode: get_x=0
            get_y=1
@@ -433,10 +433,10 @@ _simd4f_get_xyzw (graphene_simd4f_t s, int mode)
   return u.f[mode];
 }
 
-#define graphene_simd4f_reciprocal(v) _simd4f_reciprocal(v)
+#define graphene_simd4f_reciprocal(v) graphene_msvc_simd4f_reciprocal(v)
 
 static inline graphene_simd4f_t
-_simd4f_reciprocal(const graphene_simd4f_t v)
+graphene_msvc_simd4f_reciprocal(const graphene_simd4f_t v)
 {
   const graphene_simd4f_t __zero = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 0.0f);
   const graphene_simd4f_t __two = graphene_simd4f_init (2.0f, 2.0f, 2.0f, 2.0f);
@@ -447,10 +447,10 @@ _simd4f_reciprocal(const graphene_simd4f_t v)
   return graphene_simd4f_mul (__s, graphene_simd4f_sub (__two, __m));
 }
 
-#define graphene_simd4f_rsqrt(v) _simd4f_rsqrt(v)
+#define graphene_simd4f_rsqrt(v) graphene_msvc_simd4f_rsqrt(v)
 
 static inline graphene_simd4f_t
-_simd4f_rsqrt(const graphene_simd4f_t v)
+graphene_msvc_simd4f_rsqrt(const graphene_simd4f_t v)
 {
   const graphene_simd4f_t __half = graphene_simd4f_init (0.5f, 0.5f, 0.5f, 0.5f);
   const graphene_simd4f_t __three = graphene_simd4f_init (3.0f, 3.0f, 3.0f, 3.0f);
@@ -460,12 +460,11 @@ _simd4f_rsqrt(const graphene_simd4f_t v)
                                                    graphene_simd4f_mul (__s, graphene_simd4f_mul (v, __s))));
 }
 
-#define graphene_simd4f_cross3(a,b) \
-  _simd4f_cross3(a,b)
+#define graphene_simd4f_cross3(a,b) graphene_msvc_simd4f_cross3(a,b)
 
 static inline graphene_simd4f_t
-_simd4f_cross3 (const graphene_simd4f_t a,
-                const graphene_simd4f_t b)
+graphene_msvc_simd4f_cross3 (const graphene_simd4f_t a,
+                             const graphene_simd4f_t b)
 {
   const graphene_simd4f_t __a_yzx = _mm_shuffle_ps (a, a, _MM_SHUFFLE (3, 0, 2, 1));
   const graphene_simd4f_t __a_zxy = _mm_shuffle_ps (a, a, _MM_SHUFFLE (3, 1, 0, 2));
@@ -476,12 +475,11 @@ _simd4f_cross3 (const graphene_simd4f_t a,
 }
 
 #if !defined(GRAPHENE_USE_SSE4_1)
-#define graphene_simd4f_dot3(a,b) \
-  _simd4f_dot3(a,b)
+#define graphene_simd4f_dot3(a,b) graphene_msvc_simd4f_dot3(a,b)
 
 static inline graphene_simd4f_t
-_simd4f_dot3 (const graphene_simd4f_t a,
-              const graphene_simd4f_t b)
+graphene_msvc_simd4f_dot3 (const graphene_simd4f_t a,
+                           const graphene_simd4f_t b)
 {
   GRAPHENE_ALIGN16 const unsigned int __mask_bits[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 };
   const graphene_simd4f_t __mask = _mm_load_ps ((const float *) __mask_bits);
@@ -494,22 +492,21 @@ _simd4f_dot3 (const graphene_simd4f_t a,
 }
 #endif
 
-#define graphene_simd4f_dot3_scalar(a,b) \
-  _simd4f_dot3_scalar(a,b)
+#define graphene_simd4f_dot3_scalar(a,b) graphene_msvc_simd4f_dot3_scalar(a,b)
 
 static inline float
-_simd4f_dot3_scalar (const graphene_simd4f_t a,
-                     const graphene_simd4f_t b)
+graphene_msvc_simd4f_dot3_scalar (const graphene_simd4f_t a,
+                                  const graphene_simd4f_t b)
 {
   float __res;
   _mm_store_ss (&__res, graphene_simd4f_dot3 (a, b));
   return __res;
 }
 
-#define graphene_simd4f_flip_sign_0101(v) _simd4f_flip_sign_0101(v)
+#define graphene_simd4f_flip_sign_0101(v) graphene_msvc_simd4f_flip_sign_0101(v)
 
 static inline graphene_simd4f_t
-_simd4f_flip_sign_0101 (const graphene_simd4f_t v)
+graphene_msvc_simd4f_flip_sign_0101 (const graphene_simd4f_t v)
 {
   const graphene_simd4f_uif_t __pnpn = { {
     0x00000000,
@@ -521,10 +518,10 @@ _simd4f_flip_sign_0101 (const graphene_simd4f_t v)
   return _mm_xor_ps (v, _mm_load_ps (__pnpn.f));
 }
 
-#define graphene_simd4f_flip_sign_1010(v) _simd4f_flip_sign_1010(v)
+#define graphene_simd4f_flip_sign_1010(v) graphene_msvc_simd4f_flip_sign_1010(v)
 
 static inline graphene_simd4f_t
-_simd4f_flip_sign_1010(const graphene_simd4f_t v)
+graphene_msvc_simd4f_flip_sign_1010(const graphene_simd4f_t v)
 {
   const graphene_simd4f_uif_t __npnp = { {
     0x80000000,
@@ -536,70 +533,70 @@ _simd4f_flip_sign_1010(const graphene_simd4f_t v)
   return _mm_xor_ps (v, _mm_load_ps (__npnp.f));
 }
 
-#define graphene_simd4f_cmp_eq(a,b) _simd4f_cmp_eq(a,b)
+#define graphene_simd4f_cmp_eq(a,b) graphene_msvc_simd4f_cmp_eq(a,b)
 
 static inline bool
-_simd4f_cmp_eq (const graphene_simd4f_t a,
+graphene_msvc_simd4f_cmp_eq (const graphene_simd4f_t a,
                         const graphene_simd4f_t b)
 {
   __m128i __res = _mm_castps_si128 (_mm_cmpneq_ps (a, b));
   return (_mm_movemask_epi8 (__res) == 0);
 }
 
-#define graphene_simd4f_cmp_neq(a,b) _simd4f_cmp_neq(a,b)
+#define graphene_simd4f_cmp_neq(a,b) graphene_msvc_simd4f_cmp_neq(a,b)
 
 static inline bool
-_simd4f_cmp_neq (const graphene_simd4f_t a,
-                         const graphene_simd4f_t b)
+graphene_msvc_simd4f_cmp_neq (const graphene_simd4f_t a,
+                              const graphene_simd4f_t b)
 {
   __m128i __res = _mm_castps_si128 (_mm_cmpneq_ps (a, b));
   return (_mm_movemask_epi8 (__res) != 0);
 }
 
-#define graphene_simd4f_cmp_lt(a,b) _simd4f_cmp_lt(a,b)
+#define graphene_simd4f_cmp_lt(a,b) graphene_msvc_simd4f_cmp_lt(a,b)
 
 static inline bool
-_simd4f_cmp_lt (const graphene_simd4f_t a,
+graphene_msvc_simd4f_cmp_lt (const graphene_simd4f_t a,
                 const graphene_simd4f_t b)
 {
   __m128i __res = _mm_castps_si128 (_mm_cmplt_ps (a, b));
   return (_mm_movemask_epi8 (__res) == 0xffff);
 }
 
-#define graphene_simd4f_cmp_le(a,b) _simd4f_cmp_le(a,b)
+#define graphene_simd4f_cmp_le(a,b) graphene_msvc_simd4f_cmp_le(a,b)
 
 static inline bool
-_simd4f_cmp_le (const graphene_simd4f_t a,
-                const graphene_simd4f_t b)
+graphene_msvc_simd4f_cmp_le (const graphene_simd4f_t a,
+                             const graphene_simd4f_t b)
 {
   __m128i __res = _mm_castps_si128 (_mm_cmple_ps (a, b));
   return (_mm_movemask_epi8 (__res) == 0xffff);
 }
 
-#define graphene_simd4f_cmp_ge(a,b) _simd4f_cmp_ge(a,b)
+#define graphene_simd4f_cmp_ge(a,b) graphene_msvc_simd4f_cmp_ge(a,b)
 
 static inline bool
-_simd4f_cmp_ge (const graphene_simd4f_t a,
-                const graphene_simd4f_t b)
+graphene_msvc_simd4f_cmp_ge (const graphene_simd4f_t a,
+                             const graphene_simd4f_t b)
 {
   __m128i __res = _mm_castps_si128 (_mm_cmpge_ps (a, b));
   return (_mm_movemask_epi8 (__res) == 0xffff);
 }
 
-#define graphene_simd4f_cmp_gt(a,b) _simd4f_cmp_gt(a,b)
+#define graphene_simd4f_cmp_gt(a,b) graphene_msvc_simd4f_cmp_gt(a,b)
 
 static inline bool
-_simd4f_cmp_gt (const graphene_simd4f_t a,
-                const graphene_simd4f_t b)
+graphene_msvc_simd4f_cmp_gt (const graphene_simd4f_t a,
+                             const graphene_simd4f_t b)
 {
   __m128i __res = _mm_castps_si128 (_mm_cmpgt_ps (a, b));
   return (_mm_movemask_epi8 (__res) == 0xffff);
 }
 
-#define graphene_simd4f_neg(s) _simd4f_neg(s)
+#define graphene_simd4f_neg(s) graphene_msvc_simd4f_neg(s)
 
 static inline graphene_simd4f_t
-_simd4f_neg (const graphene_simd4f_t s)
+graphene_msvc_simd4f_neg (const graphene_simd4f_t s)
 {
   const graphene_simd4f_uif_t __mask = { {
     0x80000000,
