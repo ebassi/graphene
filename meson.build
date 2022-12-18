@@ -217,13 +217,11 @@ build_gobject = false
 gobject_req_version = '>= 2.30.0'
 if get_option('gobject_types')
   graphene_gobject_api_path = '@0@-gobject-@1@'.format(meson.project_name(), graphene_api_version)
-  # fallback allows us to pick up GObject in case we're a subproject of another
-  # project that uses GObject and where GObject comes from a GLib subproject
-  # (e.g. when building GStreamer or GTK on Windows).
+  # Automatic fallback to a subproject of glib is possible if you install
+  # glib.wrap: meson wrap install glib
   gobject = dependency('gobject-2.0',
     version: gobject_req_version,
     required: false,
-    fallback: ['glib', 'libgobject_dep']
   )
   build_gobject = gobject.found()
   if build_gobject
