@@ -131,6 +131,10 @@ graphene_dep = declare_dependency(
   include_directories: [ graphene_inc ],
   dependencies: [ mathlib, threadlib ] + platform_deps,
 )
+meson.override_dependency('graphene-1.0', graphene_dep)
+if build_gobject
+  meson.override_dependency('graphene-gobject-1.0', graphene_dep)
+endif
 
 # In case of subproject usage expose a separate variable for graphene-gobject
 # support, so the superproject and sibling subprojects can check for this
