@@ -156,16 +156,16 @@ conf.set('HAVE_PTHREAD_H',
 
 # Functions
 if cc.has_function('memalign', prefix: '#include <stdlib.h>\n#include <malloc.h>')
-  conf.set10('HAVE_MEMALIGN', 1, description: 'Define if memalign() is available')
+  conf.set10('HAVE_MEMALIGN', true, description: 'Define if memalign() is available')
 elif cc.has_function('_aligned_malloc', prefix: '#include <malloc.h>')
-  conf.set10('HAVE__ALIGNED_MALLOC', 1, description: 'Define if _aligned_malloc() is available')
+  conf.set10('HAVE__ALIGNED_MALLOC', true, description: 'Define if _aligned_malloc() is available')
 # Don't probe the ones below on Windows because when building with
 # MinGW-w64 on MSYS2, Meson<0.37.0 incorrectly detects those below as
 # being available even though they're not.
 elif cc.has_function('aligned_alloc', prefix: '#include <stdlib.h>') and not (host_system == 'windows')
-  conf.set10('HAVE_ALIGNED_ALLOC', 1, description: 'Define if aligned_malloc() is available')
+  conf.set10('HAVE_ALIGNED_ALLOC', true, description: 'Define if aligned_malloc() is available')
 elif cc.has_function('posix_memalign', prefix: '#include <stdlib.h>') and not (host_system == 'windows')
-  conf.set10('HAVE_POSIX_MEMALIGN', 1, description: 'Define if posix_memalign() is available')
+  conf.set10('HAVE_POSIX_MEMALIGN', true, description: 'Define if posix_memalign() is available')
 else
   error('No aligned malloc function could be found.')
 endif
