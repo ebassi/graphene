@@ -66,6 +66,7 @@ def main():
         from tap.runner import TAPTestRunner
     except ImportError:
         # Minimal TAP implementation
+        print('TAP version 14')
         print('1..1')
         program = unittest.main(exit=False)
         if program.result.wasSuccessful():
