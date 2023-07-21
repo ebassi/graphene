@@ -229,6 +229,31 @@ graphene_point_distance (const graphene_point_t *a,
 }
 
 /**
+ * graphene_point_distance_squared:
+ * @a: a #graphene_point_t
+ * @b: a #graphene_point_t
+ *
+ * Computes the squared distance between @a and @b.
+ *
+ * Returns: the distance between the two points, squared
+ *
+ * Since: 1.12
+ */
+float
+graphene_point_distance_squared (const graphene_point_t *a,
+                                 const graphene_point_t *b)
+{
+  if (a == b)
+    return 0.f;
+
+  graphene_simd4f_t v_a = graphene_simd4f_init (a->x, a->y, 0.f, 0.f);
+  graphene_simd4f_t v_b = graphene_simd4f_init (b->x, b->y, 0.f, 0.f);
+  graphene_simd4f_t v_res = graphene_simd4f_sub (v_a, v_b);
+
+  return graphene_simd4f_get_x (graphene_simd4f_dot2 (v_res, v_res));
+}
+
+/**
  * graphene_point_near:
  * @a: a #graphene_point_t
  * @b: a #graphene_point_t
