@@ -98,6 +98,10 @@ float                           graphene_point_distance         (const graphene_
                                                                  float                  *d_x,
                                                                  float                  *d_y);
 
+GRAPHENE_AVAILABLE_IN_1_12
+float                           graphene_point_distance_squared (const graphene_point_t *a,
+                                                                 const graphene_point_t *b);
+
 GRAPHENE_AVAILABLE_IN_1_0
 bool                            graphene_point_near             (const graphene_point_t *a,
                                                                  const graphene_point_t *b,

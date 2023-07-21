@@ -152,6 +152,12 @@ point_distance (mutest_spec_t *spec)
                  mutest_float_value (y_d),
                  mutest_to_be_close_to, 1.0, 0.00001,
                  NULL);
+
+  d = graphene_point_distance_squared (&p, &q);
+  mutest_expect ("the squared distance between (0, 0) and (1, 1) to be 2",
+                 mutest_float_value (d),
+                 mutest_to_be_close_to, 2.f, 0.0001,
+                 NULL);
 }
 
 static void
