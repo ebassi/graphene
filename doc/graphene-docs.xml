@@ -35,6 +35,7 @@
     <xi:include href="xml/graphene-rect.xml"/>
     <xi:include href="xml/graphene-quad.xml"/>
     <xi:include href="xml/graphene-triangle.xml"/>
+    <xi:include href="xml/graphene-box2d.xml"/>
     <xi:include href="xml/graphene-box.xml"/>
     <xi:include href="xml/graphene-sphere.xml"/>
     <xi:include href="xml/graphene-frustum.xml"/>
