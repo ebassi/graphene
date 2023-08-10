@@ -270,7 +270,7 @@ int main() {
  return 0;
 }
 '''
-if meson.is_cross_build()
+if not meson.can_run_host_binaries()
   ieee754_float_div = meson.get_external_property('ieee754_float_div', cc.get_id() in ['gcc', 'clang'])
   message('Cross-building, assuming IEEE 754 division:', ieee754_float_div)
 else
