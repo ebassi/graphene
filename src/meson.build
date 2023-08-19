@@ -101,7 +101,7 @@ if build_gir
   identfilter_py = join_paths(meson.current_source_dir(), 'identfilter.py')
 
   gir_extra_args = [
-    '--identifier-filter-cmd=@0@ @1@'.format(python.full_path(), identfilter_py),
+    '--identifier-filter-cmd=@0@ "@1@"'.format(python.full_path(), identfilter_py),
     '--accept-unprefixed',
     '--quiet',
     '--warn-all',
