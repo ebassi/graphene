@@ -12,6 +12,7 @@
 
 #include "graphene-types.h"
 #include "graphene-vec2.h"
+#include "graphene-vec4.h"
 
 GRAPHENE_BEGIN_DECLS
 
@@ -26,8 +27,7 @@ GRAPHENE_BEGIN_DECLS
 struct _graphene_box2d_t
 {
   /*< private >*/
-  GRAPHENE_PRIVATE_FIELD (graphene_vec2_t, min);
-  GRAPHENE_PRIVATE_FIELD (graphene_vec2_t, max);
+  GRAPHENE_PRIVATE_FIELD (graphene_vec4_t, minmax);
 };
 
 GRAPHENE_AVAILABLE_IN_1_12
@@ -54,7 +54,9 @@ GRAPHENE_AVAILABLE_IN_1_12
 graphene_box2d_t *        graphene_box2d_init_from_vec2             (graphene_box2d_t       *box,
                                                                      const graphene_vec2_t  *min,
                                                                      const graphene_vec2_t  *max);
-
+GRAPHENE_AVAILABLE_IN_1_12
+graphene_box2d_t *        graphene_box2d_init_from_rect             (graphene_box2d_t       *box,
+                                                                     const graphene_rect_t  *rect);
 GRAPHENE_AVAILABLE_IN_1_12
 void                      graphene_box2d_expand                     (const graphene_box2d_t *box,
                                                                      const graphene_point_t *point,
@@ -87,6 +89,10 @@ GRAPHENE_AVAILABLE_IN_1_12
 void                      graphene_box2d_get_center                 (const graphene_box2d_t *box,
                                                                      graphene_point_t       *center);
 GRAPHENE_AVAILABLE_IN_1_12
+void                      graphene_box2d_get_minmax                 (const graphene_box2d_t *box,
+                                                                     graphene_point_t       *min,
+                                                                     graphene_point_t       *max);
+GRAPHENE_AVAILABLE_IN_1_12
 void                      graphene_box2d_get_min                    (const graphene_box2d_t *box,
                                                                      graphene_point_t       *min);
 GRAPHENE_AVAILABLE_IN_1_12
@@ -96,11 +102,20 @@ GRAPHENE_AVAILABLE_IN_1_12
 void                      graphene_box2d_get_vertices               (const graphene_box2d_t *box,
                                                                      graphene_vec2_t         vertices[]);
 GRAPHENE_AVAILABLE_IN_1_12
+void                      graphene_box2d_to_float                   (const graphene_box2d_t *box,
+                                                                     float                   v[4]);
+GRAPHENE_AVAILABLE_IN_1_12
+void                      graphene_box2d_to_rect                    (const graphene_box2d_t *box,
+                                                                     graphene_rect_t        *rect);
+GRAPHENE_AVAILABLE_IN_1_12
 bool                      graphene_box2d_contains_point             (const graphene_box2d_t *box,
                                                                      const graphene_point_t *point);
 GRAPHENE_AVAILABLE_IN_1_12
 bool                      graphene_box2d_contains_box               (const graphene_box2d_t *a,
                                                                      const graphene_box2d_t *b);
+GRAPHENE_AVAILABLE_IN_1_12
+bool                      graphene_box2d_contains_rect              (const graphene_box2d_t *box,
+                                                                     const graphene_rect_t  *rect);
 
 GRAPHENE_AVAILABLE_IN_1_12
 bool                      graphene_box2d_equal                      (const graphene_box2d_t *a,
