@@ -185,7 +185,7 @@ typedef union {
 } graphene_simd4f_union_t;
 
 /* On GCC, we use __extension__ macros to avoid a static inline */
-# if defined(__GNUC__)
+#if defined (__GNUC__) || defined (__clang__)
 
 /* Use GCC statement __extension__ to inline all these functions */
 
@@ -773,11 +773,11 @@ _simd4f_neg (const graphene_simd4f_t s)
 
 #else /* SSE intrinsics-not GCC or Visual Studio */
 
-#  error "Need GCC-compatible or Visual Studio compiler for SSE extensions."
+#  error "Need GCC/clang-compatible or Visual Studio compiler for SSE extensions."
 
 /* Use static inline to inline all these functions */
 
-# endif /* !__GNUC__ && !_MSC_VER */
+# endif /* !__GNUC__ && !__clang__ && !_MSC_VER */
 
 #elif !defined(__GI_SCANNER__) && defined(GRAPHENE_USE_INTRINSICS)
 
@@ -1089,7 +1089,7 @@ typedef union {
 /* NEON has optimised 2-lanes vectors we can use */
 typedef float32x2_t graphene_simd2f_t;
 
-#ifdef __GNUC__
+#if defined (__GNUC__) || defined (__clang__)
 # define graphene_simd4f_init(x,y,z,w) \
   (__extension__ ({ \
     const float32_t __v[4] = { (x), (y), (z), (w) }; \
@@ -1719,11 +1719,11 @@ _simd4f_neg (const graphene_simd4f_t s)
 
 #else /* ARM NEON intrinsics-not GCC or Visual Studio */
 
-#  error "Need GCC-compatible or Visual Studio compiler for ARM NEON extensions."
+#  error "Need GCC/clang-compatible or Visual Studio compiler for ARM NEON extensions."
 
 /* Use static inline to inline all these functions */
 
-# endif /* !__GNUC__ && !_MSC_VER */
+# endif /* !__GNUC__ && !__clang__ && !_MSC_VER */
 
 /* macros that are not compiler-dependent */
 # define graphene_simd4f_get_x(s)       graphene_simd4f_get (s, 0)
