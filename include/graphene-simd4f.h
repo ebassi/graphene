@@ -476,7 +476,17 @@ typedef GRAPHENE_ALIGN16 union {
     (graphene_simd4f_t) _mm_xor_ps ((s), _mm_load_ps (__mask.f)); \
   }))
 
-#  define graphene_simd4f_ceil(s) \
+#  if defined(GRAPHENE_USE_SSE4_1)
+#   define graphene_simd4f_ceil(s) \
+  (__extension__ ({ \
+    (graphene_simd4f_t) _mm_ceil_ps ((s)); \
+  }))
+#   define graphene_simd4f_floor(s) \
+  (__extension__ ({ \
+    (graphene_simd4f_t) _mm_floor_ps ((s)); \
+  }))
+#  else
+#   define graphene_simd4f_ceil(s) \
   (__extension__ ({ \
     const float __ceil_x = ceilf (graphene_simd4f_get_x ((s))); \
     const float __ceil_y = ceilf (graphene_simd4f_get_y ((s))); \
@@ -484,7 +494,7 @@ typedef GRAPHENE_ALIGN16 union {
     const float __ceil_w = ceilf (graphene_simd4f_get_w ((s))); \
     (graphene_simd4f_t) graphene_simd4f_init (__ceil_x, __ceil_y, __ceil_z, __ceil_w); \
   }))
-#  define graphene_simd4f_floor(s) \
+#   define graphene_simd4f_floor(s) \
   (__extension__ ({ \
     const float __floor_x = floorf (graphene_simd4f_get_x ((s))); \
     const float __floor_y = floorf (graphene_simd4f_get_y ((s))); \
@@ -492,6 +502,7 @@ typedef GRAPHENE_ALIGN16 union {
     const float __floor_w = floorf (graphene_simd4f_get_w ((s))); \
     (graphene_simd4f_t) graphene_simd4f_init (__floor_x, __floor_y, __floor_z, __floor_w); \
   }))
+#  endif
 
 /* On MSVC, we use static inlines */
 # elif defined (_MSC_VER) /* Visual Studio SSE intrinsics */
@@ -793,27 +804,35 @@ _simd4f_neg (const graphene_simd4f_t s)
   return _mm_xor_ps (s, _mm_load_ps (__mask.f));
 }
 
-#  define graphene_simd4f_ceil(s) _simd4f_ceil(s)
-#  define graphene_simd4f_floor(s) _simd4f_floor(s)
+#define graphene_simd4f_ceil(s) _simd4f_ceil(s)
+#define graphene_simd4f_floor(s) _simd4f_floor(s)
 
 static inline graphene_simd4f_t
 _simd4f_ceil (const graphene_simd4f_t s)
 {
+#if defined(GRAPHENE_USE_SSE4_1)
+  return _mm_ceil_ps (s);
+#else
   const float __ceil_x = ceilf (graphene_simd4f_get_x (s));
   const float __ceil_y = ceilf (graphene_simd4f_get_y (s));
   const float __ceil_z = ceilf (graphene_simd4f_get_z (s));
   const float __ceil_w = ceilf (graphene_simd4f_get_w (s));
   return graphene_simd4f_init (__ceil_x, __ceil_y, __ceil_z, __ceil_w);
+#endif
 }
 
 static inline graphene_simd4f_t
 _simd4f_floor (const graphene_simd4f_t s)
 {
+#if defined(GRAPHENE_USE_SSE4_1)
+  return _mm_floor_ps (s);
+#else
   const float __floor_x = floorf (graphene_simd4f_get_x (s));
   const float __floor_y = floorf (graphene_simd4f_get_y (s));
   const float __floor_z = floorf (graphene_simd4f_get_z (s));
   const float __floor_w = floorf (graphene_simd4f_get_w (s));
   return graphene_simd4f_init (__floor_x, __floor_y, __floor_z, __floor_w);
+#endif
 }
 
 #else /* SSE intrinsics-not GCC or Visual Studio */
