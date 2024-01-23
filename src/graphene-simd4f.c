@@ -1041,6 +1041,38 @@ graphene_simd4f_t
   return graphene_simd4f_neg (s);
 }
 
+/**
+ * graphene_simd4f_ceil:
+ * @s: a #graphene_simd4f_t
+ *
+ * Rounds each component of the vector @s up to the nearest integer value.
+ *
+ * Returns: the rounded up vector
+ *
+ * Since: 1.12
+ */
+graphene_simd4f_t
+(graphene_simd4f_ceil) (const graphene_simd4f_t s)
+{
+  return graphene_simd4f_ceil (s);
+}
+
+/**
+ * graphene_simd4f_floor:
+ * @s: a #graphene_simd4f_t
+ *
+ * Rounds each component of the vector @s down to the nearest integer value.
+ *
+ * Returns: the rounded down vector
+ *
+ * Since: 1.12
+ */
+graphene_simd4f_t
+(graphene_simd4f_floor) (const graphene_simd4f_t s)
+{
+  return graphene_simd4f_floor (s);
+}
+
 #else /* GRAPHENE_USE_SCALAR */
 
 graphene_simd4f_t
@@ -1470,6 +1502,18 @@ graphene_simd4f_t
 (graphene_simd4f_neg) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_init (-s.x, -s.y, -s.z, -s.w);
+}
+
+graphene_simd4f_t
+(graphene_simd4f_ceil) (const graphene_simd4f_t s)
+{
+  return graphene_simd4f_init (ceilf (s.x), ceilf (s.y), ceilf (s.z), ceilf (s.w));
+}
+
+graphene_simd4f_t
+(graphene_simd4f_floor) (const graphene_simd4f_t s)
+{
+  return graphene_simd4f_init (floorf (s.x), floorf (s.y), floorf (s.z), floorf (s.w));
 }
 
 #endif /* GRAPHENE_USE_SCALAR */
