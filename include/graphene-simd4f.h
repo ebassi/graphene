@@ -174,6 +174,11 @@ bool                    graphene_simd4f_cmp_gt          (const graphene_simd4f_t
 GRAPHENE_AVAILABLE_IN_1_0
 graphene_simd4f_t       graphene_simd4f_neg             (const graphene_simd4f_t s);
 
+GRAPHENE_AVAILABLE_IN_1_12
+graphene_simd4f_t       graphene_simd4f_ceil            (const graphene_simd4f_t s);
+GRAPHENE_AVAILABLE_IN_1_12
+graphene_simd4f_t       graphene_simd4f_floor           (const graphene_simd4f_t s);
+
 #if !defined(__GI_SCANNER__) && defined(GRAPHENE_USE_SSE)
 
 /* SSE2 implementation of SIMD 4f */
@@ -469,6 +474,23 @@ typedef GRAPHENE_ALIGN16 union {
       0x80000000, \
     } }; \
     (graphene_simd4f_t) _mm_xor_ps ((s), _mm_load_ps (__mask.f)); \
+  }))
+
+#  define graphene_simd4f_ceil(s) \
+  (__extension__ ({ \
+    const float __ceil_x = ceilf (graphene_simd4f_get_x ((s))); \
+    const float __ceil_y = ceilf (graphene_simd4f_get_y ((s))); \
+    const float __ceil_z = ceilf (graphene_simd4f_get_z ((s))); \
+    const float __ceil_w = ceilf (graphene_simd4f_get_w ((s))); \
+    (graphene_simd4f_t) graphene_simd4f_init (__ceil_x, __ceil_y, __ceil_z, __ceil_w); \
+  }))
+#  define graphene_simd4f_floor(s) \
+  (__extension__ ({ \
+    const float __floor_x = floorf (graphene_simd4f_get_x ((s))); \
+    const float __floor_y = floorf (graphene_simd4f_get_y ((s))); \
+    const float __floor_z = floorf (graphene_simd4f_get_z ((s))); \
+    const float __floor_w = floorf (graphene_simd4f_get_w ((s))); \
+    (graphene_simd4f_t) graphene_simd4f_init (__floor_x, __floor_y, __floor_z, __floor_w); \
   }))
 
 /* On MSVC, we use static inlines */
@@ -769,6 +791,29 @@ _simd4f_neg (const graphene_simd4f_t s)
   } };
 
   return _mm_xor_ps (s, _mm_load_ps (__mask.f));
+}
+
+#  define graphene_simd4f_ceil(s) _simd4f_ceil(s)
+#  define graphene_simd4f_floor(s) _simd4f_floor(s)
+
+static inline graphene_simd4f_t
+_simd4f_ceil (const graphene_simd4f_t s)
+{
+  const float __ceil_x = ceilf (graphene_simd4f_get_x (s));
+  const float __ceil_y = ceilf (graphene_simd4f_get_y (s));
+  const float __ceil_z = ceilf (graphene_simd4f_get_z (s));
+  const float __ceil_w = ceilf (graphene_simd4f_get_w (s));
+  return graphene_simd4f_init (__ceil_x, __ceil_y, __ceil_z, __ceil_w);
+}
+
+static inline graphene_simd4f_t
+_simd4f_floor (const graphene_simd4f_t s)
+{
+  const float __floor_x = floorf (graphene_simd4f_get_x (s));
+  const float __floor_y = floorf (graphene_simd4f_get_y (s));
+  const float __floor_z = floorf (graphene_simd4f_get_z (s));
+  const float __floor_w = floorf (graphene_simd4f_get_w (s));
+  return graphene_simd4f_init (__floor_x, __floor_y, __floor_z, __floor_w);
 }
 
 #else /* SSE intrinsics-not GCC or Visual Studio */
@@ -1074,6 +1119,24 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
     const graphene_simd4f_t __s = (s); \
     const graphene_simd4f_t __minus_one = graphene_simd4f_splat (-1.f); \
     graphene_simd4f_mul (__s, __minus_one); \
+  }))
+
+# define graphene_simd4f_ceil(s) \
+  (__extension__ ({ \
+    const float __ceil_x = ceilf (graphene_simd4f_get_x ((s))); \
+    const float __ceil_y = ceilf (graphene_simd4f_get_y ((s))); \
+    const float __ceil_z = ceilf (graphene_simd4f_get_z ((s))); \
+    const float __ceil_w = ceilf (graphene_simd4f_get_w ((s))); \
+    (graphene_simd4f_t) graphene_simd4f_init (__ceil_x, __ceil_y, __ceil_z, __ceil_w); \
+  }))
+
+# define graphene_simd4f_floor(s) \
+  (__extension__ ({ \
+    const float __floor_x = floorf (graphene_simd4f_get_x ((s))); \
+    const float __floor_y = floorf (graphene_simd4f_get_y ((s))); \
+    const float __floor_z = floorf (graphene_simd4f_get_z ((s))); \
+    const float __floor_w = floorf (graphene_simd4f_get_w ((s))); \
+    (graphene_simd4f_t) graphene_simd4f_init (__floor_x, __floor_y, __floor_z, __floor_w); \
   }))
 
 #elif !defined(__GI_SCANNER__) && defined(GRAPHENE_USE_ARM_NEON)
@@ -1398,6 +1461,24 @@ typedef float32x2_t graphene_simd2f_t;
     (graphene_simd4f_t) vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 ((s)), __mask)); \
   }))
 
+# define graphene_simd4f_ceil(s) \
+  (__extension__ ({ \
+    const float __ceil_x = ceilf (graphene_simd4f_get_x ((s))); \
+    const float __ceil_y = ceilf (graphene_simd4f_get_y ((s))); \
+    const float __ceil_z = ceilf (graphene_simd4f_get_z ((s))); \
+    const float __ceil_w = ceilf (graphene_simd4f_get_w ((s))); \
+    (graphene_simd4f_t) graphene_simd4f_init (__ceil_x, __ceil_y, __ceil_z, __ceil_w); \
+  }))
+
+# define graphene_simd4f_floor(s) \
+  (__extension__ ({ \
+    const float __floor_x = floorf (graphene_simd4f_get_x ((s))); \
+    const float __floor_y = floorf (graphene_simd4f_get_y ((s))); \
+    const float __floor_z = floorf (graphene_simd4f_get_z ((s))); \
+    const float __floor_w = floorf (graphene_simd4f_get_w ((s))); \
+    (graphene_simd4f_t) graphene_simd4f_init (__floor_x, __floor_y, __floor_z, __floor_w); \
+  }))
+
 #elif defined _MSC_VER /* Visual Studio ARM */
 
 # define graphene_simd4f_init(x,y,z,w) _simd4f_init(x,y,z,w)
@@ -1717,6 +1798,29 @@ _simd4f_neg (const graphene_simd4f_t s)
   return vreinterpretq_f32_u32 (veorq_u32 (vreinterpretq_u32_f32 ((s)), __mask));
 }
 
+# define graphene_simd4f_ceil(s) _simd4f_ceil(s)
+# define graphene_simd4f_floor(s) _simd4f_floor(s)
+
+static inline graphene_simd4f_t
+_simd4f_ceil (const graphene_simd4f_t s)
+{
+  const float __ceil_x = ceilf (graphene_simd4f_get_x (s));
+  const float __ceil_y = ceilf (graphene_simd4f_get_y (s));
+  const float __ceil_z = ceilf (graphene_simd4f_get_z (s));
+  const float __ceil_w = ceilf (graphene_simd4f_get_w (s));
+  return graphene_simd4f_init (__ceil_x, __ceil_y, __ceil_z, __ceil_w);
+}
+
+static inline graphene_simd4f_t
+_simd4f_floor (const graphene_simd4f_t s)
+{
+  const float __floor_x = floorf (graphene_simd4f_get_x (s));
+  const float __floor_y = floorf (graphene_simd4f_get_y (s));
+  const float __floor_z = floorf (graphene_simd4f_get_z (s));
+  const float __floor_w = floorf (graphene_simd4f_get_w (s));
+  return graphene_simd4f_init (__floor_x, __floor_y, __floor_z, __floor_w);
+}
+
 #else /* ARM NEON intrinsics-not GCC or Visual Studio */
 
 #  error "Need GCC-compatible or Visual Studio compiler for ARM NEON extensions."
@@ -1829,6 +1933,10 @@ _simd4f_neg (const graphene_simd4f_t s)
   (graphene_simd4f_cmp_gt ((a), (b)))
 #define graphene_simd4f_neg(s) \
   (graphene_simd4f_neg ((s)))
+#define graphene_simd4f_ceil(s) \
+  (graphene_simd4f_ceil ((s)))
+#define graphene_simd4f_floor(s) \
+  (graphene_simd4f_floor ((s)))
 
 #else
 # error "Unsupported simd4f implementation."

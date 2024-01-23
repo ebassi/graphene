@@ -321,6 +321,36 @@ simd_operators_reciprocal (void)
 }
 
 static void
+simd_operators_ceil (void)
+{
+  graphene_simd4f_t a, b, check;
+
+  check = graphene_simd4f_init (2.0f, 3.0f, 4.0f, 5.0f);
+  a = graphene_simd4f_init (1.7f, 2.4f, 3.6f, 4.2f);
+  b = graphene_simd4f_ceil (a);
+
+  mutest_expect ("ceil() to round up to the nearest integer",
+                 mutest_bool_value (graphene_simd4f_cmp_eq (b, check)),
+                 mutest_to_be_true,
+                 NULL);
+}
+
+static void
+simd_operators_floor (void)
+{
+  graphene_simd4f_t a, b, check;
+
+  check = graphene_simd4f_init (1.0f, 2.0f, 3.0f, 4.0f);
+  a = graphene_simd4f_init (1.7f, 2.4f, 3.6f, 4.2f);
+  b = graphene_simd4f_floor (a);
+
+  mutest_expect ("floor() to round down to the nearest integer",
+                 mutest_bool_value (graphene_simd4f_cmp_eq (b, check)),
+                 mutest_to_be_true,
+                 NULL);
+}
+
+static void
 simd_suite (void)
 {
   mutest_it ("can copy 4 components", simd_dup_4f);
@@ -339,6 +369,9 @@ simd_suite (void)
   mutest_it ("can compute the maximum vector and scalar", simd_operators_max);
 
   mutest_it ("can compute the reciprocal of vector", simd_operators_reciprocal);
+
+  mutest_it ("can round up vector components", simd_operators_ceil);
+  mutest_it ("can round down vector components", simd_operators_floor);
 }
 
 MUTEST_MAIN (

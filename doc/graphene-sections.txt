@@ -439,6 +439,8 @@ graphene_simd4f_is_zero4
 graphene_simd4f_is_zero3
 graphene_simd4f_is_zero2
 graphene_simd4f_interpolate
+graphene_simd4f_ceil
+graphene_simd4f_floor
 <SUBSECTION Private>
 graphene_simd4f_union_t
 graphene_simd4i_union_t
