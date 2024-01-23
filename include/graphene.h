@@ -46,6 +46,7 @@
 #include "graphene-point.h"
 #include "graphene-size.h"
 #include "graphene-rect.h"
+#include "graphene-box2d.h"
 
 #include "graphene-point3d.h"
 #include "graphene-quad.h"

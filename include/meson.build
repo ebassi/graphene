@@ -1,5 +1,6 @@
 graphene_public_headers = files([
   'graphene-box.h',
+  'graphene-box2d.h',
   'graphene-euler.h',
   'graphene-frustum.h',
   'graphene-macros.h',

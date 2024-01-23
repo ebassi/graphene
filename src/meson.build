@@ -1,6 +1,7 @@
 sources = [
   'graphene-alloc.c',
   'graphene-box.c',
+  'graphene-box2d.c',
   'graphene-euler.c',
   'graphene-frustum.c',
   'graphene-matrix.c',

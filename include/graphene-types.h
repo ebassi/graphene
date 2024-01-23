@@ -113,6 +113,7 @@ typedef struct _graphene_matrix_t       graphene_matrix_t;
 typedef struct _graphene_point_t        graphene_point_t;
 typedef struct _graphene_size_t         graphene_size_t;
 typedef struct _graphene_rect_t         graphene_rect_t;
+typedef struct _graphene_box2d_t        graphene_box2d_t;
 
 typedef struct _graphene_point3d_t      graphene_point3d_t;
 typedef struct _graphene_quad_t         graphene_quad_t;

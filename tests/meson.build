@@ -1,5 +1,6 @@
 unit_tests = [
   'box',
+  'box2d',
   'euler',
   'frustum',
   'matrix',
