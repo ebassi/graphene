@@ -17,8 +17,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: set up environment
       run: |
-        apk add gcc musl-dev gobject-introspection gtk-doc glib py3-wheel py3-setuptools ninja py3-pip
-        pip install --user meson==0.55.3
+        apk add gcc musl-dev gobject-introspection gtk-doc glib meson ninja
 
     - name: default build
       run: |
