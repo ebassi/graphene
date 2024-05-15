@@ -79,9 +79,9 @@
                            GRAPHENE_MICRO_VERSION)
 
 #define GRAPHENE_CHECK_VERSION(major,minor,micro) \
-  ((major) > GRAPHENE_MAJOR_VERSION || \
-   (major) == GRAPHENE_MAJOR_VERSION && (minor) > GRAPHENE_MINOR_VERSION || \
-   (major) == GRAPHENE_MAJOR_VERSION && (minor) == GRAPHENE_MINOR_VERSION && (micro) >= GRAPHENE_MICRO_VERSION)
+  (GRAPHENE_MAJOR_VERSION > (major) || \
+   GRAPHENE_MAJOR_VERSION == (major) && GRAPHENE_MINOR_VERSION > (minor) || \
+   GRAPHENE_MAJOR_VERSION == (major) && GRAPHENE_MINOR_VERSION == (minor) && GRAPHENE_MICRO_VERSION >= (micro))
 
 /* evaluates to the current stable release; for development cycles
  * this means the next stable target.
