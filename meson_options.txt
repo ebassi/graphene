@@ -20,6 +20,9 @@ option('arm_neon', type: 'boolean',
 option('tests', type: 'boolean',
        value: true,
        description: 'Build the test suite (requires GObject)')
+option('pthreads', type: 'boolean',
+       value: true,
+       description: 'Enable pthreads')
 option('installed_tests', type: 'boolean',
        value: true,
        description: 'Install tests')

@@ -132,7 +132,6 @@ endif
 
 # Required dependencies
 mathlib = cc.find_library('m', required: false)
-threadlib = dependency('threads')
 
 # Headers
 test_headers = [
@@ -149,10 +148,15 @@ foreach h: test_headers
   )
 endforeach
 
-conf.set('HAVE_PTHREAD_H',
-  cc.has_header('pthread.h', dependencies: threadlib),
-  description: 'Define if pthread.h is available',
-)
+# Optional dependencies
+threadlib = []
+if get_option('pthreads')
+  threadlib = dependency('threads')
+  conf.set('HAVE_PTHREAD_H',
+    cc.has_header('pthread.h', dependencies: threadlib),
+    description: 'Define if pthread.h is available',
+  )
+endif
 
 # Functions
 if cc.has_function('memalign', prefix: '#include <stdlib.h>\n#include <malloc.h>')
