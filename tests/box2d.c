@@ -325,6 +325,25 @@ box2d_intersection (mutest_spec_t *spec)
                  mutest_bool_value (graphene_box2d_intersection (&top, &bottom, NULL)),
                  mutest_to_be_false,
                  NULL);
+
+  graphene_box2d_t a, b, c;
+  graphene_box2d_init (&a, &GRAPHENE_POINT_INIT (0.f, 0.f), &GRAPHENE_POINT_INIT (2.f, 2.f));
+  graphene_box2d_init (&b, &GRAPHENE_POINT_INIT (1.f, 1.f), &GRAPHENE_POINT_INIT (2.f, 2.f));
+  graphene_box2d_init (&c, &GRAPHENE_POINT_INIT (3.f, 3.f), &GRAPHENE_POINT_INIT (4.f, 4.f));
+
+  bool a_b = graphene_box2d_intersects (&a, &b);
+  mutest_expect ("intersect to match intersection (positive)",
+                 mutest_bool_value (a_b),
+                 mutest_to_be_true,
+                 mutest_to_be, graphene_box2d_intersection (&a, &b, NULL),
+                 NULL);
+
+  bool a_c = graphene_box2d_intersects (&a, &c);
+  mutest_expect ("intersect to match intersection (negative)",
+                 mutest_bool_value (a_c),
+                 mutest_to_be_false,
+                 mutest_to_be, graphene_box2d_intersection (&a, &c, NULL),
+                 NULL);
 }
 
 static void

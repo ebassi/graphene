@@ -11,6 +11,8 @@
 #endif
 
 #include "graphene-types.h"
+#include "graphene-point.h"
+#include "graphene-simd4f.h"
 #include "graphene-vec2.h"
 #include "graphene-vec4.h"
 
@@ -120,6 +122,46 @@ bool                      graphene_box2d_contains_rect              (const graph
 GRAPHENE_AVAILABLE_IN_1_12
 bool                      graphene_box2d_equal                      (const graphene_box2d_t *a,
                                                                      const graphene_box2d_t *b);
+
+static inline bool
+graphene_box2d_intersects (const graphene_box2d_t *a,
+                           const graphene_box2d_t *b);
+
+/**
+ * graphene_box2d_intersects:
+ * @a: a #graphene_box2d_t
+ * @b: a #graphene_box2d_t
+ *
+ * Checks whether two boxes intersect.
+ *
+ * See also: graphene_box2d_intersection()
+ *
+ * Returns: true if the boxes intersect, and false otherwise
+ *
+ * Since: 1.12
+ */
+static inline bool
+graphene_box2d_intersects (const graphene_box2d_t *a,
+                           const graphene_box2d_t *b)
+{
+  graphene_point_t min_a, max_a;
+  graphene_box2d_get_minmax (a, &min_a, &max_a);
+
+  graphene_point_t min_b, max_b;
+  graphene_box2d_get_minmax (b, &min_b, &max_b);
+
+  graphene_simd4f_t min_v =
+    graphene_simd4f_max (graphene_simd4f_init (min_a.x, min_a.y, 0.f, 0.f),
+                         graphene_simd4f_init (min_b.x, min_b.y, 0.f, 0.f));
+  graphene_simd4f_t max_v =
+    graphene_simd4f_min (graphene_simd4f_init (max_a.x, max_a.y, 0.f, 0.f),
+                         graphene_simd4f_init (max_b.x, max_b.y, 0.f, 0.f));
+
+  if (!graphene_simd4f_cmp_le (min_v, max_v))
+    return false;
+
+  return true;
+}
 
 GRAPHENE_AVAILABLE_IN_1_12
 const graphene_box2d_t *  graphene_box2d_zero                       (void);
