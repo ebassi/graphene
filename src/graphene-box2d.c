@@ -320,6 +320,48 @@ graphene_box2d_expand_scalar (const graphene_box2d_t *box,
 }
 
 /**
+ * graphene_box2d_scale_offset:
+ * @box: a #graphene_box2d_t
+ * @scale: (nullable): a vector with two scaling factors to be applied to the box
+ * @offset: (nullable): the offset to apply to the box
+ * @res: (out caller-allocates): the transformed box
+ *
+ * Applies a scale and an offset to the vertices of the given box.
+ *
+ * If @scale is %NULL, the box will be scaled by (1.0, 1.0).
+ *
+ * If @offset is %NULL, the box will be offset by (0.0, 0.0).
+ *
+ * Since: 1.12
+ */
+void
+graphene_box2d_scale_offset (const graphene_box2d_t *box,
+                             const graphene_vec2_t  *scale,
+                             const graphene_point_t *offset,
+                             graphene_box2d_t       *res)
+{
+  graphene_simd4f_t scale_full;
+  graphene_simd4f_t offset_full;
+
+  if (scale != NULL)
+    {
+      /* swizzle scale from (x, y, 0, 0) to (0, 0, x, y) */
+      graphene_simd4f_t scale_zwxy = graphene_simd4f_shuffle_zwxy (scale->value);
+      /* scale is now (x, y, x, y) */
+      scale_full = graphene_simd4f_add (scale->value, scale_zwxy);
+    }
+  else
+    scale_full = graphene_simd4f_init (1.f, 1.f, 1.f, 1.f);
+
+  if (offset != NULL)
+    offset_full = graphene_simd4f_init (offset->x, offset->y, offset->x, offset->y);
+  else
+    offset_full = graphene_simd4f_init_zero ();
+
+  res->minmax.value = graphene_simd4f_madd (box->minmax.value, scale_full, offset_full);
+}
+
+/**
  * graphene_box2d_to_float:
  * @box: a #graphene_box2d_t
  * @v: (out caller-allocates) (array fixed-size=4): return location

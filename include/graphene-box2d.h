@@ -59,6 +59,7 @@ graphene_box2d_t *        graphene_box2d_init_from_vec2             (graphene_bo
 GRAPHENE_AVAILABLE_IN_1_12
 graphene_box2d_t *        graphene_box2d_init_from_rect             (graphene_box2d_t       *box,
                                                                      const graphene_rect_t  *rect);
+
 GRAPHENE_AVAILABLE_IN_1_12
 void                      graphene_box2d_expand                     (const graphene_box2d_t *box,
                                                                      const graphene_point_t *point,
@@ -71,6 +72,12 @@ GRAPHENE_AVAILABLE_IN_1_12
 void                      graphene_box2d_expand_scalar              (const graphene_box2d_t *box,
                                                                      float                   scalar,
                                                                      graphene_box2d_t       *res);
+GRAPHENE_AVAILABLE_IN_1_12
+void                      graphene_box2d_scale_offset               (const graphene_box2d_t *box,
+                                                                     const graphene_vec2_t  *scale,
+                                                                     const graphene_point_t *offset,
+                                                                     graphene_box2d_t       *res);
+
 GRAPHENE_AVAILABLE_IN_1_12
 void                      graphene_box2d_union                      (const graphene_box2d_t *a,
                                                                      const graphene_box2d_t *b,
@@ -103,12 +110,14 @@ void                      graphene_box2d_get_max                    (const graph
 GRAPHENE_AVAILABLE_IN_1_12
 void                      graphene_box2d_get_vertices               (const graphene_box2d_t *box,
                                                                      graphene_vec2_t         vertices[]);
+
 GRAPHENE_AVAILABLE_IN_1_12
 void                      graphene_box2d_to_float                   (const graphene_box2d_t *box,
                                                                      float                   v[4]);
 GRAPHENE_AVAILABLE_IN_1_12
 void                      graphene_box2d_to_rect                    (const graphene_box2d_t *box,
                                                                      graphene_rect_t        *rect);
+
 GRAPHENE_AVAILABLE_IN_1_12
 bool                      graphene_box2d_contains_point             (const graphene_box2d_t *box,
                                                                      const graphene_point_t *point);
