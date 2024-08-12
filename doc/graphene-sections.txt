@@ -66,6 +66,7 @@ graphene_box2d_intersects
 graphene_box2d_contains_box
 graphene_box2d_contains_point
 graphene_box2d_contains_rect
+graphene_box2d_scale_offset
 <SUBSECTION>
 graphene_box2d_zero
 graphene_box2d_one
@@ -121,6 +122,7 @@ graphene_frustum_equal
 <FILE>graphene-gobject</FILE>
 <SUBSECTION Standard>
 GRAPHENE_TYPE_BOX
+GRAPHENE_TYPE_BOX2D
 GRAPHENE_TYPE_EULER
 GRAPHENE_TYPE_FRUSTUM
 GRAPHENE_TYPE_MATRIX
@@ -138,6 +140,7 @@ GRAPHENE_TYPE_VEC2
 GRAPHENE_TYPE_VEC3
 GRAPHENE_TYPE_VEC4
 graphene_box_get_type
+graphene_box2d_get_type
 graphene_euler_get_type
 graphene_frustum_get_type
 graphene_matrix_get_type
@@ -486,6 +489,17 @@ graphene_simd4f_floor
 graphene_simd4f_union_t
 graphene_simd4i_union_t
 graphene_simd2f_t
+sw
+sx
+sy
+sz
+vandq_s32
+vcombine_f32
+vget_lane_f32
+vgetq_lane_u32
+vld1q_f32
+vmulq_f32
+vreinterpretq_f32_u32
 </SECTION>
 
 <SECTION>
