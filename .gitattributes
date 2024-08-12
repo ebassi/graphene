@@ -1,9 +1,4 @@
-.appveyor.yml           export-ignore
 .gitattributes          export-ignore
 .github                 export-ignore
-.gitignore              export-ignore
-.travis.yml             export-ignore
 
 graphene.doap           export-ignore
-
-make_release.sh         export-ignore
