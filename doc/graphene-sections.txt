@@ -43,12 +43,16 @@ graphene_box2d_free
 graphene_box2d_init
 graphene_box2d_init_from_box
 graphene_box2d_init_from_points
+graphene_box2d_init_from_rect
 graphene_box2d_init_from_vec2
 graphene_box2d_init_from_vectors
 graphene_box2d_equal
+graphene_box2d_to_rect
+graphene_box2d_to_float
 graphene_box2d_expand
 graphene_box2d_expand_scalar
 graphene_box2d_expand_vec2
+graphene_box2d_get_minmax
 graphene_box2d_get_min
 graphene_box2d_get_max
 graphene_box2d_get_center
@@ -58,8 +62,10 @@ graphene_box2d_get_size
 graphene_box2d_get_vertices
 graphene_box2d_union
 graphene_box2d_intersection
+graphene_box2d_intersects
 graphene_box2d_contains_box
 graphene_box2d_contains_point
+graphene_box2d_contains_rect
 <SUBSECTION>
 graphene_box2d_zero
 graphene_box2d_one

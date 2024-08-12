@@ -58,7 +58,7 @@ graphene_box2d_t *        graphene_box2d_init_from_vec2             (graphene_bo
                                                                      const graphene_vec2_t  *max);
 GRAPHENE_AVAILABLE_IN_1_12
 graphene_box2d_t *        graphene_box2d_init_from_rect             (graphene_box2d_t       *box,
-                                                                     const graphene_rect_t  *rect);
+                                                                     const graphene_rect_t  *src);
 
 GRAPHENE_AVAILABLE_IN_1_12
 void                      graphene_box2d_expand                     (const graphene_box2d_t *box,
