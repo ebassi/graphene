@@ -47,4 +47,5 @@ gnome.gtkdoc('graphene',
   ],
   html_assets: html_images,
   install: true,
+  check: true,
 )
