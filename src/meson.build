@@ -45,6 +45,7 @@ libgraphene = library(
   version: libversion,
   soversion: soversion,
   darwin_versions: darwin_versions,
+  gnu_symbol_visibility: 'hidden',
   install: true,
   dependencies: [ mathlib, threadlib ] + platform_deps,
   c_args: extra_args + common_cflags + debug_flags + [

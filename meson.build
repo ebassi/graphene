@@ -202,13 +202,6 @@ extra_args = []
 if get_option('default_library') != 'static'
   if host_system == 'windows'
     conf.set('DLL_EXPORT', true)
-    conf.set('_GRAPHENE_PUBLIC', '__declspec(dllexport) extern')
-    if cc.get_id() != 'msvc'
-      extra_args += ['-fvisibility=hidden']
-    endif
-  else
-    conf.set('_GRAPHENE_PUBLIC', '__attribute__((visibility("default"))) extern')
-    extra_args += ['-fvisibility=hidden']
   endif
 endif
 
@@ -413,6 +406,31 @@ endif
 
 # Scalar is always available as a fallback
 graphene_simd += [ 'scalar' ]
+
+graphene_build_shared = false
+graphene_build_static = false
+if get_option('default_library') == 'both'
+  graphene_build_static = true
+  graphene_build_shared = true
+elif get_option('default_library') == 'static'
+  graphene_build_static = true
+elif get_option('default_library') == 'shared'
+  graphene_build_shared = true
+endif
+
+graphene_build_both = graphene_build_static and graphene_build_shared
+graphene_build_static_only = graphene_build_static and not graphene_build_shared
+graphene_build_shared_only = graphene_build_shared and not graphene_build_static
+
+if graphene_build_shared and graphene_build_static and (
+  host_system == 'windows' or host_system == 'cygwin')
+  error('On Windows default_library must be "shared" or "static" but not "both"')
+endif
+
+if graphene_build_static_only
+  graphene_conf.set('GRAPHENE_STATIC_COMPILATION', '1')
+endif
+
 
 python = import('python')
 gnome = import('gnome')

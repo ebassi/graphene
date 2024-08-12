@@ -31,6 +31,25 @@
 
 #include "graphene-version.h"
 
+#if (defined(_WIN32) || defined(__CYGWIN__)) && !defined(GRAPHENE_STATIC_COMPILATION)
+#  define _GRAPHENE_EXPORT __declspec(dllexport)
+#  define _GRAPHENE_IMPORT __declspec(dllimport)
+#elif defined(__GNUC__) && __GNUC__ >= 4
+#  define _GRAPHENE_EXPORT __attribute__((visibility("default")))
+#  define _GRAPHENE_IMPORT
+#else
+#  define _GRAPHENE_EXPORT
+#  define _GRAPHENE_IMPORT
+#endif
+
+#ifdef GRAPHENE_COMPILATION
+#  define _GRAPHENE_API _GRAPHENE_EXPORT
+#else
+#  define _GRAPHENE_API _GRAPHENE_IMPORT
+#endif
+
+#define _GRAPHENE_PUBLIC _GRAPHENE_API extern
+
 /**
  * GRAPHENE_ENCODE_VERSION:
  * @major: a major version
