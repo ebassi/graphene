@@ -20,4 +20,4 @@ jobs:
         action: test
         directory: _build
         options: "--verbose"
-        meson-version: "0.55.3"
+        meson-version: "1.0.0"

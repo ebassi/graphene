@@ -20,9 +20,9 @@ html_images = [
   'triangle-barycentric.png',
 ]
 
-glib_prefix = dependency('glib-2.0').get_pkgconfig_variable('prefix')
-glib_docpath = join_paths(glib_prefix, 'share', 'gtk-doc', 'html')
-docpath = join_paths(graphene_datadir, 'gtk-doc', 'html')
+glib_prefix = dependency('glib-2.0').get_variable(pkgconfig: 'prefix')
+glib_docpath = glib_prefix / 'share' / 'gtk-doc' / 'html'
+docpath = graphene_datadir / 'gtk-doc' / 'html'
 
 gnome.gtkdoc('graphene',
   main_xml: 'graphene-docs.xml',
@@ -42,8 +42,8 @@ gnome.gtkdoc('graphene',
   ],
   fixxref_args: [
     '--html-dir=@0@'.format(docpath),
-    '--extra-dir=@0@'.format(join_paths(glib_docpath, 'glib')),
-    '--extra-dir=@0@'.format(join_paths(glib_docpath, 'gobject')),
+    '--extra-dir=@0@'.format(glib_docpath / 'glib'),
+    '--extra-dir=@0@'.format(glib_docpath / 'gobject'),
   ],
   html_assets: html_images,
   install: true,

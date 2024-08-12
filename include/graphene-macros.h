@@ -29,10 +29,6 @@
 #error "Only graphene.h can be included directly."
 #endif
 
-#ifndef _GRAPHENE_PUBLIC
-#define _GRAPHENE_PUBLIC        extern
-#endif
-
 #ifdef GRAPHENE_COMPILATION
 # define GRAPHENE_PRIVATE_FIELD(type,name)      type name
 #else
