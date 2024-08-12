@@ -2065,7 +2065,15 @@ graphene_matrix_decompose (const graphene_matrix_t *m,
                            graphene_vec3_t         *shear,
                            graphene_vec4_t         *perspective)
 {
-  if (graphene_matrix_is_2d (m))
+  if (graphene_matrix_is_identity (m))
+    {
+      translate->value = graphene_simd4f_init_zero ();
+      scale->value = graphene_simd4f_init (1.f, 1.f, 1.f, 0.f);
+      graphene_quaternion_init_from_angles (rotate, 0.f, 0.f, 0.f);
+      shear->value = graphene_simd4f_init_zero ();
+      perspective->value = graphene_simd4f_init_zero ();
+    }
+  else if (graphene_matrix_is_2d (m))
     {
       graphene_vec2_t translate_res;
       graphene_vec2_t scale_res;

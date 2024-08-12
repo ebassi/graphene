@@ -243,14 +243,14 @@ matrix_invert (void)
   graphene_matrix_init_identity (&identity);
 
   graphene_matrix_init_identity (&m);
-  
+
   graphene_matrix_inverse (&m , &inv);
   graphene_matrix_multiply (&m, &inv, &res);
   mutest_expect ("inverting an identity to return an identity",
                  mutest_pointer (&res),
                  graphene_test_matrix_near, mutest_pointer (&identity),
                  NULL);
-  
+
   graphene_matrix_scale (&m, 1.0f, 2.0f, 3.0f);
   graphene_matrix_inverse (&m , &inv);
   graphene_matrix_multiply (&m, &inv, &res);
@@ -749,6 +749,36 @@ matrix_3d_transform_point (void)
 }
 
 static void
+matrix_decompose_3d (void)
+{
+  graphene_matrix_t m;
+  graphene_vec3_t t;
+  graphene_vec3_t s;
+  graphene_quaternion_t r;
+  graphene_vec3_t sh;
+  graphene_vec4_t p;
+
+  graphene_matrix_init_identity (&m);
+  mutest_expect ("decompose identity matrix",
+                 mutest_bool_value (graphene_matrix_decompose (&m, &t, &s, &r, &sh, &p)),
+                 mutest_to_be_true,
+                 NULL);
+
+  mutest_expect ("translation is (0, 0, 0)",
+                 mutest_bool_value (graphene_vec3_equal (&t, graphene_vec3_zero ())),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("issue 250: scale is (1, 1, 1)",
+                 mutest_bool_value (graphene_vec3_equal (&s, graphene_vec3_one ())),
+                 mutest_to_be_true,
+                 NULL);
+  mutest_expect ("shear is (0, 0, 0)",
+                 mutest_bool_value (graphene_vec3_equal (&sh, graphene_vec3_zero ())),
+                 mutest_to_be_true,
+                 NULL);
+}
+
+static void
 matrix_suite (void)
 {
   mutest_it ("can set and check identity", matrix_identity);
@@ -770,6 +800,7 @@ matrix_suite (void)
   mutest_it ("can interpolate 2D transformations", matrix_2d_interpolate);
   mutest_it ("can transform 2D bounds", matrix_2d_transform_bound);
   mutest_it ("can transform 3D points", matrix_3d_transform_point);
+  mutest_it ("can decompose a 3D matrix", matrix_decompose_3d);
 }
 
 MUTEST_MAIN (
