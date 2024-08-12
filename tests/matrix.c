@@ -1,4 +1,10 @@
-/* SPDX-License-Identifier: MIT */
+// SPDX-FileCopyrightText: 2014 Alexander Larsson
+// SPDX-FileCopyrightText: 2014 Emmanuele Bassi
+// SPDX-FileCopyrightText: 2014 Lubosz Sarnecki
+// SPDX-FileCopyrightText: 2016 Matthias Clasen
+// SPDX-FileCopyrightText: 2019 Benjamin Otte
+//
+// SPDX-License-Identifier: MIT
 
 #include <math.h>
 #include <string.h>

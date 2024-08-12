@@ -1,4 +1,8 @@
-/* SPDX-License-Identifier: MIT */
+// SPDX-FileCopyrightText: 2014 Emmanuele Bassi
+// SPDX-FileCopyrightText: 2019 Georges Basile Stavracas Neto
+// SPDX-FileCopyrightText: 2019 Marco Trevisan
+//
+// SPDX-License-Identifier: MIT
 
 #include <graphene.h>
 #include <mutest.h>
