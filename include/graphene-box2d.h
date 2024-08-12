@@ -132,26 +132,31 @@ GRAPHENE_AVAILABLE_IN_1_12
 bool                      graphene_box2d_equal                      (const graphene_box2d_t *a,
                                                                      const graphene_box2d_t *b);
 
-static inline bool
-graphene_box2d_intersects (const graphene_box2d_t *a,
-                           const graphene_box2d_t *b);
+GRAPHENE_AVAILABLE_IN_1_12
+const graphene_box2d_t *  graphene_box2d_zero                       (void);
+GRAPHENE_AVAILABLE_IN_1_12
+const graphene_box2d_t *  graphene_box2d_one                        (void);
+GRAPHENE_AVAILABLE_IN_1_12
+const graphene_box2d_t *  graphene_box2d_minus_one                  (void);
+GRAPHENE_AVAILABLE_IN_1_12
+const graphene_box2d_t *  graphene_box2d_one_minus_one              (void);
+GRAPHENE_AVAILABLE_IN_1_12
+const graphene_box2d_t *  graphene_box2d_infinite                   (void);
+GRAPHENE_AVAILABLE_IN_1_12
+const graphene_box2d_t *  graphene_box2d_empty                      (void);
 
-/**
- * graphene_box2d_intersects:
- * @a: a #graphene_box2d_t
- * @b: a #graphene_box2d_t
- *
- * Checks whether two boxes intersect.
- *
- * See also: graphene_box2d_intersection()
- *
- * Returns: true if the boxes intersect, and false otherwise
- *
- * Since: 1.12
- */
+GRAPHENE_AVAILABLE_IN_1_12
+bool graphene_box2d_intersects (const graphene_box2d_t *a,
+                                const graphene_box2d_t *b);
+
+#ifndef __GTK_DOC_IGNORE__
+
+#define graphene_box2d_intersects(a,b) \
+  graphene_box2d_intersects_inline ((a), (b))
+
 static inline bool
-graphene_box2d_intersects (const graphene_box2d_t *a,
-                           const graphene_box2d_t *b)
+graphene_box2d_intersects_inline (const graphene_box2d_t *a,
+                                  const graphene_box2d_t *b)
 {
   graphene_point_t min_a, max_a;
   graphene_box2d_get_minmax (a, &min_a, &max_a);
@@ -171,18 +176,6 @@ graphene_box2d_intersects (const graphene_box2d_t *a,
 
   return true;
 }
-
-GRAPHENE_AVAILABLE_IN_1_12
-const graphene_box2d_t *  graphene_box2d_zero                       (void);
-GRAPHENE_AVAILABLE_IN_1_12
-const graphene_box2d_t *  graphene_box2d_one                        (void);
-GRAPHENE_AVAILABLE_IN_1_12
-const graphene_box2d_t *  graphene_box2d_minus_one                  (void);
-GRAPHENE_AVAILABLE_IN_1_12
-const graphene_box2d_t *  graphene_box2d_one_minus_one              (void);
-GRAPHENE_AVAILABLE_IN_1_12
-const graphene_box2d_t *  graphene_box2d_infinite                   (void);
-GRAPHENE_AVAILABLE_IN_1_12
-const graphene_box2d_t *  graphene_box2d_empty                      (void);
+#endif /* __GTK_DOC_IGNORE__ */
 
 GRAPHENE_END_DECLS

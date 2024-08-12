@@ -487,6 +487,26 @@ graphene_box2d_intersection (const graphene_box2d_t *a,
 }
 
 /**
+ * graphene_box2d_intersects:
+ * @a: a #graphene_box2d_t
+ * @b: a #graphene_box2d_t
+ *
+ * Checks whether two boxes intersect.
+ *
+ * See also: graphene_box2d_intersection()
+ *
+ * Returns: true if the boxes intersect, and false otherwise
+ *
+ * Since: 1.12
+ */
+bool
+(graphene_box2d_intersects) (const graphene_box2d_t *a,
+                             const graphene_box2d_t *b)
+{
+  return graphene_box2d_intersects_inline (a, b);
+}
+
+/**
  * graphene_box2d_get_width:
  * @box: a #graphene_box2d_t
  *
