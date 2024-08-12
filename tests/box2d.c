@@ -166,6 +166,30 @@ box2d_init_from_vectors (mutest_spec_t *spec)
 }
 
 static void
+box2d_init_from_rect (mutest_spec_t *spec)
+{
+  graphene_box2d_t a, b;
+  graphene_rect_t r, check;
+
+  graphene_box2d_init_from_box (&a, graphene_box2d_one_minus_one ());
+  graphene_box2d_to_rect (&a, &r);
+
+  graphene_rect_init (&check, -1.f, -1.f, 2.f, 2.f);
+
+  mutest_expect ("to_rect() to generate a valid rectangle",
+                 mutest_bool_value (graphene_rect_equal (&r, &check)),
+                 mutest_to_be_true,
+                 NULL);
+
+  graphene_box2d_init_from_rect (&b, &r);
+
+  mutest_expect ("init_from_rect() to generate a valid box",
+                 mutest_bool_value (graphene_box2d_equal (&b, &a)),
+                 mutest_to_be_true,
+                 NULL);
+}
+
+static void
 box2d_size (mutest_spec_t *spec)
 {
   graphene_vec2_t size;
@@ -518,11 +542,36 @@ box2d_contains_box (mutest_spec_t *spec)
 }
 
 static void
+box2d_linear_transform (void)
+{
+  graphene_box2d_t a, res;
+  graphene_vec2_t tmp;
+
+  graphene_box2d_init_from_box (&a, graphene_box2d_one ());
+  graphene_box2d_scale_offset (&a,
+                               graphene_vec2_init (&tmp, 2.f, 2.f),
+                               &GRAPHENE_POINT_INIT (1.f, 2.f),
+                               &res);
+
+  graphene_rect_t r, check;
+  graphene_rect_init (&check, 0.f, 0.f, 1.f, 1.f);
+  graphene_rect_scale (&check, 2.f, 2.f, &check);
+  graphene_rect_offset_r (&check, 1.f, 2.f, &check);
+
+  graphene_box2d_to_rect (&res, &r);
+  mutest_expect ("scaled and offset box to match equivalent rectangle",
+                 mutest_bool_value (graphene_rect_equal (&r, &check)),
+                 mutest_to_be_true,
+                 NULL);
+}
+
+static void
 box2d_suite (mutest_suite_t *suite)
 {
   mutest_it ("initializes min/max points", box2d_init_min_max);
   mutest_it ("initializes from points", box2d_init_from_points);
   mutest_it ("initializes from vectors", box2d_init_from_vectors);
+  mutest_it ("roundtrips between rect", box2d_init_from_rect);
   mutest_it ("has the correct sizes", box2d_size);
   mutest_it ("has the correct center point", box2d_center);
   mutest_it ("has equality", box2d_equal);
@@ -533,6 +582,7 @@ box2d_suite (mutest_suite_t *suite)
   mutest_it ("expands by scalar", box2d_expand_by_scalar);
   mutest_it ("contains point", box2d_contains_point);
   mutest_it ("contains box", box2d_contains_box);
+  mutest_it ("transforms linearly", box2d_linear_transform);
 }
 
 MUTEST_MAIN (
