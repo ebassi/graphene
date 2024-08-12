@@ -57,6 +57,7 @@ extern "C" {
 # if defined(GRAPHENE_USE_SSE)
 #  include <xmmintrin.h>
 #  include <emmintrin.h>
+#
 #  if defined(_M_IX86_FP)
 #   if _M_IX86_FP >= 2
 #    define GRAPHENE_USE_SSE4_1
@@ -66,8 +67,17 @@ extern "C" {
 #  elif defined(_MSC_VER)
 #   define GRAPHENE_USE_SSE4_1
 #  endif
+#
+#  if defined(__AVX__)
+#    #define GRAPHENE_USE_AVX
+#  endif
+#
 #  if defined(GRAPHENE_USE_SSE4_1)
 #   include <smmintrin.h>
+#  endif
+#
+#  if defined(GRAPHENE_USE_AVX)
+#   include <immintrin.h>
 #  endif
 typedef __m128 graphene_simd4f_t;
 # elif defined(GRAPHENE_USE_ARM_NEON)
