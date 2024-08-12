@@ -1073,6 +1073,26 @@ graphene_simd4f_t
   return graphene_simd4f_floor (s);
 }
 
+/**
+ * graphene_simd4f_madd:
+ * @a: a #graphene_simd4f_t
+ * @b: a #graphene_simd4f_t
+ * @c: a #graphene_simd4f_t
+ *
+ * Adds @a to the product of @m1 and @m2.
+ *
+ * Returns: the result vector
+ *
+ * Since: 1.0
+ */
+graphene_simd4f_t
+(graphene_simd4f_madd) (const graphene_simd4f_t a,
+                        const graphene_simd4f_t b,
+                        const graphene_simd4f_t c)
+{
+  return graphene_simd4f_madd (a, b, c);
+}
+
 #else /* GRAPHENE_USE_SCALAR */
 
 graphene_simd4f_t
@@ -1514,6 +1534,14 @@ graphene_simd4f_t
 (graphene_simd4f_floor) (const graphene_simd4f_t s)
 {
   return graphene_simd4f_init (floorf (s.x), floorf (s.y), floorf (s.z), floorf (s.w));
+}
+
+graphene_simd4f_t
+(graphene_simd4f_madd) (const graphene_simd4f_t a,
+                        const graphene_simd4f_t b,
+                        const graphene_simd4f_t c)
+{
+  return graphene_simd4f_add (graphene_simd4f_mul (a, b), c);
 }
 
 #endif /* GRAPHENE_USE_SCALAR */
