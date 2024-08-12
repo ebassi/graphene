@@ -149,7 +149,7 @@ GType graphene_ray_get_type (void);
 
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(graphene_ray_t, graphene_ray_free)
 
-#define GRAPHENE_TYPE_BOX               (graphene_box_get_type ())
+#define GRAPHENE_TYPE_BOX2D             (graphene_box2d_get_type ())
 
 GRAPHENE_AVAILABLE_IN_1_12
 GType graphene_box2d_get_type (void);
