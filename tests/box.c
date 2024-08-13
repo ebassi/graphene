@@ -42,8 +42,7 @@ box_init_min_max (mutest_spec_t *spec)
                  NULL);
 
   graphene_box_init_from_vec3 (b, graphene_vec3_zero (), graphene_vec3_one ());
-  graphene_box_get_min (b, &min);
-  graphene_box_get_max (b, &max);
+  graphene_box_get_minmax (b, &min, &max);
   mutest_expect ("init_from_vec3(zero, one).min() maps to point3d(zero)",
                  mutest_bool_value (graphene_point3d_equal (&min, &zero)),
                  mutest_to_be_true,

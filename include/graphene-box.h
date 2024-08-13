@@ -113,6 +113,10 @@ void                    graphene_box_get_min                    (const graphene_
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_box_get_max                    (const graphene_box_t     *box,
                                                                  graphene_point3d_t       *max);
+GRAPHENE_AVAILABLE_IN_1_12
+void                    graphene_box_get_minmax                 (const graphene_box_t     *box,
+                                                                 graphene_point3d_t       *min,
+                                                                 graphene_point3d_t       *max);
 GRAPHENE_AVAILABLE_IN_1_2
 void                    graphene_box_get_vertices               (const graphene_box_t     *box,
                                                                  graphene_vec3_t           vertices[]);
