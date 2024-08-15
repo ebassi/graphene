@@ -185,3 +185,5 @@ GRAPHENE_DEFINE_BOXED_TYPE (GrapheneTriangle, graphene_triangle)
 GRAPHENE_DEFINE_BOXED_TYPE (GrapheneEuler, graphene_euler)
 
 GRAPHENE_DEFINE_BOXED_TYPE (GrapheneRay, graphene_ray)
+
+GRAPHENE_DEFINE_BOXED_TYPE (GrapheneBox2D, graphene_box2d)
