@@ -1,10 +1,10 @@
 # Graphene
-###  A thin layer of types for graphic libraries
+
+### A thin layer of types for graphic libraries
 
 ![Linux Build](https://github.com/ebassi/graphene/workflows/Ubuntu%20Build/badge.svg)
 ![MSVC Build](https://github.com/ebassi/graphene/workflows/MSVC%20Build/badge.svg)
 ![MSYS2 Build](https://github.com/ebassi/graphene/workflows/MSYS2%20Build/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/ebassi/graphene/badge.svg?branch=master)](https://coveralls.io/github/ebassi/graphene?branch=master)
 [![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 When creating graphic libraries you most likely end up dealing with points
@@ -67,10 +67,10 @@ First of all, clone the Git repository:
 
 Then run:
 
-    $ meson _build    # on Windows, it may be "meson.py"
-    $ cd _build
-    $ ninja test
-    # ninja install
+    $ meson setup _build
+    $ meson compile -C _build
+    $ meson test -C _build
+    $ meson install -C _build
 
 It is possible, when building Graphene, to disable specific optimizations by
 using configuration options:
@@ -120,12 +120,19 @@ Please note that on some MSYS2 installations the Meson binary may be called
 
 ## Documentation
 
+### Contributing
+
+You can follow the [contribution guide](./CONTRIBUTING.md) if you want to
+participate in this project. Graphene also has a [code of
+conduct](./CODE_OF_CONDUCT.md), so make sure to follow it when interacting
+on the project's issue tracker.
+
 ### Release notes
 
 The release notes are available on the Graphene
 [wiki](https://github.com/ebassi/graphene/wiki/Release-Notes).
 
-### Available types
+### Reference
 
 Graphene provides common types needed to handle 3D transformations:
 
@@ -139,7 +146,7 @@ Graphene provides common types needed to handle 3D transformations:
  * [vectors](http://ebassi.github.io/graphene/docs/graphene-Vectors.html) (2, 3, or 4-sized)
  * [matrices](http://ebassi.github.io/graphene/docs/graphene-Matrix.html)
  * [planes](http://ebassi.github.io/graphene/docs/graphene-Plane.html)
- * [axis aligned bounding boxes](http://ebassi.github.io/graphene/docs/graphene-Box.html)
+ * [3D axis aligned bounding boxes](http://ebassi.github.io/graphene/docs/graphene-Box.html)
  * [spheres](http://ebassi.github.io/graphene/docs/graphene-Sphere.html)
  * [frustums](http://ebassi.github.io/graphene/docs/graphene-Frustum.html)
 
@@ -161,4 +168,4 @@ Graphene is released under the terms of the MIT/X11 license.
 See the [license file](./LICENSE.txt) for more details.
 
 [mutest]: https://github.com/ebassi/mutest
-[gobject-api]: https://developer.gnome.org/gobject/stable/
+[gobject-api]: https://docs.gtk.org/gobject
