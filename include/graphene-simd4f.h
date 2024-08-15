@@ -179,6 +179,11 @@ graphene_simd4f_t       graphene_simd4f_ceil            (const graphene_simd4f_t
 GRAPHENE_AVAILABLE_IN_1_12
 graphene_simd4f_t       graphene_simd4f_floor           (const graphene_simd4f_t s);
 
+GRAPHENE_AVAILABLE_IN_1_0
+graphene_simd4f_t       graphene_simd4f_madd            (const graphene_simd4f_t a,
+                                                         const graphene_simd4f_t b,
+                                                         const graphene_simd4f_t c);
+
 #if !defined(__GI_SCANNER__) && defined(GRAPHENE_USE_SSE)
 
 /* SSE2 implementation of SIMD 4f */
@@ -501,6 +506,18 @@ typedef GRAPHENE_ALIGN16 union {
     const float __floor_z = floorf (graphene_simd4f_get_z ((s))); \
     const float __floor_w = floorf (graphene_simd4f_get_w ((s))); \
     (graphene_simd4f_t) graphene_simd4f_init (__floor_x, __floor_y, __floor_z, __floor_w); \
+  }))
+#  endif
+
+#  if defined(GRAPHENE_USE_AVX)
+#   define graphene_simd4f_madd(a,b,c) \
+  (__extension__ ({ \
+    (graphene_simd4f_t) _mm_fmadd_ps ((a), (b), (c)); \
+  }))
+#  else
+#   define graphene_simd4f_madd(a,b,c) \
+  (__extension__ ({ \
+    (graphene_simd4f_t) _mm_add_ps (_mm_mul_ps ((a), (b)), (c)); \
   }))
 #  endif
 
@@ -835,6 +852,20 @@ _simd4f_floor (const graphene_simd4f_t s)
 #endif
 }
 
+#define graphene_simd4f_madd(a,b,c) _simd4f_madd(a,b,c)
+
+static inline graphene_simd4f_t
+_simd4f_madd (const graphene_simd4f_t a,
+              const graphene_simd4f_t b,
+              const graphene_simd4f_t c)
+{
+#if defined(GRAPHENE_USE_AVX)
+  return _mm_fmadd_ps (a, b, c);
+#else
+  return _mm_add_ps (_mm_mul_ps (a, b), c);
+#endif
+}
+
 #else /* SSE intrinsics-not GCC or Visual Studio */
 
 #  error "Need GCC-compatible or Visual Studio compiler for SSE extensions."
@@ -1156,6 +1187,11 @@ typedef int graphene_simd4i_t __attribute__((vector_size (16)));
     const float __floor_z = floorf (graphene_simd4f_get_z ((s))); \
     const float __floor_w = floorf (graphene_simd4f_get_w ((s))); \
     (graphene_simd4f_t) graphene_simd4f_init (__floor_x, __floor_y, __floor_z, __floor_w); \
+  }))
+
+# define graphene_simd4f_madd(a,b,c) \
+  (__extension__ ({ \
+    (graphene_simd4f_t) graphene_simd4f_add (graphene_simd4f_mul ((a), (b)), (c)); \
   }))
 
 #elif !defined(__GI_SCANNER__) && defined(GRAPHENE_USE_ARM_NEON)
@@ -1496,6 +1532,11 @@ typedef float32x2_t graphene_simd2f_t;
     const float __floor_z = floorf (graphene_simd4f_get_z ((s))); \
     const float __floor_w = floorf (graphene_simd4f_get_w ((s))); \
     (graphene_simd4f_t) graphene_simd4f_init (__floor_x, __floor_y, __floor_z, __floor_w); \
+  }))
+
+# define graphene_simd4f_madd(a,b,c) \
+  (__extension__ ({ \
+    (graphene_simd4f_t) graphene_simd4f_add (graphene_simd4f_mul ((a), (b)), (c)); \
   }))
 
 #elif defined _MSC_VER /* Visual Studio ARM */
@@ -1840,6 +1881,16 @@ _simd4f_floor (const graphene_simd4f_t s)
   return graphene_simd4f_init (__floor_x, __floor_y, __floor_z, __floor_w);
 }
 
+# define graphene_simd4f_madd(a,b,c) _simd4f_madd(a,b,c)
+
+static inline graphene_simd4f_t
+_simd4f_madd (const graphene_simd4f_t a,
+              const graphene_simd4f_t b,
+              const graphene_simd4f_t c)
+{
+  return graphene_simd4f_add (graphene_simd4f_mul (a, b), c);
+}
+
 #else /* ARM NEON intrinsics-not GCC or Visual Studio */
 
 #  error "Need GCC-compatible or Visual Studio compiler for ARM NEON extensions."
@@ -1956,32 +2007,14 @@ _simd4f_floor (const graphene_simd4f_t s)
   (graphene_simd4f_ceil ((s)))
 #define graphene_simd4f_floor(s) \
   (graphene_simd4f_floor ((s)))
+#define graphene_simd4f_madd(a,b,c) \
+  (graphene_simd4f_madd ((a), (b), (c)))
 
 #else
 # error "Unsupported simd4f implementation."
 #endif
 
 /* Generic operations, inlined */
-
-/**
- * graphene_simd4f_madd:
- * @m1: a #graphene_simd4f_t
- * @m2: a #graphene_simd4f_t
- * @a: a #graphene_simd4f_t
- *
- * Adds @a to the product of @m1 and @m2.
- *
- * Returns: the result vector
- *
- * Since: 1.0
- */
-static inline graphene_simd4f_t
-graphene_simd4f_madd (const graphene_simd4f_t m1,
-                      const graphene_simd4f_t m2,
-                      const graphene_simd4f_t a)
-{
-  return graphene_simd4f_add (graphene_simd4f_mul (m1, m2), a);
-}
 
 /**
  * graphene_simd4f_sum:
