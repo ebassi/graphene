@@ -14,6 +14,7 @@ graphene_box_expand_scalar
 graphene_box_expand_vec3
 graphene_box_get_min
 graphene_box_get_max
+graphene_box_get_minmax
 graphene_box_get_center
 graphene_box_get_depth
 graphene_box_get_height
