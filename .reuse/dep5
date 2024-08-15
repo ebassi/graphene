@@ -1,0 +1,77 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: graphene
+Upstream-Contact: Emmanuele Bassi <ebassi@gmail.com>
+Source: https://github.com/ebassi/graphene
+
+# Sample paragraph, commented out:
+#
+# Files: src/*
+# Copyright: $YEAR $NAME <$CONTACT>
+# License: ...
+
+Files: CODE_OF_CONDUCT.md
+Copyright: 2019 The Contributor Covenant authors
+License: CC-BY-4.0
+
+Files: CONTRIBUTING.md
+Copyright: 2016 Emmanuele Bassi
+License: CC0-1.0
+
+Files: README.md
+Copyright: 2014 Emmanuele Bassi
+License: CC0-1.0
+
+Files: graphene.doap
+Copyright: 2014 Emmanuele Bassi
+License: CC0-1.0
+
+Files: .editorconfig
+Copyright: 2017 Emmanuele Bassi
+License: CC0-1.0
+
+Files: .gitattributes .gitmodules
+Copyright: 2017 Emmanuele Bassi
+License: CC0-1.0
+
+Files: build-aux/cross/fedora-mingw32.txt build-aux/cross/fedora-mingw64.txt
+Copyright: 2017 Emmanuele Bassi
+License: CC0-1.0
+
+Files: build-aux/uncrustify.cfg build-aux/uncrustify-list.txt
+Copyright: 2017 Emmanuele Bassi
+License: CC0-1.0
+
+Files: .github/workflows/*
+Copyright: 2020 Emmanuele Bassi
+           2021 Enno Boland
+           2021 Simon McVittie
+License: MIT
+
+Files: .github/CONTRIBUTING.md .github/ISSUE_TEMPLATE.md .github/PULL_REQUEST_TEMPLATE.md
+Copyright: 2016 Emmanuele Bassi
+License: CC-BY-4.0
+
+Files: doc/xml/meson.build doc/meson.build include/meson.build src/meson.build tests/meson.build meson.build meson_options.txt
+Copyright: 2016 Emmanuele Bassi
+           2016 Thibault Saunier
+           2016 Chun-wei Fan
+           2016 Nirbheek Chauhan
+           2017 Andrew Chadwick
+           2021 Dor Askayo
+License: MIT
+
+Files: doc/CODING_STYLE.md
+Copyright: 2014 Emmanuele Bassi
+License: CC0-1.0
+
+Files: doc/*.png doc/*.svg
+Copyright: 2016 Emmanuele Bassi
+License: CC-BY-4.0
+
+Files: doc/graphene-docs.xml doc/graphene-overrides.txt doc/graphene-sections.txt doc/xml/gtkdocentities.ent.in
+Copyright: 2014 Emmanuele Bassi
+License: MIT
+
+Files: subprojects/mutest.wrap
+Copyright: 2019 Emmanuele Bassi
+License: CC0-1.0

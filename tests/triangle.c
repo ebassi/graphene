@@ -1,4 +1,7 @@
-/* SPDX-License-Identifier: MIT */
+// SPDX-FileCopyrightText: 2014 Emmanuele Bassi
+// SPDX-FileCopyrightText: 2016 Sébastien Wilmet
+//
+// SPDX-License-Identifier: MIT
 
 #include <stdio.h>
 #include <graphene.h>

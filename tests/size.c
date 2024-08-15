@@ -1,4 +1,6 @@
-/* SPDX-License-Identifier: MIT */
+// SPDX-FileCopyrightText: 2014 Emmanuele Bassi
+//
+// SPDX-License-Identifier: MIT
 
 #include <graphene.h>
 #include <mutest.h>

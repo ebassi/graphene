@@ -1,4 +1,7 @@
-/* SPDX-License-Identifier: MIT */
+// SPDX-FileCopyrightText: 2014 Emmanuele Bassi
+// SPDX-FileCopyrightText: 2020 Daniel van Vugt
+//
+// SPDX-License-Identifier: MIT
 
 #include <graphene.h>
 #include <mutest.h>

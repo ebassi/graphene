@@ -1,4 +1,8 @@
-/* SPDX-License-Identifier: MIT */
+// SPDX-FileCopyrightText: 2015 Emmanuele Bassi
+// SPDX-FileCopyrightText: 2021 Jonas Ådahl
+// SPDX-FileCopyrightText: 2021 Sebastian Keller
+//
+// SPDX-License-Identifier: MIT
 
 #include <graphene.h>
 #include <mutest.h>

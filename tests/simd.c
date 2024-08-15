@@ -1,4 +1,7 @@
-/* SPDX-License-Identifier: MIT */
+// SPDX-FileCopyrightText: 2014 Emmanuele Bassi
+// SPDX-FileCopyrightText: 2021 Dor Askayo
+//
+// SPDX-License-Identifier: MIT
 
 #include <string.h>
 #include <math.h>
