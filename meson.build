@@ -227,6 +227,7 @@ endif
 # then we don't build introspection data either.
 #
 # We only build introspection if we can run binaries on the host.
+message('find_program g-ir-scanner')
 gir = find_program('g-ir-scanner', required: get_option('introspection'))
 build_gir = get_option('introspection').allowed() and build_gobject and gir.found() and meson.can_run_host_binaries()
 
@@ -277,6 +278,7 @@ graphene_conf = configuration_data()
 graphene_simd = []
 
 # SSE intrinsics
+message('get_option sse2')
 sse2_cflags = []
 if get_option('sse2')
   sse_prog = '''
@@ -314,6 +316,7 @@ int main () {
 endif
 
 # GCC/Clang vector intrinsics
+message('get_option gcc_vector')
 if get_option('gcc_vector')
   vector_intrin_prog = '''
 #if defined(__GNUC__) // Clang advertises __GNUC__ too
@@ -349,6 +352,7 @@ int main () {
 endif
 
 # ARM NEON intrinsics
+message('get_option arm_neon')
 neon_cflags = []
 if get_option('arm_neon')
   neon_prog = '''
@@ -427,15 +431,18 @@ if graphene_build_static_only
   graphene_conf.set('GRAPHENE_STATIC_COMPILATION', '1')
 endif
 
-
+message('importing python and gnome')
 python = import('python')
 gnome = import('gnome')
-
+message('subdir include')
 subdir('include')
 
+message('include_directories src')
 src_inc = include_directories('src')
+message('subdir src')
 subdir('src')
 
+message('get_option tests')
 if get_option('tests')
   if cc.get_id() == 'msvc' and cc.version().version_compare('<19')
     warning('Tests, specifically the mutest library, cannot be built for pre-2015 Visual Studio builds.')
@@ -443,7 +450,7 @@ if get_option('tests')
   endif
   subdir('tests')
 endif
-
+message('get_option gtk_doc')
 if get_option('gtk_doc')
   subdir('doc')
 endif

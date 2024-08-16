@@ -1,3 +1,4 @@
+message('In tests/meson.build')
 unit_tests = [
   'box',
   'box2d',
@@ -20,8 +21,10 @@ unit_tests = [
   'vec4'
 ]
 
+message('find "gen-installed-test.py"')
 gen_installed_test = find_program('gen-installed-test.py')
 
+message('build paths')
 installed_test_datadir = get_option('prefix') / get_option('datadir') / 'installed-tests' / graphene_api_path
 installed_test_bindir = get_option('prefix') / get_option('libexecdir') / 'installed-tests' / graphene_api_path
 
@@ -33,7 +36,7 @@ mutest_dep = dependency('mutest-1',
   required: false,
   disabler: true,
 )
-
+message('if mutest_dep.found')
 if mutest_dep.found()
   foreach unit: unit_tests
     wrapper = '@0@.test'.format(unit)
@@ -65,8 +68,8 @@ if mutest_dep.found()
 endif
 
 src_build_path = meson.current_build_dir() / '../src'
-
-if build_gir and host_system == 'linux' and not meson.is_cross_build()
+message('if build_gir and not meson.is_cross_build')
+if build_gir and not meson.is_cross_build()
   foreach unit: ['introspection.py']
     if get_option('installed_tests')
       install_data(unit, install_dir: installed_test_bindir)
