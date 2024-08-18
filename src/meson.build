@@ -122,6 +122,7 @@ if build_gir
     header: 'graphene-gobject.h',
     install: true,
     extra_args: gir_extra_args,
+    fatal_warnings: get_option('werror'),
   )
   graphene_dep_sources += graphene_gir
 endif
