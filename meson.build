@@ -1,12 +1,13 @@
 project('graphene', 'c',
-        version: '1.11.1',
-        license: 'MIT',
-        meson_version: '>= 1.0',
-        default_options: [
-          'buildtype=debugoptimized',
-          'c_std=c99',
-          'warning_level=1'
-        ])
+  version: '1.11.1',
+  license: 'MIT',
+  meson_version: '>= 1.0',
+  default_options: [
+    'buildtype=debugoptimized',
+    'c_std=c99',
+    'warning_level=1'
+  ],
+)
 
 cc = meson.get_compiler('c')
 host_system = host_machine.system()
@@ -44,9 +45,9 @@ darwin_versions = [current + 1, '@0@.@1@'.format(current + 1, revision)]
 
 # Paths
 graphene_prefix = get_option('prefix')
-graphene_libdir = join_paths(graphene_prefix, get_option('libdir'))
-graphene_includedir = join_paths(graphene_prefix, get_option('includedir'))
-graphene_datadir = join_paths(graphene_prefix, get_option('datadir'))
+graphene_libdir = graphene_prefix / get_option('libdir')
+graphene_includedir = graphene_prefix / get_option('includedir')
+graphene_datadir = graphene_prefix / get_option('datadir')
 
 graphene_api_path = '@0@-@1@'.format(meson.project_name(), graphene_api_version)
 

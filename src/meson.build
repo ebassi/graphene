@@ -100,7 +100,7 @@ graphene_dep_sources = []
 # Introspection
 if build_gir
   python = python.find_installation('python3')
-  identfilter_py = join_paths(meson.current_source_dir(), 'identfilter.py')
+  identfilter_py = meson.current_source_dir() / 'identfilter.py'
 
   gir_extra_args = [
     '--identifier-filter-cmd=@0@ "@1@"'.format(python.full_path(), identfilter_py),

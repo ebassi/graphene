@@ -36,7 +36,7 @@ graphene_config_h = configure_file(
   input: 'graphene-config.h.meson',
   output: 'graphene-config.h',
   configuration: graphene_conf,
-  install_dir: join_paths(graphene_libdir, graphene_api_path, 'include'),
+  install_dir: graphene_libdir / graphene_api_path / 'include',
 )
 
 # Version header
@@ -50,7 +50,7 @@ configure_file(
   input: 'graphene-version.h.meson',
   output: 'graphene-version.h',
   configuration: version_conf,
-  install_dir: join_paths(graphene_includedir, graphene_api_path),
+  install_dir: graphene_includedir / graphene_api_path,
 )
 
 install_headers(
