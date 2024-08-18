@@ -199,11 +199,9 @@ elif get_option('optimization') in ['2', '3', 's']
 endif
 
 extra_args = []
-# Detect and set symbol visibility
-if get_option('default_library') != 'static'
-  if host_system == 'windows'
-    conf.set('DLL_EXPORT', true)
-  endif
+# Export DLL symbols on Windows when building a shared library
+if get_option('default_library') != 'static' and  host_system == 'windows'
+  conf.set('DLL_EXPORT', true)
 endif
 
 # Optional dependency on GObject
