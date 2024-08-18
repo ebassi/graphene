@@ -226,14 +226,11 @@ if get_option('gobject_types')
 endif
 
 # Optional dependency on GObject-Introspection; if GObject is disabled
-# then we don't build introspection data either
-gir = find_program('g-ir-scanner', required : get_option('introspection'))
-build_gir = build_gobject and gir.found()
-# Disable g-i when cross compiling by default because it rarely works unless
-# special care has been taken, in which case the user can enable the option.
-if meson.is_cross_build() and not get_option('introspection').enabled()
-  build_gir = false
-endif
+# then we don't build introspection data either.
+#
+# We only build introspection if we can run binaries on the host.
+gir = find_program('g-ir-scanner', required: get_option('introspection'))
+build_gir = get_option('introspection').allowed() and build_gobject and gir.found() and meson.can_run_host_binaries()
 
 # Check for InitOnce on Windows
 if host_system == 'windows'
