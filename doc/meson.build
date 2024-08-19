@@ -1,5 +1,3 @@
-subdir('xml')
-
 private_headers = [
   'config.h',
 
