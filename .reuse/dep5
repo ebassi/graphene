@@ -68,7 +68,7 @@ Files: doc/*.png doc/*.svg
 Copyright: 2016 Emmanuele Bassi
 License: CC-BY-4.0
 
-Files: doc/graphene-docs.xml doc/graphene-overrides.txt doc/graphene-sections.txt doc/xml/gtkdocentities.ent.in
+Files: doc/graphene-docs.xml doc/graphene-overrides.txt doc/graphene-sections.txt
 Copyright: 2014 Emmanuele Bassi
 License: MIT
 
