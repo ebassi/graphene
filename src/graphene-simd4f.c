@@ -1383,13 +1383,8 @@ approx_equal (float a,
               float b,
               float epsilon)
 {
-#ifdef HAVE_ISINFF
-  if (isinff (a) && isinff (b))
-    return true;
-#else
   if (fpclassify (a) == FP_INFINITE && fpclassify (b) == FP_INFINITE)
     return true;
-#endif
 
   float diff = fabsf (a - b);
   if (isnan (diff))

@@ -172,7 +172,6 @@ endif
 
 math_exts = [
   'sincosf',
-  'isinff',
   'isnanf',
 ]
 
