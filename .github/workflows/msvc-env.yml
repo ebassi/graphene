@@ -19,7 +19,7 @@ jobs:
         build_introspection: [ true, false ]
     steps:
     - uses: actions/checkout@master
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@v5
       with:
         python-version: '3.12'
     - uses: seanmiddleditch/gha-setup-vsdevenv@master
@@ -37,12 +37,24 @@ jobs:
         python -m pip install C:\GTK\python\pycairo-1.26.1-cp312-cp312-win_amd64.whl C:\GTK\python\pygobject-3.48.2-cp312-cp312-win_amd64.whl
     - name: Prebuild
       run: |
-        echo %PATH%
-        where python
-        where meson
+        write-host PWD
+        $pwd.Path
+        write-host PWD content
+        get-childitem $pwd
+        write-host python checks
+        (get-command py).Path
+        (get-command python).Path
+        py -0p
+        py -V
         python -V
-        python -m pip install meson==1.0.0
-        python C:/GTK/bin/g-ir-scanner --help
+        write-host install meson and check
+        python -m pip install meson
+        (get-command meson).Path
+        write-host run py g-ir-scanner
+        py C:\GTK\bin\g-ir-scanner --help
+        write-host run python g-ir-scanner
+        python C:\GTK\bin\g-ir-scanner --help
+        write-host meson setup
         meson setup _build
     - uses: BSFishy/meson-build@v1.0.3
       with:
