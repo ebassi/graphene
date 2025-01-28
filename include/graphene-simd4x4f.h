@@ -147,15 +147,8 @@ void    graphene_simd4x4f_transpose_in_place    (graphene_simd4x4f_t *s);
 
 #if defined(GRAPHENE_USE_SSE)
 
-#ifdef __GNUC__
 #define graphene_simd4x4f_transpose_in_place(s) \
-  (__extension__ ({ \
-    _MM_TRANSPOSE4_PS ((s)->x, (s)->y, (s)->z, (s)->w); \
-  }))
-#elif defined (_MSC_VER)
-#define graphene_simd4x4f_transpose_in_place(s) \
-  _MM_TRANSPOSE4_PS ((s)->x, (s)->y, (s)->z, (s)->w)
-#endif
+  GRAPHENE_ONELINER(_MM_TRANSPOSE4_PS ((s)->x, (s)->y, (s)->z, (s)->w))
 
 #elif defined(GRAPHENE_USE_INTRINSICS)
 
