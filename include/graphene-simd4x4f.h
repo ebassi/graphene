@@ -656,7 +656,7 @@ graphene_simd4x4f_init_look_at (graphene_simd4x4f_t *m,
       graphene_simd4f_t tweak_z;
 
       /* up and z_axis are parallel */
-      if (fabs (graphene_simd4f_get_z (up) - 1.0) < FLT_EPSILON)
+      if (fabsf (graphene_simd4f_get_z (up) - 1.f) < FLT_EPSILON)
         tweak_z = graphene_simd4f_init (0.0001f, 0, 0, 0);
       else
         tweak_z = graphene_simd4f_init (0, 0, 0.0001f, 0);
