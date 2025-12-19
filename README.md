@@ -2,7 +2,7 @@
 
 ### A thin layer of types for graphic libraries
 
-![Linux Build](https://github.com/ebassi/graphene/workflows/Ubuntu%20Build/badge.svg)
+![Linux Build](https://github.com/ebassi/graphene/workflows/Ubuntu%20GCC%20Build/badge.svg)
 ![MSVC Build](https://github.com/ebassi/graphene/workflows/MSVC%20Build/badge.svg)
 ![MSYS2 Build](https://github.com/ebassi/graphene/workflows/MSYS2%20Build/badge.svg)
 [![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
