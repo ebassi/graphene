@@ -1,3 +1,4 @@
+message('in src/meson.build')
 sources = [
   'graphene-alloc.c',
   'graphene-box.c',
@@ -22,12 +23,13 @@ simd_sources = [
   'graphene-simd4f.c',
   'graphene-simd4x4f.c',
 ]
-
+message('if build_gobject 1')
 if build_gobject
   sources += [ 'graphene-gobject.c' ]
 endif
 
 # Internal configuration header
+message('configure_file')
 configure_file(
   output: 'config.h',
   configuration: conf,
@@ -35,10 +37,12 @@ configure_file(
 
 platform_deps = []
 
+message('if build_gobject 2')
 if build_gobject
   platform_deps += gobject
 endif
 
+message('library libgraphene')
 libgraphene = library(
   graphene_api_path,
   include_directories: graphene_inc,
@@ -55,10 +59,12 @@ libgraphene = library(
   link_args: common_ldflags,
 )
 
+message('foreach simd')
 foreach simd: [ 'sse2', 'gcc', 'neon', 'scalar', ]
   set_variable('has_' + simd, graphene_simd.contains(simd) ? '1' : '0')
 endforeach
 
+message('import pkgconfig')
 pkgconfig = import('pkgconfig')
 pkgconfig.generate(
   libgraphene,
@@ -78,6 +84,7 @@ pkgconfig.generate(
   ] + sse2_cflags + neon_cflags,
 )
 
+message('if build_gobject 3')
 if build_gobject
   pkgconfig.generate(
     name: 'Graphene-GObject',
@@ -98,18 +105,20 @@ endif
 graphene_dep_sources = []
 
 # Introspection
+message('if build_gir')
 if build_gir
-  python = python.find_installation('python3')
+  message('python.find_installation')
+  python = python.find_installation()
   identfilter_py = meson.current_source_dir() / 'identfilter.py'
 
   gir_extra_args = [
     '--identifier-filter-cmd=@0@ "@1@"'.format(python.full_path(), identfilter_py),
     '--accept-unprefixed',
-    '--quiet',
+    # '--quiet',
     '--warn-all',
     '-DGRAPHENE_COMPILATION',
   ]
-
+  message('gnome.generate_gir')
   graphene_gir = gnome.generate_gir(libgraphene,
     include_directories: graphene_inc,
     sources: [graphene_config_h] + sources + graphene_public_headers,
@@ -128,14 +137,18 @@ if build_gir
 endif
 
 # Dependency for tests and subproject usage
+message('declare_dependency')
 graphene_dep = declare_dependency(
   sources: graphene_dep_sources,
   link_with: libgraphene,
   include_directories: [ graphene_inc ],
   dependencies: [ mathlib, threadlib ] + platform_deps,
 )
+message('override_dependency graphene-1.0')
 meson.override_dependency('graphene-1.0', graphene_dep)
+message('if build_gobject 4')
 if build_gobject
+  message('override_dependency graphene-gobject-1.0')
   meson.override_dependency('graphene-gobject-1.0', graphene_dep)
 endif
 
@@ -144,8 +157,10 @@ endif
 # directly as part of the dependency() fallback logic instead of having to
 # poke at the build_gobject subproject variable. This mirrors the pkg-config
 # lookup logic where we have a dedicated .pc file for graphene-gobject as well.
+message('if build_gobject 5')
 if build_gobject
   graphene_gobject_dep = graphene_dep
 else
   graphene_gobject_dep = dependency('', required: false)
 endif
+message('exit src/meson.build')

@@ -9,15 +9,57 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    name: Build with introspection=${{ matrix.build_introspection }}
     env:
       PYTHONIOENCODING: "utf-8"
+      GIR_BUILD: ""
+    strategy:
+      fail-fast: false
+      matrix:
+        build_introspection: [ true, false ]
     steps:
     - uses: actions/checkout@master
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
     - uses: seanmiddleditch/gha-setup-vsdevenv@master
+    - name: Install GTK
+      if: matrix.build_introspection
+      run: |
+        $WebClient = New-Object System.Net.WebClient
+        $WebClient.DownloadFile("https://github.com/wingtk/gvsbuild/releases/download/2024.8.1/GTK4_Gvsbuild_2024.8.1_x64.zip","C:\GTK.zip")
+        7z x C:\GTK.zip -oC:\GTK
+        echo "C:\GTK\lib" | Out-File -FilePath $env:GITHUB_PATH -Append
+        echo "C:\GTK\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
+        echo "C:\GTK" | Out-File -FilePath $env:GITHUB_PATH -Append
+        echo "GIR_BUILD=-Dintrospection=enabled" >> $GITHUB_ENV
+        python -m pip install setuptools
+        python -m pip install C:\GTK\python\pycairo-1.26.1-cp312-cp312-win_amd64.whl C:\GTK\python\pygobject-3.48.2-cp312-cp312-win_amd64.whl
+    - name: Prebuild
+      run: |
+        write-host PWD
+        $pwd.Path
+        write-host PWD content
+        get-childitem $pwd
+        write-host python checks
+        (get-command py).Path
+        (get-command python).Path
+        py -0p
+        py -V
+        python -V
+        write-host install meson and check
+        python -m pip install meson
+        (get-command meson).Path
+        write-host run py g-ir-scanner
+        py C:\GTK\bin\g-ir-scanner --help
+        write-host run python g-ir-scanner
+        python C:\GTK\bin\g-ir-scanner --help
+        write-host meson setup
+        meson setup _build
     - uses: BSFishy/meson-build@v1.0.3
       with:
         action: test
         directory: _build
+        setup-options: ${{ env.GIR_BUILD }}
         options: "--verbose"
         meson-version: "1.0.0"
