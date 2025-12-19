@@ -85,7 +85,12 @@ if cc.get_id() == 'msvc'
   ]
 else
   test_cflags = [
-    '-ffast-math',
+    '-fno-math-errno', 
+    '-funsafe-math-optimizations', 
+    # '-ffinite-math-only', 
+    '-fno-rounding-math', 
+    '-fno-signaling-nans',
+    '-fcx-limited-range',
     '-fstrict-aliasing',
     '-Wpointer-arith',
     '-Wstrict-prototypes',
@@ -173,7 +178,6 @@ endif
 
 math_exts = [
   'sincosf',
-  'isinff',
   'isnanf',
 ]
 
