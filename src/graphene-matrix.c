@@ -921,8 +921,8 @@ graphene_matrix_transform_point (const graphene_matrix_t *m,
   vec3 = graphene_simd4f_init (p->x, p->y, 0.0f, 1.0f);
   graphene_simd4x4f_point3_mul (&m->value, &vec3, &vec3);
 
-  res->x = graphene_simd4f_get_x (vec3);
-  res->y = graphene_simd4f_get_y (vec3);
+  res->x = graphene_simd4f_get_x (vec3) / graphene_simd4f_get_w (vec3);
+  res->y = graphene_simd4f_get_y (vec3) / graphene_simd4f_get_w (vec3);
 }
 
 /**
@@ -951,9 +951,9 @@ graphene_matrix_transform_point3d (const graphene_matrix_t  *m,
   vec3 = graphene_simd4f_init (p->x, p->y, p->z, 1.f);
   graphene_simd4x4f_point3_mul (&m->value, &vec3, &vec3);
 
-  res->x = graphene_simd4f_get_x (vec3);
-  res->y = graphene_simd4f_get_y (vec3);
-  res->z = graphene_simd4f_get_z (vec3);
+  res->x = graphene_simd4f_get_x (vec3) / graphene_simd4f_get_w (vec3);
+  res->y = graphene_simd4f_get_y (vec3) / graphene_simd4f_get_w (vec3);
+  res->z = graphene_simd4f_get_z (vec3) / graphene_simd4f_get_w (vec3);
 }
 
 /**
@@ -1034,9 +1034,9 @@ graphene_matrix_transform_bounds (const graphene_matrix_t *m,
   graphene_point_t __p; \
   graphene_rect_get_ ## corner (rect, &__p); \
   __s = graphene_simd4f_init (__p.x, __p.y, 0.f, 1.f); \
-  graphene_simd4x4f_vec4_mul (&matrix->value, &__s, &__s); \
-  out_p.x = graphene_simd4f_get_x (__s); \
-  out_p.y = graphene_simd4f_get_y (__s);           } while (0)
+  graphene_simd4x4f_point3_mul (&matrix->value, &__s, &__s); \
+  out_p.x = graphene_simd4f_get_x (__s) / graphene_simd4f_get_w (__s); \
+  out_p.y = graphene_simd4f_get_y (__s) / graphene_simd4f_get_w (__s);           } while (0)
 
   TRANSFORM_POINT (m, &rr, top_left, ret[0]);
   TRANSFORM_POINT (m, &rr, top_right, ret[1]);
