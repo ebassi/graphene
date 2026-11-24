@@ -953,6 +953,30 @@ graphene_simd4x4f_div (const graphene_simd4x4f_t *a,
 }
 
 /**
+ * graphene_simd4x4f_is_identity:
+ * @m: a #graphene_simd4x4f_t
+ *
+ * Checks whether the given matrix is the identity matrix.
+ *
+ * Returns: `true` if the matrix is the identity matrix
+ *
+ * Since: 1.0
+ */
+static inline bool
+graphene_simd4x4f_is_identity (const graphene_simd4x4f_t *m)
+{
+  const graphene_simd4f_t r0 = graphene_simd4f_init (1.0f, 0.0f, 0.0f, 0.0f);
+  const graphene_simd4f_t r1 = graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f);
+  const graphene_simd4f_t r2 = graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f);
+  const graphene_simd4f_t r3 = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f);
+
+  return graphene_simd4f_cmp_eq (m->x, r0) &&
+         graphene_simd4f_cmp_eq (m->y, r1) &&
+         graphene_simd4f_cmp_eq (m->z, r2) &&
+         graphene_simd4f_cmp_eq (m->w, r3);
+}
+
+/**
  * graphene_simd4x4f_inverse:
  * @m: a #graphene_simd4x4f_t
  * @res: (out): return location for the inverse matrix
@@ -967,6 +991,12 @@ static inline bool
 graphene_simd4x4f_inverse (const graphene_simd4x4f_t *m,
                            graphene_simd4x4f_t       *res)
 {
+  if (graphene_simd4x4f_is_identity (m))
+    {
+      graphene_simd4x4f_init_identity (res);
+      return true;
+    }
+
   /* split rows */
   const graphene_simd4f_t r0 = m->x;
   const graphene_simd4f_t r1 = m->y;
@@ -1114,30 +1144,6 @@ graphene_simd4x4f_determinant (const graphene_simd4x4f_t *m,
 
   if (invdet_r != NULL)
     *invdet_r = invdet;
-}
-
-/**
- * graphene_simd4x4f_is_identity:
- * @m: a #graphene_simd4x4f_t
- *
- * Checks whether the given matrix is the identity matrix.
- *
- * Returns: `true` if the matrix is the identity matrix
- *
- * Since: 1.0
- */
-static inline bool
-graphene_simd4x4f_is_identity (const graphene_simd4x4f_t *m)
-{
-  const graphene_simd4f_t r0 = graphene_simd4f_init (1.0f, 0.0f, 0.0f, 0.0f);
-  const graphene_simd4f_t r1 = graphene_simd4f_init (0.0f, 1.0f, 0.0f, 0.0f);
-  const graphene_simd4f_t r2 = graphene_simd4f_init (0.0f, 0.0f, 1.0f, 0.0f);
-  const graphene_simd4f_t r3 = graphene_simd4f_init (0.0f, 0.0f, 0.0f, 1.0f);
-
-  return graphene_simd4f_cmp_eq (m->x, r0) &&
-         graphene_simd4f_cmp_eq (m->y, r1) &&
-         graphene_simd4f_cmp_eq (m->z, r2) &&
-         graphene_simd4f_cmp_eq (m->w, r3);
 }
 
 /**
